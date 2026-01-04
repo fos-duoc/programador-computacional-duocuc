@@ -232,7 +232,7 @@ const base = import.meta.env.BASE_URL;
                 <!-- Powered By Badge -->
                 <div class="welcome-powered-badge">
                     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini" />
-                    <span>Powered by Google Gemini 2.0</span>
+                    <span>Powered by Google Gemini</span>
                 </div>
             </div>
         </template>
@@ -320,9 +320,45 @@ const base = import.meta.env.BASE_URL;
                 </button>
             </div>
             <div class="input-footer">
-                <div class="model-badge">
+                <!-- Model Selector Button -->
+                <button class="model-selector-btn" id="model-selector-btn" title="Seleccionar modelo Gemini">
                     <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini AI" />
-                    <span>Gemini 2.0</span>
+                    <span id="selected-model-name">Gemini 2.5 Flash</span>
+                    <i class="fas fa-chevron-up model-chevron"></i>
+                </button>
+                <!-- Model Dropdown Menu -->
+                <div class="model-dropdown" id="model-dropdown">
+                    <div class="model-dropdown-header">
+                        <i class="fas fa-microchip"></i>
+                        <span>Selecciona un modelo</span>
+                    </div>
+                    <div class="model-options">
+                        <button class="model-option selected" data-model="gemini-2.5-flash" data-name="Gemini 2.5 Flash">
+                            <div class="model-option-info">
+                                <span class="model-option-name">Gemini 2.5 Flash</span>
+                                <span class="model-option-desc">Rápido y eficiente</span>
+                            </div>
+                            <span class="model-badge-tag speed">⚡ Veloz</span>
+                        </button>
+                        <button class="model-option" data-model="gemini-2.5-pro" data-name="Gemini 2.5 Pro">
+                            <div class="model-option-info">
+                                <span class="model-option-name">Gemini 2.5 Pro</span>
+                                <span class="model-option-desc">Más capaz y preciso</span>
+                            </div>
+                            <span class="model-badge-tag pro">🧠 Pro</span>
+                        </button>
+                        <button class="model-option" data-model="gemini-2.0-flash" data-name="Gemini 2.0 Flash">
+                            <div class="model-option-info">
+                                <span class="model-option-name">Gemini 2.0 Flash</span>
+                                <span class="model-option-desc">Estable y confiable</span>
+                            </div>
+                            <span class="model-badge-tag stable">✓ Estable</span>
+                        </button>
+                    </div>
+                    <div class="model-dropdown-footer">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Todos los modelos son gratuitos</span>
+                    </div>
                 </div>
                 <button class="settings-btn" id="settings-btn" title="Configuración">
                     <i class="fas fa-cog"></i>
@@ -3466,26 +3502,218 @@ const base = import.meta.env.BASE_URL;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative;
     }
 
-    .model-badge {
+    /* Model Selector Button */
+    .model-selector-btn {
         display: flex;
         align-items: center;
-        gap: 0.25rem;
-        padding: 0.25rem 0.45rem;
-        background: rgba(139, 92, 246, 0.08);
-        border-radius: 15px;
+        gap: 0.3rem;
+        padding: 0.3rem 0.5rem;
+        background: rgba(139, 92, 246, 0.1);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
     }
 
-    .model-badge img {
-        width: 10px;
-        height: 10px;
+    .model-selector-btn:hover {
+        background: rgba(139, 92, 246, 0.18);
+        border-color: rgba(139, 92, 246, 0.35);
     }
 
-    .model-badge span {
-        font-size: 0.52rem;
+    .model-selector-btn img {
+        width: 12px;
+        height: 12px;
+    }
+
+    .model-selector-btn span {
+        font-size: 0.55rem;
         color: #a78bfa;
+        font-weight: 600;
+    }
+
+    .model-selector-btn .model-chevron {
+        font-size: 0.45rem;
+        color: #a78bfa;
+        transition: transform 0.2s ease;
+    }
+
+    .model-selector-btn.open .model-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Model Dropdown */
+    .model-dropdown {
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 0;
+        min-width: 200px;
+        background: #1e1b2e;
+        border: 1px solid rgba(139, 92, 246, 0.25);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: all 0.2s ease;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .model-dropdown.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .model-dropdown-header {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 0.75rem;
+        border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+        background: rgba(139, 92, 246, 0.05);
+    }
+
+    .model-dropdown-header i {
+        font-size: 0.6rem;
+        color: #a78bfa;
+    }
+
+    .model-dropdown-header span {
+        font-size: 0.6rem;
+        color: #94a3b8;
         font-weight: 500;
+    }
+
+    .model-options {
+        padding: 0.4rem;
+    }
+
+    .model-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0.55rem 0.6rem;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-align: left;
+    }
+
+    .model-option:hover {
+        background: rgba(139, 92, 246, 0.12);
+    }
+
+    .model-option.selected {
+        background: rgba(139, 92, 246, 0.18);
+    }
+
+    .model-option-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .model-option-name {
+        font-size: 0.62rem;
+        color: #e2e8f0;
+        font-weight: 600;
+    }
+
+    .model-option-desc {
+        font-size: 0.5rem;
+        color: #64748b;
+    }
+
+    .model-badge-tag {
+        font-size: 0.45rem;
+        padding: 0.2rem 0.4rem;
+        border-radius: 6px;
+        font-weight: 600;
+    }
+
+    .model-badge-tag.speed {
+        background: rgba(34, 197, 94, 0.15);
+        color: #4ade80;
+    }
+
+    .model-badge-tag.pro {
+        background: rgba(168, 85, 247, 0.15);
+        color: #c084fc;
+    }
+
+    .model-badge-tag.stable {
+        background: rgba(59, 130, 246, 0.15);
+        color: #60a5fa;
+    }
+
+    .model-dropdown-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.5rem 0.75rem;
+        border-top: 1px solid rgba(139, 92, 246, 0.12);
+        background: rgba(34, 197, 94, 0.05);
+    }
+
+    .model-dropdown-footer i {
+        font-size: 0.5rem;
+        color: #4ade80;
+    }
+
+    .model-dropdown-footer span {
+        font-size: 0.48rem;
+        color: #4ade80;
+        font-weight: 500;
+    }
+
+    /* Light theme */
+    :global([data-theme="light"]) .model-selector-btn {
+        background: rgba(139, 92, 246, 0.08);
+        border-color: rgba(139, 92, 246, 0.15);
+    }
+
+    :global([data-theme="light"]) .model-selector-btn:hover {
+        background: rgba(139, 92, 246, 0.15);
+    }
+
+    :global([data-theme="light"]) .model-selector-btn span,
+    :global([data-theme="light"]) .model-selector-btn .model-chevron {
+        color: #7c3aed;
+    }
+
+    :global([data-theme="light"]) .model-dropdown {
+        background: #ffffff;
+        border-color: rgba(139, 92, 246, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    }
+
+    :global([data-theme="light"]) .model-dropdown-header {
+        background: rgba(139, 92, 246, 0.05);
+        border-bottom-color: rgba(139, 92, 246, 0.1);
+    }
+
+    :global([data-theme="light"]) .model-option:hover {
+        background: rgba(139, 92, 246, 0.08);
+    }
+
+    :global([data-theme="light"]) .model-option.selected {
+        background: rgba(139, 92, 246, 0.12);
+    }
+
+    :global([data-theme="light"]) .model-option-name {
+        color: #1e293b;
+    }
+
+    :global([data-theme="light"]) .model-option-desc {
+        color: #64748b;
     }
 
     .settings-btn {
@@ -3953,14 +4181,6 @@ const base = import.meta.env.BASE_URL;
         border-left-color: rgba(71, 85, 105, 0.25);
     }
 
-    :global([data-theme="light"]) .model-badge {
-        background: rgba(139, 92, 246, 0.08);
-    }
-
-    :global([data-theme="light"]) .model-badge span {
-        color: #7c3aed;
-    }
-
     /* ============================================
        HIDDEN STATE - When sidebars are merged
     ============================================ */
@@ -4297,17 +4517,21 @@ const base = import.meta.env.BASE_URL;
             font-size: 0.62rem;
         }
 
-        .model-badge {
-            padding: 0.2rem 0.35rem;
+        .model-selector-btn {
+            padding: 0.2rem 0.4rem;
         }
 
-        .model-badge img {
-            width: 8px;
-            height: 8px;
+        .model-selector-btn img {
+            width: 10px;
+            height: 10px;
         }
 
-        .model-badge span {
-            font-size: 0.48rem;
+        .model-selector-btn span {
+            font-size: 0.5rem;
+        }
+
+        .model-dropdown {
+            min-width: 180px;
         }
 
         .settings-btn {
@@ -4671,6 +4895,9 @@ const base = import.meta.env.BASE_URL;
 
         // Settings button - show API key configuration
         settingsBtn?.addEventListener('click', showApiKeySetup);
+
+        // Model Selector functionality
+        initModelSelector();
 
         // Quick actions - prevent duplicate listeners
         quickActions.forEach(btn => {
@@ -5163,6 +5390,114 @@ Selecciona una asignatura del panel izquierdo o pregúntame directamente.`;
         }
     }
 
+    // ========================================
+    // Model Selector Functionality (Event Delegation)
+    // ========================================
+    let selectedGeminiModel = localStorage.getItem('gemini_model') || 'gemini-2.5-flash';
+
+    function initModelSelector() {
+        // Use event delegation marker to prevent duplicate listeners
+        if (window._modelSelectorDelegated) {
+            console.log('Model selector: Already using event delegation');
+            // Just restore UI state
+            restoreModelSelectorUI();
+            return;
+        }
+        window._modelSelectorDelegated = true;
+
+        console.log('Model selector: Setting up event delegation');
+
+        // Restore UI state
+        restoreModelSelectorUI();
+
+        // EVENT DELEGATION for Model Selector
+        document.addEventListener('click', function(e) {
+            // Handle Model Selector Button click
+            if (e.target.closest('#model-selector-btn')) {
+                e.stopPropagation();
+                e.preventDefault();
+                console.log('Model selector: Button clicked (delegated)');
+
+                const dropdown = document.getElementById('model-dropdown');
+                const btn = document.getElementById('model-selector-btn');
+
+                if (dropdown && btn) {
+                    dropdown.classList.toggle('open');
+                    btn.classList.toggle('open');
+                }
+                return;
+            }
+
+            // Handle Model Option click
+            const modelOption = e.target.closest('.model-option');
+            if (modelOption) {
+                e.stopPropagation();
+                const modelId = modelOption.dataset.model;
+                const modelName = modelOption.dataset.name;
+
+                console.log('Model selector: Option clicked (delegated):', modelId);
+
+                // Update selection state
+                document.querySelectorAll('.model-option').forEach(opt => opt.classList.remove('selected'));
+                modelOption.classList.add('selected');
+
+                // Update button text
+                const selectedModelNameEl = document.getElementById('selected-model-name');
+                if (selectedModelNameEl) {
+                    selectedModelNameEl.textContent = modelName;
+                }
+
+                // Save to localStorage
+                selectedGeminiModel = modelId;
+                localStorage.setItem('gemini_model', modelId);
+
+                // Close dropdown
+                const dropdown = document.getElementById('model-dropdown');
+                const btn = document.getElementById('model-selector-btn');
+                if (dropdown) dropdown.classList.remove('open');
+                if (btn) btn.classList.remove('open');
+                return;
+            }
+
+            // Close Model dropdown when clicking outside
+            const modelBtn = document.getElementById('model-selector-btn');
+            const modelDropdown = document.getElementById('model-dropdown');
+            if (modelBtn && modelDropdown) {
+                if (!modelBtn.contains(e.target) && !modelDropdown.contains(e.target)) {
+                    modelDropdown.classList.remove('open');
+                    modelBtn.classList.remove('open');
+                }
+            }
+        });
+    }
+
+    function restoreModelSelectorUI() {
+        const savedModel = localStorage.getItem('gemini_model');
+        if (savedModel) {
+            selectedGeminiModel = savedModel;
+            const savedOption = document.querySelector(`.model-option[data-model="${savedModel}"]`);
+            if (savedOption) {
+                document.querySelectorAll('.model-option').forEach(opt => opt.classList.remove('selected'));
+                savedOption.classList.add('selected');
+                const selectedModelName = document.getElementById('selected-model-name');
+                if (selectedModelName) {
+                    selectedModelName.textContent = savedOption.dataset.name;
+                }
+            }
+        }
+    }
+
+    // Reset model selector for page navigation (clears delegation flag)
+    function resetModelSelector() {
+        // Don't reset delegation flag - keep event delegation active
+        // Just restore UI
+        restoreModelSelectorUI();
+    }
+
+    function getSelectedGeminiModel() {
+        return selectedGeminiModel || 'gemini-2.5-flash';
+    }
+
     function updateQuickActionsState(enabled) {
         const quickActions = document.querySelectorAll('.quick-action');
         quickActions.forEach(btn => {
@@ -5325,11 +5660,15 @@ Mantén respuestas concisas pero completas.`;
             }
         };
 
-        // Try multiple models in order of preference (updated Dec 2025)
+        // Use the user-selected model with fallback options
         // See: https://ai.google.dev/gemini-api/docs/models
-        const models = ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-2.0-flash-lite'];
+        const selectedModel = getSelectedGeminiModel();
+        const fallbackModels = ['gemini-2.5-flash', 'gemini-2.5-pro', 'gemini-2.0-flash'].filter(m => m !== selectedModel);
+        const models = [selectedModel, ...fallbackModels];
+
         let response = null;
         let lastError = null;
+        let usedModel = null;
 
         for (const model of models) {
             try {
@@ -5343,7 +5682,8 @@ Mantén respuestas concisas pero completas.`;
                 );
 
                 if (response.ok) {
-                    console.log(`Using Gemini model: ${model}`);
+                    usedModel = model;
+                    console.log(`✓ Gemini API: Using model ${model}`);
                     break;
                 }
 
@@ -5904,6 +6244,7 @@ Mantén respuestas concisas pero completas.`;
         const savedState = sessionStorage.getItem('aiTutorState');
 
         tutorInitialized = false;
+        resetModelSelector(); // Reset model selector for re-initialization
         initAITutorPanel();
 
         // Restore state from sessionStorage (persists across View Transitions)
@@ -6164,59 +6505,77 @@ Mantén respuestas concisas pero completas.`;
         }
 
         initControls() {
-            if (this._controlsInitialized) return;
-            this._controlsInitialized = true;
+            // Use event delegation with window.ttsManager reference for View Transitions compatibility
+            // window.ttsManager is updated on each page load, ensuring correct instance reference
+            console.log('TTS: Initializing controls with event delegation');
 
-            const self = this;
+            // Guard to prevent duplicate event listeners
+            if (window._ttsControlsDelegated) {
+                console.log('TTS: Controls already delegated, skipping duplicate registration');
+                return;
+            }
+            window._ttsControlsDelegated = true;
 
-            // Direct listeners for speed button (more reliable than delegation)
-            const speedBtn = document.getElementById('tts-speed-btn');
-            const speedDropdown = document.getElementById('tts-speed-dropdown');
+            // EVENT DELEGATION on document - survives View Transitions because document persists
+            // Uses window.ttsManager dynamically instead of closure to always reference current instance
+            document.addEventListener('click', function(e) {
+                const tts = window.ttsManager; // Get current instance dynamically
+                if (!tts) return;
 
-            if (speedBtn && speedDropdown) {
-                speedBtn.addEventListener('click', function(e) {
+                // Handle TTS Speed Button click
+                if (e.target.closest('#tts-speed-btn')) {
                     e.stopPropagation();
                     e.preventDefault();
-                    speedDropdown.classList.toggle('visible');
-                });
+                    console.log('TTS: Speed button clicked (delegated)');
+                    const dropdown = document.getElementById('tts-speed-dropdown');
+                    if (dropdown) {
+                        dropdown.classList.toggle('visible');
+                    }
+                    return;
+                }
 
-                // Speed options direct listener
-                speedDropdown.querySelectorAll('.tts-speed-option').forEach(option => {
-                    option.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const speed = parseFloat(this.dataset.speed);
-                        self.speed = speed;
-                        speedDropdown.querySelectorAll('.tts-speed-option').forEach(o => o.classList.remove('active'));
-                        this.classList.add('active');
-                        const label = document.getElementById('tts-speed-label');
-                        if (label) label.textContent = speed + 'x';
-                        speedDropdown.classList.remove('visible');
-                        self.saveSettings();
-                    });
-                });
-            }
+                // Handle TTS Speed Option click
+                const speedOption = e.target.closest('.tts-speed-option');
+                if (speedOption) {
+                    e.stopPropagation();
+                    const speed = parseFloat(speedOption.dataset.speed);
+                    console.log('TTS: Speed selected (delegated):', speed);
+                    tts.speed = speed;
 
-            // Document-level click for other controls and closing dropdown
-            document.addEventListener('click', function(e) {
+                    // Update UI
+                    document.querySelectorAll('.tts-speed-option').forEach(o => o.classList.remove('active'));
+                    speedOption.classList.add('active');
+
+                    const label = document.getElementById('tts-speed-label');
+                    if (label) label.textContent = speed + 'x';
+
+                    const dropdown = document.getElementById('tts-speed-dropdown');
+                    if (dropdown) dropdown.classList.remove('visible');
+
+                    tts.saveSettings();
+                    return;
+                }
+
+                // Close speed dropdown when clicking outside
                 const speedDropdownEl = document.getElementById('tts-speed-dropdown');
                 const modalOverlay = document.getElementById('tts-modal-overlay');
 
                 // Voice button - open modal
                 if (e.target.closest('#tts-voice-btn')) {
                     e.stopPropagation();
-                    self.openModal();
+                    tts.openModal();
                     return;
                 }
 
                 // Stop button
                 if (e.target.closest('#tts-stop-btn')) {
-                    self.stop();
+                    tts.stop();
                     return;
                 }
 
                 // Modal close
                 if (e.target.closest('#tts-modal-close') || e.target === modalOverlay) {
-                    self.closeModal();
+                    tts.closeModal();
                     return;
                 }
 
@@ -6243,8 +6602,8 @@ Mantén respuestas concisas pero completas.`;
                 const browserVoice = e.target.closest('.tts-browser-voice');
                 if (browserVoice) {
                     const idx = parseInt(browserVoice.dataset.voiceIndex);
-                    if (!isNaN(idx) && self.voices[idx]) {
-                        self.preferredVoice = self.voices[idx];
+                    if (!isNaN(idx) && tts.voices[idx]) {
+                        tts.preferredVoice = tts.voices[idx];
                         document.querySelectorAll('.tts-browser-voice').forEach(v => v.classList.remove('active'));
                         browserVoice.classList.add('active');
                     }
@@ -6264,19 +6623,19 @@ Mantén respuestas concisas pero completas.`;
 
                 // Puter preview
                 if (e.target.closest('#tts-puter-preview')) {
-                    self.previewPuter();
+                    tts.previewPuter();
                     return;
                 }
 
                 // Browser preview
                 if (e.target.closest('#tts-browser-preview')) {
-                    self.previewBrowser();
+                    tts.previewBrowser();
                     return;
                 }
 
                 // Save settings
                 if (e.target.closest('#tts-save-settings')) {
-                    self.saveModalSettings();
+                    tts.saveModalSettings();
                     return;
                 }
 
