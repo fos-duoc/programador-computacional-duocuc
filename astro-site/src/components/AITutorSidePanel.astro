@@ -6019,10 +6019,6 @@ Mantén respuestas concisas pero completas.`;
             this._controlsInitialized = false;
             this.currentAudio = null;
 
-            // Web Audio API context for reliable speed control
-            this.audioContext = null;
-            this.audioSource = null;
-
             // Load settings from localStorage
             this.loadSettings();
 
@@ -6394,6 +6390,15 @@ Mantén respuestas concisas pero completas.`;
             };
             const previewText = previewTexts[lang] || previewTexts['es-MX'];
 
+            const targetSpeed = this.speed;
+
+            // For non-1x speeds, use browser TTS preview which has native rate control
+            if (targetSpeed !== 1) {
+                this.previewBrowser();
+                return;
+            }
+
+            // For 1x speed, use Puter.js neural voices
             btn?.classList.add('playing');
             try {
                 const audioElement = await puter.ai.txt2speech(previewText, {
@@ -6401,49 +6406,8 @@ Mantén respuestas concisas pero completas.`;
                     language: lang
                 });
 
-                const targetSpeed = this.speed;
-                const self = this;
-
-                // If speed is 1x, use simple playback
-                if (targetSpeed === 1) {
-                    audioElement.onended = () => btn?.classList.remove('playing');
-                    audioElement.play();
-                    return;
-                }
-
-                // For non-1x speed, use Web Audio API
-                const audioSrc = audioElement.src || audioElement.currentSrc;
-
-                if (!audioSrc) {
-                    // Fallback to direct playbackRate
-                    audioElement.playbackRate = targetSpeed;
-                    audioElement.preservesPitch = true;
-                    audioElement.onended = () => btn?.classList.remove('playing');
-                    audioElement.play();
-                    return;
-                }
-
-                // Create or resume AudioContext
-                if (!this.audioContext) {
-                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                if (this.audioContext.state === 'suspended') {
-                    await this.audioContext.resume();
-                }
-
-                // Fetch and decode audio
-                const response = await fetch(audioSrc);
-                const arrayBuffer = await response.arrayBuffer();
-                const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-
-                // Create source with speed control
-                const source = this.audioContext.createBufferSource();
-                source.buffer = audioBuffer;
-                source.playbackRate.value = targetSpeed;
-                source.connect(this.audioContext.destination);
-
-                source.onended = () => btn?.classList.remove('playing');
-                source.start(0);
+                audioElement.onended = () => btn?.classList.remove('playing');
+                audioElement.play();
 
             } catch (e) {
                 console.error('Puter TTS error:', e);
@@ -6502,81 +6466,39 @@ Mantén respuestas concisas pero completas.`;
         }
 
         async speakWithPuter(text) {
+            const targetSpeed = this.speed;
+
+            // IMPORTANT: For non-1x speeds, use Browser TTS which has native rate control
+            // Puter.js neural audio doesn't support reliable playbackRate modification
+            if (targetSpeed !== 1) {
+                console.log('TTS: Using browser engine for speed control:', targetSpeed);
+                this.speakWithBrowser(text);
+                return;
+            }
+
+            // For 1x speed, use Puter.js neural voices (higher quality)
             try {
                 this.updateUI('speaking');
                 this.isSpeaking = true;
 
-                // Get audio from Puter.js
                 const audioElement = await puter.ai.txt2speech(text, {
                     engine: this.puterEngine,
                     language: this.puterLang
                 });
 
-                const targetSpeed = this.speed;
                 const self = this;
+                this.currentAudio = audioElement;
 
-                // If speed is 1x, use simple playback
-                if (targetSpeed === 1) {
-                    this.currentAudio = audioElement;
-                    audioElement.onended = () => {
-                        self.isSpeaking = false;
-                        self.updateUI('idle');
-                    };
-                    audioElement.onerror = () => {
-                        self.isSpeaking = false;
-                        self.updateUI('idle');
-                    };
-                    audioElement.play();
-                    return;
-                }
-
-                // For non-1x speed, use Web Audio API for reliable speed control
-                // Get the audio source URL from the element
-                const audioSrc = audioElement.src || audioElement.currentSrc;
-
-                if (!audioSrc) {
-                    // Fallback: try direct playbackRate
-                    this.currentAudio = audioElement;
-                    audioElement.playbackRate = targetSpeed;
-                    audioElement.preservesPitch = true;
-                    audioElement.onended = () => {
-                        self.isSpeaking = false;
-                        self.updateUI('idle');
-                    };
-                    audioElement.play();
-                    return;
-                }
-
-                // Create or resume AudioContext
-                if (!this.audioContext) {
-                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                if (this.audioContext.state === 'suspended') {
-                    await this.audioContext.resume();
-                }
-
-                // Fetch audio data and decode
-                const response = await fetch(audioSrc);
-                const arrayBuffer = await response.arrayBuffer();
-                const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-
-                // Create buffer source with speed control
-                const source = this.audioContext.createBufferSource();
-                source.buffer = audioBuffer;
-                source.playbackRate.value = targetSpeed;
-                source.connect(this.audioContext.destination);
-
-                // Store reference for stop/pause
-                this.audioSource = source;
-                this.currentAudio = null;
-
-                source.onended = () => {
-                    self.audioSource = null;
+                audioElement.onended = () => {
+                    self.isSpeaking = false;
+                    self.updateUI('idle');
+                };
+                audioElement.onerror = () => {
                     self.isSpeaking = false;
                     self.updateUI('idle');
                 };
 
-                source.start(0);
+                audioElement.play();
 
             } catch (e) {
                 console.error('Puter TTS error:', e);
@@ -6618,32 +6540,26 @@ Mantén respuestas concisas pero completas.`;
         }
 
         pause() {
-            // Web Audio API pause (suspend context)
-            if (this.audioSource && this.audioContext) {
-                this.audioContext.suspend();
-                this.isPaused = true;
-                this.updateUI('paused');
-            } else if (this.currentAudio && !this.currentAudio.paused) {
+            if (this.currentAudio && !this.currentAudio.paused) {
                 this.currentAudio.pause();
                 this.isPaused = true;
                 this.updateUI('paused');
             } else if (this.synth && this.isSpeaking && !this.isPaused) {
                 this.synth.pause();
+                this.isPaused = true;
+                this.updateUI('paused');
             }
         }
 
         resume() {
-            // Web Audio API resume
-            if (this.audioSource && this.audioContext && this.audioContext.state === 'suspended') {
-                this.audioContext.resume();
-                this.isPaused = false;
-                this.updateUI('speaking');
-            } else if (this.currentAudio && this.currentAudio.paused) {
+            if (this.currentAudio && this.currentAudio.paused) {
                 this.currentAudio.play();
                 this.isPaused = false;
                 this.updateUI('speaking');
             } else if (this.synth && this.isPaused) {
                 this.synth.resume();
+                this.isPaused = false;
+                this.updateUI('speaking');
             }
         }
 
@@ -6656,16 +6572,7 @@ Mantén respuestas concisas pero completas.`;
         }
 
         stop() {
-            // Stop Web Audio API source
-            if (this.audioSource) {
-                try {
-                    this.audioSource.stop();
-                } catch (e) {
-                    // Already stopped
-                }
-                this.audioSource = null;
-            }
-            // Stop HTMLAudioElement
+            // Stop Puter.js audio
             if (this.currentAudio) {
                 this.currentAudio.pause();
                 this.currentAudio.currentTime = 0;
