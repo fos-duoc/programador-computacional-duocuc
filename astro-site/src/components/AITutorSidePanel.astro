@@ -724,7 +724,8 @@ const base = import.meta.env.BASE_URL;
     }
 
     .tts-speed-btn i {
-        font-size: 0.58rem;
+        font-size: 0.7rem;
+        color: inherit;
     }
 
     .tts-speed-dropdown {
@@ -802,8 +803,9 @@ const base = import.meta.env.BASE_URL;
     }
 
     .tts-voice-btn .voice-icon {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
+        color: currentColor;
         transition: transform 0.3s ease, filter 0.3s ease;
         filter: drop-shadow(0 0 2px rgba(139, 92, 246, 0.3));
     }
@@ -6035,6 +6037,7 @@ Mantén respuestas concisas pero completas.`;
             // Initialize UI
             this.initControls();
             this.updateCurrentEngineDisplay();
+            this.syncSpeedUI(); // Sync speed UI with loaded settings
         }
 
         loadSettings() {
@@ -6065,6 +6068,23 @@ Mantén respuestas concisas pero completas.`;
                 console.log('TTS: Saved settings', settings);
             } catch (e) {
                 console.warn('TTS: Could not save settings', e);
+            }
+        }
+
+        // Sync speed UI with current settings (label and dropdown active state)
+        syncSpeedUI() {
+            const label = document.getElementById('tts-speed-label');
+            const dropdown = document.getElementById('tts-speed-dropdown');
+
+            if (label) {
+                label.textContent = this.speed + 'x';
+            }
+
+            if (dropdown) {
+                dropdown.querySelectorAll('.tts-speed-option').forEach(option => {
+                    const optionSpeed = parseFloat(option.dataset.speed);
+                    option.classList.toggle('active', optionSpeed === this.speed);
+                });
             }
         }
 
@@ -6376,6 +6396,7 @@ Mantén respuestas concisas pero completas.`;
                     engine: engine,
                     language: lang
                 });
+                audio.playbackRate = this.speed; // Apply configured speed
                 audio.play();
                 audio.onended = () => btn?.classList.remove('playing');
             } catch (e) {
@@ -6390,7 +6411,7 @@ Mantén respuestas concisas pero completas.`;
 
             const utterance = new SpeechSynthesisUtterance('Hola, soy tu asistente de estudio personal.');
             if (this.preferredVoice) utterance.voice = this.preferredVoice;
-            utterance.rate = 1;
+            utterance.rate = this.speed; // Use configured speed
 
             const btn = document.getElementById('tts-browser-preview');
             btn?.classList.add('playing');

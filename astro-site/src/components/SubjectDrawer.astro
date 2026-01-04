@@ -553,9 +553,9 @@ const base = import.meta.env.BASE_URL;
     }
 
     .drawer-zoom-btn {
-        width: 22px;
-        height: 22px;
-        border-radius: 5px;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
         border: 1px solid transparent;
         background: rgba(139, 92, 246, 0.12);
         color: #c4b5fd;
@@ -564,7 +564,7 @@ const base = import.meta.env.BASE_URL;
         align-items: center;
         justify-content: center;
         transition: all 0.2s ease;
-        font-size: 0.55rem;
+        font-size: 0.5rem;
     }
 
     .drawer-zoom-btn:hover {
@@ -3312,7 +3312,247 @@ const base = import.meta.env.BASE_URL;
         'Product Backlog': 'Product Backlog|Lista priorizada de requisitos del producto|User Stories,Refinement,Ordering|methodology|fa-list-ol|SCRUM',
         'Daily Standup': 'Daily Standup|Reunión diaria de 15 minutos|Yesterday,Today,Blockers|methodology|fa-comments|SCRUM',
         'Velocity': 'Velocity|Métrica de capacidad del equipo por Sprint|Story Points,Historical Data|methodology|fa-tachometer-alt|SCRUM',
-        'Burndown Chart': 'Burndown Chart|Gráfico de trabajo restante vs tiempo|Ideal Line,Actual Progress|methodology|fa-chart-line|SCRUM'
+        'Burndown Chart': 'Burndown Chart|Gráfico de trabajo restante vs tiempo|Ideal Line,Actual Progress|methodology|fa-chart-line|SCRUM',
+        // ============================================
+        // FUNDAMENTOS DE PROGRAMACIÓN
+        // ============================================
+        'Python 3': 'Python 3|Versión moderna de Python con mejoras de sintaxis|f-strings,Type Hints,async/await|code|fa-python|LENGUAJE',
+        'Pseudocódigo': 'Pseudocódigo|Descripción informal de algoritmos en lenguaje natural|Lógica,Secuencial,Estructurado|info|fa-file-alt|FUNDAMENTOS',
+        'Diagrama de Flujo': 'Diagrama de Flujo|Representación gráfica de algoritmos y procesos|Inicio/Fin,Decisiones,Procesos|info|fa-project-diagram|FUNDAMENTOS',
+        'Variables': 'Variables|Espacios de memoria para almacenar datos|Tipos,Alcance,Asignación|code|fa-box|FUNDAMENTOS',
+        'Funciones': 'Funciones|Bloques de código reutilizables con parámetros|Parámetros,Retorno,Modularidad|code|fa-cog|FUNDAMENTOS',
+        'Bucles For/While': 'Bucles For/While|Estructuras de repetición para iterar código|Iteración,Condiciones,Break/Continue|code|fa-sync|FUNDAMENTOS',
+        'Condicionales': 'Condicionales|Estructuras de decisión if-else|if,else,elif,switch|code|fa-code-branch|FUNDAMENTOS',
+        // ============================================
+        // BASES DE DATOS Y MODELAMIENTO
+        // ============================================
+        'Modelo E-R': 'Modelo E-R|Modelo Entidad-Relación para diseño de BD|Entidades,Atributos,Relaciones|info|fa-database|DISEÑO BD',
+        'Normalización 1FN-3FN': 'Normalización 1FN-3FN|Formas normales para eliminar redundancia|1FN,2FN,3FN,BCNF|info|fa-layer-group|DISEÑO BD',
+        'DDL': 'DDL|Data Definition Language para crear estructuras|CREATE,ALTER,DROP,TRUNCATE|code|fa-table|SQL',
+        'DML': 'DML|Data Manipulation Language para datos|INSERT,UPDATE,DELETE,SELECT|code|fa-edit|SQL',
+        'DCL': 'DCL|Data Control Language para permisos|GRANT,REVOKE|code|fa-user-lock|SQL',
+        'TCL': 'TCL|Transaction Control Language|COMMIT,ROLLBACK,SAVEPOINT|code|fa-exchange-alt|SQL',
+        'Claves Primarias': 'Claves Primarias|Identificador único de cada registro|PK,Unicidad,NOT NULL|info|fa-key|BD',
+        'Claves Foráneas': 'Claves Foráneas|Referencias a claves primarias de otras tablas|FK,Integridad referencial|info|fa-link|BD',
+        'Cardinalidad': 'Cardinalidad|Cantidad de relaciones entre entidades|1:1,1:N,N:M|info|fa-sitemap|DISEÑO BD',
+        'SELECT': 'SELECT|Consulta para recuperar datos de tablas|Columnas,Filtros,Joins|code|fa-search|SQL',
+        'JOIN': 'JOIN|Combinación de datos de múltiples tablas|INNER,LEFT,RIGHT,FULL|code|fa-object-group|SQL',
+        'WHERE': 'WHERE|Cláusula para filtrar registros|Condiciones,AND,OR,IN|code|fa-filter|SQL',
+        'GROUP BY': 'GROUP BY|Agrupación de resultados por columnas|Agregación,HAVING,COUNT|code|fa-layer-group|SQL',
+        'Subqueries': 'Subqueries|Consultas anidadas dentro de otras consultas|Scalar,Table,Correlated|code|fa-sitemap|SQL',
+        'Aggregate Functions': 'Aggregate Functions|Funciones de agregación SQL|COUNT,SUM,AVG,MAX,MIN|code|fa-calculator|SQL',
+        'Window Functions': 'Window Functions|Funciones analíticas sobre particiones|ROW_NUMBER,RANK,LAG,LEAD|code|fa-window-restore|SQL',
+        'Stored Procedures': 'Stored Procedures|Procedimientos almacenados en la BD|Parámetros,Lógica,Transacciones|code|fa-database|BD',
+        'Functions': 'Functions|Funciones definidas por usuario en BD|Retorno,Determinísticas|code|fa-cog|BD',
+        'Triggers': 'Triggers|Disparadores automáticos ante eventos|BEFORE,AFTER,INSERT/UPDATE/DELETE|code|fa-bolt|BD',
+        'Cursores': 'Cursores|Iteradores para recorrer resultados|DECLARE,FETCH,CLOSE|code|fa-arrow-right|BD',
+        'Transacciones ACID': 'Transacciones ACID|Propiedades de integridad de transacciones|Atomicity,Consistency,Isolation,Durability|info|fa-shield-alt|BD',
+        'PL/pgSQL': 'PL/pgSQL|Lenguaje procedural de PostgreSQL|Bloques,Loops,Exceptions|code|fa-database|POSTGRESQL',
+        'PL/SQL': 'PL/SQL|Lenguaje procedural de Oracle|Packages,Procedures,Functions|code|fa-database|ORACLE',
+        'Query Optimization': 'Query Optimization|Optimización de consultas SQL|Índices,EXPLAIN,Query Plans|info|fa-tachometer-alt|PERFORMANCE',
+        'Polyglot Persistence': 'Polyglot Persistence|Uso de múltiples tipos de BD según necesidad|SQL,NoSQL,Graph,TimeSeries|pattern|fa-cubes|ARQUITECTURA',
+        'Sharding': 'Sharding|Particionamiento horizontal de datos|Distribución,Escalabilidad|info|fa-th-large|BD',
+        'Replication': 'Replication|Replicación de datos entre servidores|Master-Slave,Multi-Master|info|fa-copy|BD',
+        'Aggregation Pipeline': 'Aggregation Pipeline|Framework de agregación de MongoDB|$match,$group,$project,$sort|code|fa-stream|MONGODB',
+        'NoSQL Databases': 'NoSQL Databases|Bases de datos no relacionales|Document,Key-Value,Graph|info|fa-database|BD',
+        // ============================================
+        // ÉTICA Y PROFESIONALISMO
+        // ============================================
+        'Ética Profesional': 'Ética Profesional|Principios morales en el ejercicio profesional|Responsabilidad,Integridad,Honestidad|info|fa-balance-scale|ÉTICA',
+        'Diversidad Cultural': 'Diversidad Cultural|Respeto e inclusión de diferentes culturas|Inclusión,Respeto,Colaboración|info|fa-globe|ÉTICA',
+        'Interculturalidad': 'Interculturalidad|Interacción entre culturas diversas|Diálogo,Comprensión,Adaptación|info|fa-hands-helping|ÉTICA',
+        'RSE': 'RSE|Responsabilidad Social Empresarial|Sustentabilidad,Impacto Social,Gobernanza|info|fa-leaf|ÉTICA',
+        'ACM Code of Ethics': 'ACM Code of Ethics|Código ético de la Association for Computing Machinery|Principios,Responsabilidades|info|fa-scroll|ÉTICA',
+        'IEEE Ethics': 'IEEE Ethics|Código ético del Institute of Electrical and Electronics Engineers|Profesionalismo,Integridad|info|fa-certificate|ÉTICA',
+        'Sesgos Algorítmicos': 'Sesgos Algorítmicos|Prejuicios en sistemas de IA/ML|Fairness,Bias Detection,Mitigation|info|fa-balance-scale-right|IA ÉTICA',
+        'Privacidad': 'Privacidad|Protección de datos personales|Consentimiento,Anonimización,Derechos|info|fa-user-shield|SEGURIDAD',
+        'Responsible AI': 'Responsible AI|Desarrollo ético de inteligencia artificial|Transparencia,Explicabilidad,Fairness|info|fa-robot|IA ÉTICA',
+        'Privacidad de Datos': 'Privacidad de Datos|Protección y manejo de información personal|GDPR,Consentimiento,PII|info|fa-lock|SEGURIDAD',
+        'GDPR': 'GDPR|Reglamento General de Protección de Datos de la UE|Consentimiento,Right to be Forgotten|info|fa-shield-alt|REGULACIÓN',
+        'GDPR Compliance': 'GDPR Compliance|Cumplimiento del reglamento europeo de datos|Data Protection,Privacy by Design|info|fa-check-circle|REGULACIÓN',
+        'CCPA': 'CCPA|California Consumer Privacy Act|Privacidad,Derechos del Consumidor|info|fa-file-contract|REGULACIÓN',
+        'Data Privacy': 'Data Privacy|Privacidad y protección de datos personales|Encryption,Anonymization,Access Control|info|fa-user-lock|SEGURIDAD',
+        'Derechos Digitales': 'Derechos Digitales|Derechos fundamentales en el ámbito digital|Privacidad,Acceso,Libertad|info|fa-gavel|ÉTICA',
+        'ML Bias Detection': 'ML Bias Detection|Detección de sesgos en modelos de ML|Fairlearn,AIF360,Disparate Impact|info|fa-search|IA ÉTICA',
+        'Fairlearn': 'Fairlearn|Toolkit de Microsoft para ML justo|Mitigation,Assessment,Metrics|tool|fa-balance-scale|IA ÉTICA',
+        'AI Ethics': 'AI Ethics|Ética en inteligencia artificial|Transparencia,Accountability,Fairness|info|fa-brain|IA ÉTICA',
+        // ============================================
+        // CLOUD Y AWS
+        // ============================================
+        'IAM': 'IAM|Identity and Access Management de AWS|Usuarios,Roles,Políticas|cloud|fa-id-card|AWS',
+        'Amazon RDS': 'Amazon RDS|Servicio de BD relacional administrada de AWS|Aurora,PostgreSQL,MySQL|cloud|fa-database|AWS',
+        'IaaS': 'IaaS|Infrastructure as a Service|VMs,Storage,Networking|cloud|fa-server|CLOUD',
+        'PaaS': 'PaaS|Platform as a Service|Heroku,App Service,Elastic Beanstalk|cloud|fa-layer-group|CLOUD',
+        'SaaS': 'SaaS|Software as a Service|Salesforce,Office 365,Slack|cloud|fa-cloud|CLOUD',
+        'CloudWatch': 'CloudWatch|Servicio de monitoreo de AWS|Logs,Metrics,Alarms,Dashboards|cloud|fa-chart-line|AWS',
+        'Infrastructure as Code': 'Infrastructure as Code|Gestión de infraestructura mediante código|Terraform,CloudFormation,Pulumi|devops|fa-file-code|IAC',
+        // ============================================
+        // COMUNICACIÓN Y DOCUMENTACIÓN
+        // ============================================
+        'Redacción Técnica': 'Redacción Técnica|Escritura clara y precisa de documentación técnica|Claridad,Estructura,Audiencia|info|fa-pen-fancy|DOCUMENTACIÓN',
+        'Presentaciones Efectivas': 'Presentaciones Efectivas|Técnicas para presentaciones profesionales|Storytelling,Visual Design,Delivery|info|fa-chalkboard-teacher|COMUNICACIÓN',
+        'Elevator Pitch': 'Elevator Pitch|Presentación breve y persuasiva de un proyecto|30 segundos,Hook,Call to Action|info|fa-comment-dots|COMUNICACIÓN',
+        'Documentación README': 'Documentación README|Archivo principal de documentación del proyecto|Instalación,Uso,Contribución|info|fa-file-alt|DOCUMENTACIÓN',
+        'Formato APA': 'Formato APA|Estilo de citación de la American Psychological Association|Referencias,Citas,Bibliografía|info|fa-quote-left|DOCUMENTACIÓN',
+        // ============================================
+        // PATRONES DE DISEÑO
+        // ============================================
+        'Principios SOLID': 'Principios SOLID|5 principios fundamentales de diseño OOP|SRP,OCP,LSP,ISP,DIP|pattern|fa-gem|PRINCIPIOS',
+        'JDBC': 'JDBC|Java Database Connectivity API|Connection,Statement,ResultSet|code|fa-database|JAVA',
+        'JavaFX': 'JavaFX|Framework para interfaces gráficas en Java|Scene Graph,FXML,CSS Styling|framework|fa-desktop|JAVA',
+        'Singleton': 'Singleton|Patrón que garantiza una única instancia|Lazy Loading,Thread-safe|pattern|fa-dot-circle|CREATIONAL',
+        'Factory Method': 'Factory Method|Patrón para crear objetos sin especificar clase exacta|Subclases,Creación,Flexibilidad|pattern|fa-industry|CREATIONAL',
+        'Observer': 'Observer|Patrón para notificación de cambios de estado|Publisher,Subscriber,Events|pattern|fa-eye|BEHAVIORAL',
+        'Saga Pattern': 'Saga Pattern|Patrón para transacciones distribuidas|Compensating Actions,Choreography,Orchestration|pattern|fa-route|MICROSERVICIOS',
+        // ============================================
+        // DEVOPS Y CI/CD
+        // ============================================
+        'Docker Compose': 'Docker Compose|Herramienta para definir aplicaciones multi-contenedor|YAML,Services,Networks,Volumes|tool|fa-cubes|DEVOPS',
+        'GitHub Actions': 'GitHub Actions|CI/CD nativo de GitHub|Workflows,Jobs,Steps,Runners|tool|fa-play-circle|CI/CD',
+        'CI/CD Pipelines': 'CI/CD Pipelines|Pipelines de integración y despliegue continuo|Build,Test,Deploy,Release|devops|fa-stream|DEVOPS',
+        'Git Flow': 'Git Flow|Modelo de branching para desarrollo|Feature,Release,Hotfix|tool|fa-code-branch|GIT',
+        'Linux CLI': 'Linux CLI|Interfaz de línea de comandos de Linux|Bash,Commands,Shell Scripting|tool|fa-terminal|LINUX',
+        'Bash Scripting': 'Bash Scripting|Automatización con scripts Bash|Variables,Loops,Functions|code|fa-file-code|LINUX',
+        'Nginx': 'Nginx|Servidor web y reverse proxy de alto rendimiento|Load Balancing,Caching,SSL|tool|fa-server|INFRAESTRUCTURA',
+        'Helm Charts': 'Helm Charts|Package manager para Kubernetes|Templates,Values,Releases|tool|fa-anchor|KUBERNETES',
+        'ArgoCD': 'ArgoCD|Herramienta GitOps para Kubernetes|Declarative,Git-driven,Auto-sync|tool|fa-sync-alt|GITOPS',
+        'GitOps': 'GitOps|Prácticas DevOps usando Git como fuente de verdad|Declarative,Version Control,Automation|methodology|fa-git-alt|DEVOPS',
+        'Istio Service Mesh': 'Istio Service Mesh|Service mesh para microservicios en K8s|Traffic,Security,Observability|tool|fa-network-wired|KUBERNETES',
+        'Observability Stack': 'Observability Stack|Stack completo de observabilidad|Metrics,Logs,Traces|tool|fa-eye|MONITORING',
+        'Multi-Cluster K8s': 'Multi-Cluster K8s|Gestión de múltiples clusters Kubernetes|Federation,Fleet,Rancher|info|fa-server|KUBERNETES',
+        'Disaster Recovery': 'Disaster Recovery|Estrategias de recuperación ante desastres|RTO,RPO,Failover,Backup|info|fa-shield-alt|INFRAESTRUCTURA',
+        'Velero Backup': 'Velero Backup|Herramienta de backup para Kubernetes|Snapshots,Restore,Migration|tool|fa-download|KUBERNETES',
+        'HashiCorp Vault': 'HashiCorp Vault|Gestión de secretos y datos sensibles|Secrets,Encryption,PKI|tool|fa-key|SEGURIDAD',
+        'Backstage Portal': 'Backstage Portal|Portal de desarrolladores de Spotify|Service Catalog,Templates,Plugins|tool|fa-door-open|PLATFORM',
+        'Platform Engineering': 'Platform Engineering|Diseño de plataformas internas para desarrolladores|IDP,Self-service,Automation|methodology|fa-cogs|DEVOPS',
+        // ============================================
+        // SEGURIDAD
+        // ============================================
+        'SQL Injection': 'SQL Injection|Ataque de inyección de código SQL|Prepared Statements,Input Validation|security|fa-syringe|OWASP',
+        'Cross-Site Scripting (XSS)': 'Cross-Site Scripting (XSS)|Inyección de scripts maliciosos en páginas web|Encoding,CSP,Sanitization|security|fa-code|OWASP',
+        'XSS': 'XSS|Cross-Site Scripting - inyección de scripts|Reflected,Stored,DOM-based|security|fa-code|OWASP',
+        'CSRF': 'CSRF|Cross-Site Request Forgery|Tokens,SameSite Cookies|security|fa-user-secret|OWASP',
+        'Criptografía AES/RSA': 'Criptografía AES/RSA|Algoritmos de encriptación simétrica y asimétrica|AES-256,RSA-2048,Keys|security|fa-lock|CRIPTOGRAFÍA',
+        'Hashing bcrypt': 'Hashing bcrypt|Algoritmo de hash seguro para contraseñas|Salt,Work Factor,Slow Hashing|security|fa-hashtag|CRIPTOGRAFÍA',
+        'TLS/HTTPS': 'TLS/HTTPS|Protocolo de seguridad para comunicaciones|Certificates,Encryption,Handshake|security|fa-lock|PROTOCOLOS',
+        'SAST Analysis': 'SAST Analysis|Static Application Security Testing|Code Review,Vulnerability Scan|security|fa-search|TESTING',
+        'DAST Testing': 'DAST Testing|Dynamic Application Security Testing|Runtime,Black-box,Penetration|security|fa-bug|TESTING',
+        'Snyk Security': 'Snyk Security|Plataforma de seguridad para desarrolladores|Dependencies,Container,Code|tool|fa-shield-alt|SEGURIDAD',
+        'DevSecOps': 'DevSecOps|Integración de seguridad en DevOps|Shift-left,Automation,Pipeline|methodology|fa-shield-alt|DEVOPS',
+        'Application Security': 'Application Security|Seguridad de aplicaciones|SAST,DAST,SCA,Secrets|info|fa-lock|SEGURIDAD',
+        // ============================================
+        // CLOUD NATIVE Y CONTENEDORES
+        // ============================================
+        'CNCF': 'CNCF|Cloud Native Computing Foundation|Kubernetes,Prometheus,Envoy|info|fa-cloud|CLOUD NATIVE',
+        'Containers': 'Containers|Contenedores para aplicaciones aisladas|Docker,Podman,OCI|tool|fa-box|DEVOPS',
+        '12-Factor Apps': '12-Factor Apps|Metodología para aplicaciones SaaS modernas|Config,Logs,Disposability|methodology|fa-list-ol|CLOUD NATIVE',
+        'Observability': 'Observability|Capacidad de entender el estado interno de sistemas|Metrics,Logs,Traces|info|fa-eye|MONITORING',
+        // ============================================
+        // INGENIERÍA DE REQUISITOS
+        // ============================================
+        'Requirements Engineering': 'Requirements Engineering|Ingeniería de requisitos de software|Elicitation,Analysis,Validation|info|fa-clipboard-list|ING SOFTWARE',
+        'Elicitación': 'Elicitación|Técnicas para recopilar requisitos|Entrevistas,Workshops,Observación|info|fa-comments|REQUISITOS',
+        'User Stories': 'User Stories|Historias de usuario en formato ágil|As a..I want..So that|methodology|fa-book-open|AGILE',
+        'Use Cases': 'Use Cases|Casos de uso para describir interacciones|Actor,Flujo,Precondiciones|info|fa-user-check|REQUISITOS',
+        'IEEE 830 SRS': 'IEEE 830 SRS|Estándar para especificación de requisitos|Funcionales,No Funcionales,Interfaces|info|fa-file-alt|ESTÁNDARES',
+        'Stakeholders': 'Stakeholders|Partes interesadas en el proyecto|Usuarios,Sponsors,Desarrolladores|info|fa-users|GESTIÓN',
+        'MoSCoW Prioritization': 'MoSCoW Prioritization|Técnica de priorización de requisitos|Must,Should,Could,Won\'t|methodology|fa-sort-amount-down|REQUISITOS',
+        'Gherkin': 'Gherkin|Lenguaje para especificación de comportamiento|Given-When-Then,Scenarios|code|fa-file-code|BDD',
+        'User Story Mapping': 'User Story Mapping|Mapeo de historias de usuario|Backbone,Walking Skeleton,MVP|methodology|fa-map|AGILE',
+        // ============================================
+        // SPRING Y BACKEND
+        // ============================================
+        'Spring Boot 3': 'Spring Boot 3|Framework Java moderno con Spring 6 y Jakarta EE|Native,GraalVM,Virtual Threads|framework|fa-leaf|BACKEND',
+        'REST API': 'REST API|APIs web siguiendo principios REST|HTTP Methods,Resources,JSON|pattern|fa-exchange-alt|API',
+        'JPA': 'JPA|Java Persistence API para mapeo objeto-relacional|Entities,Repositories,JPQL|framework|fa-database|JAVA',
+        'Hibernate': 'Hibernate|ORM popular para Java|Mapping,Lazy Loading,Cache|framework|fa-database|JAVA',
+        'DTOs': 'DTOs|Data Transfer Objects para transferencia de datos|Mapping,Validation,Serialization|pattern|fa-exchange-alt|JAVA',
+        'Bean Validation': 'Bean Validation|Validación de objetos Java con anotaciones|@NotNull,@Size,@Pattern|framework|fa-check|JAVA',
+        'OpenAPI/Swagger': 'OpenAPI/Swagger|Especificación para documentar APIs|Documentation,Code Generation|tool|fa-book|API',
+        'Spring Security': 'Spring Security|Framework de seguridad para Spring|Authentication,Authorization,OAuth|framework|fa-shield-alt|SEGURIDAD',
+        'JUnit 5': 'JUnit 5|Framework de testing para Java 5+|@Test,Assertions,Extensions|testing|fa-vial|TESTING',
+        'Mockito': 'Mockito|Framework de mocking para Java|Mock,Stub,Verify|testing|fa-magic|TESTING',
+        'Redis Cache': 'Redis Cache|Caché distribuido con Redis|TTL,Eviction,Pub/Sub|tool|fa-bolt|CACHE',
+        // ============================================
+        // AGILE Y SCRUM
+        // ============================================
+        'Agile Methodologies': 'Agile Methodologies|Metodologías ágiles de desarrollo|Scrum,Kanban,XP,Lean|methodology|fa-rocket|AGILE',
+        'Jira': 'Jira|Herramienta de gestión de proyectos ágiles|Boards,Sprints,Backlog|tool|fa-tasks|HERRAMIENTAS',
+        'Planning Poker': 'Planning Poker|Técnica de estimación colaborativa|Story Points,Consensus,Cards|methodology|fa-th|SCRUM',
+        // ============================================
+        // TESTING Y QA
+        // ============================================
+        'QA Testing': 'QA Testing|Control de calidad de software|Manual,Automated,Regression|testing|fa-check-double|CALIDAD',
+        'Performance Testing': 'Performance Testing|Pruebas de rendimiento|Load,Stress,Spike,Soak|testing|fa-tachometer-alt|TESTING',
+        'k6 Load Testing': 'k6 Load Testing|Herramienta moderna de pruebas de carga|JavaScript,Cloud,CLI|tool|fa-chart-line|TESTING',
+        // ============================================
+        // FRONTEND
+        // ============================================
+        'React 18+': 'React 18+|React moderno con Concurrent Features|Suspense,Transitions,Streaming SSR|framework|fa-react|FRONTEND',
+        'JavaScript ES6+': 'JavaScript ES6+|JavaScript moderno con features ES6+|Arrow Functions,Modules,Promises|code|fa-js|LENGUAJE',
+        'Components': 'Components|Componentes reutilizables de UI|Props,State,Lifecycle|code|fa-puzzle-piece|FRONTEND',
+        'SPA': 'SPA|Single Page Application|Client-side Routing,AJAX|pattern|fa-file|ARQUITECTURA',
+        'State Management': 'State Management|Gestión de estado en aplicaciones|Redux,Zustand,Context|pattern|fa-database|FRONTEND',
+        'React Router': 'React Router|Enrutamiento para aplicaciones React|Routes,Navigate,Outlet|framework|fa-route|REACT',
+        'API Gateway': 'API Gateway|Punto de entrada único para APIs|Routing,Rate Limiting,Auth|pattern|fa-door-open|ARQUITECTURA',
+        // ============================================
+        // MOBILE
+        // ============================================
+        'iOS': 'iOS|Sistema operativo móvil de Apple|Swift,Xcode,App Store|platform|fa-apple|MOBILE',
+        'Android': 'Android|Sistema operativo móvil de Google|Kotlin,Android Studio,Play Store|platform|fa-android|MOBILE',
+        'React Navigation': 'React Navigation|Librería de navegación para React Native|Stack,Tab,Drawer|framework|fa-compass|MOBILE',
+        'Native Components': 'Native Components|Componentes nativos de plataforma|Platform-specific,Performance|code|fa-mobile|MOBILE',
+        'Zustand': 'Zustand|Librería ligera de gestión de estado|Simple,Hooks,Middleware|framework|fa-bear|STATE',
+        'MVVM Pattern': 'MVVM Pattern|Model-View-ViewModel para separación de concerns|Binding,ViewModel,Commands|pattern|fa-layer-group|ARQUITECTURA',
+        'Detox Testing': 'Detox Testing|Framework de testing E2E para React Native|Gray-box,Fast,Reliable|testing|fa-vial|MOBILE',
+        'CI/CD Mobile': 'CI/CD Mobile|CI/CD específico para apps móviles|Fastlane,EAS,App Center|devops|fa-mobile-alt|DEVOPS',
+        'EAS Build': 'EAS Build|Expo Application Services para builds|Cloud Builds,OTA Updates|tool|fa-cloud|EXPO',
+        'Offline-First': 'Offline-First|Diseño que prioriza funcionamiento offline|Sync,Cache,Conflict Resolution|pattern|fa-wifi-slash|ARQUITECTURA',
+        'Flutter': 'Flutter|Framework de Google para apps multiplataforma|Dart,Widgets,Hot Reload|framework|fa-mobile-alt|MOBILE',
+        'Dart Language': 'Dart Language|Lenguaje de programación de Google|Type-safe,Null Safety,Async|code|fa-code|LENGUAJE',
+        'Riverpod': 'Riverpod|Gestión de estado reactiva para Flutter|Providers,Modifiers,Testing|framework|fa-water|FLUTTER',
+        'App Store': 'App Store|Tienda de aplicaciones de Apple|Guidelines,Review,Distribution|platform|fa-apple|DISTRIBUCIÓN',
+        'Play Store': 'Play Store|Tienda de aplicaciones de Google|Policies,Release,A/B Testing|platform|fa-google-play|DISTRIBUCIÓN',
+        // ============================================
+        // NEXT.JS Y SSR
+        // ============================================
+        'Next.js 14+': 'Next.js 14+|Framework React moderno con App Router|RSC,Streaming,Partial Prerendering|framework|fa-forward|FULLSTACK',
+        'SSR': 'SSR|Server-Side Rendering|SEO,Performance,Initial Load|pattern|fa-server|RENDERING',
+        'SSG': 'SSG|Static Site Generation|Build-time,CDN,Performance|pattern|fa-file-code|RENDERING',
+        'ISR': 'ISR|Incremental Static Regeneration|On-demand,Revalidation,Stale-while-revalidate|pattern|fa-sync|RENDERING',
+        'React Server Components': 'React Server Components|Componentes que se ejecutan en servidor|Zero-bundle,Streaming,Data Fetching|code|fa-server|REACT',
+        'WCAG Accessibility': 'WCAG Accessibility|Directrices de accesibilidad web|A,AA,AAA,ARIA|info|fa-universal-access|ACCESIBILIDAD',
+        'Core Web Vitals': 'Core Web Vitals|Métricas de rendimiento web de Google|LCP,FID,CLS|info|fa-chart-line|PERFORMANCE',
+        // ============================================
+        // FULLSTACK Y ARQUITECTURA
+        // ============================================
+        'Fullstack Development': 'Fullstack Development|Desarrollo de frontend y backend|End-to-end,Full-stack|info|fa-layer-group|DESARROLLO',
+        'Monorepo': 'Monorepo|Repositorio único para múltiples proyectos|Shared Code,Atomic Commits|pattern|fa-folder-tree|ARQUITECTURA',
+        'JWT Authentication': 'JWT Authentication|Autenticación con JSON Web Tokens|Access,Refresh,Claims|security|fa-id-badge|AUTH',
+        'Apollo Server': 'Apollo Server|Servidor GraphQL para Node.js|Schema,Resolvers,DataSources|framework|fa-rocket|GRAPHQL',
+        'Real-Time Apps': 'Real-Time Apps|Aplicaciones en tiempo real|WebSockets,SSE,Polling|pattern|fa-bolt|ARQUITECTURA',
+        'Performance Optimization': 'Performance Optimization|Optimización de rendimiento|Caching,Lazy Loading,CDN|info|fa-tachometer-alt|PERFORMANCE',
+        // ============================================
+        // PROYECTOS Y METODOLOGÍA
+        // ============================================
+        'Capstone Project': 'Capstone Project|Proyecto integrador final de carrera|Aplicación Real,Defensa,Portfolio|info|fa-graduation-cap|ACADÉMICO',
+        'MVP Development': 'MVP Development|Desarrollo de Producto Mínimo Viable|Validación,Iteración,Lean|methodology|fa-rocket|STARTUP',
+        'Technical Documentation': 'Technical Documentation|Documentación técnica profesional|Architecture,API,Runbooks|info|fa-file-alt|DOCUMENTACIÓN',
+        'Project Defense': 'Project Defense|Defensa de proyecto ante comisión|Presentación,Q&A,Demo|info|fa-chalkboard-teacher|ACADÉMICO',
+        'Teamwork': 'Teamwork|Trabajo en equipo colaborativo|Comunicación,Coordinación,Roles|info|fa-users|SOFT SKILLS',
+        'Real Client': 'Real Client|Trabajo con cliente real|Requirements,Feedback,Delivery|info|fa-handshake|PROFESIONAL',
+        // ============================================
+        // ESTIMACIÓN Y MÉTRICAS
+        // ============================================
+        'Software Estimation': 'Software Estimation|Estimación de esfuerzo de software|Técnicas,Precisión,Riesgos|methodology|fa-calculator|GESTIÓN',
+        'COCOMO II': 'COCOMO II|Modelo de estimación de costos de software|Drivers,Escalation,Effort|methodology|fa-chart-bar|ESTIMACIÓN',
+        'DORA Metrics': 'DORA Metrics|Métricas DevOps de elite|Deployment Frequency,Lead Time,MTTR,Change Failure|methodology|fa-chart-line|DEVOPS',
+        'KPIs': 'KPIs|Key Performance Indicators|Métricas,Objetivos,Seguimiento|methodology|fa-bullseye|GESTIÓN',
+        'ROI Analysis': 'ROI Analysis|Análisis de Retorno de Inversión|Beneficios,Costos,Payback|methodology|fa-chart-pie|FINANZAS',
+        'TCO': 'TCO|Total Cost of Ownership|Direct,Indirect,Lifecycle|methodology|fa-dollar-sign|FINANZAS',
+        'NPV': 'NPV|Net Present Value - Valor Presente Neto|Cash Flows,Discount Rate|methodology|fa-money-bill-wave|FINANZAS',
+        'Business Case': 'Business Case|Caso de negocio para justificar proyecto|Justification,Benefits,Risks|methodology|fa-briefcase|GESTIÓN',
+        'Story Points': 'Story Points|Unidad de estimación ágil|Complejidad,Esfuerzo,Riesgo|methodology|fa-sort-numeric-up|SCRUM'
     };
 
     // Función para obtener tooltip de keyword

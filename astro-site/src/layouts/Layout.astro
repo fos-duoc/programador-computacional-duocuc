@@ -113,38 +113,40 @@ const BUILD_VERSION = Date.now().toString(36);
 
     <!-- Page Entrance Animation -->
     <style is:inline>
-        /* Smooth page entrance animation */
+        /* Smooth page entrance animation
+           IMPORTANT: Only use opacity, NOT transform on body.
+           transform (even translateY(0)) creates a new containing block,
+           which breaks position:fixed on descendant elements like side panels.
+           Reference: MDN CSS position - fixed positioning caveats */
         @keyframes pageEnter {
             from {
                 opacity: 0;
-                transform: translateY(8px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
         body.page-enter {
-            animation: pageEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Astro View Transitions - Premium Cinematic Crossfade
-           Using expo-out easing for smooth deceleration */
+        /* Astro View Transitions - Elegant Slow Crossfade
+           Suave y cinematográfica con duración extendida */
         ::view-transition-old(root),
         ::view-transition-new(root) {
-            animation-duration: 0.9s;
-            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+            animation-duration: 1.4s;
+            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Old page exits: fade + blur + subtle scale down */
+        /* Old page exits: gentle fade + soft blur */
         ::view-transition-old(root) {
-            animation: cinematicFadeOut 0.45s cubic-bezier(0.4, 0, 1, 1) forwards;
+            animation: cinematicFadeOut 0.65s cubic-bezier(0.32, 0, 0.67, 0) forwards;
         }
 
-        /* New page enters: delayed fade + blur + subtle rise */
+        /* New page enters: slow fade + subtle rise */
         ::view-transition-new(root) {
-            animation: cinematicFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+            animation: cinematicFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
         }
 
         @keyframes cinematicFadeOut {
@@ -153,21 +155,29 @@ const BUILD_VERSION = Date.now().toString(36);
                 filter: blur(0px);
                 transform: scale(1) translateY(0);
             }
+            50% {
+                opacity: 0.6;
+                filter: blur(2px);
+            }
             100% {
                 opacity: 0;
-                filter: blur(6px);
-                transform: scale(0.98) translateY(-8px);
+                filter: blur(4px);
+                transform: scale(0.99) translateY(-4px);
             }
         }
 
         @keyframes cinematicFadeIn {
             0% {
                 opacity: 0;
-                filter: blur(8px);
-                transform: scale(1.01) translateY(12px);
+                filter: blur(5px);
+                transform: scale(1.005) translateY(8px);
             }
-            40% {
-                filter: blur(4px);
+            30% {
+                opacity: 0.3;
+                filter: blur(3px);
+            }
+            60% {
+                filter: blur(1px);
             }
             100% {
                 opacity: 1;
@@ -176,11 +186,12 @@ const BUILD_VERSION = Date.now().toString(36);
             }
         }
 
-        /* Smooth transition for reduced motion preference */
+        /* Accessible transition for reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
             ::view-transition-old(root),
             ::view-transition-new(root) {
-                animation-duration: 0.3s;
+                animation-duration: 0.5s;
+                animation-timing-function: ease-in-out;
             }
 
             @keyframes cinematicFadeOut {
@@ -356,18 +367,19 @@ const BUILD_VERSION = Date.now().toString(36);
 
             bindEvents() {
                 // Use mouseover/mouseout for better event delegation (they bubble)
+                // Support both data-premium-tooltip AND data-tooltip
                 document.addEventListener('mouseover', (e) => {
-                    const target = e.target?.closest?.('[data-premium-tooltip]');
+                    const target = e.target?.closest?.('[data-premium-tooltip], [data-tooltip]');
                     if (target && target !== this.currentTarget) {
                         this.handleMouseEnter(target);
                     }
                 });
 
                 document.addEventListener('mouseout', (e) => {
-                    const target = e.target?.closest?.('[data-premium-tooltip]');
+                    const target = e.target?.closest?.('[data-premium-tooltip], [data-tooltip]');
                     if (target) {
                         // Check if we're moving to a child element (don't hide)
-                        const relatedTarget = e.relatedTarget?.closest?.('[data-premium-tooltip]');
+                        const relatedTarget = e.relatedTarget?.closest?.('[data-premium-tooltip], [data-tooltip]');
                         if (relatedTarget !== target) {
                             this.handleMouseLeave();
                         }
@@ -416,14 +428,22 @@ const BUILD_VERSION = Date.now().toString(36);
             }
 
             parseTooltipData(target) {
-                const raw = target.dataset.premiumTooltip;
+                // Support both data-premium-tooltip AND data-tooltip
+                const raw = target.dataset.premiumTooltip || target.dataset.tooltip;
+
+                // If no data, return empty
+                if (!raw) return { title: '', simple: true };
+
+                // Detect if using simple data-tooltip (minimal mode)
+                const isSimple = !target.dataset.premiumTooltip && target.dataset.tooltip;
 
                 // Support both JSON format and simple string
                 if (raw.startsWith('{')) {
                     try {
-                        return JSON.parse(raw);
+                        const parsed = JSON.parse(raw);
+                        return { ...parsed, simple: isSimple };
                     } catch (e) {
-                        return { title: raw };
+                        return { title: raw, simple: isSimple };
                     }
                 }
 
@@ -435,12 +455,14 @@ const BUILD_VERSION = Date.now().toString(36);
                     features: parts[2] ? parts[2].split(',') : [],
                     type: parts[3] || '',
                     icon: parts[4] || 'fa-info',
-                    category: parts[5] || ''
+                    category: parts[5] || '',
+                    simple: isSimple
                 };
             }
 
             updateContent(data) {
                 const card = this.tooltip.querySelector('.tooltip-card');
+                const header = this.tooltip.querySelector('.tooltip-header');
                 const icon = this.tooltip.querySelector('.tooltip-icon i');
                 const title = this.tooltip.querySelector('.tooltip-title');
                 const category = this.tooltip.querySelector('.tooltip-category');
@@ -449,11 +471,23 @@ const BUILD_VERSION = Date.now().toString(36);
                 const footer = this.tooltip.querySelector('.tooltip-footer');
                 const shortcut = this.tooltip.querySelector('.tooltip-shortcut');
 
+                // Toggle simple mode class for compact styling
+                card.classList.toggle('simple-mode', !!data.simple);
+
                 // Icon
                 icon.className = 'fas ' + (data.icon || 'fa-info');
 
                 // Title
                 title.textContent = data.title || '';
+
+                // For simple mode (data-tooltip), hide extra elements
+                if (data.simple) {
+                    category.style.display = 'none';
+                    description.parentElement.style.display = 'none';
+                    features.style.display = 'none';
+                    footer.style.display = 'none';
+                    return;
+                }
 
                 // Category
                 category.textContent = data.category || '';

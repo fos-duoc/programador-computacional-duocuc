@@ -18311,12 +18311,23 @@ section {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 320px;
   min-width: 200px;
+  /* Force complete hiding - prevents content flash */
+  clip-path: inset(100%);
+  -webkit-clip-path: inset(100%);
 }
 
 .premium-tooltip.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
+  clip-path: none;
+  -webkit-clip-path: none;
+}
+
+/* Ensure tooltip content is invisible when parent is hidden */
+.premium-tooltip:not(.visible) * {
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 
 /* Tooltip Card */
@@ -18483,6 +18494,35 @@ section {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   color: #94a3b8;
+}
+
+/* ============================================
+   SIMPLE TOOLTIP MODE (for data-tooltip)
+   Compact, minimal design for simple labels
+   ============================================ */
+.tooltip-card.simple-mode {
+  min-width: auto;
+  max-width: 200px;
+}
+
+.tooltip-card.simple-mode .tooltip-header {
+  padding: 0.6rem 1rem;
+  border-bottom: none;
+}
+
+.tooltip-card.simple-mode .tooltip-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.tooltip-card.simple-mode .tooltip-icon i {
+  font-size: 0.9rem;
+}
+
+.tooltip-card.simple-mode .tooltip-title {
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 /* Arrow/Pointer */
