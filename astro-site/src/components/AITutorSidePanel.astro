@@ -808,6 +808,15 @@ const base = import.meta.env.BASE_URL;
         font-weight: 600;
     }
 
+    /* Hide tooltip when dropdown is open */
+    .tts-speed-btn.dropdown-open {
+        pointer-events: auto;
+    }
+    
+    .tts-speed-btn.dropdown-open[data-premium-tooltip] {
+        --tooltip-display: none;
+    }
+
     /* Voice selector button - Premium Design */
     .tts-voice-btn {
         position: relative;
@@ -6528,8 +6537,23 @@ Mantén respuestas concisas pero completas.`;
                     e.preventDefault();
                     console.log('TTS: Speed button clicked (delegated)');
                     const dropdown = document.getElementById('tts-speed-dropdown');
-                    if (dropdown) {
+                    const speedBtn = document.getElementById('tts-speed-btn');
+                    if (dropdown && speedBtn) {
+                        const isOpening = !dropdown.classList.contains('visible');
                         dropdown.classList.toggle('visible');
+                        speedBtn.classList.toggle('dropdown-open', isOpening);
+                        
+                        // Hide/restore tooltip when dropdown opens/closes
+                        if (isOpening) {
+                            // Save and remove tooltip to prevent interference
+                            speedBtn._savedTooltip = speedBtn.getAttribute('data-premium-tooltip');
+                            speedBtn.removeAttribute('data-premium-tooltip');
+                        } else {
+                            // Restore tooltip when closing
+                            if (speedBtn._savedTooltip) {
+                                speedBtn.setAttribute('data-premium-tooltip', speedBtn._savedTooltip);
+                            }
+                        }
                     }
                     return;
                 }
@@ -6550,7 +6574,15 @@ Mantén respuestas concisas pero completas.`;
                     if (label) label.textContent = speed + 'x';
 
                     const dropdown = document.getElementById('tts-speed-dropdown');
+                    const speedBtn = document.getElementById('tts-speed-btn');
                     if (dropdown) dropdown.classList.remove('visible');
+                    if (speedBtn) {
+                        speedBtn.classList.remove('dropdown-open');
+                        // Restore tooltip
+                        if (speedBtn._savedTooltip) {
+                            speedBtn.setAttribute('data-premium-tooltip', speedBtn._savedTooltip);
+                        }
+                    }
 
                     tts.saveSettings();
                     return;
@@ -6642,6 +6674,14 @@ Mantén respuestas concisas pero completas.`;
                 // Close dropdown if clicking outside
                 if (!e.target.closest('.tts-speed-dropdown') && !e.target.closest('#tts-speed-btn')) {
                     speedDropdownEl?.classList.remove('visible');
+                    const speedBtn = document.getElementById('tts-speed-btn');
+                    if (speedBtn) {
+                        speedBtn.classList.remove('dropdown-open');
+                        // Restore tooltip
+                        if (speedBtn._savedTooltip) {
+                            speedBtn.setAttribute('data-premium-tooltip', speedBtn._savedTooltip);
+                        }
+                    }
                 }
             });
         }
