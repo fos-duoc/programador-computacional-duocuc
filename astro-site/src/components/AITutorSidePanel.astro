@@ -6548,6 +6548,10 @@ Mantén respuestas concisas pero completas.`;
                             // Save and remove tooltip to prevent interference
                             speedBtn._savedTooltip = speedBtn.getAttribute('data-premium-tooltip');
                             speedBtn.removeAttribute('data-premium-tooltip');
+                            // Hide any active tooltip immediately to prevent interference
+                            if (window.tooltipSystem) {
+                                window.tooltipSystem.hide();
+                            }
                         } else {
                             // Restore tooltip when closing
                             if (speedBtn._savedTooltip) {
