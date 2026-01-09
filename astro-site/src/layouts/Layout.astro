@@ -589,6 +589,8 @@ const BUILD_VERSION = Date.now().toString(36);
             } else {
                 tooltipSystem.createTooltipElement();
             }
+            // Expose to window for external access (e.g., from AITutorSidePanel)
+            window.tooltipSystem = tooltipSystem;
         }
 
         // Initialize immediately if DOM is ready, otherwise wait
