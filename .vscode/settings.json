@@ -1,0 +1,233 @@
+{
+  // ╔══════════════════════════════════════════════════════════════════════════╗
+  // ║  VS CODE WORKSPACE SETTINGS (AUDITED & CORRECTED)                       ║
+  // ║  Role: Tutor Académico DuocUC                                           ║
+  // ║  Program: Analista Programador Computacional                            ║
+  // ║  Stack: Java, Python, SQL                                               ║
+  // ║  Language: Español + English                                            ║
+  // ║  Version: 2.1 STABLE | Enero 2026                                       ║
+  // ╚══════════════════════════════════════════════════════════════════════════╝
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  EDITOR - Settings seguros                                              │
+  // └──────────────────────────────────────────────────────────────────────────┘
+  
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'JetBrains Mono', 'Cascadia Code', Consolas, monospace",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.wordWrap": "on",
+  "editor.rulers": [80, 120],
+  "editor.minimap.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.indentation": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.linkedEditing": true,
+
+  // ⚠️ CORREGIDO: formatOnSave habilitado
+  "editor.formatOnSave": true,
+  
+  // ⚠️ CORREGIDO: Sin code actions globales
+  "editor.codeActionsOnSave": {},
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  FILES - Corregidos                                                     │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  // ⚠️ CORREGIDO: onFocusChange en lugar de afterDelay
+  "files.autoSave": "onFocusChange",
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.git": true,
+    "**/target": true,
+    "**/*.class": true,
+    "**/.settings": true
+  },
+
+  "files.associations": {
+    "*.java": "java",
+    "*.py": "python",
+    "*.sql": "sql",
+    "*.md": "markdown"
+  },
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  JAVA - Google Style                                                    │
+  // │  ⚠️ NOTA: JDK 21+ requerido desde Enero 2025                            │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [80, 120]
+  },
+
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.signatureHelp.enabled": true,
+  "java.autobuild.enabled": true,
+  "java.import.gradle.enabled": true,
+  "java.import.maven.enabled": true,
+
+  // Google Style Formatter
+  "java.format.enabled": true,
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.format.settings.profile": "GoogleStyle",
+  "java.saveActions.organizeImports": true,
+
+  // ⚠️ CORREGIDO: Inlay hints pueden distraer a estudiantes
+  "java.inlayHints.parameterNames.enabled": "literals",
+
+  // Debug
+  "java.debug.settings.enableHotCodeReplace": true,
+  "java.debug.settings.enableRunDebugCodeLens": true,
+  "java.debug.settings.console": "integratedTerminal",
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  PYTHON + RUFF                                                          │
+  // │  ⚠️ REQUIERE: Desinstalar black-formatter, isort, flake8                │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "python.defaultInterpreterPath": "python",
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  
+  // ⚠️ CORREGIDO: Inlay hints desactivados
+  "python.analysis.inlayHints.functionReturnTypes": false,
+  "python.analysis.inlayHints.variableTypes": false,
+
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  "ruff.configurationPreference": "filesystemFirst",
+  "ruff.lineLength": 88,
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  SQL                                                                    │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "[sql]": {
+    "editor.defaultFormatter": "mtxr.sqltools",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+
+  "sqltools.format.reservedWordCase": "upper",
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  MARKDOWN - Corregido                                                   │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
+    "editor.wordWrap": "on",
+    // ⚠️ CORREGIDO: Preservar trailing spaces
+    "files.trimTrailingWhitespace": false
+  },
+
+  "markdown.preview.fontSize": 14,
+  "markdown.extension.toc.levels": "2..4",
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  JSON                                                                   │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  TERMINAL                                                               │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.env.windows": {
+    "PYTHONIOENCODING": "utf-8",
+    "JAVA_TOOL_OPTIONS": "-Dfile.encoding=UTF-8"
+  },
+  "terminal.integrated.suggest.enabled": true,
+  // ⚠️ CORREGIDO: Reducido
+  "terminal.integrated.scrollback": 5000,
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  GIT                                                                    │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  // ⚠️ CORREGIDO: Confirmación habilitada
+  "git.confirmSync": true,
+  "git.inputValidationLength": 72,
+  "git.inputValidationSubjectLength": 50,
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  SPELL CHECKER - Español + English                                      │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "cSpell.language": "es,en",
+  "cSpell.enableFiletypes": ["markdown", "plaintext", "python", "java", "sql"],
+  "cSpell.userWords": [
+    "DuocUC", "Analista", "Programador", "metodologías", "ágiles",
+    "getter", "setter", "toString", "hashCode", "ArrayList", "HashMap",
+    "SQLException", "JDBC", "JOptionPane", "println", "Scanner",
+    "dataframe", "pandas", "numpy", "matplotlib"
+  ],
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  CODE QUALITY                                                           │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "errorLens.enabled": true,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+
+  "todo-tree.general.tags": [
+    "TODO", "FIXME", "BUG", "NOTE",
+    "EJERCICIO", "TAREA", "EJEMPLO", "REVISAR"
+  ],
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  WORKBENCH                                                              │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.highlightModifiedTabs": true,
+
+  "explorer.sortOrder": "type",
+
+  "debug.console.fontSize": 13,
+
+  // ┌──────────────────────────────────────────────────────────────────────────┐
+  // │  TELEMETRY                                                              │
+  // └──────────────────────────────────────────────────────────────────────────┘
+
+  "telemetry.telemetryLevel": "off",
+  "redhat.telemetry.enabled": false
+}

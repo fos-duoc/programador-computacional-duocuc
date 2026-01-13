@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_204_OL_PRY2202_24479991_PCT, DESARROLLO ORIENTADO A OBJETOS I_003A
+Evaluación: Actividad Formativa 1: Creando una clase básica en Java
+
+Fecha de entrega: 27/10/25 23:11 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: 51bfe94367c0473f8bf23cfda19fed9a

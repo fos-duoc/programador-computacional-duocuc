@@ -1,0 +1,14 @@
+# Reflexión Semana 1 - Desarrollo Orientado a Objetos I
+**Fuad Oñate**
+
+### ¿Qué fue lo más fácil y lo más difícil?
+
+Lo más fácil fue crear los getters y setters porque es bastante mecánico, solo hay que devolver o asignar valores. También el constructor sin parámetros es simple porque solo pones valores por defecto.
+
+Lo más difícil al principio fue entender bien la diferencia entre público y privado, y por qué los atributos tienen que ser privados. También me costó un poco el método toString porque no sabía bien qué información mostrar.
+
+### ¿Qué aprendí sobre encapsulamiento y modelado?
+
+Aprendí que el encapsulamiento es como proteger los datos para que no se puedan cambiar directamente desde afuera. Es útil porque puedes controlar cómo se modifican, por ejemplo validar que un precio no sea negativo. 
+
+Sobre el modelado, entendí que es tomar algo del mundo real como un producto agrícola y convertirlo en código con sus características y funciones.

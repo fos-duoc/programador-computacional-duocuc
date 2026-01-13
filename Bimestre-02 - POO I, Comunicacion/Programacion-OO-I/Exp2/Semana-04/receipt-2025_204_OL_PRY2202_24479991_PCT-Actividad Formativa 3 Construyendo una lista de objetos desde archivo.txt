@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_204_OL_PRY2202_24479991_PCT, DESARROLLO ORIENTADO A OBJETOS I_003A
+Evaluación: Actividad Formativa 3: Construyendo una lista de objetos desde archivo
+
+Fecha de entrega: 17/11/25 22:58 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: ed9194eb064e48478ae1e0877eb895a2

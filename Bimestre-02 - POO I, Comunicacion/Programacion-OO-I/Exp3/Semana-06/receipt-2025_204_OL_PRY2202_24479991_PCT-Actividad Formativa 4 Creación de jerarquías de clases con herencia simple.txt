@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_204_OL_PRY2202_24479991_PCT, DESARROLLO ORIENTADO A OBJETOS I_003A
+Evaluación: Actividad Formativa 4: Creación de jerarquías de clases con herencia simple
+
+Fecha de entrega: 1/12/25 23:35 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: 86167c4684e94efc956af9fdb3c159be

@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_203_OL_PRY2201_24403422_PCT, FUNDAMENTOS DE PROGRAMACION_001A
+Evaluación: Actividad Formativa 4: Aplicando variables en Java
+
+Fecha de entrega: 15/9/25 20:01 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: ecf04f5e77814f98bad6950f32e18822

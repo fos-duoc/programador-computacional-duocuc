@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_204_OL_PRY2202_24479991_PCT, DESARROLLO ORIENTADO A OBJETOS I_003A
+Evaluación: Actividad Sumativa 3: Interfaces e integración con colecciones genéricas
+
+Fecha de entrega: 15/12/25 23:28 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: 811f1df6caf1499eb9732e3a9d2d24e1

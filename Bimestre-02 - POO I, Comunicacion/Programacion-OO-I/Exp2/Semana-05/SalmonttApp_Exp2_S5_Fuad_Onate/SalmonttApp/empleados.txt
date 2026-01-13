@@ -1,0 +1,9 @@
+RUT;Nombre;Cargo;Area;Sueldo;Calle;Numero;Ciudad;Region
+12.345.678-9;Juan Perez Soto;Supervisor;Cultivo;1200000;Los Alamos;123;Puerto Montt;Los Lagos
+13.456.789-0;Maria Lopez Garcia;Operario;Proceso;750000;Las Gaviotas;456;Castro;Los Lagos
+14.567.890-1;Carlos Diaz Vera;Jefe;Logistica;1800000;Av. Marina;789;Ancud;Los Lagos
+15.678.901-2;Ana Torres Silva;Administrativo;Administracion;950000;Los Pinos;321;Puerto Montt;Los Lagos
+16.789.012-3;Pedro Gonzalez Rojas;Gerente;Administracion;3500000;Av. Principal;100;Puerto Montt;Los Lagos
+17.890.123-4;Sofia Martinez Cruz;Supervisor;Calidad;1350000;Las Rosas;200;Quellon;Los Lagos
+18.901.234-5;Diego Fernandez Paz;Operario;Cultivo;700000;Los Aromos;150;Calbuco;Los Lagos
+19.012.345-6;Carmen Ruiz Saavedra;Jefe;Proceso;1950000;Av. Costanera;500;Castro;Los Lagos

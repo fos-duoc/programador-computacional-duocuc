@@ -1,0 +1,8 @@
+Centro Quillaipe;Puerto Montt;1250.5
+Centro Hueihue;Castro;890.3
+Centro Chaica;Quellón;1580.75
+Centro Putemún;Castro;2100.0
+Centro Metri;Calbuco;750.25
+Centro Caicura;Quellón;1950.8
+Centro Huito;Puerto Montt;1420.6
+Centro Chelín;Castro;680.9

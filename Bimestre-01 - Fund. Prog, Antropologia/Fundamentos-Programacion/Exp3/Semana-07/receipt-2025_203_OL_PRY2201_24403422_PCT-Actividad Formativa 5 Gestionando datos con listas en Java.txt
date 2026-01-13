@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_203_OL_PRY2201_24403422_PCT, FUNDAMENTOS DE PROGRAMACION_001A
+Evaluación: Actividad Formativa 5: Gestionando datos con listas en Java
+
+Fecha de entrega: 29/9/25 17:40 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: ce4b1cd6f22e44d5a5abad48f175d45b

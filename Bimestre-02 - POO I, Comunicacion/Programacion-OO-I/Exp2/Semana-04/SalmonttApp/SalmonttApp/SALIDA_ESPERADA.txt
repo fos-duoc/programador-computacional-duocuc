@@ -1,0 +1,47 @@
+=== SISTEMA DE GESTIÓN SALMONTT ===
+Cargando datos desde archivo...
+
+✓ Datos cargados exitosamente
+
+--- TODOS LOS CENTROS DE CULTIVO ---
+Centro: Centro Quillaipe | Comuna: Puerto Montt | Producción: 1250.5 toneladas
+Centro: Centro Hueihue | Comuna: Castro | Producción: 890.3 toneladas
+Centro: Centro Chaica | Comuna: Quellón | Producción: 1580.75 toneladas
+Centro: Centro Putemún | Comuna: Castro | Producción: 2100.0 toneladas
+Centro: Centro Metri | Comuna: Calbuco | Producción: 750.25 toneladas
+Centro: Centro Caicura | Comuna: Quellón | Producción: 1950.8 toneladas
+Centro: Centro Huito | Comuna: Puerto Montt | Producción: 1420.6 toneladas
+Centro: Centro Chelín | Comuna: Castro | Producción: 680.9 toneladas
+
+Total de centros: 8
+
+==================================================
+
+--- CENTROS DE ALTA PRODUCCIÓN (> 1000 toneladas) ---
+Centro: Centro Quillaipe | Comuna: Puerto Montt | Producción: 1250.5 toneladas
+Centro: Centro Chaica | Comuna: Quellón | Producción: 1580.75 toneladas
+Centro: Centro Putemún | Comuna: Castro | Producción: 2100.0 toneladas
+Centro: Centro Caicura | Comuna: Quellón | Producción: 1950.8 toneladas
+Centro: Centro Huito | Comuna: Puerto Montt | Producción: 1420.6 toneladas
+
+Centros de alta producción: 5
+
+==================================================
+
+--- CENTROS EN PUERTO MONTT ---
+Centro: Centro Quillaipe | Comuna: Puerto Montt | Producción: 1250.5 toneladas
+Centro: Centro Huito | Comuna: Puerto Montt | Producción: 1420.6 toneladas
+
+Centros en Puerto Montt: 2
+
+==================================================
+
+--- ESTADÍSTICAS DE PRODUCCIÓN ---
+Producción total: 10623.1 toneladas
+Producción promedio: 1327.89 toneladas
+
+Centro con mayor producción:
+  → Centro: Centro Putemún | Comuna: Castro | Producción: 2100.0 toneladas
+
+Centro con menor producción:
+  → Centro: Centro Chelín | Comuna: Castro | Producción: 680.9 toneladas

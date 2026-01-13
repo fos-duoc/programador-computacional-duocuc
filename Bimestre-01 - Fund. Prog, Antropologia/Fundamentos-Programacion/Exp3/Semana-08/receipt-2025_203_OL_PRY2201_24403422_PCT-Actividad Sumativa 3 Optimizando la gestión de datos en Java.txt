@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_203_OL_PRY2201_24403422_PCT, FUNDAMENTOS DE PROGRAMACION_001A
+Evaluación: Actividad Sumativa 3: Optimizando la gestión de datos en Java
+
+Fecha de entrega: 6/10/25 3:07 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: cd3024f5766549f4a130bf3056de634c

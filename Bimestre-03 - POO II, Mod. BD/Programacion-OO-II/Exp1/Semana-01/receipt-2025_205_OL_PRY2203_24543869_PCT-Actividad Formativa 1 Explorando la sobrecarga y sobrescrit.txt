@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_205_OL_PRY2203_24543869_PCT, DESARROLLO ORIENTADO A OBJETOS II_002A
+Evaluación: Actividad Formativa 1: Explorando la sobrecarga y sobrescritura en clases derivadas
+
+Fecha de entrega: 12/1/26 20:15 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: 2d8fd9f118f04a00aa7a7e7b678df6e0

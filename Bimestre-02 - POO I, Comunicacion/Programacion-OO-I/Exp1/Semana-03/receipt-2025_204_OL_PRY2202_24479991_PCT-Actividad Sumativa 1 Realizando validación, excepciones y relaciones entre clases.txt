@@ -1,0 +1,8 @@
+Tu entrega se realizó correctamente. successful!
+Curso: 2025_204_OL_PRY2202_24479991_PCT, DESARROLLO ORIENTADO A OBJETOS I_003A
+Evaluación: Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases
+
+Fecha de entrega: 10/11/25 23:37 (UTC-3)
+Tamaño de entrega: undefined
+Remitente: FUAD JAMMAL ONATE SANCHEZ
+Número de confirmación: 302b12bbcc2046ad83356e3f3d6f5d4e

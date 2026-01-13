@@ -1,0 +1,11 @@
+ID;Nombre;Comuna;Toneladas;Empleados;Calle;Numero;Region
+1;Centro Chiloe Norte;Ancud;1850.5;45;Av. Costanera;100;Los Lagos
+2;Centro Quinchao;Quinchao;2100.3;52;Camino Rural;200;Los Lagos
+3;Centro Calbuco;Calbuco;1750.8;38;Ruta Principal;150;Los Lagos
+4;Centro Quellon Sur;Quellon;2500.0;65;Av. Puerto;300;Los Lagos
+5;Centro Chonchi;Chonchi;980.5;28;Calle Marina;50;Los Lagos
+6;Centro Dalcahue;Dalcahue;1200.7;35;Sector Costero;75;Los Lagos
+7;Centro Castro;Castro;3200.5;78;Av. Industrial;500;Los Lagos
+8;Centro Puerto Montt;Puerto Montt;2800.0;72;Parque Industrial;400;Los Lagos
+9;Centro Cochamo;Cochamo;1450.3;40;Camino Interior;120;Los Lagos
+10;Centro Hualaihue;Hualaihue;1950.8;48;Ruta Costera;250;Los Lagos
