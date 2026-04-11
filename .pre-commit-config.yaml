@@ -56,20 +56,22 @@ repos:
 
   # ─────────────────────────────────────────────────────────────────────────
   # JS / TS / Astro / CSS / Markdown: hooks locales (usan npm install)
+  # Las rutas vienen prefijadas con apps/astro-site/, las strippeamos antes
+  # de pasarlas a npx (que corre dentro de apps/astro-site/).
   # ─────────────────────────────────────────────────────────────────────────
   - repo: local
     hooks:
       - id: prettier-astro-site
         name: prettier (apps/astro-site)
         language: system
-        entry: bash -c 'cd apps/astro-site && npx --no -- prettier --write --ignore-unknown "$@"' --
+        entry: bash -c 'paths=(); for f in "$@"; do paths+=("${f#apps/astro-site/}"); done; cd apps/astro-site && npx --no -- prettier --write --ignore-unknown "${paths[@]}"' --
         files: ^apps/astro-site/.*\.(js|mjs|cjs|ts|tsx|astro|css|scss|json|md|yml|yaml|html)$
-        exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
+        exclude: ^apps/astro-site/(node_modules|dist|\.astro|public|package-lock\.json)
 
       - id: eslint-astro-site
         name: eslint (apps/astro-site)
         language: system
-        entry: bash -c 'cd apps/astro-site && npx --no -- eslint --fix --max-warnings=200 "$@"' --
+        entry: bash -c 'paths=(); for f in "$@"; do paths+=("${f#apps/astro-site/}"); done; cd apps/astro-site && npx --no -- eslint --fix --max-warnings=200 "${paths[@]}"' --
         files: ^apps/astro-site/.*\.(js|mjs|cjs|ts|tsx|astro)$
         exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
 
