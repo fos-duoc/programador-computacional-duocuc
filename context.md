@@ -27,6 +27,7 @@ GitHub: https://github.com/fos-duoc/programador-computacional-duocuc
 | Sitio Astro | funcional, deploya a Pages vía Actions desde `apps/astro-site/dist/` |
 | Tutor AI | activo (TTS Puter.js + Web Speech API fallback) |
 | Última gran refactor | 2026-04-11 — reestructura a `apps/`/`coursework/`/`resources/` + sistema de contexto |
+| Rename del repo | 2026-04-11 — `Analista-Programador-Computacional-DuocUC` → `programador-computacional-duocuc` (ver [Rename del repo — estado](#rename-del-repo--estado)) |
 
 ---
 
@@ -77,9 +78,11 @@ GitHub: https://github.com/fos-duoc/programador-computacional-duocuc
 ## Convenciones (resumen)
 
 - **Naming de carpetas**: kebab-case sin espacios ni comas.
-- **Commits**: Conventional Commits (`feat`, `fix`, `docs`, `refactor`, `chore`, `build`, `ci`, `test`). Ver [docs/conventions.md](conventions.md).
+- **Commits**: Conventional Commits (`feat`, `fix`, `docs`, `refactor`, `chore`, `build`, `ci`, `test`). Ver [docs/conventions.md](docs/conventions.md).
 - **Branches**: `feat/<topic>`, `fix/<topic>`, `chore/<topic>`. PR a `main` con descripción y test plan.
 - **Sesiones de trabajo**: ver [sessions/](sessions/) — copiar `_template.md` al inicio.
+- **Gatekeeper anti-IA-mentions**: pre-commit + commit-msg hooks bloquean menciones a marcas de asistentes de IA en archivos staged y mensajes de commit. Mantiene el repo neutral. Script: [scripts/check-no-ai-mentions.sh](scripts/check-no-ai-mentions.sh). Modos: staged (default), COMMIT_EDITMSG, `--all`.
+- **Instrucciones para agentes LLM**: en [llm.md](llm.md) (lowercase, nombre neutral — antes `CLAUDE.md`).
 
 ---
 
@@ -97,6 +100,26 @@ GitHub: https://github.com/fos-duoc/programador-computacional-duocuc
 3. Commit con mensaje Conventional + push.
 
 Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y stampa este archivo.
+
+---
+
+## Rename del repo — estado
+
+El 2026-04-11 (commit `33950e90`) se renombró el repo de `Analista-Programador-Computacional-DuocUC` a `programador-computacional-duocuc` (kebab-case, más corto, neutral). El cambio se ejecutó como sed mass replace sobre 23 archivos (base path de Astro, manifest, OG image URL, canonical, asset paths, data files, docs y sesiones).
+
+**Migrados** al slug nuevo:
+
+- GitHub: `github.com/fos-duoc/programador-computacional-duocuc`
+- Azure DevOps: `dev.azure.com/fos-duoc/programador-computacional-duocuc`
+
+**Pendientes** (mirrors externos siguen con el slug viejo porque los repos en esas plataformas aún no fueron renombrados):
+
+- GitLab: `gitlab.com/fos-duoc/analista-programador-computacional-duocuc`
+- Bitbucket: `bitbucket.org/fos-duoc/analista-programador-computacional-duocuc`
+
+Las URLs hard-coded en [apps/astro-site/src/components/Footer.astro](apps/astro-site/src/components/Footer.astro), [apps/astro-site/src/components/Header.astro](apps/astro-site/src/components/Header.astro) y [.github/workflows/mirror-repos.yml](.github/workflows/mirror-repos.yml) reflejan esta asimetría **intencionalmente** — hay comentarios inline en los 3 archivos apuntando a esta sección. Follow-up: renombrar en GitLab y Bitbucket desde la UI de cada plataforma, luego completar el sed.
+
+**Whitelist** (no se tocaron en el rename, intencional): `docs/archive/CLAUDE_backup_12_Jan_2026.md`, `apps/astro-site/public/original.html`, `apps/astro-site/original_index_backup.html`, `resources/documentos/Analista-Programador-Computacional-Guia-Completa.md` (este último es el nombre del PDF oficial DuocUC, no el del repo).
 
 ---
 
@@ -121,4 +144,4 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 - **Fecha**: 2026-04-11
 - **Sesión**: sessions/2026-04-11.md
 - **Branch al cierre**: `chore/modernize-and-restructure`
-- **Commit**: `0cb5903f`
+- **Commit**: `33950e90`
