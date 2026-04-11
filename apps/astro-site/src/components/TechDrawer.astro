@@ -4,891 +4,933 @@
  * Panel lateral para mostrar información detallada de tecnologías
  * Similar a BestPracticeDrawer pero enfocado en lenguajes, frameworks y herramientas
  */
-import { technologies, type Technology } from '../data/technologies';
+import { technologies, type Technology } from "../data/technologies";
 ---
 
 <!-- Overlay -->
 <div id="tech-drawer-overlay" class="tech-drawer-overlay"></div>
 
 <!-- Drawer Panel -->
-<aside id="tech-drawer" class="tech-drawer" aria-hidden="true" role="dialog" aria-labelledby="tech-drawer-title">
-    <!-- Header -->
-    <header class="tech-header">
-        <div class="tech-header-content">
-            <span class="tech-category-badge" id="tech-category">LENGUAJE</span>
-            <span class="tech-year" id="tech-year">2025</span>
-        </div>
-        <button class="tech-close" aria-label="Cerrar panel" id="tech-close-btn">
-            <i class="fas fa-times"></i>
-        </button>
-    </header>
+<aside
+  id="tech-drawer"
+  class="tech-drawer"
+  aria-hidden="true"
+  role="dialog"
+  aria-labelledby="tech-drawer-title"
+>
+  <!-- Header -->
+  <header class="tech-header">
+    <div class="tech-header-content">
+      <span class="tech-category-badge" id="tech-category">LENGUAJE</span>
+      <span class="tech-year" id="tech-year">2025</span>
+    </div>
+    <button class="tech-close" aria-label="Cerrar panel" id="tech-close-btn">
+      <i class="fas fa-times"></i>
+    </button>
+  </header>
 
-    <!-- Body -->
-    <div class="tech-body">
-        <!-- Title Section -->
-        <div class="tech-title-section">
-            <div class="tech-icon-container" id="tech-icon">
-                <i class="devicon-python-plain"></i>
-            </div>
-            <h2 class="tech-title" id="tech-drawer-title">Python</h2>
-            <p class="tech-subtitle" id="tech-descripcion-corta">Lenguaje de propósito general</p>
-            <div class="tech-meta">
-                <span class="tech-meta-item" id="tech-release">
-                    <i class="fas fa-calendar-alt"></i> Desde 1991
-                </span>
-                <span class="tech-meta-item" id="tech-maintainer">
-                    <i class="fas fa-building"></i> Python Software Foundation
-                </span>
-            </div>
-        </div>
-
-        <!-- Description -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-info-circle"></i> Descripción
-            </h3>
-            <p class="tech-content" id="tech-descripcion">
-                Descripción completa de la tecnología...
-            </p>
-        </section>
-
-        <!-- Usos Principales -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-rocket"></i> Usos Principales
-            </h3>
-            <ul class="tech-list usos" id="tech-usos">
-                <li>Uso 1</li>
-            </ul>
-        </section>
-
-        <!-- Ventajas -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-thumbs-up"></i> Ventajas
-            </h3>
-            <ul class="tech-list ventajas" id="tech-ventajas">
-                <li>Ventaja 1</li>
-            </ul>
-        </section>
-
-        <!-- Desventajas -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-exclamation-circle"></i> Limitaciones
-            </h3>
-            <ul class="tech-list desventajas" id="tech-desventajas">
-                <li>Desventaja 1</li>
-            </ul>
-        </section>
-
-        <!-- Empresas que lo usan -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-building"></i> Usado Por
-            </h3>
-            <div class="tech-empresas" id="tech-empresas">
-                <!-- Tags de empresas -->
-            </div>
-        </section>
-
-        <!-- Alternativas -->
-        <section class="tech-section" id="tech-alternativas-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-exchange-alt"></i> Alternativas
-            </h3>
-            <div class="tech-alternativas" id="tech-alternativas">
-                <!-- Tags clickeables -->
-            </div>
-        </section>
-
-        <!-- Recursos -->
-        <section class="tech-section">
-            <h3 class="tech-section-title">
-                <i class="fas fa-book-open"></i> Recursos para Aprender
-            </h3>
-            <div class="tech-recursos" id="tech-recursos">
-                <!-- Links a recursos -->
-            </div>
-        </section>
+  <!-- Body -->
+  <div class="tech-body">
+    <!-- Title Section -->
+    <div class="tech-title-section">
+      <div class="tech-icon-container" id="tech-icon">
+        <i class="devicon-python-plain"></i>
+      </div>
+      <h2 class="tech-title" id="tech-drawer-title">Python</h2>
+      <p class="tech-subtitle" id="tech-descripcion-corta">Lenguaje de propósito general</p>
+      <div class="tech-meta">
+        <span class="tech-meta-item" id="tech-release">
+          <i class="fas fa-calendar-alt"></i> Desde 1991
+        </span>
+        <span class="tech-meta-item" id="tech-maintainer">
+          <i class="fas fa-building"></i> Python Software Foundation
+        </span>
+      </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="tech-footer">
-        <a class="tech-cta" href="#" id="tech-learn-more" target="_blank">
-            <i class="fas fa-external-link-alt"></i> Documentación Oficial
-        </a>
-    </footer>
+    <!-- Description -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-info-circle"></i> Descripción
+      </h3>
+      <p class="tech-content" id="tech-descripcion">Descripción completa de la tecnología...</p>
+    </section>
+
+    <!-- Usos Principales -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-rocket"></i> Usos Principales
+      </h3>
+      <ul class="tech-list usos" id="tech-usos">
+        <li>Uso 1</li>
+      </ul>
+    </section>
+
+    <!-- Ventajas -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-thumbs-up"></i> Ventajas
+      </h3>
+      <ul class="tech-list ventajas" id="tech-ventajas">
+        <li>Ventaja 1</li>
+      </ul>
+    </section>
+
+    <!-- Desventajas -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-exclamation-circle"></i> Limitaciones
+      </h3>
+      <ul class="tech-list desventajas" id="tech-desventajas">
+        <li>Desventaja 1</li>
+      </ul>
+    </section>
+
+    <!-- Empresas que lo usan -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-building"></i> Usado Por
+      </h3>
+      <div class="tech-empresas" id="tech-empresas">
+        <!-- Tags de empresas -->
+      </div>
+    </section>
+
+    <!-- Alternativas -->
+    <section class="tech-section" id="tech-alternativas-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-exchange-alt"></i> Alternativas
+      </h3>
+      <div class="tech-alternativas" id="tech-alternativas">
+        <!-- Tags clickeables -->
+      </div>
+    </section>
+
+    <!-- Recursos -->
+    <section class="tech-section">
+      <h3 class="tech-section-title">
+        <i class="fas fa-book-open"></i> Recursos para Aprender
+      </h3>
+      <div class="tech-recursos" id="tech-recursos">
+        <!-- Links a recursos -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="tech-footer">
+    <a class="tech-cta" href="#" id="tech-learn-more" target="_blank">
+      <i class="fas fa-external-link-alt"></i> Documentación Oficial
+    </a>
+  </footer>
 </aside>
 
 <style>
-    /* =============================================
+  /* =============================================
        TECH DRAWER - Enterprise Grade Design
        ============================================= */
 
-    .tech-drawer-overlay {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(2px);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s ease, visibility 0.2s ease;
-    }
+  .tech-drawer-overlay {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
 
-    .tech-drawer-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
+  .tech-drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
-    .tech-drawer {
-        position: fixed;
-        top: 70px;
-        right: 0;
-        width: 460px;
-        max-width: 95vw;
-        height: calc(100vh - 70px);
-        background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
-        border-left: 1px solid rgba(6, 182, 212, 0.3);
-        z-index: 1000;
-        transform: translateX(100%);
-        visibility: hidden;
-        transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), visibility 0.25s ease;
-        display: flex;
-        flex-direction: column;
-        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.5);
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+  .tech-drawer {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 460px;
+    max-width: 95vw;
+    height: calc(100vh - 70px);
+    background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
+    border-left: 1px solid rgba(6, 182, 212, 0.3);
+    z-index: 1000;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0, 0, 1),
+      visibility 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.5);
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
 
-    .tech-drawer.open {
-        transform: translateX(0);
-        visibility: visible;
-    }
+  .tech-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
 
-    /* Header */
-    .tech-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.65rem 1rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(139, 92, 246, 0.08));
-        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-        flex-shrink: 0;
-    }
+  /* Header */
+  .tech-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(139, 92, 246, 0.08));
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    flex-shrink: 0;
+  }
 
-    .tech-header-content {
-        display: flex;
-        align-items: center;
-        gap: 0.65rem;
-    }
+  .tech-header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
 
-    .tech-category-badge {
-        padding: 0.25rem 0.65rem;
-        border-radius: 6px;
-        font-size: 0.62rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        border: 1px solid;
-    }
+  .tech-category-badge {
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid;
+  }
 
-    .tech-category-badge.language {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-        border-color: rgba(6, 182, 212, 0.15);
-    }
-    .tech-category-badge.framework {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        border-color: rgba(139, 92, 246, 0.15);
-    }
-    .tech-category-badge.database {
-        background: rgba(34, 197, 94, 0.2);
-        color: #4ade80;
-        border-color: rgba(34, 197, 94, 0.15);
-    }
-    .tech-category-badge.devops {
-        background: rgba(245, 158, 11, 0.2);
-        color: #fbbf24;
-        border-color: rgba(245, 158, 11, 0.15);
-    }
-    .tech-category-badge.cloud {
-        background: rgba(244, 63, 94, 0.2);
-        color: #fb7185;
-        border-color: rgba(244, 63, 94, 0.15);
-    }
-    .tech-category-badge.tool {
-        background: rgba(100, 116, 139, 0.2);
-        color: #94a3b8;
-        border-color: rgba(100, 116, 139, 0.15);
-    }
+  .tech-category-badge.language {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+    border-color: rgba(6, 182, 212, 0.15);
+  }
+  .tech-category-badge.framework {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    border-color: rgba(139, 92, 246, 0.15);
+  }
+  .tech-category-badge.database {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border-color: rgba(34, 197, 94, 0.15);
+  }
+  .tech-category-badge.devops {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.15);
+  }
+  .tech-category-badge.cloud {
+    background: rgba(244, 63, 94, 0.2);
+    color: #fb7185;
+    border-color: rgba(244, 63, 94, 0.15);
+  }
+  .tech-category-badge.tool {
+    background: rgba(100, 116, 139, 0.2);
+    color: #94a3b8;
+    border-color: rgba(100, 116, 139, 0.15);
+  }
 
-    .tech-year {
-        color: #64748b;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.68rem;
-        font-weight: 500;
-    }
+  .tech-year {
+    color: #64748b;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+  }
 
-    .tech-close {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 1px solid rgba(239, 68, 68, 0.25);
-        background: rgba(239, 68, 68, 0.08);
-        color: #ef4444;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-        font-size: 0.65rem;
-    }
+  .tech-close {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    background: rgba(239, 68, 68, 0.08);
+    color: #ef4444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 0.65rem;
+  }
 
-    .tech-close:hover {
-        background: rgba(239, 68, 68, 0.18);
-        transform: rotate(90deg);
-    }
+  .tech-close:hover {
+    background: rgba(239, 68, 68, 0.18);
+    transform: rotate(90deg);
+  }
 
-    /* Body */
-    .tech-body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1rem 1.1rem;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
-    }
+  /* Body */
+  .tech-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+  }
 
-    .tech-body::-webkit-scrollbar {
-        width: 6px;
-    }
+  .tech-body::-webkit-scrollbar {
+    width: 6px;
+  }
 
-    .tech-body::-webkit-scrollbar-track {
-        background: transparent;
-    }
+  .tech-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-    .tech-body::-webkit-scrollbar-thumb {
-        background: rgba(6, 182, 212, 0.3);
-        border-radius: 3px;
-    }
+  .tech-body::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.3);
+    border-radius: 3px;
+  }
 
-    /* Title Section */
-    .tech-title-section {
-        text-align: center;
-        margin-bottom: 1.25rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
+  /* Title Section */
+  .tech-title-section {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
 
-    .tech-icon-container {
-        width: 68px;
-        height: 68px;
-        margin: 0 auto 0.75rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.15));
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: #22d3ee;
-        border: 1px solid rgba(6, 182, 212, 0.15);
-    }
+  .tech-icon-container {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.15));
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.15);
+  }
 
-    .tech-icon-container i {
-        font-size: inherit;
-    }
+  .tech-icon-container i {
+    font-size: inherit;
+  }
 
-    .tech-title {
-        font-family: 'Sora', 'Inter', sans-serif;
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin: 0 0 0.35rem 0;
-        letter-spacing: -0.02em;
-    }
+  .tech-title {
+    font-family: "Sora", "Inter", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin: 0 0 0.35rem 0;
+    letter-spacing: -0.02em;
+  }
 
-    .tech-subtitle {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        margin: 0 0 0.75rem 0;
-        line-height: 1.4;
-    }
+  .tech-subtitle {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.4;
+  }
 
-    .tech-meta {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
+  .tech-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 
-    .tech-meta-item {
-        color: #64748b;
-        font-size: 0.72rem;
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-    }
+  .tech-meta-item {
+    color: #64748b;
+    font-size: 0.72rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 
-    .tech-meta-item i {
-        color: #475569;
-        font-size: 0.65rem;
-    }
+  .tech-meta-item i {
+    color: #475569;
+    font-size: 0.65rem;
+  }
 
-    /* ============================================
+  /* ============================================
        SECTIONS - Study-Focused Typography
        Enhanced hierarchy with clear visual "jumps"
        for better readability and information scanning
     ============================================ */
-    .tech-section {
-        margin-bottom: 1.15rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.06);
-        position: relative;
-    }
+  .tech-section {
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+    position: relative;
+  }
 
-    .tech-section:last-child {
-        margin-bottom: 0;
-        border-bottom: none;
-    }
+  .tech-section:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
 
-    /* Section titles with strong visual hierarchy */
-    .tech-section-title {
-        font-family: 'Sora', 'Space Grotesk', sans-serif;
-        font-size: 0.68rem;
-        font-weight: 800;
-        color: #94a3b8;
-        margin: 0 0 0.65rem 0;
-        padding: 0.35rem 0.55rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        background: linear-gradient(90deg, rgba(6, 182, 212, 0.08), transparent);
-        border-radius: 4px;
-        border-left: 3px solid rgba(6, 182, 212, 0.5);
-    }
+  /* Section titles with strong visual hierarchy */
+  .tech-section-title {
+    font-family: "Sora", "Space Grotesk", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #94a3b8;
+    margin: 0 0 0.65rem 0;
+    padding: 0.35rem 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.08), transparent);
+    border-radius: 4px;
+    border-left: 3px solid rgba(6, 182, 212, 0.5);
+  }
 
-    .tech-section-title i {
-        color: #22d3ee;
-        font-size: 0.62rem;
-        opacity: 0.9;
-    }
+  .tech-section-title i {
+    color: #22d3ee;
+    font-size: 0.62rem;
+    opacity: 0.9;
+  }
 
-    /* Main content typography - optimized for study reading */
-    .tech-content {
-        color: #e2e8f0;
-        font-size: 0.85rem;
-        line-height: 1.72;
-        margin: 0;
-        font-family: 'Inter', system-ui, sans-serif;
-        letter-spacing: -0.008em;
-        /* Improve text rendering for extended reading */
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-    }
+  /* Main content typography - optimized for study reading */
+  .tech-content {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    line-height: 1.72;
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.008em;
+    /* Improve text rendering for extended reading */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* First letter drop cap for description */
-    .tech-content::first-letter {
-        font-size: 1.4em;
-        font-weight: 700;
-        color: #22d3ee;
-        float: left;
-        line-height: 1;
-        margin-right: 0.12em;
-        margin-top: 0.08em;
-    }
+  /* First letter drop cap for description */
+  .tech-content::first-letter {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #22d3ee;
+    float: left;
+    line-height: 1;
+    margin-right: 0.12em;
+    margin-top: 0.08em;
+  }
 
-    /* ============================================
+  /* ============================================
        LISTS - Study-Focused Typography
        Clear hierarchy and visual scanning
     ============================================ */
-    .tech-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.45rem;
-    }
+  .tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 
-    .tech-list li {
-        position: relative;
-        padding: 0.35rem 0.5rem 0.35rem 1.65rem;
-        color: #e2e8f0;
-        font-size: 0.82rem;
-        line-height: 1.55;
-        font-family: 'Inter', system-ui, sans-serif;
-        letter-spacing: -0.008em;
-        background: rgba(30, 41, 59, 0.15);
-        border-radius: 6px;
-        transition: all 0.15s ease;
-    }
+  .tech-list li {
+    position: relative;
+    padding: 0.35rem 0.5rem 0.35rem 1.65rem;
+    color: #e2e8f0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.008em;
+    background: rgba(30, 41, 59, 0.15);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
 
-    .tech-list li:hover {
-        background: rgba(30, 41, 59, 0.28);
-        color: #f1f5f9;
-    }
+  .tech-list li:hover {
+    background: rgba(30, 41, 59, 0.28);
+    color: #f1f5f9;
+  }
 
-    .tech-list.usos li::before {
-        content: '\f135';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0.55rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #22d3ee;
-        font-size: 0.55rem;
-    }
+  .tech-list.usos li::before {
+    content: "\f135";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #22d3ee;
+    font-size: 0.55rem;
+  }
 
-    .tech-list.ventajas li::before {
-        content: '\f00c';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0.55rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #22c55e;
-        font-size: 0.6rem;
-    }
+  .tech-list.ventajas li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #22c55e;
+    font-size: 0.6rem;
+  }
 
-    .tech-list.desventajas li::before {
-        content: '\f071';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0.55rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #f59e0b;
-        font-size: 0.58rem;
-    }
+  .tech-list.desventajas li::before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f59e0b;
+    font-size: 0.58rem;
+  }
 
-    /* Empresas */
-    .tech-empresas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
+  /* Empresas */
+  .tech-empresas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
 
-    .tech-empresa-tag {
-        background: rgba(30, 41, 59, 0.5);
-        color: #e2e8f0;
-        padding: 0.35rem 0.7rem;
-        border-radius: 6px;
-        font-size: 0.72rem;
-        font-weight: 500;
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-    }
+  .tech-empresa-tag {
+    background: rgba(30, 41, 59, 0.5);
+    color: #e2e8f0;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 
-    .tech-empresa-tag i {
-        color: #64748b;
-        font-size: 0.6rem;
-    }
+  .tech-empresa-tag i {
+    color: #64748b;
+    font-size: 0.6rem;
+  }
 
-    /* Alternativas */
-    .tech-alternativas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
+  /* Alternativas */
+  .tech-alternativas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
 
-    .tech-alternativa-tag {
-        background: rgba(139, 92, 246, 0.1);
-        color: #a5b4fc;
-        padding: 0.35rem 0.65rem;
-        border-radius: 6px;
-        font-size: 0.72rem;
-        font-weight: 500;
-        cursor: pointer;
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        transition: all 0.2s ease;
-    }
+  .tech-alternativa-tag {
+    background: rgba(139, 92, 246, 0.1);
+    color: #a5b4fc;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.2s ease;
+  }
 
-    .tech-alternativa-tag:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.4);
-        transform: translateY(-1px);
-    }
+  .tech-alternativa-tag:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+  }
 
-    /* Recursos */
-    .tech-recursos {
-        display: flex;
-        flex-direction: column;
-        gap: 0.45rem;
-    }
+  /* Recursos */
+  .tech-recursos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 
-    .tech-recurso-link {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        padding: 0.55rem 0.7rem;
-        background: rgba(30, 41, 59, 0.25);
-        border-radius: 6px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        border: 1px solid transparent;
-    }
+  .tech-recurso-link {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.7rem;
+    background: rgba(30, 41, 59, 0.25);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
 
-    .tech-recurso-link:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.2);
-    }
+  .tech-recurso-link:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+  }
 
-    .tech-recurso-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        flex-shrink: 0;
-    }
+  .tech-recurso-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
 
-    .tech-recurso-icon.documentacion { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .tech-recurso-icon.video { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-    .tech-recurso-icon.tutorial { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
-    .tech-recurso-icon.certificacion { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+  .tech-recurso-icon.documentacion {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+  }
+  .tech-recurso-icon.video {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+  }
+  .tech-recurso-icon.tutorial {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+  }
+  .tech-recurso-icon.certificacion {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+  }
 
-    .tech-recurso-info {
-        flex: 1;
-        min-width: 0;
-    }
+  .tech-recurso-info {
+    flex: 1;
+    min-width: 0;
+  }
 
-    .tech-recurso-nombre {
-        color: #e2e8f0;
-        font-size: 0.78rem;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  .tech-recurso-nombre {
+    color: #e2e8f0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .tech-recurso-tipo {
-        color: #64748b;
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
+  .tech-recurso-tipo {
+    color: #64748b;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
 
-    .tech-recurso-link i.fa-external-link-alt {
-        color: #475569;
-        font-size: 0.6rem;
-        flex-shrink: 0;
-    }
+  .tech-recurso-link i.fa-external-link-alt {
+    color: #475569;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
 
-    /* Footer */
-    .tech-footer {
-        padding: 0.75rem 1rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        flex-shrink: 0;
-        background: rgba(15, 23, 42, 0.3);
-    }
+  /* Footer */
+  .tech-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    flex-shrink: 0;
+    background: rgba(15, 23, 42, 0.3);
+  }
 
-    .tech-cta {
-        display: flex;
-        width: 100%;
-        padding: 0.7rem;
-        background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        font-size: 0.82rem;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.2s ease;
-        text-decoration: none;
-    }
+  .tech-cta {
+    display: flex;
+    width: 100%;
+    padding: 0.7rem;
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
 
-    .tech-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
-    }
+  .tech-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+  }
 
-    /* =============================================
+  /* =============================================
        LIGHT MODE
        ============================================= */
-    :global([data-theme="light"]) .tech-drawer {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-        border-left-color: rgba(6, 182, 212, 0.3);
-        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.1);
-    }
+  :global([data-theme="light"]) .tech-drawer {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-left-color: rgba(6, 182, 212, 0.3);
+    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.1);
+  }
 
-    :global([data-theme="light"]) .tech-header {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
-    }
+  :global([data-theme="light"]) .tech-header {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
+  }
 
-    :global([data-theme="light"]) .tech-category-badge.language {
-        background: rgba(6, 182, 212, 0.1);
-        color: #0891b2;
-    }
-    :global([data-theme="light"]) .tech-category-badge.framework {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-    }
-    :global([data-theme="light"]) .tech-category-badge.database {
-        background: rgba(34, 197, 94, 0.1);
-        color: #16a34a;
-    }
-    :global([data-theme="light"]) .tech-category-badge.devops {
-        background: rgba(245, 158, 11, 0.1);
-        color: #d97706;
-    }
-    :global([data-theme="light"]) .tech-category-badge.cloud {
-        background: rgba(244, 63, 94, 0.1);
-        color: #e11d48;
-    }
-    :global([data-theme="light"]) .tech-category-badge.tool {
-        background: rgba(100, 116, 139, 0.1);
-        color: #475569;
-    }
+  :global([data-theme="light"]) .tech-category-badge.language {
+    background: rgba(6, 182, 212, 0.1);
+    color: #0891b2;
+  }
+  :global([data-theme="light"]) .tech-category-badge.framework {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+  }
+  :global([data-theme="light"]) .tech-category-badge.database {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+  }
+  :global([data-theme="light"]) .tech-category-badge.devops {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+  }
+  :global([data-theme="light"]) .tech-category-badge.cloud {
+    background: rgba(244, 63, 94, 0.1);
+    color: #e11d48;
+  }
+  :global([data-theme="light"]) .tech-category-badge.tool {
+    background: rgba(100, 116, 139, 0.1);
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .tech-year {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .tech-year {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .tech-title {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .tech-title {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .tech-subtitle {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .tech-subtitle {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .tech-meta-item {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .tech-meta-item {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .tech-section {
-        border-bottom-color: rgba(148, 163, 184, 0.1);
-    }
+  :global([data-theme="light"]) .tech-section {
+    border-bottom-color: rgba(148, 163, 184, 0.1);
+  }
 
-    :global([data-theme="light"]) .tech-section-title {
-        color: #475569;
-        background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), transparent);
-        border-left-color: rgba(6, 182, 212, 0.4);
-    }
+  :global([data-theme="light"]) .tech-section-title {
+    color: #475569;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), transparent);
+    border-left-color: rgba(6, 182, 212, 0.4);
+  }
 
-    :global([data-theme="light"]) .tech-section-title i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .tech-section-title i {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .tech-content {
-        color: #334155;
-    }
+  :global([data-theme="light"]) .tech-content {
+    color: #334155;
+  }
 
-    :global([data-theme="light"]) .tech-content::first-letter {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .tech-content::first-letter {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .tech-list li {
-        color: #334155;
-        background: rgba(241, 245, 249, 0.6);
-    }
+  :global([data-theme="light"]) .tech-list li {
+    color: #334155;
+    background: rgba(241, 245, 249, 0.6);
+  }
 
-    :global([data-theme="light"]) .tech-list li:hover {
-        background: rgba(241, 245, 249, 0.9);
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .tech-list li:hover {
+    background: rgba(241, 245, 249, 0.9);
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .tech-list.usos li::before {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .tech-list.usos li::before {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .tech-list.ventajas li::before {
-        color: #16a34a;
-    }
+  :global([data-theme="light"]) .tech-list.ventajas li::before {
+    color: #16a34a;
+  }
 
-    :global([data-theme="light"]) .tech-list.desventajas li::before {
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .tech-list.desventajas li::before {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .tech-empresa-tag {
-        background: rgba(248, 250, 252, 0.8);
-        color: #1e293b;
-        border-color: rgba(148, 163, 184, 0.2);
-    }
+  :global([data-theme="light"]) .tech-empresa-tag {
+    background: rgba(248, 250, 252, 0.8);
+    color: #1e293b;
+    border-color: rgba(148, 163, 184, 0.2);
+  }
 
-    :global([data-theme="light"]) .tech-alternativa-tag {
-        background: rgba(139, 92, 246, 0.08);
-        color: #7c3aed;
-    }
+  :global([data-theme="light"]) .tech-alternativa-tag {
+    background: rgba(139, 92, 246, 0.08);
+    color: #7c3aed;
+  }
 
-    :global([data-theme="light"]) .tech-recurso-link {
-        background: rgba(248, 250, 252, 0.8);
-        border-color: rgba(148, 163, 184, 0.15);
-    }
+  :global([data-theme="light"]) .tech-recurso-link {
+    background: rgba(248, 250, 252, 0.8);
+    border-color: rgba(148, 163, 184, 0.15);
+  }
 
-    :global([data-theme="light"]) .tech-recurso-link:hover {
-        background: rgba(6, 182, 212, 0.05);
-    }
+  :global([data-theme="light"]) .tech-recurso-link:hover {
+    background: rgba(6, 182, 212, 0.05);
+  }
 
-    :global([data-theme="light"]) .tech-recurso-nombre {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .tech-recurso-nombre {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .tech-footer {
-        background: rgba(248, 250, 252, 0.5);
-    }
+  :global([data-theme="light"]) .tech-footer {
+    background: rgba(248, 250, 252, 0.5);
+  }
 
-    /* =============================================
+  /* =============================================
        RESPONSIVE
        ============================================= */
-    @media (max-width: 600px) {
-        .tech-drawer {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .tech-body {
-            padding: 0.85rem;
-        }
-
-        .tech-meta {
-            flex-direction: column;
-            gap: 0.4rem;
-        }
+  @media (max-width: 600px) {
+    .tech-drawer {
+      width: 100%;
+      max-width: 100%;
     }
+
+    .tech-body {
+      padding: 0.85rem;
+    }
+
+    .tech-meta {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+  }
 </style>
 
 <script is:inline define:vars={{ technologiesData: technologies }}>
-(function() {
+  (function () {
     // Estado global
     window.technologiesData = technologiesData;
 
     // Abrir drawer de tecnología
-    window.openTechDrawer = function(techId) {
-        const tech = window.technologiesData[techId];
-        if (!tech) {
-            console.warn('Technology not found:', techId);
-            return;
-        }
+    window.openTechDrawer = function (techId) {
+      const tech = window.technologiesData[techId];
+      if (!tech) {
+        console.warn("Technology not found:", techId);
+        return;
+      }
 
-        updateTechDrawerContent(tech);
+      updateTechDrawerContent(tech);
 
-        const drawer = document.getElementById('tech-drawer');
-        const overlay = document.getElementById('tech-drawer-overlay');
-        drawer?.classList.add('open');
-        drawer?.setAttribute('aria-hidden', 'false');
-        overlay?.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      const drawer = document.getElementById("tech-drawer");
+      const overlay = document.getElementById("tech-drawer-overlay");
+      drawer?.classList.add("open");
+      drawer?.setAttribute("aria-hidden", "false");
+      overlay?.classList.add("active");
+      document.body.style.overflow = "hidden";
     };
 
     // Cerrar drawer
-    window.closeTechDrawer = function() {
-        const drawer = document.getElementById('tech-drawer');
-        const overlay = document.getElementById('tech-drawer-overlay');
-        drawer?.classList.remove('open');
-        drawer?.setAttribute('aria-hidden', 'true');
-        overlay?.classList.remove('active');
-        document.body.style.overflow = '';
+    window.closeTechDrawer = function () {
+      const drawer = document.getElementById("tech-drawer");
+      const overlay = document.getElementById("tech-drawer-overlay");
+      drawer?.classList.remove("open");
+      drawer?.setAttribute("aria-hidden", "true");
+      overlay?.classList.remove("active");
+      document.body.style.overflow = "";
     };
 
     // Actualizar contenido
     function updateTechDrawerContent(tech) {
-        // Header - Category badge with proper class
-        const categoryNames = {
-            language: 'LENGUAJE',
-            framework: 'FRAMEWORK',
-            database: 'BASE DE DATOS',
-            devops: 'DEVOPS',
-            cloud: 'CLOUD',
-            tool: 'HERRAMIENTA'
-        };
-        const categoryBadge = document.getElementById('tech-category');
-        categoryBadge.textContent = categoryNames[tech.categoria] || tech.categoria.toUpperCase();
-        categoryBadge.className = 'tech-category-badge ' + tech.categoria;
+      // Header - Category badge with proper class
+      const categoryNames = {
+        language: "LENGUAJE",
+        framework: "FRAMEWORK",
+        database: "BASE DE DATOS",
+        devops: "DEVOPS",
+        cloud: "CLOUD",
+        tool: "HERRAMIENTA",
+      };
+      const categoryBadge = document.getElementById("tech-category");
+      categoryBadge.textContent = categoryNames[tech.categoria] || tech.categoria.toUpperCase();
+      categoryBadge.className = "tech-category-badge " + tech.categoria;
 
-        // Year
-        const year = new Date().getFullYear();
-        document.getElementById('tech-year').textContent = year;
+      // Year
+      const year = new Date().getFullYear();
+      document.getElementById("tech-year").textContent = year;
 
-        // Title section - Icon
-        const iconContainer = document.getElementById('tech-icon');
-        if (tech.iconType === 'devicon') {
-            iconContainer.innerHTML = `<i class="devicon-${tech.icon}"></i>`;
-        } else {
-            iconContainer.innerHTML = `<i class="${tech.icon}"></i>`;
-        }
-        iconContainer.style.borderColor = tech.color + '40';
-        iconContainer.querySelector('i').style.color = tech.color;
+      // Title section - Icon
+      const iconContainer = document.getElementById("tech-icon");
+      if (tech.iconType === "devicon") {
+        iconContainer.innerHTML = `<i class="devicon-${tech.icon}"></i>`;
+      } else {
+        iconContainer.innerHTML = `<i class="${tech.icon}"></i>`;
+      }
+      iconContainer.style.borderColor = tech.color + "40";
+      iconContainer.querySelector("i").style.color = tech.color;
 
-        document.getElementById('tech-drawer-title').textContent = tech.nombre;
-        document.getElementById('tech-descripcion-corta').textContent = tech.descripcionCorta;
+      document.getElementById("tech-drawer-title").textContent = tech.nombre;
+      document.getElementById("tech-descripcion-corta").textContent = tech.descripcionCorta;
 
-        // Meta info
-        if (tech.primerRelease) {
-            document.getElementById('tech-release').innerHTML = `<i class="fas fa-calendar-alt"></i> Desde ${tech.primerRelease}`;
-            document.getElementById('tech-release').style.display = 'flex';
-        } else {
-            document.getElementById('tech-release').style.display = 'none';
-        }
+      // Meta info
+      if (tech.primerRelease) {
+        document.getElementById("tech-release").innerHTML =
+          `<i class="fas fa-calendar-alt"></i> Desde ${tech.primerRelease}`;
+        document.getElementById("tech-release").style.display = "flex";
+      } else {
+        document.getElementById("tech-release").style.display = "none";
+      }
 
-        if (tech.mantenidoPor) {
-            document.getElementById('tech-maintainer').innerHTML = `<i class="fas fa-building"></i> ${tech.mantenidoPor}`;
-            document.getElementById('tech-maintainer').style.display = 'flex';
-        } else {
-            document.getElementById('tech-maintainer').style.display = 'none';
-        }
+      if (tech.mantenidoPor) {
+        document.getElementById("tech-maintainer").innerHTML =
+          `<i class="fas fa-building"></i> ${tech.mantenidoPor}`;
+        document.getElementById("tech-maintainer").style.display = "flex";
+      } else {
+        document.getElementById("tech-maintainer").style.display = "none";
+      }
 
-        // Description
-        document.getElementById('tech-descripcion').textContent = tech.descripcion;
+      // Description
+      document.getElementById("tech-descripcion").textContent = tech.descripcion;
 
-        // Usos
-        const usosHtml = tech.usosPrincipales.map(u => `<li>${u}</li>`).join('');
-        document.getElementById('tech-usos').innerHTML = usosHtml;
+      // Usos
+      const usosHtml = tech.usosPrincipales.map((u) => `<li>${u}</li>`).join("");
+      document.getElementById("tech-usos").innerHTML = usosHtml;
 
-        // Ventajas
-        const ventajasHtml = tech.ventajas.map(v => `<li>${v}</li>`).join('');
-        document.getElementById('tech-ventajas').innerHTML = ventajasHtml;
+      // Ventajas
+      const ventajasHtml = tech.ventajas.map((v) => `<li>${v}</li>`).join("");
+      document.getElementById("tech-ventajas").innerHTML = ventajasHtml;
 
-        // Desventajas
-        const desventajasHtml = tech.desventajas.map(d => `<li>${d}</li>`).join('');
-        document.getElementById('tech-desventajas').innerHTML = desventajasHtml;
+      // Desventajas
+      const desventajasHtml = tech.desventajas.map((d) => `<li>${d}</li>`).join("");
+      document.getElementById("tech-desventajas").innerHTML = desventajasHtml;
 
-        // Empresas
-        const empresasHtml = tech.empresas.map(e => `
+      // Empresas
+      const empresasHtml = tech.empresas
+        .map(
+          (e) => `
             <span class="tech-empresa-tag">
                 <i class="fas fa-building"></i> ${e}
             </span>
-        `).join('');
-        document.getElementById('tech-empresas').innerHTML = empresasHtml;
+        `,
+        )
+        .join("");
+      document.getElementById("tech-empresas").innerHTML = empresasHtml;
 
-        // Alternativas
-        const alternativasSection = document.getElementById('tech-alternativas-section');
-        if (tech.alternativas && tech.alternativas.length > 0) {
-            const alternativasHtml = tech.alternativas.map(id => {
-                const alt = window.technologiesData[id];
-                if (!alt) return '';
-                return `<button class="tech-alternativa-tag" onclick="openTechDrawer('${id}')">${alt.nombreCorto}</button>`;
-            }).join('');
-            document.getElementById('tech-alternativas').innerHTML = alternativasHtml || '<span style="color:#64748b;font-size:0.78rem;">-</span>';
-            alternativasSection.style.display = 'block';
-        } else {
-            alternativasSection.style.display = 'none';
-        }
+      // Alternativas
+      const alternativasSection = document.getElementById("tech-alternativas-section");
+      if (tech.alternativas && tech.alternativas.length > 0) {
+        const alternativasHtml = tech.alternativas
+          .map((id) => {
+            const alt = window.technologiesData[id];
+            if (!alt) return "";
+            return `<button class="tech-alternativa-tag" onclick="openTechDrawer('${id}')">${alt.nombreCorto}</button>`;
+          })
+          .join("");
+        document.getElementById("tech-alternativas").innerHTML =
+          alternativasHtml || '<span style="color:#64748b;font-size:0.78rem;">-</span>';
+        alternativasSection.style.display = "block";
+      } else {
+        alternativasSection.style.display = "none";
+      }
 
-        // Recursos
-        const recursosHtml = tech.recursos.length > 0 ? tech.recursos.map(r => {
-            const iconClass = r.tipo === 'Documentacion' ? 'fas fa-book' :
-                             r.tipo === 'Video' ? 'fas fa-play-circle' :
-                             r.tipo === 'Tutorial' ? 'fas fa-graduation-cap' :
-                             r.tipo === 'Certificacion' ? 'fas fa-certificate' : 'fas fa-link';
-            const typeClass = r.tipo.toLowerCase();
-            return `
+      // Recursos
+      const recursosHtml =
+        tech.recursos.length > 0
+          ? tech.recursos
+              .map((r) => {
+                const iconClass =
+                  r.tipo === "Documentacion"
+                    ? "fas fa-book"
+                    : r.tipo === "Video"
+                      ? "fas fa-play-circle"
+                      : r.tipo === "Tutorial"
+                        ? "fas fa-graduation-cap"
+                        : r.tipo === "Certificacion"
+                          ? "fas fa-certificate"
+                          : "fas fa-link";
+                const typeClass = r.tipo.toLowerCase();
+                return `
                 <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="tech-recurso-link">
                     <div class="tech-recurso-icon ${typeClass}">
                         <i class="${iconClass}"></i>
@@ -900,57 +942,59 @@ import { technologies, type Technology } from '../data/technologies';
                     <i class="fas fa-external-link-alt"></i>
                 </a>
             `;
-        }).join('') : '<span style="color:#64748b;font-size:0.78rem;">Sin recursos adicionales</span>';
-        document.getElementById('tech-recursos').innerHTML = recursosHtml;
+              })
+              .join("")
+          : '<span style="color:#64748b;font-size:0.78rem;">Sin recursos adicionales</span>';
+      document.getElementById("tech-recursos").innerHTML = recursosHtml;
 
-        // Footer CTA - link to first resource (preferably documentation)
-        const learnMoreBtn = document.getElementById('tech-learn-more');
-        const docResource = tech.recursos.find(r => r.tipo === 'Documentacion') || tech.recursos[0];
-        if (docResource) {
-            learnMoreBtn.href = docResource.url;
-            learnMoreBtn.style.display = 'flex';
-        } else {
-            learnMoreBtn.style.display = 'none';
-        }
+      // Footer CTA - link to first resource (preferably documentation)
+      const learnMoreBtn = document.getElementById("tech-learn-more");
+      const docResource = tech.recursos.find((r) => r.tipo === "Documentacion") || tech.recursos[0];
+      if (docResource) {
+        learnMoreBtn.href = docResource.url;
+        learnMoreBtn.style.display = "flex";
+      } else {
+        learnMoreBtn.style.display = "none";
+      }
     }
 
     // Initialize event listeners
     function initTechDrawerEvents() {
-        const closeBtn = document.getElementById('tech-close-btn');
-        const overlay = document.getElementById('tech-drawer-overlay');
+      const closeBtn = document.getElementById("tech-close-btn");
+      const overlay = document.getElementById("tech-drawer-overlay");
 
-        if (closeBtn && !closeBtn.hasAttribute('data-tech-listener')) {
-            closeBtn.setAttribute('data-tech-listener', 'true');
-            closeBtn.addEventListener('click', window.closeTechDrawer);
-        }
+      if (closeBtn && !closeBtn.hasAttribute("data-tech-listener")) {
+        closeBtn.setAttribute("data-tech-listener", "true");
+        closeBtn.addEventListener("click", window.closeTechDrawer);
+      }
 
-        if (overlay && !overlay.hasAttribute('data-tech-listener')) {
-            overlay.setAttribute('data-tech-listener', 'true');
-            overlay.addEventListener('click', window.closeTechDrawer);
-        }
+      if (overlay && !overlay.hasAttribute("data-tech-listener")) {
+        overlay.setAttribute("data-tech-listener", "true");
+        overlay.addEventListener("click", window.closeTechDrawer);
+      }
 
-        // Escape key - only add once
-        if (!window._techDrawerEscapeInit) {
-            window._techDrawerEscapeInit = true;
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    const drawer = document.getElementById('tech-drawer');
-                    if (drawer && drawer.classList.contains('open')) {
-                        window.closeTechDrawer();
-                    }
-                }
-            });
-        }
+      // Escape key - only add once
+      if (!window._techDrawerEscapeInit) {
+        window._techDrawerEscapeInit = true;
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const drawer = document.getElementById("tech-drawer");
+            if (drawer && drawer.classList.contains("open")) {
+              window.closeTechDrawer();
+            }
+          }
+        });
+      }
     }
 
     // Initialize on load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTechDrawerEvents);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initTechDrawerEvents);
     } else {
-        initTechDrawerEvents();
+      initTechDrawerEvents();
     }
 
     // Re-initialize on Astro page transitions
-    document.addEventListener('astro:page-load', initTechDrawerEvents);
-})();
+    document.addEventListener("astro:page-load", initTechDrawerEvents);
+  })();
 </script>

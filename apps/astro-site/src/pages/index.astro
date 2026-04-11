@@ -5,652 +5,807 @@
  * Now with intelligent preloading of critical resources
  * Uses ViewTransitions for smooth page transitions
  */
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 const base = import.meta.env.BASE_URL;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analista Programador Computacional - DuocUC</title>
-    <meta name="description" content="Plataforma educativa para estudiantes del programa Analista Programador Computacional de DuocUC">
+    <meta
+      name="description"
+      content="Plataforma educativa para estudiantes del programa Analista Programador Computacional de DuocUC"
+    />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 
     <!-- Astro View Transitions for smooth navigation -->
     <ViewTransitions />
 
     <!-- Preconnect to critical external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://generativelanguage.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
-    <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://generativelanguage.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
+    <link rel="dns-prefetch" href="https://generativelanguage.googleapis.com" />
 
     <!-- Prefetch critical pages -->
-    <link rel="prefetch" href={`${base}/inicio`} as="document">
-    <link rel="prefetch" href={`${base}/sala-de-estudio`} as="document">
-    <link rel="prefetch" href={`${base}/recursos`} as="document">
-    <link rel="prefetch" href={`${base}/stacks`} as="document">
-    <link rel="prefetch" href={`${base}/arquitecturas`} as="document">
-    <link rel="prefetch" href={`${base}/trayectorias`} as="document">
+    <link rel="prefetch" href={`${base}/inicio`} as="document" />
+    <link rel="prefetch" href={`${base}/sala-de-estudio`} as="document" />
+    <link rel="prefetch" href={`${base}/recursos`} as="document" />
+    <link rel="prefetch" href={`${base}/stacks`} as="document" />
+    <link rel="prefetch" href={`${base}/arquitecturas`} as="document" />
+    <link rel="prefetch" href={`${base}/trayectorias`} as="document" />
 
     <!-- Preload critical fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+        overflow: hidden;
+        position: relative;
+        cursor: default;
+        user-select: none;
+      }
+
+      /* Disable all interactions except skip button */
+      body * {
+        pointer-events: none;
+      }
+
+      /* Animated background particles */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(102, 126, 234, 0.3);
+        border-radius: 50%;
+        animation: float 15s infinite;
+      }
+
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 12s;
+      }
+      .particle:nth-child(2) {
+        left: 20%;
+        animation-delay: 1s;
+        animation-duration: 14s;
+      }
+      .particle:nth-child(3) {
+        left: 30%;
+        animation-delay: 2s;
+        animation-duration: 11s;
+      }
+      .particle:nth-child(4) {
+        left: 40%;
+        animation-delay: 0.5s;
+        animation-duration: 16s;
+      }
+      .particle:nth-child(5) {
+        left: 50%;
+        animation-delay: 1.5s;
+        animation-duration: 13s;
+      }
+      .particle:nth-child(6) {
+        left: 60%;
+        animation-delay: 2.5s;
+        animation-duration: 15s;
+      }
+      .particle:nth-child(7) {
+        left: 70%;
+        animation-delay: 0.8s;
+        animation-duration: 12s;
+      }
+      .particle:nth-child(8) {
+        left: 80%;
+        animation-delay: 1.8s;
+        animation-duration: 14s;
+      }
+      .particle:nth-child(9) {
+        left: 90%;
+        animation-delay: 2.2s;
+        animation-duration: 11s;
+      }
+      .particle:nth-child(10) {
+        left: 15%;
+        animation-delay: 3s;
+        animation-duration: 13s;
+      }
+      .particle:nth-child(11) {
+        left: 25%;
+        animation-delay: 0.3s;
+        animation-duration: 15s;
+      }
+      .particle:nth-child(12) {
+        left: 35%;
+        animation-delay: 1.3s;
+        animation-duration: 12s;
+      }
+      .particle:nth-child(13) {
+        left: 45%;
+        animation-delay: 2.3s;
+        animation-duration: 14s;
+      }
+      .particle:nth-child(14) {
+        left: 55%;
+        animation-delay: 0.7s;
+        animation-duration: 16s;
+      }
+      .particle:nth-child(15) {
+        left: 65%;
+        animation-delay: 1.7s;
+        animation-duration: 11s;
+      }
+      .particle:nth-child(16) {
+        left: 75%;
+        animation-delay: 2.7s;
+        animation-duration: 13s;
+      }
+      .particle:nth-child(17) {
+        left: 85%;
+        animation-delay: 0.4s;
+        animation-duration: 15s;
+      }
+      .particle:nth-child(18) {
+        left: 95%;
+        animation-delay: 1.4s;
+        animation-duration: 12s;
+      }
+      .particle:nth-child(19) {
+        left: 5%;
+        animation-delay: 2.4s;
+        animation-duration: 14s;
+      }
+      .particle:nth-child(20) {
+        left: 48%;
+        animation-delay: 0.9s;
+        animation-duration: 16s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
         }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
-            overflow: hidden;
-            position: relative;
-            cursor: default;
-            user-select: none;
+        10% {
+          opacity: 1;
         }
-
-        /* Disable all interactions except skip button */
-        body * {
-            pointer-events: none;
+        90% {
+          opacity: 1;
         }
-
-        /* Animated background particles */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+        100% {
+          transform: translateY(-100vh) rotate(720deg);
+          opacity: 0;
         }
+      }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite;
+      /* Main content */
+      .splash-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-
-        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
-        .particle:nth-child(2) { left: 20%; animation-delay: 1s; animation-duration: 14s; }
-        .particle:nth-child(3) { left: 30%; animation-delay: 2s; animation-duration: 11s; }
-        .particle:nth-child(4) { left: 40%; animation-delay: 0.5s; animation-duration: 16s; }
-        .particle:nth-child(5) { left: 50%; animation-delay: 1.5s; animation-duration: 13s; }
-        .particle:nth-child(6) { left: 60%; animation-delay: 2.5s; animation-duration: 15s; }
-        .particle:nth-child(7) { left: 70%; animation-delay: 0.8s; animation-duration: 12s; }
-        .particle:nth-child(8) { left: 80%; animation-delay: 1.8s; animation-duration: 14s; }
-        .particle:nth-child(9) { left: 90%; animation-delay: 2.2s; animation-duration: 11s; }
-        .particle:nth-child(10) { left: 15%; animation-delay: 3s; animation-duration: 13s; }
-        .particle:nth-child(11) { left: 25%; animation-delay: 0.3s; animation-duration: 15s; }
-        .particle:nth-child(12) { left: 35%; animation-delay: 1.3s; animation-duration: 12s; }
-        .particle:nth-child(13) { left: 45%; animation-delay: 2.3s; animation-duration: 14s; }
-        .particle:nth-child(14) { left: 55%; animation-delay: 0.7s; animation-duration: 16s; }
-        .particle:nth-child(15) { left: 65%; animation-delay: 1.7s; animation-duration: 11s; }
-        .particle:nth-child(16) { left: 75%; animation-delay: 2.7s; animation-duration: 13s; }
-        .particle:nth-child(17) { left: 85%; animation-delay: 0.4s; animation-duration: 15s; }
-        .particle:nth-child(18) { left: 95%; animation-delay: 1.4s; animation-duration: 12s; }
-        .particle:nth-child(19) { left: 5%; animation-delay: 2.4s; animation-duration: 14s; }
-        .particle:nth-child(20) { left: 48%; animation-delay: 0.9s; animation-duration: 16s; }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(720deg);
-                opacity: 0;
-            }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        /* Main content */
-        .splash-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
+      /* Logo container */
+      .logo-container {
+        position: relative;
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 2rem;
+      }
+
+      .logo-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
+        transform: translate(-50%, -50%);
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.6;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        50% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0.3;
         }
+      }
 
-        /* Logo container */
-        .logo-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 2rem;
+      .logo-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 130px;
+        height: 130px;
+        border: 2px solid rgba(102, 126, 234, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: rotate 10s linear infinite;
+      }
+
+      .logo-ring::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        background: #667eea;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #667eea;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
         }
-
-        .logo-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.4) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            animation: pulse 2s ease-in-out infinite;
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
         }
+      }
 
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+      .logo-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        animation: logoFloat 3s ease-in-out infinite;
+      }
+
+      @keyframes logoFloat {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) translateY(0);
         }
-
-        .logo-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 130px;
-            height: 130px;
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: rotate 10s linear infinite;
+        50% {
+          transform: translate(-50%, -50%) translateY(-8px);
         }
+      }
 
-        .logo-ring::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            width: 8px;
-            height: 8px;
-            background: #667eea;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #667eea;
+      .logo-icon i {
+        font-size: 2.5rem;
+        color: white;
+      }
+
+      /* Title */
+      .splash-title {
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #667eea 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        animation: fadeInUp 1s ease-out 0.2s backwards;
+      }
+
+      .splash-subtitle {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 400;
+        margin-bottom: 2.5rem;
+        animation: fadeInUp 1s ease-out 0.4s backwards;
+      }
+
+      .splash-institution {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 3rem;
+        animation: fadeInUp 1s ease-out 0.6s backwards;
+      }
+
+      .institution-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.85rem;
+      }
+
+      .institution-badge i {
+        color: #fbbf24;
+      }
+
+      /* Loading indicator */
+      .loading-container {
+        animation: fadeInUp 1s ease-out 0.8s backwards;
+      }
+
+      .loading-text {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      #loading-status {
+        transition: opacity 0.15s ease;
+        display: inline-block;
+      }
+
+      .loading-dots {
+        display: flex;
+        gap: 4px;
+      }
+
+      .loading-dots span {
+        width: 6px;
+        height: 6px;
+        background: #667eea;
+        border-radius: 50%;
+        animation: bounce 1.4s ease-in-out infinite;
+      }
+
+      .loading-dots span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .loading-dots span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .loading-dots span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes bounce {
+        0%,
+        80%,
+        100% {
+          transform: translateY(0);
         }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        40% {
+          transform: translateY(-8px);
         }
+      }
 
-        .logo-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
-            animation: logoFloat 3s ease-in-out infinite;
+      /* Progress bar */
+      .progress-bar {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        border-radius: 2px;
+        animation: progress 7.5s ease-out forwards;
+      }
+
+      @keyframes progress {
+        from {
+          width: 0%;
         }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-8px); }
+        to {
+          width: 100%;
         }
+      }
 
-        .logo-icon i {
-            font-size: 2.5rem;
-            color: white;
+      /* Fade out animation before redirect */
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
         }
+        to {
+          opacity: 0;
+        }
+      }
 
-        /* Title */
+      .fade-out {
+        animation: fadeOut 0.5s ease-out forwards;
+      }
+
+      .loading-details {
+        margin-top: 1rem;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.4);
+        min-height: 1.2em;
+        transition: opacity 0.3s ease;
+      }
+
+      .loading-details .check {
+        color: #10b981;
+        margin-right: 0.25rem;
+      }
+
+      /* Skip button - only interactive element */
+      .skip-btn {
+        margin-top: 2rem;
+        padding: 0.6rem 1.5rem;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        animation: fadeInUp 1s ease-out 1s backwards;
+        pointer-events: auto !important;
+      }
+
+      .skip-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+      }
+
+      /* Footer */
+      .splash-footer {
+        position: absolute;
+        bottom: 2rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.75rem;
+        animation: fadeInUp 1s ease-out 1.2s backwards;
+      }
+
+      .tech-stack {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .tech-stack i {
+        font-size: 1rem;
+        opacity: 0.5;
+      }
+
+      /* Responsive */
+      @media (max-width: 640px) {
         .splash-title {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #667eea 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
+          font-size: 1.5rem;
         }
 
         .splash-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 400;
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
+          font-size: 0.95rem;
+          padding: 0 1rem;
         }
 
-        .splash-institution {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.6s backwards;
+        .logo-container {
+          width: 120px;
+          height: 120px;
         }
 
-        .institution-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
+        .logo-icon {
+          width: 65px;
+          height: 65px;
+          border-radius: 16px;
         }
 
-        .institution-badge i {
-            color: #fbbf24;
+        .logo-icon i {
+          font-size: 2rem;
         }
-
-        /* Loading indicator */
-        .loading-container {
-            animation: fadeInUp 1s ease-out 0.8s backwards;
-        }
-
-        .loading-text {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        #loading-status {
-            transition: opacity 0.15s ease;
-            display: inline-block;
-        }
-
-        .loading-dots {
-            display: flex;
-            gap: 4px;
-        }
-
-        .loading-dots span {
-            width: 6px;
-            height: 6px;
-            background: #667eea;
-            border-radius: 50%;
-            animation: bounce 1.4s ease-in-out infinite;
-        }
-
-        .loading-dots span:nth-child(1) { animation-delay: 0s; }
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes bounce {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
-        }
-
-        /* Progress bar */
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            border-radius: 2px;
-            animation: progress 7.5s ease-out forwards;
-        }
-
-        @keyframes progress {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
-
-        /* Fade out animation before redirect */
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        .fade-out {
-            animation: fadeOut 0.5s ease-out forwards;
-        }
-
-        .loading-details {
-            margin-top: 1rem;
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.4);
-            min-height: 1.2em;
-            transition: opacity 0.3s ease;
-        }
-
-        .loading-details .check {
-            color: #10b981;
-            margin-right: 0.25rem;
-        }
-
-        /* Skip button - only interactive element */
-        .skip-btn {
-            margin-top: 2rem;
-            padding: 0.6rem 1.5rem;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            animation: fadeInUp 1s ease-out 1s backwards;
-            pointer-events: auto !important;
-        }
-
-        .skip-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            color: white;
-        }
-
-        /* Footer */
-        .splash-footer {
-            position: absolute;
-            bottom: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.75rem;
-            animation: fadeInUp 1s ease-out 1.2s backwards;
-        }
-
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-stack i {
-            font-size: 1rem;
-            opacity: 0.5;
-        }
-
-        /* Responsive */
-        @media (max-width: 640px) {
-            .splash-title {
-                font-size: 1.5rem;
-            }
-
-            .splash-subtitle {
-                font-size: 0.95rem;
-                padding: 0 1rem;
-            }
-
-            .logo-container {
-                width: 120px;
-                height: 120px;
-            }
-
-            .logo-icon {
-                width: 65px;
-                height: 65px;
-                border-radius: 16px;
-            }
-
-            .logo-icon i {
-                font-size: 2rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Animated particles -->
     <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
     </div>
 
     <!-- Main splash content -->
     <div class="splash-content">
-        <div class="logo-container">
-            <div class="logo-glow"></div>
-            <div class="logo-ring"></div>
-            <div class="logo-icon">
-                <i class="fas fa-code"></i>
-            </div>
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-icon">
+          <i class="fas fa-code"></i>
         </div>
+      </div>
 
-        <h1 class="splash-title">Analista Programador Computacional</h1>
-        <p class="splash-subtitle">Plataforma de recursos educativos y herramientas de estudio</p>
+      <h1 class="splash-title">Analista Programador Computacional</h1>
+      <p class="splash-subtitle">Plataforma de recursos educativos y herramientas de estudio</p>
 
-        <div class="splash-institution">
-            <div class="institution-badge">
-                <i class="fas fa-university"></i>
-                <span>DuocUC</span>
-            </div>
-            <div class="institution-badge">
-                <i class="fas fa-graduation-cap"></i>
-                <span>17 Bimestres</span>
-            </div>
+      <div class="splash-institution">
+        <div class="institution-badge">
+          <i class="fas fa-university"></i>
+          <span>DuocUC</span>
         </div>
-
-        <div class="loading-container">
-            <div class="loading-text">
-                <span id="loading-status">Inicializando</span>
-                <div class="loading-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="loading-details" id="loading-details"></div>
+        <div class="institution-badge">
+          <i class="fas fa-graduation-cap"></i>
+          <span>17 Bimestres</span>
         </div>
+      </div>
 
-        <a href={`${base}/inicio`} class="skip-btn">
-            <i class="fas fa-arrow-right"></i>
-            Ir directamente
-        </a>
+      <div class="loading-container">
+        <div class="loading-text">
+          <span id="loading-status">Inicializando</span>
+          <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="loading-details" id="loading-details"></div>
+      </div>
+
+      <a href={`${base}/inicio`} class="skip-btn">
+        <i class="fas fa-arrow-right"></i>
+        Ir directamente
+      </a>
     </div>
 
     <!-- Footer -->
     <div class="splash-footer">
-        <div class="tech-stack">
-            <i class="fab fa-js" title="JavaScript"></i>
-            <i class="fab fa-python" title="Python"></i>
-            <i class="fab fa-java" title="Java"></i>
-            <i class="fas fa-database" title="SQL"></i>
-            <i class="fab fa-react" title="React"></i>
-            <i class="fab fa-node-js" title="Node.js"></i>
-        </div>
-        <span>Ayudando a programadores y a la comunidad TI, desde 2025</span>
+      <div class="tech-stack">
+        <i class="fab fa-js" title="JavaScript"></i>
+        <i class="fab fa-python" title="Python"></i>
+        <i class="fab fa-java" title="Java"></i>
+        <i class="fas fa-database" title="SQL"></i>
+        <i class="fab fa-react" title="React"></i>
+        <i class="fab fa-node-js" title="Node.js"></i>
+      </div>
+      <span>Ayudando a programadores y a la comunidad TI, desde 2025</span>
     </div>
 
     <script is:inline define:vars={{ base }}>
-        // Check navigation type
-        const navType = performance.getEntriesByType('navigation')[0]?.type;
+      // Check navigation type
+      const navType = performance.getEntriesByType("navigation")[0]?.type;
 
-        // Only skip splash on back/forward browser navigation (not explicit clicks)
-        if (navType === 'back_forward') {
-            window.location.replace(base + '/inicio');
-        } else {
+      // Only skip splash on back/forward browser navigation (not explicit clicks)
+      if (navType === "back_forward") {
+        window.location.replace(base + "/inicio");
+      } else {
+        // Intelligent Preloading System
+        const statusEl = document.getElementById("loading-status");
+        const detailsEl = document.getElementById("loading-details");
 
-            // Intelligent Preloading System
-            const statusEl = document.getElementById('loading-status');
-            const detailsEl = document.getElementById('loading-details');
+        const preloadTasks = [
+          { name: "Conectando con servicios", delay: 300 },
+          { name: "Cargando página principal", delay: 800 },
+          { name: "Preparando Sala de Estudio", delay: 1500 },
+          { name: "Cargando fuentes de iconos", delay: 2200 },
+          { name: "Inicializando AI Tutor", delay: 3000 },
+          { name: "Precargando recursos", delay: 4000 },
+          { name: "Optimizando experiencia", delay: 5500 },
+          { name: "Listo para comenzar", delay: 7000 },
+        ];
 
-            const preloadTasks = [
-                { name: 'Conectando con servicios', delay: 300 },
-                { name: 'Cargando página principal', delay: 800 },
-                { name: 'Preparando Sala de Estudio', delay: 1500 },
-                { name: 'Cargando fuentes de iconos', delay: 2200 },
-                { name: 'Inicializando AI Tutor', delay: 3000 },
-                { name: 'Precargando recursos', delay: 4000 },
-                { name: 'Optimizando experiencia', delay: 5500 },
-                { name: 'Listo para comenzar', delay: 7000 }
+        let completedTasks = [];
+
+        // Update status text with animation
+        function updateStatus(text) {
+          if (statusEl) {
+            statusEl.style.opacity = "0";
+            setTimeout(() => {
+              statusEl.textContent = text;
+              statusEl.style.opacity = "1";
+            }, 150);
+          }
+        }
+
+        // Add completed task to details
+        function addCompletedTask(task) {
+          completedTasks.push(task);
+          if (detailsEl && completedTasks.length <= 3) {
+            detailsEl.innerHTML = completedTasks
+              .slice(-3)
+              .map((t) => `<span class="check">✓</span>${t}`)
+              .join(" · ");
+          }
+        }
+
+        // Schedule status updates
+        preloadTasks.forEach((task, index) => {
+          setTimeout(() => {
+            updateStatus(task.name);
+            if (index > 0) {
+              addCompletedTask(preloadTasks[index - 1].name);
+            }
+          }, task.delay);
+        });
+
+        // Actual preloading tasks
+        (async function preloadResources() {
+          try {
+            // 1. Prefetch all main pages
+            const pagesToPrefetch = [
+              base + "/inicio",
+              base + "/sala-de-estudio",
+              base + "/recursos",
+              base + "/stacks",
+              base + "/arquitecturas",
+              base + "/trayectorias",
+              base + "/laboratorios",
+              base + "/portafolio",
+              base + "/proyectos",
+              base + "/comunidad",
             ];
 
-            let completedTasks = [];
-
-            // Update status text with animation
-            function updateStatus(text) {
-                if (statusEl) {
-                    statusEl.style.opacity = '0';
-                    setTimeout(() => {
-                        statusEl.textContent = text;
-                        statusEl.style.opacity = '1';
-                    }, 150);
-                }
-            }
-
-            // Add completed task to details
-            function addCompletedTask(task) {
-                completedTasks.push(task);
-                if (detailsEl && completedTasks.length <= 3) {
-                    detailsEl.innerHTML = completedTasks.slice(-3).map(t =>
-                        `<span class="check">✓</span>${t}`
-                    ).join(' · ');
-                }
-            }
-
-            // Schedule status updates
-            preloadTasks.forEach((task, index) => {
-                setTimeout(() => {
-                    updateStatus(task.name);
-                    if (index > 0) {
-                        addCompletedTask(preloadTasks[index - 1].name);
-                    }
-                }, task.delay);
+            pagesToPrefetch.forEach((url) => {
+              const link = document.createElement("link");
+              link.rel = "prefetch";
+              link.href = url;
+              link.as = "document";
+              document.head.appendChild(link);
             });
 
-            // Actual preloading tasks
-            (async function preloadResources() {
-                try {
-                    // 1. Prefetch all main pages
-                    const pagesToPrefetch = [
-                        base + '/inicio',
-                        base + '/sala-de-estudio',
-                        base + '/recursos',
-                        base + '/stacks',
-                        base + '/arquitecturas',
-                        base + '/trayectorias',
-                        base + '/laboratorios',
-                        base + '/portafolio',
-                        base + '/proyectos',
-                        base + '/comunidad'
-                    ];
+            // 2. Preload Devicon font (already in head, but ensure it's loaded)
+            await document.fonts.ready;
 
-                    pagesToPrefetch.forEach(url => {
-                        const link = document.createElement('link');
-                        link.rel = 'prefetch';
-                        link.href = url;
-                        link.as = 'document';
-                        document.head.appendChild(link);
-                    });
+            // 3. Warm up Gemini API connection
+            const apiWarmup = new Image();
+            apiWarmup.src = "https://generativelanguage.googleapis.com/favicon.ico?" + Date.now();
 
-                    // 2. Preload Devicon font (already in head, but ensure it's loaded)
-                    await document.fonts.ready;
+            // 4. Preload commonly used Simple Icons
+            const commonIcons = [
+              "python",
+              "javascript",
+              "react",
+              "nodejs",
+              "postgresql",
+              "docker",
+              "typescript",
+              "java",
+              "csharp",
+              "git",
+              "github",
+              "visualstudiocode",
+              "mongodb",
+              "mysql",
+              "redis",
+              "linux",
+              "windows",
+              "apple",
+              "html5",
+              "css3",
+              "sass",
+              "tailwindcss",
+              "bootstrap",
+              "angular",
+              "vuedotjs",
+              "nextdotjs",
+              "express",
+              "fastapi",
+              "django",
+              "flask",
+              "spring",
+              "dotnet",
+              "kubernetes",
+              "terraform",
+            ];
+            commonIcons.forEach((icon) => {
+              const img = new Image();
+              img.src = `https://cdn.simpleicons.org/${icon}`;
+            });
 
-                    // 3. Warm up Gemini API connection
-                    const apiWarmup = new Image();
-                    apiWarmup.src = 'https://generativelanguage.googleapis.com/favicon.ico?' + Date.now();
+            // 5. Cache the API key check (if stored in localStorage)
+            const apiKey = localStorage.getItem("gemini_api_key");
+            if (apiKey) {
+              sessionStorage.setItem("gemini_ready", "true");
+            }
 
-                    // 4. Preload commonly used Simple Icons
-                    const commonIcons = [
-                        'python', 'javascript', 'react', 'nodejs', 'postgresql', 'docker',
-                        'typescript', 'java', 'csharp', 'git', 'github', 'visualstudiocode',
-                        'mongodb', 'mysql', 'redis', 'linux', 'windows', 'apple',
-                        'html5', 'css3', 'sass', 'tailwindcss', 'bootstrap',
-                        'angular', 'vuedotjs', 'nextdotjs', 'express', 'fastapi',
-                        'django', 'flask', 'spring', 'dotnet', 'kubernetes', 'terraform'
-                    ];
-                    commonIcons.forEach(icon => {
-                        const img = new Image();
-                        img.src = `https://cdn.simpleicons.org/${icon}`;
-                    });
+            // 6. Preload Mermaid.js for AI Tutor diagrams
+            const mermaidLink = document.createElement("link");
+            mermaidLink.rel = "preload";
+            mermaidLink.href = "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js";
+            mermaidLink.as = "script";
+            document.head.appendChild(mermaidLink);
+          } catch (e) {
+            console.log("Preload optimization:", e.message);
+          }
+        })();
 
-                    // 5. Cache the API key check (if stored in localStorage)
-                    const apiKey = localStorage.getItem('gemini_api_key');
-                    if (apiKey) {
-                        sessionStorage.setItem('gemini_ready', 'true');
-                    }
+        // Smooth redirect using proper navigation for ViewTransitions
+        setTimeout(() => {
+          // Add fade-out class to body
+          document.body.classList.add("fade-out");
 
-                    // 6. Preload Mermaid.js for AI Tutor diagrams
-                    const mermaidLink = document.createElement('link');
-                    mermaidLink.rel = 'preload';
-                    mermaidLink.href = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-                    mermaidLink.as = 'script';
-                    document.head.appendChild(mermaidLink);
-
-                } catch (e) {
-                    console.log('Preload optimization:', e.message);
-                }
-            })();
-
-            // Smooth redirect using proper navigation for ViewTransitions
-            setTimeout(() => {
-                // Add fade-out class to body
-                document.body.classList.add('fade-out');
-
-                // Wait for animation to complete, then navigate
-                // Use anchor click to trigger ViewTransitions properly
-                setTimeout(() => {
-                    const link = document.createElement('a');
-                    link.href = base + '/inicio';
-                    link.style.display = 'none';
-                    document.body.appendChild(link);
-                    link.click();
-                }, 500);
-            }, 7300); // 7.3s + 0.5s fade = 7.8s total
-        }
+          // Wait for animation to complete, then navigate
+          // Use anchor click to trigger ViewTransitions properly
+          setTimeout(() => {
+            const link = document.createElement("a");
+            link.href = base + "/inicio";
+            link.style.display = "none";
+            document.body.appendChild(link);
+            link.click();
+          }, 500);
+        }, 7300); // 7.3s + 0.5s fade = 7.8s total
+      }
     </script>
-</body>
+  </body>
 </html>

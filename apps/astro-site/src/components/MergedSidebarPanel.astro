@@ -11,606 +11,623 @@
 
 <!-- Merged Sidebar Panel - Appears when sidebars collide -->
 <aside id="merged-sidebar-panel" class="merged-sidebar-panel" aria-hidden="true">
-    <!-- Panel Header with Tabs -->
-    <header class="merged-header">
-        <nav class="merged-tabs" role="tablist">
-            <button
-                class="merged-tab active"
-                data-tab="asignaturas"
-                role="tab"
-                aria-selected="true"
-                aria-controls="merged-content-asignaturas"
-            >
-                <i class="fas fa-book-open"></i>
-                <span>Asignaturas</span>
-            </button>
-            <button
-                class="merged-tab"
-                data-tab="tutor"
-                role="tab"
-                aria-selected="false"
-                aria-controls="merged-content-tutor"
-            >
-                <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini AI" class="tab-icon-img" />
-                <span>Tutor IA</span>
-            </button>
-        </nav>
-        <div class="merged-controls">
-            <button class="merged-expand-btn" id="merged-expand-btn" aria-label="Separar paneles" title="Separar paneles">
-                <i class="fas fa-columns"></i>
-            </button>
-            <button class="merged-close-btn" id="merged-close-btn" aria-label="Cerrar panel">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </header>
+  <!-- Panel Header with Tabs -->
+  <header class="merged-header">
+    <nav class="merged-tabs" role="tablist">
+      <button
+        class="merged-tab active"
+        data-tab="asignaturas"
+        role="tab"
+        aria-selected="true"
+        aria-controls="merged-content-asignaturas"
+      >
+        <i class="fas fa-book-open"></i>
+        <span>Asignaturas</span>
+      </button>
+      <button
+        class="merged-tab"
+        data-tab="tutor"
+        role="tab"
+        aria-selected="false"
+        aria-controls="merged-content-tutor"
+      >
+        <img
+          src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg"
+          alt="Gemini AI"
+          class="tab-icon-img"
+        />
+        <span>Tutor IA</span>
+      </button>
+    </nav>
+    <div class="merged-controls">
+      <button
+        class="merged-expand-btn"
+        id="merged-expand-btn"
+        aria-label="Separar paneles"
+        title="Separar paneles"
+      >
+        <i class="fas fa-columns"></i>
+      </button>
+      <button class="merged-close-btn" id="merged-close-btn" aria-label="Cerrar panel">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </header>
 
-    <!-- Content Container -->
-    <div class="merged-body">
-        <!-- Asignaturas Content -->
-        <div class="merged-content active" id="merged-content-asignaturas" role="tabpanel">
-            <div class="merged-placeholder" id="asignaturas-placeholder">
-                <!-- Content from SubjectNavigationSidebar will be cloned here -->
-            </div>
-        </div>
-
-        <!-- AI Tutor Content -->
-        <div class="merged-content" id="merged-content-tutor" role="tabpanel">
-            <div class="merged-placeholder" id="tutor-placeholder">
-                <!-- Content from AITutorSidePanel will be cloned here -->
-            </div>
-        </div>
+  <!-- Content Container -->
+  <div class="merged-body">
+    <!-- Asignaturas Content -->
+    <div class="merged-content active" id="merged-content-asignaturas" role="tabpanel">
+      <div class="merged-placeholder" id="asignaturas-placeholder">
+        <!-- Content from SubjectNavigationSidebar will be cloned here -->
+      </div>
     </div>
 
-    <!-- Footer Status -->
-    <footer class="merged-footer">
-        <div class="merged-status">
-            <i class="fas fa-info-circle"></i>
-            <span>Paneles combinados por espacio limitado</span>
-        </div>
-        <button class="merged-restore-btn" id="merged-restore-btn">
-            <i class="fas fa-external-link-alt"></i>
-            <span>Restaurar</span>
-        </button>
-    </footer>
+    <!-- AI Tutor Content -->
+    <div class="merged-content" id="merged-content-tutor" role="tabpanel">
+      <div class="merged-placeholder" id="tutor-placeholder">
+        <!-- Content from AITutorSidePanel will be cloned here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Status -->
+  <footer class="merged-footer">
+    <div class="merged-status">
+      <i class="fas fa-info-circle"></i>
+      <span>Paneles combinados por espacio limitado</span>
+    </div>
+    <button class="merged-restore-btn" id="merged-restore-btn">
+      <i class="fas fa-external-link-alt"></i>
+      <span>Restaurar</span>
+    </button>
+  </footer>
 </aside>
 
 <!-- Merged Panel Toggle Button (when panel is closed) -->
 <button class="merged-toggle-btn" id="merged-toggle-btn" aria-label="Abrir panel combinado">
-    <i class="fas fa-layer-group"></i>
-    <span class="toggle-badge">2</span>
+  <i class="fas fa-layer-group"></i>
+  <span class="toggle-badge">2</span>
 </button>
 
 <style>
-    /* ============================================
+  /* ============================================
        MERGED SIDEBAR PANEL - Premium Design
        Panel unificado que aparece cuando los sidebars colisionan
        ============================================ */
 
+  .merged-sidebar-panel {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    width: 90%;
+    max-width: 600px;
+    height: calc(100vh - 90px);
+    background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 16px;
+    z-index: 1001;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(6, 182, 212, 0.1),
+      0 0 40px rgba(139, 92, 246, 0.05);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .merged-sidebar-panel.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  .merged-sidebar-panel.entering {
+    animation: mergedEnter 0.35s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  .merged-sidebar-panel.leaving {
+    animation: mergedLeave 0.25s ease-in forwards;
+  }
+
+  @keyframes mergedEnter {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.9) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) scale(1) translateY(0);
+    }
+  }
+
+  @keyframes mergedLeave {
+    from {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.95);
+    }
+  }
+
+  /* Header */
+  .merged-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: rgba(6, 182, 212, 0.08);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    border-radius: 16px 16px 0 0;
+  }
+
+  /* Tabs */
+  .merged-tabs {
+    display: flex;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .merged-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .merged-tab:hover {
+    color: #94a3b8;
+    background: rgba(100, 116, 139, 0.1);
+  }
+
+  .merged-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
+    border-color: rgba(6, 182, 212, 0.35);
+    color: #22d3ee;
+  }
+
+  .merged-tab i {
+    font-size: 0.9rem;
+  }
+
+  .merged-tab .tab-icon-img {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Controls */
+  .merged-controls {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .merged-expand-btn,
+  .merged-close-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.5);
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .merged-expand-btn:hover {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #22d3ee;
+  }
+
+  .merged-close-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+  }
+
+  /* Body */
+  .merged-body {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .merged-content {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  .merged-content.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .merged-placeholder {
+    min-height: 100%;
+    padding: 0.5rem;
+  }
+
+  /* Scrollbar */
+  .merged-content::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .merged-content::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+  }
+
+  .merged-content::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.3);
+    border-radius: 3px;
+  }
+
+  .merged-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.5);
+  }
+
+  /* Footer */
+  .merged-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-top: 1px solid rgba(6, 182, 212, 0.15);
+    border-radius: 0 0 16px 16px;
+  }
+
+  .merged-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  .merged-status i {
+    color: #22d3ee;
+  }
+
+  .merged-restore-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 6px;
+    background: rgba(6, 182, 212, 0.1);
+    color: #22d3ee;
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .merged-restore-btn:hover {
+    background: rgba(6, 182, 212, 0.2);
+    transform: scale(1.02);
+  }
+
+  /* Toggle Button */
+  .merged-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+    color: #22d3ee;
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow:
+      0 4px 20px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(6, 182, 212, 0.15);
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+  }
+
+  .merged-toggle-btn.visible {
+    display: flex;
+  }
+
+  .merged-toggle-btn:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow:
+      0 6px 25px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(6, 182, 212, 0.25);
+  }
+
+  .toggle-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa);
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* ============================================
+       LIGHT MODE
+       ============================================ */
+  :global([data-theme="light"]) .merged-sidebar-panel {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
+    border-color: rgba(6, 182, 212, 0.25);
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.15),
+      0 0 40px rgba(6, 182, 212, 0.08);
+  }
+
+  :global([data-theme="light"]) .merged-header {
+    background: rgba(6, 182, 212, 0.08);
+  }
+
+  :global([data-theme="light"]) .merged-tab {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .merged-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.08));
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .merged-expand-btn,
+  :global([data-theme="light"]) .merged-close-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.3);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .merged-footer {
+    background: rgba(241, 245, 249, 0.8);
+  }
+
+  :global([data-theme="light"]) .merged-toggle-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.95));
+    color: #0891b2;
+  }
+
+  /* ============================================
+       RESPONSIVE
+       ============================================ */
+  @media (max-width: 768px) {
     .merged-sidebar-panel {
-        position: fixed;
-        top: 70px;
-        left: 50%;
-        transform: translateX(-50%) scale(0.95);
-        width: 90%;
-        max-width: 600px;
-        height: calc(100vh - 90px);
-        background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 16px;
-        z-index: 1001;
-        display: none;
-        flex-direction: column;
-        opacity: 0;
-        box-shadow:
-            0 25px 50px rgba(0, 0, 0, 0.5),
-            0 0 80px rgba(6, 182, 212, 0.1),
-            0 0 40px rgba(139, 92, 246, 0.05);
-        backdrop-filter: blur(20px);
-        transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      width: 95%;
+      max-width: none;
+      height: calc(100vh - 80px);
+      border-radius: 12px;
     }
 
-    .merged-sidebar-panel.visible {
-        display: flex;
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-    }
-
-    .merged-sidebar-panel.entering {
-        animation: mergedEnter 0.35s cubic-bezier(0.2, 0, 0, 1) forwards;
-    }
-
-    .merged-sidebar-panel.leaving {
-        animation: mergedLeave 0.25s ease-in forwards;
-    }
-
-    @keyframes mergedEnter {
-        from {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.9) translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(-50%) scale(1) translateY(0);
-        }
-    }
-
-    @keyframes mergedLeave {
-        from {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-        }
-        to {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.95);
-        }
-    }
-
-    /* Header */
-    .merged-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem;
-        background: rgba(6, 182, 212, 0.08);
-        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-        border-radius: 16px 16px 0 0;
-    }
-
-    /* Tabs */
-    .merged-tabs {
-        display: flex;
-        gap: 0.25rem;
-        flex: 1;
+    .merged-tab span {
+      display: none;
     }
 
     .merged-tab {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1rem;
-        border: 1px solid transparent;
-        border-radius: 10px;
-        background: transparent;
-        color: #64748b;
-        font-size: 0.85rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
+      padding: 0.5rem 0.75rem;
     }
-
-    .merged-tab:hover {
-        color: #94a3b8;
-        background: rgba(100, 116, 139, 0.1);
-    }
-
-    .merged-tab.active {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
-        border-color: rgba(6, 182, 212, 0.35);
-        color: #22d3ee;
-    }
-
-    .merged-tab i {
-        font-size: 0.9rem;
-    }
-
-    .merged-tab .tab-icon-img {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* Controls */
-    .merged-controls {
-        display: flex;
-        gap: 0.25rem;
-    }
-
-    .merged-expand-btn,
-    .merged-close-btn {
-        width: 32px;
-        height: 32px;
-        border: 1px solid rgba(100, 116, 139, 0.3);
-        border-radius: 8px;
-        background: rgba(30, 41, 59, 0.5);
-        color: #94a3b8;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-    }
-
-    .merged-expand-btn:hover {
-        background: rgba(6, 182, 212, 0.15);
-        border-color: rgba(6, 182, 212, 0.4);
-        color: #22d3ee;
-    }
-
-    .merged-close-btn:hover {
-        background: rgba(239, 68, 68, 0.15);
-        border-color: rgba(239, 68, 68, 0.4);
-        color: #ef4444;
-    }
-
-    /* Body */
-    .merged-body {
-        flex: 1;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .merged-content {
-        position: absolute;
-        inset: 0;
-        overflow-y: auto;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s ease, visibility 0.2s ease;
-    }
-
-    .merged-content.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .merged-placeholder {
-        min-height: 100%;
-        padding: 0.5rem;
-    }
-
-    /* Scrollbar */
-    .merged-content::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .merged-content::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.3);
-    }
-
-    .merged-content::-webkit-scrollbar-thumb {
-        background: rgba(6, 182, 212, 0.3);
-        border-radius: 3px;
-    }
-
-    .merged-content::-webkit-scrollbar-thumb:hover {
-        background: rgba(6, 182, 212, 0.5);
-    }
-
-    /* Footer */
-    .merged-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem 0.75rem;
-        background: rgba(15, 23, 42, 0.6);
-        border-top: 1px solid rgba(6, 182, 212, 0.15);
-        border-radius: 0 0 16px 16px;
-    }
-
-    .merged-status {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.7rem;
-        color: #64748b;
-    }
-
-    .merged-status i {
-        color: #22d3ee;
-    }
-
-    .merged-restore-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.6rem;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 6px;
-        background: rgba(6, 182, 212, 0.1);
-        color: #22d3ee;
-        font-size: 0.7rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .merged-restore-btn:hover {
-        background: rgba(6, 182, 212, 0.2);
-        transform: scale(1.02);
-    }
-
-    /* Toggle Button */
-    .merged-toggle-btn {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        width: 56px;
-        height: 56px;
-        border: 1px solid rgba(6, 182, 212, 0.4);
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
-        color: #22d3ee;
-        font-size: 1.25rem;
-        cursor: pointer;
-        z-index: 1000;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 30px rgba(6, 182, 212, 0.15);
-        backdrop-filter: blur(10px);
-        transition: all 0.2s ease;
-    }
-
-    .merged-toggle-btn.visible {
-        display: flex;
-    }
-
-    .merged-toggle-btn:hover {
-        transform: translateX(-50%) scale(1.1);
-        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5), 0 0 40px rgba(6, 182, 212, 0.25);
-    }
-
-    .toggle-badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #22d3ee, #a78bfa);
-        border-radius: 50%;
-        font-size: 0.65rem;
-        font-weight: 700;
-        color: #0f172a;
-    }
-
-    /* ============================================
-       LIGHT MODE
-       ============================================ */
-    :global([data-theme="light"]) .merged-sidebar-panel {
-        background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
-        border-color: rgba(6, 182, 212, 0.25);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 40px rgba(6, 182, 212, 0.08);
-    }
-
-    :global([data-theme="light"]) .merged-header {
-        background: rgba(6, 182, 212, 0.08);
-    }
-
-    :global([data-theme="light"]) .merged-tab {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .merged-tab.active {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.08));
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .merged-expand-btn,
-    :global([data-theme="light"]) .merged-close-btn {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(148, 163, 184, 0.3);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .merged-footer {
-        background: rgba(241, 245, 249, 0.8);
-    }
-
-    :global([data-theme="light"]) .merged-toggle-btn {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.95));
-        color: #0891b2;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 768px) {
-        .merged-sidebar-panel {
-            width: 95%;
-            max-width: none;
-            height: calc(100vh - 80px);
-            border-radius: 12px;
-        }
-
-        .merged-tab span {
-            display: none;
-        }
-
-        .merged-tab {
-            padding: 0.5rem 0.75rem;
-        }
-    }
+  }
 </style>
 
 <script>
-    // ============================================
-    // MERGED SIDEBAR PANEL - Collision Detection & Management
-    // ============================================
+  // ============================================
+  // MERGED SIDEBAR PANEL - Collision Detection & Management
+  // ============================================
 
-    function initMergedSidebarPanel() {
-        const mergedPanel = document.getElementById('merged-sidebar-panel');
-        const mergedToggleBtn = document.getElementById('merged-toggle-btn');
-        const mergedCloseBtn = document.getElementById('merged-close-btn');
-        const mergedExpandBtn = document.getElementById('merged-expand-btn');
-        const mergedRestoreBtn = document.getElementById('merged-restore-btn');
-        const mergedTabs = document.querySelectorAll('.merged-tab');
+  function initMergedSidebarPanel() {
+    const mergedPanel = document.getElementById("merged-sidebar-panel");
+    const mergedToggleBtn = document.getElementById("merged-toggle-btn");
+    const mergedCloseBtn = document.getElementById("merged-close-btn");
+    const mergedExpandBtn = document.getElementById("merged-expand-btn");
+    const mergedRestoreBtn = document.getElementById("merged-restore-btn");
+    const mergedTabs = document.querySelectorAll(".merged-tab");
 
-        if (!mergedPanel) return;
+    if (!mergedPanel) return;
 
-        // Prevent duplicate initialization
-        if (mergedPanel.dataset.initialized === 'true') return;
-        mergedPanel.dataset.initialized = 'true';
+    // Prevent duplicate initialization
+    if (mergedPanel.dataset.initialized === "true") return;
+    mergedPanel.dataset.initialized = "true";
 
-        // State
-        const state = {
-            isMerged: false,
-            activeTab: 'asignaturas',
-            leftSidebarWidth: 0,
-            rightSidebarWidth: 0,
-            leftSidebarOpen: false,
-            rightSidebarOpen: false
-        };
+    // State
+    const state = {
+      isMerged: false,
+      activeTab: "asignaturas",
+      leftSidebarWidth: 0,
+      rightSidebarWidth: 0,
+      leftSidebarOpen: false,
+      rightSidebarOpen: false,
+    };
 
-        // Configuration
-        const MIN_CENTER_SPACE = 400; // Minimum space needed for center content
+    // Configuration
+    const MIN_CENTER_SPACE = 400; // Minimum space needed for center content
 
-        // Tab switching
-        mergedTabs.forEach(tab => {
-            tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-        });
+    // Tab switching
+    mergedTabs.forEach((tab) => {
+      tab.addEventListener("click", () => switchTab(tab.dataset.tab));
+    });
 
-        // Controls
-        mergedCloseBtn?.addEventListener('click', closeMergedPanel);
-        mergedToggleBtn?.addEventListener('click', openMergedPanel);
-        mergedExpandBtn?.addEventListener('click', separatePanels);
-        mergedRestoreBtn?.addEventListener('click', separatePanels);
+    // Controls
+    mergedCloseBtn?.addEventListener("click", closeMergedPanel);
+    mergedToggleBtn?.addEventListener("click", openMergedPanel);
+    mergedExpandBtn?.addEventListener("click", separatePanels);
+    mergedRestoreBtn?.addEventListener("click", separatePanels);
 
-        // Listen for sidebar events
-        window.addEventListener('navSidebarToggle', handleLeftSidebarToggle);
-        window.addEventListener('navSidebarResize', handleLeftSidebarResize);
-        window.addEventListener('tutorPanelToggle', handleRightSidebarToggle);
-        window.addEventListener('tutorPanelResize', handleRightSidebarResize);
-        window.addEventListener('resize', checkCollision);
+    // Listen for sidebar events
+    window.addEventListener("navSidebarToggle", handleLeftSidebarToggle);
+    window.addEventListener("navSidebarResize", handleLeftSidebarResize);
+    window.addEventListener("tutorPanelToggle", handleRightSidebarToggle);
+    window.addEventListener("tutorPanelResize", handleRightSidebarResize);
+    window.addEventListener("resize", checkCollision);
 
-        // Expose global functions
-        window.openMergedPanel = openMergedPanel;
-        window.closeMergedPanel = closeMergedPanel;
-        window.checkSidebarCollision = checkCollision;
+    // Expose global functions
+    window.openMergedPanel = openMergedPanel;
+    window.closeMergedPanel = closeMergedPanel;
+    window.checkSidebarCollision = checkCollision;
 
-        // Functions
-        function handleLeftSidebarToggle(e) {
-            state.leftSidebarOpen = e.detail?.isOpen ?? false;
-            state.leftSidebarWidth = e.detail?.width ?? 0;
-            checkCollision();
-        }
-
-        function handleLeftSidebarResize(e) {
-            state.leftSidebarWidth = e.detail?.width ?? state.leftSidebarWidth;
-            checkCollision();
-        }
-
-        function handleRightSidebarToggle(e) {
-            state.rightSidebarOpen = e.detail?.isOpen ?? false;
-            state.rightSidebarWidth = e.detail?.width ?? 0;
-            checkCollision();
-        }
-
-        function handleRightSidebarResize(e) {
-            state.rightSidebarWidth = e.detail?.width ?? state.rightSidebarWidth;
-            checkCollision();
-        }
-
-        function checkCollision() {
-            const viewportWidth = window.innerWidth;
-            const totalSidebarsWidth =
-                (state.leftSidebarOpen ? state.leftSidebarWidth : 0) +
-                (state.rightSidebarOpen ? state.rightSidebarWidth : 0);
-
-            const availableSpace = viewportWidth - totalSidebarsWidth;
-
-            // Both sidebars must be open and space must be limited
-            if (state.leftSidebarOpen && state.rightSidebarOpen && availableSpace < MIN_CENTER_SPACE) {
-                if (!state.isMerged) {
-                    triggerMerge();
-                }
-            } else if (state.isMerged && availableSpace >= MIN_CENTER_SPACE) {
-                // Auto-separate when there's enough space
-                // Only if user hasn't manually closed the panel
-            }
-        }
-
-        function triggerMerge() {
-            state.isMerged = true;
-
-            // Hide individual sidebars
-            const leftSidebar = document.getElementById('subject-nav-sidebar');
-            const rightSidebar = document.getElementById('ai-tutor-panel');
-            const leftExpandBtn = document.getElementById('sidebar-expand-btn');
-            const rightExpandBtn = document.getElementById('ai-tutor-expand-btn');
-
-            if (leftSidebar) leftSidebar.classList.add('hidden-for-merge');
-            if (rightSidebar) rightSidebar.classList.add('hidden-for-merge');
-            if (leftExpandBtn) leftExpandBtn.classList.add('hidden-for-merge');
-            if (rightExpandBtn) rightExpandBtn.classList.add('hidden-for-merge');
-
-            // Show merged panel
-            openMergedPanel();
-
-            // Dispatch event
-            window.dispatchEvent(new CustomEvent('sidebarsMerged', { detail: { merged: true } }));
-        }
-
-        function openMergedPanel() {
-            mergedPanel.classList.add('visible', 'entering');
-            mergedPanel.setAttribute('aria-hidden', 'false');
-            mergedToggleBtn?.classList.remove('visible');
-
-            setTimeout(() => {
-                mergedPanel.classList.remove('entering');
-            }, 350);
-        }
-
-        function closeMergedPanel() {
-            mergedPanel.classList.add('leaving');
-
-            setTimeout(() => {
-                mergedPanel.classList.remove('visible', 'leaving');
-                mergedPanel.setAttribute('aria-hidden', 'true');
-
-                if (state.isMerged) {
-                    mergedToggleBtn?.classList.add('visible');
-                }
-            }, 250);
-        }
-
-        function separatePanels() {
-            state.isMerged = false;
-
-            // Show individual sidebars again
-            const leftSidebar = document.getElementById('subject-nav-sidebar');
-            const rightSidebar = document.getElementById('ai-tutor-panel');
-            const leftExpandBtn = document.getElementById('sidebar-expand-btn');
-            const rightExpandBtn = document.getElementById('ai-tutor-expand-btn');
-
-            if (leftSidebar) leftSidebar.classList.remove('hidden-for-merge');
-            if (rightSidebar) rightSidebar.classList.remove('hidden-for-merge');
-            if (leftExpandBtn) leftExpandBtn.classList.remove('hidden-for-merge');
-            if (rightExpandBtn) rightExpandBtn.classList.remove('hidden-for-merge');
-
-            // Close merged panel
-            closeMergedPanel();
-            mergedToggleBtn?.classList.remove('visible');
-
-            // Collapse left sidebar to give more space
-            window.dispatchEvent(new CustomEvent('requestNavSidebarCollapse'));
-
-            // Dispatch event
-            window.dispatchEvent(new CustomEvent('sidebarsMerged', { detail: { merged: false } }));
-        }
-
-        function switchTab(tabId) {
-            state.activeTab = tabId;
-
-            // Update tabs
-            mergedTabs.forEach(tab => {
-                const isActive = tab.dataset.tab === tabId;
-                tab.classList.toggle('active', isActive);
-                tab.setAttribute('aria-selected', isActive.toString());
-            });
-
-            // Update content
-            document.querySelectorAll('.merged-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(`merged-content-${tabId}`)?.classList.add('active');
-        }
+    // Functions
+    function handleLeftSidebarToggle(e) {
+      state.leftSidebarOpen = e.detail?.isOpen ?? false;
+      state.leftSidebarWidth = e.detail?.width ?? 0;
+      checkCollision();
     }
 
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', initMergedSidebarPanel);
-    document.addEventListener('astro:page-load', initMergedSidebarPanel);
+    function handleLeftSidebarResize(e) {
+      state.leftSidebarWidth = e.detail?.width ?? state.leftSidebarWidth;
+      checkCollision();
+    }
+
+    function handleRightSidebarToggle(e) {
+      state.rightSidebarOpen = e.detail?.isOpen ?? false;
+      state.rightSidebarWidth = e.detail?.width ?? 0;
+      checkCollision();
+    }
+
+    function handleRightSidebarResize(e) {
+      state.rightSidebarWidth = e.detail?.width ?? state.rightSidebarWidth;
+      checkCollision();
+    }
+
+    function checkCollision() {
+      const viewportWidth = window.innerWidth;
+      const totalSidebarsWidth =
+        (state.leftSidebarOpen ? state.leftSidebarWidth : 0) +
+        (state.rightSidebarOpen ? state.rightSidebarWidth : 0);
+
+      const availableSpace = viewportWidth - totalSidebarsWidth;
+
+      // Both sidebars must be open and space must be limited
+      if (state.leftSidebarOpen && state.rightSidebarOpen && availableSpace < MIN_CENTER_SPACE) {
+        if (!state.isMerged) {
+          triggerMerge();
+        }
+      } else if (state.isMerged && availableSpace >= MIN_CENTER_SPACE) {
+        // Auto-separate when there's enough space
+        // Only if user hasn't manually closed the panel
+      }
+    }
+
+    function triggerMerge() {
+      state.isMerged = true;
+
+      // Hide individual sidebars
+      const leftSidebar = document.getElementById("subject-nav-sidebar");
+      const rightSidebar = document.getElementById("ai-tutor-panel");
+      const leftExpandBtn = document.getElementById("sidebar-expand-btn");
+      const rightExpandBtn = document.getElementById("ai-tutor-expand-btn");
+
+      if (leftSidebar) leftSidebar.classList.add("hidden-for-merge");
+      if (rightSidebar) rightSidebar.classList.add("hidden-for-merge");
+      if (leftExpandBtn) leftExpandBtn.classList.add("hidden-for-merge");
+      if (rightExpandBtn) rightExpandBtn.classList.add("hidden-for-merge");
+
+      // Show merged panel
+      openMergedPanel();
+
+      // Dispatch event
+      window.dispatchEvent(new CustomEvent("sidebarsMerged", { detail: { merged: true } }));
+    }
+
+    function openMergedPanel() {
+      mergedPanel.classList.add("visible", "entering");
+      mergedPanel.setAttribute("aria-hidden", "false");
+      mergedToggleBtn?.classList.remove("visible");
+
+      setTimeout(() => {
+        mergedPanel.classList.remove("entering");
+      }, 350);
+    }
+
+    function closeMergedPanel() {
+      mergedPanel.classList.add("leaving");
+
+      setTimeout(() => {
+        mergedPanel.classList.remove("visible", "leaving");
+        mergedPanel.setAttribute("aria-hidden", "true");
+
+        if (state.isMerged) {
+          mergedToggleBtn?.classList.add("visible");
+        }
+      }, 250);
+    }
+
+    function separatePanels() {
+      state.isMerged = false;
+
+      // Show individual sidebars again
+      const leftSidebar = document.getElementById("subject-nav-sidebar");
+      const rightSidebar = document.getElementById("ai-tutor-panel");
+      const leftExpandBtn = document.getElementById("sidebar-expand-btn");
+      const rightExpandBtn = document.getElementById("ai-tutor-expand-btn");
+
+      if (leftSidebar) leftSidebar.classList.remove("hidden-for-merge");
+      if (rightSidebar) rightSidebar.classList.remove("hidden-for-merge");
+      if (leftExpandBtn) leftExpandBtn.classList.remove("hidden-for-merge");
+      if (rightExpandBtn) rightExpandBtn.classList.remove("hidden-for-merge");
+
+      // Close merged panel
+      closeMergedPanel();
+      mergedToggleBtn?.classList.remove("visible");
+
+      // Collapse left sidebar to give more space
+      window.dispatchEvent(new CustomEvent("requestNavSidebarCollapse"));
+
+      // Dispatch event
+      window.dispatchEvent(new CustomEvent("sidebarsMerged", { detail: { merged: false } }));
+    }
+
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+
+      // Update tabs
+      mergedTabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === tabId;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", isActive.toString());
+      });
+
+      // Update content
+      document.querySelectorAll(".merged-content").forEach((content) => {
+        content.classList.remove("active");
+      });
+      document.getElementById(`merged-content-${tabId}`)?.classList.add("active");
+    }
+  }
+
+  // Initialize on load
+  document.addEventListener("DOMContentLoaded", initMergedSidebarPanel);
+  document.addEventListener("astro:page-load", initMergedSidebarPanel);
 </script>

@@ -1,959 +1,1034 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 
 const baseUrl = import.meta.env.BASE_URL;
 
 // Categorías de laboratorios
 const labCategories = [
-    { id: 'all', name: 'Todos', icon: 'fas fa-th-large' },
-    { id: 'python', name: 'Python', icon: 'devicon-python-plain' },
-    { id: 'javascript', name: 'JavaScript', icon: 'devicon-javascript-plain' },
-    { id: 'sql', name: 'SQL', icon: 'fas fa-database' },
-    { id: 'data', name: 'Data Science', icon: 'fas fa-chart-line' },
-    { id: 'git', name: 'Git & GitHub', icon: 'devicon-git-plain' },
+  { id: "all", name: "Todos", icon: "fas fa-th-large" },
+  { id: "python", name: "Python", icon: "devicon-python-plain" },
+  { id: "javascript", name: "JavaScript", icon: "devicon-javascript-plain" },
+  { id: "sql", name: "SQL", icon: "fas fa-database" },
+  { id: "data", name: "Data Science", icon: "fas fa-chart-line" },
+  { id: "git", name: "Git & GitHub", icon: "devicon-git-plain" },
 ];
 
 // Laboratorios interactivos
 const labs = [
-    {
-        id: 'python-basics',
-        category: 'python',
-        title: 'Python Fundamentals',
-        description: 'Variables, tipos de datos, estructuras de control y funciones básicas.',
-        difficulty: 'Principiante',
-        duration: '2-3 horas',
-        exercises: 15,
-        platform: 'Replit',
-        platformUrl: 'https://replit.com/@pythonbasics',
-        topics: ['Variables', 'Tipos de datos', 'Condicionales', 'Loops', 'Funciones'],
-        icon: 'devicon-python-plain colored'
-    },
-    {
-        id: 'python-oop',
-        category: 'python',
-        title: 'POO en Python',
-        description: 'Clases, objetos, herencia, polimorfismo y encapsulamiento.',
-        difficulty: 'Intermedio',
-        duration: '4-5 horas',
-        exercises: 12,
-        platform: 'Google Colab',
-        platformUrl: 'https://colab.research.google.com/',
-        topics: ['Clases', 'Objetos', 'Herencia', 'Polimorfismo', '__init__'],
-        icon: 'devicon-python-plain colored'
-    },
-    {
-        id: 'js-dom',
-        category: 'javascript',
-        title: 'Manipulación del DOM',
-        description: 'Seleccionar, crear, modificar y eliminar elementos HTML con JavaScript.',
-        difficulty: 'Principiante',
-        duration: '3-4 horas',
-        exercises: 18,
-        platform: 'CodePen',
-        platformUrl: 'https://codepen.io/collection/DOM-exercises',
-        topics: ['querySelector', 'createElement', 'addEventListener', 'classList', 'innerHTML'],
-        icon: 'devicon-javascript-plain colored'
-    },
-    {
-        id: 'js-async',
-        category: 'javascript',
-        title: 'Async JavaScript',
-        description: 'Promesas, async/await, fetch API y manejo de errores asíncronos.',
-        difficulty: 'Intermedio',
-        duration: '4-5 horas',
-        exercises: 10,
-        platform: 'Replit',
-        platformUrl: 'https://replit.com/@asyncjs',
-        topics: ['Promises', 'async/await', 'fetch', 'try/catch', 'Promise.all'],
-        icon: 'devicon-javascript-plain colored'
-    },
-    {
-        id: 'sql-basics',
-        category: 'sql',
-        title: 'SQL Fundamentals',
-        description: 'Consultas básicas: SELECT, INSERT, UPDATE, DELETE y filtros.',
-        difficulty: 'Principiante',
-        duration: '3-4 horas',
-        exercises: 20,
-        platform: 'SQLZoo',
-        platformUrl: 'https://sqlzoo.net/',
-        topics: ['SELECT', 'WHERE', 'ORDER BY', 'INSERT', 'UPDATE'],
-        icon: 'fas fa-database'
-    },
-    {
-        id: 'sql-joins',
-        category: 'sql',
-        title: 'SQL Joins & Agregaciones',
-        description: 'INNER JOIN, LEFT JOIN, GROUP BY, HAVING y funciones de agregación.',
-        difficulty: 'Intermedio',
-        duration: '4-5 horas',
-        exercises: 15,
-        platform: 'HackerRank',
-        platformUrl: 'https://www.hackerrank.com/domains/sql',
-        topics: ['INNER JOIN', 'LEFT JOIN', 'GROUP BY', 'HAVING', 'COUNT/SUM/AVG'],
-        icon: 'fas fa-database'
-    },
-    {
-        id: 'pandas-basics',
-        category: 'data',
-        title: 'Pandas Fundamentals',
-        description: 'DataFrames, Series, filtrado, agrupaciones y transformaciones.',
-        difficulty: 'Intermedio',
-        duration: '5-6 horas',
-        exercises: 25,
-        platform: 'Kaggle',
-        platformUrl: 'https://www.kaggle.com/learn/pandas',
-        topics: ['DataFrame', 'Series', 'loc/iloc', 'groupby', 'merge'],
-        icon: 'devicon-pandas-original colored'
-    },
-    {
-        id: 'git-basics',
-        category: 'git',
-        title: 'Git Essentials',
-        description: 'Commits, branches, merge, rebase y resolución de conflictos.',
-        difficulty: 'Principiante',
-        duration: '2-3 horas',
-        exercises: 12,
-        platform: 'Learn Git Branching',
-        platformUrl: 'https://learngitbranching.js.org/',
-        topics: ['commit', 'branch', 'merge', 'rebase', 'checkout'],
-        icon: 'devicon-git-plain colored'
-    },
-    {
-        id: 'api-rest',
-        category: 'javascript',
-        title: 'APIs REST con Node.js',
-        description: 'Crear APIs RESTful con Express, rutas, middleware y autenticación.',
-        difficulty: 'Intermedio',
-        duration: '6-8 horas',
-        exercises: 8,
-        platform: 'Replit',
-        platformUrl: 'https://replit.com/@nodejs',
-        topics: ['Express', 'Rutas', 'Middleware', 'JWT', 'CRUD'],
-        icon: 'devicon-nodejs-plain colored'
-    },
-    {
-        id: 'data-viz',
-        category: 'data',
-        title: 'Visualización con Matplotlib',
-        description: 'Gráficos de líneas, barras, scatter, histogramas y personalización.',
-        difficulty: 'Intermedio',
-        duration: '4-5 horas',
-        exercises: 15,
-        platform: 'Google Colab',
-        platformUrl: 'https://colab.research.google.com/',
-        topics: ['plot', 'bar', 'scatter', 'hist', 'subplots'],
-        icon: 'devicon-matplotlib-plain colored'
-    },
+  {
+    id: "python-basics",
+    category: "python",
+    title: "Python Fundamentals",
+    description: "Variables, tipos de datos, estructuras de control y funciones básicas.",
+    difficulty: "Principiante",
+    duration: "2-3 horas",
+    exercises: 15,
+    platform: "Replit",
+    platformUrl: "https://replit.com/@pythonbasics",
+    topics: ["Variables", "Tipos de datos", "Condicionales", "Loops", "Funciones"],
+    icon: "devicon-python-plain colored",
+  },
+  {
+    id: "python-oop",
+    category: "python",
+    title: "POO en Python",
+    description: "Clases, objetos, herencia, polimorfismo y encapsulamiento.",
+    difficulty: "Intermedio",
+    duration: "4-5 horas",
+    exercises: 12,
+    platform: "Google Colab",
+    platformUrl: "https://colab.research.google.com/",
+    topics: ["Clases", "Objetos", "Herencia", "Polimorfismo", "__init__"],
+    icon: "devicon-python-plain colored",
+  },
+  {
+    id: "js-dom",
+    category: "javascript",
+    title: "Manipulación del DOM",
+    description: "Seleccionar, crear, modificar y eliminar elementos HTML con JavaScript.",
+    difficulty: "Principiante",
+    duration: "3-4 horas",
+    exercises: 18,
+    platform: "CodePen",
+    platformUrl: "https://codepen.io/collection/DOM-exercises",
+    topics: ["querySelector", "createElement", "addEventListener", "classList", "innerHTML"],
+    icon: "devicon-javascript-plain colored",
+  },
+  {
+    id: "js-async",
+    category: "javascript",
+    title: "Async JavaScript",
+    description: "Promesas, async/await, fetch API y manejo de errores asíncronos.",
+    difficulty: "Intermedio",
+    duration: "4-5 horas",
+    exercises: 10,
+    platform: "Replit",
+    platformUrl: "https://replit.com/@asyncjs",
+    topics: ["Promises", "async/await", "fetch", "try/catch", "Promise.all"],
+    icon: "devicon-javascript-plain colored",
+  },
+  {
+    id: "sql-basics",
+    category: "sql",
+    title: "SQL Fundamentals",
+    description: "Consultas básicas: SELECT, INSERT, UPDATE, DELETE y filtros.",
+    difficulty: "Principiante",
+    duration: "3-4 horas",
+    exercises: 20,
+    platform: "SQLZoo",
+    platformUrl: "https://sqlzoo.net/",
+    topics: ["SELECT", "WHERE", "ORDER BY", "INSERT", "UPDATE"],
+    icon: "fas fa-database",
+  },
+  {
+    id: "sql-joins",
+    category: "sql",
+    title: "SQL Joins & Agregaciones",
+    description: "INNER JOIN, LEFT JOIN, GROUP BY, HAVING y funciones de agregación.",
+    difficulty: "Intermedio",
+    duration: "4-5 horas",
+    exercises: 15,
+    platform: "HackerRank",
+    platformUrl: "https://www.hackerrank.com/domains/sql",
+    topics: ["INNER JOIN", "LEFT JOIN", "GROUP BY", "HAVING", "COUNT/SUM/AVG"],
+    icon: "fas fa-database",
+  },
+  {
+    id: "pandas-basics",
+    category: "data",
+    title: "Pandas Fundamentals",
+    description: "DataFrames, Series, filtrado, agrupaciones y transformaciones.",
+    difficulty: "Intermedio",
+    duration: "5-6 horas",
+    exercises: 25,
+    platform: "Kaggle",
+    platformUrl: "https://www.kaggle.com/learn/pandas",
+    topics: ["DataFrame", "Series", "loc/iloc", "groupby", "merge"],
+    icon: "devicon-pandas-original colored",
+  },
+  {
+    id: "git-basics",
+    category: "git",
+    title: "Git Essentials",
+    description: "Commits, branches, merge, rebase y resolución de conflictos.",
+    difficulty: "Principiante",
+    duration: "2-3 horas",
+    exercises: 12,
+    platform: "Learn Git Branching",
+    platformUrl: "https://learngitbranching.js.org/",
+    topics: ["commit", "branch", "merge", "rebase", "checkout"],
+    icon: "devicon-git-plain colored",
+  },
+  {
+    id: "api-rest",
+    category: "javascript",
+    title: "APIs REST con Node.js",
+    description: "Crear APIs RESTful con Express, rutas, middleware y autenticación.",
+    difficulty: "Intermedio",
+    duration: "6-8 horas",
+    exercises: 8,
+    platform: "Replit",
+    platformUrl: "https://replit.com/@nodejs",
+    topics: ["Express", "Rutas", "Middleware", "JWT", "CRUD"],
+    icon: "devicon-nodejs-plain colored",
+  },
+  {
+    id: "data-viz",
+    category: "data",
+    title: "Visualización con Matplotlib",
+    description: "Gráficos de líneas, barras, scatter, histogramas y personalización.",
+    difficulty: "Intermedio",
+    duration: "4-5 horas",
+    exercises: 15,
+    platform: "Google Colab",
+    platformUrl: "https://colab.research.google.com/",
+    topics: ["plot", "bar", "scatter", "hist", "subplots"],
+    icon: "devicon-matplotlib-plain colored",
+  },
 ];
 
 // Plataformas de práctica
 const practicePlatforms = [
-    {
-        name: 'LeetCode',
-        url: 'https://leetcode.com/',
-        icon: 'img:https://cdn.simpleicons.org/leetcode/FFA116',
-        description: 'Problemas de algoritmos y estructuras de datos',
-        focus: 'Entrevistas técnicas',
-        levels: ['Fácil', 'Medio', 'Difícil']
-    },
-    {
-        name: 'HackerRank',
-        url: 'https://www.hackerrank.com/',
-        icon: 'img:https://cdn.simpleicons.org/hackerrank/00EA64',
-        description: 'Certificaciones y challenges por lenguaje',
-        focus: 'Certificaciones',
-        levels: ['Básico', 'Intermedio', 'Avanzado']
-    },
-    {
-        name: 'Codewars',
-        url: 'https://www.codewars.com/',
-        icon: 'img:https://cdn.simpleicons.org/codewars/B1361E',
-        description: 'Katas de programación con sistema de ranking',
-        focus: 'Gamificación',
-        levels: ['8 kyu', '1 kyu']
-    },
-    {
-        name: 'Kaggle',
-        url: 'https://www.kaggle.com/',
-        icon: 'devicon-kaggle-original colored',
-        description: 'Competencias de data science y ML',
-        focus: 'Data Science',
-        levels: ['Notebooks', 'Competencias']
-    },
-    {
-        name: 'Exercism',
-        url: 'https://exercism.org/',
-        icon: 'img:https://cdn.simpleicons.org/exercism/009CAB',
-        description: 'Ejercicios con mentoring gratuito',
-        focus: 'Mentoring',
-        levels: ['65+ lenguajes']
-    },
-    {
-        name: 'freeCodeCamp',
-        url: 'https://www.freecodecamp.org/',
-        icon: 'devicon-freecodecamp-original',
-        description: 'Curriculum completo de desarrollo web',
-        focus: 'Web Development',
-        levels: ['Certificaciones gratuitas']
-    },
+  {
+    name: "LeetCode",
+    url: "https://leetcode.com/",
+    icon: "img:https://cdn.simpleicons.org/leetcode/FFA116",
+    description: "Problemas de algoritmos y estructuras de datos",
+    focus: "Entrevistas técnicas",
+    levels: ["Fácil", "Medio", "Difícil"],
+  },
+  {
+    name: "HackerRank",
+    url: "https://www.hackerrank.com/",
+    icon: "img:https://cdn.simpleicons.org/hackerrank/00EA64",
+    description: "Certificaciones y challenges por lenguaje",
+    focus: "Certificaciones",
+    levels: ["Básico", "Intermedio", "Avanzado"],
+  },
+  {
+    name: "Codewars",
+    url: "https://www.codewars.com/",
+    icon: "img:https://cdn.simpleicons.org/codewars/B1361E",
+    description: "Katas de programación con sistema de ranking",
+    focus: "Gamificación",
+    levels: ["8 kyu", "1 kyu"],
+  },
+  {
+    name: "Kaggle",
+    url: "https://www.kaggle.com/",
+    icon: "devicon-kaggle-original colored",
+    description: "Competencias de data science y ML",
+    focus: "Data Science",
+    levels: ["Notebooks", "Competencias"],
+  },
+  {
+    name: "Exercism",
+    url: "https://exercism.org/",
+    icon: "img:https://cdn.simpleicons.org/exercism/009CAB",
+    description: "Ejercicios con mentoring gratuito",
+    focus: "Mentoring",
+    levels: ["65+ lenguajes"],
+  },
+  {
+    name: "freeCodeCamp",
+    url: "https://www.freecodecamp.org/",
+    icon: "devicon-freecodecamp-original",
+    description: "Curriculum completo de desarrollo web",
+    focus: "Web Development",
+    levels: ["Certificaciones gratuitas"],
+  },
 ];
 
 // Editores de código online
 const codeEditors = [
-    { name: 'Replit', url: 'https://replit.com/', icon: 'devicon-replit-plain colored', desc: 'IDE completo en la nube' },
-    { name: 'CodePen', url: 'https://codepen.io/', icon: 'devicon-codepen-plain', desc: 'Frontend sandbox' },
-    { name: 'CodeSandbox', url: 'https://codesandbox.io/', icon: 'devicon-codesandbox-plain colored', desc: 'React, Vue, Angular' },
-    { name: 'StackBlitz', url: 'https://stackblitz.com/', icon: 'devicon-stackblitz-original colored', desc: 'Web IDE instantáneo' },
-    { name: 'Google Colab', url: 'https://colab.research.google.com/', icon: 'devicon-google-plain colored', desc: 'Jupyter con GPU gratis' },
-    { name: 'Jupyter Lite', url: 'https://jupyter.org/try', icon: 'devicon-jupyter-plain colored', desc: 'Jupyter en el browser' },
+  {
+    name: "Replit",
+    url: "https://replit.com/",
+    icon: "devicon-replit-plain colored",
+    desc: "IDE completo en la nube",
+  },
+  {
+    name: "CodePen",
+    url: "https://codepen.io/",
+    icon: "devicon-codepen-plain",
+    desc: "Frontend sandbox",
+  },
+  {
+    name: "CodeSandbox",
+    url: "https://codesandbox.io/",
+    icon: "devicon-codesandbox-plain colored",
+    desc: "React, Vue, Angular",
+  },
+  {
+    name: "StackBlitz",
+    url: "https://stackblitz.com/",
+    icon: "devicon-stackblitz-original colored",
+    desc: "Web IDE instantáneo",
+  },
+  {
+    name: "Google Colab",
+    url: "https://colab.research.google.com/",
+    icon: "devicon-google-plain colored",
+    desc: "Jupyter con GPU gratis",
+  },
+  {
+    name: "Jupyter Lite",
+    url: "https://jupyter.org/try",
+    icon: "devicon-jupyter-plain colored",
+    desc: "Jupyter en el browser",
+  },
 ];
 ---
 
 <Layout title="Laboratorios Interactivos | Practica Código - DuocUC">
-    <Header />
+  <Header />
 
-    <main class="labs-page">
-        <!-- Hero Section -->
-        <section class="page-hero">
-            <div class="hero-content" data-aos="fade-up">
-                <div class="hero-badge">
-                    <i class="fas fa-flask"></i>
-                    <span>Aprende Haciendo</span>
-                </div>
-                <h1>Laboratorios <span class="gradient-text">Interactivos</span></h1>
-                <p class="hero-subtitle">
-                    La mejor forma de aprender programación es escribiendo código.
-                    Practica con ejercicios guiados y desafíos en diferentes tecnologías.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-value">{labs.length}</span>
-                        <span class="stat-label">Laboratorios</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">100+</span>
-                        <span class="stat-label">Ejercicios</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">{practicePlatforms.length}</span>
-                        <span class="stat-label">Plataformas</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <main class="labs-page">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+          <i class="fas fa-flask"></i>
+          <span>Aprende Haciendo</span>
+        </div>
+        <h1>Laboratorios <span class="gradient-text">Interactivos</span></h1>
+        <p class="hero-subtitle">
+          La mejor forma de aprender programación es escribiendo código. Practica con ejercicios
+          guiados y desafíos en diferentes tecnologías.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">{labs.length}</span>
+            <span class="stat-label">Laboratorios</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">100+</span>
+            <span class="stat-label">Ejercicios</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">{practicePlatforms.length}</span>
+            <span class="stat-label">Plataformas</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Code Editors Section -->
-        <section class="editors-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-code"></i> Editores de Código Online</h2>
-                <p>Escribe y ejecuta código directamente en el navegador</p>
-            </div>
-            <div class="editors-grid">
-                {codeEditors.map((editor, idx) => (
-                    <a href={editor.url} target="_blank" rel="noopener" class="editor-card glass-card" data-aos="fade-up" data-aos-delay={idx * 50}>
-                        <i class={editor.icon}></i>
-                        <div class="editor-info">
-                            <h4>{editor.name}</h4>
-                            <span>{editor.desc}</span>
-                        </div>
-                    </a>
+    <!-- Code Editors Section -->
+    <section class="editors-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-code"></i> Editores de Código Online</h2>
+        <p>Escribe y ejecuta código directamente en el navegador</p>
+      </div>
+      <div class="editors-grid">
+        {
+          codeEditors.map((editor, idx) => (
+            <a
+              href={editor.url}
+              target="_blank"
+              rel="noopener"
+              class="editor-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+            >
+              <i class={editor.icon} />
+              <div class="editor-info">
+                <h4>{editor.name}</h4>
+                <span>{editor.desc}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section class="labs-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-laptop-code"></i> Laboratorios Disponibles</h2>
+        <p>Ejercicios prácticos organizados por tecnología y nivel</p>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="category-filters" data-aos="fade-up">
+        {
+          labCategories.map((cat) => (
+            <button class={`filter-btn ${cat.id === "all" ? "active" : ""}`} data-filter={cat.id}>
+              <i class={cat.icon} />
+              <span>{cat.name}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="labs-grid">
+        {
+          labs.map((lab, idx) => (
+            <div
+              class="lab-card glass-card"
+              data-category={lab.category}
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+            >
+              <div class="lab-header">
+                <div class="lab-icon">
+                  <i class={lab.icon} />
+                </div>
+                <div class="lab-meta">
+                  <span class={`difficulty-badge ${lab.difficulty.toLowerCase()}`}>
+                    {lab.difficulty}
+                  </span>
+                  <span class="duration-badge">
+                    <i class="fas fa-clock" /> {lab.duration}
+                  </span>
+                </div>
+              </div>
+              <h3>{lab.title}</h3>
+              <p>{lab.description}</p>
+
+              <div class="lab-topics">
+                {lab.topics.slice(0, 4).map((topic) => (
+                  <span class="topic-tag">{topic}</span>
                 ))}
-            </div>
-        </section>
+                {lab.topics.length > 4 && (
+                  <span class="topic-tag more">+{lab.topics.length - 4}</span>
+                )}
+              </div>
 
-        <!-- Labs Section -->
-        <section class="labs-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-laptop-code"></i> Laboratorios Disponibles</h2>
-                <p>Ejercicios prácticos organizados por tecnología y nivel</p>
-            </div>
-
-            <!-- Category Filters -->
-            <div class="category-filters" data-aos="fade-up">
-                {labCategories.map(cat => (
-                    <button class={`filter-btn ${cat.id === 'all' ? 'active' : ''}`} data-filter={cat.id}>
-                        <i class={cat.icon}></i>
-                        <span>{cat.name}</span>
-                    </button>
-                ))}
-            </div>
-
-            <div class="labs-grid">
-                {labs.map((lab, idx) => (
-                    <div class="lab-card glass-card" data-category={lab.category} data-aos="fade-up" data-aos-delay={idx * 50}>
-                        <div class="lab-header">
-                            <div class="lab-icon">
-                                <i class={lab.icon}></i>
-                            </div>
-                            <div class="lab-meta">
-                                <span class={`difficulty-badge ${lab.difficulty.toLowerCase()}`}>{lab.difficulty}</span>
-                                <span class="duration-badge"><i class="fas fa-clock"></i> {lab.duration}</span>
-                            </div>
-                        </div>
-                        <h3>{lab.title}</h3>
-                        <p>{lab.description}</p>
-
-                        <div class="lab-topics">
-                            {lab.topics.slice(0, 4).map(topic => (
-                                <span class="topic-tag">{topic}</span>
-                            ))}
-                            {lab.topics.length > 4 && <span class="topic-tag more">+{lab.topics.length - 4}</span>}
-                        </div>
-
-                        <div class="lab-footer">
-                            <div class="exercises-count">
-                                <i class="fas fa-tasks"></i>
-                                <span>{lab.exercises} ejercicios</span>
-                            </div>
-                            <a href={lab.platformUrl} target="_blank" rel="noopener" class="start-btn">
-                                <i class="fas fa-play"></i> Iniciar en {lab.platform}
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Practice Platforms -->
-        <section class="platforms-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-trophy"></i> Plataformas de Práctica</h2>
-                <p>Desafíos, certificaciones y competencias para mejorar tus habilidades</p>
-            </div>
-            <div class="platforms-grid">
-                {practicePlatforms.map((platform, idx) => (
-                    <a href={platform.url} target="_blank" rel="noopener" class="platform-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
-                        <div class="platform-icon">
-                            {platform.icon.startsWith('devicon') ? (
-                                <i class={platform.icon}></i>
-                            ) : platform.icon.startsWith('img:') ? (
-                                <img src={platform.icon.replace('img:', '')} alt={platform.name} width="40" height="40" />
-                            ) : (
-                                <i class={platform.icon}></i>
-                            )}
-                        </div>
-                        <div class="platform-info">
-                            <h3>{platform.name}</h3>
-                            <p>{platform.description}</p>
-                            <div class="platform-meta">
-                                <span class="focus-badge">{platform.focus}</span>
-                                <span class="levels">{platform.levels.join(' → ')}</span>
-                            </div>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Tips Section -->
-        <section class="tips-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-lightbulb"></i> Tips para Practicar Efectivamente</h2>
-            </div>
-            <div class="tips-grid">
-                <div class="tip-card glass-card" data-aos="fade-up">
-                    <div class="tip-number">1</div>
-                    <h3>Consistencia > Intensidad</h3>
-                    <p>30 minutos diarios son más efectivos que 5 horas un solo día.</p>
+              <div class="lab-footer">
+                <div class="exercises-count">
+                  <i class="fas fa-tasks" />
+                  <span>{lab.exercises} ejercicios</span>
                 </div>
-                <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="tip-number">2</div>
-                    <h3>Resuelve sin mirar la solución</h3>
-                    <p>Lucha con el problema al menos 20-30 minutos antes de buscar ayuda.</p>
-                </div>
-                <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tip-number">3</div>
-                    <h3>Escribe código, no lo copies</h3>
-                    <p>Transcribir código manualmente ayuda a memorizar patrones.</p>
-                </div>
-                <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="tip-number">4</div>
-                    <h3>Explica tu código en voz alta</h3>
-                    <p>Rubber duck debugging: explicar el problema ayuda a encontrar la solución.</p>
-                </div>
+                <a href={lab.platformUrl} target="_blank" rel="noopener" class="start-btn">
+                  <i class="fas fa-play" /> Iniciar en {lab.platform}
+                </a>
+              </div>
             </div>
-        </section>
+          ))
+        }
+      </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content glass-card" data-aos="zoom-in">
-                <h2>¿Listo para Practicar?</h2>
-                <p>Elige un laboratorio y empieza a escribir código ahora mismo</p>
-                <div class="cta-buttons">
-                    <a href="#labs-section" class="cta-btn primary">
-                        <i class="fas fa-flask"></i> Ver Laboratorios
-                    </a>
-                    <a href={`${baseUrl}/recursos`} class="cta-btn secondary">
-                        <i class="fas fa-tools"></i> Más Herramientas
-                    </a>
+    <!-- Practice Platforms -->
+    <section class="platforms-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-trophy"></i> Plataformas de Práctica</h2>
+        <p>Desafíos, certificaciones y competencias para mejorar tus habilidades</p>
+      </div>
+      <div class="platforms-grid">
+        {
+          practicePlatforms.map((platform, idx) => (
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener"
+              class="platform-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 75}
+            >
+              <div class="platform-icon">
+                {platform.icon.startsWith("devicon") ? (
+                  <i class={platform.icon} />
+                ) : platform.icon.startsWith("img:") ? (
+                  <img
+                    src={platform.icon.replace("img:", "")}
+                    alt={platform.name}
+                    width="40"
+                    height="40"
+                  />
+                ) : (
+                  <i class={platform.icon} />
+                )}
+              </div>
+              <div class="platform-info">
+                <h3>{platform.name}</h3>
+                <p>{platform.description}</p>
+                <div class="platform-meta">
+                  <span class="focus-badge">{platform.focus}</span>
+                  <span class="levels">{platform.levels.join(" → ")}</span>
                 </div>
-            </div>
-        </section>
-    </main>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-lightbulb"></i> Tips para Practicar Efectivamente</h2>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card glass-card" data-aos="fade-up">
+          <div class="tip-number">1</div>
+          <h3>Consistencia > Intensidad</h3>
+          <p>30 minutos diarios son más efectivos que 5 horas un solo día.</p>
+        </div>
+        <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="tip-number">2</div>
+          <h3>Resuelve sin mirar la solución</h3>
+          <p>Lucha con el problema al menos 20-30 minutos antes de buscar ayuda.</p>
+        </div>
+        <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="tip-number">3</div>
+          <h3>Escribe código, no lo copies</h3>
+          <p>Transcribir código manualmente ayuda a memorizar patrones.</p>
+        </div>
+        <div class="tip-card glass-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="tip-number">4</div>
+          <h3>Explica tu código en voz alta</h3>
+          <p>Rubber duck debugging: explicar el problema ayuda a encontrar la solución.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content glass-card" data-aos="zoom-in">
+        <h2>¿Listo para Practicar?</h2>
+        <p>Elige un laboratorio y empieza a escribir código ahora mismo</p>
+        <div class="cta-buttons">
+          <a href="#labs-section" class="cta-btn primary">
+            <i class="fas fa-flask"></i> Ver Laboratorios
+          </a>
+          <a href={`${baseUrl}/recursos`} class="cta-btn secondary">
+            <i class="fas fa-tools"></i> Más Herramientas
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <script is:inline>
-document.addEventListener('astro:page-load', initLabsPage);
-document.addEventListener('DOMContentLoaded', initLabsPage);
+  document.addEventListener("astro:page-load", initLabsPage);
+  document.addEventListener("DOMContentLoaded", initLabsPage);
 
-function initLabsPage() {
+  function initLabsPage() {
     // Category filters
-    const filterBtns = document.querySelectorAll('.labs-section .filter-btn');
-    const labCards = document.querySelectorAll('.lab-card');
+    const filterBtns = document.querySelectorAll(".labs-section .filter-btn");
+    const labCards = document.querySelectorAll(".lab-card");
 
-    filterBtns.forEach(btn => {
-        btn.onclick = () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    filterBtns.forEach((btn) => {
+      btn.onclick = () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-            const filter = btn.dataset.filter;
-            labCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'flex';
-                    card.style.animation = 'fadeIn 0.3s ease';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        };
+        const filter = btn.dataset.filter;
+        labCards.forEach((card) => {
+          if (filter === "all" || card.dataset.category === filter) {
+            card.style.display = "flex";
+            card.style.animation = "fadeIn 0.3s ease";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      };
     });
-}
+  }
 </script>
 
 <style>
-    .labs-page {
-        padding-top: 80px;
-    }
+  .labs-page {
+    padding-top: 80px;
+  }
 
-    /* Hero Section */
-    .page-hero {
-        padding: 4rem 2rem;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
-    }
+  /* Hero Section */
+  .page-hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #10b981;
-        margin-bottom: 1.5rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #10b981;
+    margin-bottom: 1.5rem;
+  }
 
+  .page-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .hero-stats .stat {
+    text-align: center;
+  }
+
+  .hero-stats .stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #10b981;
+  }
+
+  .hero-stats .stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  /* Common Styles */
+  section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header h2 i {
+    color: #10b981;
+    margin-right: 0.75rem;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+  }
+
+  .glass-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Editors Grid */
+  .editors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .editor-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .editor-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .editor-card i {
+    font-size: 1.75rem;
+  }
+
+  .editor-info h4 {
+    color: #f8fafc;
+    font-size: 0.95rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .editor-info span {
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  /* Category Filters */
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #f8fafc;
+  }
+
+  .filter-btn.active {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.5);
+    color: #10b981;
+  }
+
+  /* Labs Grid */
+  .labs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .lab-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .lab-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .lab-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .lab-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 12px;
+    font-size: 1.5rem;
+  }
+
+  .lab-meta {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .difficulty-badge,
+  .duration-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .difficulty-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+  }
+
+  .difficulty-badge.intermedio {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+  }
+
+  .difficulty-badge.avanzado {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+  }
+
+  .duration-badge {
+    background: rgba(100, 116, 139, 0.2);
+    color: #94a3b8;
+  }
+
+  .lab-card h3 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+  }
+
+  .lab-card > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .lab-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .topic-tag {
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #00d4ff;
+  }
+
+  .topic-tag.more {
+    background: rgba(148, 163, 184, 0.2);
+    color: #94a3b8;
+  }
+
+  .lab-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    margin-top: auto;
+  }
+
+  .exercises-count {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.85rem;
+  }
+
+  .start-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    border-radius: 8px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Platforms Grid */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .platform-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .platform-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .platform-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .platform-icon i {
+    font-size: 2rem;
+  }
+
+  .platform-icon img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .platform-info h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .platform-info > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .platform-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .focus-badge {
+    padding: 0.2rem 0.5rem;
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-radius: 6px;
+    font-size: 0.75rem;
+  }
+
+  .levels {
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  /* Tips Grid */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip-card {
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .tip-number {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .tip-card h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+
+  .tip-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+  }
+
+  .cta-content {
+    text-align: center;
+    padding: 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    color: #f8fafc;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    color: white;
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Light Mode */
+  :global(body.light-mode) .page-hero h1,
+  :global(body.light-mode) .section-header h2,
+  :global(body.light-mode) .editor-info h4,
+  :global(body.light-mode) .lab-card h3,
+  :global(body.light-mode) .platform-info h3,
+  :global(body.light-mode) .tip-card h3,
+  :global(body.light-mode) .cta-content h2 {
+    color: #1e293b;
+  }
+
+  :global(body.light-mode) .hero-subtitle,
+  :global(body.light-mode) .section-header p,
+  :global(body.light-mode) .lab-card > p,
+  :global(body.light-mode) .platform-info > p,
+  :global(body.light-mode) .tip-card p,
+  :global(body.light-mode) .cta-content p {
+    color: #64748b;
+  }
+
+  :global(body.light-mode) .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  :global(body.light-mode) .filter-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: #64748b;
+  }
+
+  :global(body.light-mode) .filter-btn.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .page-hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        color: #f8fafc;
-    }
-
-    .gradient-text {
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-subtitle {
-        font-size: 1.15rem;
-        color: #94a3b8;
-        line-height: 1.7;
-        margin-bottom: 2rem;
+      font-size: 2rem;
     }
 
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
+      gap: 1.5rem;
     }
 
-    .hero-stats .stat {
-        text-align: center;
-    }
-
-    .hero-stats .stat-value {
-        display: block;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #10b981;
-    }
-
-    .hero-stats .stat-label {
-        font-size: 0.85rem;
-        color: #64748b;
-    }
-
-    /* Common Styles */
-    section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-    }
-
-    .section-header h2 {
-        font-size: 2rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .section-header h2 i {
-        color: #10b981;
-        margin-right: 0.75rem;
-    }
-
-    .section-header p {
-        color: #94a3b8;
-    }
-
-    .glass-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-    }
-
-    /* Editors Grid */
-    .editors-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-    }
-
-    .editor-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .editor-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(16, 185, 129, 0.3);
-    }
-
-    .editor-card i {
-        font-size: 1.75rem;
-    }
-
-    .editor-info h4 {
-        color: #f8fafc;
-        font-size: 0.95rem;
-        margin-bottom: 0.15rem;
-    }
-
-    .editor-info span {
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-
-    /* Category Filters */
-    .category-filters {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-    }
-
-    .filter-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover {
-        border-color: rgba(16, 185, 129, 0.3);
-        color: #f8fafc;
-    }
-
-    .filter-btn.active {
-        background: rgba(16, 185, 129, 0.1);
-        border-color: rgba(16, 185, 129, 0.5);
-        color: #10b981;
-    }
-
-    /* Labs Grid */
-    .labs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .lab-card {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .lab-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(16, 185, 129, 0.3);
-    }
-
-    .lab-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .lab-icon {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 12px;
-        font-size: 1.5rem;
-    }
-
-    .lab-meta {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .difficulty-badge, .duration-badge {
-        padding: 0.25rem 0.6rem;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        font-weight: 500;
-    }
-
-    .difficulty-badge {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-    }
-
-    .difficulty-badge.intermedio {
-        background: rgba(245, 158, 11, 0.2);
-        color: #fbbf24;
-    }
-
-    .difficulty-badge.avanzado {
-        background: rgba(239, 68, 68, 0.2);
-        color: #f87171;
-    }
-
-    .duration-badge {
-        background: rgba(100, 116, 139, 0.2);
-        color: #94a3b8;
-    }
-
-    .lab-card h3 {
-        color: #f8fafc;
-        font-size: 1.2rem;
-    }
-
-    .lab-card > p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-
-    .lab-topics {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-
-    .topic-tag {
-        padding: 0.2rem 0.5rem;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: #00d4ff;
-    }
-
-    .topic-tag.more {
-        background: rgba(148, 163, 184, 0.2);
-        color: #94a3b8;
-    }
-
-    .lab-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        margin-top: auto;
-    }
-
-    .exercises-count {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #64748b;
-        font-size: 0.85rem;
-    }
-
-    .start-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        border-radius: 8px;
-        color: white;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .start-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
-    }
-
-    /* Platforms Grid */
+    .labs-grid,
     .platforms-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
+      grid-template-columns: 1fr;
     }
+  }
 
-    .platform-card {
-        display: flex;
-        gap: 1.25rem;
-        padding: 1.5rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-
-    .platform-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(16, 185, 129, 0.3);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .platform-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        flex-shrink: 0;
-    }
-
-    .platform-icon i {
-        font-size: 2rem;
-    }
-
-    .platform-icon img {
-        width: 36px;
-        height: 36px;
-    }
-
-    .platform-info h3 {
-        color: #f8fafc;
-        font-size: 1.1rem;
-        margin-bottom: 0.35rem;
-    }
-
-    .platform-info > p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .platform-meta {
-        display: flex;
-        gap: 0.75rem;
-        align-items: center;
-    }
-
-    .focus-badge {
-        padding: 0.2rem 0.5rem;
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-        border-radius: 6px;
-        font-size: 0.75rem;
-    }
-
-    .levels {
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-
-    /* Tips Grid */
-    .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .tip-card {
-        padding: 1.5rem;
-        position: relative;
-    }
-
-    .tip-number {
-        position: absolute;
-        top: -10px;
-        left: 20px;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        border-radius: 50%;
-        color: white;
-        font-weight: 700;
-        font-size: 0.9rem;
-    }
-
-    .tip-card h3 {
-        color: #f8fafc;
-        font-size: 1.1rem;
-        margin: 0.5rem 0;
-    }
-
-    .tip-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-    }
-
-    .cta-content {
-        text-align: center;
-        padding: 3rem;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    .cta-content h2 {
-        color: #f8fafc;
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .cta-content p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        color: white;
-    }
-
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .cta-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Light Mode */
-    :global(body.light-mode) .page-hero h1,
-    :global(body.light-mode) .section-header h2,
-    :global(body.light-mode) .editor-info h4,
-    :global(body.light-mode) .lab-card h3,
-    :global(body.light-mode) .platform-info h3,
-    :global(body.light-mode) .tip-card h3,
-    :global(body.light-mode) .cta-content h2 {
-        color: #1e293b;
-    }
-
-    :global(body.light-mode) .hero-subtitle,
-    :global(body.light-mode) .section-header p,
-    :global(body.light-mode) .lab-card > p,
-    :global(body.light-mode) .platform-info > p,
-    :global(body.light-mode) .tip-card p,
-    :global(body.light-mode) .cta-content p {
-        color: #64748b;
-    }
-
-    :global(body.light-mode) .glass-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(148, 163, 184, 0.2);
-    }
-
-    :global(body.light-mode) .filter-btn {
-        background: rgba(255, 255, 255, 0.8);
-        color: #64748b;
-    }
-
-    :global(body.light-mode) .filter-btn.active {
-        background: rgba(16, 185, 129, 0.1);
-        color: #059669;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .page-hero h1 {
-            font-size: 2rem;
-        }
-
-        .hero-stats {
-            gap: 1.5rem;
-        }
-
-        .labs-grid,
-        .platforms-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  }
 </style>

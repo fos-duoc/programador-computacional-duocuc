@@ -3,404 +3,488 @@ const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
 
 // Determinar qué enlace está activo basado en la ruta actual
-const isHome = currentPath.includes('/inicio');
-const isSalaEstudio = currentPath.includes('/sala-de-estudio');
-const isStack = currentPath.includes('/stacks');
-const isArquitectura = currentPath.includes('/arquitecturas');
-const isRecursos = currentPath.includes('/recursos');
-const isProyectos = currentPath.includes('/proyectos');
-const isTrayectorias = currentPath.includes('/trayectorias');
-const isPortafolio = currentPath.includes('/portafolio');
-const isLaboratorios = currentPath.includes('/laboratorios');
-const isComunidad = currentPath.includes('/comunidad');
+const isHome = currentPath.includes("/inicio");
+const isSalaEstudio = currentPath.includes("/sala-de-estudio");
+const isStack = currentPath.includes("/stacks");
+const isArquitectura = currentPath.includes("/arquitecturas");
+const isRecursos = currentPath.includes("/recursos");
+const isProyectos = currentPath.includes("/proyectos");
+const isTrayectorias = currentPath.includes("/trayectorias");
+const isPortafolio = currentPath.includes("/portafolio");
+const isLaboratorios = currentPath.includes("/laboratorios");
+const isComunidad = currentPath.includes("/comunidad");
 ---
 
 <header class="header" transition:persist>
-    <div class="header-content">
-        <a href={`${base}/`} class="logo">
-            <div class="logo-icon">
-                <i class="fas fa-code"></i>
-            </div>
-            <div class="logo-text">
-                <span class="logo-main">Duoc UC</span>
-                <span class="logo-sub">Escuela de Informática</span>
-            </div>
+  <div class="header-content">
+    <a href={`${base}/`} class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-code"></i>
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">Duoc UC</span>
+        <span class="logo-sub">Escuela de Informática</span>
+      </div>
+    </a>
+
+    <!-- Hamburger Menu Button (Mobile) -->
+    <button
+      class="mobile-menu-toggle"
+      id="mobile-menu-toggle"
+      aria-label="Abrir menú de navegación"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="nav" id="main-nav">
+      <a
+        href={`${base}/inicio`}
+        class={`nav-link ${isHome ? "active" : ""}`}
+        data-premium-tooltip="Inicio|Dashboard principal con Plan de Estudios y visión general de la carrera|17 Bimestres,2 Carreras,Stats|navigation|fa-home|NAVEGACIÓN"
+        >Inicio</a
+      >
+      <a
+        href={`${base}/sala-de-estudio`}
+        class={`nav-link ${isSalaEstudio ? "active" : ""}`}
+        data-premium-tooltip="Sala de Estudio|Explora las asignaturas con información detallada: contenidos, evaluaciones, tecnologías y recursos|APC,IDS,40+ Asignaturas|navigation|fa-book-reader|ESTUDIO"
+        >Sala de Estudio</a
+      >
+      <a
+        href={`${base}/recursos`}
+        class={`nav-link ${isRecursos ? "active" : ""}`}
+        data-premium-tooltip="Recursos|Herramientas interactivas, videos educativos, certificaciones y más|Gantt,SQL Gen,Quizzes|navigation|fa-tools|HERRAMIENTAS"
+        >Recursos</a
+      >
+      <a
+        href={`${base}/stacks`}
+        class={`nav-link ${isStack ? "active" : ""}`}
+        data-premium-tooltip="Stacks Tecnológicos|150+ tecnologías con rankings de Stack Overflow y GitHub Octoverse 2024|Cloud DW,Terminal CLI,AI/LLM|navigation|fa-layer-group|TECNOLOGÍAS"
+        >Stacks</a
+      >
+      <a
+        href={`${base}/arquitecturas`}
+        class={`nav-link ${isArquitectura ? "active" : ""}`}
+        data-premium-tooltip="Arquitecturas|Patrones de diseño, pipelines de datos, metodologías ágiles y DevOps|Clean Arch,Scrum,CI/CD|navigation|fa-sitemap|ARQUITECTURA"
+        >Arquitecturas</a
+      >
+      <a
+        href={`${base}/proyectos`}
+        class={`nav-link ${isProyectos ? "active" : ""}`}
+        data-premium-tooltip="Proyectos|Roadmap de aprendizaje y proyectos para construir tu portafolio profesional|Estudio,Trabajo,Portfolio|navigation|fa-project-diagram|PROYECTOS"
+        >Proyectos</a
+      >
+
+      <!-- Dropdown para más páginas -->
+      <div class="nav-dropdown">
+        <button class="nav-link dropdown-trigger">
+          Más <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a
+            href={`${base}/trayectorias`}
+            class={`dropdown-item ${isTrayectorias ? "active" : ""}`}
+            data-premium-tooltip="Career Paths|6 trayectorias profesionales con roadmaps, salarios y certificaciones|Full-Stack,DevOps,Data|navigation|fa-route|CARRERAS"
+          >
+            <i class="fas fa-route"></i> Trayectorias
+          </a>
+          <a
+            href={`${base}/portafolio`}
+            class={`dropdown-item ${isPortafolio ? "active" : ""}`}
+            data-premium-tooltip="Portafolio Guiado|Guía paso a paso para construir un portafolio profesional impactante|5 Pasos,Checklist,Templates|navigation|fa-briefcase|PORTAFOLIO"
+          >
+            <i class="fas fa-briefcase"></i> Portafolio
+          </a>
+          <a
+            href={`${base}/laboratorios`}
+            class={`dropdown-item ${isLaboratorios ? "active" : ""}`}
+            data-premium-tooltip="Laboratorios|Práctica de código con ejercicios interactivos y plataformas|Python,JS,SQL,Git|navigation|fa-flask|PRÁCTICA"
+          >
+            <i class="fas fa-flask"></i> Laboratorios
+          </a>
+          <a
+            href={`${base}/comunidad`}
+            class={`dropdown-item ${isComunidad ? "active" : ""}`}
+            data-premium-tooltip="Comunidad|Networking con comunidades tech chilenas, eventos y mentoría|8 Comunidades,70K+ Miembros|navigation|fa-users|NETWORKING"
+          >
+            <i class="fas fa-users"></i> Comunidad
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="header-actions">
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle theme"
+        data-premium-tooltip="Cambiar Tema|Alternar entre modo oscuro y claro para mejor experiencia visual||feature|fa-adjust|PREFERENCIAS"
+      >
+        <i class="fas fa-moon" id="theme-icon-dark"></i>
+        <i class="fas fa-sun" id="theme-icon-light"></i>
+      </button>
+      <div class="repo-icons">
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"
+          target="_blank"
+          class="repo-icon-btn github"
+          data-premium-tooltip="GitHub|Repositorio principal del proyecto con todos los materiales del curso|Código,Issues,PRs|info|fa-code-branch|REPOSITORIO"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          href="https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc"
+          target="_blank"
+          class="repo-icon-btn gitlab"
+          data-premium-tooltip="GitLab|Mirror del repositorio en GitLab con CI/CD integrado|CI/CD,Pipelines|info|fa-code-merge|REPOSITORIO"
+        >
+          <i class="fab fa-gitlab"></i>
+        </a>
+        <a
+          href="https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc"
+          target="_blank"
+          class="repo-icon-btn bitbucket"
+          data-premium-tooltip="BitBucket|Mirror en Atlassian BitBucket para integración con Jira|Atlassian,Jira|info|fa-code|REPOSITORIO"
+        >
+          <i class="fab fa-bitbucket"></i>
+        </a>
+        <a
+          href="https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC/_git/Analista-Programador-Computacional-DuocUC"
+          target="_blank"
+          class="repo-icon-btn azure"
+          data-premium-tooltip="Azure DevOps|Mirror en Microsoft Azure DevOps para pipelines enterprise|Pipelines,Boards|info|fa-cloud|REPOSITORIO"
+        >
+          <i class="fab fa-microsoft"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
+    <div class="mobile-nav-content">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-title">Navegación</span>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href={`${base}/inicio`} class={`mobile-nav-link ${isHome ? "active" : ""}`}>
+          <i class="fas fa-home"></i> Inicio
+        </a>
+        <a
+          href={`${base}/sala-de-estudio`}
+          class={`mobile-nav-link ${isSalaEstudio ? "active" : ""}`}
+        >
+          <i class="fas fa-book-reader"></i> Sala de Estudio
+        </a>
+        <a href={`${base}/recursos`} class={`mobile-nav-link ${isRecursos ? "active" : ""}`}>
+          <i class="fas fa-tools"></i> Recursos
+        </a>
+        <a href={`${base}/stacks`} class={`mobile-nav-link ${isStack ? "active" : ""}`}>
+          <i class="fas fa-layer-group"></i> Stacks
+        </a>
+        <a
+          href={`${base}/arquitecturas`}
+          class={`mobile-nav-link ${isArquitectura ? "active" : ""}`}
+        >
+          <i class="fas fa-sitemap"></i> Arquitecturas
+        </a>
+        <a href={`${base}/proyectos`} class={`mobile-nav-link ${isProyectos ? "active" : ""}`}>
+          <i class="fas fa-project-diagram"></i> Proyectos
         </a>
 
-        <!-- Hamburger Menu Button (Mobile) -->
-        <button
-            class="mobile-menu-toggle"
-            id="mobile-menu-toggle"
-            aria-label="Abrir menú de navegación"
-            aria-expanded="false"
-            aria-controls="mobile-nav"
+        <div class="mobile-nav-divider"></div>
+        <span class="mobile-nav-section-title">Más secciones</span>
+
+        <a
+          href={`${base}/trayectorias`}
+          class={`mobile-nav-link ${isTrayectorias ? "active" : ""}`}
         >
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-
-        <nav class="nav" id="main-nav">
-            <a href={`${base}/inicio`} class={`nav-link ${isHome ? 'active' : ''}`}
-               data-premium-tooltip="Inicio|Dashboard principal con Plan de Estudios y visión general de la carrera|17 Bimestres,2 Carreras,Stats|navigation|fa-home|NAVEGACIÓN">Inicio</a>
-            <a href={`${base}/sala-de-estudio`} class={`nav-link ${isSalaEstudio ? 'active' : ''}`}
-               data-premium-tooltip="Sala de Estudio|Explora las asignaturas con información detallada: contenidos, evaluaciones, tecnologías y recursos|APC,IDS,40+ Asignaturas|navigation|fa-book-reader|ESTUDIO">Sala de Estudio</a>
-            <a href={`${base}/recursos`} class={`nav-link ${isRecursos ? 'active' : ''}`}
-               data-premium-tooltip="Recursos|Herramientas interactivas, videos educativos, certificaciones y más|Gantt,SQL Gen,Quizzes|navigation|fa-tools|HERRAMIENTAS">Recursos</a>
-            <a href={`${base}/stacks`} class={`nav-link ${isStack ? 'active' : ''}`}
-               data-premium-tooltip="Stacks Tecnológicos|150+ tecnologías con rankings de Stack Overflow y GitHub Octoverse 2024|Cloud DW,Terminal CLI,AI/LLM|navigation|fa-layer-group|TECNOLOGÍAS">Stacks</a>
-            <a href={`${base}/arquitecturas`} class={`nav-link ${isArquitectura ? 'active' : ''}`}
-               data-premium-tooltip="Arquitecturas|Patrones de diseño, pipelines de datos, metodologías ágiles y DevOps|Clean Arch,Scrum,CI/CD|navigation|fa-sitemap|ARQUITECTURA">Arquitecturas</a>
-            <a href={`${base}/proyectos`} class={`nav-link ${isProyectos ? 'active' : ''}`}
-               data-premium-tooltip="Proyectos|Roadmap de aprendizaje y proyectos para construir tu portafolio profesional|Estudio,Trabajo,Portfolio|navigation|fa-project-diagram|PROYECTOS">Proyectos</a>
-
-            <!-- Dropdown para más páginas -->
-            <div class="nav-dropdown">
-                <button class="nav-link dropdown-trigger">
-                    Más <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <a href={`${base}/trayectorias`} class={`dropdown-item ${isTrayectorias ? 'active' : ''}`}
-                       data-premium-tooltip="Career Paths|6 trayectorias profesionales con roadmaps, salarios y certificaciones|Full-Stack,DevOps,Data|navigation|fa-route|CARRERAS">
-                        <i class="fas fa-route"></i> Trayectorias
-                    </a>
-                    <a href={`${base}/portafolio`} class={`dropdown-item ${isPortafolio ? 'active' : ''}`}
-                       data-premium-tooltip="Portafolio Guiado|Guía paso a paso para construir un portafolio profesional impactante|5 Pasos,Checklist,Templates|navigation|fa-briefcase|PORTAFOLIO">
-                        <i class="fas fa-briefcase"></i> Portafolio
-                    </a>
-                    <a href={`${base}/laboratorios`} class={`dropdown-item ${isLaboratorios ? 'active' : ''}`}
-                       data-premium-tooltip="Laboratorios|Práctica de código con ejercicios interactivos y plataformas|Python,JS,SQL,Git|navigation|fa-flask|PRÁCTICA">
-                        <i class="fas fa-flask"></i> Laboratorios
-                    </a>
-                    <a href={`${base}/comunidad`} class={`dropdown-item ${isComunidad ? 'active' : ''}`}
-                       data-premium-tooltip="Comunidad|Networking con comunidades tech chilenas, eventos y mentoría|8 Comunidades,70K+ Miembros|navigation|fa-users|NETWORKING">
-                        <i class="fas fa-users"></i> Comunidad
-                    </a>
-                </div>
-            </div>
-        </nav>
-        <div class="header-actions">
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"
-                    data-premium-tooltip="Cambiar Tema|Alternar entre modo oscuro y claro para mejor experiencia visual||feature|fa-adjust|PREFERENCIAS">
-                <i class="fas fa-moon" id="theme-icon-dark"></i>
-                <i class="fas fa-sun" id="theme-icon-light"></i>
-            </button>
-            <div class="repo-icons">
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC" target="_blank" class="repo-icon-btn github"
-                   data-premium-tooltip="GitHub|Repositorio principal del proyecto con todos los materiales del curso|Código,Issues,PRs|info|fa-code-branch|REPOSITORIO">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc" target="_blank" class="repo-icon-btn gitlab"
-                   data-premium-tooltip="GitLab|Mirror del repositorio en GitLab con CI/CD integrado|CI/CD,Pipelines|info|fa-code-merge|REPOSITORIO">
-                    <i class="fab fa-gitlab"></i>
-                </a>
-                <a href="https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc" target="_blank" class="repo-icon-btn bitbucket"
-                   data-premium-tooltip="BitBucket|Mirror en Atlassian BitBucket para integración con Jira|Atlassian,Jira|info|fa-code|REPOSITORIO">
-                    <i class="fab fa-bitbucket"></i>
-                </a>
-                <a href="https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC/_git/Analista-Programador-Computacional-DuocUC" target="_blank" class="repo-icon-btn azure"
-                   data-premium-tooltip="Azure DevOps|Mirror en Microsoft Azure DevOps para pipelines enterprise|Pipelines,Boards|info|fa-cloud|REPOSITORIO">
-                    <i class="fab fa-microsoft"></i>
-                </a>
-            </div>
+          <i class="fas fa-route"></i> Trayectorias
+        </a>
+        <a href={`${base}/portafolio`} class={`mobile-nav-link ${isPortafolio ? "active" : ""}`}>
+          <i class="fas fa-briefcase"></i> Portafolio
+        </a>
+        <a
+          href={`${base}/laboratorios`}
+          class={`mobile-nav-link ${isLaboratorios ? "active" : ""}`}
+        >
+          <i class="fas fa-flask"></i> Laboratorios
+        </a>
+        <a href={`${base}/comunidad`} class={`mobile-nav-link ${isComunidad ? "active" : ""}`}>
+          <i class="fas fa-users"></i> Comunidad
+        </a>
+      </div>
+      <div class="mobile-nav-footer">
+        <div class="mobile-nav-repos">
+          <a
+            href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"
+            target="_blank"
+            class="mobile-repo-icon github"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc"
+            target="_blank"
+            class="mobile-repo-icon gitlab"
+          >
+            <i class="fab fa-gitlab"></i>
+          </a>
+          <a
+            href="https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc"
+            target="_blank"
+            class="mobile-repo-icon bitbucket"
+          >
+            <i class="fab fa-bitbucket"></i>
+          </a>
+          <a
+            href="https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC/_git/Analista-Programador-Computacional-DuocUC"
+            target="_blank"
+            class="mobile-repo-icon azure"
+          >
+            <i class="fab fa-microsoft"></i>
+          </a>
         </div>
+      </div>
     </div>
-
-    <!-- Mobile Navigation Drawer -->
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegación móvil">
-        <div class="mobile-nav-content">
-            <div class="mobile-nav-header">
-                <span class="mobile-nav-title">Navegación</span>
-                <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Cerrar menú">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="mobile-nav-links">
-                <a href={`${base}/inicio`} class={`mobile-nav-link ${isHome ? 'active' : ''}`}>
-                    <i class="fas fa-home"></i> Inicio
-                </a>
-                <a href={`${base}/sala-de-estudio`} class={`mobile-nav-link ${isSalaEstudio ? 'active' : ''}`}>
-                    <i class="fas fa-book-reader"></i> Sala de Estudio
-                </a>
-                <a href={`${base}/recursos`} class={`mobile-nav-link ${isRecursos ? 'active' : ''}`}>
-                    <i class="fas fa-tools"></i> Recursos
-                </a>
-                <a href={`${base}/stacks`} class={`mobile-nav-link ${isStack ? 'active' : ''}`}>
-                    <i class="fas fa-layer-group"></i> Stacks
-                </a>
-                <a href={`${base}/arquitecturas`} class={`mobile-nav-link ${isArquitectura ? 'active' : ''}`}>
-                    <i class="fas fa-sitemap"></i> Arquitecturas
-                </a>
-                <a href={`${base}/proyectos`} class={`mobile-nav-link ${isProyectos ? 'active' : ''}`}>
-                    <i class="fas fa-project-diagram"></i> Proyectos
-                </a>
-
-                <div class="mobile-nav-divider"></div>
-                <span class="mobile-nav-section-title">Más secciones</span>
-
-                <a href={`${base}/trayectorias`} class={`mobile-nav-link ${isTrayectorias ? 'active' : ''}`}>
-                    <i class="fas fa-route"></i> Trayectorias
-                </a>
-                <a href={`${base}/portafolio`} class={`mobile-nav-link ${isPortafolio ? 'active' : ''}`}>
-                    <i class="fas fa-briefcase"></i> Portafolio
-                </a>
-                <a href={`${base}/laboratorios`} class={`mobile-nav-link ${isLaboratorios ? 'active' : ''}`}>
-                    <i class="fas fa-flask"></i> Laboratorios
-                </a>
-                <a href={`${base}/comunidad`} class={`mobile-nav-link ${isComunidad ? 'active' : ''}`}>
-                    <i class="fas fa-users"></i> Comunidad
-                </a>
-            </div>
-            <div class="mobile-nav-footer">
-                <div class="mobile-nav-repos">
-                    <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC" target="_blank" class="mobile-repo-icon github">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc" target="_blank" class="mobile-repo-icon gitlab">
-                        <i class="fab fa-gitlab"></i>
-                    </a>
-                    <a href="https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc" target="_blank" class="mobile-repo-icon bitbucket">
-                        <i class="fab fa-bitbucket"></i>
-                    </a>
-                    <a href="https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC/_git/Analista-Programador-Computacional-DuocUC" target="_blank" class="mobile-repo-icon azure">
-                        <i class="fab fa-microsoft"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <!-- Mobile Nav Overlay -->
-    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  </nav>
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
 </header>
 
 <script is:inline>
-    // Theme toggle function - globally accessible
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+  // Theme toggle function - globally accessible
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+  }
+
+  // Initialize header functionality
+  function initHeader() {
+    const header = document.querySelector(".header");
+    const themeToggle = document.getElementById("theme-toggle");
+
+    // Header scroll effect
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        header?.classList.add("scrolled");
+      } else {
+        header?.classList.remove("scrolled");
+      }
     }
 
-    // Initialize header functionality
-    function initHeader() {
-        const header = document.querySelector('.header');
-        const themeToggle = document.getElementById('theme-toggle');
+    // Remove old listener and add new one
+    window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
-        // Header scroll effect
-        function handleScroll() {
-            if (window.scrollY > 50) {
-                header?.classList.add('scrolled');
-            } else {
-                header?.classList.remove('scrolled');
-            }
-        }
-
-        // Remove old listener and add new one
-        window.removeEventListener('scroll', handleScroll);
-        window.addEventListener('scroll', handleScroll);
-        handleScroll();
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.onclick = function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                if (href && href !== '#') {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            };
-        });
-
-        // Theme Toggle - Use onclick to avoid duplicate listeners
-        if (themeToggle) {
-            themeToggle.onclick = toggleTheme;
-        }
-
-        // Mobile Menu
-        initMobileMenu();
-
-        // Dropdown menu with delay
-        initDropdownMenu();
-
-        // Update active nav link
-        updateActiveNavLink();
-    }
-
-    // Initialize Mobile Menu
-    function initMobileMenu() {
-        const menuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileNav = document.getElementById('mobile-nav');
-        const mobileNavClose = document.getElementById('mobile-nav-close');
-        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-        if (!menuToggle || !mobileNav) return;
-
-        function openMobileMenu() {
-            mobileNav.classList.add('open');
-            mobileNavOverlay?.classList.add('visible');
-            menuToggle.classList.add('active');
-            menuToggle.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden'; // Prevent scroll
-        }
-
-        function closeMobileMenu() {
-            mobileNav.classList.remove('open');
-            mobileNavOverlay?.classList.remove('visible');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = ''; // Restore scroll
-        }
-
-        // Toggle menu on hamburger click
-        menuToggle.onclick = (e) => {
-            e.preventDefault();
-            if (mobileNav.classList.contains('open')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        };
-
-        // Close on X button
-        if (mobileNavClose) {
-            mobileNavClose.onclick = closeMobileMenu;
-        }
-
-        // Close on overlay click
-        if (mobileNavOverlay) {
-            mobileNavOverlay.onclick = closeMobileMenu;
-        }
-
-        // Close on link click
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.onclick = function (e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        if (href && href !== "#") {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-                closeMobileMenu();
-            }
-        });
-
-        // Close on resize to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 1024 && mobileNav.classList.contains('open')) {
-                closeMobileMenu();
-            }
-        });
-    }
-
-    // Initialize dropdown with delay behavior
-    function initDropdownMenu() {
-        const dropdown = document.querySelector('.nav-dropdown');
-        const trigger = document.querySelector('.dropdown-trigger');
-        const menu = document.querySelector('.dropdown-menu');
-
-        if (!dropdown || !trigger || !menu) return;
-
-        let closeTimeout = null;
-        const CLOSE_DELAY = 400; // ms antes de cerrar
-
-        // Abrir al hacer hover en el trigger
-        trigger.onmouseenter = () => {
-            if (closeTimeout) {
-                clearTimeout(closeTimeout);
-                closeTimeout = null;
-            }
-            dropdown.classList.add('open');
-        };
-
-        // También abrir al hacer click
-        trigger.onclick = (e) => {
-            e.preventDefault();
-            if (closeTimeout) {
-                clearTimeout(closeTimeout);
-                closeTimeout = null;
-            }
-            dropdown.classList.toggle('open');
-        };
-
-        // Mantener abierto mientras el mouse está en el menú
-        menu.onmouseenter = () => {
-            if (closeTimeout) {
-                clearTimeout(closeTimeout);
-                closeTimeout = null;
-            }
-        };
-
-        // Cerrar con delay cuando sale del dropdown
-        dropdown.onmouseleave = () => {
-            closeTimeout = setTimeout(() => {
-                dropdown.classList.remove('open');
-            }, CLOSE_DELAY);
-        };
-
-        // Cerrar al hacer click fuera
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('open');
-            }
-        });
-
-        // Cerrar con Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                dropdown.classList.remove('open');
-            }
-        });
-    }
-
-    // Update active navigation link
-    function updateActiveNavLink() {
-        const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href) {
-                if (currentPath.includes('/inicio') && href.includes('/inicio')) {
-                    link.classList.add('active');
-                } else if (currentPath.includes('/sala-de-estudio') && href.includes('/sala-de-estudio')) {
-                    link.classList.add('active');
-                } else if (currentPath.includes('/stacks') && href.includes('/stacks')) {
-                    link.classList.add('active');
-                } else if (currentPath.includes('/arquitecturas') && href.includes('/arquitecturas')) {
-                    link.classList.add('active');
-                } else if (currentPath.includes('/recursos') && href.includes('/recursos')) {
-                    link.classList.add('active');
-                } else if (currentPath.includes('/proyectos') && href.includes('/proyectos')) {
-                    link.classList.add('active');
-                }
-            }
-        });
-    }
-
-    // Run on initial page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initHeader);
-    } else {
-        initHeader();
-    }
-
-    // Run after Astro view transitions
-    document.addEventListener('astro:page-load', initHeader);
-
-    // Preserve theme during transitions
-    document.addEventListener('astro:before-swap', (event) => {
-        const theme = localStorage.getItem('theme') || 'dark';
-        event.newDocument.documentElement.setAttribute('data-theme', theme);
+          }
+        }
+      };
     });
+
+    // Theme Toggle - Use onclick to avoid duplicate listeners
+    if (themeToggle) {
+      themeToggle.onclick = toggleTheme;
+    }
+
+    // Mobile Menu
+    initMobileMenu();
+
+    // Dropdown menu with delay
+    initDropdownMenu();
+
+    // Update active nav link
+    updateActiveNavLink();
+  }
+
+  // Initialize Mobile Menu
+  function initMobileMenu() {
+    const menuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+    const mobileNavClose = document.getElementById("mobile-nav-close");
+    const mobileNavOverlay = document.getElementById("mobile-nav-overlay");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+    if (!menuToggle || !mobileNav) return;
+
+    function openMobileMenu() {
+      mobileNav.classList.add("open");
+      mobileNavOverlay?.classList.add("visible");
+      menuToggle.classList.add("active");
+      menuToggle.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden"; // Prevent scroll
+    }
+
+    function closeMobileMenu() {
+      mobileNav.classList.remove("open");
+      mobileNavOverlay?.classList.remove("visible");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = ""; // Restore scroll
+    }
+
+    // Toggle menu on hamburger click
+    menuToggle.onclick = (e) => {
+      e.preventDefault();
+      if (mobileNav.classList.contains("open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    };
+
+    // Close on X button
+    if (mobileNavClose) {
+      mobileNavClose.onclick = closeMobileMenu;
+    }
+
+    // Close on overlay click
+    if (mobileNavOverlay) {
+      mobileNavOverlay.onclick = closeMobileMenu;
+    }
+
+    // Close on link click
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMobileMenu();
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileNav.classList.contains("open")) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close on resize to desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1024 && mobileNav.classList.contains("open")) {
+        closeMobileMenu();
+      }
+    });
+  }
+
+  // Initialize dropdown with delay behavior
+  function initDropdownMenu() {
+    const dropdown = document.querySelector(".nav-dropdown");
+    const trigger = document.querySelector(".dropdown-trigger");
+    const menu = document.querySelector(".dropdown-menu");
+
+    if (!dropdown || !trigger || !menu) return;
+
+    let closeTimeout = null;
+    const CLOSE_DELAY = 400; // ms antes de cerrar
+
+    // Abrir al hacer hover en el trigger
+    trigger.onmouseenter = () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+      dropdown.classList.add("open");
+    };
+
+    // También abrir al hacer click
+    trigger.onclick = (e) => {
+      e.preventDefault();
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+      dropdown.classList.toggle("open");
+    };
+
+    // Mantener abierto mientras el mouse está en el menú
+    menu.onmouseenter = () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+    };
+
+    // Cerrar con delay cuando sale del dropdown
+    dropdown.onmouseleave = () => {
+      closeTimeout = setTimeout(() => {
+        dropdown.classList.remove("open");
+      }, CLOSE_DELAY);
+    };
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        dropdown.classList.remove("open");
+      }
+    });
+  }
+
+  // Update active navigation link
+  function updateActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      const href = link.getAttribute("href");
+      if (href) {
+        if (currentPath.includes("/inicio") && href.includes("/inicio")) {
+          link.classList.add("active");
+        } else if (currentPath.includes("/sala-de-estudio") && href.includes("/sala-de-estudio")) {
+          link.classList.add("active");
+        } else if (currentPath.includes("/stacks") && href.includes("/stacks")) {
+          link.classList.add("active");
+        } else if (currentPath.includes("/arquitecturas") && href.includes("/arquitecturas")) {
+          link.classList.add("active");
+        } else if (currentPath.includes("/recursos") && href.includes("/recursos")) {
+          link.classList.add("active");
+        } else if (currentPath.includes("/proyectos") && href.includes("/proyectos")) {
+          link.classList.add("active");
+        }
+      }
+    });
+  }
+
+  // Run on initial page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeader);
+  } else {
+    initHeader();
+  }
+
+  // Run after Astro view transitions
+  document.addEventListener("astro:page-load", initHeader);
+
+  // Preserve theme during transitions
+  document.addEventListener("astro:before-swap", (event) => {
+    const theme = localStorage.getItem("theme") || "dark";
+    event.newDocument.documentElement.setAttribute("data-theme", theme);
+  });
 </script>

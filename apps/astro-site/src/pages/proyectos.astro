@@ -1,459 +1,470 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Proyectos | DuocUC">
-    <Header />
+  <Header />
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-rocket"></i>
-                <span>Proyectos</span>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-rocket"></i>
+        <span>Proyectos</span>
+      </div>
+      <h1>Proyectos para tu <span class="gradient-text">Carrera</span></h1>
+      <p>Desde proyectos de estudio hasta tu portafolio profesional</p>
+    </div>
+  </section>
+
+  <!-- Project Categories -->
+  <section class="projects-grid">
+    <div class="container">
+      <!-- Proyectos de Estudio -->
+      <a href={`${base}/proyectos-estudio`} class="project-card estudio" data-aos="fade-up">
+        <div class="card-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="card-content">
+          <h2>Proyectos de Estudio</h2>
+          <p>
+            Aprende construyendo proyectos alineados con tu malla curricular. Roadmap de aprendizaje
+            desde principiante hasta avanzado.
+          </p>
+          <div class="card-features">
+            <span><i class="fas fa-map"></i> Learning Roadmap</span>
+            <span><i class="fas fa-tasks"></i> Capstone Projects</span>
+            <span><i class="fas fa-layer-group"></i> Por niveles</span>
+          </div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-value">5</span>
+              <span class="stat-label">Fases</span>
             </div>
-            <h1>Proyectos para tu <span class="gradient-text">Carrera</span></h1>
-            <p>Desde proyectos de estudio hasta tu portafolio profesional</p>
-        </div>
-    </section>
-
-    <!-- Project Categories -->
-    <section class="projects-grid">
-        <div class="container">
-            <!-- Proyectos de Estudio -->
-            <a href={`${base}/proyectos-estudio`} class="project-card estudio" data-aos="fade-up">
-                <div class="card-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="card-content">
-                    <h2>Proyectos de Estudio</h2>
-                    <p>Aprende construyendo proyectos alineados con tu malla curricular. Roadmap de aprendizaje desde principiante hasta avanzado.</p>
-                    <div class="card-features">
-                        <span><i class="fas fa-map"></i> Learning Roadmap</span>
-                        <span><i class="fas fa-tasks"></i> Capstone Projects</span>
-                        <span><i class="fas fa-layer-group"></i> Por niveles</span>
-                    </div>
-                    <div class="card-stats">
-                        <div class="stat">
-                            <span class="stat-value">5</span>
-                            <span class="stat-label">Fases</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">9+</span>
-                            <span class="stat-label">Proyectos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">B01-B10</span>
-                            <span class="stat-label">Bimestres</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </a>
-
-            <!-- Proyectos de Trabajo -->
-            <a href={`${base}/proyectos-trabajo`} class="project-card trabajo" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-icon">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="card-content">
-                    <h2>Proyectos de Trabajo</h2>
-                    <p>Construye un portafolio profesional con proyectos reales que impresionen a empleadores y destaquen tus habilidades técnicas.</p>
-                    <div class="card-features">
-                        <span><i class="fab fa-react"></i> Frontend</span>
-                        <span><i class="fas fa-server"></i> Full-Stack</span>
-                        <span><i class="fas fa-database"></i> APIs & Data</span>
-                        <span><i class="fas fa-mobile-alt"></i> Mobile</span>
-                        <span><i class="fas fa-cogs"></i> DevOps</span>
-                    </div>
-                    <div class="card-stats">
-                        <div class="stat">
-                            <span class="stat-value">6</span>
-                            <span class="stat-label">Categorías</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">18+</span>
-                            <span class="stat-label">Proyectos</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">Pro</span>
-                            <span class="stat-label">Nivel</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-arrow">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Tips Section -->
-    <section class="tips-section" data-aos="fade-up">
-        <div class="container">
-            <h3><i class="fas fa-lightbulb"></i> Consejos para tu Portafolio</h3>
-            <div class="tips-grid">
-                <div class="tip">
-                    <i class="fas fa-code-branch"></i>
-                    <span>Usa Git desde el día 1 - commits pequeños y descriptivos</span>
-                </div>
-                <div class="tip">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Escribe READMEs claros con screenshots y demos</span>
-                </div>
-                <div class="tip">
-                    <i class="fas fa-globe"></i>
-                    <span>Despliega tus proyectos - Vercel, Netlify, Railway</span>
-                </div>
-                <div class="tip">
-                    <i class="fas fa-vial"></i>
-                    <span>Incluye tests para demostrar buenas prácticas</span>
-                </div>
+            <div class="stat">
+              <span class="stat-value">9+</span>
+              <span class="stat-label">Proyectos</span>
             </div>
+            <div class="stat">
+              <span class="stat-value">B01-B10</span>
+              <span class="stat-label">Bimestres</span>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
 
-    <Footer />
+      <!-- Proyectos de Trabajo -->
+      <a
+        href={`${base}/proyectos-trabajo`}
+        class="project-card trabajo"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div class="card-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <div class="card-content">
+          <h2>Proyectos de Trabajo</h2>
+          <p>
+            Construye un portafolio profesional con proyectos reales que impresionen a empleadores y
+            destaquen tus habilidades técnicas.
+          </p>
+          <div class="card-features">
+            <span><i class="fab fa-react"></i> Frontend</span>
+            <span><i class="fas fa-server"></i> Full-Stack</span>
+            <span><i class="fas fa-database"></i> APIs & Data</span>
+            <span><i class="fas fa-mobile-alt"></i> Mobile</span>
+            <span><i class="fas fa-cogs"></i> DevOps</span>
+          </div>
+          <div class="card-stats">
+            <div class="stat">
+              <span class="stat-value">6</span>
+              <span class="stat-label">Categorías</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">18+</span>
+              <span class="stat-label">Proyectos</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">Pro</span>
+              <span class="stat-label">Nivel</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-arrow">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="tips-section" data-aos="fade-up">
+    <div class="container">
+      <h3><i class="fas fa-lightbulb"></i> Consejos para tu Portafolio</h3>
+      <div class="tips-grid">
+        <div class="tip">
+          <i class="fas fa-code-branch"></i>
+          <span>Usa Git desde el día 1 - commits pequeños y descriptivos</span>
+        </div>
+        <div class="tip">
+          <i class="fas fa-file-alt"></i>
+          <span>Escribe READMEs claros con screenshots y demos</span>
+        </div>
+        <div class="tip">
+          <i class="fas fa-globe"></i>
+          <span>Despliega tus proyectos - Vercel, Netlify, Railway</span>
+        </div>
+        <div class="tip">
+          <i class="fas fa-vial"></i>
+          <span>Incluye tests para demostrar buenas prácticas</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
 </Layout>
 
 <style>
-    .page-hero {
-        padding: 8rem 2rem 3rem;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
-    }
+  .page-hero {
+    padding: 8rem 2rem 3rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(16, 185, 129, 0.1) 0%, transparent 100%);
+  }
 
-    .hero-content {
-        max-width: 900px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #10b981;
-        margin-bottom: 1.5rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #10b981;
+    margin-bottom: 1.5rem;
+  }
 
+  .page-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    padding: 3rem 2rem;
+  }
+
+  .projects-grid .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Project Card */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card.estudio::before {
+    background: linear-gradient(90deg, #22c55e, #10b981);
+  }
+
+  .project-card.trabajo::before {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    border-color: transparent;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-card.estudio .card-icon {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+  }
+
+  .project-card.trabajo .card-icon {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+  }
+
+  .card-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .card-content p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .card-features span i {
+    font-size: 0.8rem;
+  }
+
+  .card-stats {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .card-stats .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .card-stats .stat-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .card-stats .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .project-card.estudio:hover .stat-value {
+    color: #22c55e;
+  }
+
+  .project-card.trabajo:hover .stat-value {
+    color: #3b82f6;
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .card-arrow {
+    transform: translateX(5px);
+  }
+
+  .project-card.estudio:hover .card-arrow {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+  }
+
+  .project-card.trabajo:hover .card-arrow {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+  }
+
+  /* Tips Section */
+  .tips-section {
+    padding: 3rem 2rem;
+  }
+
+  .tips-section .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .tips-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .tips-section h3 i {
+    color: #f59e0b;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .tip:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .tip i {
+    font-size: 1rem;
+    color: #00d4ff;
+    margin-top: 0.1rem;
+  }
+
+  .tip span {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .page-hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .gradient-text {
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .page-hero p {
-        font-size: 1.25rem;
-        color: #94a3b8;
-    }
-
-    /* Projects Grid */
-    .projects-grid {
-        padding: 3rem 2rem;
+      font-size: 2rem;
     }
 
     .projects-grid .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 2rem;
-    }
-
-    /* Project Card */
-    .project-card {
-        display: flex;
-        flex-direction: column;
-        padding: 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 20px;
-        text-decoration: none;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .project-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .project-card.estudio::before {
-        background: linear-gradient(90deg, #22c55e, #10b981);
-    }
-
-    .project-card.trabajo::before {
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    }
-
-    .project-card:hover {
-        transform: translateY(-8px);
-        border-color: transparent;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .project-card:hover::before {
-        opacity: 1;
-    }
-
-    .card-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .project-card.estudio .card-icon {
-        background: rgba(34, 197, 94, 0.15);
-        color: #22c55e;
-    }
-
-    .project-card.trabajo .card-icon {
-        background: rgba(59, 130, 246, 0.15);
-        color: #3b82f6;
-    }
-
-    .card-content h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.75rem;
-    }
-
-    .card-content p {
-        font-size: 1rem;
-        color: var(--text-secondary);
-        line-height: 1.6;
-        margin-bottom: 1.25rem;
-    }
-
-    .card-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .card-features span {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.7rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: var(--text-muted);
-    }
-
-    .card-features span i {
-        font-size: 0.8rem;
+      grid-template-columns: 1fr;
     }
 
     .card-stats {
-        display: flex;
-        gap: 2rem;
-        padding-top: 1.25rem;
-        border-top: 1px solid var(--border-color);
-    }
-
-    .card-stats .stat {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-    }
-
-    .card-stats .stat-value {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
-
-    .card-stats .stat-label {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-    }
-
-    .project-card.estudio:hover .stat-value {
-        color: #22c55e;
-    }
-
-    .project-card.trabajo:hover .stat-value {
-        color: #3b82f6;
-    }
-
-    .card-arrow {
-        position: absolute;
-        bottom: 2rem;
-        right: 2rem;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-muted);
-        transition: all 0.3s ease;
-    }
-
-    .project-card:hover .card-arrow {
-        transform: translateX(5px);
-    }
-
-    .project-card.estudio:hover .card-arrow {
-        background: rgba(34, 197, 94, 0.2);
-        color: #22c55e;
-    }
-
-    .project-card.trabajo:hover .card-arrow {
-        background: rgba(59, 130, 246, 0.2);
-        color: #3b82f6;
-    }
-
-    /* Tips Section */
-    .tips-section {
-        padding: 3rem 2rem;
-    }
-
-    .tips-section .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 2rem;
-    }
-
-    .tips-section h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-    }
-
-    .tips-section h3 i {
-        color: #f59e0b;
+      gap: 1.5rem;
     }
 
     .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+      grid-template-columns: 1fr;
     }
+  }
 
-    .tip {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        transition: all 0.2s ease;
-    }
+  /* Light Mode */
+  :global([data-theme="light"]) .page-hero h1 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    .tip:hover {
-        background: rgba(255, 255, 255, 0.06);
-    }
+  :global([data-theme="light"]) .page-hero p {
+    color: #64748b;
+  }
 
-    .tip i {
-        font-size: 1rem;
-        color: #00d4ff;
-        margin-top: 0.1rem;
-    }
+  :global([data-theme="light"]) .project-card {
+    background: rgba(0, 0, 0, 0.02);
+  }
 
-    .tip span {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        line-height: 1.5;
-    }
+  :global([data-theme="light"]) .project-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-        .page-hero h1 {
-            font-size: 2rem;
-        }
+  :global([data-theme="light"]) .card-features span {
+    background: rgba(0, 0, 0, 0.04);
+  }
 
-        .projects-grid .container {
-            grid-template-columns: 1fr;
-        }
+  :global([data-theme="light"]) .tips-section .container {
+    background: rgba(0, 0, 0, 0.02);
+  }
 
-        .card-stats {
-            gap: 1.5rem;
-        }
+  :global([data-theme="light"]) .tip {
+    background: rgba(0, 0, 0, 0.03);
+  }
 
-        .tips-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .page-hero h1 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .page-hero p {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .project-card {
-        background: rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .project-card:hover {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    :global([data-theme="light"]) .card-features span {
-        background: rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .tips-section .container {
-        background: rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .tip {
-        background: rgba(0, 0, 0, 0.03);
-    }
-
-    :global([data-theme="light"]) .tip:hover {
-        background: rgba(0, 0, 0, 0.05);
-    }
+  :global([data-theme="light"]) .tip:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 </style>

@@ -1,613 +1,744 @@
 ---
 // Interactive Terminal Demo - Commands showcase for students
 const terminalSessions = [
-    {
-        id: "git",
-        title: "Git & GitHub",
-        icon: "fab fa-git-alt",
-        color: "#f05032",
-        commands: [
-            { prompt: "~$", cmd: "git init", output: "Initialized empty Git repository in /project/.git/" },
-            { prompt: "~$", cmd: "git add .", output: "" },
-            { prompt: "~$", cmd: "git commit -m 'Initial commit'", output: "[main (root-commit) a1b2c3d] Initial commit\n 3 files changed, 150 insertions(+)" },
-            { prompt: "~$", cmd: "git remote add origin https://github.com/user/repo.git", output: "" },
-            { prompt: "~$", cmd: "git push -u origin main", output: "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nTo https://github.com/user/repo.git\n * [new branch]      main -> main" },
-            { prompt: "~$", cmd: "git branch feature/login", output: "" },
-            { prompt: "~$", cmd: "git checkout feature/login", output: "Switched to branch 'feature/login'" }
-        ]
-    },
-    {
-        id: "docker",
-        title: "Docker",
-        icon: "fab fa-docker",
-        color: "#2496ed",
-        commands: [
-            { prompt: "~$", cmd: "docker build -t myapp:latest .", output: "Sending build context to Docker daemon  2.048kB\nStep 1/5 : FROM node:18-alpine\n ---> 8d2a7b5c1234\nStep 5/5 : CMD [\"npm\", \"start\"]\nSuccessfully built abc123def456" },
-            { prompt: "~$", cmd: "docker images", output: "REPOSITORY   TAG      IMAGE ID       CREATED        SIZE\nmyapp        latest   abc123def456   2 minutes ago  180MB\nnode         18-alpine 8d2a7b5c1234   3 days ago     165MB" },
-            { prompt: "~$", cmd: "docker run -d -p 3000:3000 myapp:latest", output: "e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8" },
-            { prompt: "~$", cmd: "docker ps", output: "CONTAINER ID   IMAGE          STATUS         PORTS\ne7f8g9h0i1j2   myapp:latest   Up 10 seconds  0.0.0.0:3000->3000/tcp" },
-            { prompt: "~$", cmd: "docker-compose up -d", output: "Creating network \"myapp_default\" with the default driver\nCreating myapp_db_1   ... done\nCreating myapp_app_1  ... done" }
-        ]
-    },
-    {
-        id: "npm",
-        title: "Node.js & npm",
-        icon: "fab fa-node-js",
-        color: "#339933",
-        commands: [
-            { prompt: "~$", cmd: "npm init -y", output: "Wrote to /project/package.json:\n{\n  \"name\": \"my-project\",\n  \"version\": \"1.0.0\"\n}" },
-            { prompt: "~$", cmd: "npm install express mongoose dotenv", output: "added 57 packages, and audited 58 packages in 3s\nfound 0 vulnerabilities" },
-            { prompt: "~$", cmd: "npm install -D typescript @types/node", output: "added 2 packages in 1s" },
-            { prompt: "~$", cmd: "npx tsc --init", output: "Created a new tsconfig.json" },
-            { prompt: "~$", cmd: "npm run dev", output: "Server running on http://localhost:3000\n✓ Connected to MongoDB" }
-        ]
-    },
-    {
-        id: "python",
-        title: "Python",
-        icon: "fab fa-python",
-        color: "#3776ab",
-        commands: [
-            { prompt: "~$", cmd: "python -m venv venv", output: "" },
-            { prompt: "~$", cmd: "source venv/bin/activate", output: "(venv)" },
-            { prompt: "(venv) ~$", cmd: "pip install django pandas numpy", output: "Successfully installed django-4.2 pandas-2.0 numpy-1.24" },
-            { prompt: "(venv) ~$", cmd: "django-admin startproject myproject", output: "" },
-            { prompt: "(venv) ~$", cmd: "python manage.py runserver", output: "Starting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C." },
-            { prompt: "(venv) ~$", cmd: "pip freeze > requirements.txt", output: "" }
-        ]
-    },
-    {
-        id: "sql",
-        title: "SQL & PostgreSQL",
-        icon: "fas fa-database",
-        color: "#336791",
-        commands: [
-            { prompt: "postgres=#", cmd: "CREATE DATABASE duocuc_db;", output: "CREATE DATABASE" },
-            { prompt: "postgres=#", cmd: "\\c duocuc_db", output: "You are now connected to database \"duocuc_db\"" },
-            { prompt: "duocuc_db=#", cmd: "CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(100), email VARCHAR(100) UNIQUE);", output: "CREATE TABLE" },
-            { prompt: "duocuc_db=#", cmd: "INSERT INTO students (name, email) VALUES ('Juan Pérez', 'juan@duoc.cl');", output: "INSERT 0 1" },
-            { prompt: "duocuc_db=#", cmd: "SELECT * FROM students;", output: " id |    name     |     email\n----+-------------+---------------\n  1 | Juan Pérez  | juan@duoc.cl\n(1 row)" }
-        ]
-    },
-    {
-        id: "kubectl",
-        title: "Kubernetes",
-        icon: "fas fa-dharmachakra",
-        color: "#326ce5",
-        commands: [
-            { prompt: "~$", cmd: "kubectl get nodes", output: "NAME           STATUS   ROLES    AGE   VERSION\nmaster-node    Ready    master   30d   v1.28.0\nworker-node1   Ready    worker   30d   v1.28.0" },
-            { prompt: "~$", cmd: "kubectl apply -f deployment.yaml", output: "deployment.apps/myapp created\nservice/myapp-service created" },
-            { prompt: "~$", cmd: "kubectl get pods", output: "NAME                     READY   STATUS    RESTARTS   AGE\nmyapp-7d4f5b6c7-abc12   1/1     Running   0          30s\nmyapp-7d4f5b6c7-def34   1/1     Running   0          30s" },
-            { prompt: "~$", cmd: "kubectl scale deployment myapp --replicas=5", output: "deployment.apps/myapp scaled" },
-            { prompt: "~$", cmd: "kubectl rollout status deployment/myapp", output: "deployment \"myapp\" successfully rolled out" }
-        ]
-    }
+  {
+    id: "git",
+    title: "Git & GitHub",
+    icon: "fab fa-git-alt",
+    color: "#f05032",
+    commands: [
+      {
+        prompt: "~$",
+        cmd: "git init",
+        output: "Initialized empty Git repository in /project/.git/",
+      },
+      { prompt: "~$", cmd: "git add .", output: "" },
+      {
+        prompt: "~$",
+        cmd: "git commit -m 'Initial commit'",
+        output: "[main (root-commit) a1b2c3d] Initial commit\n 3 files changed, 150 insertions(+)",
+      },
+      { prompt: "~$", cmd: "git remote add origin https://github.com/user/repo.git", output: "" },
+      {
+        prompt: "~$",
+        cmd: "git push -u origin main",
+        output:
+          "Enumerating objects: 5, done.\nCounting objects: 100% (5/5), done.\nTo https://github.com/user/repo.git\n * [new branch]      main -> main",
+      },
+      { prompt: "~$", cmd: "git branch feature/login", output: "" },
+      {
+        prompt: "~$",
+        cmd: "git checkout feature/login",
+        output: "Switched to branch 'feature/login'",
+      },
+    ],
+  },
+  {
+    id: "docker",
+    title: "Docker",
+    icon: "fab fa-docker",
+    color: "#2496ed",
+    commands: [
+      {
+        prompt: "~$",
+        cmd: "docker build -t myapp:latest .",
+        output:
+          'Sending build context to Docker daemon  2.048kB\nStep 1/5 : FROM node:18-alpine\n ---> 8d2a7b5c1234\nStep 5/5 : CMD ["npm", "start"]\nSuccessfully built abc123def456',
+      },
+      {
+        prompt: "~$",
+        cmd: "docker images",
+        output:
+          "REPOSITORY   TAG      IMAGE ID       CREATED        SIZE\nmyapp        latest   abc123def456   2 minutes ago  180MB\nnode         18-alpine 8d2a7b5c1234   3 days ago     165MB",
+      },
+      {
+        prompt: "~$",
+        cmd: "docker run -d -p 3000:3000 myapp:latest",
+        output: "e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8",
+      },
+      {
+        prompt: "~$",
+        cmd: "docker ps",
+        output:
+          "CONTAINER ID   IMAGE          STATUS         PORTS\ne7f8g9h0i1j2   myapp:latest   Up 10 seconds  0.0.0.0:3000->3000/tcp",
+      },
+      {
+        prompt: "~$",
+        cmd: "docker-compose up -d",
+        output:
+          'Creating network "myapp_default" with the default driver\nCreating myapp_db_1   ... done\nCreating myapp_app_1  ... done',
+      },
+    ],
+  },
+  {
+    id: "npm",
+    title: "Node.js & npm",
+    icon: "fab fa-node-js",
+    color: "#339933",
+    commands: [
+      {
+        prompt: "~$",
+        cmd: "npm init -y",
+        output:
+          'Wrote to /project/package.json:\n{\n  "name": "my-project",\n  "version": "1.0.0"\n}',
+      },
+      {
+        prompt: "~$",
+        cmd: "npm install express mongoose dotenv",
+        output: "added 57 packages, and audited 58 packages in 3s\nfound 0 vulnerabilities",
+      },
+      {
+        prompt: "~$",
+        cmd: "npm install -D typescript @types/node",
+        output: "added 2 packages in 1s",
+      },
+      { prompt: "~$", cmd: "npx tsc --init", output: "Created a new tsconfig.json" },
+      {
+        prompt: "~$",
+        cmd: "npm run dev",
+        output: "Server running on http://localhost:3000\n✓ Connected to MongoDB",
+      },
+    ],
+  },
+  {
+    id: "python",
+    title: "Python",
+    icon: "fab fa-python",
+    color: "#3776ab",
+    commands: [
+      { prompt: "~$", cmd: "python -m venv venv", output: "" },
+      { prompt: "~$", cmd: "source venv/bin/activate", output: "(venv)" },
+      {
+        prompt: "(venv) ~$",
+        cmd: "pip install django pandas numpy",
+        output: "Successfully installed django-4.2 pandas-2.0 numpy-1.24",
+      },
+      { prompt: "(venv) ~$", cmd: "django-admin startproject myproject", output: "" },
+      {
+        prompt: "(venv) ~$",
+        cmd: "python manage.py runserver",
+        output:
+          "Starting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C.",
+      },
+      { prompt: "(venv) ~$", cmd: "pip freeze > requirements.txt", output: "" },
+    ],
+  },
+  {
+    id: "sql",
+    title: "SQL & PostgreSQL",
+    icon: "fas fa-database",
+    color: "#336791",
+    commands: [
+      { prompt: "postgres=#", cmd: "CREATE DATABASE duocuc_db;", output: "CREATE DATABASE" },
+      {
+        prompt: "postgres=#",
+        cmd: "\\c duocuc_db",
+        output: 'You are now connected to database "duocuc_db"',
+      },
+      {
+        prompt: "duocuc_db=#",
+        cmd: "CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(100), email VARCHAR(100) UNIQUE);",
+        output: "CREATE TABLE",
+      },
+      {
+        prompt: "duocuc_db=#",
+        cmd: "INSERT INTO students (name, email) VALUES ('Juan Pérez', 'juan@duoc.cl');",
+        output: "INSERT 0 1",
+      },
+      {
+        prompt: "duocuc_db=#",
+        cmd: "SELECT * FROM students;",
+        output:
+          " id |    name     |     email\n----+-------------+---------------\n  1 | Juan Pérez  | juan@duoc.cl\n(1 row)",
+      },
+    ],
+  },
+  {
+    id: "kubectl",
+    title: "Kubernetes",
+    icon: "fas fa-dharmachakra",
+    color: "#326ce5",
+    commands: [
+      {
+        prompt: "~$",
+        cmd: "kubectl get nodes",
+        output:
+          "NAME           STATUS   ROLES    AGE   VERSION\nmaster-node    Ready    master   30d   v1.28.0\nworker-node1   Ready    worker   30d   v1.28.0",
+      },
+      {
+        prompt: "~$",
+        cmd: "kubectl apply -f deployment.yaml",
+        output: "deployment.apps/myapp created\nservice/myapp-service created",
+      },
+      {
+        prompt: "~$",
+        cmd: "kubectl get pods",
+        output:
+          "NAME                     READY   STATUS    RESTARTS   AGE\nmyapp-7d4f5b6c7-abc12   1/1     Running   0          30s\nmyapp-7d4f5b6c7-def34   1/1     Running   0          30s",
+      },
+      {
+        prompt: "~$",
+        cmd: "kubectl scale deployment myapp --replicas=5",
+        output: "deployment.apps/myapp scaled",
+      },
+      {
+        prompt: "~$",
+        cmd: "kubectl rollout status deployment/myapp",
+        output: 'deployment "myapp" successfully rolled out',
+      },
+    ],
+  },
 ];
 ---
 
 <section id="terminal-demo" class="terminal-section">
-    <div class="terminal-header" data-aos="fade-up">
-        <div class="header-icon-wrap">
-            <i class="fas fa-terminal"></i>
-        </div>
-        <h2>Terminal <span class="gradient-text">Interactivo</span></h2>
-        <p>Aprende los comandos esenciales que usarás en tu carrera como desarrollador</p>
+  <div class="terminal-header" data-aos="fade-up">
+    <div class="header-icon-wrap">
+      <i class="fas fa-terminal"></i>
+    </div>
+    <h2>Terminal <span class="gradient-text">Interactivo</span></h2>
+    <p>Aprende los comandos esenciales que usarás en tu carrera como desarrollador</p>
+  </div>
+
+  <!-- Terminal Selector -->
+  <div class="terminal-tabs" data-aos="fade-up" data-aos-delay="50">
+    {
+      terminalSessions.map((session, idx) => (
+        <button
+          class={`terminal-tab ${idx === 0 ? "active" : ""}`}
+          data-session={session.id}
+          style={`--tab-color: ${session.color}`}
+        >
+          <i class={session.icon} />
+          <span>{session.title}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Terminal Window -->
+  <div class="terminal-window glass-card" data-aos="fade-up" data-aos-delay="100">
+    <div class="terminal-titlebar">
+      <div class="terminal-buttons">
+        <span class="btn-close"></span>
+        <span class="btn-minimize"></span>
+        <span class="btn-maximize"></span>
+      </div>
+      <span class="terminal-title" id="terminal-title">Terminal - Git & GitHub</span>
+      <div class="terminal-actions">
+        <button class="action-btn copy-all" title="Copiar todos los comandos">
+          <i class="fas fa-copy"></i>
+        </button>
+        <button class="action-btn play-demo" title="Reproducir demo">
+          <i class="fas fa-play"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- Terminal Selector -->
-    <div class="terminal-tabs" data-aos="fade-up" data-aos-delay="50">
-        {terminalSessions.map((session, idx) => (
-            <button
-                class={`terminal-tab ${idx === 0 ? 'active' : ''}`}
-                data-session={session.id}
-                style={`--tab-color: ${session.color}`}
-            >
-                <i class={session.icon}></i>
-                <span>{session.title}</span>
-            </button>
-        ))}
-    </div>
-
-    <!-- Terminal Window -->
-    <div class="terminal-window glass-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="terminal-titlebar">
-            <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-            </div>
-            <span class="terminal-title" id="terminal-title">Terminal - Git & GitHub</span>
-            <div class="terminal-actions">
-                <button class="action-btn copy-all" title="Copiar todos los comandos">
-                    <i class="fas fa-copy"></i>
-                </button>
-                <button class="action-btn play-demo" title="Reproducir demo">
-                    <i class="fas fa-play"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="terminal-body" id="terminal-body">
-            {terminalSessions.map((session, sessionIdx) => (
-                <div class={`terminal-session ${sessionIdx === 0 ? 'active' : ''}`} data-session={session.id}>
-                    {session.commands.map((cmd, cmdIdx) => (
-                        <div class="command-block" style={`--delay: ${cmdIdx * 150}ms`}>
-                            <div class="command-line">
-                                <span class="prompt" style={`color: ${session.color}`}>{cmd.prompt}</span>
-                                <span class="command" data-cmd={cmd.cmd}>{cmd.cmd}</span>
-                                <button class="copy-btn" title="Copiar comando">
-                                    <i class="fas fa-clipboard"></i>
-                                </button>
-                            </div>
-                            {cmd.output && (
-                                <div class="output-line">
-                                    <pre>{cmd.output}</pre>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                    <div class="cursor-line">
-                        <span class="prompt" style={`color: ${session.color}`}>~$</span>
-                        <span class="cursor">▋</span>
-                    </div>
+    <div class="terminal-body" id="terminal-body">
+      {
+        terminalSessions.map((session, sessionIdx) => (
+          <div
+            class={`terminal-session ${sessionIdx === 0 ? "active" : ""}`}
+            data-session={session.id}
+          >
+            {session.commands.map((cmd, cmdIdx) => (
+              <div class="command-block" style={`--delay: ${cmdIdx * 150}ms`}>
+                <div class="command-line">
+                  <span class="prompt" style={`color: ${session.color}`}>
+                    {cmd.prompt}
+                  </span>
+                  <span class="command" data-cmd={cmd.cmd}>
+                    {cmd.cmd}
+                  </span>
+                  <button class="copy-btn" title="Copiar comando">
+                    <i class="fas fa-clipboard" />
+                  </button>
                 </div>
+                {cmd.output && (
+                  <div class="output-line">
+                    <pre>{cmd.output}</pre>
+                  </div>
+                )}
+              </div>
             ))}
-        </div>
+            <div class="cursor-line">
+              <span class="prompt" style={`color: ${session.color}`}>
+                ~$
+              </span>
+              <span class="cursor">▋</span>
+            </div>
+          </div>
+        ))
+      }
     </div>
+  </div>
 
-    <!-- Quick Reference Cards -->
-    <div class="quick-ref-section" data-aos="fade-up" data-aos-delay="200">
-        <h3><i class="fas fa-book-open"></i> Referencias Rápidas</h3>
-        <div class="quick-ref-grid">
-            <div class="ref-card">
-                <h4><i class="fab fa-git-alt" style="color: #f05032;"></i> Git Básico</h4>
-                <ul>
-                    <li><code>git status</code> - Ver estado</li>
-                    <li><code>git log --oneline</code> - Ver historial</li>
-                    <li><code>git diff</code> - Ver cambios</li>
-                    <li><code>git stash</code> - Guardar cambios temp</li>
-                </ul>
-            </div>
-            <div class="ref-card">
-                <h4><i class="fab fa-docker" style="color: #2496ed;"></i> Docker Básico</h4>
-                <ul>
-                    <li><code>docker logs [id]</code> - Ver logs</li>
-                    <li><code>docker exec -it [id] sh</code> - Entrar</li>
-                    <li><code>docker stop [id]</code> - Detener</li>
-                    <li><code>docker rm [id]</code> - Eliminar</li>
-                </ul>
-            </div>
-            <div class="ref-card">
-                <h4><i class="fab fa-node-js" style="color: #339933;"></i> npm Scripts</h4>
-                <ul>
-                    <li><code>npm start</code> - Iniciar app</li>
-                    <li><code>npm test</code> - Ejecutar tests</li>
-                    <li><code>npm run build</code> - Compilar</li>
-                    <li><code>npm audit fix</code> - Arreglar vulns</li>
-                </ul>
-            </div>
-            <div class="ref-card">
-                <h4><i class="fas fa-keyboard" style="color: #7c3aed;"></i> Atajos Terminal</h4>
-                <ul>
-                    <li><code>Ctrl+C</code> - Cancelar comando</li>
-                    <li><code>Ctrl+L</code> - Limpiar pantalla</li>
-                    <li><code>Tab</code> - Autocompletar</li>
-                    <li><code>↑/↓</code> - Historial</li>
-                </ul>
-            </div>
-        </div>
+  <!-- Quick Reference Cards -->
+  <div class="quick-ref-section" data-aos="fade-up" data-aos-delay="200">
+    <h3><i class="fas fa-book-open"></i> Referencias Rápidas</h3>
+    <div class="quick-ref-grid">
+      <div class="ref-card">
+        <h4><i class="fab fa-git-alt" style="color: #f05032;"></i> Git Básico</h4>
+        <ul>
+          <li><code>git status</code> - Ver estado</li>
+          <li><code>git log --oneline</code> - Ver historial</li>
+          <li><code>git diff</code> - Ver cambios</li>
+          <li><code>git stash</code> - Guardar cambios temp</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4><i class="fab fa-docker" style="color: #2496ed;"></i> Docker Básico</h4>
+        <ul>
+          <li><code>docker logs [id]</code> - Ver logs</li>
+          <li><code>docker exec -it [id] sh</code> - Entrar</li>
+          <li><code>docker stop [id]</code> - Detener</li>
+          <li><code>docker rm [id]</code> - Eliminar</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4><i class="fab fa-node-js" style="color: #339933;"></i> npm Scripts</h4>
+        <ul>
+          <li><code>npm start</code> - Iniciar app</li>
+          <li><code>npm test</code> - Ejecutar tests</li>
+          <li><code>npm run build</code> - Compilar</li>
+          <li><code>npm audit fix</code> - Arreglar vulns</li>
+        </ul>
+      </div>
+      <div class="ref-card">
+        <h4><i class="fas fa-keyboard" style="color: #7c3aed;"></i> Atajos Terminal</h4>
+        <ul>
+          <li><code>Ctrl+C</code> - Cancelar comando</li>
+          <li><code>Ctrl+L</code> - Limpiar pantalla</li>
+          <li><code>Tab</code> - Autocompletar</li>
+          <li><code>↑/↓</code> - Historial</li>
+        </ul>
+      </div>
     </div>
+  </div>
 </section>
 
 <script is:inline>
-document.addEventListener('DOMContentLoaded', initTerminal);
-document.addEventListener('astro:page-load', initTerminal);
+  document.addEventListener("DOMContentLoaded", initTerminal);
+  document.addEventListener("astro:page-load", initTerminal);
 
-function initTerminal() {
-    const tabs = document.querySelectorAll('.terminal-tab');
-    const sessions = document.querySelectorAll('.terminal-session');
-    const terminalTitle = document.getElementById('terminal-title');
-    const copyBtns = document.querySelectorAll('.copy-btn');
-    const copyAllBtn = document.querySelector('.copy-all');
-    const playBtn = document.querySelector('.play-demo');
+  function initTerminal() {
+    const tabs = document.querySelectorAll(".terminal-tab");
+    const sessions = document.querySelectorAll(".terminal-session");
+    const terminalTitle = document.getElementById("terminal-title");
+    const copyBtns = document.querySelectorAll(".copy-btn");
+    const copyAllBtn = document.querySelector(".copy-all");
+    const playBtn = document.querySelector(".play-demo");
 
     // Tab switching
-    tabs.forEach(tab => {
-        tab.onclick = () => {
-            const sessionId = tab.dataset.session;
+    tabs.forEach((tab) => {
+      tab.onclick = () => {
+        const sessionId = tab.dataset.session;
 
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+        tabs.forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
 
-            sessions.forEach(s => {
-                s.classList.toggle('active', s.dataset.session === sessionId);
-            });
+        sessions.forEach((s) => {
+          s.classList.toggle("active", s.dataset.session === sessionId);
+        });
 
-            // Update title
-            const title = tab.querySelector('span').textContent;
-            terminalTitle.textContent = `Terminal - ${title}`;
-        };
+        // Update title
+        const title = tab.querySelector("span").textContent;
+        terminalTitle.textContent = `Terminal - ${title}`;
+      };
     });
 
     // Copy individual command
-    copyBtns.forEach(btn => {
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            const cmd = btn.previousElementSibling.dataset.cmd;
-            navigator.clipboard.writeText(cmd).then(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    btn.innerHTML = '<i class="fas fa-clipboard"></i>';
-                }, 1500);
-            });
-        };
+    copyBtns.forEach((btn) => {
+      btn.onclick = (e) => {
+        e.stopPropagation();
+        const cmd = btn.previousElementSibling.dataset.cmd;
+        navigator.clipboard.writeText(cmd).then(() => {
+          btn.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-clipboard"></i>';
+          }, 1500);
+        });
+      };
     });
 
     // Copy all commands
     if (copyAllBtn) {
-        copyAllBtn.onclick = () => {
-            const activeSession = document.querySelector('.terminal-session.active');
-            const commands = Array.from(activeSession.querySelectorAll('.command'))
-                .map(cmd => cmd.dataset.cmd)
-                .join('\n');
-            navigator.clipboard.writeText(commands).then(() => {
-                copyAllBtn.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    copyAllBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                }, 1500);
-            });
-        };
+      copyAllBtn.onclick = () => {
+        const activeSession = document.querySelector(".terminal-session.active");
+        const commands = Array.from(activeSession.querySelectorAll(".command"))
+          .map((cmd) => cmd.dataset.cmd)
+          .join("\n");
+        navigator.clipboard.writeText(commands).then(() => {
+          copyAllBtn.innerHTML = '<i class="fas fa-check"></i>';
+          setTimeout(() => {
+            copyAllBtn.innerHTML = '<i class="fas fa-copy"></i>';
+          }, 1500);
+        });
+      };
     }
 
     // Play demo animation
     if (playBtn) {
-        playBtn.onclick = () => {
-            const activeSession = document.querySelector('.terminal-session.active');
-            const blocks = activeSession.querySelectorAll('.command-block');
+      playBtn.onclick = () => {
+        const activeSession = document.querySelector(".terminal-session.active");
+        const blocks = activeSession.querySelectorAll(".command-block");
 
-            blocks.forEach((block, idx) => {
-                block.style.opacity = '0';
-                block.style.transform = 'translateY(10px)';
-            });
+        blocks.forEach((block, idx) => {
+          block.style.opacity = "0";
+          block.style.transform = "translateY(10px)";
+        });
 
-            blocks.forEach((block, idx) => {
-                setTimeout(() => {
-                    block.style.transition = 'all 0.3s ease';
-                    block.style.opacity = '1';
-                    block.style.transform = 'translateY(0)';
-                }, idx * 400);
-            });
-        };
+        blocks.forEach((block, idx) => {
+          setTimeout(() => {
+            block.style.transition = "all 0.3s ease";
+            block.style.opacity = "1";
+            block.style.transform = "translateY(0)";
+          }, idx * 400);
+        });
+      };
     }
-}
+  }
 </script>
 
 <style>
-    .terminal-section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  .terminal-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-    .terminal-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-    }
+  .terminal-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
 
-    .header-icon-wrap {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 20px;
-        font-size: 2rem;
-        color: #7c3aed;
-    }
+  .header-icon-wrap {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 20px;
+    font-size: 2rem;
+    color: #7c3aed;
+  }
 
+  .terminal-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .terminal-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  /* Terminal Tabs */
+  .terminal-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .terminal-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .terminal-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+  }
+
+  .terminal-tab.active {
+    background: var(--tab-color);
+    color: white;
+    border-color: transparent;
+  }
+
+  .terminal-tab i {
+    font-size: 1.1rem;
+  }
+
+  /* Terminal Window */
+  .terminal-window {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+  }
+
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .terminal-buttons span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .btn-close {
+    background: #ff5f57;
+  }
+  .btn-minimize {
+    background: #ffbd2e;
+  }
+  .btn-maximize {
+    background: #28ca41;
+  }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .terminal-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .action-btn {
+    padding: 0.4rem 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    background: #0d1117;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.9rem;
+    min-height: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .terminal-session {
+    display: none;
+  }
+
+  .terminal-session.active {
+    display: block;
+  }
+
+  .command-block {
+    margin-bottom: 1rem;
+  }
+
+  .command-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .prompt {
+    font-weight: 600;
+  }
+
+  .command {
+    color: #c9d1d9;
+    flex: 1;
+  }
+
+  .copy-btn {
+    opacity: 0;
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .command-line:hover .copy-btn {
+    opacity: 1;
+  }
+
+  .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+
+  .output-line {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .output-line pre {
+    color: #8b949e;
+    margin: 0;
+    white-space: pre-wrap;
+    font-size: 0.85rem;
+  }
+
+  .cursor-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .cursor {
+    color: #c9d1d9;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    51%,
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* Quick Reference */
+  .quick-ref-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .quick-ref-section h3 i {
+    color: #00d4ff;
+  }
+
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .ref-card {
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+  }
+
+  .ref-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    margin: 0 0 1rem;
+  }
+
+  .ref-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .ref-card li {
+    padding: 0.4rem 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .ref-card li:last-child {
+    border-bottom: none;
+  }
+
+  .ref-card code {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .terminal-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin: 0 0 0.5rem;
+      font-size: 1.75rem;
     }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .terminal-header p {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-    }
-
-    /* Terminal Tabs */
     .terminal-tabs {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
+      justify-content: flex-start;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      padding-bottom: 0.5rem;
     }
 
-    .terminal-tab {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.25rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 10px;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .terminal-tab:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text-primary);
-    }
-
-    .terminal-tab.active {
-        background: var(--tab-color);
-        color: white;
-        border-color: transparent;
-    }
-
-    .terminal-tab i {
-        font-size: 1.1rem;
-    }
-
-    /* Terminal Window */
-    .terminal-window {
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 2.5rem;
-    }
-
-    .terminal-titlebar {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.3);
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .terminal-buttons {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .terminal-buttons span {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-    }
-
-    .btn-close { background: #ff5f57; }
-    .btn-minimize { background: #ffbd2e; }
-    .btn-maximize { background: #28ca41; }
-
-    .terminal-title {
-        flex: 1;
-        text-align: center;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        font-weight: 500;
-    }
-
-    .terminal-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .action-btn {
-        padding: 0.4rem 0.6rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        color: var(--text-secondary);
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .action-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-primary);
+    .terminal-tab span {
+      display: none;
     }
 
     .terminal-body {
-        padding: 1.5rem;
-        background: #0d1117;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.9rem;
-        min-height: 400px;
-        max-height: 500px;
-        overflow-y: auto;
+      font-size: 0.8rem;
+      min-height: 300px;
     }
+  }
 
-    .terminal-session {
-        display: none;
-    }
+  /* Light Mode */
+  :global([data-theme="light"]) .terminal-body {
+    background: #f6f8fa;
+  }
 
-    .terminal-session.active {
-        display: block;
-    }
+  :global([data-theme="light"]) .command {
+    color: #24292f;
+  }
 
-    .command-block {
-        margin-bottom: 1rem;
-    }
+  :global([data-theme="light"]) .output-line pre {
+    color: #57606a;
+  }
 
-    .command-line {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+  :global([data-theme="light"]) .cursor {
+    color: #24292f;
+  }
 
-    .prompt {
-        font-weight: 600;
-    }
-
-    .command {
-        color: #c9d1d9;
-        flex: 1;
-    }
-
-    .copy-btn {
-        opacity: 0;
-        padding: 0.25rem 0.5rem;
-        background: transparent;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        color: var(--text-muted);
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .command-line:hover .copy-btn {
-        opacity: 1;
-    }
-
-    .copy-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-primary);
-    }
-
-    .output-line {
-        margin-top: 0.5rem;
-        padding-left: 1.5rem;
-    }
-
-    .output-line pre {
-        color: #8b949e;
-        margin: 0;
-        white-space: pre-wrap;
-        font-size: 0.85rem;
-    }
-
-    .cursor-line {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-    }
-
-    .cursor {
-        color: #c9d1d9;
-        animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
-    }
-
-    /* Quick Reference */
-    .quick-ref-section h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
-        color: var(--text-primary);
-    }
-
-    .quick-ref-section h3 i {
-        color: #00d4ff;
-    }
-
-    .quick-ref-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.25rem;
-    }
-
-    .ref-card {
-        padding: 1.25rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-    }
-
-    .ref-card h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        margin: 0 0 1rem;
-    }
-
-    .ref-card ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .ref-card li {
-        padding: 0.4rem 0;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .ref-card li:last-child {
-        border-bottom: none;
-    }
-
-    .ref-card code {
-        background: rgba(0, 212, 255, 0.1);
-        color: #00d4ff;
-        padding: 0.15rem 0.4rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .terminal-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .terminal-tabs {
-            justify-content: flex-start;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            padding-bottom: 0.5rem;
-        }
-
-        .terminal-tab span {
-            display: none;
-        }
-
-        .terminal-body {
-            font-size: 0.8rem;
-            min-height: 300px;
-        }
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .terminal-body {
-        background: #f6f8fa;
-    }
-
-    :global([data-theme="light"]) .command {
-        color: #24292f;
-    }
-
-    :global([data-theme="light"]) .output-line pre {
-        color: #57606a;
-    }
-
-    :global([data-theme="light"]) .cursor {
-        color: #24292f;
-    }
-
-    :global([data-theme="light"]) .ref-card {
-        background: rgba(0, 0, 0, 0.02);
-    }
+  :global([data-theme="light"]) .ref-card {
+    background: rgba(0, 0, 0, 0.02);
+  }
 </style>

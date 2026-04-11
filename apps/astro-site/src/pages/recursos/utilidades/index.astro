@@ -2,132 +2,132 @@
 /**
  * /recursos/utilidades/ - Utilities Page
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import PasswordGeneratorSection from '../../../components/tools/PasswordGeneratorSection.astro';
-import QuizGeneratorSection from '../../../components/tools/QuizGeneratorSection.astro';
-import GanttGeneratorSection from '../../../components/tools/GanttGeneratorSection.astro';
-import TerminalDemo from '../../../components/TerminalDemo.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import PasswordGeneratorSection from "../../../components/tools/PasswordGeneratorSection.astro";
+import QuizGeneratorSection from "../../../components/tools/QuizGeneratorSection.astro";
+import GanttGeneratorSection from "../../../components/tools/GanttGeneratorSection.astro";
+import TerminalDemo from "../../../components/TerminalDemo.astro";
 ---
 
 <ResourcesLayout title="Utilidades | Recursos DuocUC" activeCategory="utilidades">
-    <div class="utilities-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#password-generator" class="nav-chip amber">
-                <i class="fas fa-key"></i>
-                <span>Passwords</span>
-            </a>
-            <a href="#quiz-generator" class="nav-chip amber">
-                <i class="fas fa-clipboard-check"></i>
-                <span>Quiz</span>
-            </a>
-            <a href="#gantt-generator" class="nav-chip amber">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Gantt Chart</span>
-            </a>
-            <a href="#terminal-demo" class="nav-chip amber">
-                <i class="fas fa-terminal"></i>
-                <span>Terminal</span>
-            </a>
-        </nav>
+  <div class="utilities-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#password-generator" class="nav-chip amber">
+        <i class="fas fa-key"></i>
+        <span>Passwords</span>
+      </a>
+      <a href="#quiz-generator" class="nav-chip amber">
+        <i class="fas fa-clipboard-check"></i>
+        <span>Quiz</span>
+      </a>
+      <a href="#gantt-generator" class="nav-chip amber">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Gantt Chart</span>
+      </a>
+      <a href="#terminal-demo" class="nav-chip amber">
+        <i class="fas fa-terminal"></i>
+        <span>Terminal</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="password-generator">
-            <PasswordGeneratorSection />
-        </section>
+    <!-- Components -->
+    <section id="password-generator">
+      <PasswordGeneratorSection />
+    </section>
 
-        <section id="quiz-generator">
-            <QuizGeneratorSection />
-        </section>
+    <section id="quiz-generator">
+      <QuizGeneratorSection />
+    </section>
 
-        <section id="gantt-generator">
-            <GanttGeneratorSection />
-        </section>
+    <section id="gantt-generator">
+      <GanttGeneratorSection />
+    </section>
 
-        <section id="terminal-demo">
-            <TerminalDemo />
-        </section>
-    </div>
+    <section id="terminal-demo">
+      <TerminalDemo />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .utilities-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .utilities-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip.amber:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip.amber:hover {
+    background: rgba(217, 119, 6, 0.1);
+    border-color: rgba(217, 119, 6, 0.3);
+    color: #d97706;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
+      overflow-x: auto;
+      flex-wrap: nowrap;
     }
 
     .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
+      white-space: nowrap;
     }
-
-    .nav-chip.amber:hover {
-        background: rgba(245, 158, 11, 0.1);
-        border-color: rgba(245, 158, 11, 0.3);
-        color: #f59e0b;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip.amber:hover {
-        background: rgba(217, 119, 6, 0.1);
-        border-color: rgba(217, 119, 6, 0.3);
-        color: #d97706;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-        }
-
-        .nav-chip {
-            white-space: nowrap;
-        }
-    }
+  }
 </style>

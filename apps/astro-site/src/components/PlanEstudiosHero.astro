@@ -2,60 +2,82 @@
 // Plan de Estudios Hero - Dos carreras: Analista Programador (B01-B10) + Ingeniería (B11-B17)
 // Basado en Malla Curricular 1444729 - 2025
 
-const githubBase = "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main";
+const githubBase =
+  "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main";
 
 // Mapeo de asignaturas a carpetas del repositorio
 const subjectLinks: Record<string, string> = {
-    // Carrera 1: Analista Programador Computacional (B01-B10)
-    "Fundamentos Prog.": "Fundamentos%20de%20Programaci%C3%B3n",
-    "Modelamiento BD": "Bimestre-01%20-%20Antropolog%C3%ADa%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-BD",
-    "Antropología": "Antropolog%C3%ADa",
-    "Desarrollo OO I": "Desarrollo%20Orientado%20a%20Objetos%20I",
-    "Intro Cloud Computing": "Bimestre-02%20-%20Computaci%C3%B3n%20Nube%2C%20Comunicaci%C3%B3n%2C%20POO%20I/Computacion-Nube",
-    "Comunicación": "Habilidades%20de%20Comunicaci%C3%B3n",
-    "Desarrollo OO II": "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/Programacion-OO-II",
-    "Herramientas DevOps": "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/DevOps",
-    "Ética": "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/Etica",
-    "Consulta BD": "Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad%20Inform%C3%A1tica/SQL-Consultas",
-    "Seguridad y Calidad": "Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad%20Inform%C3%A1tica/Seguridad-Informatica",
-    "Programación BD": "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/SQL-Programacion",
-    "Desarrollo Cloud Native": "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/Cloud-Native",
-    "Gestión Requisitos": "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/Ingenieria-Requisitos",
-    "Backend I": "Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Backend-I",
-    "Ing. Software I": "Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Ingenieria-Software-I",
-    "Backend II": "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend-II-III",
-    "Backend III": "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend-II-III",
-    "Ing. Software II": "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Ingenieria-Software-II",
-    "Arquitectura SW": "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Arquitectura-Software",
-    "Frontend I": "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Frontend-I-II",
-    "Frontend II": "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Frontend-I-II",
-    "Frontend III": "Bimestre-09%20-%20Frontend%20III%2C%20Mobile%20I/Frontend-III",
-    "App Móviles I": "Bimestre-09%20-%20Frontend%20III%2C%20Mobile%20I/Mobile-I",
-    "App Móviles II": "Bimestre-10%20-%20Mobile%20II%2C%20Taller%20T%C3%ADtulo/Mobile-II",
-    "Taller Aplicado SW": "Bimestre-10%20-%20Mobile%20II%2C%20Taller%20T%C3%ADtulo/Taller-Titulo",
+  // Carrera 1: Analista Programador Computacional (B01-B10)
+  "Fundamentos Prog.": "Fundamentos%20de%20Programaci%C3%B3n",
+  "Modelamiento BD":
+    "Bimestre-01%20-%20Antropolog%C3%ADa%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-BD",
+  Antropología: "Antropolog%C3%ADa",
+  "Desarrollo OO I": "Desarrollo%20Orientado%20a%20Objetos%20I",
+  "Intro Cloud Computing":
+    "Bimestre-02%20-%20Computaci%C3%B3n%20Nube%2C%20Comunicaci%C3%B3n%2C%20POO%20I/Computacion-Nube",
+  Comunicación: "Habilidades%20de%20Comunicaci%C3%B3n",
+  "Desarrollo OO II": "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/Programacion-OO-II",
+  "Herramientas DevOps": "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/DevOps",
+  Ética: "Bimestre-03%20-%20DevOps%2C%20%C3%89tica%2C%20POO%20II/Etica",
+  "Consulta BD":
+    "Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad%20Inform%C3%A1tica/SQL-Consultas",
+  "Seguridad y Calidad":
+    "Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad%20Inform%C3%A1tica/Seguridad-Informatica",
+  "Programación BD":
+    "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/SQL-Programacion",
+  "Desarrollo Cloud Native":
+    "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/Cloud-Native",
+  "Gestión Requisitos":
+    "Bimestre-05%20-%20Cloud%20Native%2C%20Ing.%20Requisitos%2C%20SQL%20Programaci%C3%B3n/Ingenieria-Requisitos",
+  "Backend I": "Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Backend-I",
+  "Ing. Software I": "Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Ingenieria-Software-I",
+  "Backend II": "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend-II-III",
+  "Backend III": "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend-II-III",
+  "Ing. Software II":
+    "Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Ingenieria-Software-II",
+  "Arquitectura SW":
+    "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Arquitectura-Software",
+  "Frontend I": "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Frontend-I-II",
+  "Frontend II": "Bimestre-08%20-%20Arquitectura%20Software%2C%20Frontend%20I-II/Frontend-I-II",
+  "Frontend III": "Bimestre-09%20-%20Frontend%20III%2C%20Mobile%20I/Frontend-III",
+  "App Móviles I": "Bimestre-09%20-%20Frontend%20III%2C%20Mobile%20I/Mobile-I",
+  "App Móviles II": "Bimestre-10%20-%20Mobile%20II%2C%20Taller%20T%C3%ADtulo/Mobile-II",
+  "Taller Aplicado SW": "Bimestre-10%20-%20Mobile%20II%2C%20Taller%20T%C3%ADtulo/Taller-Titulo",
 
-    // Carrera 2: Ingeniería en Desarrollo de Software (B11-B17)
-    // Bimestre 11
-    "Desarrollo Fullstack I": "Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/Desarrollo-Fullstack-I",
-    "BD Aplicada": "Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/BD-Aplicada",
-    // Bimestre 12
-    "Desarrollo Fullstack II": "Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Desarrollo-Fullstack-II",
-    "Cloud Computing": "Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Cloud-Computing",
-    // Bimestre 13
-    "Desarrollo Fullstack III": "Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/Desarrollo-Fullstack-III",
-    "DevOps": "Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/DevOps-Ingenieria",
-    // Bimestre 14
-    "Desarrollo App Móviles": "Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Desarrollo-App-Moviles",
-    "Cloud Native I": "Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Cloud-Native-I",
-    // Bimestre 15
-    "Cloud Native II": "Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Cloud-Native-II",
-    "Seguridad y Calidad Ing": "Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Seguridad-y-Calidad",
-    // Bimestre 16
-    "Evaluación Proyectos SW": "Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Evaluacion-Proyectos-SW",
-    "Gestión Proyectos SW": "Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Gestion-Proyectos-SW",
-    // Bimestre 17
-    "Ética Profesional": "Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Etica-Profesional",
-    "Taller Aplicado SW Ing": "Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Taller-Aplicado-SW",
+  // Carrera 2: Ingeniería en Desarrollo de Software (B11-B17)
+  // Bimestre 11
+  "Desarrollo Fullstack I":
+    "Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/Desarrollo-Fullstack-I",
+  "BD Aplicada": "Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/BD-Aplicada",
+  // Bimestre 12
+  "Desarrollo Fullstack II":
+    "Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Desarrollo-Fullstack-II",
+  "Cloud Computing":
+    "Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Cloud-Computing",
+  // Bimestre 13
+  "Desarrollo Fullstack III":
+    "Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/Desarrollo-Fullstack-III",
+  DevOps: "Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/DevOps-Ingenieria",
+  // Bimestre 14
+  "Desarrollo App Móviles":
+    "Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Desarrollo-App-Moviles",
+  "Cloud Native I":
+    "Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Cloud-Native-I",
+  // Bimestre 15
+  "Cloud Native II":
+    "Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Cloud-Native-II",
+  "Seguridad y Calidad Ing":
+    "Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Seguridad-y-Calidad",
+  // Bimestre 16
+  "Evaluación Proyectos SW":
+    "Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Evaluacion-Proyectos-SW",
+  "Gestión Proyectos SW":
+    "Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Gestion-Proyectos-SW",
+  // Bimestre 17
+  "Ética Profesional":
+    "Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Etica-Profesional",
+  "Taller Aplicado SW Ing":
+    "Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Taller-Aplicado-SW",
 };
 
 // ============================================
@@ -63,902 +85,1017 @@ const subjectLinks: Record<string, string> = {
 // ============================================
 // Formato: "Título|Descripción|Tecnologías (comma-sep)|type|icon|categoria"
 const subjectTooltips: Record<string, string> = {
-    // ═══════════════════════════════════════════════════════════════════════════
-    // CARRERA 1: ANALISTA PROGRAMADOR COMPUTACIONAL (B01-B10)
-    // ═══════════════════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CARRERA 1: ANALISTA PROGRAMADOR COMPUTACIONAL (B01-B10)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-    // Bimestre 01 - Fundamentos
-    "Fundamentos Prog.": "Fundamentos de Programación|Introducción a la lógica de programación, algoritmos, estructuras de control y funciones básicas|Python,Pseudocódigo,PSeInt,VS Code|feature|fa-code|PROGRAMACIÓN",
-    "Modelamiento BD": "Modelamiento de Bases de Datos|Diseño conceptual y lógico de BD, modelo E-R, normalización y cardinalidades|MySQL Workbench,Draw.io,ERD Plus|feature|fa-database|BASE DE DATOS",
-    "Antropología": "Antropología|Comprensión del ser humano en su contexto cultural y social, habilidades blandas|Reflexión,Trabajo en equipo,Comunicación|info|fa-users|FORMACIÓN GENERAL",
+  // Bimestre 01 - Fundamentos
+  "Fundamentos Prog.":
+    "Fundamentos de Programación|Introducción a la lógica de programación, algoritmos, estructuras de control y funciones básicas|Python,Pseudocódigo,PSeInt,VS Code|feature|fa-code|PROGRAMACIÓN",
+  "Modelamiento BD":
+    "Modelamiento de Bases de Datos|Diseño conceptual y lógico de BD, modelo E-R, normalización y cardinalidades|MySQL Workbench,Draw.io,ERD Plus|feature|fa-database|BASE DE DATOS",
+  Antropología:
+    "Antropología|Comprensión del ser humano en su contexto cultural y social, habilidades blandas|Reflexión,Trabajo en equipo,Comunicación|info|fa-users|FORMACIÓN GENERAL",
 
-    // Bimestre 02 - POO & Cloud
-    "Desarrollo OO I": "Desarrollo Orientado a Objetos I|Fundamentos de POO: clases, objetos, herencia, polimorfismo y encapsulamiento|Java,IntelliJ IDEA,UML,Git|feature|fa-cubes|PROGRAMACIÓN",
-    "Intro Cloud Computing": "Introducción a Cloud Computing|Conceptos básicos de computación en la nube, servicios IaaS, PaaS, SaaS|AWS,Azure,GCP,Virtualización|feature|fa-cloud|CLOUD",
-    "Comunicación": "Habilidades de Comunicación|Desarrollo de competencias comunicacionales escritas y orales para el ámbito profesional|Presentaciones,Redacción técnica,Oratoria|info|fa-comments|FORMACIÓN GENERAL",
+  // Bimestre 02 - POO & Cloud
+  "Desarrollo OO I":
+    "Desarrollo Orientado a Objetos I|Fundamentos de POO: clases, objetos, herencia, polimorfismo y encapsulamiento|Java,IntelliJ IDEA,UML,Git|feature|fa-cubes|PROGRAMACIÓN",
+  "Intro Cloud Computing":
+    "Introducción a Cloud Computing|Conceptos básicos de computación en la nube, servicios IaaS, PaaS, SaaS|AWS,Azure,GCP,Virtualización|feature|fa-cloud|CLOUD",
+  Comunicación:
+    "Habilidades de Comunicación|Desarrollo de competencias comunicacionales escritas y orales para el ámbito profesional|Presentaciones,Redacción técnica,Oratoria|info|fa-comments|FORMACIÓN GENERAL",
 
-    // Bimestre 03 - POO & DevOps
-    "Desarrollo OO II": "Desarrollo Orientado a Objetos II|POO avanzado: patrones de diseño, interfaces, clases abstractas y colecciones|Java,Design Patterns,Collections,Maven|feature|fa-project-diagram|PROGRAMACIÓN",
-    "Herramientas DevOps": "Herramientas DevOps|Control de versiones, integración continua y automatización de despliegues|Git,GitHub,Docker,Jenkins,CI/CD|feature|fa-cogs|DEVOPS",
-    "Ética": "Ética|Reflexión sobre principios éticos en el ejercicio profesional de la informática|Responsabilidad social,Normativas,Casos de estudio|info|fa-balance-scale|FORMACIÓN GENERAL",
+  // Bimestre 03 - POO & DevOps
+  "Desarrollo OO II":
+    "Desarrollo Orientado a Objetos II|POO avanzado: patrones de diseño, interfaces, clases abstractas y colecciones|Java,Design Patterns,Collections,Maven|feature|fa-project-diagram|PROGRAMACIÓN",
+  "Herramientas DevOps":
+    "Herramientas DevOps|Control de versiones, integración continua y automatización de despliegues|Git,GitHub,Docker,Jenkins,CI/CD|feature|fa-cogs|DEVOPS",
+  Ética:
+    "Ética|Reflexión sobre principios éticos en el ejercicio profesional de la informática|Responsabilidad social,Normativas,Casos de estudio|info|fa-balance-scale|FORMACIÓN GENERAL",
 
-    // Bimestre 04 - SQL & Seguridad
-    "Consulta BD": "Consulta de Bases de Datos|Consultas SQL avanzadas: JOINs, subconsultas, vistas, funciones agregadas|SQL,PostgreSQL,MySQL,DBeaver|feature|fa-table|BASE DE DATOS",
-    "Seguridad y Calidad": "Seguridad y Calidad Informática|Principios de seguridad, testing, QA y buenas prácticas de desarrollo|OWASP,Testing,SonarQube,Selenium|feature|fa-shield-alt|SEGURIDAD",
+  // Bimestre 04 - SQL & Seguridad
+  "Consulta BD":
+    "Consulta de Bases de Datos|Consultas SQL avanzadas: JOINs, subconsultas, vistas, funciones agregadas|SQL,PostgreSQL,MySQL,DBeaver|feature|fa-table|BASE DE DATOS",
+  "Seguridad y Calidad":
+    "Seguridad y Calidad Informática|Principios de seguridad, testing, QA y buenas prácticas de desarrollo|OWASP,Testing,SonarQube,Selenium|feature|fa-shield-alt|SEGURIDAD",
 
-    // Bimestre 05 - SQL & Cloud Native
-    "Programación BD": "Programación de Bases de Datos|Procedimientos almacenados, triggers, funciones y transacciones|PL/SQL,T-SQL,PostgreSQL,Oracle|feature|fa-code|BASE DE DATOS",
-    "Desarrollo Cloud Native": "Desarrollo Cloud Native|Aplicaciones nativas de nube, contenedores y microservicios|Docker,Kubernetes,AWS,Microservices|feature|fa-cloud-upload-alt|CLOUD",
-    "Gestión Requisitos": "Gestión de Requisitos|Levantamiento, análisis y documentación de requisitos de software|Jira,Confluence,User Stories,UML|feature|fa-clipboard-list|INGENIERÍA SW",
+  // Bimestre 05 - SQL & Cloud Native
+  "Programación BD":
+    "Programación de Bases de Datos|Procedimientos almacenados, triggers, funciones y transacciones|PL/SQL,T-SQL,PostgreSQL,Oracle|feature|fa-code|BASE DE DATOS",
+  "Desarrollo Cloud Native":
+    "Desarrollo Cloud Native|Aplicaciones nativas de nube, contenedores y microservicios|Docker,Kubernetes,AWS,Microservices|feature|fa-cloud-upload-alt|CLOUD",
+  "Gestión Requisitos":
+    "Gestión de Requisitos|Levantamiento, análisis y documentación de requisitos de software|Jira,Confluence,User Stories,UML|feature|fa-clipboard-list|INGENIERÍA SW",
 
-    // Bimestre 06 - Backend & Ing. SW
-    "Backend I": "Desarrollo Backend I|Fundamentos de desarrollo backend: APIs REST, autenticación y bases de datos|Spring Boot,Java,REST API,PostgreSQL|feature|fa-server|BACKEND",
-    "Ing. Software I": "Ingeniería de Software I|Metodologías de desarrollo, ciclo de vida del software y gestión de proyectos|Scrum,Kanban,UML,Jira,Agile|feature|fa-sitemap|INGENIERÍA SW",
+  // Bimestre 06 - Backend & Ing. SW
+  "Backend I":
+    "Desarrollo Backend I|Fundamentos de desarrollo backend: APIs REST, autenticación y bases de datos|Spring Boot,Java,REST API,PostgreSQL|feature|fa-server|BACKEND",
+  "Ing. Software I":
+    "Ingeniería de Software I|Metodologías de desarrollo, ciclo de vida del software y gestión de proyectos|Scrum,Kanban,UML,Jira,Agile|feature|fa-sitemap|INGENIERÍA SW",
 
-    // Bimestre 07 - Backend Avanzado
-    "Backend II": "Desarrollo Backend II|Backend avanzado: seguridad, caché, mensajería y optimización|Spring Security,Redis,RabbitMQ,JWT|feature|fa-lock|BACKEND",
-    "Backend III": "Desarrollo Backend III|Arquitectura de microservicios, API Gateway y orquestación|Microservices,API Gateway,Docker,K8s|feature|fa-network-wired|BACKEND",
-    "Ing. Software II": "Ingeniería de Software II|Diseño de software, patrones arquitectónicos y documentación técnica|Clean Architecture,DDD,C4 Model,ArchiMate|feature|fa-drafting-compass|INGENIERÍA SW",
+  // Bimestre 07 - Backend Avanzado
+  "Backend II":
+    "Desarrollo Backend II|Backend avanzado: seguridad, caché, mensajería y optimización|Spring Security,Redis,RabbitMQ,JWT|feature|fa-lock|BACKEND",
+  "Backend III":
+    "Desarrollo Backend III|Arquitectura de microservicios, API Gateway y orquestación|Microservices,API Gateway,Docker,K8s|feature|fa-network-wired|BACKEND",
+  "Ing. Software II":
+    "Ingeniería de Software II|Diseño de software, patrones arquitectónicos y documentación técnica|Clean Architecture,DDD,C4 Model,ArchiMate|feature|fa-drafting-compass|INGENIERÍA SW",
 
-    // Bimestre 08 - Arquitectura & Frontend
-    "Arquitectura SW": "Arquitectura de Software|Patrones arquitectónicos, diseño de sistemas escalables y alta disponibilidad|Microservices,Event-Driven,CQRS,DDD|feature|fa-building|ARQUITECTURA",
-    "Frontend I": "Desarrollo Frontend I|Fundamentos de desarrollo web: HTML, CSS, JavaScript y diseño responsive|HTML5,CSS3,JavaScript,Bootstrap|feature|fa-desktop|FRONTEND",
-    "Frontend II": "Desarrollo Frontend II|Frameworks modernos de frontend y gestión de estado|React,TypeScript,Redux,Tailwind CSS|feature|fa-react|FRONTEND",
+  // Bimestre 08 - Arquitectura & Frontend
+  "Arquitectura SW":
+    "Arquitectura de Software|Patrones arquitectónicos, diseño de sistemas escalables y alta disponibilidad|Microservices,Event-Driven,CQRS,DDD|feature|fa-building|ARQUITECTURA",
+  "Frontend I":
+    "Desarrollo Frontend I|Fundamentos de desarrollo web: HTML, CSS, JavaScript y diseño responsive|HTML5,CSS3,JavaScript,Bootstrap|feature|fa-desktop|FRONTEND",
+  "Frontend II":
+    "Desarrollo Frontend II|Frameworks modernos de frontend y gestión de estado|React,TypeScript,Redux,Tailwind CSS|feature|fa-react|FRONTEND",
 
-    // Bimestre 09 - Frontend & Mobile
-    "Frontend III": "Desarrollo Frontend III|Frontend avanzado: SSR, optimización, testing y PWA|Next.js,Jest,Cypress,PWA,Lighthouse|feature|fa-mobile-alt|FRONTEND",
-    "App Móviles I": "Desarrollo de Aplicaciones Móviles I|Fundamentos de desarrollo móvil multiplataforma|React Native,Expo,TypeScript,Mobile UI|feature|fa-mobile|MOBILE",
+  // Bimestre 09 - Frontend & Mobile
+  "Frontend III":
+    "Desarrollo Frontend III|Frontend avanzado: SSR, optimización, testing y PWA|Next.js,Jest,Cypress,PWA,Lighthouse|feature|fa-mobile-alt|FRONTEND",
+  "App Móviles I":
+    "Desarrollo de Aplicaciones Móviles I|Fundamentos de desarrollo móvil multiplataforma|React Native,Expo,TypeScript,Mobile UI|feature|fa-mobile|MOBILE",
 
-    // Bimestre 10 - Mobile & Título
-    "App Móviles II": "Desarrollo de Aplicaciones Móviles II|Apps móviles avanzadas: APIs nativas, push notifications y publicación|React Native,Firebase,App Store,Play Store|feature|fa-tablet-alt|MOBILE",
-    "Taller Aplicado SW": "Taller de Aplicación de Software|Proyecto integrador aplicando todos los conocimientos de la carrera|Full Stack,Scrum,Git,CI/CD,Deploy|feature|fa-graduation-cap|TÍTULO",
+  // Bimestre 10 - Mobile & Título
+  "App Móviles II":
+    "Desarrollo de Aplicaciones Móviles II|Apps móviles avanzadas: APIs nativas, push notifications y publicación|React Native,Firebase,App Store,Play Store|feature|fa-tablet-alt|MOBILE",
+  "Taller Aplicado SW":
+    "Taller de Aplicación de Software|Proyecto integrador aplicando todos los conocimientos de la carrera|Full Stack,Scrum,Git,CI/CD,Deploy|feature|fa-graduation-cap|TÍTULO",
 
-    // ═══════════════════════════════════════════════════════════════════════════
-    // CARRERA 2: INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17)
-    // ═══════════════════════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════════════════════
+  // CARRERA 2: INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-    // Bimestre 11 - Fullstack I
-    "Desarrollo Fullstack I": "Desarrollo Fullstack I|Integración completa frontend-backend con arquitectura moderna|React,Node.js,Express,PostgreSQL,Docker|feature|fa-layer-group|FULLSTACK",
-    "BD Aplicada": "Base de Datos Aplicada|Bases de datos avanzadas: NoSQL, optimización y data warehousing|MongoDB,Redis,Elasticsearch,Data Modeling|feature|fa-database|BASE DE DATOS",
+  // Bimestre 11 - Fullstack I
+  "Desarrollo Fullstack I":
+    "Desarrollo Fullstack I|Integración completa frontend-backend con arquitectura moderna|React,Node.js,Express,PostgreSQL,Docker|feature|fa-layer-group|FULLSTACK",
+  "BD Aplicada":
+    "Base de Datos Aplicada|Bases de datos avanzadas: NoSQL, optimización y data warehousing|MongoDB,Redis,Elasticsearch,Data Modeling|feature|fa-database|BASE DE DATOS",
 
-    // Bimestre 12 - Fullstack II
-    "Desarrollo Fullstack II": "Desarrollo Fullstack II|Fullstack avanzado: GraphQL, WebSockets y arquitectura de eventos|GraphQL,Apollo,Socket.io,Event-Driven|feature|fa-code-branch|FULLSTACK",
-    "Cloud Computing": "Cloud Computing|Servicios cloud avanzados, infraestructura como código y serverless|AWS,Terraform,Lambda,CloudFormation|feature|fa-cloud|CLOUD",
+  // Bimestre 12 - Fullstack II
+  "Desarrollo Fullstack II":
+    "Desarrollo Fullstack II|Fullstack avanzado: GraphQL, WebSockets y arquitectura de eventos|GraphQL,Apollo,Socket.io,Event-Driven|feature|fa-code-branch|FULLSTACK",
+  "Cloud Computing":
+    "Cloud Computing|Servicios cloud avanzados, infraestructura como código y serverless|AWS,Terraform,Lambda,CloudFormation|feature|fa-cloud|CLOUD",
 
-    // Bimestre 13 - Fullstack III
-    "Desarrollo Fullstack III": "Desarrollo Fullstack III|Arquitectura enterprise, escalabilidad y alta disponibilidad|Microservices,K8s,Service Mesh,Observability|feature|fa-sitemap|FULLSTACK",
-    "DevOps": "DevOps|Cultura DevOps, CI/CD avanzado, monitoreo y SRE|GitHub Actions,ArgoCD,Prometheus,Grafana|feature|fa-infinity|DEVOPS",
+  // Bimestre 13 - Fullstack III
+  "Desarrollo Fullstack III":
+    "Desarrollo Fullstack III|Arquitectura enterprise, escalabilidad y alta disponibilidad|Microservices,K8s,Service Mesh,Observability|feature|fa-sitemap|FULLSTACK",
+  DevOps:
+    "DevOps|Cultura DevOps, CI/CD avanzado, monitoreo y SRE|GitHub Actions,ArgoCD,Prometheus,Grafana|feature|fa-infinity|DEVOPS",
 
-    // Bimestre 14 - Mobile & Cloud
-    "Desarrollo App Móviles": "Desarrollo de Aplicaciones Móviles|Desarrollo móvil nativo y cross-platform avanzado|Flutter,Kotlin,Swift,Firebase,Mobile CI/CD|feature|fa-mobile-alt|MOBILE",
-    "Cloud Native I": "Cloud Native I|Desarrollo de aplicaciones nativas de nube con contenedores|Kubernetes,Helm,Istio,Service Mesh|feature|fa-dharmachakra|CLOUD",
+  // Bimestre 14 - Mobile & Cloud
+  "Desarrollo App Móviles":
+    "Desarrollo de Aplicaciones Móviles|Desarrollo móvil nativo y cross-platform avanzado|Flutter,Kotlin,Swift,Firebase,Mobile CI/CD|feature|fa-mobile-alt|MOBILE",
+  "Cloud Native I":
+    "Cloud Native I|Desarrollo de aplicaciones nativas de nube con contenedores|Kubernetes,Helm,Istio,Service Mesh|feature|fa-dharmachakra|CLOUD",
 
-    // Bimestre 15 - Cloud Native II
-    "Cloud Native II": "Cloud Native II|Orquestación avanzada, multi-cloud y edge computing|Multi-Cloud,Edge Computing,GitOps,ArgoCD|feature|fa-network-wired|CLOUD",
-    "Seguridad y Calidad Ing": "Seguridad y Calidad Ingeniería|Seguridad aplicada, DevSecOps y compliance|DevSecOps,SAST,DAST,SOC2,GDPR|feature|fa-user-shield|SEGURIDAD",
+  // Bimestre 15 - Cloud Native II
+  "Cloud Native II":
+    "Cloud Native II|Orquestación avanzada, multi-cloud y edge computing|Multi-Cloud,Edge Computing,GitOps,ArgoCD|feature|fa-network-wired|CLOUD",
+  "Seguridad y Calidad Ing":
+    "Seguridad y Calidad Ingeniería|Seguridad aplicada, DevSecOps y compliance|DevSecOps,SAST,DAST,SOC2,GDPR|feature|fa-user-shield|SEGURIDAD",
 
-    // Bimestre 16 - Gestión SW
-    "Evaluación Proyectos SW": "Evaluación de Proyectos de Software|Métricas, KPIs, análisis de riesgos y viabilidad de proyectos|ROI,TCO,Risk Analysis,Business Case|feature|fa-chart-line|GESTIÓN",
-    "Gestión Proyectos SW": "Gestión de Proyectos de Software|Dirección de proyectos, PMI, equipos y stakeholders|PMI,PMBOK,Agile@Scale,SAFe,Jira|feature|fa-tasks|GESTIÓN",
+  // Bimestre 16 - Gestión SW
+  "Evaluación Proyectos SW":
+    "Evaluación de Proyectos de Software|Métricas, KPIs, análisis de riesgos y viabilidad de proyectos|ROI,TCO,Risk Analysis,Business Case|feature|fa-chart-line|GESTIÓN",
+  "Gestión Proyectos SW":
+    "Gestión de Proyectos de Software|Dirección de proyectos, PMI, equipos y stakeholders|PMI,PMBOK,Agile@Scale,SAFe,Jira|feature|fa-tasks|GESTIÓN",
 
-    // Bimestre 17 - Título Ingeniería
-    "Ética Profesional": "Ética Profesional|Responsabilidad profesional, normativas y ejercicio ético en TI|Códigos de ética,Legislación TI,Casos|info|fa-gavel|FORMACIÓN GENERAL",
-    "Taller Aplicado SW Ing": "Taller de Aplicación de Software (Ingeniería)|Proyecto de título integrando tecnologías enterprise|Enterprise,Architecture,Leadership,Innovation|feature|fa-award|TÍTULO",
+  // Bimestre 17 - Título Ingeniería
+  "Ética Profesional":
+    "Ética Profesional|Responsabilidad profesional, normativas y ejercicio ético en TI|Códigos de ética,Legislación TI,Casos|info|fa-gavel|FORMACIÓN GENERAL",
+  "Taller Aplicado SW Ing":
+    "Taller de Aplicación de Software (Ingeniería)|Proyecto de título integrando tecnologías enterprise|Enterprise,Architecture,Leadership,Innovation|feature|fa-award|TÍTULO",
 };
 
 // Función helper para obtener el tooltip de una asignatura
 function getSubjectTooltip(subject: string): string {
-    return subjectTooltips[subject] || `${subject}|Asignatura del plan de estudios||feature|fa-book|ASIGNATURA`;
+  return (
+    subjectTooltips[subject] ||
+    `${subject}|Asignatura del plan de estudios||feature|fa-book|ASIGNATURA`
+  );
 }
 
 // CARRERA 1: Analista Programador Computacional (10 bimestres)
 const analistaYear1 = [
-    { num: "B01", title: "Fundamentos", subjects: ["Fundamentos Prog.", "Modelamiento BD", "Antropología"] },
-    { num: "B02", title: "POO & Cloud", subjects: ["Desarrollo OO I", "Intro Cloud Computing", "Comunicación"] },
-    { num: "B03", title: "POO & DevOps", subjects: ["Desarrollo OO II", "Herramientas DevOps", "Ética"] },
-    { num: "B04", title: "SQL & Seguridad", subjects: ["Consulta BD", "Seguridad y Calidad"] }
+  {
+    num: "B01",
+    title: "Fundamentos",
+    subjects: ["Fundamentos Prog.", "Modelamiento BD", "Antropología"],
+  },
+  {
+    num: "B02",
+    title: "POO & Cloud",
+    subjects: ["Desarrollo OO I", "Intro Cloud Computing", "Comunicación"],
+  },
+  {
+    num: "B03",
+    title: "POO & DevOps",
+    subjects: ["Desarrollo OO II", "Herramientas DevOps", "Ética"],
+  },
+  { num: "B04", title: "SQL & Seguridad", subjects: ["Consulta BD", "Seguridad y Calidad"] },
 ];
 
 const analistaYear2 = [
-    { num: "B05", title: "SQL & Cloud Native", subjects: ["Programación BD", "Desarrollo Cloud Native", "Gestión Requisitos"] },
-    { num: "B06", title: "Backend & Ing. SW", subjects: ["Backend I", "Ing. Software I"] },
-    { num: "B07", title: "Backend Avanzado", subjects: ["Backend II", "Backend III", "Ing. Software II"] },
-    { num: "B08", title: "Arquitectura & FE", subjects: ["Arquitectura SW", "Frontend I", "Frontend II"] },
-    { num: "B09", title: "Frontend & Mobile", subjects: ["Frontend III", "App Móviles I"] },
-    { num: "B10", title: "Mobile & Título", subjects: ["App Móviles II", "Taller Aplicado SW"] }
+  {
+    num: "B05",
+    title: "SQL & Cloud Native",
+    subjects: ["Programación BD", "Desarrollo Cloud Native", "Gestión Requisitos"],
+  },
+  { num: "B06", title: "Backend & Ing. SW", subjects: ["Backend I", "Ing. Software I"] },
+  {
+    num: "B07",
+    title: "Backend Avanzado",
+    subjects: ["Backend II", "Backend III", "Ing. Software II"],
+  },
+  {
+    num: "B08",
+    title: "Arquitectura & FE",
+    subjects: ["Arquitectura SW", "Frontend I", "Frontend II"],
+  },
+  { num: "B09", title: "Frontend & Mobile", subjects: ["Frontend III", "App Móviles I"] },
+  { num: "B10", title: "Mobile & Título", subjects: ["App Móviles II", "Taller Aplicado SW"] },
 ];
 
 // CARRERA 2: Ingeniería en Desarrollo de Software (7 bimestres - continuidad)
 const ingenieriaYear3 = [
-    { num: "B11", title: "Fullstack I", subjects: ["Desarrollo Fullstack I", "BD Aplicada"] },
-    { num: "B12", title: "Fullstack II", subjects: ["Desarrollo Fullstack II", "Cloud Computing"] },
-    { num: "B13", title: "Fullstack III", subjects: ["Desarrollo Fullstack III", "DevOps"] },
-    { num: "B14", title: "Mobile & Cloud", subjects: ["Desarrollo App Móviles", "Cloud Native I"] }
+  { num: "B11", title: "Fullstack I", subjects: ["Desarrollo Fullstack I", "BD Aplicada"] },
+  { num: "B12", title: "Fullstack II", subjects: ["Desarrollo Fullstack II", "Cloud Computing"] },
+  { num: "B13", title: "Fullstack III", subjects: ["Desarrollo Fullstack III", "DevOps"] },
+  { num: "B14", title: "Mobile & Cloud", subjects: ["Desarrollo App Móviles", "Cloud Native I"] },
 ];
 
 const ingenieriaYear4 = [
-    { num: "B15", title: "Cloud Native II", subjects: ["Cloud Native II", "Seguridad y Calidad Ing"] },
-    { num: "B16", title: "Gestión SW", subjects: ["Evaluación Proyectos SW", "Gestión Proyectos SW"] },
-    { num: "B17", title: "Título Ing.", subjects: ["Ética Profesional", "Taller Aplicado SW Ing"] }
+  {
+    num: "B15",
+    title: "Cloud Native II",
+    subjects: ["Cloud Native II", "Seguridad y Calidad Ing"],
+  },
+  {
+    num: "B16",
+    title: "Gestión SW",
+    subjects: ["Evaluación Proyectos SW", "Gestión Proyectos SW"],
+  },
+  { num: "B17", title: "Título Ing.", subjects: ["Ética Profesional", "Taller Aplicado SW Ing"] },
 ];
 
 function getSubjectLink(subject: string): string | null {
-    return subjectLinks[subject] ? `${githubBase}/${subjectLinks[subject]}` : null;
+  return subjectLinks[subject] ? `${githubBase}/${subjectLinks[subject]}` : null;
 }
 ---
 
 <div class="plan-estudios-hero glass-card" data-aos="fade-up" data-aos-delay="300">
-    <!-- Header -->
-    <div class="plan-header-premium">
-        <div class="plan-title-wrap">
-            <div class="plan-icon-glow">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="plan-title-content">
-                <h2 class="plan-main-title">Plan de Estudios <span class="gradient-text">Completo</span></h2>
-                <p class="plan-tagline">17 Bimestres · 2 Títulos Profesionales · 40+ Asignaturas</p>
-            </div>
-        </div>
+  <!-- Header -->
+  <div class="plan-header-premium">
+    <div class="plan-title-wrap">
+      <div class="plan-icon-glow">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="plan-title-content">
+        <h2 class="plan-main-title">
+          Plan de Estudios <span class="gradient-text">Completo</span>
+        </h2>
+        <p class="plan-tagline">17 Bimestres · 2 Títulos Profesionales · 40+ Asignaturas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- CARRERA 1: ANALISTA PROGRAMADOR COMPUTACIONAL -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+
+  <div class="career-section">
+    <div class="career-header analista">
+      <i class="fas fa-code"></i>
+      <span>Carrera 1: Analista Programador Computacional</span>
+      <span class="career-duration">10 Bimestres · 20 meses</span>
     </div>
 
-    <!-- ══════════════════════════════════════════════════════════════ -->
-    <!-- CARRERA 1: ANALISTA PROGRAMADOR COMPUTACIONAL -->
-    <!-- ══════════════════════════════════════════════════════════════ -->
-
-    <div class="career-section">
-        <div class="career-header analista">
-            <i class="fas fa-code"></i>
-            <span>Carrera 1: Analista Programador Computacional</span>
-            <span class="career-duration">10 Bimestres · 20 meses</span>
-        </div>
-
-        <!-- Año 1 - Fundamentos -->
-        <div class="plan-year">
-            <div class="year-marker cyan">
-                <span class="year-num">Año 1</span>
-                <span class="year-label">Fundamentos</span>
+    <!-- Año 1 - Fundamentos -->
+    <div class="plan-year">
+      <div class="year-marker cyan">
+        <span class="year-num">Año 1</span>
+        <span class="year-label">Fundamentos</span>
+      </div>
+      <div class="plan-bimestres-grid">
+        {
+          analistaYear1.map((bim) => (
+            <div class="plan-bim-card">
+              <div class="bim-header">
+                <span class="bim-num">{bim.num}</span>
+                <span class="bim-title">{bim.title}</span>
+              </div>
+              <div class="bim-subjects-section">
+                <div class="subjects-label">
+                  <i class="fas fa-book-open" />
+                  <span>Asignaturas</span>
+                </div>
+                <div class="subjects-list">
+                  {bim.subjects.map((sub) => {
+                    const link = getSubjectLink(sub);
+                    const tooltip = getSubjectTooltip(sub);
+                    return link ? (
+                      <a
+                        href={link}
+                        target="_blank"
+                        class="subject-link"
+                        data-premium-tooltip={tooltip}
+                      >
+                        <i class="fas fa-folder" />
+                        <span>{sub}</span>
+                        <i class="fas fa-external-link-alt link-icon" />
+                      </a>
+                    ) : (
+                      <span class="subject-item" data-premium-tooltip={tooltip}>
+                        <i class="fas fa-book" />
+                        <span>{sub}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-            <div class="plan-bimestres-grid">
-                {analistaYear1.map(bim => (
-                    <div class="plan-bim-card">
-                        <div class="bim-header">
-                            <span class="bim-num">{bim.num}</span>
-                            <span class="bim-title">{bim.title}</span>
-                        </div>
-                        <div class="bim-subjects-section">
-                            <div class="subjects-label">
-                                <i class="fas fa-book-open"></i>
-                                <span>Asignaturas</span>
-                            </div>
-                            <div class="subjects-list">
-                                {bim.subjects.map(sub => {
-                                    const link = getSubjectLink(sub);
-                                    const tooltip = getSubjectTooltip(sub);
-                                    return link ? (
-                                        <a href={link} target="_blank" class="subject-link" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-folder"></i>
-                                            <span>{sub}</span>
-                                            <i class="fas fa-external-link-alt link-icon"></i>
-                                        </a>
-                                    ) : (
-                                        <span class="subject-item" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-book"></i>
-                                            <span>{sub}</span>
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        <!-- Año 2 - Especialización -->
-        <div class="plan-year">
-            <div class="year-marker purple">
-                <span class="year-num">Año 2</span>
-                <span class="year-label">Especialización</span>
-            </div>
-            <div class="plan-bimestres-grid">
-                {analistaYear2.map(bim => (
-                    <div class="plan-bim-card">
-                        <div class="bim-header">
-                            <span class="bim-num">{bim.num}</span>
-                            <span class="bim-title">{bim.title}</span>
-                        </div>
-                        <div class="bim-subjects-section">
-                            <div class="subjects-label">
-                                <i class="fas fa-book-open"></i>
-                                <span>Asignaturas</span>
-                            </div>
-                            <div class="subjects-list">
-                                {bim.subjects.map(sub => {
-                                    const link = getSubjectLink(sub);
-                                    const tooltip = getSubjectTooltip(sub);
-                                    return link ? (
-                                        <a href={link} target="_blank" class="subject-link" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-folder"></i>
-                                            <span>{sub}</span>
-                                            <i class="fas fa-external-link-alt link-icon"></i>
-                                        </a>
-                                    ) : (
-                                        <span class="subject-item" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-book"></i>
-                                            <span>{sub}</span>
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        <!-- Título Analista -->
-        <div class="plan-final analista-final">
-            <div class="final-line"></div>
-            <div class="final-badge">
-                <i class="fas fa-user-graduate"></i>
-                <span>Título Técnico - Bimestre 10</span>
-            </div>
-            <span class="final-title">Analista Programador Computacional</span>
-            <div class="final-line"></div>
-        </div>
+          ))
+        }
+      </div>
     </div>
 
-    <!-- ══════════════════════════════════════════════════════════════ -->
-    <!-- CONTINUIDAD: INGENIERÍA EN DESARROLLO DE SOFTWARE -->
-    <!-- ══════════════════════════════════════════════════════════════ -->
-
-    <div class="career-connector">
-        <div class="connector-line"></div>
-        <div class="connector-badge">
-            <i class="fas fa-arrow-down"></i>
-            <span>Continuación de Estudios</span>
-        </div>
-        <div class="connector-line"></div>
+    <!-- Año 2 - Especialización -->
+    <div class="plan-year">
+      <div class="year-marker purple">
+        <span class="year-num">Año 2</span>
+        <span class="year-label">Especialización</span>
+      </div>
+      <div class="plan-bimestres-grid">
+        {
+          analistaYear2.map((bim) => (
+            <div class="plan-bim-card">
+              <div class="bim-header">
+                <span class="bim-num">{bim.num}</span>
+                <span class="bim-title">{bim.title}</span>
+              </div>
+              <div class="bim-subjects-section">
+                <div class="subjects-label">
+                  <i class="fas fa-book-open" />
+                  <span>Asignaturas</span>
+                </div>
+                <div class="subjects-list">
+                  {bim.subjects.map((sub) => {
+                    const link = getSubjectLink(sub);
+                    const tooltip = getSubjectTooltip(sub);
+                    return link ? (
+                      <a
+                        href={link}
+                        target="_blank"
+                        class="subject-link"
+                        data-premium-tooltip={tooltip}
+                      >
+                        <i class="fas fa-folder" />
+                        <span>{sub}</span>
+                        <i class="fas fa-external-link-alt link-icon" />
+                      </a>
+                    ) : (
+                      <span class="subject-item" data-premium-tooltip={tooltip}>
+                        <i class="fas fa-book" />
+                        <span>{sub}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
 
-    <div class="career-section ingenieria">
-        <div class="career-header ingenieria">
-            <i class="fas fa-laptop-code"></i>
-            <span>Carrera 2 (Continuación): Ingeniería en Desarrollo de Software</span>
-            <span class="career-duration">7 Bimestres · 14 meses</span>
-        </div>
+    <!-- Título Analista -->
+    <div class="plan-final analista-final">
+      <div class="final-line"></div>
+      <div class="final-badge">
+        <i class="fas fa-user-graduate"></i>
+        <span>Título Técnico - Bimestre 10</span>
+      </div>
+      <span class="final-title">Analista Programador Computacional</span>
+      <div class="final-line"></div>
+    </div>
+  </div>
 
-        <!-- Año 3 - Desarrollo Fullstack -->
-        <div class="plan-year">
-            <div class="year-marker orange">
-                <span class="year-num">Año 3</span>
-                <span class="year-label">Fullstack</span>
-            </div>
-            <div class="plan-bimestres-grid">
-                {ingenieriaYear3.map(bim => (
-                    <div class="plan-bim-card ing">
-                        <div class="bim-header">
-                            <span class="bim-num">{bim.num}</span>
-                            <span class="bim-title">{bim.title}</span>
-                        </div>
-                        <div class="bim-subjects-section">
-                            <div class="subjects-label">
-                                <i class="fas fa-book-open"></i>
-                                <span>Asignaturas</span>
-                            </div>
-                            <div class="subjects-list">
-                                {bim.subjects.map(sub => {
-                                    const link = getSubjectLink(sub);
-                                    const tooltip = getSubjectTooltip(sub);
-                                    return link ? (
-                                        <a href={link} target="_blank" class="subject-link ing-link" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-folder"></i>
-                                            <span>{sub.replace(" Ing", "")}</span>
-                                            <i class="fas fa-external-link-alt link-icon"></i>
-                                        </a>
-                                    ) : (
-                                        <span class="subject-item pending" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-clock"></i>
-                                            <span>{sub}</span>
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- CONTINUIDAD: INGENIERÍA EN DESARROLLO DE SOFTWARE -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
 
-        <!-- Año 4 - Ingeniería Avanzada -->
-        <div class="plan-year">
-            <div class="year-marker gold">
-                <span class="year-num">Año 4</span>
-                <span class="year-label">Ingeniería</span>
-            </div>
-            <div class="plan-bimestres-grid year4-grid">
-                {ingenieriaYear4.map(bim => (
-                    <div class="plan-bim-card ing">
-                        <div class="bim-header">
-                            <span class="bim-num">{bim.num}</span>
-                            <span class="bim-title">{bim.title}</span>
-                        </div>
-                        <div class="bim-subjects-section">
-                            <div class="subjects-label">
-                                <i class="fas fa-book-open"></i>
-                                <span>Asignaturas</span>
-                            </div>
-                            <div class="subjects-list">
-                                {bim.subjects.map(sub => {
-                                    const link = getSubjectLink(sub);
-                                    const tooltip = getSubjectTooltip(sub);
-                                    return link ? (
-                                        <a href={link} target="_blank" class="subject-link ing-link" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-folder"></i>
-                                            <span>{sub.replace(" Ing", "")}</span>
-                                            <i class="fas fa-external-link-alt link-icon"></i>
-                                        </a>
-                                    ) : (
-                                        <span class="subject-item pending" data-premium-tooltip={tooltip}>
-                                            <i class="fas fa-clock"></i>
-                                            <span>{sub}</span>
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
+  <div class="career-connector">
+    <div class="connector-line"></div>
+    <div class="connector-badge">
+      <i class="fas fa-arrow-down"></i>
+      <span>Continuación de Estudios</span>
+    </div>
+    <div class="connector-line"></div>
+  </div>
 
-        <!-- Título Ingeniería -->
-        <div class="plan-final ingenieria-final">
-            <div class="final-line gold"></div>
-            <div class="final-badge gold">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Título Profesional - Bimestre 17</span>
-            </div>
-            <span class="final-title gold">Ingeniero(a) en Desarrollo de Software</span>
-            <div class="final-line gold"></div>
-        </div>
+  <div class="career-section ingenieria">
+    <div class="career-header ingenieria">
+      <i class="fas fa-laptop-code"></i>
+      <span>Carrera 2 (Continuación): Ingeniería en Desarrollo de Software</span>
+      <span class="career-duration">7 Bimestres · 14 meses</span>
     </div>
 
-    <!-- Resumen Total -->
-    <div class="plan-summary">
-        <div class="summary-item">
-            <i class="fas fa-calendar-alt"></i>
-            <span><strong>17</strong> Bimestres</span>
-        </div>
-        <div class="summary-item">
-            <i class="fas fa-clock"></i>
-            <span><strong>34</strong> Meses</span>
-        </div>
-        <div class="summary-item">
-            <i class="fas fa-award"></i>
-            <span><strong>2</strong> Títulos</span>
-        </div>
-        <div class="summary-item">
-            <i class="fas fa-book"></i>
-            <span><strong>40+</strong> Asignaturas</span>
-        </div>
+    <!-- Año 3 - Desarrollo Fullstack -->
+    <div class="plan-year">
+      <div class="year-marker orange">
+        <span class="year-num">Año 3</span>
+        <span class="year-label">Fullstack</span>
+      </div>
+      <div class="plan-bimestres-grid">
+        {
+          ingenieriaYear3.map((bim) => (
+            <div class="plan-bim-card ing">
+              <div class="bim-header">
+                <span class="bim-num">{bim.num}</span>
+                <span class="bim-title">{bim.title}</span>
+              </div>
+              <div class="bim-subjects-section">
+                <div class="subjects-label">
+                  <i class="fas fa-book-open" />
+                  <span>Asignaturas</span>
+                </div>
+                <div class="subjects-list">
+                  {bim.subjects.map((sub) => {
+                    const link = getSubjectLink(sub);
+                    const tooltip = getSubjectTooltip(sub);
+                    return link ? (
+                      <a
+                        href={link}
+                        target="_blank"
+                        class="subject-link ing-link"
+                        data-premium-tooltip={tooltip}
+                      >
+                        <i class="fas fa-folder" />
+                        <span>{sub.replace(" Ing", "")}</span>
+                        <i class="fas fa-external-link-alt link-icon" />
+                      </a>
+                    ) : (
+                      <span class="subject-item pending" data-premium-tooltip={tooltip}>
+                        <i class="fas fa-clock" />
+                        <span>{sub}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
+
+    <!-- Año 4 - Ingeniería Avanzada -->
+    <div class="plan-year">
+      <div class="year-marker gold">
+        <span class="year-num">Año 4</span>
+        <span class="year-label">Ingeniería</span>
+      </div>
+      <div class="plan-bimestres-grid year4-grid">
+        {
+          ingenieriaYear4.map((bim) => (
+            <div class="plan-bim-card ing">
+              <div class="bim-header">
+                <span class="bim-num">{bim.num}</span>
+                <span class="bim-title">{bim.title}</span>
+              </div>
+              <div class="bim-subjects-section">
+                <div class="subjects-label">
+                  <i class="fas fa-book-open" />
+                  <span>Asignaturas</span>
+                </div>
+                <div class="subjects-list">
+                  {bim.subjects.map((sub) => {
+                    const link = getSubjectLink(sub);
+                    const tooltip = getSubjectTooltip(sub);
+                    return link ? (
+                      <a
+                        href={link}
+                        target="_blank"
+                        class="subject-link ing-link"
+                        data-premium-tooltip={tooltip}
+                      >
+                        <i class="fas fa-folder" />
+                        <span>{sub.replace(" Ing", "")}</span>
+                        <i class="fas fa-external-link-alt link-icon" />
+                      </a>
+                    ) : (
+                      <span class="subject-item pending" data-premium-tooltip={tooltip}>
+                        <i class="fas fa-clock" />
+                        <span>{sub}</span>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Título Ingeniería -->
+    <div class="plan-final ingenieria-final">
+      <div class="final-line gold"></div>
+      <div class="final-badge gold">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Título Profesional - Bimestre 17</span>
+      </div>
+      <span class="final-title gold">Ingeniero(a) en Desarrollo de Software</span>
+      <div class="final-line gold"></div>
+    </div>
+  </div>
+
+  <!-- Resumen Total -->
+  <div class="plan-summary">
+    <div class="summary-item">
+      <i class="fas fa-calendar-alt"></i>
+      <span><strong>17</strong> Bimestres</span>
+    </div>
+    <div class="summary-item">
+      <i class="fas fa-clock"></i>
+      <span><strong>34</strong> Meses</span>
+    </div>
+    <div class="summary-item">
+      <i class="fas fa-award"></i>
+      <span><strong>2</strong> Títulos</span>
+    </div>
+    <div class="summary-item">
+      <i class="fas fa-book"></i>
+      <span><strong>40+</strong> Asignaturas</span>
+    </div>
+  </div>
 </div>
 
 <style>
-    /* Premium Header */
+  /* Premium Header */
+  .plan-header-premium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .plan-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .plan-icon-glow {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .plan-icon-glow i {
+    font-size: 2rem;
+    color: white;
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 50px rgba(124, 58, 237, 0.6);
+    }
+  }
+
+  .plan-title-content {
+    text-align: left;
+  }
+
+  .plan-main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .plan-main-title .gradient-text {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .plan-tagline {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0.5rem 0 0;
+  }
+
+  /* Career Section */
+  .career-section {
+    margin-bottom: 2rem;
+  }
+
+  .career-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .career-header.analista {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+    border-left: 4px solid #00d4ff;
+  }
+
+  .career-header.ingenieria {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), rgba(255, 215, 0, 0.15));
+    border-left: 4px solid #ff9800;
+  }
+
+  .career-header i {
+    font-size: 1.5rem;
+  }
+
+  .career-header.analista i {
+    color: #00d4ff;
+  }
+
+  .career-header.ingenieria i {
+    color: #ff9800;
+  }
+
+  .career-duration {
+    margin-left: auto;
+    font-size: 0.85rem;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+  }
+
+  /* Plan Year */
+  .plan-year {
+    margin-bottom: 2rem;
+  }
+
+  .year-marker {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    margin-bottom: 1.25rem;
+    color: white;
+  }
+
+  .year-marker.cyan {
+    background: linear-gradient(135deg, #00d4ff, #0891b2);
+  }
+
+  .year-marker.purple {
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+  }
+
+  .year-marker.orange {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+  }
+
+  .year-marker.gold {
+    background: linear-gradient(135deg, #ffd700, #ffb300);
+    color: #1a1a2e;
+  }
+
+  .year-num {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .year-label {
+    font-size: 0.75rem;
+    opacity: 0.9;
+  }
+
+  /* Bimestres Grid */
+  .plan-bimestres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .year4-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Bimestre Card */
+  .plan-bim-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .plan-bim-card:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+    transform: translateY(-3px);
+  }
+
+  .plan-bim-card.ing {
+    border-color: rgba(255, 152, 0, 0.2);
+  }
+
+  .plan-bim-card.ing:hover {
+    border-color: rgba(255, 152, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(255, 152, 0, 0.15);
+  }
+
+  .bim-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .bim-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #00d4ff;
+  }
+
+  .plan-bim-card.ing .bim-num {
+    color: #ff9800;
+  }
+
+  .bim-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Subjects Section */
+  .bim-subjects-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .subjects-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .subjects-label i {
+    color: #7c3aed;
+    font-size: 0.9rem;
+  }
+
+  .subjects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Subject Link */
+  .subject-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .subject-link:hover {
+    background: rgba(0, 212, 255, 0.18);
+    border-color: rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+    transform: translateX(4px);
+  }
+
+  .subject-link i.fa-folder {
+    color: #ffd700;
+    font-size: 0.9rem;
+  }
+
+  .subject-link .link-icon {
+    margin-left: auto;
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .subject-link:hover .link-icon {
+    opacity: 1;
+  }
+
+  /* Ingeniería Subject Links */
+  .subject-link.ing-link {
+    background: rgba(255, 152, 0, 0.08);
+    border-color: rgba(255, 152, 0, 0.15);
+  }
+
+  .subject-link.ing-link:hover {
+    background: rgba(255, 152, 0, 0.18);
+    border-color: rgba(255, 152, 0, 0.4);
+    color: #ff9800;
+  }
+
+  .subject-link.ing-link i.fa-folder {
+    color: #ff9800;
+  }
+
+  /* Subject Item (no link) */
+  .subject-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .subject-item i {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .subject-item.pending {
+    background: rgba(255, 152, 0, 0.05);
+    border-color: rgba(255, 152, 0, 0.15);
+  }
+
+  .subject-item.pending i {
+    color: #ff9800;
+  }
+
+  /* Career Connector */
+  .career-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+  }
+
+  .connector-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 152, 0, 0.5), transparent);
+  }
+
+  .connector-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 215, 0, 0.2));
+    padding: 0.6rem 1.25rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #ff9800;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+  }
+
+  .connector-badge i {
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(3px);
+    }
+  }
+
+  /* Final Badges */
+  .plan-final {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .final-line {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
+  }
+
+  .final-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .final-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  /* Analista Final */
+  .analista-final .final-badge {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
+    border-color: rgba(124, 58, 237, 0.4);
+    color: #00d4ff;
+  }
+
+  .analista-final .final-title {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Ingeniería Final */
+  .final-line.gold {
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
+  }
+
+  .final-badge.gold {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 152, 0, 0.2));
+    border-color: rgba(255, 215, 0, 0.4);
+    color: #ffd700;
+  }
+
+  .final-title.gold {
+    background: linear-gradient(135deg, #ffd700, #ff9800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.5rem;
+  }
+
+  /* Plan Summary */
+  .plan-summary {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 1.25rem;
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+  }
+
+  .summary-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1rem;
+  }
+
+  .summary-item i {
+    color: #00d4ff;
+    font-size: 1.1rem;
+  }
+
+  .summary-item strong {
+    color: #ffd700;
+    font-size: 1.2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .plan-bimestres-grid,
+    .year4-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
     .plan-header-premium {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-direction: column;
+      text-align: center;
     }
 
     .plan-title-wrap {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-    }
-
-    .plan-icon-glow {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-        animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    .plan-icon-glow i {
-        font-size: 2rem;
-        color: white;
-    }
-
-    @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.4); }
-        50% { box-shadow: 0 0 50px rgba(124, 58, 237, 0.6); }
+      flex-direction: column;
     }
 
     .plan-title-content {
-        text-align: left;
+      text-align: center;
     }
 
     .plan-main-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0;
-        color: var(--text-primary);
-    }
-
-    .plan-main-title .gradient-text {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .plan-tagline {
-        font-size: 1rem;
-        color: var(--text-secondary);
-        margin: 0.5rem 0 0;
-    }
-
-    /* Career Section */
-    .career-section {
-        margin-bottom: 2rem;
+      font-size: 1.6rem;
     }
 
     .career-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 1.25rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        font-weight: 600;
-        font-size: 1.1rem;
-        flex-wrap: wrap;
-    }
-
-    .career-header.analista {
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
-        border-left: 4px solid #00d4ff;
-    }
-
-    .career-header.ingenieria {
-        background: linear-gradient(135deg, rgba(255, 152, 0, 0.15), rgba(255, 215, 0, 0.15));
-        border-left: 4px solid #ff9800;
-    }
-
-    .career-header i {
-        font-size: 1.5rem;
-    }
-
-    .career-header.analista i {
-        color: #00d4ff;
-    }
-
-    .career-header.ingenieria i {
-        color: #ff9800;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
     }
 
     .career-duration {
-        margin-left: auto;
-        font-size: 0.85rem;
-        opacity: 0.8;
-        background: rgba(255,255,255,0.1);
-        padding: 0.35rem 1rem;
-        border-radius: 20px;
+      margin-left: 0;
     }
 
-    /* Plan Year */
-    .plan-year {
-        margin-bottom: 2rem;
-    }
-
-    .year-marker {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.5rem 1.5rem;
-        border-radius: 25px;
-        margin-bottom: 1.25rem;
-        color: white;
-    }
-
-    .year-marker.cyan {
-        background: linear-gradient(135deg, #00d4ff, #0891b2);
-    }
-
-    .year-marker.purple {
-        background: linear-gradient(135deg, #7c3aed, #9333ea);
-    }
-
-    .year-marker.orange {
-        background: linear-gradient(135deg, #ff9800, #f57c00);
-    }
-
-    .year-marker.gold {
-        background: linear-gradient(135deg, #ffd700, #ffb300);
-        color: #1a1a2e;
-    }
-
-    .year-num {
-        font-size: 1rem;
-        font-weight: 700;
-    }
-
-    .year-label {
-        font-size: 0.75rem;
-        opacity: 0.9;
-    }
-
-    /* Bimestres Grid */
-    .plan-bimestres-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.25rem;
-    }
-
+    .plan-bimestres-grid,
     .year4-grid {
-        grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
     }
 
-    /* Bimestre Card */
-    .plan-bim-card {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(0, 212, 255, 0.2);
-        border-radius: 16px;
-        padding: 1.25rem;
-        transition: all 0.3s ease;
-    }
-
-    .plan-bim-card:hover {
-        border-color: rgba(0, 212, 255, 0.5);
-        box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
-        transform: translateY(-3px);
-    }
-
-    .plan-bim-card.ing {
-        border-color: rgba(255, 152, 0, 0.2);
-    }
-
-    .plan-bim-card.ing:hover {
-        border-color: rgba(255, 152, 0, 0.5);
-        box-shadow: 0 8px 30px rgba(255, 152, 0, 0.15);
-    }
-
-    .bim-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .bim-num {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #00d4ff;
-    }
-
-    .plan-bim-card.ing .bim-num {
-        color: #ff9800;
-    }
-
-    .bim-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-
-    /* Subjects Section */
-    .bim-subjects-section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .subjects-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .subjects-label i {
-        color: #7c3aed;
-        font-size: 0.9rem;
-    }
-
-    .subjects-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    /* Subject Link */
-    .subject-link {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.6rem 0.9rem;
-        background: rgba(0, 212, 255, 0.08);
-        border: 1px solid rgba(0, 212, 255, 0.15);
-        border-radius: 10px;
-        color: var(--text-primary);
-        font-size: 0.95rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .subject-link:hover {
-        background: rgba(0, 212, 255, 0.18);
-        border-color: rgba(0, 212, 255, 0.4);
-        color: #00d4ff;
-        transform: translateX(4px);
-    }
-
-    .subject-link i.fa-folder {
-        color: #ffd700;
-        font-size: 0.9rem;
-    }
-
-    .subject-link .link-icon {
-        margin-left: auto;
-        font-size: 0.7rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .subject-link:hover .link-icon {
-        opacity: 1;
-    }
-
-    /* Ingeniería Subject Links */
-    .subject-link.ing-link {
-        background: rgba(255, 152, 0, 0.08);
-        border-color: rgba(255, 152, 0, 0.15);
-    }
-
-    .subject-link.ing-link:hover {
-        background: rgba(255, 152, 0, 0.18);
-        border-color: rgba(255, 152, 0, 0.4);
-        color: #ff9800;
-    }
-
-    .subject-link.ing-link i.fa-folder {
-        color: #ff9800;
-    }
-
-    /* Subject Item (no link) */
-    .subject-item {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.6rem 0.9rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        font-weight: 500;
-    }
-
-    .subject-item i {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-    }
-
-    .subject-item.pending {
-        background: rgba(255, 152, 0, 0.05);
-        border-color: rgba(255, 152, 0, 0.15);
-    }
-
-    .subject-item.pending i {
-        color: #ff9800;
-    }
-
-    /* Career Connector */
-    .career-connector {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        margin: 2rem 0;
-        padding: 1rem 0;
-    }
-
-    .connector-line {
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255, 152, 0, 0.5), transparent);
-    }
-
-    .connector-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: linear-gradient(135deg, rgba(255, 152, 0, 0.2), rgba(255, 215, 0, 0.2));
-        padding: 0.6rem 1.25rem;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #ff9800;
-        border: 1px solid rgba(255, 152, 0, 0.3);
-    }
-
-    .connector-badge i {
-        animation: bounce 1s infinite;
-    }
-
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(3px); }
-    }
-
-    /* Final Badges */
     .plan-final {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1.25rem;
-        flex-wrap: wrap;
+      flex-direction: column;
     }
 
     .final-line {
-        flex: 1;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.5), transparent);
+      width: 60%;
+      flex: none;
     }
 
-    .final-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 25px;
-        font-size: 0.85rem;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .final-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-    }
-
-    /* Analista Final */
-    .analista-final .final-badge {
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
-        border-color: rgba(124, 58, 237, 0.4);
-        color: #00d4ff;
-    }
-
-    .analista-final .final-title {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    /* Ingeniería Final */
-    .final-line.gold {
-        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.5), transparent);
-    }
-
-    .final-badge.gold {
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 152, 0, 0.2));
-        border-color: rgba(255, 215, 0, 0.4);
-        color: #ffd700;
-    }
-
-    .final-title.gold {
-        background: linear-gradient(135deg, #ffd700, #ff9800);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size: 1.5rem;
-    }
-
-    /* Plan Summary */
     .plan-summary {
-        display: flex;
-        justify-content: center;
-        gap: 2.5rem;
-        padding: 1.25rem;
-        margin-top: 2rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        flex-wrap: wrap;
+      gap: 1.25rem;
     }
 
     .summary-item {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-        font-size: 1rem;
+      font-size: 0.9rem;
     }
-
-    .summary-item i {
-        color: #00d4ff;
-        font-size: 1.1rem;
-    }
-
-    .summary-item strong {
-        color: #ffd700;
-        font-size: 1.2rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-        .plan-bimestres-grid,
-        .year4-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .plan-header-premium {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .plan-title-wrap {
-            flex-direction: column;
-        }
-
-        .plan-title-content {
-            text-align: center;
-        }
-
-        .plan-main-title {
-            font-size: 1.6rem;
-        }
-
-        .career-header {
-            flex-direction: column;
-            text-align: center;
-            gap: 0.5rem;
-        }
-
-        .career-duration {
-            margin-left: 0;
-        }
-
-        .plan-bimestres-grid,
-        .year4-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .plan-final {
-            flex-direction: column;
-        }
-
-        .final-line {
-            width: 60%;
-            flex: none;
-        }
-
-        .plan-summary {
-            gap: 1.25rem;
-        }
-
-        .summary-item {
-            font-size: 0.9rem;
-        }
-    }
+  }
 </style>

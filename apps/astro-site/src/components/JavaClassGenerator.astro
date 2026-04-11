@@ -7,1503 +7,1576 @@
 ---
 
 <section id="java-generator" class="java-generator-section">
-    <div class="java-container">
-        <!-- Header -->
-        <div class="java-header" data-aos="fade-up">
-            <div class="header-icon">
-                <i class="devicon-java-plain colored"></i>
-            </div>
-            <div class="header-content">
-                <h2>Generador de Clases Java</h2>
-                <p>Crea clases, métodos y objetos siguiendo las mejores prácticas de POO</p>
-            </div>
-            <div class="header-badges">
-                <span class="badge java">Java 17+</span>
-                <span class="badge oop">POO</span>
-                <span class="badge clean">Clean Code</span>
-            </div>
-        </div>
-
-        <!-- Main Generator -->
-        <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
-            <!-- Left Panel - Configuration -->
-            <div class="config-panel">
-                <div class="panel-header">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
-                </div>
-
-                <!-- Class Configuration -->
-                <div class="config-section">
-                    <h4><i class="fas fa-cube"></i> Clase</h4>
-
-                    <div class="form-group">
-                        <label>Nombre de la Clase</label>
-                        <input type="text" id="java-class-name" placeholder="Persona" value="Persona">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Paquete</label>
-                        <input type="text" id="java-package" placeholder="com.ejemplo.modelo" value="com.ejemplo.modelo">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Modificador</label>
-                            <select id="java-class-modifier">
-                                <option value="public" selected>public</option>
-                                <option value="protected">protected</option>
-                                <option value="">default</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Tipo</label>
-                            <select id="java-class-type">
-                                <option value="class" selected>class</option>
-                                <option value="abstract class">abstract class</option>
-                                <option value="interface">interface</option>
-                                <option value="record">record</option>
-                                <option value="enum">enum</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Extiende (Herencia)</label>
-                        <input type="text" id="java-extends" placeholder="ClasePadre (opcional)">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Implementa (Interfaces)</label>
-                        <input type="text" id="java-implements" placeholder="Serializable, Comparable (separar con coma)">
-                    </div>
-                </div>
-
-                <!-- Attributes -->
-                <div class="config-section">
-                    <h4><i class="fas fa-database"></i> Atributos</h4>
-                    <div id="java-attributes-list" class="attributes-list">
-                        <!-- Dynamic attributes -->
-                    </div>
-                    <button type="button" class="btn-add" id="java-add-attribute">
-                        <i class="fas fa-plus"></i> Agregar Atributo
-                    </button>
-                </div>
-
-                <!-- Methods -->
-                <div class="config-section">
-                    <h4><i class="fas fa-code"></i> Métodos</h4>
-                    <div id="java-methods-list" class="methods-list">
-                        <!-- Dynamic methods -->
-                    </div>
-                    <button type="button" class="btn-add" id="java-add-method">
-                        <i class="fas fa-plus"></i> Agregar Método
-                    </button>
-                </div>
-
-                <!-- Options -->
-                <div class="config-section">
-                    <h4><i class="fas fa-sliders-h"></i> Opciones</h4>
-                    <div class="options-grid">
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-constructor" checked>
-                            <span>Constructor</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-getters" checked>
-                            <span>Getters</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-setters" checked>
-                            <span>Setters</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-tostring" checked>
-                            <span>toString()</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-equals">
-                            <span>equals() & hashCode()</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-builder">
-                            <span>Builder Pattern</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-javadoc" checked>
-                            <span>Javadoc</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="java-generate-validation">
-                            <span>Validaciones</span>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-generate" id="java-generate-btn">
-                    <i class="fas fa-magic"></i> Generar Código
-                </button>
-            </div>
-
-            <!-- Right Panel - Code Output -->
-            <div class="output-panel">
-                <div class="panel-header">
-                    <div class="panel-title">
-                        <i class="fas fa-file-code"></i>
-                        <span id="java-filename">Persona.java</span>
-                    </div>
-                    <div class="panel-actions">
-                        <button type="button" class="btn-icon" id="java-copy-btn" title="Copiar código">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <button type="button" class="btn-icon" id="java-download-btn" title="Descargar archivo">
-                            <i class="fas fa-download"></i>
-                        </button>
-                        <button type="button" class="btn-icon" id="java-fullscreen-btn" title="Pantalla completa">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-output">
-                    <pre><code id="java-code-output" class="language-java">// Configura tu clase y presiona "Generar Código"</code></pre>
-                </div>
-                <div class="output-footer">
-                    <span class="line-count"><i class="fas fa-align-left"></i> <span id="java-line-count">1</span> líneas</span>
-                    <span class="char-count"><i class="fas fa-text-width"></i> <span id="java-char-count">0</span> caracteres</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Templates -->
-        <div class="templates-section" data-aos="fade-up" data-aos-delay="200">
-            <h4><i class="fas fa-layer-group"></i> Plantillas Rápidas</h4>
-            <div class="templates-grid">
-                <button type="button" class="template-btn" data-template="entity">
-                    <i class="fas fa-table"></i>
-                    <span>Entity JPA</span>
-                </button>
-                <button type="button" class="template-btn" data-template="dto">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span>DTO</span>
-                </button>
-                <button type="button" class="template-btn" data-template="service">
-                    <i class="fas fa-cogs"></i>
-                    <span>Service</span>
-                </button>
-                <button type="button" class="template-btn" data-template="repository">
-                    <i class="fas fa-database"></i>
-                    <span>Repository</span>
-                </button>
-                <button type="button" class="template-btn" data-template="controller">
-                    <i class="fas fa-sitemap"></i>
-                    <span>Controller</span>
-                </button>
-                <button type="button" class="template-btn" data-template="singleton">
-                    <i class="fas fa-dot-circle"></i>
-                    <span>Singleton</span>
-                </button>
-                <button type="button" class="template-btn" data-template="factory">
-                    <i class="fas fa-industry"></i>
-                    <span>Factory</span>
-                </button>
-                <button type="button" class="template-btn" data-template="observer">
-                    <i class="fas fa-eye"></i>
-                    <span>Observer</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- UML Preview -->
-        <div class="uml-preview" data-aos="fade-up" data-aos-delay="300">
-            <div class="panel-header">
-                <i class="fas fa-project-diagram"></i>
-                <span>Vista UML</span>
-            </div>
-            <div class="uml-diagram" id="java-uml-diagram">
-                <div class="uml-class">
-                    <div class="uml-header">Persona</div>
-                    <div class="uml-attributes" id="uml-attributes">
-                        - nombre: String<br>
-                        - edad: int
-                    </div>
-                    <div class="uml-methods" id="uml-methods">
-                        + getNombre(): String<br>
-                        + setNombre(String): void<br>
-                        + getEdad(): int<br>
-                        + setEdad(int): void
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="java-container">
+    <!-- Header -->
+    <div class="java-header" data-aos="fade-up">
+      <div class="header-icon">
+        <i class="devicon-java-plain colored"></i>
+      </div>
+      <div class="header-content">
+        <h2>Generador de Clases Java</h2>
+        <p>Crea clases, métodos y objetos siguiendo las mejores prácticas de POO</p>
+      </div>
+      <div class="header-badges">
+        <span class="badge java">Java 17+</span>
+        <span class="badge oop">POO</span>
+        <span class="badge clean">Clean Code</span>
+      </div>
     </div>
+
+    <!-- Main Generator -->
+    <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
+      <!-- Left Panel - Configuration -->
+      <div class="config-panel">
+        <div class="panel-header">
+          <i class="fas fa-cog"></i>
+          <span>Configuración</span>
+        </div>
+
+        <!-- Class Configuration -->
+        <div class="config-section">
+          <h4><i class="fas fa-cube"></i> Clase</h4>
+
+          <div class="form-group">
+            <label>Nombre de la Clase</label>
+            <input type="text" id="java-class-name" placeholder="Persona" value="Persona" />
+          </div>
+
+          <div class="form-group">
+            <label>Paquete</label>
+            <input
+              type="text"
+              id="java-package"
+              placeholder="com.ejemplo.modelo"
+              value="com.ejemplo.modelo"
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Modificador</label>
+              <select id="java-class-modifier">
+                <option value="public" selected>public</option>
+                <option value="protected">protected</option>
+                <option value="">default</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tipo</label>
+              <select id="java-class-type">
+                <option value="class" selected>class</option>
+                <option value="abstract class">abstract class</option>
+                <option value="interface">interface</option>
+                <option value="record">record</option>
+                <option value="enum">enum</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Extiende (Herencia)</label>
+            <input type="text" id="java-extends" placeholder="ClasePadre (opcional)" />
+          </div>
+
+          <div class="form-group">
+            <label>Implementa (Interfaces)</label>
+            <input
+              type="text"
+              id="java-implements"
+              placeholder="Serializable, Comparable (separar con coma)"
+            />
+          </div>
+        </div>
+
+        <!-- Attributes -->
+        <div class="config-section">
+          <h4><i class="fas fa-database"></i> Atributos</h4>
+          <div id="java-attributes-list" class="attributes-list">
+            <!-- Dynamic attributes -->
+          </div>
+          <button type="button" class="btn-add" id="java-add-attribute">
+            <i class="fas fa-plus"></i> Agregar Atributo
+          </button>
+        </div>
+
+        <!-- Methods -->
+        <div class="config-section">
+          <h4><i class="fas fa-code"></i> Métodos</h4>
+          <div id="java-methods-list" class="methods-list">
+            <!-- Dynamic methods -->
+          </div>
+          <button type="button" class="btn-add" id="java-add-method">
+            <i class="fas fa-plus"></i> Agregar Método
+          </button>
+        </div>
+
+        <!-- Options -->
+        <div class="config-section">
+          <h4><i class="fas fa-sliders-h"></i> Opciones</h4>
+          <div class="options-grid">
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-constructor" checked />
+              <span>Constructor</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-getters" checked />
+              <span>Getters</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-setters" checked />
+              <span>Setters</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-tostring" checked />
+              <span>toString()</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-equals" />
+              <span>equals() & hashCode()</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-builder" />
+              <span>Builder Pattern</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-javadoc" checked />
+              <span>Javadoc</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="java-generate-validation" />
+              <span>Validaciones</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn-generate" id="java-generate-btn">
+          <i class="fas fa-magic"></i> Generar Código
+        </button>
+      </div>
+
+      <!-- Right Panel - Code Output -->
+      <div class="output-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <i class="fas fa-file-code"></i>
+            <span id="java-filename">Persona.java</span>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn-icon" id="java-copy-btn" title="Copiar código">
+              <i class="fas fa-copy"></i>
+            </button>
+            <button type="button" class="btn-icon" id="java-download-btn" title="Descargar archivo">
+              <i class="fas fa-download"></i>
+            </button>
+            <button
+              type="button"
+              class="btn-icon"
+              id="java-fullscreen-btn"
+              title="Pantalla completa"
+            >
+              <i class="fas fa-expand"></i>
+            </button>
+          </div>
+        </div>
+        <div class="code-output">
+          <pre><code id="java-code-output" class="language-java">// Configura tu clase y presiona "Generar Código"</code></pre>
+        </div>
+        <div class="output-footer">
+          <span class="line-count"
+            ><i class="fas fa-align-left"></i> <span id="java-line-count">1</span> líneas</span
+          >
+          <span class="char-count"
+            ><i class="fas fa-text-width"></i> <span id="java-char-count">0</span> caracteres</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Templates -->
+    <div class="templates-section" data-aos="fade-up" data-aos-delay="200">
+      <h4><i class="fas fa-layer-group"></i> Plantillas Rápidas</h4>
+      <div class="templates-grid">
+        <button type="button" class="template-btn" data-template="entity">
+          <i class="fas fa-table"></i>
+          <span>Entity JPA</span>
+        </button>
+        <button type="button" class="template-btn" data-template="dto">
+          <i class="fas fa-exchange-alt"></i>
+          <span>DTO</span>
+        </button>
+        <button type="button" class="template-btn" data-template="service">
+          <i class="fas fa-cogs"></i>
+          <span>Service</span>
+        </button>
+        <button type="button" class="template-btn" data-template="repository">
+          <i class="fas fa-database"></i>
+          <span>Repository</span>
+        </button>
+        <button type="button" class="template-btn" data-template="controller">
+          <i class="fas fa-sitemap"></i>
+          <span>Controller</span>
+        </button>
+        <button type="button" class="template-btn" data-template="singleton">
+          <i class="fas fa-dot-circle"></i>
+          <span>Singleton</span>
+        </button>
+        <button type="button" class="template-btn" data-template="factory">
+          <i class="fas fa-industry"></i>
+          <span>Factory</span>
+        </button>
+        <button type="button" class="template-btn" data-template="observer">
+          <i class="fas fa-eye"></i>
+          <span>Observer</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- UML Preview -->
+    <div class="uml-preview" data-aos="fade-up" data-aos-delay="300">
+      <div class="panel-header">
+        <i class="fas fa-project-diagram"></i>
+        <span>Vista UML</span>
+      </div>
+      <div class="uml-diagram" id="java-uml-diagram">
+        <div class="uml-class">
+          <div class="uml-header">Persona</div>
+          <div class="uml-attributes" id="uml-attributes">
+            - nombre: String<br />
+            - edad: int
+          </div>
+          <div class="uml-methods" id="uml-methods">
+            + getNombre(): String<br />
+            + setNombre(String): void<br />
+            + getEdad(): int<br />
+            + setEdad(int): void
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .java-generator-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
-    }
+  .java-generator-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  }
 
-    .java-container {
-        max-width: 1400px;
-        margin: 0 auto;
+  .java-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .java-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.1), rgba(249, 115, 22, 0.05));
+    border: 1px solid rgba(234, 88, 12, 0.2);
+    border-radius: 16px;
+  }
+
+  .header-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ea580c, #f97316);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-icon i {
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  .header-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .header-content p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge.java {
+    background: rgba(234, 88, 12, 0.2);
+    color: #f97316;
+    border: 1px solid rgba(234, 88, 12, 0.3);
+  }
+
+  .badge.oop {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .badge.clean {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .generator-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .config-panel,
+  .output-panel {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .panel-header i {
+    color: #f97316;
+  }
+
+  .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .panel-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-icon:hover {
+    background: rgba(249, 115, 22, 0.2);
+    color: #f97316;
+  }
+
+  .config-section {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .config-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .config-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .config-section h4 i {
+    color: #f97316;
+    font-size: 0.85rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .attributes-list,
+  .methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .attribute-item,
+  .method-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+  }
+
+  .attribute-item input,
+  .method-item input,
+  .attribute-item select,
+  .method-item select {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 6px;
+    color: #f8fafc;
+    font-size: 0.8rem;
+  }
+
+  .btn-remove {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-remove:hover {
+    background: rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-add {
+    width: 100%;
+    padding: 0.6rem;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px dashed rgba(249, 115, 22, 0.3);
+    border-radius: 8px;
+    color: #f97316;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-add:hover {
+    background: rgba(249, 115, 22, 0.2);
+    border-color: #f97316;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-option:hover {
+    background: rgba(15, 23, 42, 0.5);
+    color: #f8fafc;
+  }
+
+  .checkbox-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #f97316;
+  }
+
+  .btn-generate {
+    width: calc(100% - 2.5rem);
+    margin: 1.25rem;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #ea580c, #f97316);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .code-output {
+    height: 500px;
+    overflow: auto;
+    background: #0f172a;
+    padding: 1rem;
+  }
+
+  .code-output pre {
+    margin: 0;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .code-output code {
+    color: #e2e8f0;
+    white-space: pre;
+  }
+
+  .output-footer {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  .output-footer span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .templates-section {
+    padding: 1.5rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+  }
+
+  .templates-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .templates-section h4 i {
+    color: #f97316;
+  }
+
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .template-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .template-btn:hover {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: rgba(249, 115, 22, 0.3);
+    color: #f97316;
+    transform: translateY(-2px);
+  }
+
+  .template-btn i {
+    font-size: 1.5rem;
+  }
+
+  .template-btn span {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .uml-preview {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .uml-diagram {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .uml-class {
+    min-width: 250px;
+    background: #0f172a;
+    border: 2px solid #f97316;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+  }
+
+  .uml-header {
+    padding: 0.75rem 1rem;
+    background: rgba(249, 115, 22, 0.2);
+    color: #f97316;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 2px solid #f97316;
+  }
+
+  .uml-attributes,
+  .uml-methods {
+    padding: 0.75rem 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  .uml-attributes {
+    border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+  }
+
+  /* Light Mode - Enterprise Grade */
+  :global([data-theme="light"]) .java-generator-section {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  }
+
+  :global([data-theme="light"]) .java-header {
+    background: linear-gradient(135deg, rgba(234, 88, 12, 0.06), rgba(249, 115, 22, 0.03));
+    border-color: rgba(234, 88, 12, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .header-icon {
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+  }
+
+  :global([data-theme="light"]) .header-content h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .header-content p {
+    color: #64748b;
+  }
+
+  /* Light Mode - Badges */
+  :global([data-theme="light"]) .badge.java {
+    background: rgba(234, 88, 12, 0.1);
+    color: #c2410c;
+    border-color: rgba(234, 88, 12, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.oop {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.clean {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    border-color: rgba(34, 197, 94, 0.25);
+  }
+
+  /* Light Mode - Panels */
+  :global([data-theme="light"]) .config-panel,
+  :global([data-theme="light"]) .output-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .panel-header {
+    background: rgba(248, 250, 252, 0.9);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .panel-header i {
+    color: #c2410c;
+  }
+
+  :global([data-theme="light"]) .panel-title {
+    color: #0f172a;
+  }
+
+  /* Light Mode - Icon Buttons */
+  :global([data-theme="light"]) .btn-icon {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .btn-icon:hover {
+    background: rgba(234, 88, 12, 0.1);
+    color: #c2410c;
+    border-color: rgba(234, 88, 12, 0.2);
+  }
+
+  /* Light Mode - Config Sections */
+  :global([data-theme="light"]) .config-section {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .config-section h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .config-section h4 i {
+    color: #c2410c;
+  }
+
+  /* Light Mode - Form Elements */
+  :global([data-theme="light"]) .form-group label {
+    color: #475569;
+    font-weight: 500;
+  }
+
+  :global([data-theme="light"]) .form-group input,
+  :global([data-theme="light"]) .form-group select {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  :global([data-theme="light"]) .form-group input::placeholder {
+    color: #94a3b8;
+  }
+
+  :global([data-theme="light"]) .form-group input:focus,
+  :global([data-theme="light"]) .form-group select:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+  }
+
+  /* Light Mode - Attributes & Methods Lists */
+  :global([data-theme="light"]) .attributes-list,
+  :global([data-theme="light"]) .methods-list {
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  }
+
+  :global([data-theme="light"]) .attribute-item,
+  :global([data-theme="light"]) .method-item {
+    background: rgba(248, 250, 252, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  :global([data-theme="light"]) .attribute-item input,
+  :global([data-theme="light"]) .method-item input,
+  :global([data-theme="light"]) .attribute-item select,
+  :global([data-theme="light"]) .method-item select {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .attribute-item input:focus,
+  :global([data-theme="light"]) .method-item input:focus,
+  :global([data-theme="light"]) .attribute-item select:focus,
+  :global([data-theme="light"]) .method-item select:focus {
+    border-color: #ea580c;
+    box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.1);
+  }
+
+  /* Light Mode - Remove Button */
+  :global([data-theme="light"]) .btn-remove {
+    background: rgba(239, 68, 68, 0.08);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.15);
+  }
+
+  :global([data-theme="light"]) .btn-remove:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Light Mode - Add Button */
+  :global([data-theme="light"]) .btn-add {
+    background: rgba(234, 88, 12, 0.06);
+    border-color: rgba(234, 88, 12, 0.2);
+    color: #c2410c;
+  }
+
+  :global([data-theme="light"]) .btn-add:hover {
+    background: rgba(234, 88, 12, 0.1);
+    border-color: #ea580c;
+  }
+
+  /* Light Mode - Options Grid */
+  :global([data-theme="light"]) .checkbox-option {
+    background: rgba(248, 250, 252, 0.8);
+    color: #475569;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .checkbox-option:hover {
+    background: rgba(234, 88, 12, 0.05);
+    color: #0f172a;
+    border-color: rgba(234, 88, 12, 0.15);
+  }
+
+  :global([data-theme="light"]) .checkbox-option input[type="checkbox"] {
+    accent-color: #ea580c;
+  }
+
+  /* Light Mode - Generate Button */
+  :global([data-theme="light"]) .btn-generate {
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+  }
+
+  :global([data-theme="light"]) .btn-generate:hover {
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.35);
+  }
+
+  /* Light Mode - Code Output */
+  :global([data-theme="light"]) .code-output {
+    background: #1e293b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Light Mode - Output Footer */
+  :global([data-theme="light"]) .output-footer {
+    background: rgba(248, 250, 252, 0.95);
+    border-top-color: rgba(0, 0, 0, 0.06);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .output-footer span i {
+    color: #94a3b8;
+  }
+
+  /* Light Mode - Templates Section */
+  :global([data-theme="light"]) .templates-section {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .templates-section h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .templates-section h4 i {
+    color: #c2410c;
+  }
+
+  :global([data-theme="light"]) .template-btn {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  }
+
+  :global([data-theme="light"]) .template-btn:hover {
+    background: rgba(234, 88, 12, 0.06);
+    border-color: rgba(234, 88, 12, 0.2);
+    color: #c2410c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .template-btn i {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .template-btn:hover i {
+    color: #c2410c;
+  }
+
+  /* Light Mode - UML Preview */
+  :global([data-theme="light"]) .uml-preview {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .uml-preview .panel-header {
+    background: rgba(248, 250, 252, 0.95);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .uml-preview .panel-header i {
+    color: #c2410c;
+  }
+
+  :global([data-theme="light"]) .uml-diagram {
+    background: rgba(248, 250, 252, 0.5);
+  }
+
+  :global([data-theme="light"]) .uml-class {
+    background: #ffffff;
+    border-color: #ea580c;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .uml-header {
+    background: rgba(234, 88, 12, 0.1);
+    color: #c2410c;
+    border-bottom-color: #ea580c;
+  }
+
+  :global([data-theme="light"]) .uml-attributes,
+  :global([data-theme="light"]) .uml-methods {
+    color: #334155;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  :global([data-theme="light"]) .uml-attributes {
+    border-bottom-color: rgba(234, 88, 12, 0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .generator-layout {
+      grid-template-columns: 1fr;
     }
 
     .java-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(234, 88, 12, 0.1), rgba(249, 115, 22, 0.05));
-        border: 1px solid rgba(234, 88, 12, 0.2);
-        border-radius: 16px;
-    }
-
-    .header-icon {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #ea580c, #f97316);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .header-icon i {
-        font-size: 2.5rem;
-        color: white;
-    }
-
-    .header-content h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .header-content p {
-        color: #94a3b8;
-        font-size: 0.95rem;
+      flex-direction: column;
+      text-align: center;
     }
 
     .header-badges {
-        display: flex;
-        gap: 0.5rem;
-        margin-left: auto;
+      margin-left: 0;
     }
+  }
 
-    .badge {
-        padding: 0.35rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .badge.java {
-        background: rgba(234, 88, 12, 0.2);
-        color: #f97316;
-        border: 1px solid rgba(234, 88, 12, 0.3);
-    }
-
-    .badge.oop {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .badge.clean {
-        background: rgba(34, 197, 94, 0.2);
-        color: #4ade80;
-        border: 1px solid rgba(34, 197, 94, 0.3);
-    }
-
-    .generator-layout {
-        display: grid;
-        grid-template-columns: 400px 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .config-panel, .output-panel {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .panel-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 1.25rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .panel-header i {
-        color: #f97316;
-    }
-
-    .panel-title {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        flex: 1;
-    }
-
-    .panel-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn-icon {
-        width: 36px;
-        height: 36px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn-icon:hover {
-        background: rgba(249, 115, 22, 0.2);
-        color: #f97316;
-    }
-
-    .config-section {
-        padding: 1.25rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .config-section:last-of-type {
-        border-bottom: none;
-    }
-
-    .config-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .config-section h4 i {
-        color: #f97316;
-        font-size: 0.85rem;
-    }
-
-    .form-group {
-        margin-bottom: 1rem;
-    }
-
-    .form-group label {
-        display: block;
-        font-size: 0.8rem;
-        color: #94a3b8;
-        margin-bottom: 0.35rem;
-    }
-
-    .form-group input,
-    .form-group select {
-        width: 100%;
-        padding: 0.6rem 0.85rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 8px;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus {
-        outline: none;
-        border-color: #f97316;
-        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
-    }
-
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-    }
-
-    .attributes-list,
-    .methods-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        max-height: 200px;
-        overflow-y: auto;
-    }
-
-    .attribute-item,
-    .method-item {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        padding: 0.75rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-    }
-
-    .attribute-item input,
-    .method-item input,
-    .attribute-item select,
-    .method-item select {
-        flex: 1;
-        padding: 0.4rem 0.6rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 6px;
-        color: #f8fafc;
-        font-size: 0.8rem;
-    }
-
-    .btn-remove {
-        width: 28px;
-        height: 28px;
-        border: none;
-        background: rgba(239, 68, 68, 0.2);
-        border-radius: 6px;
-        color: #ef4444;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn-remove:hover {
-        background: rgba(239, 68, 68, 0.4);
-    }
-
-    .btn-add {
-        width: 100%;
-        padding: 0.6rem;
-        background: rgba(249, 115, 22, 0.1);
-        border: 1px dashed rgba(249, 115, 22, 0.3);
-        border-radius: 8px;
-        color: #f97316;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-add:hover {
-        background: rgba(249, 115, 22, 0.2);
-        border-color: #f97316;
+  @media (max-width: 768px) {
+    .java-generator-section {
+      padding: 2rem 1rem;
     }
 
     .options-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
-
-    .checkbox-option {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        background: rgba(15, 23, 42, 0.3);
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        color: #94a3b8;
-        transition: all 0.2s ease;
-    }
-
-    .checkbox-option:hover {
-        background: rgba(15, 23, 42, 0.5);
-        color: #f8fafc;
-    }
-
-    .checkbox-option input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        accent-color: #f97316;
-    }
-
-    .btn-generate {
-        width: calc(100% - 2.5rem);
-        margin: 1.25rem;
-        padding: 0.85rem;
-        background: linear-gradient(135deg, #ea580c, #f97316);
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-generate:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
-    }
-
-    .code-output {
-        height: 500px;
-        overflow: auto;
-        background: #0f172a;
-        padding: 1rem;
-    }
-
-    .code-output pre {
-        margin: 0;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.85rem;
-        line-height: 1.6;
-    }
-
-    .code-output code {
-        color: #e2e8f0;
-        white-space: pre;
-    }
-
-    .output-footer {
-        display: flex;
-        gap: 1.5rem;
-        padding: 0.75rem 1.25rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        font-size: 0.8rem;
-        color: #64748b;
-    }
-
-    .output-footer span {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    .templates-section {
-        padding: 1.5rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        margin-bottom: 2rem;
-    }
-
-    .templates-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .templates-section h4 i {
-        color: #f97316;
+      grid-template-columns: 1fr;
     }
 
     .templates-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.75rem;
+      grid-template-columns: repeat(4, 1fr);
     }
+  }
 
-    .template-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
+  @media (max-width: 480px) {
+    .form-row {
+      grid-template-columns: 1fr;
     }
 
-    .template-btn:hover {
-        background: rgba(249, 115, 22, 0.1);
-        border-color: rgba(249, 115, 22, 0.3);
-        color: #f97316;
-        transform: translateY(-2px);
+    .templates-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    .template-btn i {
-        font-size: 1.5rem;
-    }
-
-    .template-btn span {
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
-
-    .uml-preview {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .uml-diagram {
-        padding: 2rem;
-        display: flex;
-        justify-content: center;
-    }
-
-    .uml-class {
-        min-width: 250px;
-        background: #0f172a;
-        border: 2px solid #f97316;
-        border-radius: 8px;
-        overflow: hidden;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.85rem;
-    }
-
-    .uml-header {
-        padding: 0.75rem 1rem;
-        background: rgba(249, 115, 22, 0.2);
-        color: #f97316;
-        font-weight: 700;
-        text-align: center;
-        border-bottom: 2px solid #f97316;
-    }
-
-    .uml-attributes,
-    .uml-methods {
-        padding: 0.75rem 1rem;
-        color: #94a3b8;
-        line-height: 1.6;
-    }
-
-    .uml-attributes {
-        border-bottom: 1px solid rgba(249, 115, 22, 0.3);
-    }
-
-    /* Light Mode - Enterprise Grade */
-    :global([data-theme="light"]) .java-generator-section {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-    }
-
-    :global([data-theme="light"]) .java-header {
-        background: linear-gradient(135deg, rgba(234, 88, 12, 0.06), rgba(249, 115, 22, 0.03));
-        border-color: rgba(234, 88, 12, 0.12);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .header-icon {
-        box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
-    }
-
-    :global([data-theme="light"]) .header-content h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .header-content p {
-        color: #64748b;
-    }
-
-    /* Light Mode - Badges */
-    :global([data-theme="light"]) .badge.java {
-        background: rgba(234, 88, 12, 0.1);
-        color: #c2410c;
-        border-color: rgba(234, 88, 12, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.oop {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-        border-color: rgba(139, 92, 246, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.clean {
-        background: rgba(34, 197, 94, 0.1);
-        color: #16a34a;
-        border-color: rgba(34, 197, 94, 0.25);
-    }
-
-    /* Light Mode - Panels */
-    :global([data-theme="light"]) .config-panel,
-    :global([data-theme="light"]) .output-panel {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .panel-header {
-        background: rgba(248, 250, 252, 0.9);
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .panel-header i {
-        color: #c2410c;
-    }
-
-    :global([data-theme="light"]) .panel-title {
-        color: #0f172a;
-    }
-
-    /* Light Mode - Icon Buttons */
-    :global([data-theme="light"]) .btn-icon {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .btn-icon:hover {
-        background: rgba(234, 88, 12, 0.1);
-        color: #c2410c;
-        border-color: rgba(234, 88, 12, 0.2);
-    }
-
-    /* Light Mode - Config Sections */
-    :global([data-theme="light"]) .config-section {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .config-section h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .config-section h4 i {
-        color: #c2410c;
-    }
-
-    /* Light Mode - Form Elements */
-    :global([data-theme="light"]) .form-group label {
-        color: #475569;
-        font-weight: 500;
-    }
-
-    :global([data-theme="light"]) .form-group input,
-    :global([data-theme="light"]) .form-group select {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #0f172a;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .form-group input::placeholder {
-        color: #94a3b8;
-    }
-
-    :global([data-theme="light"]) .form-group input:focus,
-    :global([data-theme="light"]) .form-group select:focus {
-        border-color: #ea580c;
-        box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
-    }
-
-    /* Light Mode - Attributes & Methods Lists */
-    :global([data-theme="light"]) .attributes-list,
-    :global([data-theme="light"]) .methods-list {
-        scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
-    }
-
-    :global([data-theme="light"]) .attribute-item,
-    :global([data-theme="light"]) .method-item {
-        background: rgba(248, 250, 252, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .attribute-item input,
-    :global([data-theme="light"]) .method-item input,
-    :global([data-theme="light"]) .attribute-item select,
-    :global([data-theme="light"]) .method-item select {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .attribute-item input:focus,
-    :global([data-theme="light"]) .method-item input:focus,
-    :global([data-theme="light"]) .attribute-item select:focus,
-    :global([data-theme="light"]) .method-item select:focus {
-        border-color: #ea580c;
-        box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.1);
-    }
-
-    /* Light Mode - Remove Button */
-    :global([data-theme="light"]) .btn-remove {
-        background: rgba(239, 68, 68, 0.08);
-        color: #dc2626;
-        border: 1px solid rgba(239, 68, 68, 0.15);
-    }
-
-    :global([data-theme="light"]) .btn-remove:hover {
-        background: rgba(239, 68, 68, 0.15);
-        border-color: rgba(239, 68, 68, 0.3);
-    }
-
-    /* Light Mode - Add Button */
-    :global([data-theme="light"]) .btn-add {
-        background: rgba(234, 88, 12, 0.06);
-        border-color: rgba(234, 88, 12, 0.2);
-        color: #c2410c;
-    }
-
-    :global([data-theme="light"]) .btn-add:hover {
-        background: rgba(234, 88, 12, 0.1);
-        border-color: #ea580c;
-    }
-
-    /* Light Mode - Options Grid */
-    :global([data-theme="light"]) .checkbox-option {
-        background: rgba(248, 250, 252, 0.8);
-        color: #475569;
-        border: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .checkbox-option:hover {
-        background: rgba(234, 88, 12, 0.05);
-        color: #0f172a;
-        border-color: rgba(234, 88, 12, 0.15);
-    }
-
-    :global([data-theme="light"]) .checkbox-option input[type="checkbox"] {
-        accent-color: #ea580c;
-    }
-
-    /* Light Mode - Generate Button */
-    :global([data-theme="light"]) .btn-generate {
-        box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
-    }
-
-    :global([data-theme="light"]) .btn-generate:hover {
-        box-shadow: 0 8px 20px rgba(234, 88, 12, 0.35);
-    }
-
-    /* Light Mode - Code Output */
-    :global([data-theme="light"]) .code-output {
-        background: #1e293b;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    /* Light Mode - Output Footer */
-    :global([data-theme="light"]) .output-footer {
-        background: rgba(248, 250, 252, 0.95);
-        border-top-color: rgba(0, 0, 0, 0.06);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .output-footer span i {
-        color: #94a3b8;
-    }
-
-    /* Light Mode - Templates Section */
-    :global([data-theme="light"]) .templates-section {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .templates-section h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .templates-section h4 i {
-        color: #c2410c;
-    }
-
-    :global([data-theme="light"]) .template-btn {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .template-btn:hover {
-        background: rgba(234, 88, 12, 0.06);
-        border-color: rgba(234, 88, 12, 0.2);
-        color: #c2410c;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .template-btn i {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .template-btn:hover i {
-        color: #c2410c;
-    }
-
-    /* Light Mode - UML Preview */
-    :global([data-theme="light"]) .uml-preview {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .uml-preview .panel-header {
-        background: rgba(248, 250, 252, 0.95);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .uml-preview .panel-header i {
-        color: #c2410c;
-    }
-
-    :global([data-theme="light"]) .uml-diagram {
-        background: rgba(248, 250, 252, 0.5);
-    }
-
-    :global([data-theme="light"]) .uml-class {
-        background: #ffffff;
-        border-color: #ea580c;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .uml-header {
-        background: rgba(234, 88, 12, 0.1);
-        color: #c2410c;
-        border-bottom-color: #ea580c;
-    }
-
-    :global([data-theme="light"]) .uml-attributes,
-    :global([data-theme="light"]) .uml-methods {
-        color: #334155;
-        background: rgba(255, 255, 255, 0.95);
-    }
-
-    :global([data-theme="light"]) .uml-attributes {
-        border-bottom-color: rgba(234, 88, 12, 0.2);
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .generator-layout {
-            grid-template-columns: 1fr;
-        }
-
-        .java-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .header-badges {
-            margin-left: 0;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .java-generator-section {
-            padding: 2rem 1rem;
-        }
-
-        .options-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .templates-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-
-        .templates-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+  }
 </style>
 
 <script is:inline>
-document.addEventListener('astro:page-load', function() {
+  document.addEventListener("astro:page-load", function () {
     // Data Types
-    const javaTypes = ['String', 'int', 'long', 'double', 'float', 'boolean', 'char', 'byte', 'Integer', 'Long', 'Double', 'Float', 'Boolean', 'List<String>', 'List<Integer>', 'Map<String, Object>', 'Set<String>', 'Date', 'LocalDate', 'LocalDateTime', 'BigDecimal', 'Object'];
-    const modifiers = ['private', 'protected', 'public', ''];
+    const javaTypes = [
+      "String",
+      "int",
+      "long",
+      "double",
+      "float",
+      "boolean",
+      "char",
+      "byte",
+      "Integer",
+      "Long",
+      "Double",
+      "Float",
+      "Boolean",
+      "List<String>",
+      "List<Integer>",
+      "Map<String, Object>",
+      "Set<String>",
+      "Date",
+      "LocalDate",
+      "LocalDateTime",
+      "BigDecimal",
+      "Object",
+    ];
+    const modifiers = ["private", "protected", "public", ""];
 
     // Elements
-    const classNameInput = document.getElementById('java-class-name');
-    const packageInput = document.getElementById('java-package');
-    const classModifier = document.getElementById('java-class-modifier');
-    const classType = document.getElementById('java-class-type');
-    const extendsInput = document.getElementById('java-extends');
-    const implementsInput = document.getElementById('java-implements');
-    const attributesList = document.getElementById('java-attributes-list');
-    const methodsList = document.getElementById('java-methods-list');
-    const generateBtn = document.getElementById('java-generate-btn');
-    const codeOutput = document.getElementById('java-code-output');
-    const copyBtn = document.getElementById('java-copy-btn');
-    const downloadBtn = document.getElementById('java-download-btn');
-    const filenameEl = document.getElementById('java-filename');
-    const lineCountEl = document.getElementById('java-line-count');
-    const charCountEl = document.getElementById('java-char-count');
+    const classNameInput = document.getElementById("java-class-name");
+    const packageInput = document.getElementById("java-package");
+    const classModifier = document.getElementById("java-class-modifier");
+    const classType = document.getElementById("java-class-type");
+    const extendsInput = document.getElementById("java-extends");
+    const implementsInput = document.getElementById("java-implements");
+    const attributesList = document.getElementById("java-attributes-list");
+    const methodsList = document.getElementById("java-methods-list");
+    const generateBtn = document.getElementById("java-generate-btn");
+    const codeOutput = document.getElementById("java-code-output");
+    const copyBtn = document.getElementById("java-copy-btn");
+    const downloadBtn = document.getElementById("java-download-btn");
+    const filenameEl = document.getElementById("java-filename");
+    const lineCountEl = document.getElementById("java-line-count");
+    const charCountEl = document.getElementById("java-char-count");
 
     if (!generateBtn) return;
 
     // Add default attributes
-    addAttribute('nombre', 'String', 'private');
-    addAttribute('edad', 'int', 'private');
+    addAttribute("nombre", "String", "private");
+    addAttribute("edad", "int", "private");
 
-    function addAttribute(name = '', type = 'String', modifier = 'private') {
-        const item = document.createElement('div');
-        item.className = 'attribute-item';
-        item.innerHTML = `
+    function addAttribute(name = "", type = "String", modifier = "private") {
+      const item = document.createElement("div");
+      item.className = "attribute-item";
+      item.innerHTML = `
             <select class="attr-modifier">
-                ${modifiers.map(m => `<option value="${m}" ${m === modifier ? 'selected' : ''}>${m || 'default'}</option>`).join('')}
+                ${modifiers.map((m) => `<option value="${m}" ${m === modifier ? "selected" : ""}>${m || "default"}</option>`).join("")}
             </select>
             <select class="attr-type">
-                ${javaTypes.map(t => `<option value="${t}" ${t === type ? 'selected' : ''}>${t}</option>`).join('')}
+                ${javaTypes.map((t) => `<option value="${t}" ${t === type ? "selected" : ""}>${t}</option>`).join("")}
             </select>
             <input type="text" class="attr-name" placeholder="nombre" value="${name}">
             <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
         `;
-        attributesList.appendChild(item);
+      attributesList.appendChild(item);
 
-        item.querySelector('.btn-remove').addEventListener('click', () => item.remove());
+      item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
     }
 
-    function addMethod(name = '', returnType = 'void', modifier = 'public', params = '') {
-        const item = document.createElement('div');
-        item.className = 'method-item';
-        item.innerHTML = `
+    function addMethod(name = "", returnType = "void", modifier = "public", params = "") {
+      const item = document.createElement("div");
+      item.className = "method-item";
+      item.innerHTML = `
             <select class="method-modifier">
-                ${modifiers.map(m => `<option value="${m}" ${m === modifier ? 'selected' : ''}>${m || 'default'}</option>`).join('')}
+                ${modifiers.map((m) => `<option value="${m}" ${m === modifier ? "selected" : ""}>${m || "default"}</option>`).join("")}
             </select>
             <select class="method-return">
-                ${['void', ...javaTypes].map(t => `<option value="${t}" ${t === returnType ? 'selected' : ''}>${t}</option>`).join('')}
+                ${["void", ...javaTypes].map((t) => `<option value="${t}" ${t === returnType ? "selected" : ""}>${t}</option>`).join("")}
             </select>
             <input type="text" class="method-name" placeholder="metodo" value="${name}">
             <input type="text" class="method-params" placeholder="params" value="${params}" style="width: 80px;">
             <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
         `;
-        methodsList.appendChild(item);
+      methodsList.appendChild(item);
 
-        item.querySelector('.btn-remove').addEventListener('click', () => item.remove());
+      item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
     }
 
-    document.getElementById('java-add-attribute').addEventListener('click', () => addAttribute());
-    document.getElementById('java-add-method').addEventListener('click', () => addMethod());
+    document.getElementById("java-add-attribute").addEventListener("click", () => addAttribute());
+    document.getElementById("java-add-method").addEventListener("click", () => addMethod());
 
     // Generate Code
-    generateBtn.addEventListener('click', generateJavaCode);
+    generateBtn.addEventListener("click", generateJavaCode);
 
     function generateJavaCode() {
-        const className = classNameInput.value || 'MiClase';
-        const pkg = packageInput.value;
-        const modifier = classModifier.value;
-        const type = classType.value;
-        const extendsClass = extendsInput.value;
-        const implementsList = implementsInput.value;
+      const className = classNameInput.value || "MiClase";
+      const pkg = packageInput.value;
+      const modifier = classModifier.value;
+      const type = classType.value;
+      const extendsClass = extendsInput.value;
+      const implementsList = implementsInput.value;
 
-        const options = {
-            constructor: document.getElementById('java-generate-constructor').checked,
-            getters: document.getElementById('java-generate-getters').checked,
-            setters: document.getElementById('java-generate-setters').checked,
-            toString: document.getElementById('java-generate-tostring').checked,
-            equals: document.getElementById('java-generate-equals').checked,
-            builder: document.getElementById('java-generate-builder').checked,
-            javadoc: document.getElementById('java-generate-javadoc').checked,
-            validation: document.getElementById('java-generate-validation').checked
-        };
+      const options = {
+        constructor: document.getElementById("java-generate-constructor").checked,
+        getters: document.getElementById("java-generate-getters").checked,
+        setters: document.getElementById("java-generate-setters").checked,
+        toString: document.getElementById("java-generate-tostring").checked,
+        equals: document.getElementById("java-generate-equals").checked,
+        builder: document.getElementById("java-generate-builder").checked,
+        javadoc: document.getElementById("java-generate-javadoc").checked,
+        validation: document.getElementById("java-generate-validation").checked,
+      };
 
-        // Collect attributes
-        const attributes = [];
-        attributesList.querySelectorAll('.attribute-item').forEach(item => {
-            const name = item.querySelector('.attr-name').value;
-            if (name) {
-                attributes.push({
-                    modifier: item.querySelector('.attr-modifier').value,
-                    type: item.querySelector('.attr-type').value,
-                    name: name
-                });
-            }
-        });
-
-        // Collect methods
-        const methods = [];
-        methodsList.querySelectorAll('.method-item').forEach(item => {
-            const name = item.querySelector('.method-name').value;
-            if (name) {
-                methods.push({
-                    modifier: item.querySelector('.method-modifier').value,
-                    returnType: item.querySelector('.method-return').value,
-                    name: name,
-                    params: item.querySelector('.method-params').value
-                });
-            }
-        });
-
-        // Generate code
-        let code = '';
-
-        // Package
-        if (pkg) {
-            code += `package ${pkg};\n\n`;
+      // Collect attributes
+      const attributes = [];
+      attributesList.querySelectorAll(".attribute-item").forEach((item) => {
+        const name = item.querySelector(".attr-name").value;
+        if (name) {
+          attributes.push({
+            modifier: item.querySelector(".attr-modifier").value,
+            type: item.querySelector(".attr-type").value,
+            name: name,
+          });
         }
+      });
 
-        // Imports
-        const imports = new Set();
-        if (options.equals) imports.add('import java.util.Objects;');
-        if (attributes.some(a => a.type === 'List<String>' || a.type === 'List<Integer>')) imports.add('import java.util.List;');
-        if (attributes.some(a => a.type.startsWith('Map'))) imports.add('import java.util.Map;');
-        if (attributes.some(a => a.type.startsWith('Set'))) imports.add('import java.util.Set;');
-        if (attributes.some(a => a.type === 'Date')) imports.add('import java.util.Date;');
-        if (attributes.some(a => a.type === 'LocalDate')) imports.add('import java.time.LocalDate;');
-        if (attributes.some(a => a.type === 'LocalDateTime')) imports.add('import java.time.LocalDateTime;');
-        if (attributes.some(a => a.type === 'BigDecimal')) imports.add('import java.math.BigDecimal;');
-
-        if (imports.size > 0) {
-            code += Array.from(imports).sort().join('\n') + '\n\n';
+      // Collect methods
+      const methods = [];
+      methodsList.querySelectorAll(".method-item").forEach((item) => {
+        const name = item.querySelector(".method-name").value;
+        if (name) {
+          methods.push({
+            modifier: item.querySelector(".method-modifier").value,
+            returnType: item.querySelector(".method-return").value,
+            name: name,
+            params: item.querySelector(".method-params").value,
+          });
         }
+      });
 
-        // Javadoc
+      // Generate code
+      let code = "";
+
+      // Package
+      if (pkg) {
+        code += `package ${pkg};\n\n`;
+      }
+
+      // Imports
+      const imports = new Set();
+      if (options.equals) imports.add("import java.util.Objects;");
+      if (attributes.some((a) => a.type === "List<String>" || a.type === "List<Integer>"))
+        imports.add("import java.util.List;");
+      if (attributes.some((a) => a.type.startsWith("Map"))) imports.add("import java.util.Map;");
+      if (attributes.some((a) => a.type.startsWith("Set"))) imports.add("import java.util.Set;");
+      if (attributes.some((a) => a.type === "Date")) imports.add("import java.util.Date;");
+      if (attributes.some((a) => a.type === "LocalDate"))
+        imports.add("import java.time.LocalDate;");
+      if (attributes.some((a) => a.type === "LocalDateTime"))
+        imports.add("import java.time.LocalDateTime;");
+      if (attributes.some((a) => a.type === "BigDecimal"))
+        imports.add("import java.math.BigDecimal;");
+
+      if (imports.size > 0) {
+        code += Array.from(imports).sort().join("\n") + "\n\n";
+      }
+
+      // Javadoc
+      if (options.javadoc) {
+        code += `/**\n * Clase ${className}\n * @author Generador Java DuocUC\n * @version 1.0\n */\n`;
+      }
+
+      // Class declaration
+      code += modifier ? `${modifier} ` : "";
+      code += `${type} ${className}`;
+      if (extendsClass) code += ` extends ${extendsClass}`;
+      if (implementsList) code += ` implements ${implementsList}`;
+      code += " {\n\n";
+
+      // Attributes
+      if (attributes.length > 0) {
+        code += "    // Atributos\n";
+        attributes.forEach((attr) => {
+          code += `    ${attr.modifier ? attr.modifier + " " : ""}${attr.type} ${attr.name};\n`;
+        });
+        code += "\n";
+      }
+
+      // Constructor
+      if (options.constructor && attributes.length > 0) {
         if (options.javadoc) {
-            code += `/**\n * Clase ${className}\n * @author Generador Java DuocUC\n * @version 1.0\n */\n`;
+          code += "    /**\n     * Constructor con todos los atributos\n";
+          attributes.forEach((a) => (code += `     * @param ${a.name} ${a.type}\n`));
+          code += "     */\n";
         }
-
-        // Class declaration
-        code += modifier ? `${modifier} ` : '';
-        code += `${type} ${className}`;
-        if (extendsClass) code += ` extends ${extendsClass}`;
-        if (implementsList) code += ` implements ${implementsList}`;
-        code += ' {\n\n';
-
-        // Attributes
-        if (attributes.length > 0) {
-            code += '    // Atributos\n';
-            attributes.forEach(attr => {
-                code += `    ${attr.modifier ? attr.modifier + ' ' : ''}${attr.type} ${attr.name};\n`;
-            });
-            code += '\n';
-        }
-
-        // Constructor
-        if (options.constructor && attributes.length > 0) {
-            if (options.javadoc) {
-                code += '    /**\n     * Constructor con todos los atributos\n';
-                attributes.forEach(a => code += `     * @param ${a.name} ${a.type}\n`);
-                code += '     */\n';
-            }
-            code += `    public ${className}(`;
-            code += attributes.map(a => `${a.type} ${a.name}`).join(', ');
-            code += ') {\n';
-            if (options.validation) {
-                attributes.filter(a => a.type === 'String').forEach(a => {
-                    code += `        if (${a.name} == null || ${a.name}.isEmpty()) {\n`;
-                    code += `            throw new IllegalArgumentException("${a.name} no puede ser nulo o vacío");\n`;
-                    code += '        }\n';
-                });
-            }
-            attributes.forEach(a => code += `        this.${a.name} = ${a.name};\n`);
-            code += '    }\n\n';
-
-            // Empty constructor
-            code += `    public ${className}() {\n    }\n\n`;
-        }
-
-        // Getters
-        if (options.getters) {
-            attributes.forEach(attr => {
-                const methodName = (attr.type === 'boolean' ? 'is' : 'get') + capitalize(attr.name);
-                if (options.javadoc) {
-                    code += `    /**\n     * @return ${attr.type}\n     */\n`;
-                }
-                code += `    public ${attr.type} ${methodName}() {\n`;
-                code += `        return this.${attr.name};\n`;
-                code += '    }\n\n';
+        code += `    public ${className}(`;
+        code += attributes.map((a) => `${a.type} ${a.name}`).join(", ");
+        code += ") {\n";
+        if (options.validation) {
+          attributes
+            .filter((a) => a.type === "String")
+            .forEach((a) => {
+              code += `        if (${a.name} == null || ${a.name}.isEmpty()) {\n`;
+              code += `            throw new IllegalArgumentException("${a.name} no puede ser nulo o vacío");\n`;
+              code += "        }\n";
             });
         }
+        attributes.forEach((a) => (code += `        this.${a.name} = ${a.name};\n`));
+        code += "    }\n\n";
 
-        // Setters
-        if (options.setters) {
-            attributes.forEach(attr => {
-                if (options.javadoc) {
-                    code += `    /**\n     * @param ${attr.name} ${attr.type}\n     */\n`;
-                }
-                code += `    public void set${capitalize(attr.name)}(${attr.type} ${attr.name}) {\n`;
-                if (options.validation && attr.type === 'String') {
-                    code += `        if (${attr.name} == null || ${attr.name}.isEmpty()) {\n`;
-                    code += `            throw new IllegalArgumentException("${attr.name} no puede ser nulo o vacío");\n`;
-                    code += '        }\n';
-                }
-                code += `        this.${attr.name} = ${attr.name};\n`;
-                code += '    }\n\n';
-            });
-        }
+        // Empty constructor
+        code += `    public ${className}() {\n    }\n\n`;
+      }
 
-        // Custom methods
-        methods.forEach(method => {
-            code += `    ${method.modifier ? method.modifier + ' ' : ''}${method.returnType} ${method.name}(${method.params}) {\n`;
-            if (method.returnType !== 'void') {
-                code += `        // TODO: Implementar lógica\n`;
-                code += `        return ${getDefaultReturn(method.returnType)};\n`;
-            } else {
-                code += '        // TODO: Implementar lógica\n';
-            }
-            code += '    }\n\n';
+      // Getters
+      if (options.getters) {
+        attributes.forEach((attr) => {
+          const methodName = (attr.type === "boolean" ? "is" : "get") + capitalize(attr.name);
+          if (options.javadoc) {
+            code += `    /**\n     * @return ${attr.type}\n     */\n`;
+          }
+          code += `    public ${attr.type} ${methodName}() {\n`;
+          code += `        return this.${attr.name};\n`;
+          code += "    }\n\n";
         });
+      }
 
-        // toString
-        if (options.toString && attributes.length > 0) {
-            code += '    @Override\n';
-            code += '    public String toString() {\n';
-            code += `        return "${className}{" +\n`;
-            attributes.forEach((attr, i) => {
-                const sep = i < attributes.length - 1 ? ' +' : '';
-                if (attr.type === 'String') {
-                    code += `            "${attr.name}='" + ${attr.name} + '\\'' +${sep}\n`;
-                } else {
-                    code += `            ", ${attr.name}=" + ${attr.name}${sep}\n`;
-                }
-            });
-            code += '            "}";\n';
-            code += '    }\n\n';
+      // Setters
+      if (options.setters) {
+        attributes.forEach((attr) => {
+          if (options.javadoc) {
+            code += `    /**\n     * @param ${attr.name} ${attr.type}\n     */\n`;
+          }
+          code += `    public void set${capitalize(attr.name)}(${attr.type} ${attr.name}) {\n`;
+          if (options.validation && attr.type === "String") {
+            code += `        if (${attr.name} == null || ${attr.name}.isEmpty()) {\n`;
+            code += `            throw new IllegalArgumentException("${attr.name} no puede ser nulo o vacío");\n`;
+            code += "        }\n";
+          }
+          code += `        this.${attr.name} = ${attr.name};\n`;
+          code += "    }\n\n";
+        });
+      }
+
+      // Custom methods
+      methods.forEach((method) => {
+        code += `    ${method.modifier ? method.modifier + " " : ""}${method.returnType} ${method.name}(${method.params}) {\n`;
+        if (method.returnType !== "void") {
+          code += `        // TODO: Implementar lógica\n`;
+          code += `        return ${getDefaultReturn(method.returnType)};\n`;
+        } else {
+          code += "        // TODO: Implementar lógica\n";
         }
+        code += "    }\n\n";
+      });
 
-        // equals & hashCode
-        if (options.equals && attributes.length > 0) {
-            code += '    @Override\n';
-            code += '    public boolean equals(Object o) {\n';
-            code += '        if (this == o) return true;\n';
-            code += '        if (o == null || getClass() != o.getClass()) return false;\n';
-            code += `        ${className} that = (${className}) o;\n`;
-            code += '        return ';
-            code += attributes.map(a => {
-                if (['int', 'long', 'double', 'float', 'boolean', 'char', 'byte'].includes(a.type)) {
-                    return `${a.name} == that.${a.name}`;
-                }
-                return `Objects.equals(${a.name}, that.${a.name})`;
-            }).join(' &&\n               ');
-            code += ';\n';
-            code += '    }\n\n';
+      // toString
+      if (options.toString && attributes.length > 0) {
+        code += "    @Override\n";
+        code += "    public String toString() {\n";
+        code += `        return "${className}{" +\n`;
+        attributes.forEach((attr, i) => {
+          const sep = i < attributes.length - 1 ? " +" : "";
+          if (attr.type === "String") {
+            code += `            "${attr.name}='" + ${attr.name} + '\\'' +${sep}\n`;
+          } else {
+            code += `            ", ${attr.name}=" + ${attr.name}${sep}\n`;
+          }
+        });
+        code += '            "}";\n';
+        code += "    }\n\n";
+      }
 
-            code += '    @Override\n';
-            code += '    public int hashCode() {\n';
-            code += '        return Objects.hash(' + attributes.map(a => a.name).join(', ') + ');\n';
-            code += '    }\n\n';
-        }
+      // equals & hashCode
+      if (options.equals && attributes.length > 0) {
+        code += "    @Override\n";
+        code += "    public boolean equals(Object o) {\n";
+        code += "        if (this == o) return true;\n";
+        code += "        if (o == null || getClass() != o.getClass()) return false;\n";
+        code += `        ${className} that = (${className}) o;\n`;
+        code += "        return ";
+        code += attributes
+          .map((a) => {
+            if (["int", "long", "double", "float", "boolean", "char", "byte"].includes(a.type)) {
+              return `${a.name} == that.${a.name}`;
+            }
+            return `Objects.equals(${a.name}, that.${a.name})`;
+          })
+          .join(" &&\n               ");
+        code += ";\n";
+        code += "    }\n\n";
 
-        // Builder Pattern
-        if (options.builder && attributes.length > 0) {
-            code += `    public static Builder builder() {\n`;
-            code += `        return new Builder();\n`;
-            code += '    }\n\n';
+        code += "    @Override\n";
+        code += "    public int hashCode() {\n";
+        code += "        return Objects.hash(" + attributes.map((a) => a.name).join(", ") + ");\n";
+        code += "    }\n\n";
+      }
 
-            code += `    public static class Builder {\n`;
-            attributes.forEach(a => code += `        private ${a.type} ${a.name};\n`);
-            code += '\n';
-            attributes.forEach(a => {
-                code += `        public Builder ${a.name}(${a.type} ${a.name}) {\n`;
-                code += `            this.${a.name} = ${a.name};\n`;
-                code += '            return this;\n';
-                code += '        }\n\n';
-            });
-            code += `        public ${className} build() {\n`;
-            code += `            ${className} obj = new ${className}();\n`;
-            attributes.forEach(a => code += `            obj.${a.name} = this.${a.name};\n`);
-            code += '            return obj;\n';
-            code += '        }\n';
-            code += '    }\n';
-        }
+      // Builder Pattern
+      if (options.builder && attributes.length > 0) {
+        code += `    public static Builder builder() {\n`;
+        code += `        return new Builder();\n`;
+        code += "    }\n\n";
 
-        code += '}\n';
+        code += `    public static class Builder {\n`;
+        attributes.forEach((a) => (code += `        private ${a.type} ${a.name};\n`));
+        code += "\n";
+        attributes.forEach((a) => {
+          code += `        public Builder ${a.name}(${a.type} ${a.name}) {\n`;
+          code += `            this.${a.name} = ${a.name};\n`;
+          code += "            return this;\n";
+          code += "        }\n\n";
+        });
+        code += `        public ${className} build() {\n`;
+        code += `            ${className} obj = new ${className}();\n`;
+        attributes.forEach((a) => (code += `            obj.${a.name} = this.${a.name};\n`));
+        code += "            return obj;\n";
+        code += "        }\n";
+        code += "    }\n";
+      }
 
-        // Update output
-        codeOutput.textContent = code;
-        filenameEl.textContent = `${className}.java`;
-        lineCountEl.textContent = code.split('\n').length;
-        charCountEl.textContent = code.length;
+      code += "}\n";
 
-        // Update UML
-        updateUML(className, attributes, methods, options);
+      // Update output
+      codeOutput.textContent = code;
+      filenameEl.textContent = `${className}.java`;
+      lineCountEl.textContent = code.split("\n").length;
+      charCountEl.textContent = code.length;
+
+      // Update UML
+      updateUML(className, attributes, methods, options);
     }
 
     function capitalize(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
     function getDefaultReturn(type) {
-        const defaults = {
-            'int': '0', 'long': '0L', 'double': '0.0', 'float': '0.0f',
-            'boolean': 'false', 'char': "' '", 'byte': '0',
-            'String': '""', 'void': ''
-        };
-        return defaults[type] || 'null';
+      const defaults = {
+        int: "0",
+        long: "0L",
+        double: "0.0",
+        float: "0.0f",
+        boolean: "false",
+        char: "' '",
+        byte: "0",
+        String: '""',
+        void: "",
+      };
+      return defaults[type] || "null";
     }
 
     function updateUML(className, attributes, methods, options) {
-        const umlHeader = document.querySelector('.uml-header');
-        const umlAttrs = document.getElementById('uml-attributes');
-        const umlMethods = document.getElementById('uml-methods');
+      const umlHeader = document.querySelector(".uml-header");
+      const umlAttrs = document.getElementById("uml-attributes");
+      const umlMethods = document.getElementById("uml-methods");
 
-        if (umlHeader) umlHeader.textContent = className;
+      if (umlHeader) umlHeader.textContent = className;
 
-        if (umlAttrs) {
-            umlAttrs.innerHTML = attributes.map(a => {
-                const vis = a.modifier === 'private' ? '-' : a.modifier === 'protected' ? '#' : '+';
-                return `${vis} ${a.name}: ${a.type}`;
-            }).join('<br>') || '(sin atributos)';
+      if (umlAttrs) {
+        umlAttrs.innerHTML =
+          attributes
+            .map((a) => {
+              const vis = a.modifier === "private" ? "-" : a.modifier === "protected" ? "#" : "+";
+              return `${vis} ${a.name}: ${a.type}`;
+            })
+            .join("<br>") || "(sin atributos)";
+      }
+
+      if (umlMethods) {
+        let methodsHtml = "";
+        if (options.getters) {
+          methodsHtml += attributes
+            .map((a) => `+ get${capitalize(a.name)}(): ${a.type}`)
+            .join("<br>");
         }
-
-        if (umlMethods) {
-            let methodsHtml = '';
-            if (options.getters) {
-                methodsHtml += attributes.map(a => `+ get${capitalize(a.name)}(): ${a.type}`).join('<br>');
-            }
-            if (options.setters) {
-                if (methodsHtml) methodsHtml += '<br>';
-                methodsHtml += attributes.map(a => `+ set${capitalize(a.name)}(${a.type}): void`).join('<br>');
-            }
-            methods.forEach(m => {
-                if (methodsHtml) methodsHtml += '<br>';
-                const vis = m.modifier === 'private' ? '-' : m.modifier === 'protected' ? '#' : '+';
-                methodsHtml += `${vis} ${m.name}(${m.params}): ${m.returnType}`;
-            });
-            umlMethods.innerHTML = methodsHtml || '(sin métodos)';
+        if (options.setters) {
+          if (methodsHtml) methodsHtml += "<br>";
+          methodsHtml += attributes
+            .map((a) => `+ set${capitalize(a.name)}(${a.type}): void`)
+            .join("<br>");
         }
+        methods.forEach((m) => {
+          if (methodsHtml) methodsHtml += "<br>";
+          const vis = m.modifier === "private" ? "-" : m.modifier === "protected" ? "#" : "+";
+          methodsHtml += `${vis} ${m.name}(${m.params}): ${m.returnType}`;
+        });
+        umlMethods.innerHTML = methodsHtml || "(sin métodos)";
+      }
     }
 
     // Copy button
-    copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(codeOutput.textContent);
-        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeOutput.textContent);
+      copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => (copyBtn.innerHTML = '<i class="fas fa-copy"></i>'), 2000);
     });
 
     // Download button
-    downloadBtn.addEventListener('click', () => {
-        const blob = new Blob([codeOutput.textContent], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filenameEl.textContent;
-        a.click();
-        URL.revokeObjectURL(url);
+    downloadBtn.addEventListener("click", () => {
+      const blob = new Blob([codeOutput.textContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filenameEl.textContent;
+      a.click();
+      URL.revokeObjectURL(url);
     });
 
     // Templates
     const templates = {
-        entity: {
-            className: 'Usuario',
-            package: 'com.ejemplo.entity',
-            attributes: [
-                { name: 'id', type: 'Long', modifier: 'private' },
-                { name: 'nombre', type: 'String', modifier: 'private' },
-                { name: 'email', type: 'String', modifier: 'private' },
-                { name: 'fechaCreacion', type: 'LocalDateTime', modifier: 'private' }
-            ]
-        },
-        dto: {
-            className: 'UsuarioDTO',
-            package: 'com.ejemplo.dto',
-            attributes: [
-                { name: 'id', type: 'Long', modifier: 'private' },
-                { name: 'nombre', type: 'String', modifier: 'private' },
-                { name: 'email', type: 'String', modifier: 'private' }
-            ]
-        },
-        service: {
-            className: 'UsuarioService',
-            package: 'com.ejemplo.service',
-            classType: 'interface',
-            methods: [
-                { name: 'findById', returnType: 'Object', modifier: 'public', params: 'Long id' },
-                { name: 'findAll', returnType: 'List<Object>', modifier: 'public', params: '' },
-                { name: 'save', returnType: 'Object', modifier: 'public', params: 'Object entity' },
-                { name: 'delete', returnType: 'void', modifier: 'public', params: 'Long id' }
-            ]
-        },
-        repository: {
-            className: 'UsuarioRepository',
-            package: 'com.ejemplo.repository',
-            classType: 'interface',
-            methods: [
-                { name: 'findById', returnType: 'Object', modifier: 'public', params: 'Long id' },
-                { name: 'findByEmail', returnType: 'Object', modifier: 'public', params: 'String email' },
-                { name: 'save', returnType: 'Object', modifier: 'public', params: 'Object entity' },
-                { name: 'deleteById', returnType: 'void', modifier: 'public', params: 'Long id' }
-            ]
-        },
-        controller: {
-            className: 'UsuarioController',
-            package: 'com.ejemplo.controller',
-            methods: [
-                { name: 'getAll', returnType: 'List<Object>', modifier: 'public', params: '' },
-                { name: 'getById', returnType: 'Object', modifier: 'public', params: 'Long id' },
-                { name: 'create', returnType: 'Object', modifier: 'public', params: 'Object dto' },
-                { name: 'update', returnType: 'Object', modifier: 'public', params: 'Long id, Object dto' },
-                { name: 'delete', returnType: 'void', modifier: 'public', params: 'Long id' }
-            ]
-        },
-        singleton: {
-            className: 'ConfigManager',
-            package: 'com.ejemplo.util',
-            attributes: [
-                { name: 'instance', type: 'ConfigManager', modifier: 'private' }
-            ],
-            methods: [
-                { name: 'getInstance', returnType: 'ConfigManager', modifier: 'public', params: '' }
-            ]
-        },
-        factory: {
-            className: 'VehiculoFactory',
-            package: 'com.ejemplo.factory',
-            methods: [
-                { name: 'crearVehiculo', returnType: 'Object', modifier: 'public', params: 'String tipo' }
-            ]
-        },
-        observer: {
-            className: 'EventListener',
-            package: 'com.ejemplo.observer',
-            classType: 'interface',
-            methods: [
-                { name: 'onEvent', returnType: 'void', modifier: 'public', params: 'Object event' }
-            ]
-        }
+      entity: {
+        className: "Usuario",
+        package: "com.ejemplo.entity",
+        attributes: [
+          { name: "id", type: "Long", modifier: "private" },
+          { name: "nombre", type: "String", modifier: "private" },
+          { name: "email", type: "String", modifier: "private" },
+          { name: "fechaCreacion", type: "LocalDateTime", modifier: "private" },
+        ],
+      },
+      dto: {
+        className: "UsuarioDTO",
+        package: "com.ejemplo.dto",
+        attributes: [
+          { name: "id", type: "Long", modifier: "private" },
+          { name: "nombre", type: "String", modifier: "private" },
+          { name: "email", type: "String", modifier: "private" },
+        ],
+      },
+      service: {
+        className: "UsuarioService",
+        package: "com.ejemplo.service",
+        classType: "interface",
+        methods: [
+          { name: "findById", returnType: "Object", modifier: "public", params: "Long id" },
+          { name: "findAll", returnType: "List<Object>", modifier: "public", params: "" },
+          { name: "save", returnType: "Object", modifier: "public", params: "Object entity" },
+          { name: "delete", returnType: "void", modifier: "public", params: "Long id" },
+        ],
+      },
+      repository: {
+        className: "UsuarioRepository",
+        package: "com.ejemplo.repository",
+        classType: "interface",
+        methods: [
+          { name: "findById", returnType: "Object", modifier: "public", params: "Long id" },
+          { name: "findByEmail", returnType: "Object", modifier: "public", params: "String email" },
+          { name: "save", returnType: "Object", modifier: "public", params: "Object entity" },
+          { name: "deleteById", returnType: "void", modifier: "public", params: "Long id" },
+        ],
+      },
+      controller: {
+        className: "UsuarioController",
+        package: "com.ejemplo.controller",
+        methods: [
+          { name: "getAll", returnType: "List<Object>", modifier: "public", params: "" },
+          { name: "getById", returnType: "Object", modifier: "public", params: "Long id" },
+          { name: "create", returnType: "Object", modifier: "public", params: "Object dto" },
+          {
+            name: "update",
+            returnType: "Object",
+            modifier: "public",
+            params: "Long id, Object dto",
+          },
+          { name: "delete", returnType: "void", modifier: "public", params: "Long id" },
+        ],
+      },
+      singleton: {
+        className: "ConfigManager",
+        package: "com.ejemplo.util",
+        attributes: [{ name: "instance", type: "ConfigManager", modifier: "private" }],
+        methods: [
+          { name: "getInstance", returnType: "ConfigManager", modifier: "public", params: "" },
+        ],
+      },
+      factory: {
+        className: "VehiculoFactory",
+        package: "com.ejemplo.factory",
+        methods: [
+          {
+            name: "crearVehiculo",
+            returnType: "Object",
+            modifier: "public",
+            params: "String tipo",
+          },
+        ],
+      },
+      observer: {
+        className: "EventListener",
+        package: "com.ejemplo.observer",
+        classType: "interface",
+        methods: [
+          { name: "onEvent", returnType: "void", modifier: "public", params: "Object event" },
+        ],
+      },
     };
 
-    document.querySelectorAll('.template-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const templateName = btn.dataset.template;
-            const template = templates[templateName];
-            if (!template) return;
+    document.querySelectorAll(".template-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const templateName = btn.dataset.template;
+        const template = templates[templateName];
+        if (!template) return;
 
-            classNameInput.value = template.className || '';
-            packageInput.value = template.package || '';
-            if (template.classType) {
-                classType.value = template.classType;
-            } else {
-                classType.value = 'class';
-            }
+        classNameInput.value = template.className || "";
+        packageInput.value = template.package || "";
+        if (template.classType) {
+          classType.value = template.classType;
+        } else {
+          classType.value = "class";
+        }
 
-            // Clear and add attributes
-            attributesList.innerHTML = '';
-            (template.attributes || []).forEach(a => addAttribute(a.name, a.type, a.modifier));
+        // Clear and add attributes
+        attributesList.innerHTML = "";
+        (template.attributes || []).forEach((a) => addAttribute(a.name, a.type, a.modifier));
 
-            // Clear and add methods
-            methodsList.innerHTML = '';
-            (template.methods || []).forEach(m => addMethod(m.name, m.returnType, m.modifier, m.params));
+        // Clear and add methods
+        methodsList.innerHTML = "";
+        (template.methods || []).forEach((m) =>
+          addMethod(m.name, m.returnType, m.modifier, m.params),
+        );
 
-            generateJavaCode();
-        });
+        generateJavaCode();
+      });
     });
 
     // Initial generation
     generateJavaCode();
-});
+  });
 </script>

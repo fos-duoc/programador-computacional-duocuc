@@ -3,8 +3,19 @@
  * SubjectNavigationSidebar - Sidebar izquierdo resizable para navegacion de asignaturas
  * Tres modos de filtrado: Por Bimestre, Por Ano, Por Semana
  */
-import { asignaturas, getAsignaturasByBimestre, nombreCortoToId, type Asignatura } from '../data/asignaturas';
-import { bimestresYear1, bimestresYear2, bimestresYear3, bimestresYear4, type Bimestre } from '../data/bimestres';
+import {
+  asignaturas,
+  getAsignaturasByBimestre,
+  nombreCortoToId,
+  type Asignatura,
+} from "../data/asignaturas";
+import {
+  bimestresYear1,
+  bimestresYear2,
+  bimestresYear3,
+  bimestresYear4,
+  type Bimestre,
+} from "../data/bimestres";
 
 // Combinar todos los bimestres
 const allBimestres = [...bimestresYear1, ...bimestresYear2, ...bimestresYear3, ...bimestresYear4];
@@ -14,1282 +25,1339 @@ const allAsignaturas = Object.values(asignaturas);
 
 // Configuracion de anos
 const years = [
-    { year: 1, title: 'Fundamentos', bimestres: bimestresYear1, range: '01-04', color: 'apc' },
-    { year: 2, title: 'Desarrollo', bimestres: bimestresYear2, range: '05-10', color: 'apc' },
-    { year: 3, title: 'Fullstack & Cloud', bimestres: bimestresYear3, range: '11-14', color: 'ids' },
-    { year: 4, title: 'Arquitectura', bimestres: bimestresYear4, range: '15-17', color: 'ids' }
+  { year: 1, title: "Fundamentos", bimestres: bimestresYear1, range: "01-04", color: "apc" },
+  { year: 2, title: "Desarrollo", bimestres: bimestresYear2, range: "05-10", color: "apc" },
+  { year: 3, title: "Fullstack & Cloud", bimestres: bimestresYear3, range: "11-14", color: "ids" },
+  { year: 4, title: "Arquitectura", bimestres: bimestresYear4, range: "15-17", color: "ids" },
 ];
 
 // Pasar datos al cliente
 const clientData = {
-    asignaturas: allAsignaturas,
-    bimestres: allBimestres,
-    nombreCortoToId
+  asignaturas: allAsignaturas,
+  bimestres: allBimestres,
+  nombreCortoToId,
 };
 
 // Helper to generate tooltip for a subject
 function getSubjectTooltip(subject: Asignatura): string {
-    const desc = subject.descripcion?.substring(0, 100) + (subject.descripcion?.length > 100 ? '...' : '') || 'Asignatura del programa';
-    const expCount = subject.experiencias?.length || 0;
-    const keywords = `${expCount} experiencias,B${String(subject.bimestre).padStart(2, '0')},${subject.creditos || 4} créditos`;
-    const bimNum = String(subject.bimestre).padStart(2, '0');
-    const category = parseInt(bimNum) <= 10 ? 'APC' : 'IDS';
-    return `${subject.nombreCorto}|${desc}|${keywords}|subject|fa-book|${category} - BIMESTRE ${bimNum}`;
+  const desc =
+    subject.descripcion?.substring(0, 100) + (subject.descripcion?.length > 100 ? "..." : "") ||
+    "Asignatura del programa";
+  const expCount = subject.experiencias?.length || 0;
+  const keywords = `${expCount} experiencias,B${String(subject.bimestre).padStart(2, "0")},${subject.creditos || 4} créditos`;
+  const bimNum = String(subject.bimestre).padStart(2, "0");
+  const category = parseInt(bimNum) <= 10 ? "APC" : "IDS";
+  return `${subject.nombreCorto}|${desc}|${keywords}|subject|fa-book|${category} - BIMESTRE ${bimNum}`;
 }
 ---
 
-<aside id="subject-nav-sidebar" class="subject-nav-sidebar collapsed" aria-label="Navegacion de asignaturas">
-    <!-- Resize Handle - Right Edge -->
-    <div class="sidebar-resize-handle" id="sidebar-resize-handle" title="Arrastrar para redimensionar">
-        <div class="resize-grip">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+<aside
+  id="subject-nav-sidebar"
+  class="subject-nav-sidebar collapsed"
+  aria-label="Navegacion de asignaturas"
+>
+  <!-- Resize Handle - Right Edge -->
+  <div
+    class="sidebar-resize-handle"
+    id="sidebar-resize-handle"
+    title="Arrastrar para redimensionar"
+  >
+    <div class="resize-grip">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  </div>
 
-    <!-- Header -->
-    <header class="sidebar-header">
-        <div class="sidebar-title">
-            <i class="fas fa-book-open"></i>
-            <h3>Asignaturas</h3>
-        </div>
-        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Colapsar barra lateral" title="Colapsar">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-    </header>
-
-    <!-- Filter Mode Tabs -->
-    <nav class="filter-tabs" role="tablist">
-        <button class="filter-tab active" data-filter="bimestre" role="tab" aria-selected="true" data-premium-tooltip="Vista por Bimestre|Organiza las asignaturas en 17 bimestres (10 APC + 7 IDS)|B01-B10: Analista Programador,B11-B17: Ing. Desarrollo Software|filter|fa-calendar-alt|NAVEGACIÓN">
-            <i class="fas fa-calendar-alt"></i>
-            <span>Bimestre</span>
-        </button>
-        <button class="filter-tab" data-filter="year" role="tab" aria-selected="false" data-premium-tooltip="Vista por Año Académico|Agrupa asignaturas por año de la carrera|Año 1-2: Fundamentos,Año 3-4: Especialización,Año 5: Titulación|filter|fa-graduation-cap|NAVEGACIÓN">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Año</span>
-        </button>
-        <button class="filter-tab" data-filter="week" role="tab" aria-selected="false" data-premium-tooltip="Vista por Semana|Muestra asignaturas según tu semana actual del bimestre|Semanas 1-10: Clases,Semana 11: Exámenes|filter|fa-calendar-week|NAVEGACIÓN">
-            <i class="fas fa-calendar-week"></i>
-            <span>Semana</span>
-        </button>
-    </nav>
-
-    <!-- Search Bar -->
-    <div class="sidebar-search">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="sidebar-search-input" placeholder="Buscar asignatura..." autocomplete="off" />
-        <button class="search-clear" id="search-clear" title="Limpiar busqueda">
-            <i class="fas fa-times"></i>
-        </button>
+  <!-- Header -->
+  <header class="sidebar-header">
+    <div class="sidebar-title">
+      <i class="fas fa-book-open"></i>
+      <h3>Asignaturas</h3>
     </div>
+    <button
+      class="sidebar-toggle"
+      id="sidebar-toggle"
+      aria-label="Colapsar barra lateral"
+      title="Colapsar"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </header>
 
-    <!-- Scrollable Content Area -->
-    <div class="sidebar-body" id="sidebar-body">
-        <!-- View: Por Bimestre (default) -->
-        <div class="filter-view active" id="view-bimestre">
-            {allBimestres.map((bim) => {
-                const isIDS = parseInt(bim.number) > 10;
-                const subjects = getAsignaturasByBimestre(parseInt(bim.number));
-                return (
-                    <div class={`bimestre-group ${isIDS ? 'ids' : 'apc'}`} data-bimestre={bim.number}>
-                        <button class="group-header" aria-expanded="false">
-                            <span class="group-badge">B{bim.number}</span>
-                            <span class="group-title">{bim.title}</span>
-                            <span class="group-count">{subjects.length}</span>
-                            <i class="fas fa-chevron-down group-chevron"></i>
-                        </button>
-                        <div class="group-content">
-                            {subjects.map((subject) => (
-                                <button
-                                    class="subject-item"
-                                    data-subject-id={subject.id}
-                                    data-subject-name={subject.nombreCorto}
-                                    data-subject-code={subject.codigo}
-                                    data-premium-tooltip={getSubjectTooltip(subject)}
-                                >
-                                    <span class="subject-code">{subject.codigo}</span>
-                                    <span class="subject-name">{subject.nombreCorto}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
+  <!-- Filter Mode Tabs -->
+  <nav class="filter-tabs" role="tablist">
+    <button
+      class="filter-tab active"
+      data-filter="bimestre"
+      role="tab"
+      aria-selected="true"
+      data-premium-tooltip="Vista por Bimestre|Organiza las asignaturas en 17 bimestres (10 APC + 7 IDS)|B01-B10: Analista Programador,B11-B17: Ing. Desarrollo Software|filter|fa-calendar-alt|NAVEGACIÓN"
+    >
+      <i class="fas fa-calendar-alt"></i>
+      <span>Bimestre</span>
+    </button>
+    <button
+      class="filter-tab"
+      data-filter="year"
+      role="tab"
+      aria-selected="false"
+      data-premium-tooltip="Vista por Año Académico|Agrupa asignaturas por año de la carrera|Año 1-2: Fundamentos,Año 3-4: Especialización,Año 5: Titulación|filter|fa-graduation-cap|NAVEGACIÓN"
+    >
+      <i class="fas fa-graduation-cap"></i>
+      <span>Año</span>
+    </button>
+    <button
+      class="filter-tab"
+      data-filter="week"
+      role="tab"
+      aria-selected="false"
+      data-premium-tooltip="Vista por Semana|Muestra asignaturas según tu semana actual del bimestre|Semanas 1-10: Clases,Semana 11: Exámenes|filter|fa-calendar-week|NAVEGACIÓN"
+    >
+      <i class="fas fa-calendar-week"></i>
+      <span>Semana</span>
+    </button>
+  </nav>
 
-        <!-- View: Por Ano -->
-        <div class="filter-view" id="view-year">
-            {years.map((y) => {
-                const subjects = y.bimestres.flatMap(b => getAsignaturasByBimestre(parseInt(b.number)));
-                return (
-                    <div class={`year-group ${y.color}`}>
-                        <button class="group-header" aria-expanded="false">
-                            <span class="year-badge">{y.year}</span>
-                            <span class="group-title">Año {y.year} - {y.title}</span>
-                            <span class="group-count">{subjects.length}</span>
-                            <i class="fas fa-chevron-down group-chevron"></i>
-                        </button>
-                        <div class="group-content">
-                            {y.bimestres.map((bim) => {
-                                const bimSubjects = getAsignaturasByBimestre(parseInt(bim.number));
-                                return (
-                                    <div class="year-bimestre-section">
-                                        <div class="bimestre-label">
-                                            <span class="mini-badge">B{bim.number}</span>
-                                            <span>{bim.title}</span>
-                                        </div>
-                                        {bimSubjects.map((subject) => (
-                                            <button
-                                                class="subject-item"
-                                                data-subject-id={subject.id}
-                                                data-subject-name={subject.nombreCorto}
-                                                data-subject-code={subject.codigo}
-                                                data-premium-tooltip={getSubjectTooltip(subject)}
-                                            >
-                                                <span class="subject-code">{subject.codigo}</span>
-                                                <span class="subject-name">{subject.nombreCorto}</span>
-                                            </button>
-                                        ))}
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
+  <!-- Search Bar -->
+  <div class="sidebar-search">
+    <i class="fas fa-search search-icon"></i>
+    <input
+      type="text"
+      id="sidebar-search-input"
+      placeholder="Buscar asignatura..."
+      autocomplete="off"
+    />
+    <button class="search-clear" id="search-clear" title="Limpiar busqueda">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
 
-        <!-- View: Por Semana -->
-        <div class="filter-view" id="view-week">
-            <div class="week-bimestre-selector">
-                <label for="week-bimestre-select">
-                    <i class="fas fa-calendar-alt"></i>
-                    Bimestre:
-                </label>
-                <select id="week-bimestre-select">
-                    {allBimestres.map((bim) => (
-                        <option value={bim.number}>B{bim.number} - {bim.title}</option>
-                    ))}
-                </select>
+  <!-- Scrollable Content Area -->
+  <div class="sidebar-body" id="sidebar-body">
+    <!-- View: Por Bimestre (default) -->
+    <div class="filter-view active" id="view-bimestre">
+      {
+        allBimestres.map((bim) => {
+          const isIDS = parseInt(bim.number) > 10;
+          const subjects = getAsignaturasByBimestre(parseInt(bim.number));
+          return (
+            <div class={`bimestre-group ${isIDS ? "ids" : "apc"}`} data-bimestre={bim.number}>
+              <button class="group-header" aria-expanded="false">
+                <span class="group-badge">B{bim.number}</span>
+                <span class="group-title">{bim.title}</span>
+                <span class="group-count">{subjects.length}</span>
+                <i class="fas fa-chevron-down group-chevron" />
+              </button>
+              <div class="group-content">
+                {subjects.map((subject) => (
+                  <button
+                    class="subject-item"
+                    data-subject-id={subject.id}
+                    data-subject-name={subject.nombreCorto}
+                    data-subject-code={subject.codigo}
+                    data-premium-tooltip={getSubjectTooltip(subject)}
+                  >
+                    <span class="subject-code">{subject.codigo}</span>
+                    <span class="subject-name">{subject.nombreCorto}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-            <div class="weeks-container" id="weeks-container">
-                <!-- Populated dynamically -->
-            </div>
-        </div>
+          );
+        })
+      }
     </div>
 
-    <!-- Footer with stats -->
-    <footer class="sidebar-footer">
-        <div class="sidebar-stats">
-            <span><i class="fas fa-book"></i> <strong>{allAsignaturas.length}</strong> asignaturas</span>
-            <span><i class="fas fa-calendar"></i> <strong>17</strong> bimestres</span>
-        </div>
-    </footer>
+    <!-- View: Por Ano -->
+    <div class="filter-view" id="view-year">
+      {
+        years.map((y) => {
+          const subjects = y.bimestres.flatMap((b) => getAsignaturasByBimestre(parseInt(b.number)));
+          return (
+            <div class={`year-group ${y.color}`}>
+              <button class="group-header" aria-expanded="false">
+                <span class="year-badge">{y.year}</span>
+                <span class="group-title">
+                  Año {y.year} - {y.title}
+                </span>
+                <span class="group-count">{subjects.length}</span>
+                <i class="fas fa-chevron-down group-chevron" />
+              </button>
+              <div class="group-content">
+                {y.bimestres.map((bim) => {
+                  const bimSubjects = getAsignaturasByBimestre(parseInt(bim.number));
+                  return (
+                    <div class="year-bimestre-section">
+                      <div class="bimestre-label">
+                        <span class="mini-badge">B{bim.number}</span>
+                        <span>{bim.title}</span>
+                      </div>
+                      {bimSubjects.map((subject) => (
+                        <button
+                          class="subject-item"
+                          data-subject-id={subject.id}
+                          data-subject-name={subject.nombreCorto}
+                          data-subject-code={subject.codigo}
+                          data-premium-tooltip={getSubjectTooltip(subject)}
+                        >
+                          <span class="subject-code">{subject.codigo}</span>
+                          <span class="subject-name">{subject.nombreCorto}</span>
+                        </button>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+
+    <!-- View: Por Semana -->
+    <div class="filter-view" id="view-week">
+      <div class="week-bimestre-selector">
+        <label for="week-bimestre-select">
+          <i class="fas fa-calendar-alt"></i>
+          Bimestre:
+        </label>
+        <select id="week-bimestre-select">
+          {
+            allBimestres.map((bim) => (
+              <option value={bim.number}>
+                B{bim.number} - {bim.title}
+              </option>
+            ))
+          }
+        </select>
+      </div>
+      <div class="weeks-container" id="weeks-container">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with stats -->
+  <footer class="sidebar-footer">
+    <div class="sidebar-stats">
+      <span><i class="fas fa-book"></i> <strong>{allAsignaturas.length}</strong> asignaturas</span>
+      <span><i class="fas fa-calendar"></i> <strong>17</strong> bimestres</span>
+    </div>
+  </footer>
 </aside>
 
 <!-- Collapsed Toggle Button - visible by default since sidebar starts collapsed -->
-<button class="sidebar-expand-btn visible" id="sidebar-expand-btn" aria-label="Abrir navegación de asignaturas" data-premium-tooltip="Navegador de Asignaturas|Explora todas las asignaturas organizadas por bimestre, año o semana|Filtros,Búsqueda,17 Bimestres|tool|fa-book-open|SALA DE ESTUDIO">
-    <i class="fas fa-book-open"></i>
+<button
+  class="sidebar-expand-btn visible"
+  id="sidebar-expand-btn"
+  aria-label="Abrir navegación de asignaturas"
+  data-premium-tooltip="Navegador de Asignaturas|Explora todas las asignaturas organizadas por bimestre, año o semana|Filtros,Búsqueda,17 Bimestres|tool|fa-book-open|SALA DE ESTUDIO"
+>
+  <i class="fas fa-book-open"></i>
 </button>
 
 <!-- Pass data to client -->
 <script define:vars={{ clientData }}>
-    window.subjectNavData = clientData;
+  window.subjectNavData = clientData;
 </script>
 
 <style>
-    /* ============================================
+  /* ============================================
        SUBJECT NAVIGATION SIDEBAR - Premium Design
        ============================================ */
 
+  .subject-nav-sidebar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 280px;
+    min-width: 220px;
+    max-width: 400px;
+    height: calc(100vh - 70px);
+    background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
+    border-right: 1px solid rgba(6, 182, 212, 0.25);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(0);
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0, 0, 1),
+      width 0.15s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .subject-nav-sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .subject-nav-sidebar.resizing {
+    transition: none;
+    user-select: none;
+  }
+
+  /* Resize Handle */
+  .sidebar-resize-handle {
+    position: absolute;
+    right: -3px;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    cursor: ew-resize;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .sidebar-resize-handle:hover,
+  .sidebar-resize-handle.active {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(6, 182, 212, 0.15) 50%,
+      rgba(6, 182, 212, 0.4) 100%
+    );
+  }
+
+  .resize-grip {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .sidebar-resize-handle:hover .resize-grip {
+    opacity: 1;
+  }
+
+  .resize-grip span {
+    width: 3px;
+    height: 3px;
+    background: rgba(6, 182, 212, 0.6);
+    border-radius: 50%;
+  }
+
+  /* Header */
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.75rem;
+    background: rgba(6, 182, 212, 0.08);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+  }
+
+  .sidebar-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #22d3ee;
+  }
+
+  .sidebar-title i {
+    font-size: 0.9rem;
+  }
+
+  .sidebar-title h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .sidebar-toggle {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 6px;
+    background: rgba(6, 182, 212, 0.1);
+    color: #22d3ee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 0.7rem;
+  }
+
+  .sidebar-toggle:hover {
+    background: rgba(6, 182, 212, 0.2);
+    transform: scale(1.05);
+  }
+
+  /* Filter Tabs */
+  .filter-tabs {
+    display: flex;
+    padding: 0.5rem;
+    gap: 0.25rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+  }
+
+  .filter-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0.45rem 0.25rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.6rem;
+    font-weight: 500;
+  }
+
+  .filter-tab i {
+    font-size: 0.75rem;
+  }
+
+  .filter-tab:hover {
+    color: #94a3b8;
+    background: rgba(100, 116, 139, 0.1);
+  }
+
+  .filter-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
+    color: #22d3ee;
+    border-color: rgba(6, 182, 212, 0.35);
+  }
+
+  /* Search */
+  .sidebar-search {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    background: rgba(15, 23, 42, 0.4);
+    border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+  }
+
+  .sidebar-search .search-icon {
+    color: #475569;
+    font-size: 0.7rem;
+  }
+
+  .sidebar-search input {
+    flex: 1;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(71, 85, 105, 0.3);
+    border-radius: 6px;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.68rem;
+    color: #e2e8f0;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-search input::placeholder {
+    color: #475569;
+  }
+
+  .sidebar-search input:focus {
+    border-color: rgba(6, 182, 212, 0.4);
+    background: rgba(30, 41, 59, 0.8);
+  }
+
+  .search-clear {
+    width: 22px;
+    height: 22px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: #475569;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    transition: all 0.2s ease;
+  }
+
+  .search-clear.visible {
+    display: flex;
+  }
+
+  .search-clear:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+  }
+
+  /* Sidebar Body */
+  .sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.4rem;
+  }
+
+  .sidebar-body::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .sidebar-body::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.3);
+  }
+
+  .sidebar-body::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.3);
+    border-radius: 3px;
+  }
+
+  .sidebar-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(6, 182, 212, 0.5);
+  }
+
+  /* Filter Views */
+  .filter-view {
+    display: none;
+  }
+
+  .filter-view.active {
+    display: block;
+  }
+
+  /* Group Styles (Bimestre/Year) */
+  .bimestre-group,
+  .year-group {
+    margin-bottom: 0.35rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(71, 85, 105, 0.2);
+  }
+
+  .bimestre-group.apc,
+  .year-group.apc {
+    border-color: rgba(6, 182, 212, 0.2);
+  }
+
+  .bimestre-group.ids,
+  .year-group.ids {
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+
+  .group-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    border: none;
+    background: transparent;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 0.68rem;
+  }
+
+  .group-header:hover {
+    background: rgba(6, 182, 212, 0.08);
+  }
+
+  .bimestre-group.apc .group-header:hover,
+  .year-group.apc .group-header:hover {
+    background: rgba(6, 182, 212, 0.1);
+  }
+
+  .bimestre-group.ids .group-header:hover,
+  .year-group.ids .group-header:hover {
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .group-badge,
+  .year-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    padding: 0.15rem 0.35rem;
+    font-size: 0.58rem;
+    font-weight: 700;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .bimestre-group.apc .group-badge,
+  .year-group.apc .year-badge {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+
+  .bimestre-group.ids .group-badge,
+  .year-group.ids .year-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .group-title {
+    flex: 1;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .group-count {
+    font-size: 0.55rem;
+    color: #64748b;
+    background: rgba(100, 116, 139, 0.15);
+    padding: 0.1rem 0.35rem;
+    border-radius: 10px;
+  }
+
+  .group-chevron {
+    font-size: 0.55rem;
+    color: #475569;
+    transition: transform 0.2s ease;
+  }
+
+  .group-header[aria-expanded="true"] .group-chevron {
+    transform: rotate(180deg);
+  }
+
+  .group-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    padding: 0 0.4rem;
+  }
+
+  .group-header[aria-expanded="true"] + .group-content {
+    max-height: 500px;
+    padding: 0.3rem 0.4rem 0.5rem;
+  }
+
+  /* Subject Item */
+  .subject-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.5rem;
+    margin-bottom: 0.2rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.4);
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    font-size: 0.62rem;
+  }
+
+  .subject-item:hover {
+    background: rgba(6, 182, 212, 0.12);
+    border-color: rgba(6, 182, 212, 0.25);
+    color: #e2e8f0;
+  }
+
+  .subject-item.active {
+    background: rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #22d3ee;
+  }
+
+  .subject-code {
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: #64748b;
+    background: rgba(100, 116, 139, 0.15);
+    padding: 0.1rem 0.25rem;
+    border-radius: 3px;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .subject-item:hover .subject-code,
+  .subject-item.active .subject-code {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+
+  .subject-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Year view specific */
+  .year-bimestre-section {
+    margin-bottom: 0.5rem;
+  }
+
+  .bimestre-label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0;
+    margin-bottom: 0.25rem;
+    font-size: 0.55rem;
+    color: #64748b;
+    border-bottom: 1px dashed rgba(100, 116, 139, 0.2);
+  }
+
+  .mini-badge {
+    font-size: 0.5rem;
+    font-weight: 700;
+    color: #475569;
+    background: rgba(71, 85, 105, 0.2);
+    padding: 0.08rem 0.2rem;
+    border-radius: 3px;
+  }
+
+  /* Week View */
+  .week-bimestre-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .week-bimestre-selector label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.65rem;
+    color: #94a3b8;
+  }
+
+  .week-bimestre-selector select {
+    flex: 1;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(71, 85, 105, 0.4);
+    border-radius: 6px;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.62rem;
+    color: #e2e8f0;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .week-bimestre-selector select:focus {
+    border-color: rgba(6, 182, 212, 0.5);
+  }
+
+  .week-group {
+    margin-bottom: 0.4rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.3));
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .week-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    border: none;
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.05), transparent);
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-size: 0.72rem;
+    font-family: "Inter", sans-serif;
+  }
+
+  .week-header:hover {
+    background: linear-gradient(90deg, rgba(251, 191, 36, 0.12), rgba(251, 191, 36, 0.03));
+  }
+
+  .week-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(245, 158, 11, 0.15));
+    color: #fbbf24;
+    letter-spacing: 0.02em;
+    font-family: "JetBrains Mono", monospace;
+    box-shadow: 0 1px 3px rgba(251, 191, 36, 0.2);
+  }
+
+  .week-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: -0.01em;
+  }
+
+  .week-count {
+    font-size: 0.6rem;
+    color: #94a3b8;
+    background: rgba(100, 116, 139, 0.2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 12px;
+    font-weight: 500;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .week-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 0.6rem;
+  }
+
+  .week-header[aria-expanded="true"] + .week-content {
+    max-height: 500px;
+    padding: 0.4rem 0.6rem 0.6rem;
+  }
+
+  .week-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 0.15rem 0.4rem;
+    padding: 0.4rem 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.4));
+    border: 1px solid rgba(71, 85, 105, 0.15);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .week-item:hover {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.05));
+    border-color: rgba(251, 191, 36, 0.3);
+    transform: translateX(2px);
+  }
+
+  .week-subject {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    font-family: "Inter", sans-serif;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .week-exp-badge {
+    grid-column: 2;
+    grid-row: 1;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.52rem;
+    font-weight: 700;
+    color: #fbbf24;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
+    padding: 0.08rem 0.3rem;
+    border-radius: 3px;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .week-exp-title {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    font-size: 0.58rem;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.3;
+    font-family: "Inter", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .week-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    text-align: center;
+    font-size: 0.68rem;
+    color: #64748b;
+    font-style: normal;
+    padding: 0.8rem;
+    background: rgba(71, 85, 105, 0.1);
+    border-radius: 6px;
+    border: 1px dashed rgba(100, 116, 139, 0.3);
+  }
+
+  .week-empty i {
+    font-size: 0.75rem;
+    color: #475569;
+  }
+
+  /* Footer */
+  .sidebar-footer {
+    padding: 0.5rem 0.75rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-top: 1px solid rgba(6, 182, 212, 0.15);
+  }
+
+  .sidebar-stats {
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.55rem;
+    color: #64748b;
+  }
+
+  .sidebar-stats span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .sidebar-stats i {
+    font-size: 0.5rem;
+    color: #22d3ee;
+  }
+
+  .sidebar-stats strong {
+    color: #94a3b8;
+  }
+
+  /* Expand Button (when collapsed) */
+  .sidebar-expand-btn {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+    color: #22d3ee;
+    cursor: pointer;
+    z-index: 998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .sidebar-expand-btn.visible {
+    display: flex;
+  }
+
+  .sidebar-expand-btn:hover {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
+    transform: scale(1.05);
+  }
+
+  /* Width Indicator */
+  .sidebar-width-indicator {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(6, 182, 212, 0.9);
+    color: #0f172a;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    font-family: "JetBrains Mono", monospace;
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+  /* Light Theme */
+  :global([data-theme="light"]) .subject-nav-sidebar {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
+    border-right-color: rgba(6, 182, 212, 0.3);
+  }
+
+  :global([data-theme="light"]) .sidebar-header {
+    background: rgba(6, 182, 212, 0.1);
+  }
+
+  :global([data-theme="light"]) .sidebar-title {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .sidebar-toggle {
+    background: rgba(6, 182, 212, 0.15);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .filter-tabs {
+    background: rgba(241, 245, 249, 0.8);
+  }
+
+  :global([data-theme="light"]) .filter-tab {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .filter-tab.active {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.08));
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .sidebar-search input {
+    background: #ffffff;
+    border-color: rgba(148, 163, 184, 0.4);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .bimestre-group,
+  :global([data-theme="light"]) .year-group,
+  :global([data-theme="light"]) .week-group {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  :global([data-theme="light"]) .group-header {
+    color: #334155;
+  }
+
+  :global([data-theme="light"]) .subject-item {
+    background: rgba(255, 255, 255, 0.8);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .subject-item:hover {
+    background: rgba(6, 182, 212, 0.1);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .sidebar-footer {
+    background: rgba(241, 245, 249, 0.8);
+  }
+
+  :global([data-theme="light"]) .sidebar-expand-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.95));
+    color: #0891b2;
+  }
+
+  /* Responsive */
+  /* Hidden state when sidebars are merged */
+  .subject-nav-sidebar.hidden-for-merge {
+    transform: translateX(-100%);
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .sidebar-expand-btn.hidden-for-merge {
+    display: none !important;
+  }
+
+  @media (max-width: 1200px) {
     .subject-nav-sidebar {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 280px;
-        min-width: 220px;
-        max-width: 400px;
-        height: calc(100vh - 70px);
-        background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
-        border-right: 1px solid rgba(6, 182, 212, 0.25);
-        z-index: 999;
-        display: flex;
-        flex-direction: column;
-        transform: translateX(0);
-        transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), width 0.15s ease;
-        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
+      width: 260px !important;
     }
 
-    .subject-nav-sidebar.collapsed {
-        transform: translateX(-100%);
-    }
-
-    .subject-nav-sidebar.resizing {
-        transition: none;
-        user-select: none;
-    }
-
-    /* Resize Handle */
     .sidebar-resize-handle {
-        position: absolute;
-        right: -3px;
-        top: 0;
-        width: 6px;
-        height: 100%;
-        cursor: ew-resize;
-        z-index: 100;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        transition: background 0.2s ease;
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .subject-nav-sidebar {
+      width: 100% !important;
+      max-width: 320px;
+      box-shadow: 8px 0 40px rgba(0, 0, 0, 0.5);
     }
 
-    .sidebar-resize-handle:hover,
-    .sidebar-resize-handle.active {
-        background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(6, 182, 212, 0.15) 50%,
-            rgba(6, 182, 212, 0.4) 100%);
-    }
-
-    .resize-grip {
-        display: flex;
-        flex-direction: column;
-        gap: 3px;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .sidebar-resize-handle:hover .resize-grip {
-        opacity: 1;
-    }
-
-    .resize-grip span {
-        width: 3px;
-        height: 3px;
-        background: rgba(6, 182, 212, 0.6);
-        border-radius: 50%;
-    }
-
-    /* Header */
-    .sidebar-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.6rem 0.75rem;
-        background: rgba(6, 182, 212, 0.08);
-        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-    }
-
-    .sidebar-title {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #22d3ee;
-    }
-
-    .sidebar-title i {
-        font-size: 0.9rem;
-    }
-
-    .sidebar-title h3 {
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin: 0;
-        letter-spacing: -0.01em;
-    }
-
-    .sidebar-toggle {
-        width: 28px;
-        height: 28px;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 6px;
-        background: rgba(6, 182, 212, 0.1);
-        color: #22d3ee;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-        font-size: 0.7rem;
-    }
-
-    .sidebar-toggle:hover {
-        background: rgba(6, 182, 212, 0.2);
-        transform: scale(1.05);
-    }
-
-    /* Filter Tabs */
-    .filter-tabs {
-        display: flex;
-        padding: 0.5rem;
-        gap: 0.25rem;
-        background: rgba(15, 23, 42, 0.6);
-        border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+    .filter-tab span {
+      display: none;
     }
 
     .filter-tab {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.15rem;
-        padding: 0.45rem 0.25rem;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        background: transparent;
-        color: #64748b;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.6rem;
-        font-weight: 500;
+      padding: 0.5rem;
     }
 
     .filter-tab i {
-        font-size: 0.75rem;
+      font-size: 0.9rem;
     }
-
-    .filter-tab:hover {
-        color: #94a3b8;
-        background: rgba(100, 116, 139, 0.1);
-    }
-
-    .filter-tab.active {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
-        color: #22d3ee;
-        border-color: rgba(6, 182, 212, 0.35);
-    }
-
-    /* Search */
-    .sidebar-search {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.5rem 0.6rem;
-        background: rgba(15, 23, 42, 0.4);
-        border-bottom: 1px solid rgba(6, 182, 212, 0.1);
-    }
-
-    .sidebar-search .search-icon {
-        color: #475569;
-        font-size: 0.7rem;
-    }
-
-    .sidebar-search input {
-        flex: 1;
-        background: rgba(30, 41, 59, 0.6);
-        border: 1px solid rgba(71, 85, 105, 0.3);
-        border-radius: 6px;
-        padding: 0.4rem 0.5rem;
-        font-size: 0.68rem;
-        color: #e2e8f0;
-        outline: none;
-        transition: all 0.2s ease;
-    }
-
-    .sidebar-search input::placeholder {
-        color: #475569;
-    }
-
-    .sidebar-search input:focus {
-        border-color: rgba(6, 182, 212, 0.4);
-        background: rgba(30, 41, 59, 0.8);
-    }
-
-    .search-clear {
-        width: 22px;
-        height: 22px;
-        border: none;
-        border-radius: 4px;
-        background: transparent;
-        color: #475569;
-        cursor: pointer;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.6rem;
-        transition: all 0.2s ease;
-    }
-
-    .search-clear.visible {
-        display: flex;
-    }
-
-    .search-clear:hover {
-        background: rgba(239, 68, 68, 0.15);
-        color: #ef4444;
-    }
-
-    /* Sidebar Body */
-    .sidebar-body {
-        flex: 1;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 0.4rem;
-    }
-
-    .sidebar-body::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .sidebar-body::-webkit-scrollbar-track {
-        background: rgba(15, 23, 42, 0.3);
-    }
-
-    .sidebar-body::-webkit-scrollbar-thumb {
-        background: rgba(6, 182, 212, 0.3);
-        border-radius: 3px;
-    }
-
-    .sidebar-body::-webkit-scrollbar-thumb:hover {
-        background: rgba(6, 182, 212, 0.5);
-    }
-
-    /* Filter Views */
-    .filter-view {
-        display: none;
-    }
-
-    .filter-view.active {
-        display: block;
-    }
-
-    /* Group Styles (Bimestre/Year) */
-    .bimestre-group,
-    .year-group {
-        margin-bottom: 0.35rem;
-        border-radius: 8px;
-        overflow: hidden;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(71, 85, 105, 0.2);
-    }
-
-    .bimestre-group.apc,
-    .year-group.apc {
-        border-color: rgba(6, 182, 212, 0.2);
-    }
-
-    .bimestre-group.ids,
-    .year-group.ids {
-        border-color: rgba(139, 92, 246, 0.2);
-    }
-
-    .group-header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.5rem 0.6rem;
-        border: none;
-        background: transparent;
-        color: #cbd5e1;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: left;
-        font-size: 0.68rem;
-    }
-
-    .group-header:hover {
-        background: rgba(6, 182, 212, 0.08);
-    }
-
-    .bimestre-group.apc .group-header:hover,
-    .year-group.apc .group-header:hover {
-        background: rgba(6, 182, 212, 0.1);
-    }
-
-    .bimestre-group.ids .group-header:hover,
-    .year-group.ids .group-header:hover {
-        background: rgba(139, 92, 246, 0.1);
-    }
-
-    .group-badge,
-    .year-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 28px;
-        padding: 0.15rem 0.35rem;
-        font-size: 0.58rem;
-        font-weight: 700;
-        border-radius: 4px;
-        letter-spacing: 0.02em;
-    }
-
-    .bimestre-group.apc .group-badge,
-    .year-group.apc .year-badge {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-    }
-
-    .bimestre-group.ids .group-badge,
-    .year-group.ids .year-badge {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .group-title {
-        flex: 1;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .group-count {
-        font-size: 0.55rem;
-        color: #64748b;
-        background: rgba(100, 116, 139, 0.15);
-        padding: 0.1rem 0.35rem;
-        border-radius: 10px;
-    }
-
-    .group-chevron {
-        font-size: 0.55rem;
-        color: #475569;
-        transition: transform 0.2s ease;
-    }
-
-    .group-header[aria-expanded="true"] .group-chevron {
-        transform: rotate(180deg);
-    }
-
-    .group-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.25s ease;
-        padding: 0 0.4rem;
-    }
-
-    .group-header[aria-expanded="true"] + .group-content {
-        max-height: 500px;
-        padding: 0.3rem 0.4rem 0.5rem;
-    }
-
-    /* Subject Item */
-    .subject-item {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.4rem 0.5rem;
-        margin-bottom: 0.2rem;
-        border: 1px solid transparent;
-        border-radius: 6px;
-        background: rgba(15, 23, 42, 0.4);
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        text-align: left;
-        font-size: 0.62rem;
-    }
-
-    .subject-item:hover {
-        background: rgba(6, 182, 212, 0.12);
-        border-color: rgba(6, 182, 212, 0.25);
-        color: #e2e8f0;
-    }
-
-    .subject-item.active {
-        background: rgba(6, 182, 212, 0.2);
-        border-color: rgba(6, 182, 212, 0.4);
-        color: #22d3ee;
-    }
-
-    .subject-code {
-        font-size: 0.5rem;
-        font-weight: 600;
-        color: #64748b;
-        background: rgba(100, 116, 139, 0.15);
-        padding: 0.1rem 0.25rem;
-        border-radius: 3px;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .subject-item:hover .subject-code,
-    .subject-item.active .subject-code {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-    }
-
-    .subject-name {
-        flex: 1;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    /* Year view specific */
-    .year-bimestre-section {
-        margin-bottom: 0.5rem;
-    }
-
-    .bimestre-label {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.25rem 0;
-        margin-bottom: 0.25rem;
-        font-size: 0.55rem;
-        color: #64748b;
-        border-bottom: 1px dashed rgba(100, 116, 139, 0.2);
-    }
-
-    .mini-badge {
-        font-size: 0.5rem;
-        font-weight: 700;
-        color: #475569;
-        background: rgba(71, 85, 105, 0.2);
-        padding: 0.08rem 0.2rem;
-        border-radius: 3px;
-    }
-
-    /* Week View */
-    .week-bimestre-selector {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        background: rgba(15, 23, 42, 0.4);
-        border-radius: 8px;
-        margin-bottom: 0.5rem;
-    }
-
-    .week-bimestre-selector label {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        font-size: 0.65rem;
-        color: #94a3b8;
-    }
-
-    .week-bimestre-selector select {
-        flex: 1;
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(71, 85, 105, 0.4);
-        border-radius: 6px;
-        padding: 0.35rem 0.5rem;
-        font-size: 0.62rem;
-        color: #e2e8f0;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .week-bimestre-selector select:focus {
-        border-color: rgba(6, 182, 212, 0.5);
-    }
-
-    .week-group {
-        margin-bottom: 0.4rem;
-        border-radius: 10px;
-        overflow: hidden;
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.3));
-        border: 1px solid rgba(251, 191, 36, 0.25);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .week-header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 0.75rem;
-        border: none;
-        background: linear-gradient(90deg, rgba(251, 191, 36, 0.05), transparent);
-        color: #e2e8f0;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: left;
-        font-size: 0.72rem;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .week-header:hover {
-        background: linear-gradient(90deg, rgba(251, 191, 36, 0.12), rgba(251, 191, 36, 0.03));
-    }
-
-    .week-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 32px;
-        padding: 0.2rem 0.4rem;
-        font-size: 0.65rem;
-        font-weight: 700;
-        border-radius: 6px;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.25), rgba(245, 158, 11, 0.15));
-        color: #fbbf24;
-        letter-spacing: 0.02em;
-        font-family: 'JetBrains Mono', monospace;
-        box-shadow: 0 1px 3px rgba(251, 191, 36, 0.2);
-    }
-
-    .week-title {
-        flex: 1;
-        font-weight: 600;
-        font-size: 0.72rem;
-        letter-spacing: -0.01em;
-    }
-
-    .week-count {
-        font-size: 0.6rem;
-        color: #94a3b8;
-        background: rgba(100, 116, 139, 0.2);
-        padding: 0.15rem 0.4rem;
-        border-radius: 12px;
-        font-weight: 500;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .week-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 0 0.6rem;
-    }
-
-    .week-header[aria-expanded="true"] + .week-content {
-        max-height: 500px;
-        padding: 0.4rem 0.6rem 0.6rem;
-    }
-
-    .week-item {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-        gap: 0.15rem 0.4rem;
-        padding: 0.4rem 0.5rem;
-        margin-bottom: 0.25rem;
-        border-radius: 6px;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.6), rgba(30, 41, 59, 0.4));
-        border: 1px solid rgba(71, 85, 105, 0.15);
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .week-item:hover {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(245, 158, 11, 0.05));
-        border-color: rgba(251, 191, 36, 0.3);
-        transform: translateX(2px);
-    }
-
-    .week-subject {
-        grid-column: 1;
-        grid-row: 1;
-        font-size: 0.65rem;
-        font-weight: 600;
-        color: #f1f5f9;
-        font-family: 'Inter', sans-serif;
-        letter-spacing: -0.01em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .week-exp-badge {
-        grid-column: 2;
-        grid-row: 1;
-        display: inline-flex;
-        align-items: center;
-        font-size: 0.52rem;
-        font-weight: 700;
-        color: #fbbf24;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.1));
-        padding: 0.08rem 0.3rem;
-        border-radius: 3px;
-        font-family: 'JetBrains Mono', monospace;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-    }
-
-    .week-exp-title {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        font-size: 0.58rem;
-        color: #94a3b8;
-        font-weight: 400;
-        line-height: 1.3;
-        font-family: 'Inter', sans-serif;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .week-empty {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
-        text-align: center;
-        font-size: 0.68rem;
-        color: #64748b;
-        font-style: normal;
-        padding: 0.8rem;
-        background: rgba(71, 85, 105, 0.1);
-        border-radius: 6px;
-        border: 1px dashed rgba(100, 116, 139, 0.3);
-    }
-
-    .week-empty i {
-        font-size: 0.75rem;
-        color: #475569;
-    }
-
-    /* Footer */
-    .sidebar-footer {
-        padding: 0.5rem 0.75rem;
-        background: rgba(15, 23, 42, 0.6);
-        border-top: 1px solid rgba(6, 182, 212, 0.15);
-    }
-
-    .sidebar-stats {
-        display: flex;
-        justify-content: space-around;
-        font-size: 0.55rem;
-        color: #64748b;
-    }
-
-    .sidebar-stats span {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-    }
-
-    .sidebar-stats i {
-        font-size: 0.5rem;
-        color: #22d3ee;
-    }
-
-    .sidebar-stats strong {
-        color: #94a3b8;
-    }
-
-    /* Expand Button (when collapsed) */
-    .sidebar-expand-btn {
-        position: fixed;
-        top: 80px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 10px;
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
-        color: #22d3ee;
-        cursor: pointer;
-        z-index: 998;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        transition: all 0.2s ease;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(8px);
-    }
-
-    .sidebar-expand-btn.visible {
-        display: flex;
-    }
-
-    .sidebar-expand-btn:hover {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.1));
-        transform: scale(1.05);
-    }
-
-    /* Width Indicator */
-    .sidebar-width-indicator {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(6, 182, 212, 0.9);
-        color: #0f172a;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.65rem;
-        font-weight: 600;
-        font-family: 'JetBrains Mono', monospace;
-        z-index: 10000;
-        pointer-events: none;
-    }
-
-    /* Light Theme */
-    :global([data-theme="light"]) .subject-nav-sidebar {
-        background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 40%, #e2e8f0 100%);
-        border-right-color: rgba(6, 182, 212, 0.3);
-    }
-
-    :global([data-theme="light"]) .sidebar-header {
-        background: rgba(6, 182, 212, 0.1);
-    }
-
-    :global([data-theme="light"]) .sidebar-title {
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .sidebar-toggle {
-        background: rgba(6, 182, 212, 0.15);
-        border-color: rgba(6, 182, 212, 0.3);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .filter-tabs {
-        background: rgba(241, 245, 249, 0.8);
-    }
-
-    :global([data-theme="light"]) .filter-tab {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .filter-tab.active {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(139, 92, 246, 0.08));
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .sidebar-search input {
-        background: #ffffff;
-        border-color: rgba(148, 163, 184, 0.4);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .bimestre-group,
-    :global([data-theme="light"]) .year-group,
-    :global([data-theme="light"]) .week-group {
-        background: rgba(255, 255, 255, 0.6);
-    }
-
-    :global([data-theme="light"]) .group-header {
-        color: #334155;
-    }
-
-    :global([data-theme="light"]) .subject-item {
-        background: rgba(255, 255, 255, 0.8);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .subject-item:hover {
-        background: rgba(6, 182, 212, 0.1);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .sidebar-footer {
-        background: rgba(241, 245, 249, 0.8);
-    }
-
-    :global([data-theme="light"]) .sidebar-expand-btn {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.95));
-        color: #0891b2;
-    }
-
-    /* Responsive */
-    /* Hidden state when sidebars are merged */
-    .subject-nav-sidebar.hidden-for-merge {
-        transform: translateX(-100%);
-        pointer-events: none;
-        opacity: 0;
-    }
-
-    .sidebar-expand-btn.hidden-for-merge {
-        display: none !important;
-    }
-
-    @media (max-width: 1200px) {
-        .subject-nav-sidebar {
-            width: 260px !important;
-        }
-
-        .sidebar-resize-handle {
-            display: none;
-        }
-    }
-
-    @media (max-width: 900px) {
-        .subject-nav-sidebar {
-            width: 100% !important;
-            max-width: 320px;
-            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .filter-tab span {
-            display: none;
-        }
-
-        .filter-tab {
-            padding: 0.5rem;
-        }
-
-        .filter-tab i {
-            font-size: 0.9rem;
-        }
-    }
+  }
 </style>
 
 <script>
-    // ============================================
-    // SUBJECT NAVIGATION SIDEBAR - JavaScript
-    // ============================================
+  // ============================================
+  // SUBJECT NAVIGATION SIDEBAR - JavaScript
+  // ============================================
 
-    function initSubjectNavSidebar() {
-        const sidebar = document.getElementById('subject-nav-sidebar');
-        const resizeHandle = document.getElementById('sidebar-resize-handle');
-        const toggleBtn = document.getElementById('sidebar-toggle');
-        const expandBtn = document.getElementById('sidebar-expand-btn');
-        const filterTabs = document.querySelectorAll('.filter-tab');
-        const searchInput = document.getElementById('sidebar-search-input');
-        const searchClear = document.getElementById('search-clear');
-        const weekSelect = document.getElementById('week-bimestre-select');
+  function initSubjectNavSidebar() {
+    const sidebar = document.getElementById("subject-nav-sidebar");
+    const resizeHandle = document.getElementById("sidebar-resize-handle");
+    const toggleBtn = document.getElementById("sidebar-toggle");
+    const expandBtn = document.getElementById("sidebar-expand-btn");
+    const filterTabs = document.querySelectorAll(".filter-tab");
+    const searchInput = document.getElementById("sidebar-search-input");
+    const searchClear = document.getElementById("search-clear");
+    const weekSelect = document.getElementById("week-bimestre-select");
 
-        if (!sidebar) return;
+    if (!sidebar) return;
 
-        // Prevent duplicate initialization
-        if (sidebar.dataset.initialized === 'true') return;
-        sidebar.dataset.initialized = 'true';
+    // Prevent duplicate initialization
+    if (sidebar.dataset.initialized === "true") return;
+    sidebar.dataset.initialized = "true";
 
-        // State - sidebar starts CLOSED by default
-        const state = {
-            isOpen: false,
-            currentFilter: 'bimestre',
-            selectedBimestre: '01',
-            selectedSubjectId: null,
-            width: 280
-        };
+    // State - sidebar starts CLOSED by default
+    const state = {
+      isOpen: false,
+      currentFilter: "bimestre",
+      selectedBimestre: "01",
+      selectedSubjectId: null,
+      width: 280,
+    };
 
-        // Restore state
-        restoreState();
+    // Restore state
+    restoreState();
 
-        // Initialize resize
-        initResize();
+    // Initialize resize
+    initResize();
 
-        // Toggle sidebar
-        toggleBtn?.addEventListener('click', () => toggleSidebar(false));
-        expandBtn?.addEventListener('click', () => toggleSidebar(true));
+    // Toggle sidebar
+    toggleBtn?.addEventListener("click", () => toggleSidebar(false));
+    expandBtn?.addEventListener("click", () => toggleSidebar(true));
 
-        // Filter tabs
-        filterTabs.forEach(tab => {
-            tab.addEventListener('click', () => switchFilter(tab.dataset.filter));
-        });
+    // Filter tabs
+    filterTabs.forEach((tab) => {
+      tab.addEventListener("click", () => switchFilter(tab.dataset.filter));
+    });
 
-        // Search
-        searchInput?.addEventListener('input', handleSearch);
-        searchClear?.addEventListener('click', clearSearch);
+    // Search
+    searchInput?.addEventListener("input", handleSearch);
+    searchClear?.addEventListener("click", clearSearch);
 
-        // Week view bimestre selector
-        weekSelect?.addEventListener('change', (e) => {
-            state.selectedBimestre = e.target.value;
-            populateWeekView(e.target.value);
-            saveState();
-        });
+    // Week view bimestre selector
+    weekSelect?.addEventListener("change", (e) => {
+      state.selectedBimestre = e.target.value;
+      populateWeekView(e.target.value);
+      saveState();
+    });
 
-        // Group accordions
-        initAccordions();
+    // Group accordions
+    initAccordions();
 
-        // Subject item clicks
-        initSubjectClicks();
+    // Subject item clicks
+    initSubjectClicks();
 
-        // Initialize week view
+    // Initialize week view
+    populateWeekView(state.selectedBimestre);
+
+    // Sync with SubjectDrawer (middle sidebar)
+    initDrawerSync();
+
+    // ===== FUNCTIONS =====
+
+    function restoreState() {
+      try {
+        const saved = localStorage.getItem("subject_nav_state");
+        if (saved) {
+          const data = JSON.parse(saved);
+          // DO NOT restore isOpen - always start closed for clean page load
+          // state.isOpen = data.isOpen ?? false;
+          state.currentFilter = data.currentFilter || "bimestre";
+          state.selectedBimestre = data.selectedBimestre || "01";
+          state.width = data.width || 280;
+        }
+
+        // Apply saved width
+        if (state.width && state.width >= 220 && state.width <= 400) {
+          sidebar.style.width = state.width + "px";
+        }
+
+        // Apply collapsed state
+        if (!state.isOpen) {
+          sidebar.classList.add("collapsed");
+          expandBtn?.classList.add("visible");
+        }
+
+        // Apply filter
+        switchFilter(state.currentFilter, false);
+
+        // Set week selector
+        if (weekSelect) {
+          weekSelect.value = state.selectedBimestre;
+        }
+      } catch (e) {
+        console.warn("Could not restore sidebar state:", e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem("subject_nav_state", JSON.stringify(state));
+      } catch (e) {
+        console.warn("Could not save sidebar state:", e);
+      }
+    }
+
+    function toggleSidebar(open) {
+      state.isOpen = open;
+      sidebar.classList.toggle("collapsed", !open);
+      expandBtn?.classList.toggle("visible", !open);
+      saveState();
+
+      // Dispatch event for layout sync
+      window.dispatchEvent(
+        new CustomEvent("navSidebarToggle", {
+          detail: { isOpen: open, width: open ? state.width : 0 },
+        }),
+      );
+    }
+
+    function switchFilter(filter, save = true) {
+      state.currentFilter = filter;
+
+      // Update tabs
+      filterTabs.forEach((tab) => {
+        const isActive = tab.dataset.filter === filter;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", isActive.toString());
+      });
+
+      // Show view
+      document.querySelectorAll(".filter-view").forEach((view) => {
+        view.classList.remove("active");
+      });
+      document.getElementById(`view-${filter}`)?.classList.add("active");
+
+      // Populate week view if needed
+      if (filter === "week") {
         populateWeekView(state.selectedBimestre);
+      }
 
-        // Sync with SubjectDrawer (middle sidebar)
-        initDrawerSync();
+      if (save) saveState();
+    }
 
-        // ===== FUNCTIONS =====
+    function handleSearch() {
+      const query = searchInput.value.toLowerCase().trim();
+      searchClear?.classList.toggle("visible", query.length > 0);
 
-        function restoreState() {
-            try {
-                const saved = localStorage.getItem('subject_nav_state');
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    // DO NOT restore isOpen - always start closed for clean page load
-                    // state.isOpen = data.isOpen ?? false;
-                    state.currentFilter = data.currentFilter || 'bimestre';
-                    state.selectedBimestre = data.selectedBimestre || '01';
-                    state.width = data.width || 280;
-                }
+      const items = sidebar.querySelectorAll(".subject-item");
+      items.forEach((item) => {
+        const name = item.dataset.subjectName?.toLowerCase() || "";
+        const code = item.dataset.subjectCode?.toLowerCase() || "";
+        const matches = name.includes(query) || code.includes(query);
+        item.style.display = matches ? "" : "none";
+      });
 
-                // Apply saved width
-                if (state.width && state.width >= 220 && state.width <= 400) {
-                    sidebar.style.width = state.width + 'px';
-                }
+      // Also filter week items
+      const weekItems = sidebar.querySelectorAll(".week-item");
+      weekItems.forEach((item) => {
+        const text = item.textContent?.toLowerCase() || "";
+        item.style.display = text.includes(query) ? "" : "none";
+      });
+    }
 
-                // Apply collapsed state
-                if (!state.isOpen) {
-                    sidebar.classList.add('collapsed');
-                    expandBtn?.classList.add('visible');
-                }
+    function clearSearch() {
+      searchInput.value = "";
+      searchClear?.classList.remove("visible");
+      handleSearch();
+      searchInput.focus();
+    }
 
-                // Apply filter
-                switchFilter(state.currentFilter, false);
-
-                // Set week selector
-                if (weekSelect) {
-                    weekSelect.value = state.selectedBimestre;
-                }
-            } catch (e) {
-                console.warn('Could not restore sidebar state:', e);
-            }
+    function initAccordions() {
+      // Use event delegation to handle accordion clicks
+      // This prevents duplicate listeners on View Transitions
+      sidebar.addEventListener("click", (e) => {
+        const header = e.target.closest(".group-header, .week-header");
+        if (header) {
+          e.stopPropagation();
+          const isExpanded = header.getAttribute("aria-expanded") === "true";
+          header.setAttribute("aria-expanded", (!isExpanded).toString());
         }
+      });
+    }
 
-        function saveState() {
-            try {
-                localStorage.setItem('subject_nav_state', JSON.stringify(state));
-            } catch (e) {
-                console.warn('Could not save sidebar state:', e);
-            }
-        }
+    function initSubjectClicks() {
+      sidebar.addEventListener("click", (e) => {
+        const subjectItem = e.target.closest(".subject-item");
+        const weekItem = e.target.closest(".week-item");
 
-        function toggleSidebar(open) {
-            state.isOpen = open;
-            sidebar.classList.toggle('collapsed', !open);
-            expandBtn?.classList.toggle('visible', !open);
-            saveState();
-
-            // Dispatch event for layout sync
-            window.dispatchEvent(new CustomEvent('navSidebarToggle', {
-                detail: { isOpen: open, width: open ? state.width : 0 }
-            }));
-        }
-
-        function switchFilter(filter, save = true) {
-            state.currentFilter = filter;
-
-            // Update tabs
-            filterTabs.forEach(tab => {
-                const isActive = tab.dataset.filter === filter;
-                tab.classList.toggle('active', isActive);
-                tab.setAttribute('aria-selected', isActive.toString());
-            });
-
-            // Show view
-            document.querySelectorAll('.filter-view').forEach(view => {
-                view.classList.remove('active');
-            });
-            document.getElementById(`view-${filter}`)?.classList.add('active');
-
-            // Populate week view if needed
-            if (filter === 'week') {
-                populateWeekView(state.selectedBimestre);
-            }
-
-            if (save) saveState();
-        }
-
-        function handleSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            searchClear?.classList.toggle('visible', query.length > 0);
-
-            const items = sidebar.querySelectorAll('.subject-item');
-            items.forEach(item => {
-                const name = item.dataset.subjectName?.toLowerCase() || '';
-                const code = item.dataset.subjectCode?.toLowerCase() || '';
-                const matches = name.includes(query) || code.includes(query);
-                item.style.display = matches ? '' : 'none';
-            });
-
-            // Also filter week items
-            const weekItems = sidebar.querySelectorAll('.week-item');
-            weekItems.forEach(item => {
-                const text = item.textContent?.toLowerCase() || '';
-                item.style.display = text.includes(query) ? '' : 'none';
-            });
-        }
-
-        function clearSearch() {
-            searchInput.value = '';
-            searchClear?.classList.remove('visible');
-            handleSearch();
-            searchInput.focus();
-        }
-
-        function initAccordions() {
-            // Use event delegation to handle accordion clicks
-            // This prevents duplicate listeners on View Transitions
-            sidebar.addEventListener('click', (e) => {
-                const header = e.target.closest('.group-header, .week-header');
-                if (header) {
-                    e.stopPropagation();
-                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
-                    header.setAttribute('aria-expanded', (!isExpanded).toString());
-                }
-            });
-        }
-
-        function initSubjectClicks() {
-            sidebar.addEventListener('click', (e) => {
-                const subjectItem = e.target.closest('.subject-item');
-                const weekItem = e.target.closest('.week-item');
-
-                if (subjectItem) {
-                    const id = subjectItem.dataset.subjectId;
-                    const name = subjectItem.dataset.subjectName;
-                    selectSubject(id, name);
-                } else if (weekItem) {
-                    const id = weekItem.dataset.subjectId;
-                    if (id) {
-                        const data = window.subjectNavData;
-                        const subject = data?.asignaturas?.find(s => s.id === id);
-                        if (subject) {
-                            selectSubject(id, subject.nombreCorto);
-                        }
-                    }
-                }
-            });
-        }
-
-        function selectSubject(id, name) {
-            state.selectedSubjectId = id;
-
-            // Update active state
-            sidebar.querySelectorAll('.subject-item').forEach(item => {
-                item.classList.toggle('active', item.dataset.subjectId === id);
-            });
-
-            // Call existing drawer function
-            if (typeof window.openSubjectDrawer === 'function') {
-                window.openSubjectDrawer(id, name);
-            }
-
-            saveState();
-        }
-
-        function populateWeekView(bimestre) {
-            const container = document.getElementById('weeks-container');
-            if (!container) return;
-
+        if (subjectItem) {
+          const id = subjectItem.dataset.subjectId;
+          const name = subjectItem.dataset.subjectName;
+          selectSubject(id, name);
+        } else if (weekItem) {
+          const id = weekItem.dataset.subjectId;
+          if (id) {
             const data = window.subjectNavData;
-            if (!data?.asignaturas) return;
-
-            const subjects = data.asignaturas.filter(s =>
-                s.bimestre === parseInt(bimestre)
-            );
-
-            // Parse weeks from experiencias
-            const weeks = {};
-            for (let w = 1; w <= 8; w++) {
-                weeks[w] = [];
+            const subject = data?.asignaturas?.find((s) => s.id === id);
+            if (subject) {
+              selectSubject(id, subject.nombreCorto);
             }
+          }
+        }
+      });
+    }
 
-            subjects.forEach(subject => {
-                subject.experiencias?.forEach(exp => {
-                    // Parse "Semana 1-3" format
-                    const match = exp.semanas?.match(/Semana\s*(\d+)(?:\s*-\s*(\d+))?/i);
-                    if (match) {
-                        const start = parseInt(match[1]);
-                        const end = match[2] ? parseInt(match[2]) : start;
-                        for (let w = start; w <= Math.min(end, 8); w++) {
-                            weeks[w].push({
-                                subject,
-                                experiencia: exp
-                            });
-                        }
-                    }
-                });
-            });
+    function selectSubject(id, name) {
+      state.selectedSubjectId = id;
 
-            // Render
-            let html = '';
-            for (let w = 1; w <= 8; w++) {
-                const items = weeks[w];
-                html += `
+      // Update active state
+      sidebar.querySelectorAll(".subject-item").forEach((item) => {
+        item.classList.toggle("active", item.dataset.subjectId === id);
+      });
+
+      // Call existing drawer function
+      if (typeof window.openSubjectDrawer === "function") {
+        window.openSubjectDrawer(id, name);
+      }
+
+      saveState();
+    }
+
+    function populateWeekView(bimestre) {
+      const container = document.getElementById("weeks-container");
+      if (!container) return;
+
+      const data = window.subjectNavData;
+      if (!data?.asignaturas) return;
+
+      const subjects = data.asignaturas.filter((s) => s.bimestre === parseInt(bimestre));
+
+      // Parse weeks from experiencias
+      const weeks = {};
+      for (let w = 1; w <= 8; w++) {
+        weeks[w] = [];
+      }
+
+      subjects.forEach((subject) => {
+        subject.experiencias?.forEach((exp) => {
+          // Parse "Semana 1-3" format
+          const match = exp.semanas?.match(/Semana\s*(\d+)(?:\s*-\s*(\d+))?/i);
+          if (match) {
+            const start = parseInt(match[1]);
+            const end = match[2] ? parseInt(match[2]) : start;
+            for (let w = start; w <= Math.min(end, 8); w++) {
+              weeks[w].push({
+                subject,
+                experiencia: exp,
+              });
+            }
+          }
+        });
+      });
+
+      // Render
+      let html = "";
+      for (let w = 1; w <= 8; w++) {
+        const items = weeks[w];
+        html += `
                     <div class="week-group">
                         <button class="week-header" aria-expanded="false">
                             <span class="week-badge">S${w}</span>
@@ -1298,171 +1366,185 @@ function getSubjectTooltip(subject: Asignatura): string {
                             <i class="fas fa-chevron-down group-chevron"></i>
                         </button>
                         <div class="week-content">
-                            ${items.length > 0 ? items.map(item => {
-                                const subj = item.subject;
-                                const desc = (subj.descripcion || 'Asignatura del programa').substring(0, 100);
-                                const expCount = subj.experiencias?.length || 0;
-                                const bimNum = String(subj.bimestre).padStart(2, '0');
-                                const category = parseInt(bimNum) <= 10 ? 'APC' : 'IDS';
-                                const tooltip = `${subj.nombreCorto}|${desc}${desc.length >= 100 ? '...' : ''}|${expCount} experiencias,B${bimNum},${subj.creditos || 4} créditos|subject|fa-book|${category} - BIMESTRE ${bimNum}`;
-                                const shortTitle = item.experiencia.titulo.length > 40 ? item.experiencia.titulo.substring(0, 40) + '...' : item.experiencia.titulo;
-                                return `
-                                <div class="week-item" data-subject-id="${subj.id}" data-premium-tooltip="${tooltip.replace(/"/g, '&quot;')}">
+                            ${
+                              items.length > 0
+                                ? items
+                                    .map((item) => {
+                                      const subj = item.subject;
+                                      const desc = (
+                                        subj.descripcion || "Asignatura del programa"
+                                      ).substring(0, 100);
+                                      const expCount = subj.experiencias?.length || 0;
+                                      const bimNum = String(subj.bimestre).padStart(2, "0");
+                                      const category = parseInt(bimNum) <= 10 ? "APC" : "IDS";
+                                      const tooltip = `${subj.nombreCorto}|${desc}${desc.length >= 100 ? "..." : ""}|${expCount} experiencias,B${bimNum},${subj.creditos || 4} créditos|subject|fa-book|${category} - BIMESTRE ${bimNum}`;
+                                      const shortTitle =
+                                        item.experiencia.titulo.length > 40
+                                          ? item.experiencia.titulo.substring(0, 40) + "..."
+                                          : item.experiencia.titulo;
+                                      return `
+                                <div class="week-item" data-subject-id="${subj.id}" data-premium-tooltip="${tooltip.replace(/"/g, "&quot;")}">
                                     <span class="week-subject" title="${subj.nombreCorto}">${subj.nombreCorto}</span>
                                     <span class="week-exp-badge">E${item.experiencia.numero}</span>
                                     <span class="week-exp-title" title="${item.experiencia.titulo}">${shortTitle}</span>
                                 </div>
-                            `}).join('') : '<span class="week-empty"><i class="fas fa-calendar-times"></i> Sin contenido programado</span>'}
+                            `;
+                                    })
+                                    .join("")
+                                : '<span class="week-empty"><i class="fas fa-calendar-times"></i> Sin contenido programado</span>'
+                            }
                         </div>
                     </div>
                 `;
-            }
+      }
 
-            container.innerHTML = html;
+      container.innerHTML = html;
 
-            // Re-init accordions for new elements
-            const newHeaders = container.querySelectorAll('.week-header');
-            newHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const isExpanded = header.getAttribute('aria-expanded') === 'true';
-                    header.setAttribute('aria-expanded', (!isExpanded).toString());
-                });
-            });
-        }
-
-        function initResize() {
-            if (!resizeHandle) return;
-
-            const MIN_WIDTH = 220;
-            const MAX_WIDTH = 400;
-            let isResizing = false;
-            let startX = 0;
-            let startWidth = 0;
-            let widthIndicator = null;
-
-            function startResize(e) {
-                e.preventDefault();
-                isResizing = true;
-                startX = e.clientX || e.touches?.[0]?.clientX || 0;
-                startWidth = sidebar.offsetWidth;
-
-                sidebar.classList.add('resizing');
-                resizeHandle.classList.add('active');
-                document.body.style.cursor = 'ew-resize';
-                document.body.style.userSelect = 'none';
-
-                // Create indicator
-                widthIndicator = document.createElement('div');
-                widthIndicator.className = 'sidebar-width-indicator';
-                document.body.appendChild(widthIndicator);
-
-                document.addEventListener('mousemove', doResize);
-                document.addEventListener('mouseup', stopResize);
-                document.addEventListener('touchmove', doResize, { passive: false });
-                document.addEventListener('touchend', stopResize);
-            }
-
-            function doResize(e) {
-                if (!isResizing) return;
-                e.preventDefault();
-
-                const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
-                const deltaX = clientX - startX;
-                let newWidth = startWidth + deltaX;
-
-                newWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, newWidth));
-
-                sidebar.style.width = newWidth + 'px';
-
-                if (widthIndicator) {
-                    widthIndicator.textContent = `${Math.round(newWidth)}px`;
-                    widthIndicator.style.left = (newWidth + 10) + 'px';
-                }
-
-                // Dispatch event
-                window.dispatchEvent(new CustomEvent('navSidebarResize', {
-                    detail: { width: newWidth }
-                }));
-            }
-
-            function stopResize() {
-                if (!isResizing) return;
-                isResizing = false;
-
-                sidebar.classList.remove('resizing');
-                resizeHandle.classList.remove('active');
-                document.body.style.cursor = '';
-                document.body.style.userSelect = '';
-
-                state.width = sidebar.offsetWidth;
-                saveState();
-
-                widthIndicator?.remove();
-                widthIndicator = null;
-
-                document.removeEventListener('mousemove', doResize);
-                document.removeEventListener('mouseup', stopResize);
-                document.removeEventListener('touchmove', doResize);
-                document.removeEventListener('touchend', stopResize);
-            }
-
-            // Double-click to reset
-            resizeHandle.addEventListener('dblclick', () => {
-                sidebar.style.width = '280px';
-                state.width = 280;
-                saveState();
-            });
-
-            resizeHandle.addEventListener('mousedown', startResize);
-            resizeHandle.addEventListener('touchstart', startResize, { passive: false });
-        }
-
-        // ===== DRAWER SYNC =====
-        // Sync left sidebar with SubjectDrawer (middle sidebar)
-        function initDrawerSync() {
-            const VIEWPORT_THRESHOLD = 1200; // Collapse if viewport < this when drawer is open
-            let drawerWidth = 520; // Default SubjectDrawer width
-            let drawerOpen = false;
-
-            // Listen for SubjectDrawer toggle
-            window.addEventListener('subjectDrawerToggle', (e) => {
-                drawerOpen = e.detail?.isOpen ?? false;
-                checkAndAdjust();
-            });
-
-            // Listen for SubjectDrawer resize
-            window.addEventListener('subjectDrawerResize', (e) => {
-                drawerWidth = e.detail?.width ?? 520;
-                checkAndAdjust();
-            });
-
-            function checkAndAdjust() {
-                // Sidebars are now pure overlays - no auto-collapse needed
-                // User controls sidebar visibility manually
-                // Only adjust max-width on very small screens
-                const viewportWidth = window.innerWidth;
-
-                if (viewportWidth < 768) {
-                    // On mobile, limit sidebar width
-                    sidebar.style.maxWidth = Math.min(280, viewportWidth - 60) + 'px';
-                } else {
-                    sidebar.style.maxWidth = '400px';
-                }
-            }
-
-            // Also check on window resize
-            window.addEventListener('resize', checkAndAdjust);
-
-            // Listen for collapse request from MergedSidebarPanel
-            window.addEventListener('requestNavSidebarCollapse', () => {
-                if (state.isOpen) {
-                    toggleSidebar(false);
-                }
-            });
-        }
+      // Re-init accordions for new elements
+      const newHeaders = container.querySelectorAll(".week-header");
+      newHeaders.forEach((header) => {
+        header.addEventListener("click", () => {
+          const isExpanded = header.getAttribute("aria-expanded") === "true";
+          header.setAttribute("aria-expanded", (!isExpanded).toString());
+        });
+      });
     }
 
-    // Initialize on load
-    document.addEventListener('DOMContentLoaded', initSubjectNavSidebar);
-    document.addEventListener('astro:page-load', initSubjectNavSidebar);
+    function initResize() {
+      if (!resizeHandle) return;
+
+      const MIN_WIDTH = 220;
+      const MAX_WIDTH = 400;
+      let isResizing = false;
+      let startX = 0;
+      let startWidth = 0;
+      let widthIndicator = null;
+
+      function startResize(e) {
+        e.preventDefault();
+        isResizing = true;
+        startX = e.clientX || e.touches?.[0]?.clientX || 0;
+        startWidth = sidebar.offsetWidth;
+
+        sidebar.classList.add("resizing");
+        resizeHandle.classList.add("active");
+        document.body.style.cursor = "ew-resize";
+        document.body.style.userSelect = "none";
+
+        // Create indicator
+        widthIndicator = document.createElement("div");
+        widthIndicator.className = "sidebar-width-indicator";
+        document.body.appendChild(widthIndicator);
+
+        document.addEventListener("mousemove", doResize);
+        document.addEventListener("mouseup", stopResize);
+        document.addEventListener("touchmove", doResize, { passive: false });
+        document.addEventListener("touchend", stopResize);
+      }
+
+      function doResize(e) {
+        if (!isResizing) return;
+        e.preventDefault();
+
+        const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
+        const deltaX = clientX - startX;
+        let newWidth = startWidth + deltaX;
+
+        newWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, newWidth));
+
+        sidebar.style.width = newWidth + "px";
+
+        if (widthIndicator) {
+          widthIndicator.textContent = `${Math.round(newWidth)}px`;
+          widthIndicator.style.left = newWidth + 10 + "px";
+        }
+
+        // Dispatch event
+        window.dispatchEvent(
+          new CustomEvent("navSidebarResize", {
+            detail: { width: newWidth },
+          }),
+        );
+      }
+
+      function stopResize() {
+        if (!isResizing) return;
+        isResizing = false;
+
+        sidebar.classList.remove("resizing");
+        resizeHandle.classList.remove("active");
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+
+        state.width = sidebar.offsetWidth;
+        saveState();
+
+        widthIndicator?.remove();
+        widthIndicator = null;
+
+        document.removeEventListener("mousemove", doResize);
+        document.removeEventListener("mouseup", stopResize);
+        document.removeEventListener("touchmove", doResize);
+        document.removeEventListener("touchend", stopResize);
+      }
+
+      // Double-click to reset
+      resizeHandle.addEventListener("dblclick", () => {
+        sidebar.style.width = "280px";
+        state.width = 280;
+        saveState();
+      });
+
+      resizeHandle.addEventListener("mousedown", startResize);
+      resizeHandle.addEventListener("touchstart", startResize, { passive: false });
+    }
+
+    // ===== DRAWER SYNC =====
+    // Sync left sidebar with SubjectDrawer (middle sidebar)
+    function initDrawerSync() {
+      const VIEWPORT_THRESHOLD = 1200; // Collapse if viewport < this when drawer is open
+      let drawerWidth = 520; // Default SubjectDrawer width
+      let drawerOpen = false;
+
+      // Listen for SubjectDrawer toggle
+      window.addEventListener("subjectDrawerToggle", (e) => {
+        drawerOpen = e.detail?.isOpen ?? false;
+        checkAndAdjust();
+      });
+
+      // Listen for SubjectDrawer resize
+      window.addEventListener("subjectDrawerResize", (e) => {
+        drawerWidth = e.detail?.width ?? 520;
+        checkAndAdjust();
+      });
+
+      function checkAndAdjust() {
+        // Sidebars are now pure overlays - no auto-collapse needed
+        // User controls sidebar visibility manually
+        // Only adjust max-width on very small screens
+        const viewportWidth = window.innerWidth;
+
+        if (viewportWidth < 768) {
+          // On mobile, limit sidebar width
+          sidebar.style.maxWidth = Math.min(280, viewportWidth - 60) + "px";
+        } else {
+          sidebar.style.maxWidth = "400px";
+        }
+      }
+
+      // Also check on window resize
+      window.addEventListener("resize", checkAndAdjust);
+
+      // Listen for collapse request from MergedSidebarPanel
+      window.addEventListener("requestNavSidebarCollapse", () => {
+        if (state.isOpen) {
+          toggleSidebar(false);
+        }
+      });
+    }
+  }
+
+  // Initialize on load
+  document.addEventListener("DOMContentLoaded", initSubjectNavSidebar);
+  document.addEventListener("astro:page-load", initSubjectNavSidebar);
 </script>

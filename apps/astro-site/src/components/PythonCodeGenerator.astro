@@ -7,1651 +7,1682 @@
 ---
 
 <section id="python-generator" class="python-generator-section">
-    <div class="python-container">
-        <!-- Header -->
-        <div class="python-header" data-aos="fade-up">
-            <div class="header-icon">
-                <i class="devicon-python-plain colored"></i>
-            </div>
-            <div class="header-content">
-                <h2>Generador de Código Python</h2>
-                <p>Crea clases, funciones y dataclasses siguiendo PEP 8 y mejores prácticas</p>
-            </div>
-            <div class="header-badges">
-                <span class="badge python">Python 3.10+</span>
-                <span class="badge pep">PEP 8</span>
-                <span class="badge typing">Type Hints</span>
-            </div>
-        </div>
-
-        <!-- Generator Layout -->
-        <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
-            <!-- Config Panel -->
-            <div class="config-panel">
-                <div class="panel-header">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuración</span>
-                </div>
-
-                <!-- Code Type Selection -->
-                <div class="config-section">
-                    <h4><i class="fas fa-code"></i> Tipo de Código</h4>
-                    <div class="code-type-selector">
-                        <button type="button" class="type-btn active" data-type="class">
-                            <i class="fas fa-cube"></i> Clase
-                        </button>
-                        <button type="button" class="type-btn" data-type="dataclass">
-                            <i class="fas fa-database"></i> Dataclass
-                        </button>
-                        <button type="button" class="type-btn" data-type="function">
-                            <i class="fas fa-code"></i> Función
-                        </button>
-                        <button type="button" class="type-btn" data-type="async">
-                            <i class="fas fa-bolt"></i> Async
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Class/Function Config -->
-                <div class="config-section" id="py-class-config">
-                    <h4><i class="fas fa-cube"></i> Configuración de Clase</h4>
-
-                    <div class="form-group">
-                        <label>Nombre de la Clase</label>
-                        <input type="text" id="py-class-name" placeholder="MiClase" value="Usuario">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Hereda de (opcional)</label>
-                        <input type="text" id="py-base-class" placeholder="BaseClass, ABC">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Docstring</label>
-                        <textarea id="py-docstring" rows="2" placeholder="Descripción de la clase">Clase que representa un usuario del sistema.</textarea>
-                    </div>
-                </div>
-
-                <!-- Function Config (hidden by default) -->
-                <div class="config-section" id="py-function-config" style="display: none;">
-                    <h4><i class="fas fa-code"></i> Configuración de Función</h4>
-
-                    <div class="form-group">
-                        <label>Nombre de la Función</label>
-                        <input type="text" id="py-func-name" placeholder="mi_funcion" value="calcular_total">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tipo de Retorno</label>
-                        <select id="py-func-return">
-                            <option value="None">None</option>
-                            <option value="str">str</option>
-                            <option value="int">int</option>
-                            <option value="float" selected>float</option>
-                            <option value="bool">bool</option>
-                            <option value="list">list</option>
-                            <option value="dict">dict</option>
-                            <option value="tuple">tuple</option>
-                            <option value="Any">Any</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Docstring</label>
-                        <textarea id="py-func-docstring" rows="2" placeholder="Descripción de la función">Calcula el total con impuestos aplicados.</textarea>
-                    </div>
-                </div>
-
-                <!-- Attributes/Parameters -->
-                <div class="config-section">
-                    <h4 id="py-attrs-title"><i class="fas fa-list"></i> Atributos</h4>
-                    <div id="py-attributes-list" class="attributes-list">
-                        <!-- Dynamic attributes -->
-                    </div>
-                    <button type="button" class="btn-add" id="py-add-attribute">
-                        <i class="fas fa-plus"></i> <span id="py-add-btn-text">Agregar Atributo</span>
-                    </button>
-                </div>
-
-                <!-- Methods (for classes) -->
-                <div class="config-section" id="py-methods-section">
-                    <h4><i class="fas fa-cogs"></i> Métodos</h4>
-                    <div id="py-methods-list" class="methods-list">
-                        <!-- Dynamic methods -->
-                    </div>
-                    <button type="button" class="btn-add" id="py-add-method">
-                        <i class="fas fa-plus"></i> Agregar Método
-                    </button>
-                </div>
-
-                <!-- Options -->
-                <div class="config-section">
-                    <h4><i class="fas fa-sliders-h"></i> Opciones</h4>
-                    <div class="options-grid">
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-type-hints" checked>
-                            <span>Type Hints</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-docstrings" checked>
-                            <span>Docstrings</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-init" checked>
-                            <span>__init__</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-repr" checked>
-                            <span>__repr__</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-str">
-                            <span>__str__</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-eq">
-                            <span>__eq__</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-properties" checked>
-                            <span>Properties</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" id="py-validation">
-                            <span>Validaciones</span>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-generate" id="py-generate-btn">
-                    <i class="fas fa-magic"></i> Generar Código
-                </button>
-            </div>
-
-            <!-- Output Panel -->
-            <div class="output-panel">
-                <div class="panel-header">
-                    <div class="panel-title">
-                        <i class="fas fa-file-code"></i>
-                        <span id="py-filename">usuario.py</span>
-                    </div>
-                    <div class="panel-actions">
-                        <button type="button" class="btn-icon" id="py-copy-btn" title="Copiar código">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <button type="button" class="btn-icon" id="py-download-btn" title="Descargar archivo">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-output">
-                    <pre><code id="py-code-output" class="language-python"># Configura tu código y presiona "Generar Código"</code></pre>
-                </div>
-                <div class="output-footer">
-                    <span class="line-count"><i class="fas fa-align-left"></i> <span id="py-line-count">1</span> líneas</span>
-                    <span class="char-count"><i class="fas fa-text-width"></i> <span id="py-char-count">0</span> caracteres</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Templates -->
-        <div class="templates-section" data-aos="fade-up" data-aos-delay="200">
-            <h4><i class="fas fa-layer-group"></i> Plantillas Rápidas</h4>
-            <div class="templates-grid">
-                <button type="button" class="template-btn" data-template="model">
-                    <i class="fas fa-database"></i>
-                    <span>Model</span>
-                </button>
-                <button type="button" class="template-btn" data-template="service">
-                    <i class="fas fa-cogs"></i>
-                    <span>Service</span>
-                </button>
-                <button type="button" class="template-btn" data-template="api">
-                    <i class="fas fa-plug"></i>
-                    <span>FastAPI</span>
-                </button>
-                <button type="button" class="template-btn" data-template="singleton">
-                    <i class="fas fa-dot-circle"></i>
-                    <span>Singleton</span>
-                </button>
-                <button type="button" class="template-btn" data-template="factory">
-                    <i class="fas fa-industry"></i>
-                    <span>Factory</span>
-                </button>
-                <button type="button" class="template-btn" data-template="decorator">
-                    <i class="fas fa-at"></i>
-                    <span>Decorator</span>
-                </button>
-                <button type="button" class="template-btn" data-template="context">
-                    <i class="fas fa-sign-in-alt"></i>
-                    <span>Context Manager</span>
-                </button>
-                <button type="button" class="template-btn" data-template="pytest">
-                    <i class="fas fa-vial"></i>
-                    <span>Pytest</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- PEP 8 Tips -->
-        <div class="tips-section" data-aos="fade-up" data-aos-delay="300">
-            <h4><i class="fas fa-lightbulb"></i> Tips PEP 8</h4>
-            <div class="tips-grid">
-                <div class="tip-card">
-                    <span class="tip-icon">📝</span>
-                    <strong>Nombres</strong>
-                    <p>Clases en CamelCase, funciones y variables en snake_case</p>
-                </div>
-                <div class="tip-card">
-                    <span class="tip-icon">📏</span>
-                    <strong>Líneas</strong>
-                    <p>Máximo 79 caracteres por línea (99 para código, 72 para docstrings)</p>
-                </div>
-                <div class="tip-card">
-                    <span class="tip-icon">🔤</span>
-                    <strong>Type Hints</strong>
-                    <p>Usar anotaciones de tipo para mejor documentación y autocompletado</p>
-                </div>
-                <div class="tip-card">
-                    <span class="tip-icon">📚</span>
-                    <strong>Docstrings</strong>
-                    <p>Triple comillas para documentar módulos, clases y funciones</p>
-                </div>
-            </div>
-        </div>
+  <div class="python-container">
+    <!-- Header -->
+    <div class="python-header" data-aos="fade-up">
+      <div class="header-icon">
+        <i class="devicon-python-plain colored"></i>
+      </div>
+      <div class="header-content">
+        <h2>Generador de Código Python</h2>
+        <p>Crea clases, funciones y dataclasses siguiendo PEP 8 y mejores prácticas</p>
+      </div>
+      <div class="header-badges">
+        <span class="badge python">Python 3.10+</span>
+        <span class="badge pep">PEP 8</span>
+        <span class="badge typing">Type Hints</span>
+      </div>
     </div>
+
+    <!-- Generator Layout -->
+    <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
+      <!-- Config Panel -->
+      <div class="config-panel">
+        <div class="panel-header">
+          <i class="fas fa-cog"></i>
+          <span>Configuración</span>
+        </div>
+
+        <!-- Code Type Selection -->
+        <div class="config-section">
+          <h4><i class="fas fa-code"></i> Tipo de Código</h4>
+          <div class="code-type-selector">
+            <button type="button" class="type-btn active" data-type="class">
+              <i class="fas fa-cube"></i> Clase
+            </button>
+            <button type="button" class="type-btn" data-type="dataclass">
+              <i class="fas fa-database"></i> Dataclass
+            </button>
+            <button type="button" class="type-btn" data-type="function">
+              <i class="fas fa-code"></i> Función
+            </button>
+            <button type="button" class="type-btn" data-type="async">
+              <i class="fas fa-bolt"></i> Async
+            </button>
+          </div>
+        </div>
+
+        <!-- Class/Function Config -->
+        <div class="config-section" id="py-class-config">
+          <h4><i class="fas fa-cube"></i> Configuración de Clase</h4>
+
+          <div class="form-group">
+            <label>Nombre de la Clase</label>
+            <input type="text" id="py-class-name" placeholder="MiClase" value="Usuario" />
+          </div>
+
+          <div class="form-group">
+            <label>Hereda de (opcional)</label>
+            <input type="text" id="py-base-class" placeholder="BaseClass, ABC" />
+          </div>
+
+          <div class="form-group">
+            <label>Docstring</label>
+            <textarea id="py-docstring" rows="2" placeholder="Descripción de la clase"
+              >Clase que representa un usuario del sistema.</textarea
+            >
+          </div>
+        </div>
+
+        <!-- Function Config (hidden by default) -->
+        <div class="config-section" id="py-function-config" style="display: none;">
+          <h4><i class="fas fa-code"></i> Configuración de Función</h4>
+
+          <div class="form-group">
+            <label>Nombre de la Función</label>
+            <input type="text" id="py-func-name" placeholder="mi_funcion" value="calcular_total" />
+          </div>
+
+          <div class="form-group">
+            <label>Tipo de Retorno</label>
+            <select id="py-func-return">
+              <option value="None">None</option>
+              <option value="str">str</option>
+              <option value="int">int</option>
+              <option value="float" selected>float</option>
+              <option value="bool">bool</option>
+              <option value="list">list</option>
+              <option value="dict">dict</option>
+              <option value="tuple">tuple</option>
+              <option value="Any">Any</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Docstring</label>
+            <textarea id="py-func-docstring" rows="2" placeholder="Descripción de la función"
+              >Calcula el total con impuestos aplicados.</textarea
+            >
+          </div>
+        </div>
+
+        <!-- Attributes/Parameters -->
+        <div class="config-section">
+          <h4 id="py-attrs-title"><i class="fas fa-list"></i> Atributos</h4>
+          <div id="py-attributes-list" class="attributes-list">
+            <!-- Dynamic attributes -->
+          </div>
+          <button type="button" class="btn-add" id="py-add-attribute">
+            <i class="fas fa-plus"></i>
+            <span id="py-add-btn-text">Agregar Atributo</span>
+          </button>
+        </div>
+
+        <!-- Methods (for classes) -->
+        <div class="config-section" id="py-methods-section">
+          <h4><i class="fas fa-cogs"></i> Métodos</h4>
+          <div id="py-methods-list" class="methods-list">
+            <!-- Dynamic methods -->
+          </div>
+          <button type="button" class="btn-add" id="py-add-method">
+            <i class="fas fa-plus"></i> Agregar Método
+          </button>
+        </div>
+
+        <!-- Options -->
+        <div class="config-section">
+          <h4><i class="fas fa-sliders-h"></i> Opciones</h4>
+          <div class="options-grid">
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-type-hints" checked />
+              <span>Type Hints</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-docstrings" checked />
+              <span>Docstrings</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-init" checked />
+              <span>__init__</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-repr" checked />
+              <span>__repr__</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-str" />
+              <span>__str__</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-eq" />
+              <span>__eq__</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-properties" checked />
+              <span>Properties</span>
+            </label>
+            <label class="checkbox-option">
+              <input type="checkbox" id="py-validation" />
+              <span>Validaciones</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn-generate" id="py-generate-btn">
+          <i class="fas fa-magic"></i> Generar Código
+        </button>
+      </div>
+
+      <!-- Output Panel -->
+      <div class="output-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <i class="fas fa-file-code"></i>
+            <span id="py-filename">usuario.py</span>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn-icon" id="py-copy-btn" title="Copiar código">
+              <i class="fas fa-copy"></i>
+            </button>
+            <button type="button" class="btn-icon" id="py-download-btn" title="Descargar archivo">
+              <i class="fas fa-download"></i>
+            </button>
+          </div>
+        </div>
+        <div class="code-output">
+          <pre><code id="py-code-output" class="language-python"># Configura tu código y presiona "Generar Código"</code></pre>
+        </div>
+        <div class="output-footer">
+          <span class="line-count"
+            ><i class="fas fa-align-left"></i> <span id="py-line-count">1</span> líneas</span
+          >
+          <span class="char-count"
+            ><i class="fas fa-text-width"></i> <span id="py-char-count">0</span> caracteres</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Templates -->
+    <div class="templates-section" data-aos="fade-up" data-aos-delay="200">
+      <h4><i class="fas fa-layer-group"></i> Plantillas Rápidas</h4>
+      <div class="templates-grid">
+        <button type="button" class="template-btn" data-template="model">
+          <i class="fas fa-database"></i>
+          <span>Model</span>
+        </button>
+        <button type="button" class="template-btn" data-template="service">
+          <i class="fas fa-cogs"></i>
+          <span>Service</span>
+        </button>
+        <button type="button" class="template-btn" data-template="api">
+          <i class="fas fa-plug"></i>
+          <span>FastAPI</span>
+        </button>
+        <button type="button" class="template-btn" data-template="singleton">
+          <i class="fas fa-dot-circle"></i>
+          <span>Singleton</span>
+        </button>
+        <button type="button" class="template-btn" data-template="factory">
+          <i class="fas fa-industry"></i>
+          <span>Factory</span>
+        </button>
+        <button type="button" class="template-btn" data-template="decorator">
+          <i class="fas fa-at"></i>
+          <span>Decorator</span>
+        </button>
+        <button type="button" class="template-btn" data-template="context">
+          <i class="fas fa-sign-in-alt"></i>
+          <span>Context Manager</span>
+        </button>
+        <button type="button" class="template-btn" data-template="pytest">
+          <i class="fas fa-vial"></i>
+          <span>Pytest</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- PEP 8 Tips -->
+    <div class="tips-section" data-aos="fade-up" data-aos-delay="300">
+      <h4><i class="fas fa-lightbulb"></i> Tips PEP 8</h4>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <span class="tip-icon">📝</span>
+          <strong>Nombres</strong>
+          <p>Clases en CamelCase, funciones y variables en snake_case</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon">📏</span>
+          <strong>Líneas</strong>
+          <p>Máximo 79 caracteres por línea (99 para código, 72 para docstrings)</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon">🔤</span>
+          <strong>Type Hints</strong>
+          <p>Usar anotaciones de tipo para mejor documentación y autocompletado</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-icon">📚</span>
+          <strong>Docstrings</strong>
+          <p>Triple comillas para documentar módulos, clases y funciones</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .python-generator-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
-    }
+  .python-generator-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  }
 
-    .python-container {
-        max-width: 1400px;
-        margin: 0 auto;
+  .python-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .python-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+  }
+
+  .header-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-icon i {
+    font-size: 2.5rem;
+    color: white;
+  }
+
+  .header-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .header-content p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge.python {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .badge.pep {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  .badge.typing {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .generator-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .config-panel,
+  .output-panel {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .panel-header i {
+    color: #3b82f6;
+  }
+
+  .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .panel-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-icon:hover {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+  }
+
+  .config-section {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .config-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .config-section h4 i {
+    color: #3b82f6;
+    font-size: 0.85rem;
+  }
+
+  .code-type-selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 0.5rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.75rem;
+  }
+
+  .type-btn:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+  }
+
+  .type-btn.active {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+    color: #3b82f6;
+  }
+
+  .type-btn i {
+    font-size: 1.25rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .attributes-list,
+  .methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .attribute-item,
+  .method-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    flex-wrap: wrap;
+  }
+
+  .attribute-item input,
+  .method-item input,
+  .attribute-item select,
+  .method-item select {
+    flex: 1;
+    min-width: 70px;
+    padding: 0.4rem 0.6rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 6px;
+    color: #f8fafc;
+    font-size: 0.8rem;
+  }
+
+  .btn-remove {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-remove:hover {
+    background: rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-add {
+    width: 100%;
+    padding: 0.6rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px dashed rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    color: #3b82f6;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-add:hover {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: #3b82f6;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(15, 23, 42, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    transition: all 0.2s ease;
+  }
+
+  .checkbox-option:hover {
+    background: rgba(15, 23, 42, 0.5);
+    color: #f8fafc;
+  }
+
+  .checkbox-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #3b82f6;
+  }
+
+  .btn-generate {
+    width: calc(100% - 2.5rem);
+    margin: 1.25rem;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .code-output {
+    height: 500px;
+    overflow: auto;
+    background: #0f172a;
+    padding: 1rem;
+  }
+
+  .code-output pre {
+    margin: 0;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .code-output code {
+    color: #e2e8f0;
+    white-space: pre;
+  }
+
+  .output-footer {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  .templates-section {
+    padding: 1.5rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+  }
+
+  .templates-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .templates-section h4 i {
+    color: #3b82f6;
+  }
+
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .template-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .template-btn:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+    transform: translateY(-2px);
+  }
+
+  .template-btn i {
+    font-size: 1.5rem;
+  }
+
+  .template-btn span {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .tips-section {
+    padding: 1.5rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+  }
+
+  .tips-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .tips-section h4 i {
+    color: #fbbf24;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .tip-card {
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .tip-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card strong {
+    display: block;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .tip-card p {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+
+  /* Light Mode - Enterprise Grade */
+  :global([data-theme="light"]) .python-generator-section {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 250, 252, 0.95) 100%
+    );
+  }
+
+  :global([data-theme="light"]) .python-header {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(37, 99, 235, 0.03));
+    border-color: rgba(59, 130, 246, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .header-icon {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+  }
+
+  :global([data-theme="light"]) .header-content h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .header-content p {
+    color: #475569;
+  }
+
+  /* Badges Light Mode */
+  :global([data-theme="light"]) .badge.python {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.pep {
+    background: rgba(217, 119, 6, 0.1);
+    color: #b45309;
+    border-color: rgba(217, 119, 6, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.typing {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.25);
+  }
+
+  /* Panels Light Mode */
+  :global([data-theme="light"]) .config-panel,
+  :global([data-theme="light"]) .output-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .panel-header {
+    background: rgba(248, 250, 252, 0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .panel-header i {
+    color: #2563eb;
+  }
+
+  :global([data-theme="light"]) .btn-icon {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .btn-icon:hover {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+  }
+
+  /* Config Sections Light Mode */
+  :global([data-theme="light"]) .config-section {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .config-section h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .config-section h4 i {
+    color: #2563eb;
+  }
+
+  /* Type Selector Light Mode */
+  :global([data-theme="light"]) .type-btn {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .type-btn:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #2563eb;
+  }
+
+  :global([data-theme="light"]) .type-btn.active {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  /* Form Groups Light Mode */
+  :global([data-theme="light"]) .form-group label {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .form-group input,
+  :global([data-theme="light"]) .form-group select,
+  :global([data-theme="light"]) .form-group textarea {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .form-group input:focus,
+  :global([data-theme="light"]) .form-group select:focus,
+  :global([data-theme="light"]) .form-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Attribute/Method Items Light Mode */
+  :global([data-theme="light"]) .attribute-item,
+  :global([data-theme="light"]) .method-item {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .attribute-item input,
+  :global([data-theme="light"]) .attribute-item select,
+  :global([data-theme="light"]) .method-item input,
+  :global([data-theme="light"]) .method-item select {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .btn-remove {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+  }
+
+  :global([data-theme="light"]) .btn-remove:hover {
+    background: rgba(239, 68, 68, 0.2);
+  }
+
+  :global([data-theme="light"]) .btn-add {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #2563eb;
+  }
+
+  :global([data-theme="light"]) .btn-add:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: #2563eb;
+  }
+
+  /* Options Grid Light Mode */
+  :global([data-theme="light"]) .checkbox-option {
+    background: rgba(248, 250, 252, 0.8);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .checkbox-option:hover {
+    background: rgba(248, 250, 252, 1);
+    color: #0f172a;
+  }
+
+  /* Generate Button Light Mode */
+  :global([data-theme="light"]) .btn-generate {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+  }
+
+  :global([data-theme="light"]) .btn-generate:hover {
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  }
+
+  /* Output Footer Light Mode */
+  :global([data-theme="light"]) .output-footer {
+    background: rgba(248, 250, 252, 0.95);
+    border-top-color: rgba(0, 0, 0, 0.06);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .code-output {
+    background: #1e293b;
+  }
+
+  /* Templates Section Light Mode */
+  :global([data-theme="light"]) .templates-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .templates-section h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .templates-section h4 i {
+    color: #2563eb;
+  }
+
+  :global([data-theme="light"]) .template-btn {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .template-btn:hover {
+    background: rgba(59, 130, 246, 0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #2563eb;
+  }
+
+  /* Tips Section Light Mode */
+  :global([data-theme="light"]) .tips-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .tips-section h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .tips-section h4 i {
+    color: #d97706;
+  }
+
+  :global([data-theme="light"]) .tip-card {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .tip-card strong {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .tip-card p {
+    color: #475569;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .generator-layout {
+      grid-template-columns: 1fr;
     }
 
     .python-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
-        border: 1px solid rgba(59, 130, 246, 0.2);
-        border-radius: 16px;
-    }
-
-    .header-icon {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .header-icon i {
-        font-size: 2.5rem;
-        color: white;
-    }
-
-    .header-content h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .header-content p {
-        color: #94a3b8;
-        font-size: 0.95rem;
+      flex-direction: column;
+      text-align: center;
     }
 
     .header-badges {
-        display: flex;
-        gap: 0.5rem;
-        margin-left: auto;
-    }
-
-    .badge {
-        padding: 0.35rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .badge.python {
-        background: rgba(59, 130, 246, 0.2);
-        color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .badge.pep {
-        background: rgba(251, 191, 36, 0.2);
-        color: #fbbf24;
-        border: 1px solid rgba(251, 191, 36, 0.3);
-    }
-
-    .badge.typing {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .generator-layout {
-        display: grid;
-        grid-template-columns: 400px 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .config-panel, .output-panel {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .panel-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 1.25rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .panel-header i {
-        color: #3b82f6;
-    }
-
-    .panel-title {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        flex: 1;
-    }
-
-    .panel-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn-icon {
-        width: 36px;
-        height: 36px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn-icon:hover {
-        background: rgba(59, 130, 246, 0.2);
-        color: #3b82f6;
-    }
-
-    .config-section {
-        padding: 1.25rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .config-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .config-section h4 i {
-        color: #3b82f6;
-        font-size: 0.85rem;
-    }
-
-    .code-type-selector {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.5rem;
-    }
-
-    .type-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.75rem 0.5rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.75rem;
-    }
-
-    .type-btn:hover {
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #60a5fa;
-    }
-
-    .type-btn.active {
-        background: rgba(59, 130, 246, 0.2);
-        border-color: #3b82f6;
-        color: #3b82f6;
-    }
-
-    .type-btn i {
-        font-size: 1.25rem;
-    }
-
-    .form-group {
-        margin-bottom: 1rem;
-    }
-
-    .form-group label {
-        display: block;
-        font-size: 0.8rem;
-        color: #94a3b8;
-        margin-bottom: 0.35rem;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 0.6rem 0.85rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 8px;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-        font-family: inherit;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    .attributes-list,
-    .methods-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        max-height: 200px;
-        overflow-y: auto;
-    }
-
-    .attribute-item,
-    .method-item {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        padding: 0.75rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        flex-wrap: wrap;
-    }
-
-    .attribute-item input,
-    .method-item input,
-    .attribute-item select,
-    .method-item select {
-        flex: 1;
-        min-width: 70px;
-        padding: 0.4rem 0.6rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 6px;
-        color: #f8fafc;
-        font-size: 0.8rem;
-    }
-
-    .btn-remove {
-        width: 28px;
-        height: 28px;
-        border: none;
-        background: rgba(239, 68, 68, 0.2);
-        border-radius: 6px;
-        color: #ef4444;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .btn-remove:hover {
-        background: rgba(239, 68, 68, 0.4);
-    }
-
-    .btn-add {
-        width: 100%;
-        padding: 0.6rem;
-        background: rgba(59, 130, 246, 0.1);
-        border: 1px dashed rgba(59, 130, 246, 0.3);
-        border-radius: 8px;
-        color: #3b82f6;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-add:hover {
-        background: rgba(59, 130, 246, 0.2);
-        border-color: #3b82f6;
-    }
-
-    .options-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
-
-    .checkbox-option {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        background: rgba(15, 23, 42, 0.3);
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        color: #94a3b8;
-        transition: all 0.2s ease;
-    }
-
-    .checkbox-option:hover {
-        background: rgba(15, 23, 42, 0.5);
-        color: #f8fafc;
-    }
-
-    .checkbox-option input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
-        accent-color: #3b82f6;
-    }
-
-    .btn-generate {
-        width: calc(100% - 2.5rem);
-        margin: 1.25rem;
-        padding: 0.85rem;
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-generate:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-    }
-
-    .code-output {
-        height: 500px;
-        overflow: auto;
-        background: #0f172a;
-        padding: 1rem;
-    }
-
-    .code-output pre {
-        margin: 0;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.85rem;
-        line-height: 1.6;
-    }
-
-    .code-output code {
-        color: #e2e8f0;
-        white-space: pre;
-    }
-
-    .output-footer {
-        display: flex;
-        gap: 1.5rem;
-        padding: 0.75rem 1.25rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        font-size: 0.8rem;
-        color: #64748b;
-    }
-
-    .templates-section {
-        padding: 1.5rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        margin-bottom: 2rem;
-    }
-
-    .templates-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .templates-section h4 i {
-        color: #3b82f6;
-    }
-
-    .templates-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.75rem;
-    }
-
-    .template-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .template-btn:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #3b82f6;
-        transform: translateY(-2px);
-    }
-
-    .template-btn i {
-        font-size: 1.5rem;
-    }
-
-    .template-btn span {
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
-
-    .tips-section {
-        padding: 1.5rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-    }
-
-    .tips-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .tips-section h4 i {
-        color: #fbbf24;
+      margin-left: 0;
     }
 
     .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .python-generator-section {
+      padding: 2rem 1rem;
     }
 
-    .tip-card {
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
-        text-align: center;
+    .code-type-selector {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .tip-icon {
-        font-size: 1.5rem;
-        display: block;
-        margin-bottom: 0.5rem;
+    .options-grid,
+    .tips-grid {
+      grid-template-columns: 1fr;
     }
-
-    .tip-card strong {
-        display: block;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-        font-size: 0.9rem;
-    }
-
-    .tip-card p {
-        font-size: 0.75rem;
-        color: #94a3b8;
-        line-height: 1.4;
-    }
-
-    /* Light Mode - Enterprise Grade */
-    :global([data-theme="light"]) .python-generator-section {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.95) 100%);
-    }
-
-    :global([data-theme="light"]) .python-header {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(37, 99, 235, 0.03));
-        border-color: rgba(59, 130, 246, 0.15);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .header-icon {
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-    }
-
-    :global([data-theme="light"]) .header-content h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .header-content p {
-        color: #475569;
-    }
-
-    /* Badges Light Mode */
-    :global([data-theme="light"]) .badge.python {
-        background: rgba(59, 130, 246, 0.1);
-        color: #2563eb;
-        border-color: rgba(59, 130, 246, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.pep {
-        background: rgba(217, 119, 6, 0.1);
-        color: #b45309;
-        border-color: rgba(217, 119, 6, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.typing {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-        border-color: rgba(139, 92, 246, 0.25);
-    }
-
-    /* Panels Light Mode */
-    :global([data-theme="light"]) .config-panel,
-    :global([data-theme="light"]) .output-panel {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .panel-header {
-        background: rgba(248, 250, 252, 0.95);
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .panel-header i {
-        color: #2563eb;
-    }
-
-    :global([data-theme="light"]) .btn-icon {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .btn-icon:hover {
-        background: rgba(59, 130, 246, 0.15);
-        color: #2563eb;
-    }
-
-    /* Config Sections Light Mode */
-    :global([data-theme="light"]) .config-section {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .config-section h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .config-section h4 i {
-        color: #2563eb;
-    }
-
-    /* Type Selector Light Mode */
-    :global([data-theme="light"]) .type-btn {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .type-btn:hover {
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #2563eb;
-    }
-
-    :global([data-theme="light"]) .type-btn.active {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: #2563eb;
-        color: #2563eb;
-    }
-
-    /* Form Groups Light Mode */
-    :global([data-theme="light"]) .form-group label {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .form-group input,
-    :global([data-theme="light"]) .form-group select,
-    :global([data-theme="light"]) .form-group textarea {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .form-group input:focus,
-    :global([data-theme="light"]) .form-group select:focus,
-    :global([data-theme="light"]) .form-group textarea:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-
-    /* Attribute/Method Items Light Mode */
-    :global([data-theme="light"]) .attribute-item,
-    :global([data-theme="light"]) .method-item {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .attribute-item input,
-    :global([data-theme="light"]) .attribute-item select,
-    :global([data-theme="light"]) .method-item input,
-    :global([data-theme="light"]) .method-item select {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .btn-remove {
-        background: rgba(239, 68, 68, 0.1);
-        color: #dc2626;
-    }
-
-    :global([data-theme="light"]) .btn-remove:hover {
-        background: rgba(239, 68, 68, 0.2);
-    }
-
-    :global([data-theme="light"]) .btn-add {
-        background: rgba(59, 130, 246, 0.08);
-        border-color: rgba(59, 130, 246, 0.25);
-        color: #2563eb;
-    }
-
-    :global([data-theme="light"]) .btn-add:hover {
-        background: rgba(59, 130, 246, 0.15);
-        border-color: #2563eb;
-    }
-
-    /* Options Grid Light Mode */
-    :global([data-theme="light"]) .checkbox-option {
-        background: rgba(248, 250, 252, 0.8);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .checkbox-option:hover {
-        background: rgba(248, 250, 252, 1);
-        color: #0f172a;
-    }
-
-    /* Generate Button Light Mode */
-    :global([data-theme="light"]) .btn-generate {
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-    }
-
-    :global([data-theme="light"]) .btn-generate:hover {
-        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-    }
-
-    /* Output Footer Light Mode */
-    :global([data-theme="light"]) .output-footer {
-        background: rgba(248, 250, 252, 0.95);
-        border-top-color: rgba(0, 0, 0, 0.06);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .code-output {
-        background: #1e293b;
-    }
-
-    /* Templates Section Light Mode */
-    :global([data-theme="light"]) .templates-section {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .templates-section h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .templates-section h4 i {
-        color: #2563eb;
-    }
-
-    :global([data-theme="light"]) .template-btn {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .template-btn:hover {
-        background: rgba(59, 130, 246, 0.08);
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #2563eb;
-    }
-
-    /* Tips Section Light Mode */
-    :global([data-theme="light"]) .tips-section {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .tips-section h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .tips-section h4 i {
-        color: #d97706;
-    }
-
-    :global([data-theme="light"]) .tip-card {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .tip-card strong {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .tip-card p {
-        color: #475569;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .generator-layout {
-            grid-template-columns: 1fr;
-        }
-
-        .python-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .header-badges {
-            margin-left: 0;
-        }
-
-        .tips-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 768px) {
-        .python-generator-section {
-            padding: 2rem 1rem;
-        }
-
-        .code-type-selector {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .options-grid,
-        .tips-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>
 
 <script is:inline>
-document.addEventListener('astro:page-load', function() {
-    const pythonTypes = ['str', 'int', 'float', 'bool', 'list', 'dict', 'tuple', 'set', 'Any', 'Optional[str]', 'Optional[int]', 'List[str]', 'List[int]', 'Dict[str, Any]'];
+  document.addEventListener("astro:page-load", function () {
+    const pythonTypes = [
+      "str",
+      "int",
+      "float",
+      "bool",
+      "list",
+      "dict",
+      "tuple",
+      "set",
+      "Any",
+      "Optional[str]",
+      "Optional[int]",
+      "List[str]",
+      "List[int]",
+      "Dict[str, Any]",
+    ];
 
     // Elements
-    const typeBtns = document.querySelectorAll('.type-btn');
-    const classConfig = document.getElementById('py-class-config');
-    const functionConfig = document.getElementById('py-function-config');
-    const methodsSection = document.getElementById('py-methods-section');
-    const attrsTitle = document.getElementById('py-attrs-title');
-    const addBtnText = document.getElementById('py-add-btn-text');
-    const attributesList = document.getElementById('py-attributes-list');
-    const methodsList = document.getElementById('py-methods-list');
-    const generateBtn = document.getElementById('py-generate-btn');
-    const codeOutput = document.getElementById('py-code-output');
-    const copyBtn = document.getElementById('py-copy-btn');
-    const downloadBtn = document.getElementById('py-download-btn');
-    const filenameEl = document.getElementById('py-filename');
-    const lineCountEl = document.getElementById('py-line-count');
-    const charCountEl = document.getElementById('py-char-count');
+    const typeBtns = document.querySelectorAll(".type-btn");
+    const classConfig = document.getElementById("py-class-config");
+    const functionConfig = document.getElementById("py-function-config");
+    const methodsSection = document.getElementById("py-methods-section");
+    const attrsTitle = document.getElementById("py-attrs-title");
+    const addBtnText = document.getElementById("py-add-btn-text");
+    const attributesList = document.getElementById("py-attributes-list");
+    const methodsList = document.getElementById("py-methods-list");
+    const generateBtn = document.getElementById("py-generate-btn");
+    const codeOutput = document.getElementById("py-code-output");
+    const copyBtn = document.getElementById("py-copy-btn");
+    const downloadBtn = document.getElementById("py-download-btn");
+    const filenameEl = document.getElementById("py-filename");
+    const lineCountEl = document.getElementById("py-line-count");
+    const charCountEl = document.getElementById("py-char-count");
 
     if (!generateBtn) return;
 
-    let currentType = 'class';
+    let currentType = "class";
 
     // Type selector
-    typeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            typeBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentType = btn.dataset.type;
-            updateUI();
-        });
+    typeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        typeBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentType = btn.dataset.type;
+        updateUI();
+      });
     });
 
     function updateUI() {
-        const isClass = currentType === 'class' || currentType === 'dataclass';
-        const isFunction = currentType === 'function' || currentType === 'async';
+      const isClass = currentType === "class" || currentType === "dataclass";
+      const isFunction = currentType === "function" || currentType === "async";
 
-        classConfig.style.display = isClass ? 'block' : 'none';
-        functionConfig.style.display = isFunction ? 'block' : 'none';
-        methodsSection.style.display = isClass ? 'block' : 'none';
+      classConfig.style.display = isClass ? "block" : "none";
+      functionConfig.style.display = isFunction ? "block" : "none";
+      methodsSection.style.display = isClass ? "block" : "none";
 
-        if (isFunction) {
-            attrsTitle.innerHTML = '<i class="fas fa-list"></i> Parámetros';
-            addBtnText.textContent = 'Agregar Parámetro';
-        } else {
-            attrsTitle.innerHTML = '<i class="fas fa-list"></i> Atributos';
-            addBtnText.textContent = 'Agregar Atributo';
-        }
+      if (isFunction) {
+        attrsTitle.innerHTML = '<i class="fas fa-list"></i> Parámetros';
+        addBtnText.textContent = "Agregar Parámetro";
+      } else {
+        attrsTitle.innerHTML = '<i class="fas fa-list"></i> Atributos';
+        addBtnText.textContent = "Agregar Atributo";
+      }
     }
 
     // Add default attributes
-    addAttribute('nombre', 'str', '');
-    addAttribute('edad', 'int', '0');
+    addAttribute("nombre", "str", "");
+    addAttribute("edad", "int", "0");
 
-    function addAttribute(name = '', type = 'str', defaultVal = '') {
-        const item = document.createElement('div');
-        item.className = 'attribute-item';
-        item.innerHTML = `
+    function addAttribute(name = "", type = "str", defaultVal = "") {
+      const item = document.createElement("div");
+      item.className = "attribute-item";
+      item.innerHTML = `
             <input type="text" class="attr-name" placeholder="nombre" value="${name}" style="flex:2;">
             <select class="attr-type">
-                ${pythonTypes.map(t => `<option value="${t}" ${t === type ? 'selected' : ''}>${t}</option>`).join('')}
+                ${pythonTypes.map((t) => `<option value="${t}" ${t === type ? "selected" : ""}>${t}</option>`).join("")}
             </select>
             <input type="text" class="attr-default" placeholder="default" value="${defaultVal}" style="flex:1;">
             <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
         `;
-        attributesList.appendChild(item);
-        item.querySelector('.btn-remove').addEventListener('click', () => item.remove());
+      attributesList.appendChild(item);
+      item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
     }
 
-    function addMethod(name = '', returnType = 'None', params = '') {
-        const item = document.createElement('div');
-        item.className = 'method-item';
-        item.innerHTML = `
+    function addMethod(name = "", returnType = "None", params = "") {
+      const item = document.createElement("div");
+      item.className = "method-item";
+      item.innerHTML = `
             <input type="text" class="method-name" placeholder="metodo" value="${name}" style="flex:2;">
             <select class="method-return">
-                ${['None', ...pythonTypes].map(t => `<option value="${t}" ${t === returnType ? 'selected' : ''}>${t}</option>`).join('')}
+                ${["None", ...pythonTypes].map((t) => `<option value="${t}" ${t === returnType ? "selected" : ""}>${t}</option>`).join("")}
             </select>
             <input type="text" class="method-params" placeholder="params" value="${params}" style="flex:1.5;">
             <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
         `;
-        methodsList.appendChild(item);
-        item.querySelector('.btn-remove').addEventListener('click', () => item.remove());
+      methodsList.appendChild(item);
+      item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
     }
 
-    document.getElementById('py-add-attribute').addEventListener('click', () => addAttribute());
-    document.getElementById('py-add-method').addEventListener('click', () => addMethod());
+    document.getElementById("py-add-attribute").addEventListener("click", () => addAttribute());
+    document.getElementById("py-add-method").addEventListener("click", () => addMethod());
 
     // Generate Code
-    generateBtn.addEventListener('click', generatePythonCode);
+    generateBtn.addEventListener("click", generatePythonCode);
 
     function generatePythonCode() {
-        const options = {
-            typeHints: document.getElementById('py-type-hints').checked,
-            docstrings: document.getElementById('py-docstrings').checked,
-            init: document.getElementById('py-init').checked,
-            repr: document.getElementById('py-repr').checked,
-            str: document.getElementById('py-str').checked,
-            eq: document.getElementById('py-eq').checked,
-            properties: document.getElementById('py-properties').checked,
-            validation: document.getElementById('py-validation').checked
-        };
+      const options = {
+        typeHints: document.getElementById("py-type-hints").checked,
+        docstrings: document.getElementById("py-docstrings").checked,
+        init: document.getElementById("py-init").checked,
+        repr: document.getElementById("py-repr").checked,
+        str: document.getElementById("py-str").checked,
+        eq: document.getElementById("py-eq").checked,
+        properties: document.getElementById("py-properties").checked,
+        validation: document.getElementById("py-validation").checked,
+      };
 
-        const attributes = collectAttributes();
-        const methods = collectMethods();
+      const attributes = collectAttributes();
+      const methods = collectMethods();
 
-        let code = '';
+      let code = "";
 
-        if (currentType === 'class') {
-            code = generateClass(attributes, methods, options);
-        } else if (currentType === 'dataclass') {
-            code = generateDataclass(attributes, options);
-        } else if (currentType === 'function') {
-            code = generateFunction(attributes, options);
-        } else if (currentType === 'async') {
-            code = generateAsyncFunction(attributes, options);
-        }
+      if (currentType === "class") {
+        code = generateClass(attributes, methods, options);
+      } else if (currentType === "dataclass") {
+        code = generateDataclass(attributes, options);
+      } else if (currentType === "function") {
+        code = generateFunction(attributes, options);
+      } else if (currentType === "async") {
+        code = generateAsyncFunction(attributes, options);
+      }
 
-        codeOutput.textContent = code;
-        updateStats(code);
+      codeOutput.textContent = code;
+      updateStats(code);
     }
 
     function collectAttributes() {
-        const attrs = [];
-        attributesList.querySelectorAll('.attribute-item').forEach(item => {
-            const name = item.querySelector('.attr-name').value.trim();
-            if (name) {
-                attrs.push({
-                    name: name,
-                    type: item.querySelector('.attr-type').value,
-                    default: item.querySelector('.attr-default').value.trim()
-                });
-            }
-        });
-        return attrs;
+      const attrs = [];
+      attributesList.querySelectorAll(".attribute-item").forEach((item) => {
+        const name = item.querySelector(".attr-name").value.trim();
+        if (name) {
+          attrs.push({
+            name: name,
+            type: item.querySelector(".attr-type").value,
+            default: item.querySelector(".attr-default").value.trim(),
+          });
+        }
+      });
+      return attrs;
     }
 
     function collectMethods() {
-        const meths = [];
-        methodsList.querySelectorAll('.method-item').forEach(item => {
-            const name = item.querySelector('.method-name').value.trim();
-            if (name) {
-                meths.push({
-                    name: name,
-                    returnType: item.querySelector('.method-return').value,
-                    params: item.querySelector('.method-params').value.trim()
-                });
-            }
-        });
-        return meths;
+      const meths = [];
+      methodsList.querySelectorAll(".method-item").forEach((item) => {
+        const name = item.querySelector(".method-name").value.trim();
+        if (name) {
+          meths.push({
+            name: name,
+            returnType: item.querySelector(".method-return").value,
+            params: item.querySelector(".method-params").value.trim(),
+          });
+        }
+      });
+      return meths;
     }
 
     function generateClass(attributes, methods, options) {
-        const className = document.getElementById('py-class-name').value || 'MiClase';
-        const baseClass = document.getElementById('py-base-class').value;
-        const docstring = document.getElementById('py-docstring').value;
+      const className = document.getElementById("py-class-name").value || "MiClase";
+      const baseClass = document.getElementById("py-base-class").value;
+      const docstring = document.getElementById("py-docstring").value;
 
-        let code = '"""Módulo que contiene la clase ' + className + '."""\n\n';
+      let code = '"""Módulo que contiene la clase ' + className + '."""\n\n';
 
-        // Imports
-        const imports = new Set();
-        if (options.typeHints) imports.add('from typing import Optional, List, Dict, Any');
-        if (attributes.some(a => a.type.includes('Optional'))) imports.add('from typing import Optional');
+      // Imports
+      const imports = new Set();
+      if (options.typeHints) imports.add("from typing import Optional, List, Dict, Any");
+      if (attributes.some((a) => a.type.includes("Optional")))
+        imports.add("from typing import Optional");
 
-        if (imports.size > 0) {
-            code += Array.from(imports).join('\n') + '\n\n';
-        }
+      if (imports.size > 0) {
+        code += Array.from(imports).join("\n") + "\n\n";
+      }
 
-        // Class declaration
-        code += `class ${className}`;
-        if (baseClass) code += `(${baseClass})`;
-        code += ':\n';
+      // Class declaration
+      code += `class ${className}`;
+      if (baseClass) code += `(${baseClass})`;
+      code += ":\n";
 
-        // Docstring
-        if (options.docstrings && docstring) {
-            code += `    """${docstring}"""\n\n`;
-        }
+      // Docstring
+      if (options.docstrings && docstring) {
+        code += `    """${docstring}"""\n\n`;
+      }
 
-        // __init__
-        if (options.init && attributes.length > 0) {
-            code += '    def __init__(self';
-            attributes.forEach(attr => {
-                if (options.typeHints) {
-                    code += `, ${attr.name}: ${attr.type}`;
-                } else {
-                    code += `, ${attr.name}`;
-                }
-                if (attr.default) code += ` = ${formatDefault(attr.default, attr.type)}`;
-            });
-            code += ')';
-            if (options.typeHints) code += ' -> None';
-            code += ':\n';
-
-            if (options.docstrings) {
-                code += '        """Inicializa una nueva instancia.\n\n';
-                code += '        Args:\n';
-                attributes.forEach(a => code += `            ${a.name}: ${a.type}\n`);
-                code += '        """\n';
-            }
-
-            if (options.validation) {
-                attributes.filter(a => a.type === 'str').forEach(a => {
-                    code += `        if not ${a.name}:\n`;
-                    code += `            raise ValueError("${a.name} no puede estar vacío")\n`;
-                });
-            }
-
-            attributes.forEach(attr => {
-                code += `        self._${attr.name} = ${attr.name}\n`;
-            });
-            code += '\n';
-        }
-
-        // Properties
-        if (options.properties && attributes.length > 0) {
-            attributes.forEach(attr => {
-                code += '    @property\n';
-                code += `    def ${attr.name}(self)`;
-                if (options.typeHints) code += ` -> ${attr.type}`;
-                code += ':\n';
-                if (options.docstrings) {
-                    code += `        """Obtiene ${attr.name}."""\n`;
-                }
-                code += `        return self._${attr.name}\n\n`;
-
-                code += `    @${attr.name}.setter\n`;
-                code += `    def ${attr.name}(self, value`;
-                if (options.typeHints) code += `: ${attr.type}`;
-                code += ')';
-                if (options.typeHints) code += ' -> None';
-                code += ':\n';
-                if (options.docstrings) {
-                    code += `        """Establece ${attr.name}."""\n`;
-                }
-                if (options.validation && attr.type === 'str') {
-                    code += '        if not value:\n';
-                    code += `            raise ValueError("${attr.name} no puede estar vacío")\n`;
-                }
-                code += `        self._${attr.name} = value\n\n`;
-            });
-        }
-
-        // Custom methods
-        methods.forEach(method => {
-            code += `    def ${method.name}(self`;
-            if (method.params) code += `, ${method.params}`;
-            code += ')';
-            if (options.typeHints) code += ` -> ${method.returnType}`;
-            code += ':\n';
-            if (options.docstrings) {
-                code += `        """${method.name} method."""\n`;
-            }
-            if (method.returnType !== 'None') {
-                code += `        # TODO: Implementar lógica\n`;
-                code += `        pass\n\n`;
-            } else {
-                code += '        # TODO: Implementar lógica\n';
-                code += '        pass\n\n';
-            }
+      // __init__
+      if (options.init && attributes.length > 0) {
+        code += "    def __init__(self";
+        attributes.forEach((attr) => {
+          if (options.typeHints) {
+            code += `, ${attr.name}: ${attr.type}`;
+          } else {
+            code += `, ${attr.name}`;
+          }
+          if (attr.default) code += ` = ${formatDefault(attr.default, attr.type)}`;
         });
+        code += ")";
+        if (options.typeHints) code += " -> None";
+        code += ":\n";
 
-        // __repr__
-        if (options.repr && attributes.length > 0) {
-            code += '    def __repr__(self)';
-            if (options.typeHints) code += ' -> str';
-            code += ':\n';
-            if (options.docstrings) {
-                code += '        """Representación del objeto."""\n';
-            }
-            code += `        return f"${className}(`;
-            code += attributes.map(a => `${a.name}={self._${a.name}!r}`).join(', ');
-            code += ')"\n\n';
+        if (options.docstrings) {
+          code += '        """Inicializa una nueva instancia.\n\n';
+          code += "        Args:\n";
+          attributes.forEach((a) => (code += `            ${a.name}: ${a.type}\n`));
+          code += '        """\n';
         }
 
-        // __str__
-        if (options.str && attributes.length > 0) {
-            code += '    def __str__(self)';
-            if (options.typeHints) code += ' -> str';
-            code += ':\n';
-            if (options.docstrings) {
-                code += '        """Cadena legible del objeto."""\n';
-            }
-            code += `        return f"${className}: `;
-            code += attributes.map(a => `${a.name}={self._${a.name}}`).join(', ');
-            code += '"\n\n';
+        if (options.validation) {
+          attributes
+            .filter((a) => a.type === "str")
+            .forEach((a) => {
+              code += `        if not ${a.name}:\n`;
+              code += `            raise ValueError("${a.name} no puede estar vacío")\n`;
+            });
         }
 
-        // __eq__
-        if (options.eq && attributes.length > 0) {
-            code += '    def __eq__(self, other';
-            if (options.typeHints) code += ': object';
-            code += ')';
-            if (options.typeHints) code += ' -> bool';
-            code += ':\n';
-            if (options.docstrings) {
-                code += '        """Compara igualdad con otro objeto."""\n';
-            }
-            code += `        if not isinstance(other, ${className}):\n`;
-            code += '            return False\n';
-            code += '        return (\n';
-            code += attributes.map(a => `            self._${a.name} == other._${a.name}`).join(' and\n');
-            code += '\n        )\n';
-        }
+        attributes.forEach((attr) => {
+          code += `        self._${attr.name} = ${attr.name}\n`;
+        });
+        code += "\n";
+      }
 
-        filenameEl.textContent = `${className.toLowerCase()}.py`;
-        return code;
+      // Properties
+      if (options.properties && attributes.length > 0) {
+        attributes.forEach((attr) => {
+          code += "    @property\n";
+          code += `    def ${attr.name}(self)`;
+          if (options.typeHints) code += ` -> ${attr.type}`;
+          code += ":\n";
+          if (options.docstrings) {
+            code += `        """Obtiene ${attr.name}."""\n`;
+          }
+          code += `        return self._${attr.name}\n\n`;
+
+          code += `    @${attr.name}.setter\n`;
+          code += `    def ${attr.name}(self, value`;
+          if (options.typeHints) code += `: ${attr.type}`;
+          code += ")";
+          if (options.typeHints) code += " -> None";
+          code += ":\n";
+          if (options.docstrings) {
+            code += `        """Establece ${attr.name}."""\n`;
+          }
+          if (options.validation && attr.type === "str") {
+            code += "        if not value:\n";
+            code += `            raise ValueError("${attr.name} no puede estar vacío")\n`;
+          }
+          code += `        self._${attr.name} = value\n\n`;
+        });
+      }
+
+      // Custom methods
+      methods.forEach((method) => {
+        code += `    def ${method.name}(self`;
+        if (method.params) code += `, ${method.params}`;
+        code += ")";
+        if (options.typeHints) code += ` -> ${method.returnType}`;
+        code += ":\n";
+        if (options.docstrings) {
+          code += `        """${method.name} method."""\n`;
+        }
+        if (method.returnType !== "None") {
+          code += `        # TODO: Implementar lógica\n`;
+          code += `        pass\n\n`;
+        } else {
+          code += "        # TODO: Implementar lógica\n";
+          code += "        pass\n\n";
+        }
+      });
+
+      // __repr__
+      if (options.repr && attributes.length > 0) {
+        code += "    def __repr__(self)";
+        if (options.typeHints) code += " -> str";
+        code += ":\n";
+        if (options.docstrings) {
+          code += '        """Representación del objeto."""\n';
+        }
+        code += `        return f"${className}(`;
+        code += attributes.map((a) => `${a.name}={self._${a.name}!r}`).join(", ");
+        code += ')"\n\n';
+      }
+
+      // __str__
+      if (options.str && attributes.length > 0) {
+        code += "    def __str__(self)";
+        if (options.typeHints) code += " -> str";
+        code += ":\n";
+        if (options.docstrings) {
+          code += '        """Cadena legible del objeto."""\n';
+        }
+        code += `        return f"${className}: `;
+        code += attributes.map((a) => `${a.name}={self._${a.name}}`).join(", ");
+        code += '"\n\n';
+      }
+
+      // __eq__
+      if (options.eq && attributes.length > 0) {
+        code += "    def __eq__(self, other";
+        if (options.typeHints) code += ": object";
+        code += ")";
+        if (options.typeHints) code += " -> bool";
+        code += ":\n";
+        if (options.docstrings) {
+          code += '        """Compara igualdad con otro objeto."""\n';
+        }
+        code += `        if not isinstance(other, ${className}):\n`;
+        code += "            return False\n";
+        code += "        return (\n";
+        code += attributes
+          .map((a) => `            self._${a.name} == other._${a.name}`)
+          .join(" and\n");
+        code += "\n        )\n";
+      }
+
+      filenameEl.textContent = `${className.toLowerCase()}.py`;
+      return code;
     }
 
     function generateDataclass(attributes, options) {
-        const className = document.getElementById('py-class-name').value || 'MiDataclass';
-        const docstring = document.getElementById('py-docstring').value;
+      const className = document.getElementById("py-class-name").value || "MiDataclass";
+      const docstring = document.getElementById("py-docstring").value;
 
-        let code = '"""Módulo que contiene la dataclass ' + className + '."""\n\n';
-        code += 'from dataclasses import dataclass, field\n';
-        if (options.typeHints) {
-            code += 'from typing import Optional, List, Dict, Any\n';
+      let code = '"""Módulo que contiene la dataclass ' + className + '."""\n\n';
+      code += "from dataclasses import dataclass, field\n";
+      if (options.typeHints) {
+        code += "from typing import Optional, List, Dict, Any\n";
+      }
+      code += "\n\n";
+
+      // Decorator
+      let decoratorArgs = [];
+      if (options.eq) decoratorArgs.push("eq=True");
+      if (!options.repr) decoratorArgs.push("repr=False");
+
+      code += "@dataclass";
+      if (decoratorArgs.length > 0) {
+        code += `(${decoratorArgs.join(", ")})`;
+      }
+      code += "\n";
+
+      code += `class ${className}:\n`;
+
+      if (options.docstrings && docstring) {
+        code += `    """${docstring}"""\n\n`;
+      }
+
+      // Attributes
+      attributes.forEach((attr) => {
+        code += `    ${attr.name}`;
+        if (options.typeHints) code += `: ${attr.type}`;
+        if (attr.default) {
+          code += ` = ${formatDefault(attr.default, attr.type)}`;
         }
-        code += '\n\n';
+        code += "\n";
+      });
 
-        // Decorator
-        let decoratorArgs = [];
-        if (options.eq) decoratorArgs.push('eq=True');
-        if (!options.repr) decoratorArgs.push('repr=False');
-
-        code += '@dataclass';
-        if (decoratorArgs.length > 0) {
-            code += `(${decoratorArgs.join(', ')})`;
-        }
-        code += '\n';
-
-        code += `class ${className}:\n`;
-
-        if (options.docstrings && docstring) {
-            code += `    """${docstring}"""\n\n`;
-        }
-
-        // Attributes
-        attributes.forEach(attr => {
-            code += `    ${attr.name}`;
-            if (options.typeHints) code += `: ${attr.type}`;
-            if (attr.default) {
-                code += ` = ${formatDefault(attr.default, attr.type)}`;
-            }
-            code += '\n';
-        });
-
-        filenameEl.textContent = `${className.toLowerCase()}.py`;
-        return code;
+      filenameEl.textContent = `${className.toLowerCase()}.py`;
+      return code;
     }
 
     function generateFunction(attributes, options) {
-        const funcName = document.getElementById('py-func-name').value || 'mi_funcion';
-        const returnType = document.getElementById('py-func-return').value;
-        const docstring = document.getElementById('py-func-docstring').value;
+      const funcName = document.getElementById("py-func-name").value || "mi_funcion";
+      const returnType = document.getElementById("py-func-return").value;
+      const docstring = document.getElementById("py-func-docstring").value;
 
-        let code = '"""Módulo con función ' + funcName + '."""\n\n';
+      let code = '"""Módulo con función ' + funcName + '."""\n\n';
 
-        if (options.typeHints) {
-            code += 'from typing import Optional, List, Dict, Any\n\n\n';
+      if (options.typeHints) {
+        code += "from typing import Optional, List, Dict, Any\n\n\n";
+      }
+
+      code += `def ${funcName}(`;
+      code += attributes
+        .map((a) => {
+          let param = a.name;
+          if (options.typeHints) param += `: ${a.type}`;
+          if (a.default) param += ` = ${formatDefault(a.default, a.type)}`;
+          return param;
+        })
+        .join(", ");
+      code += ")";
+      if (options.typeHints) code += ` -> ${returnType}`;
+      code += ":\n";
+
+      if (options.docstrings && docstring) {
+        code += `    """${docstring}\n\n`;
+        if (attributes.length > 0) {
+          code += "    Args:\n";
+          attributes.forEach((a) => (code += `        ${a.name}: ${a.type}\n`));
+          code += "\n";
         }
+        code += `    Returns:\n        ${returnType}\n`;
+        code += '    """\n';
+      }
 
-        code += `def ${funcName}(`;
-        code += attributes.map(a => {
-            let param = a.name;
-            if (options.typeHints) param += `: ${a.type}`;
-            if (a.default) param += ` = ${formatDefault(a.default, a.type)}`;
-            return param;
-        }).join(', ');
-        code += ')';
-        if (options.typeHints) code += ` -> ${returnType}`;
-        code += ':\n';
+      code += "    # TODO: Implementar lógica\n";
+      if (returnType !== "None") {
+        code += `    return ${getDefaultReturn(returnType)}\n`;
+      } else {
+        code += "    pass\n";
+      }
 
-        if (options.docstrings && docstring) {
-            code += `    """${docstring}\n\n`;
-            if (attributes.length > 0) {
-                code += '    Args:\n';
-                attributes.forEach(a => code += `        ${a.name}: ${a.type}\n`);
-                code += '\n';
-            }
-            code += `    Returns:\n        ${returnType}\n`;
-            code += '    """\n';
-        }
-
-        code += '    # TODO: Implementar lógica\n';
-        if (returnType !== 'None') {
-            code += `    return ${getDefaultReturn(returnType)}\n`;
-        } else {
-            code += '    pass\n';
-        }
-
-        filenameEl.textContent = `${funcName}.py`;
-        return code;
+      filenameEl.textContent = `${funcName}.py`;
+      return code;
     }
 
     function generateAsyncFunction(attributes, options) {
-        const funcName = document.getElementById('py-func-name').value || 'mi_funcion_async';
-        const returnType = document.getElementById('py-func-return').value;
-        const docstring = document.getElementById('py-func-docstring').value;
+      const funcName = document.getElementById("py-func-name").value || "mi_funcion_async";
+      const returnType = document.getElementById("py-func-return").value;
+      const docstring = document.getElementById("py-func-docstring").value;
 
-        let code = '"""Módulo con función asíncrona ' + funcName + '."""\n\n';
-        code += 'import asyncio\n';
+      let code = '"""Módulo con función asíncrona ' + funcName + '."""\n\n';
+      code += "import asyncio\n";
 
-        if (options.typeHints) {
-            code += 'from typing import Optional, List, Dict, Any\n';
+      if (options.typeHints) {
+        code += "from typing import Optional, List, Dict, Any\n";
+      }
+      code += "\n\n";
+
+      code += `async def ${funcName}(`;
+      code += attributes
+        .map((a) => {
+          let param = a.name;
+          if (options.typeHints) param += `: ${a.type}`;
+          if (a.default) param += ` = ${formatDefault(a.default, a.type)}`;
+          return param;
+        })
+        .join(", ");
+      code += ")";
+      if (options.typeHints) code += ` -> ${returnType}`;
+      code += ":\n";
+
+      if (options.docstrings && docstring) {
+        code += `    """${docstring}\n\n`;
+        if (attributes.length > 0) {
+          code += "    Args:\n";
+          attributes.forEach((a) => (code += `        ${a.name}: ${a.type}\n`));
+          code += "\n";
         }
-        code += '\n\n';
+        code += `    Returns:\n        ${returnType}\n`;
+        code += '    """\n';
+      }
 
-        code += `async def ${funcName}(`;
-        code += attributes.map(a => {
-            let param = a.name;
-            if (options.typeHints) param += `: ${a.type}`;
-            if (a.default) param += ` = ${formatDefault(a.default, a.type)}`;
-            return param;
-        }).join(', ');
-        code += ')';
-        if (options.typeHints) code += ` -> ${returnType}`;
-        code += ':\n';
+      code += "    # TODO: Implementar lógica asíncrona\n";
+      code += "    await asyncio.sleep(0)  # placeholder\n";
+      if (returnType !== "None") {
+        code += `    return ${getDefaultReturn(returnType)}\n`;
+      }
 
-        if (options.docstrings && docstring) {
-            code += `    """${docstring}\n\n`;
-            if (attributes.length > 0) {
-                code += '    Args:\n';
-                attributes.forEach(a => code += `        ${a.name}: ${a.type}\n`);
-                code += '\n';
-            }
-            code += `    Returns:\n        ${returnType}\n`;
-            code += '    """\n';
-        }
-
-        code += '    # TODO: Implementar lógica asíncrona\n';
-        code += '    await asyncio.sleep(0)  # placeholder\n';
-        if (returnType !== 'None') {
-            code += `    return ${getDefaultReturn(returnType)}\n`;
-        }
-
-        filenameEl.textContent = `${funcName}.py`;
-        return code;
+      filenameEl.textContent = `${funcName}.py`;
+      return code;
     }
 
     function formatDefault(val, type) {
-        if (type === 'str' && !val.startsWith('"') && !val.startsWith("'")) {
-            return `"${val}"`;
-        }
-        return val;
+      if (type === "str" && !val.startsWith('"') && !val.startsWith("'")) {
+        return `"${val}"`;
+      }
+      return val;
     }
 
     function getDefaultReturn(type) {
-        const defaults = {
-            'str': '""',
-            'int': '0',
-            'float': '0.0',
-            'bool': 'False',
-            'list': '[]',
-            'dict': '{}',
-            'tuple': '()',
-            'set': 'set()',
-            'Any': 'None'
-        };
-        return defaults[type] || 'None';
+      const defaults = {
+        str: '""',
+        int: "0",
+        float: "0.0",
+        bool: "False",
+        list: "[]",
+        dict: "{}",
+        tuple: "()",
+        set: "set()",
+        Any: "None",
+      };
+      return defaults[type] || "None";
     }
 
     function updateStats(code) {
-        lineCountEl.textContent = code.split('\n').length;
-        charCountEl.textContent = code.length;
+      lineCountEl.textContent = code.split("\n").length;
+      charCountEl.textContent = code.length;
     }
 
     // Copy button
-    copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(codeOutput.textContent);
-        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => copyBtn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(codeOutput.textContent);
+      copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => (copyBtn.innerHTML = '<i class="fas fa-copy"></i>'), 2000);
     });
 
     // Download button
-    downloadBtn.addEventListener('click', () => {
-        const blob = new Blob([codeOutput.textContent], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filenameEl.textContent;
-        a.click();
-        URL.revokeObjectURL(url);
+    downloadBtn.addEventListener("click", () => {
+      const blob = new Blob([codeOutput.textContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filenameEl.textContent;
+      a.click();
+      URL.revokeObjectURL(url);
     });
 
     // Templates
     const templates = {
-        model: {
-            type: 'dataclass',
-            className: 'Usuario',
-            docstring: 'Modelo de datos para usuario.',
-            attributes: [
-                { name: 'id', type: 'int', default: '' },
-                { name: 'nombre', type: 'str', default: '' },
-                { name: 'email', type: 'str', default: '' },
-                { name: 'activo', type: 'bool', default: 'True' }
-            ]
-        },
-        service: {
-            type: 'class',
-            className: 'UsuarioService',
-            docstring: 'Servicio para gestión de usuarios.',
-            attributes: [
-                { name: 'repository', type: 'Any', default: '' }
-            ],
-            methods: [
-                { name: 'get_by_id', returnType: 'Optional[Any]', params: 'id: int' },
-                { name: 'create', returnType: 'Any', params: 'data: dict' },
-                { name: 'update', returnType: 'Any', params: 'id: int, data: dict' },
-                { name: 'delete', returnType: 'bool', params: 'id: int' }
-            ]
-        },
-        api: {
-            type: 'function',
-            funcName: 'get_usuarios',
-            returnType: 'List[dict]',
-            docstring: 'Endpoint para obtener lista de usuarios.',
-            attributes: [
-                { name: 'skip', type: 'int', default: '0' },
-                { name: 'limit', type: 'int', default: '100' }
-            ]
-        },
-        singleton: {
-            type: 'class',
-            className: 'ConfigManager',
-            docstring: 'Patrón Singleton para configuración.',
-            attributes: [],
-            methods: [
-                { name: 'get_instance', returnType: 'ConfigManager', params: 'cls' },
-                { name: 'get_config', returnType: 'Dict[str, Any]', params: 'key: str' }
-            ]
-        },
-        factory: {
-            type: 'class',
-            className: 'VehiculoFactory',
-            docstring: 'Factory para crear vehículos.',
-            attributes: [],
-            methods: [
-                { name: 'crear_vehiculo', returnType: 'Any', params: 'tipo: str' }
-            ]
-        },
-        decorator: {
-            type: 'function',
-            funcName: 'mi_decorator',
-            returnType: 'Any',
-            docstring: 'Decorator personalizado.',
-            attributes: [
-                { name: 'func', type: 'Any', default: '' }
-            ]
-        },
-        context: {
-            type: 'class',
-            className: 'MiContextManager',
-            docstring: 'Context manager personalizado.',
-            attributes: [
-                { name: 'resource', type: 'Any', default: '' }
-            ],
-            methods: [
-                { name: '__enter__', returnType: 'Any', params: '' },
-                { name: '__exit__', returnType: 'None', params: 'exc_type, exc_val, exc_tb' }
-            ]
-        },
-        pytest: {
-            type: 'function',
-            funcName: 'test_ejemplo',
-            returnType: 'None',
-            docstring: 'Test unitario de ejemplo.',
-            attributes: []
-        }
+      model: {
+        type: "dataclass",
+        className: "Usuario",
+        docstring: "Modelo de datos para usuario.",
+        attributes: [
+          { name: "id", type: "int", default: "" },
+          { name: "nombre", type: "str", default: "" },
+          { name: "email", type: "str", default: "" },
+          { name: "activo", type: "bool", default: "True" },
+        ],
+      },
+      service: {
+        type: "class",
+        className: "UsuarioService",
+        docstring: "Servicio para gestión de usuarios.",
+        attributes: [{ name: "repository", type: "Any", default: "" }],
+        methods: [
+          { name: "get_by_id", returnType: "Optional[Any]", params: "id: int" },
+          { name: "create", returnType: "Any", params: "data: dict" },
+          { name: "update", returnType: "Any", params: "id: int, data: dict" },
+          { name: "delete", returnType: "bool", params: "id: int" },
+        ],
+      },
+      api: {
+        type: "function",
+        funcName: "get_usuarios",
+        returnType: "List[dict]",
+        docstring: "Endpoint para obtener lista de usuarios.",
+        attributes: [
+          { name: "skip", type: "int", default: "0" },
+          { name: "limit", type: "int", default: "100" },
+        ],
+      },
+      singleton: {
+        type: "class",
+        className: "ConfigManager",
+        docstring: "Patrón Singleton para configuración.",
+        attributes: [],
+        methods: [
+          { name: "get_instance", returnType: "ConfigManager", params: "cls" },
+          { name: "get_config", returnType: "Dict[str, Any]", params: "key: str" },
+        ],
+      },
+      factory: {
+        type: "class",
+        className: "VehiculoFactory",
+        docstring: "Factory para crear vehículos.",
+        attributes: [],
+        methods: [{ name: "crear_vehiculo", returnType: "Any", params: "tipo: str" }],
+      },
+      decorator: {
+        type: "function",
+        funcName: "mi_decorator",
+        returnType: "Any",
+        docstring: "Decorator personalizado.",
+        attributes: [{ name: "func", type: "Any", default: "" }],
+      },
+      context: {
+        type: "class",
+        className: "MiContextManager",
+        docstring: "Context manager personalizado.",
+        attributes: [{ name: "resource", type: "Any", default: "" }],
+        methods: [
+          { name: "__enter__", returnType: "Any", params: "" },
+          { name: "__exit__", returnType: "None", params: "exc_type, exc_val, exc_tb" },
+        ],
+      },
+      pytest: {
+        type: "function",
+        funcName: "test_ejemplo",
+        returnType: "None",
+        docstring: "Test unitario de ejemplo.",
+        attributes: [],
+      },
     };
 
-    document.querySelectorAll('.template-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const templateName = btn.dataset.template;
-            const template = templates[templateName];
-            if (!template) return;
+    document.querySelectorAll(".template-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const templateName = btn.dataset.template;
+        const template = templates[templateName];
+        if (!template) return;
 
-            // Set type
-            currentType = template.type;
-            typeBtns.forEach(b => {
-                b.classList.toggle('active', b.dataset.type === template.type);
-            });
-            updateUI();
-
-            // Set values
-            if (template.className) {
-                document.getElementById('py-class-name').value = template.className;
-            }
-            if (template.funcName) {
-                document.getElementById('py-func-name').value = template.funcName;
-            }
-            if (template.returnType) {
-                document.getElementById('py-func-return').value = template.returnType;
-            }
-            if (template.docstring) {
-                const docEl = template.type === 'function' || template.type === 'async'
-                    ? document.getElementById('py-func-docstring')
-                    : document.getElementById('py-docstring');
-                if (docEl) docEl.value = template.docstring;
-            }
-
-            // Clear and add attributes
-            attributesList.innerHTML = '';
-            (template.attributes || []).forEach(a => addAttribute(a.name, a.type, a.default));
-
-            // Clear and add methods
-            methodsList.innerHTML = '';
-            (template.methods || []).forEach(m => addMethod(m.name, m.returnType, m.params));
-
-            generatePythonCode();
+        // Set type
+        currentType = template.type;
+        typeBtns.forEach((b) => {
+          b.classList.toggle("active", b.dataset.type === template.type);
         });
+        updateUI();
+
+        // Set values
+        if (template.className) {
+          document.getElementById("py-class-name").value = template.className;
+        }
+        if (template.funcName) {
+          document.getElementById("py-func-name").value = template.funcName;
+        }
+        if (template.returnType) {
+          document.getElementById("py-func-return").value = template.returnType;
+        }
+        if (template.docstring) {
+          const docEl =
+            template.type === "function" || template.type === "async"
+              ? document.getElementById("py-func-docstring")
+              : document.getElementById("py-docstring");
+          if (docEl) docEl.value = template.docstring;
+        }
+
+        // Clear and add attributes
+        attributesList.innerHTML = "";
+        (template.attributes || []).forEach((a) => addAttribute(a.name, a.type, a.default));
+
+        // Clear and add methods
+        methodsList.innerHTML = "";
+        (template.methods || []).forEach((m) => addMethod(m.name, m.returnType, m.params));
+
+        generatePythonCode();
+      });
     });
 
     // Initial generation
     generatePythonCode();
-});
+  });
 </script>

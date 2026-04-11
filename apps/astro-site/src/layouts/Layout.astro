@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 const {
   title,
   description = "Repositorio de materiales del programa Analista Programador Computacional - DuocUC Online 2025. 10 bimestres, 25+ asignaturas, 65+ tecnologías.",
-  image = "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/og-image.png"
+  image = "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/og-image.png",
 } = Astro.props;
 
 const siteUrl = "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC";
@@ -20,222 +20,246 @@ const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const BUILD_VERSION = Date.now().toString(36);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-theme="dark">
-<head>
+  <head>
     <!-- CRITICAL: Initialize theme BEFORE any rendering to prevent flash -->
     <script is:inline>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        })();
+      (function () {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = savedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+      })();
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content={description}>
+    <meta name="description" content={description} />
 
     <!-- SEO Meta Tags -->
-    <meta name="author" content="DuocUC - Escuela de Informática">
-    <meta name="keywords" content="DuocUC, Analista Programador, Computacional, Ingeniería Software, Desarrollo Web, Fullstack, DevOps, Cloud Computing, Java, Python, React, Spring Boot">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href={canonicalUrl}>
+    <meta name="author" content="DuocUC - Escuela de Informática" />
+    <meta
+      name="keywords"
+      content="DuocUC, Analista Programador, Computacional, Ingeniería Software, Desarrollo Web, Fullstack, DevOps, Cloud Computing, Java, Python, React, Spring Boot"
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content={canonicalUrl}>
-    <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
-    <meta property="og:image" content={image}>
-    <meta property="og:site_name" content="Analista Programador Computacional - DuocUC">
-    <meta property="og:locale" content="es_CL">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Analista Programador Computacional - DuocUC" />
+    <meta property="og:locale" content="es_CL" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content={canonicalUrl}>
-    <meta name="twitter:title" content={title}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content={image}>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "EducationalOrganization",
-      "name": "DuocUC - Escuela de Informática",
-      "description": "Programa Analista Programador Computacional e Ingeniería en Desarrollo de Software",
-      "url": "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC",
-      "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
-      "sameAs": [
-        "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Programas de Estudio",
-        "itemListElement": [
-          {
-            "@type": "Course",
-            "name": "Analista Programador Computacional",
-            "description": "Carrera técnica de 10 bimestres en desarrollo de software",
-            "provider": {
-              "@type": "Organization",
-              "name": "DuocUC"
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "DuocUC - Escuela de Informática",
+        "description": "Programa Analista Programador Computacional e Ingeniería en Desarrollo de Software",
+        "url": "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC",
+        "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+        "sameAs": ["https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Programas de Estudio",
+          "itemListElement": [
+            {
+              "@type": "Course",
+              "name": "Analista Programador Computacional",
+              "description": "Carrera técnica de 10 bimestres en desarrollo de software",
+              "provider": {
+                "@type": "Organization",
+                "name": "DuocUC"
+              },
+              "educationalLevel": "Técnico de Nivel Superior",
+              "timeRequired": "P20M"
             },
-            "educationalLevel": "Técnico de Nivel Superior",
-            "timeRequired": "P20M"
-          },
-          {
-            "@type": "Course",
-            "name": "Ingeniería en Desarrollo de Software",
-            "description": "Continuación profesional de 7 bimestres adicionales",
-            "provider": {
-              "@type": "Organization",
-              "name": "DuocUC"
-            },
-            "educationalLevel": "Profesional",
-            "timeRequired": "P14M"
-          }
-        ]
+            {
+              "@type": "Course",
+              "name": "Ingeniería en Desarrollo de Software",
+              "description": "Continuación profesional de 7 bimestres adicionales",
+              "provider": {
+                "@type": "Organization",
+                "name": "DuocUC"
+              },
+              "educationalLevel": "Profesional",
+              "timeRequired": "P14M"
+            }
+          ]
+        }
       }
-    }
     </script>
 
     <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
     <!-- View Transitions -->
     <ViewTransitions />
 
     <!-- Page Entrance Animation -->
     <style is:inline>
-        /* Smooth page entrance animation
+      /* Smooth page entrance animation
            IMPORTANT: Only use opacity, NOT transform on body.
            transform (even translateY(0)) creates a new containing block,
            which breaks position:fixed on descendant elements like side panels.
            Reference: MDN CSS position - fixed positioning caveats */
-        @keyframes pageEnter {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
         }
-
-        body.page-enter {
-            animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        to {
+          opacity: 1;
         }
+      }
 
-        /* Astro View Transitions - Elegant Slow Crossfade
+      body.page-enter {
+        animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+
+      /* Astro View Transitions - Elegant Slow Crossfade
            Suave y cinematográfica con duración extendida */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 1.4s;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* Old page exits: gentle fade + soft blur */
+      ::view-transition-old(root) {
+        animation: cinematicFadeOut 0.65s cubic-bezier(0.32, 0, 0.67, 0) forwards;
+      }
+
+      /* New page enters: slow fade + subtle rise */
+      ::view-transition-new(root) {
+        animation: cinematicFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+      }
+
+      @keyframes cinematicFadeOut {
+        0% {
+          opacity: 1;
+          filter: blur(0px);
+          transform: scale(1) translateY(0);
+        }
+        50% {
+          opacity: 0.6;
+          filter: blur(2px);
+        }
+        100% {
+          opacity: 0;
+          filter: blur(4px);
+          transform: scale(0.99) translateY(-4px);
+        }
+      }
+
+      @keyframes cinematicFadeIn {
+        0% {
+          opacity: 0;
+          filter: blur(5px);
+          transform: scale(1.005) translateY(8px);
+        }
+        30% {
+          opacity: 0.3;
+          filter: blur(3px);
+        }
+        60% {
+          filter: blur(1px);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0px);
+          transform: scale(1) translateY(0);
+        }
+      }
+
+      /* Accessible transition for reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
         ::view-transition-old(root),
         ::view-transition-new(root) {
-            animation-duration: 1.4s;
-            animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        /* Old page exits: gentle fade + soft blur */
-        ::view-transition-old(root) {
-            animation: cinematicFadeOut 0.65s cubic-bezier(0.32, 0, 0.67, 0) forwards;
-        }
-
-        /* New page enters: slow fade + subtle rise */
-        ::view-transition-new(root) {
-            animation: cinematicFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+          animation-duration: 0.5s;
+          animation-timing-function: ease-in-out;
         }
 
         @keyframes cinematicFadeOut {
-            0% {
-                opacity: 1;
-                filter: blur(0px);
-                transform: scale(1) translateY(0);
-            }
-            50% {
-                opacity: 0.6;
-                filter: blur(2px);
-            }
-            100% {
-                opacity: 0;
-                filter: blur(4px);
-                transform: scale(0.99) translateY(-4px);
-            }
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0;
+          }
         }
 
         @keyframes cinematicFadeIn {
-            0% {
-                opacity: 0;
-                filter: blur(5px);
-                transform: scale(1.005) translateY(8px);
-            }
-            30% {
-                opacity: 0.3;
-                filter: blur(3px);
-            }
-            60% {
-                filter: blur(1px);
-            }
-            100% {
-                opacity: 1;
-                filter: blur(0px);
-                transform: scale(1) translateY(0);
-            }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
-
-        /* Accessible transition for reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            ::view-transition-old(root),
-            ::view-transition-new(root) {
-                animation-duration: 0.5s;
-                animation-timing-function: ease-in-out;
-            }
-
-            @keyframes cinematicFadeOut {
-                from { opacity: 1; }
-                to { opacity: 0; }
-            }
-
-            @keyframes cinematicFadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-        }
+      }
     </style>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
 
     <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Main Styles with dynamic cache busting -->
-    <link rel="stylesheet" href={`/Analista-Programador-Computacional-DuocUC/assets/css/style.css?v=${BUILD_VERSION}`}>
+    <link
+      rel="stylesheet"
+      href={`/Analista-Programador-Computacional-DuocUC/assets/css/style.css?v=${BUILD_VERSION}`}
+    />
 
-    <link rel="icon" href="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
-</head>
-<body class="page-enter">
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
+    />
+  </head>
+  <body class="page-enter">
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" class="scroll-progress-bar"></div>
 
     <!-- Scroll Navigation Buttons (Static FAB) -->
     <!-- Jump to Footer - Top Right (appears after some scroll) -->
     <button id="scroll-to-bottom" class="scroll-nav-btn scroll-down-btn" aria-label="Ir al footer">
-        <i class="fas fa-angles-down"></i>
+      <i class="fas fa-angles-down"></i>
     </button>
 
     <!-- Back to Top - Bottom Right (always visible) -->
     <button id="back-to-top" class="scroll-nav-btn scroll-up-btn" aria-label="Volver arriba">
-        <i class="fas fa-angles-up"></i>
+      <i class="fas fa-angles-up"></i>
     </button>
 
     <!-- Toast Notifications Container -->
@@ -243,106 +267,112 @@ const BUILD_VERSION = Date.now().toString(36);
 
     <!-- Command Palette -->
     <div id="command-palette" class="command-palette">
-        <div class="command-palette-overlay"></div>
-        <div class="command-palette-modal">
-            <div class="command-palette-header">
-                <div class="command-search-wrapper">
-                    <i class="fas fa-search command-search-icon"></i>
-                    <input type="text" id="command-search" class="command-search" placeholder="Buscar páginas, tecnologías, acciones..." autocomplete="off" />
-                    <div class="command-shortcut-hint">
-                        <kbd>ESC</kbd> cerrar
-                    </div>
-                </div>
+      <div class="command-palette-overlay"></div>
+      <div class="command-palette-modal">
+        <div class="command-palette-header">
+          <div class="command-search-wrapper">
+            <i class="fas fa-search command-search-icon"></i>
+            <input
+              type="text"
+              id="command-search"
+              class="command-search"
+              placeholder="Buscar páginas, tecnologías, acciones..."
+              autocomplete="off"
+            />
+            <div class="command-shortcut-hint">
+              <kbd>ESC</kbd> cerrar
             </div>
-            <div class="command-palette-body">
-                <div id="command-results" class="command-results">
-                    <!-- Results populated by JS -->
-                </div>
-            </div>
-            <div class="command-palette-footer">
-                <div class="command-footer-hints">
-                    <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
-                    <span><kbd>↵</kbd> seleccionar</span>
-                    <span><kbd>⌘</kbd><kbd>K</kbd> abrir</span>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="command-palette-body">
+          <div id="command-results" class="command-results">
+            <!-- Results populated by JS -->
+          </div>
+        </div>
+        <div class="command-palette-footer">
+          <div class="command-footer-hints">
+            <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
+            <span><kbd>↵</kbd> seleccionar</span>
+            <span><kbd>⌘</kbd><kbd>K</kbd> abrir</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <slot />
 
     <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script is:inline define:vars={{ BUILD_VERSION }}>
-        // Force cache refresh on new builds
-        (function() {
-            const storedVersion = localStorage.getItem('siteVersion');
-            if (storedVersion !== BUILD_VERSION) {
-                localStorage.setItem('siteVersion', BUILD_VERSION);
-                // Clear all caches
-                if ('caches' in window) {
-                    caches.keys().then(names => {
-                        names.forEach(name => caches.delete(name));
-                    });
-                }
-                // Force reload only if there was a previous version (not first visit)
-                if (storedVersion) {
-                    // Use location.replace with cache-busting query
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('_cb', BUILD_VERSION);
-                    window.location.replace(url.toString());
-                }
-            }
-        })();
+      // Force cache refresh on new builds
+      (function () {
+        const storedVersion = localStorage.getItem("siteVersion");
+        if (storedVersion !== BUILD_VERSION) {
+          localStorage.setItem("siteVersion", BUILD_VERSION);
+          // Clear all caches
+          if ("caches" in window) {
+            caches.keys().then((names) => {
+              names.forEach((name) => caches.delete(name));
+            });
+          }
+          // Force reload only if there was a previous version (not first visit)
+          if (storedVersion) {
+            // Use location.replace with cache-busting query
+            const url = new URL(window.location.href);
+            url.searchParams.set("_cb", BUILD_VERSION);
+            window.location.replace(url.toString());
+          }
+        }
+      })();
 
-        function initAOS() {
-            if (typeof AOS !== 'undefined') {
-                document.querySelectorAll('[data-aos]').forEach(el => {
-                    el.classList.remove('aos-animate');
-                });
-                AOS.init({
-                    duration: 800,
-                    once: false,
-                    offset: 50,
-                    disable: false
-                });
-                setTimeout(() => {
-                    AOS.refresh();
-                    window.dispatchEvent(new Event('scroll'));
-                }, 100);
-            }
+      function initAOS() {
+        if (typeof AOS !== "undefined") {
+          document.querySelectorAll("[data-aos]").forEach((el) => {
+            el.classList.remove("aos-animate");
+          });
+          AOS.init({
+            duration: 800,
+            once: false,
+            offset: 50,
+            disable: false,
+          });
+          setTimeout(() => {
+            AOS.refresh();
+            window.dispatchEvent(new Event("scroll"));
+          }, 100);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", initAOS);
+      document.addEventListener("astro:page-load", initAOS);
+      document.addEventListener("astro:after-swap", initAOS);
+
+      // ============================================
+      // PREMIUM TOOLTIP SYSTEM - Global JavaScript
+      // ============================================
+
+      class PremiumTooltip {
+        constructor() {
+          this.tooltip = null;
+          this.currentTarget = null;
+          this.hideTimeout = null;
+          this.showTimeout = null;
+          this.init();
         }
 
-        document.addEventListener('DOMContentLoaded', initAOS);
-        document.addEventListener('astro:page-load', initAOS);
-        document.addEventListener('astro:after-swap', initAOS);
+        init() {
+          this.createTooltipElement();
+          this.bindEvents();
+        }
 
-        // ============================================
-        // PREMIUM TOOLTIP SYSTEM - Global JavaScript
-        // ============================================
+        createTooltipElement() {
+          // Remove existing tooltip if any
+          const existing = document.getElementById("premium-tooltip-container");
+          if (existing) existing.remove();
 
-        class PremiumTooltip {
-            constructor() {
-                this.tooltip = null;
-                this.currentTarget = null;
-                this.hideTimeout = null;
-                this.showTimeout = null;
-                this.init();
-            }
-
-            init() {
-                this.createTooltipElement();
-                this.bindEvents();
-            }
-
-            createTooltipElement() {
-                // Remove existing tooltip if any
-                const existing = document.getElementById('premium-tooltip-container');
-                if (existing) existing.remove();
-
-                this.tooltip = document.createElement('div');
-                this.tooltip.id = 'premium-tooltip-container';
-                this.tooltip.className = 'premium-tooltip';
-                this.tooltip.innerHTML = `
+          this.tooltip = document.createElement("div");
+          this.tooltip.id = "premium-tooltip-container";
+          this.tooltip.className = "premium-tooltip";
+          this.tooltip.innerHTML = `
                     <div class="tooltip-card">
                         <div class="tooltip-header">
                             <div class="tooltip-icon"><i class="fas fa-info"></i></div>
@@ -362,568 +392,691 @@ const BUILD_VERSION = Date.now().toString(36);
                         <div class="tooltip-arrow"></div>
                     </div>
                 `;
-                document.body.appendChild(this.tooltip);
-            }
-
-            bindEvents() {
-                // Use mouseover/mouseout for better event delegation (they bubble)
-                // Support both data-premium-tooltip AND data-tooltip
-                document.addEventListener('mouseover', (e) => {
-                    const target = e.target?.closest?.('[data-premium-tooltip], [data-tooltip]');
-                    if (target && target !== this.currentTarget) {
-                        this.handleMouseEnter(target);
-                    }
-                });
-
-                document.addEventListener('mouseout', (e) => {
-                    const target = e.target?.closest?.('[data-premium-tooltip], [data-tooltip]');
-                    if (target) {
-                        // Check if we're moving to a child element (don't hide)
-                        const relatedTarget = e.relatedTarget?.closest?.('[data-premium-tooltip], [data-tooltip]');
-                        if (relatedTarget !== target) {
-                            this.handleMouseLeave();
-                        }
-                    }
-                });
-
-                // Handle scroll and resize
-                window.addEventListener('scroll', () => this.hide(), { passive: true });
-                window.addEventListener('resize', () => this.hide(), { passive: true });
-
-                // Re-init on View Transitions
-                document.addEventListener('astro:page-load', () => this.createTooltipElement());
-            }
-
-            handleMouseEnter(target) {
-                clearTimeout(this.hideTimeout);
-                clearTimeout(this.showTimeout);
-
-                this.currentTarget = target;
-
-                // Small delay to prevent flickering on quick mouse movements
-                this.showTimeout = setTimeout(() => {
-                    this.show(target);
-                }, 150);
-            }
-
-            handleMouseLeave() {
-                clearTimeout(this.showTimeout);
-                this.hideTimeout = setTimeout(() => this.hide(), 100);
-            }
-
-            show(target) {
-                if (!this.tooltip) return;
-                const data = this.parseTooltipData(target);
-                if (!data.title && !data.description) return;
-
-                this.updateContent(data);
-                this.updateType(data.type);
-                this.position(target);
-                this.tooltip.classList.add('visible');
-            }
-
-            hide() {
-                if (this.tooltip) this.tooltip.classList.remove('visible');
-                this.currentTarget = null;
-            }
-
-            parseTooltipData(target) {
-                // Support both data-premium-tooltip AND data-tooltip
-                const raw = target.dataset.premiumTooltip || target.dataset.tooltip;
-
-                // If no data, return empty
-                if (!raw) return { title: '', simple: true };
-
-                // Detect if using simple data-tooltip (minimal mode)
-                const isSimple = !target.dataset.premiumTooltip && target.dataset.tooltip;
-
-                // Support both JSON format and simple string
-                if (raw.startsWith('{')) {
-                    try {
-                        const parsed = JSON.parse(raw);
-                        return { ...parsed, simple: isSimple };
-                    } catch (e) {
-                        return { title: raw, simple: isSimple };
-                    }
-                }
-
-                // Simple format: "title|description|features|type|icon|category"
-                const parts = raw.split('|');
-                return {
-                    title: parts[0] || '',
-                    description: parts[1] || '',
-                    features: parts[2] ? parts[2].split(',') : [],
-                    type: parts[3] || '',
-                    icon: parts[4] || 'fa-info',
-                    category: parts[5] || '',
-                    simple: isSimple
-                };
-            }
-
-            updateContent(data) {
-                const card = this.tooltip.querySelector('.tooltip-card');
-                const header = this.tooltip.querySelector('.tooltip-header');
-                const icon = this.tooltip.querySelector('.tooltip-icon i');
-                const title = this.tooltip.querySelector('.tooltip-title');
-                const category = this.tooltip.querySelector('.tooltip-category');
-                const description = this.tooltip.querySelector('.tooltip-description');
-                const features = this.tooltip.querySelector('.tooltip-features');
-                const footer = this.tooltip.querySelector('.tooltip-footer');
-                const shortcut = this.tooltip.querySelector('.tooltip-shortcut');
-
-                // Toggle simple mode class for compact styling
-                card.classList.toggle('simple-mode', !!data.simple);
-
-                // Icon
-                icon.className = 'fas ' + (data.icon || 'fa-info');
-
-                // Title
-                title.textContent = data.title || '';
-
-                // For simple mode (data-tooltip), hide extra elements
-                if (data.simple) {
-                    category.style.display = 'none';
-                    description.parentElement.style.display = 'none';
-                    features.style.display = 'none';
-                    footer.style.display = 'none';
-                    return;
-                }
-
-                // Category
-                category.textContent = data.category || '';
-                category.style.display = data.category ? 'block' : 'none';
-
-                // Description
-                description.textContent = data.description || '';
-                description.parentElement.style.display = data.description ? 'block' : 'none';
-
-                // Features
-                if (data.features && data.features.length > 0) {
-                    features.innerHTML = data.features.map(f =>
-                        `<span class="tooltip-feature"><i class="fas fa-check"></i>${f.trim()}</span>`
-                    ).join('');
-                    features.style.display = 'flex';
-                } else {
-                    features.style.display = 'none';
-                }
-
-                // Shortcut
-                if (data.shortcut) {
-                    shortcut.innerHTML = data.shortcut.split('+').map(k =>
-                        `<span class="tooltip-key">${k.trim()}</span>`
-                    ).join('<span style="color:#64748b;font-size:0.6rem;">+</span>');
-                    shortcut.style.display = 'flex';
-                } else {
-                    shortcut.style.display = 'none';
-                }
-
-                // Footer visibility
-                footer.style.display = (data.shortcut || data.hint !== false) ? 'flex' : 'none';
-            }
-
-            updateType(type) {
-                const card = this.tooltip.querySelector('.tooltip-card');
-                card.className = 'tooltip-card';
-                if (type) {
-                    card.classList.add('type-' + type);
-                }
-            }
-
-            position(target) {
-                const rect = target.getBoundingClientRect();
-                const tooltipRect = this.tooltip.getBoundingClientRect();
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                const margin = 12;
-
-                // Remove all arrow classes
-                this.tooltip.classList.remove('arrow-top', 'arrow-bottom', 'arrow-left', 'arrow-right');
-
-                let top, left;
-
-                // Default: position below
-                top = rect.bottom + margin;
-                left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-
-                // Check if tooltip goes below viewport
-                if (top + tooltipRect.height > viewportHeight - margin) {
-                    // Position above
-                    top = rect.top - tooltipRect.height - margin;
-                    this.tooltip.classList.add('arrow-bottom');
-                } else {
-                    this.tooltip.classList.add('arrow-top');
-                }
-
-                // Check horizontal bounds
-                if (left < margin) {
-                    left = margin;
-                } else if (left + tooltipRect.width > viewportWidth - margin) {
-                    left = viewportWidth - tooltipRect.width - margin;
-                }
-
-                // If still doesn't fit, try positioning to the side
-                if (top < margin) {
-                    top = rect.top + (rect.height / 2) - (tooltipRect.height / 2);
-                    left = rect.right + margin;
-                    this.tooltip.classList.remove('arrow-top', 'arrow-bottom');
-
-                    if (left + tooltipRect.width > viewportWidth - margin) {
-                        left = rect.left - tooltipRect.width - margin;
-                        this.tooltip.classList.add('arrow-right');
-                    } else {
-                        this.tooltip.classList.add('arrow-left');
-                    }
-                }
-
-                this.tooltip.style.top = top + 'px';
-                this.tooltip.style.left = left + 'px';
-            }
+          document.body.appendChild(this.tooltip);
         }
 
-        // Initialize tooltip system
-        let tooltipSystem = null;
+        bindEvents() {
+          // Use mouseover/mouseout for better event delegation (they bubble)
+          // Support both data-premium-tooltip AND data-tooltip
+          document.addEventListener("mouseover", (e) => {
+            const target = e.target?.closest?.("[data-premium-tooltip], [data-tooltip]");
+            if (target && target !== this.currentTarget) {
+              this.handleMouseEnter(target);
+            }
+          });
 
-        function initTooltipSystem() {
-            if (!tooltipSystem) {
-                tooltipSystem = new PremiumTooltip();
+          document.addEventListener("mouseout", (e) => {
+            const target = e.target?.closest?.("[data-premium-tooltip], [data-tooltip]");
+            if (target) {
+              // Check if we're moving to a child element (don't hide)
+              const relatedTarget = e.relatedTarget?.closest?.(
+                "[data-premium-tooltip], [data-tooltip]",
+              );
+              if (relatedTarget !== target) {
+                this.handleMouseLeave();
+              }
+            }
+          });
+
+          // Handle scroll and resize
+          window.addEventListener("scroll", () => this.hide(), { passive: true });
+          window.addEventListener("resize", () => this.hide(), { passive: true });
+
+          // Re-init on View Transitions
+          document.addEventListener("astro:page-load", () => this.createTooltipElement());
+        }
+
+        handleMouseEnter(target) {
+          clearTimeout(this.hideTimeout);
+          clearTimeout(this.showTimeout);
+
+          this.currentTarget = target;
+
+          // Small delay to prevent flickering on quick mouse movements
+          this.showTimeout = setTimeout(() => {
+            this.show(target);
+          }, 150);
+        }
+
+        handleMouseLeave() {
+          clearTimeout(this.showTimeout);
+          this.hideTimeout = setTimeout(() => this.hide(), 100);
+        }
+
+        show(target) {
+          if (!this.tooltip) return;
+          const data = this.parseTooltipData(target);
+          if (!data.title && !data.description) return;
+
+          this.updateContent(data);
+          this.updateType(data.type);
+          this.position(target);
+          this.tooltip.classList.add("visible");
+        }
+
+        hide() {
+          if (this.tooltip) this.tooltip.classList.remove("visible");
+          this.currentTarget = null;
+        }
+
+        parseTooltipData(target) {
+          // Support both data-premium-tooltip AND data-tooltip
+          const raw = target.dataset.premiumTooltip || target.dataset.tooltip;
+
+          // If no data, return empty
+          if (!raw) return { title: "", simple: true };
+
+          // Detect if using simple data-tooltip (minimal mode)
+          const isSimple = !target.dataset.premiumTooltip && target.dataset.tooltip;
+
+          // Support both JSON format and simple string
+          if (raw.startsWith("{")) {
+            try {
+              const parsed = JSON.parse(raw);
+              return { ...parsed, simple: isSimple };
+            } catch (e) {
+              return { title: raw, simple: isSimple };
+            }
+          }
+
+          // Simple format: "title|description|features|type|icon|category"
+          const parts = raw.split("|");
+          return {
+            title: parts[0] || "",
+            description: parts[1] || "",
+            features: parts[2] ? parts[2].split(",") : [],
+            type: parts[3] || "",
+            icon: parts[4] || "fa-info",
+            category: parts[5] || "",
+            simple: isSimple,
+          };
+        }
+
+        updateContent(data) {
+          const card = this.tooltip.querySelector(".tooltip-card");
+          const header = this.tooltip.querySelector(".tooltip-header");
+          const icon = this.tooltip.querySelector(".tooltip-icon i");
+          const title = this.tooltip.querySelector(".tooltip-title");
+          const category = this.tooltip.querySelector(".tooltip-category");
+          const description = this.tooltip.querySelector(".tooltip-description");
+          const features = this.tooltip.querySelector(".tooltip-features");
+          const footer = this.tooltip.querySelector(".tooltip-footer");
+          const shortcut = this.tooltip.querySelector(".tooltip-shortcut");
+
+          // Toggle simple mode class for compact styling
+          card.classList.toggle("simple-mode", !!data.simple);
+
+          // Icon
+          icon.className = "fas " + (data.icon || "fa-info");
+
+          // Title
+          title.textContent = data.title || "";
+
+          // For simple mode (data-tooltip), hide extra elements
+          if (data.simple) {
+            category.style.display = "none";
+            description.parentElement.style.display = "none";
+            features.style.display = "none";
+            footer.style.display = "none";
+            return;
+          }
+
+          // Category
+          category.textContent = data.category || "";
+          category.style.display = data.category ? "block" : "none";
+
+          // Description
+          description.textContent = data.description || "";
+          description.parentElement.style.display = data.description ? "block" : "none";
+
+          // Features
+          if (data.features && data.features.length > 0) {
+            features.innerHTML = data.features
+              .map(
+                (f) =>
+                  `<span class="tooltip-feature"><i class="fas fa-check"></i>${f.trim()}</span>`,
+              )
+              .join("");
+            features.style.display = "flex";
+          } else {
+            features.style.display = "none";
+          }
+
+          // Shortcut
+          if (data.shortcut) {
+            shortcut.innerHTML = data.shortcut
+              .split("+")
+              .map((k) => `<span class="tooltip-key">${k.trim()}</span>`)
+              .join('<span style="color:#64748b;font-size:0.6rem;">+</span>');
+            shortcut.style.display = "flex";
+          } else {
+            shortcut.style.display = "none";
+          }
+
+          // Footer visibility
+          footer.style.display = data.shortcut || data.hint !== false ? "flex" : "none";
+        }
+
+        updateType(type) {
+          const card = this.tooltip.querySelector(".tooltip-card");
+          card.className = "tooltip-card";
+          if (type) {
+            card.classList.add("type-" + type);
+          }
+        }
+
+        position(target) {
+          const rect = target.getBoundingClientRect();
+          const tooltipRect = this.tooltip.getBoundingClientRect();
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+          const margin = 12;
+
+          // Remove all arrow classes
+          this.tooltip.classList.remove("arrow-top", "arrow-bottom", "arrow-left", "arrow-right");
+
+          let top, left;
+
+          // Default: position below
+          top = rect.bottom + margin;
+          left = rect.left + rect.width / 2 - tooltipRect.width / 2;
+
+          // Check if tooltip goes below viewport
+          if (top + tooltipRect.height > viewportHeight - margin) {
+            // Position above
+            top = rect.top - tooltipRect.height - margin;
+            this.tooltip.classList.add("arrow-bottom");
+          } else {
+            this.tooltip.classList.add("arrow-top");
+          }
+
+          // Check horizontal bounds
+          if (left < margin) {
+            left = margin;
+          } else if (left + tooltipRect.width > viewportWidth - margin) {
+            left = viewportWidth - tooltipRect.width - margin;
+          }
+
+          // If still doesn't fit, try positioning to the side
+          if (top < margin) {
+            top = rect.top + rect.height / 2 - tooltipRect.height / 2;
+            left = rect.right + margin;
+            this.tooltip.classList.remove("arrow-top", "arrow-bottom");
+
+            if (left + tooltipRect.width > viewportWidth - margin) {
+              left = rect.left - tooltipRect.width - margin;
+              this.tooltip.classList.add("arrow-right");
             } else {
-                tooltipSystem.createTooltipElement();
+              this.tooltip.classList.add("arrow-left");
             }
-            // Expose to window for external access (e.g., from AITutorSidePanel)
-            window.tooltipSystem = tooltipSystem;
-        }
+          }
 
-        // Initialize immediately if DOM is ready, otherwise wait
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initTooltipSystem);
+          this.tooltip.style.top = top + "px";
+          this.tooltip.style.left = left + "px";
+        }
+      }
+
+      // Initialize tooltip system
+      let tooltipSystem = null;
+
+      function initTooltipSystem() {
+        if (!tooltipSystem) {
+          tooltipSystem = new PremiumTooltip();
         } else {
-            initTooltipSystem();
+          tooltipSystem.createTooltipElement();
         }
-        // Also reinit on Astro View Transitions
-        document.addEventListener('astro:page-load', initTooltipSystem);
+        // Expose to window for external access (e.g., from AITutorSidePanel)
+        window.tooltipSystem = tooltipSystem;
+      }
 
-        // ============================================
-        // SCROLL PROGRESS BAR & SCROLL NAVIGATION (STATIC)
-        // ============================================
+      // Initialize immediately if DOM is ready, otherwise wait
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTooltipSystem);
+      } else {
+        initTooltipSystem();
+      }
+      // Also reinit on Astro View Transitions
+      document.addEventListener("astro:page-load", initTooltipSystem);
 
-        function initScrollFeatures() {
-            const progressBar = document.getElementById('scroll-progress');
-            const backToTopBtn = document.getElementById('back-to-top');
-            const scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+      // ============================================
+      // SCROLL PROGRESS BAR & SCROLL NAVIGATION (STATIC)
+      // ============================================
 
-            if (!progressBar) return;
+      function initScrollFeatures() {
+        const progressBar = document.getElementById("scroll-progress");
+        const backToTopBtn = document.getElementById("back-to-top");
+        const scrollToBottomBtn = document.getElementById("scroll-to-bottom");
 
-            // Update progress bar and hide go-to-footer at bottom
-            function updateScroll() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (!progressBar) return;
 
-                // Update progress bar
-                progressBar.style.width = scrollPercent + '%';
+        // Update progress bar and hide go-to-footer at bottom
+        function updateScroll() {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
 
-                // Hide go-to-footer button when at bottom (>= 95%)
-                if (scrollToBottomBtn) {
-                    if (scrollPercent >= 95) {
-                        scrollToBottomBtn.classList.add('hidden');
-                    } else {
-                        scrollToBottomBtn.classList.remove('hidden');
-                    }
-                }
+          // Update progress bar
+          progressBar.style.width = scrollPercent + "%";
+
+          // Hide go-to-footer button when at bottom (>= 95%)
+          if (scrollToBottomBtn) {
+            if (scrollPercent >= 95) {
+              scrollToBottomBtn.classList.add("hidden");
+            } else {
+              scrollToBottomBtn.classList.remove("hidden");
             }
-
-            // Throttled scroll handler
-            let ticking = false;
-            window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    window.requestAnimationFrame(() => {
-                        updateScroll();
-                        ticking = false;
-                    });
-                    ticking = true;
-                }
-            }, { passive: true });
-
-            // Back to top click - simple smooth scroll
-            if (backToTopBtn) {
-                backToTopBtn.onclick = () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-            }
-
-            // Scroll to footer click - simple smooth scroll
-            if (scrollToBottomBtn) {
-                scrollToBottomBtn.onclick = () => {
-                    const footer = document.querySelector('footer') || document.querySelector('.footer-compact');
-                    const target = footer
-                        ? footer.getBoundingClientRect().top + window.scrollY
-                        : document.documentElement.scrollHeight;
-                    window.scrollTo({ top: target, behavior: 'smooth' });
-                };
-            }
-
-            // Initial update
-            updateScroll();
+          }
         }
 
-        document.addEventListener('DOMContentLoaded', initScrollFeatures);
-        document.addEventListener('astro:page-load', initScrollFeatures);
-
-        // ============================================
-        // COMMAND PALETTE (⌘K / Ctrl+K)
-        // ============================================
-
-        const commandPaletteData = {
-            pages: [
-                { name: 'Inicio', url: '/Analista-Programador-Computacional-DuocUC/inicio', icon: 'fa-home', category: 'Páginas' },
-                { name: 'Stack Tecnológico', url: '/Analista-Programador-Computacional-DuocUC/stack', icon: 'fa-layer-group', category: 'Páginas' },
-                { name: 'Arquitectura', url: '/Analista-Programador-Computacional-DuocUC/arquitectura', icon: 'fa-sitemap', category: 'Páginas' },
-                { name: 'Recursos', url: '/Analista-Programador-Computacional-DuocUC/recursos', icon: 'fa-tools', category: 'Páginas' },
-                { name: 'Proyectos', url: '/Analista-Programador-Computacional-DuocUC/proyectos', icon: 'fa-project-diagram', category: 'Páginas' },
-                { name: 'Trayectorias Profesionales', url: '/Analista-Programador-Computacional-DuocUC/trayectorias', icon: 'fa-route', category: 'Páginas' },
-                { name: 'Portafolio', url: '/Analista-Programador-Computacional-DuocUC/portafolio', icon: 'fa-briefcase', category: 'Páginas' },
-                { name: 'Laboratorios', url: '/Analista-Programador-Computacional-DuocUC/laboratorios', icon: 'fa-flask', category: 'Páginas' },
-                { name: 'Comunidad', url: '/Analista-Programador-Computacional-DuocUC/comunidad', icon: 'fa-users', category: 'Páginas' }
-            ],
-            technologies: [
-                { name: 'Python', url: 'https://python.org', icon: 'fa-python', category: 'Lenguajes' },
-                { name: 'JavaScript', url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', icon: 'fa-js', category: 'Lenguajes' },
-                { name: 'TypeScript', url: 'https://typescriptlang.org', icon: 'fa-code', category: 'Lenguajes' },
-                { name: 'Java', url: 'https://oracle.com/java', icon: 'fa-java', category: 'Lenguajes' },
-                { name: 'React', url: 'https://react.dev', icon: 'fa-react', category: 'Frontend' },
-                { name: 'Vue.js', url: 'https://vuejs.org', icon: 'fa-vuejs', category: 'Frontend' },
-                { name: 'Angular', url: 'https://angular.io', icon: 'fa-angular', category: 'Frontend' },
-                { name: 'Node.js', url: 'https://nodejs.org', icon: 'fa-node-js', category: 'Backend' },
-                { name: 'Spring Boot', url: 'https://spring.io/projects/spring-boot', icon: 'fa-leaf', category: 'Backend' },
-                { name: 'PostgreSQL', url: 'https://postgresql.org', icon: 'fa-database', category: 'Databases' },
-                { name: 'MongoDB', url: 'https://mongodb.com', icon: 'fa-database', category: 'Databases' },
-                { name: 'Docker', url: 'https://docker.com', icon: 'fa-docker', category: 'DevOps' },
-                { name: 'Kubernetes', url: 'https://kubernetes.io', icon: 'fa-dharmachakra', category: 'DevOps' },
-                { name: 'AWS', url: 'https://aws.amazon.com', icon: 'fa-aws', category: 'Cloud' },
-                { name: 'Azure', url: 'https://azure.microsoft.com', icon: 'fa-microsoft', category: 'Cloud' },
-                { name: 'Apache Spark', url: 'https://spark.apache.org', icon: 'fa-bolt', category: 'Data' },
-                { name: 'Apache Airflow', url: 'https://airflow.apache.org', icon: 'fa-wind', category: 'Data' },
-                { name: 'Snowflake', url: 'https://snowflake.com', icon: 'fa-snowflake', category: 'Data' },
-                { name: 'Power BI', url: 'https://powerbi.microsoft.com', icon: 'fa-chart-bar', category: 'Data' }
-            ],
-            actions: [
-                { name: 'Cambiar tema', action: 'toggle-theme', icon: 'fa-adjust', category: 'Acciones' },
-                { name: 'Ir a GitHub', url: 'https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC', icon: 'fa-github', category: 'Enlaces' },
-                { name: 'Volver arriba', action: 'scroll-top', icon: 'fa-arrow-up', category: 'Acciones' }
-            ]
-        };
-
-        function initCommandPalette() {
-            const palette = document.getElementById('command-palette');
-            const overlay = palette?.querySelector('.command-palette-overlay');
-            const searchInput = document.getElementById('command-search');
-            const resultsContainer = document.getElementById('command-results');
-
-            if (!palette || !searchInput || !resultsContainer) return;
-
-            let selectedIndex = 0;
-            let currentResults = [];
-
-            // Open palette with Cmd/Ctrl + K
-            document.addEventListener('keydown', (e) => {
-                if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                    e.preventDefault();
-                    openPalette();
-                }
-
-                // Close with Escape
-                if (e.key === 'Escape' && palette.classList.contains('open')) {
-                    closePalette();
-                }
-
-                // Navigate with arrows
-                if (palette.classList.contains('open')) {
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-                        selectedIndex = Math.min(selectedIndex + 1, currentResults.length - 1);
-                        updateSelection();
-                    }
-                    if (e.key === 'ArrowUp') {
-                        e.preventDefault();
-                        selectedIndex = Math.max(selectedIndex - 1, 0);
-                        updateSelection();
-                    }
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
-                        selectCurrent();
-                    }
-                }
-            });
-
-            // Close on overlay click
-            overlay?.addEventListener('click', closePalette);
-
-            // Search input handler
-            searchInput.addEventListener('input', () => {
-                const query = searchInput.value.toLowerCase().trim();
-                selectedIndex = 0;
-                renderResults(search(query));
-            });
-
-            function openPalette() {
-                palette.classList.add('open');
-                searchInput.value = '';
-                searchInput.focus();
-                selectedIndex = 0;
-                renderResults(getDefaultResults());
-                document.body.style.overflow = 'hidden';
+        // Throttled scroll handler
+        let ticking = false;
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                updateScroll();
+                ticking = false;
+              });
+              ticking = true;
             }
+          },
+          { passive: true },
+        );
 
-            function closePalette() {
-                palette.classList.remove('open');
-                document.body.style.overflow = '';
+        // Back to top click - simple smooth scroll
+        if (backToTopBtn) {
+          backToTopBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          };
+        }
+
+        // Scroll to footer click - simple smooth scroll
+        if (scrollToBottomBtn) {
+          scrollToBottomBtn.onclick = () => {
+            const footer =
+              document.querySelector("footer") || document.querySelector(".footer-compact");
+            const target = footer
+              ? footer.getBoundingClientRect().top + window.scrollY
+              : document.documentElement.scrollHeight;
+            window.scrollTo({ top: target, behavior: "smooth" });
+          };
+        }
+
+        // Initial update
+        updateScroll();
+      }
+
+      document.addEventListener("DOMContentLoaded", initScrollFeatures);
+      document.addEventListener("astro:page-load", initScrollFeatures);
+
+      // ============================================
+      // COMMAND PALETTE (⌘K / Ctrl+K)
+      // ============================================
+
+      const commandPaletteData = {
+        pages: [
+          {
+            name: "Inicio",
+            url: "/Analista-Programador-Computacional-DuocUC/inicio",
+            icon: "fa-home",
+            category: "Páginas",
+          },
+          {
+            name: "Stack Tecnológico",
+            url: "/Analista-Programador-Computacional-DuocUC/stack",
+            icon: "fa-layer-group",
+            category: "Páginas",
+          },
+          {
+            name: "Arquitectura",
+            url: "/Analista-Programador-Computacional-DuocUC/arquitectura",
+            icon: "fa-sitemap",
+            category: "Páginas",
+          },
+          {
+            name: "Recursos",
+            url: "/Analista-Programador-Computacional-DuocUC/recursos",
+            icon: "fa-tools",
+            category: "Páginas",
+          },
+          {
+            name: "Proyectos",
+            url: "/Analista-Programador-Computacional-DuocUC/proyectos",
+            icon: "fa-project-diagram",
+            category: "Páginas",
+          },
+          {
+            name: "Trayectorias Profesionales",
+            url: "/Analista-Programador-Computacional-DuocUC/trayectorias",
+            icon: "fa-route",
+            category: "Páginas",
+          },
+          {
+            name: "Portafolio",
+            url: "/Analista-Programador-Computacional-DuocUC/portafolio",
+            icon: "fa-briefcase",
+            category: "Páginas",
+          },
+          {
+            name: "Laboratorios",
+            url: "/Analista-Programador-Computacional-DuocUC/laboratorios",
+            icon: "fa-flask",
+            category: "Páginas",
+          },
+          {
+            name: "Comunidad",
+            url: "/Analista-Programador-Computacional-DuocUC/comunidad",
+            icon: "fa-users",
+            category: "Páginas",
+          },
+        ],
+        technologies: [
+          { name: "Python", url: "https://python.org", icon: "fa-python", category: "Lenguajes" },
+          {
+            name: "JavaScript",
+            url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+            icon: "fa-js",
+            category: "Lenguajes",
+          },
+          {
+            name: "TypeScript",
+            url: "https://typescriptlang.org",
+            icon: "fa-code",
+            category: "Lenguajes",
+          },
+          { name: "Java", url: "https://oracle.com/java", icon: "fa-java", category: "Lenguajes" },
+          { name: "React", url: "https://react.dev", icon: "fa-react", category: "Frontend" },
+          { name: "Vue.js", url: "https://vuejs.org", icon: "fa-vuejs", category: "Frontend" },
+          { name: "Angular", url: "https://angular.io", icon: "fa-angular", category: "Frontend" },
+          { name: "Node.js", url: "https://nodejs.org", icon: "fa-node-js", category: "Backend" },
+          {
+            name: "Spring Boot",
+            url: "https://spring.io/projects/spring-boot",
+            icon: "fa-leaf",
+            category: "Backend",
+          },
+          {
+            name: "PostgreSQL",
+            url: "https://postgresql.org",
+            icon: "fa-database",
+            category: "Databases",
+          },
+          {
+            name: "MongoDB",
+            url: "https://mongodb.com",
+            icon: "fa-database",
+            category: "Databases",
+          },
+          { name: "Docker", url: "https://docker.com", icon: "fa-docker", category: "DevOps" },
+          {
+            name: "Kubernetes",
+            url: "https://kubernetes.io",
+            icon: "fa-dharmachakra",
+            category: "DevOps",
+          },
+          { name: "AWS", url: "https://aws.amazon.com", icon: "fa-aws", category: "Cloud" },
+          {
+            name: "Azure",
+            url: "https://azure.microsoft.com",
+            icon: "fa-microsoft",
+            category: "Cloud",
+          },
+          {
+            name: "Apache Spark",
+            url: "https://spark.apache.org",
+            icon: "fa-bolt",
+            category: "Data",
+          },
+          {
+            name: "Apache Airflow",
+            url: "https://airflow.apache.org",
+            icon: "fa-wind",
+            category: "Data",
+          },
+          {
+            name: "Snowflake",
+            url: "https://snowflake.com",
+            icon: "fa-snowflake",
+            category: "Data",
+          },
+          {
+            name: "Power BI",
+            url: "https://powerbi.microsoft.com",
+            icon: "fa-chart-bar",
+            category: "Data",
+          },
+        ],
+        actions: [
+          { name: "Cambiar tema", action: "toggle-theme", icon: "fa-adjust", category: "Acciones" },
+          {
+            name: "Ir a GitHub",
+            url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC",
+            icon: "fa-github",
+            category: "Enlaces",
+          },
+          {
+            name: "Volver arriba",
+            action: "scroll-top",
+            icon: "fa-arrow-up",
+            category: "Acciones",
+          },
+        ],
+      };
+
+      function initCommandPalette() {
+        const palette = document.getElementById("command-palette");
+        const overlay = palette?.querySelector(".command-palette-overlay");
+        const searchInput = document.getElementById("command-search");
+        const resultsContainer = document.getElementById("command-results");
+
+        if (!palette || !searchInput || !resultsContainer) return;
+
+        let selectedIndex = 0;
+        let currentResults = [];
+
+        // Open palette with Cmd/Ctrl + K
+        document.addEventListener("keydown", (e) => {
+          if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+            e.preventDefault();
+            openPalette();
+          }
+
+          // Close with Escape
+          if (e.key === "Escape" && palette.classList.contains("open")) {
+            closePalette();
+          }
+
+          // Navigate with arrows
+          if (palette.classList.contains("open")) {
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              selectedIndex = Math.min(selectedIndex + 1, currentResults.length - 1);
+              updateSelection();
             }
-
-            function search(query) {
-                if (!query) return getDefaultResults();
-
-                const allItems = [
-                    ...commandPaletteData.pages,
-                    ...commandPaletteData.technologies,
-                    ...commandPaletteData.actions
-                ];
-
-                return allItems.filter(item =>
-                    item.name.toLowerCase().includes(query) ||
-                    item.category.toLowerCase().includes(query)
-                ).slice(0, 10);
+            if (e.key === "ArrowUp") {
+              e.preventDefault();
+              selectedIndex = Math.max(selectedIndex - 1, 0);
+              updateSelection();
             }
-
-            function getDefaultResults() {
-                return [
-                    ...commandPaletteData.pages.slice(0, 5),
-                    ...commandPaletteData.actions
-                ];
+            if (e.key === "Enter") {
+              e.preventDefault();
+              selectCurrent();
             }
+          }
+        });
 
-            function renderResults(results) {
-                currentResults = results;
-                if (results.length === 0) {
-                    resultsContainer.innerHTML = `
+        // Close on overlay click
+        overlay?.addEventListener("click", closePalette);
+
+        // Search input handler
+        searchInput.addEventListener("input", () => {
+          const query = searchInput.value.toLowerCase().trim();
+          selectedIndex = 0;
+          renderResults(search(query));
+        });
+
+        function openPalette() {
+          palette.classList.add("open");
+          searchInput.value = "";
+          searchInput.focus();
+          selectedIndex = 0;
+          renderResults(getDefaultResults());
+          document.body.style.overflow = "hidden";
+        }
+
+        function closePalette() {
+          palette.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+
+        function search(query) {
+          if (!query) return getDefaultResults();
+
+          const allItems = [
+            ...commandPaletteData.pages,
+            ...commandPaletteData.technologies,
+            ...commandPaletteData.actions,
+          ];
+
+          return allItems
+            .filter(
+              (item) =>
+                item.name.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query),
+            )
+            .slice(0, 10);
+        }
+
+        function getDefaultResults() {
+          return [...commandPaletteData.pages.slice(0, 5), ...commandPaletteData.actions];
+        }
+
+        function renderResults(results) {
+          currentResults = results;
+          if (results.length === 0) {
+            resultsContainer.innerHTML = `
                         <div class="command-no-results">
                             <i class="fas fa-search"></i>
                             <p>No se encontraron resultados</p>
                         </div>
                     `;
-                    return;
-                }
+            return;
+          }
 
-                // Group by category
-                const grouped = {};
-                results.forEach(item => {
-                    if (!grouped[item.category]) grouped[item.category] = [];
-                    grouped[item.category].push(item);
-                });
+          // Group by category
+          const grouped = {};
+          results.forEach((item) => {
+            if (!grouped[item.category]) grouped[item.category] = [];
+            grouped[item.category].push(item);
+          });
 
-                let html = '';
-                for (const [category, items] of Object.entries(grouped)) {
-                    html += `<div class="command-group">
+          let html = "";
+          for (const [category, items] of Object.entries(grouped)) {
+            html += `<div class="command-group">
                         <div class="command-group-label">${category}</div>
-                        ${items.map((item, idx) => {
+                        ${items
+                          .map((item, idx) => {
                             const globalIndex = results.indexOf(item);
                             return `
-                                <div class="command-item ${globalIndex === selectedIndex ? 'selected' : ''}"
-                                     data-index="${globalIndex}" data-url="${item.url || ''}" data-action="${item.action || ''}">
+                                <div class="command-item ${globalIndex === selectedIndex ? "selected" : ""}"
+                                     data-index="${globalIndex}" data-url="${item.url || ""}" data-action="${item.action || ""}">
                                     <i class="fab ${item.icon} command-item-icon"></i>
                                     <span class="command-item-name">${item.name}</span>
-                                    ${item.url?.startsWith('http') ? '<i class="fas fa-external-link-alt command-external"></i>' : ''}
+                                    ${item.url?.startsWith("http") ? '<i class="fas fa-external-link-alt command-external"></i>' : ""}
                                 </div>
                             `;
-                        }).join('')}
+                          })
+                          .join("")}
                     </div>`;
-                }
-                resultsContainer.innerHTML = html;
+          }
+          resultsContainer.innerHTML = html;
 
-                // Add click handlers
-                resultsContainer.querySelectorAll('.command-item').forEach(item => {
-                    item.addEventListener('click', () => {
-                        selectedIndex = parseInt(item.dataset.index);
-                        selectCurrent();
-                    });
-                    item.addEventListener('mouseenter', () => {
-                        selectedIndex = parseInt(item.dataset.index);
-                        updateSelection();
-                    });
-                });
-            }
-
-            function updateSelection() {
-                resultsContainer.querySelectorAll('.command-item').forEach((item, idx) => {
-                    item.classList.toggle('selected', parseInt(item.dataset.index) === selectedIndex);
-                });
-            }
-
-            function selectCurrent() {
-                const item = currentResults[selectedIndex];
-                if (!item) return;
-
-                if (item.action) {
-                    executeAction(item.action);
-                } else if (item.url) {
-                    if (item.url.startsWith('http')) {
-                        window.open(item.url, '_blank');
-                    } else {
-                        window.location.href = item.url;
-                    }
-                }
-                closePalette();
-            }
-
-            function executeAction(action) {
-                switch (action) {
-                    case 'toggle-theme':
-                        if (typeof toggleTheme === 'function') toggleTheme();
-                        break;
-                    case 'scroll-top':
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        break;
-                }
-            }
+          // Add click handlers
+          resultsContainer.querySelectorAll(".command-item").forEach((item) => {
+            item.addEventListener("click", () => {
+              selectedIndex = parseInt(item.dataset.index);
+              selectCurrent();
+            });
+            item.addEventListener("mouseenter", () => {
+              selectedIndex = parseInt(item.dataset.index);
+              updateSelection();
+            });
+          });
         }
 
-        document.addEventListener('DOMContentLoaded', initCommandPalette);
-        document.addEventListener('astro:page-load', initCommandPalette);
+        function updateSelection() {
+          resultsContainer.querySelectorAll(".command-item").forEach((item, idx) => {
+            item.classList.toggle("selected", parseInt(item.dataset.index) === selectedIndex);
+          });
+        }
 
-        // ============================================
-        // TOAST NOTIFICATION SYSTEM
-        // ============================================
+        function selectCurrent() {
+          const item = currentResults[selectedIndex];
+          if (!item) return;
 
-        class ToastNotification {
-            constructor() {
-                this.container = document.getElementById('toast-container');
-                this.toasts = [];
-                this.maxToasts = 5;
+          if (item.action) {
+            executeAction(item.action);
+          } else if (item.url) {
+            if (item.url.startsWith("http")) {
+              window.open(item.url, "_blank");
+            } else {
+              window.location.href = item.url;
             }
+          }
+          closePalette();
+        }
 
-            show(message, type = 'info', duration = 4000, options = {}) {
-                if (!this.container) return;
+        function executeAction(action) {
+          switch (action) {
+            case "toggle-theme":
+              if (typeof toggleTheme === "function") toggleTheme();
+              break;
+            case "scroll-top":
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              break;
+          }
+        }
+      }
 
-                // Remove oldest toast if at max
-                if (this.toasts.length >= this.maxToasts) {
-                    this.removeToast(this.toasts[0]);
-                }
+      document.addEventListener("DOMContentLoaded", initCommandPalette);
+      document.addEventListener("astro:page-load", initCommandPalette);
 
-                const toast = document.createElement('div');
-                toast.className = `toast toast-${type}`;
+      // ============================================
+      // TOAST NOTIFICATION SYSTEM
+      // ============================================
 
-                const icons = {
-                    success: 'fa-check-circle',
-                    error: 'fa-exclamation-circle',
-                    warning: 'fa-exclamation-triangle',
-                    info: 'fa-info-circle'
-                };
+      class ToastNotification {
+        constructor() {
+          this.container = document.getElementById("toast-container");
+          this.toasts = [];
+          this.maxToasts = 5;
+        }
 
-                toast.innerHTML = `
+        show(message, type = "info", duration = 4000, options = {}) {
+          if (!this.container) return;
+
+          // Remove oldest toast if at max
+          if (this.toasts.length >= this.maxToasts) {
+            this.removeToast(this.toasts[0]);
+          }
+
+          const toast = document.createElement("div");
+          toast.className = `toast toast-${type}`;
+
+          const icons = {
+            success: "fa-check-circle",
+            error: "fa-exclamation-circle",
+            warning: "fa-exclamation-triangle",
+            info: "fa-info-circle",
+          };
+
+          toast.innerHTML = `
                     <div class="toast-icon">
                         <i class="fas ${icons[type] || icons.info}"></i>
                     </div>
                     <div class="toast-content">
-                        ${options.title ? `<div class="toast-title">${options.title}</div>` : ''}
+                        ${options.title ? `<div class="toast-title">${options.title}</div>` : ""}
                         <div class="toast-message">${message}</div>
                     </div>
                     <button class="toast-close" aria-label="Cerrar">
@@ -934,65 +1087,65 @@ const BUILD_VERSION = Date.now().toString(36);
                     </div>
                 `;
 
-                // Add close button handler
-                toast.querySelector('.toast-close').onclick = () => this.removeToast(toast);
+          // Add close button handler
+          toast.querySelector(".toast-close").onclick = () => this.removeToast(toast);
 
-                // Add to container and track
-                this.container.appendChild(toast);
-                this.toasts.push(toast);
+          // Add to container and track
+          this.container.appendChild(toast);
+          this.toasts.push(toast);
 
-                // Trigger animation
-                requestAnimationFrame(() => toast.classList.add('show'));
+          // Trigger animation
+          requestAnimationFrame(() => toast.classList.add("show"));
 
-                // Auto remove after duration
-                if (duration > 0) {
-                    setTimeout(() => this.removeToast(toast), duration);
-                }
+          // Auto remove after duration
+          if (duration > 0) {
+            setTimeout(() => this.removeToast(toast), duration);
+          }
 
-                return toast;
-            }
-
-            removeToast(toast) {
-                if (!toast || !toast.parentNode) return;
-
-                toast.classList.add('hide');
-                setTimeout(() => {
-                    toast.remove();
-                    this.toasts = this.toasts.filter(t => t !== toast);
-                }, 300);
-            }
-
-            success(message, options = {}) {
-                return this.show(message, 'success', options.duration || 4000, options);
-            }
-
-            error(message, options = {}) {
-                return this.show(message, 'error', options.duration || 6000, options);
-            }
-
-            warning(message, options = {}) {
-                return this.show(message, 'warning', options.duration || 5000, options);
-            }
-
-            info(message, options = {}) {
-                return this.show(message, 'info', options.duration || 4000, options);
-            }
-
-            clear() {
-                this.toasts.forEach(toast => this.removeToast(toast));
-            }
+          return toast;
         }
 
-        // Create global toast instance
-        window.toast = new ToastNotification();
+        removeToast(toast) {
+          if (!toast || !toast.parentNode) return;
 
-        // Example usage - show welcome toast on page load (optional)
-        // Uncomment to test:
-        // document.addEventListener('astro:page-load', () => {
-        //     setTimeout(() => {
-        //         window.toast.success('¡Bienvenido al sitio!', { title: 'Navegación' });
-        //     }, 1000);
-        // });
+          toast.classList.add("hide");
+          setTimeout(() => {
+            toast.remove();
+            this.toasts = this.toasts.filter((t) => t !== toast);
+          }, 300);
+        }
+
+        success(message, options = {}) {
+          return this.show(message, "success", options.duration || 4000, options);
+        }
+
+        error(message, options = {}) {
+          return this.show(message, "error", options.duration || 6000, options);
+        }
+
+        warning(message, options = {}) {
+          return this.show(message, "warning", options.duration || 5000, options);
+        }
+
+        info(message, options = {}) {
+          return this.show(message, "info", options.duration || 4000, options);
+        }
+
+        clear() {
+          this.toasts.forEach((toast) => this.removeToast(toast));
+        }
+      }
+
+      // Create global toast instance
+      window.toast = new ToastNotification();
+
+      // Example usage - show welcome toast on page load (optional)
+      // Uncomment to test:
+      // document.addEventListener('astro:page-load', () => {
+      //     setTimeout(() => {
+      //         window.toast.success('¡Bienvenido al sitio!', { title: 'Navegación' });
+      //     }, 1000);
+      // });
     </script>
-</body>
+  </body>
 </html>

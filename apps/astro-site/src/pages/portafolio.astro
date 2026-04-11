@@ -1,1047 +1,1153 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 
 const baseUrl = import.meta.env.BASE_URL;
 
 // Pasos para construir el portafolio
 const portfolioSteps = [
-    {
-        number: 1,
-        title: 'Define tu Nicho',
-        description: 'Elige un área de especialización: Frontend, Backend, Data, Mobile, DevOps, etc.',
-        tips: ['Investiga demanda del mercado', 'Considera tus intereses', 'Evalúa tu experiencia actual'],
-        icon: 'fas fa-crosshairs',
-        color: '#00d4ff'
-    },
-    {
-        number: 2,
-        title: 'Elige 3-5 Proyectos Clave',
-        description: 'Selecciona proyectos que demuestren diferentes habilidades y niveles de complejidad.',
-        tips: ['Un proyecto fullstack completo', 'Un proyecto con API', 'Un proyecto con datos/analytics'],
-        icon: 'fas fa-layer-group',
-        color: '#7c3aed'
-    },
-    {
-        number: 3,
-        title: 'Documenta Cada Proyecto',
-        description: 'Crea READMEs profesionales con capturas, tecnologías, desafíos y soluciones.',
-        tips: ['Screenshots/GIFs de la app', 'Diagrama de arquitectura', 'Instrucciones de instalación'],
-        icon: 'fas fa-file-alt',
-        color: '#10b981'
-    },
-    {
-        number: 4,
-        title: 'Crea tu Sitio Personal',
-        description: 'Desarrolla un sitio web profesional para mostrar tu trabajo y habilidades.',
-        tips: ['Diseño limpio y moderno', 'Mobile-responsive', 'Sección "Sobre mí" personal'],
-        icon: 'fas fa-globe',
-        color: '#f59e0b'
-    },
-    {
-        number: 5,
-        title: 'Despliega y Comparte',
-        description: 'Publica tu portafolio en plataformas gratuitas y comparte en redes profesionales.',
-        tips: ['Deploy en Vercel/Netlify', 'Agregar a LinkedIn', 'Compartir en GitHub'],
-        icon: 'fas fa-rocket',
-        color: '#ef4444'
-    },
+  {
+    number: 1,
+    title: "Define tu Nicho",
+    description: "Elige un área de especialización: Frontend, Backend, Data, Mobile, DevOps, etc.",
+    tips: [
+      "Investiga demanda del mercado",
+      "Considera tus intereses",
+      "Evalúa tu experiencia actual",
+    ],
+    icon: "fas fa-crosshairs",
+    color: "#00d4ff",
+  },
+  {
+    number: 2,
+    title: "Elige 3-5 Proyectos Clave",
+    description:
+      "Selecciona proyectos que demuestren diferentes habilidades y niveles de complejidad.",
+    tips: [
+      "Un proyecto fullstack completo",
+      "Un proyecto con API",
+      "Un proyecto con datos/analytics",
+    ],
+    icon: "fas fa-layer-group",
+    color: "#7c3aed",
+  },
+  {
+    number: 3,
+    title: "Documenta Cada Proyecto",
+    description: "Crea READMEs profesionales con capturas, tecnologías, desafíos y soluciones.",
+    tips: [
+      "Screenshots/GIFs de la app",
+      "Diagrama de arquitectura",
+      "Instrucciones de instalación",
+    ],
+    icon: "fas fa-file-alt",
+    color: "#10b981",
+  },
+  {
+    number: 4,
+    title: "Crea tu Sitio Personal",
+    description: "Desarrolla un sitio web profesional para mostrar tu trabajo y habilidades.",
+    tips: ["Diseño limpio y moderno", "Mobile-responsive", 'Sección "Sobre mí" personal'],
+    icon: "fas fa-globe",
+    color: "#f59e0b",
+  },
+  {
+    number: 5,
+    title: "Despliega y Comparte",
+    description:
+      "Publica tu portafolio en plataformas gratuitas y comparte en redes profesionales.",
+    tips: ["Deploy en Vercel/Netlify", "Agregar a LinkedIn", "Compartir en GitHub"],
+    icon: "fas fa-rocket",
+    color: "#ef4444",
+  },
 ];
 
 // Elementos esenciales de un portafolio
 const portfolioElements = [
-    {
-        name: 'Hero Section',
-        description: 'Tu nombre, título, foto profesional y tagline que capture tu esencia.',
-        importance: 'Crítico',
-        example: '"Full Stack Developer enfocado en crear experiencias web excepcionales"',
-        icon: 'fas fa-user-astronaut'
-    },
-    {
-        name: 'Sobre Mí',
-        description: 'Breve bio personal y profesional, stack tecnológico y valores.',
-        importance: 'Alto',
-        example: 'Tu historia, motivación, qué te hace único, soft skills',
-        icon: 'fas fa-id-card'
-    },
-    {
-        name: 'Proyectos Destacados',
-        description: 'Galería de 3-5 proyectos con descripción, tecnologías y links.',
-        importance: 'Crítico',
-        example: 'Cards con imagen, título, descripción, tech stack, demo y repo',
-        icon: 'fas fa-briefcase'
-    },
-    {
-        name: 'Habilidades',
-        description: 'Lista visual de tecnologías y herramientas que dominas.',
-        importance: 'Alto',
-        example: 'Íconos o barras de progreso por tecnología',
-        icon: 'fas fa-code'
-    },
-    {
-        name: 'Experiencia/Educación',
-        description: 'Timeline de tu trayectoria profesional y académica.',
-        importance: 'Medio',
-        example: 'Empresas, roles, logros, certificaciones, estudios',
-        icon: 'fas fa-graduation-cap'
-    },
-    {
-        name: 'Contacto',
-        description: 'Formulario o información para que te contacten.',
-        importance: 'Crítico',
-        example: 'Email, LinkedIn, GitHub, formulario de contacto',
-        icon: 'fas fa-envelope'
-    },
-    {
-        name: 'Blog/Artículos',
-        description: 'Artículos técnicos que demuestren tu expertise.',
-        importance: 'Opcional',
-        example: 'Tutoriales, opiniones técnicas, caso de estudio',
-        icon: 'fas fa-pen-fancy'
-    },
-    {
-        name: 'Testimonios',
-        description: 'Reviews de clientes, compañeros o profesores.',
-        importance: 'Alto',
-        example: 'Citas con foto y nombre del referente',
-        icon: 'fas fa-star'
-    },
+  {
+    name: "Hero Section",
+    description: "Tu nombre, título, foto profesional y tagline que capture tu esencia.",
+    importance: "Crítico",
+    example: '"Full Stack Developer enfocado en crear experiencias web excepcionales"',
+    icon: "fas fa-user-astronaut",
+  },
+  {
+    name: "Sobre Mí",
+    description: "Breve bio personal y profesional, stack tecnológico y valores.",
+    importance: "Alto",
+    example: "Tu historia, motivación, qué te hace único, soft skills",
+    icon: "fas fa-id-card",
+  },
+  {
+    name: "Proyectos Destacados",
+    description: "Galería de 3-5 proyectos con descripción, tecnologías y links.",
+    importance: "Crítico",
+    example: "Cards con imagen, título, descripción, tech stack, demo y repo",
+    icon: "fas fa-briefcase",
+  },
+  {
+    name: "Habilidades",
+    description: "Lista visual de tecnologías y herramientas que dominas.",
+    importance: "Alto",
+    example: "Íconos o barras de progreso por tecnología",
+    icon: "fas fa-code",
+  },
+  {
+    name: "Experiencia/Educación",
+    description: "Timeline de tu trayectoria profesional y académica.",
+    importance: "Medio",
+    example: "Empresas, roles, logros, certificaciones, estudios",
+    icon: "fas fa-graduation-cap",
+  },
+  {
+    name: "Contacto",
+    description: "Formulario o información para que te contacten.",
+    importance: "Crítico",
+    example: "Email, LinkedIn, GitHub, formulario de contacto",
+    icon: "fas fa-envelope",
+  },
+  {
+    name: "Blog/Artículos",
+    description: "Artículos técnicos que demuestren tu expertise.",
+    importance: "Opcional",
+    example: "Tutoriales, opiniones técnicas, caso de estudio",
+    icon: "fas fa-pen-fancy",
+  },
+  {
+    name: "Testimonios",
+    description: "Reviews de clientes, compañeros o profesores.",
+    importance: "Alto",
+    example: "Citas con foto y nombre del referente",
+    icon: "fas fa-star",
+  },
 ];
 
 // Plantillas y recursos
 const templates = [
-    {
-        name: 'Astro Portfolio Starter',
-        url: 'https://astro.build/themes/details/portfolio/',
-        tech: 'Astro',
-        price: 'Gratis',
-        features: ['Minimalista', 'Blog incluido', 'SEO optimizado'],
-        icon: 'devicon-astro-plain colored'
-    },
-    {
-        name: 'Next.js Portfolio',
-        url: 'https://vercel.com/templates/next.js/portfolio-starter-kit',
-        tech: 'Next.js',
-        price: 'Gratis',
-        features: ['React', 'MDX Blog', 'Dark mode'],
-        icon: 'devicon-nextjs-original'
-    },
-    {
-        name: 'Minimal Portfolio',
-        url: 'https://github.com/topics/portfolio-template',
-        tech: 'HTML/CSS',
-        price: 'Gratis',
-        features: ['Simple', 'Rápido', 'Fácil de personalizar'],
-        icon: 'devicon-html5-plain colored'
-    },
-    {
-        name: 'Developer Portfolio',
-        url: 'https://github.com/topics/developer-portfolio',
-        tech: 'React',
-        price: 'Gratis',
-        features: ['Animaciones', 'Componentes', 'Moderno'],
-        icon: 'devicon-react-original colored'
-    },
+  {
+    name: "Astro Portfolio Starter",
+    url: "https://astro.build/themes/details/portfolio/",
+    tech: "Astro",
+    price: "Gratis",
+    features: ["Minimalista", "Blog incluido", "SEO optimizado"],
+    icon: "devicon-astro-plain colored",
+  },
+  {
+    name: "Next.js Portfolio",
+    url: "https://vercel.com/templates/next.js/portfolio-starter-kit",
+    tech: "Next.js",
+    price: "Gratis",
+    features: ["React", "MDX Blog", "Dark mode"],
+    icon: "devicon-nextjs-original",
+  },
+  {
+    name: "Minimal Portfolio",
+    url: "https://github.com/topics/portfolio-template",
+    tech: "HTML/CSS",
+    price: "Gratis",
+    features: ["Simple", "Rápido", "Fácil de personalizar"],
+    icon: "devicon-html5-plain colored",
+  },
+  {
+    name: "Developer Portfolio",
+    url: "https://github.com/topics/developer-portfolio",
+    tech: "React",
+    price: "Gratis",
+    features: ["Animaciones", "Componentes", "Moderno"],
+    icon: "devicon-react-original colored",
+  },
 ];
 
 // Plataformas para hospedar
 const hostingPlatforms = [
-    { name: 'Vercel', url: 'https://vercel.com/', icon: 'devicon-vercel-original', free: true, best: 'Next.js, React' },
-    { name: 'Netlify', url: 'https://www.netlify.com/', icon: 'devicon-netlify-plain colored', free: true, best: 'Static sites, JAMstack' },
-    { name: 'GitHub Pages', url: 'https://pages.github.com/', icon: 'devicon-github-original', free: true, best: 'HTML, Jekyll' },
-    { name: 'Cloudflare Pages', url: 'https://pages.cloudflare.com/', icon: 'devicon-cloudflare-plain colored', free: true, best: 'Full-stack' },
-    { name: 'Render', url: 'https://render.com/', icon: 'img:https://cdn.simpleicons.org/render/46E3B7', free: true, best: 'Node.js, Python' },
-    { name: 'Railway', url: 'https://railway.app/', icon: 'img:https://cdn.simpleicons.org/railway/0B0D0E', free: true, best: 'Full-stack, DBs' },
+  {
+    name: "Vercel",
+    url: "https://vercel.com/",
+    icon: "devicon-vercel-original",
+    free: true,
+    best: "Next.js, React",
+  },
+  {
+    name: "Netlify",
+    url: "https://www.netlify.com/",
+    icon: "devicon-netlify-plain colored",
+    free: true,
+    best: "Static sites, JAMstack",
+  },
+  {
+    name: "GitHub Pages",
+    url: "https://pages.github.com/",
+    icon: "devicon-github-original",
+    free: true,
+    best: "HTML, Jekyll",
+  },
+  {
+    name: "Cloudflare Pages",
+    url: "https://pages.cloudflare.com/",
+    icon: "devicon-cloudflare-plain colored",
+    free: true,
+    best: "Full-stack",
+  },
+  {
+    name: "Render",
+    url: "https://render.com/",
+    icon: "img:https://cdn.simpleicons.org/render/46E3B7",
+    free: true,
+    best: "Node.js, Python",
+  },
+  {
+    name: "Railway",
+    url: "https://railway.app/",
+    icon: "img:https://cdn.simpleicons.org/railway/0B0D0E",
+    free: true,
+    best: "Full-stack, DBs",
+  },
 ];
 
 // Errores comunes a evitar
 const commonMistakes = [
-    { mistake: 'Demasiados proyectos', solution: 'Mejor 5 proyectos excelentes que 15 mediocres' },
-    { mistake: 'Sin descripciones', solution: 'Explica el problema, tu solución y el impacto' },
-    { mistake: 'Links rotos', solution: 'Verifica que demos y repos estén funcionando' },
-    { mistake: 'Diseño descuidado', solution: 'Tu portafolio ES tu primer proyecto' },
-    { mistake: 'Sin información de contacto', solution: 'Facilita que te encuentren' },
-    { mistake: 'Copiar templates sin personalizar', solution: 'Hazlo tuyo, agrega tu personalidad' },
+  { mistake: "Demasiados proyectos", solution: "Mejor 5 proyectos excelentes que 15 mediocres" },
+  { mistake: "Sin descripciones", solution: "Explica el problema, tu solución y el impacto" },
+  { mistake: "Links rotos", solution: "Verifica que demos y repos estén funcionando" },
+  { mistake: "Diseño descuidado", solution: "Tu portafolio ES tu primer proyecto" },
+  { mistake: "Sin información de contacto", solution: "Facilita que te encuentren" },
+  { mistake: "Copiar templates sin personalizar", solution: "Hazlo tuyo, agrega tu personalidad" },
 ];
 
 // Checklist final
 const checklist = [
-    'Hero con nombre, foto y tagline',
-    'Sección "Sobre mí" personal',
-    '3-5 proyectos con demos funcionando',
-    'Cada proyecto tiene README completo',
-    'Stack tecnológico visible',
-    'Información de contacto clara',
-    'Mobile responsive',
-    'Carga rápida (<3s)',
-    'Links de redes sociales',
-    'Meta tags para SEO',
-    'Favicon personalizado',
-    'Analytics configurado',
+  "Hero con nombre, foto y tagline",
+  'Sección "Sobre mí" personal',
+  "3-5 proyectos con demos funcionando",
+  "Cada proyecto tiene README completo",
+  "Stack tecnológico visible",
+  "Información de contacto clara",
+  "Mobile responsive",
+  "Carga rápida (<3s)",
+  "Links de redes sociales",
+  "Meta tags para SEO",
+  "Favicon personalizado",
+  "Analytics configurado",
 ];
 ---
 
 <Layout title="Portafolio Guiado | Construye tu Portfolio Profesional - DuocUC">
-    <Header />
+  <Header />
 
-    <main class="portfolio-page">
-        <!-- Hero Section -->
-        <section class="page-hero">
-            <div class="hero-content" data-aos="fade-up">
-                <div class="hero-badge">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Guía Paso a Paso</span>
-                </div>
-                <h1>Construye tu <span class="gradient-text">Portafolio</span></h1>
-                <p class="hero-subtitle">
-                    Tu portafolio es tu carta de presentación profesional. Aprende a crear uno que destaque
-                    y te ayude a conseguir oportunidades laborales.
-                </p>
-                <div class="hero-cta">
-                    <a href="#steps" class="btn-primary">
-                        <i class="fas fa-play-circle"></i> Comenzar Guía
-                    </a>
-                    <a href="#templates" class="btn-secondary">
-                        <i class="fas fa-palette"></i> Ver Templates
-                    </a>
-                </div>
-            </div>
-        </section>
+  <main class="portfolio-page">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+          <i class="fas fa-briefcase"></i>
+          <span>Guía Paso a Paso</span>
+        </div>
+        <h1>Construye tu <span class="gradient-text">Portafolio</span></h1>
+        <p class="hero-subtitle">
+          Tu portafolio es tu carta de presentación profesional. Aprende a crear uno que destaque y
+          te ayude a conseguir oportunidades laborales.
+        </p>
+        <div class="hero-cta">
+          <a href="#steps" class="btn-primary">
+            <i class="fas fa-play-circle"></i> Comenzar Guía
+          </a>
+          <a href="#templates" class="btn-secondary">
+            <i class="fas fa-palette"></i> Ver Templates
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <!-- Steps Section -->
-        <section id="steps" class="steps-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-list-ol"></i> 5 Pasos para tu Portafolio</h2>
-                <p>Sigue esta guía para crear un portafolio profesional</p>
-            </div>
-            <div class="steps-timeline">
-                {portfolioSteps.map((step, idx) => (
-                    <div class="step-card glass-card" data-aos="fade-up" data-aos-delay={idx * 100}>
-                        <div class="step-number" style={`background: ${step.color}20; color: ${step.color};`}>
-                            {step.number}
-                        </div>
-                        <div class="step-icon" style={`color: ${step.color};`}>
-                            <i class={step.icon}></i>
-                        </div>
-                        <h3>{step.title}</h3>
-                        <p>{step.description}</p>
-                        <ul class="step-tips">
-                            {step.tips.map(tip => (
-                                <li><i class="fas fa-check"></i> {tip}</li>
-                            ))}
-                        </ul>
-                    </div>
+    <!-- Steps Section -->
+    <section id="steps" class="steps-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-list-ol"></i> 5 Pasos para tu Portafolio</h2>
+        <p>Sigue esta guía para crear un portafolio profesional</p>
+      </div>
+      <div class="steps-timeline">
+        {
+          portfolioSteps.map((step, idx) => (
+            <div class="step-card glass-card" data-aos="fade-up" data-aos-delay={idx * 100}>
+              <div class="step-number" style={`background: ${step.color}20; color: ${step.color};`}>
+                {step.number}
+              </div>
+              <div class="step-icon" style={`color: ${step.color};`}>
+                <i class={step.icon} />
+              </div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+              <ul class="step-tips">
+                {step.tips.map((tip) => (
+                  <li>
+                    <i class="fas fa-check" /> {tip}
+                  </li>
                 ))}
+              </ul>
             </div>
-        </section>
+          ))
+        }
+      </div>
+    </section>
 
-        <!-- Elements Section -->
-        <section class="elements-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-puzzle-piece"></i> Elementos de un Buen Portafolio</h2>
-                <p>Qué debe incluir tu portafolio para destacar</p>
-            </div>
-            <div class="elements-grid">
-                {portfolioElements.map((el, idx) => (
-                    <div class="element-card glass-card" data-aos="fade-up" data-aos-delay={idx * 50}>
-                        <div class="element-header">
-                            <div class="element-icon">
-                                <i class={el.icon}></i>
-                            </div>
-                            <span class={`importance-badge ${el.importance.toLowerCase()}`}>{el.importance}</span>
-                        </div>
-                        <h3>{el.name}</h3>
-                        <p>{el.description}</p>
-                        <div class="element-example">
-                            <strong>Ejemplo:</strong> {el.example}
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Templates Section -->
-        <section id="templates" class="templates-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-palette"></i> Templates para Empezar</h2>
-                <p>Plantillas gratuitas para acelerar tu desarrollo</p>
-            </div>
-            <div class="templates-grid">
-                {templates.map((template, idx) => (
-                    <a href={template.url} target="_blank" rel="noopener" class="template-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
-                        <div class="template-header">
-                            <i class={template.icon}></i>
-                            <span class="price-badge">{template.price}</span>
-                        </div>
-                        <h3>{template.name}</h3>
-                        <p class="tech-badge">{template.tech}</p>
-                        <ul class="template-features">
-                            {template.features.map(f => (
-                                <li><i class="fas fa-check"></i> {f}</li>
-                            ))}
-                        </ul>
-                        <span class="view-link">Ver template <i class="fas fa-external-link-alt"></i></span>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Hosting Section -->
-        <section class="hosting-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-cloud-upload-alt"></i> Dónde Hospedar (Gratis)</h2>
-                <p>Plataformas para publicar tu portafolio sin costo</p>
-            </div>
-            <div class="hosting-grid">
-                {hostingPlatforms.map((platform, idx) => (
-                    <a href={platform.url} target="_blank" rel="noopener" class="hosting-card glass-card" data-aos="fade-up" data-aos-delay={idx * 50}>
-                        <div class="hosting-icon">
-                            {platform.icon.startsWith('devicon') ? (
-                                <i class={platform.icon}></i>
-                            ) : platform.icon.startsWith('img:') ? (
-                                <img src={platform.icon.replace('img:', '')} alt={platform.name} width="32" height="32" />
-                            ) : (
-                                <i class={platform.icon}></i>
-                            )}
-                        </div>
-                        <div class="hosting-info">
-                            <h4>{platform.name}</h4>
-                            <span class="best-for">Ideal para: {platform.best}</span>
-                        </div>
-                        {platform.free && <span class="free-badge">Gratis</span>}
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Mistakes Section -->
-        <section class="mistakes-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-exclamation-triangle"></i> Errores Comunes a Evitar</h2>
-                <p>Aprende de los errores de otros para no cometerlos</p>
-            </div>
-            <div class="mistakes-grid">
-                {commonMistakes.map((item, idx) => (
-                    <div class="mistake-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
-                        <div class="mistake-content">
-                            <div class="mistake-wrong">
-                                <i class="fas fa-times-circle"></i>
-                                <span>{item.mistake}</span>
-                            </div>
-                            <div class="mistake-right">
-                                <i class="fas fa-check-circle"></i>
-                                <span>{item.solution}</span>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Checklist Section -->
-        <section class="checklist-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-clipboard-check"></i> Checklist Final</h2>
-                <p>Verifica que tu portafolio cumpla con todos estos puntos</p>
-            </div>
-            <div class="checklist-container glass-card" data-aos="fade-up">
-                <div class="checklist-grid">
-                    {checklist.map((item, idx) => (
-                        <label class="checklist-item">
-                            <input type="checkbox" id={`check-${idx}`} />
-                            <span class="checkmark"></span>
-                            <span class="check-text">{item}</span>
-                        </label>
-                    ))}
+    <!-- Elements Section -->
+    <section class="elements-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-puzzle-piece"></i> Elementos de un Buen Portafolio</h2>
+        <p>Qué debe incluir tu portafolio para destacar</p>
+      </div>
+      <div class="elements-grid">
+        {
+          portfolioElements.map((el, idx) => (
+            <div class="element-card glass-card" data-aos="fade-up" data-aos-delay={idx * 50}>
+              <div class="element-header">
+                <div class="element-icon">
+                  <i class={el.icon} />
                 </div>
-                <div class="checklist-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="checklist-progress"></div>
-                    </div>
-                    <span class="progress-text"><span id="checked-count">0</span> de {checklist.length} completados</span>
-                </div>
+                <span class={`importance-badge ${el.importance.toLowerCase()}`}>
+                  {el.importance}
+                </span>
+              </div>
+              <h3>{el.name}</h3>
+              <p>{el.description}</p>
+              <div class="element-example">
+                <strong>Ejemplo:</strong> {el.example}
+              </div>
             </div>
-        </section>
+          ))
+        }
+      </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content glass-card" data-aos="zoom-in">
-                <h2>¿Listo para Crear tu Portafolio?</h2>
-                <p>Empieza con proyectos de práctica y construye tu presencia profesional</p>
-                <div class="cta-buttons">
-                    <a href={`${baseUrl}/proyectos-estudio`} class="cta-btn primary">
-                        <i class="fas fa-laptop-code"></i> Proyectos de Estudio
-                    </a>
-                    <a href={`${baseUrl}/proyectos-profesionales`} class="cta-btn secondary">
-                        <i class="fas fa-briefcase"></i> Proyectos Profesionales
-                    </a>
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-palette"></i> Templates para Empezar</h2>
+        <p>Plantillas gratuitas para acelerar tu desarrollo</p>
+      </div>
+      <div class="templates-grid">
+        {
+          templates.map((template, idx) => (
+            <a
+              href={template.url}
+              target="_blank"
+              rel="noopener"
+              class="template-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 75}
+            >
+              <div class="template-header">
+                <i class={template.icon} />
+                <span class="price-badge">{template.price}</span>
+              </div>
+              <h3>{template.name}</h3>
+              <p class="tech-badge">{template.tech}</p>
+              <ul class="template-features">
+                {template.features.map((f) => (
+                  <li>
+                    <i class="fas fa-check" /> {f}
+                  </li>
+                ))}
+              </ul>
+              <span class="view-link">
+                Ver template <i class="fas fa-external-link-alt" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Hosting Section -->
+    <section class="hosting-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-cloud-upload-alt"></i> Dónde Hospedar (Gratis)</h2>
+        <p>Plataformas para publicar tu portafolio sin costo</p>
+      </div>
+      <div class="hosting-grid">
+        {
+          hostingPlatforms.map((platform, idx) => (
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener"
+              class="hosting-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+            >
+              <div class="hosting-icon">
+                {platform.icon.startsWith("devicon") ? (
+                  <i class={platform.icon} />
+                ) : platform.icon.startsWith("img:") ? (
+                  <img
+                    src={platform.icon.replace("img:", "")}
+                    alt={platform.name}
+                    width="32"
+                    height="32"
+                  />
+                ) : (
+                  <i class={platform.icon} />
+                )}
+              </div>
+              <div class="hosting-info">
+                <h4>{platform.name}</h4>
+                <span class="best-for">Ideal para: {platform.best}</span>
+              </div>
+              {platform.free && <span class="free-badge">Gratis</span>}
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Mistakes Section -->
+    <section class="mistakes-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-exclamation-triangle"></i> Errores Comunes a Evitar</h2>
+        <p>Aprende de los errores de otros para no cometerlos</p>
+      </div>
+      <div class="mistakes-grid">
+        {
+          commonMistakes.map((item, idx) => (
+            <div class="mistake-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
+              <div class="mistake-content">
+                <div class="mistake-wrong">
+                  <i class="fas fa-times-circle" />
+                  <span>{item.mistake}</span>
                 </div>
+                <div class="mistake-right">
+                  <i class="fas fa-check-circle" />
+                  <span>{item.solution}</span>
+                </div>
+              </div>
             </div>
-        </section>
-    </main>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Checklist Section -->
+    <section class="checklist-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-clipboard-check"></i> Checklist Final</h2>
+        <p>Verifica que tu portafolio cumpla con todos estos puntos</p>
+      </div>
+      <div class="checklist-container glass-card" data-aos="fade-up">
+        <div class="checklist-grid">
+          {
+            checklist.map((item, idx) => (
+              <label class="checklist-item">
+                <input type="checkbox" id={`check-${idx}`} />
+                <span class="checkmark" />
+                <span class="check-text">{item}</span>
+              </label>
+            ))
+          }
+        </div>
+        <div class="checklist-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="checklist-progress"></div>
+          </div>
+          <span class="progress-text"
+            ><span id="checked-count">0</span> de {checklist.length} completados</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content glass-card" data-aos="zoom-in">
+        <h2>¿Listo para Crear tu Portafolio?</h2>
+        <p>Empieza con proyectos de práctica y construye tu presencia profesional</p>
+        <div class="cta-buttons">
+          <a href={`${baseUrl}/proyectos-estudio`} class="cta-btn primary">
+            <i class="fas fa-laptop-code"></i> Proyectos de Estudio
+          </a>
+          <a href={`${baseUrl}/proyectos-profesionales`} class="cta-btn secondary">
+            <i class="fas fa-briefcase"></i> Proyectos Profesionales
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <script is:inline>
-document.addEventListener('astro:page-load', initPortfolioPage);
-document.addEventListener('DOMContentLoaded', initPortfolioPage);
+  document.addEventListener("astro:page-load", initPortfolioPage);
+  document.addEventListener("DOMContentLoaded", initPortfolioPage);
 
-function initPortfolioPage() {
+  function initPortfolioPage() {
     // Checklist functionality
     const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
-    const progressFill = document.getElementById('checklist-progress');
-    const checkedCount = document.getElementById('checked-count');
+    const progressFill = document.getElementById("checklist-progress");
+    const checkedCount = document.getElementById("checked-count");
     const total = checkboxes.length;
 
     // Load saved state
     checkboxes.forEach((cb, idx) => {
-        const saved = localStorage.getItem(`portfolio-check-${idx}`);
-        if (saved === 'true') {
-            cb.checked = true;
-        }
+      const saved = localStorage.getItem(`portfolio-check-${idx}`);
+      if (saved === "true") {
+        cb.checked = true;
+      }
 
-        cb.onchange = () => {
-            localStorage.setItem(`portfolio-check-${idx}`, cb.checked);
-            updateProgress();
-        };
+      cb.onchange = () => {
+        localStorage.setItem(`portfolio-check-${idx}`, cb.checked);
+        updateProgress();
+      };
     });
 
     function updateProgress() {
-        const checked = document.querySelectorAll('.checklist-item input:checked').length;
-        const percentage = (checked / total) * 100;
-        if (progressFill) progressFill.style.width = `${percentage}%`;
-        if (checkedCount) checkedCount.textContent = checked;
+      const checked = document.querySelectorAll(".checklist-item input:checked").length;
+      const percentage = (checked / total) * 100;
+      if (progressFill) progressFill.style.width = `${percentage}%`;
+      if (checkedCount) checkedCount.textContent = checked;
     }
 
     updateProgress();
-}
+  }
 </script>
 
 <style>
-    .portfolio-page {
-        padding-top: 80px;
-    }
+  .portfolio-page {
+    padding-top: 80px;
+  }
 
-    /* Hero Section */
-    .page-hero {
-        padding: 4rem 2rem;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, transparent 100%);
-    }
+  /* Hero Section */
+  .page-hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, transparent 100%);
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(124, 58, 237, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #a78bfa;
-        margin-bottom: 1.5rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #a78bfa;
+    margin-bottom: 1.5rem;
+  }
 
+  .page-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    color: white;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Sections Common */
+  section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header h2 i {
+    color: #7c3aed;
+    margin-right: 0.75rem;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+  }
+
+  .glass-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Steps Timeline */
+  .steps-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .step-number {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-card h3 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-card > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-tips {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .step-tips li {
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    padding: 0.35rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .step-tips li i {
+    color: #10b981;
+    font-size: 0.75rem;
+  }
+
+  /* Elements Grid */
+  .elements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .element-card {
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .element-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .element-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .element-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 12px;
+    color: #a78bfa;
+    font-size: 1.2rem;
+  }
+
+  .importance-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .importance-badge.crítico {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+  }
+  .importance-badge.alto {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+  }
+  .importance-badge.medio {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+  .importance-badge.opcional {
+    background: rgba(107, 114, 128, 0.2);
+    color: #9ca3af;
+  }
+
+  .element-card h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .element-card > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .element-example {
+    padding: 0.75rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+  }
+
+  .element-example strong {
+    color: #a78bfa;
+  }
+
+  /* Templates Grid */
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .template-card {
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .template-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .template-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .template-header i {
+    font-size: 2rem;
+  }
+
+  .price-badge {
+    padding: 0.25rem 0.6rem;
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .template-card h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tech-badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    background: rgba(124, 58, 237, 0.1);
+    color: #a78bfa;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .template-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+
+  .template-features li {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .template-features li i {
+    color: #10b981;
+    font-size: 0.75rem;
+  }
+
+  .view-link {
+    color: #00d4ff;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Hosting Grid */
+  .hosting-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .hosting-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .hosting-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(124, 58, 237, 0.3);
+  }
+
+  .hosting-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    font-size: 1.5rem;
+  }
+
+  .hosting-icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .hosting-info h4 {
+    color: #f8fafc;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .best-for {
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  .free-badge {
+    margin-left: auto;
+    padding: 0.25rem 0.6rem;
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* Mistakes Grid */
+  .mistakes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .mistake-card {
+    padding: 1.25rem;
+  }
+
+  .mistake-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .mistake-wrong,
+  .mistake-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mistake-wrong {
+    color: #f87171;
+  }
+
+  .mistake-wrong i {
+    color: #ef4444;
+  }
+
+  .mistake-right {
+    color: #10b981;
+    padding-left: 1.5rem;
+  }
+
+  .mistake-right i {
+    color: #10b981;
+  }
+
+  /* Checklist Section */
+  .checklist-container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .checklist-item:hover {
+    background: rgba(124, 58, 237, 0.1);
+  }
+
+  .checklist-item input {
+    display: none;
+  }
+
+  .checkmark {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #64748b;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .checklist-item input:checked + .checkmark {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    border-color: #7c3aed;
+  }
+
+  .checklist-item input:checked + .checkmark::after {
+    content: "✓";
+    color: white;
+    font-weight: 700;
+  }
+
+  .check-text {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+  }
+
+  .checklist-item input:checked ~ .check-text {
+    color: #10b981;
+    text-decoration: line-through;
+  }
+
+  .checklist-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(148, 163, 184, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #00d4ff);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+  }
+
+  .cta-content {
+    text-align: center;
+    padding: 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    color: #f8fafc;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    color: white;
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Light Mode */
+  :global(body.light-mode) .page-hero h1,
+  :global(body.light-mode) .section-header h2,
+  :global(body.light-mode) .step-card h3,
+  :global(body.light-mode) .element-card h3,
+  :global(body.light-mode) .template-card h3,
+  :global(body.light-mode) .hosting-info h4,
+  :global(body.light-mode) .cta-content h2 {
+    color: #1e293b;
+  }
+
+  :global(body.light-mode) .hero-subtitle,
+  :global(body.light-mode) .section-header p,
+  :global(body.light-mode) .step-card > p,
+  :global(body.light-mode) .element-card > p,
+  :global(body.light-mode) .cta-content p {
+    color: #64748b;
+  }
+
+  :global(body.light-mode) .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  :global(body.light-mode) .check-text {
+    color: #475569;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .page-hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        color: #f8fafc;
-    }
-
-    .gradient-text {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-subtitle {
-        font-size: 1.15rem;
-        color: #94a3b8;
-        line-height: 1.7;
-        margin-bottom: 2rem;
-    }
-
-    .hero-cta {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .btn-primary, .btn-secondary {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        color: white;
-    }
-
-    .btn-secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .btn-primary:hover, .btn-secondary:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Sections Common */
-    section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-    }
-
-    .section-header h2 {
-        font-size: 2rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .section-header h2 i {
-        color: #7c3aed;
-        margin-right: 0.75rem;
-    }
-
-    .section-header p {
-        color: #94a3b8;
-    }
-
-    .glass-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-    }
-
-    /* Steps Timeline */
-    .steps-timeline {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .step-card {
-        padding: 1.5rem;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .step-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .step-number {
-        position: absolute;
-        top: -15px;
-        left: 20px;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        font-weight: 700;
-        font-size: 0.9rem;
-    }
-
-    .step-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .step-card h3 {
-        color: #f8fafc;
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .step-card > p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .step-tips {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .step-tips li {
-        color: #cbd5e1;
-        font-size: 0.85rem;
-        padding: 0.35rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .step-tips li i {
-        color: #10b981;
-        font-size: 0.75rem;
-    }
-
-    /* Elements Grid */
-    .elements-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .element-card {
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .element-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .element-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-
-    .element-icon {
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 12px;
-        color: #a78bfa;
-        font-size: 1.2rem;
-    }
-
-    .importance-badge {
-        padding: 0.25rem 0.6rem;
-        border-radius: 10px;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-
-    .importance-badge.crítico { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-    .importance-badge.alto { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .importance-badge.medio { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-    .importance-badge.opcional { background: rgba(107, 114, 128, 0.2); color: #9ca3af; }
-
-    .element-card h3 {
-        color: #f8fafc;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .element-card > p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .element-example {
-        padding: 0.75rem;
-        background: rgba(124, 58, 237, 0.1);
-        border-radius: 8px;
-        font-size: 0.85rem;
-        color: #cbd5e1;
-    }
-
-    .element-example strong {
-        color: #a78bfa;
-    }
-
-    /* Templates Grid */
-    .templates-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .template-card {
-        padding: 1.5rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .template-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .template-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-
-    .template-header i {
-        font-size: 2rem;
-    }
-
-    .price-badge {
-        padding: 0.25rem 0.6rem;
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-        border-radius: 10px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .template-card h3 {
-        color: #f8fafc;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .tech-badge {
-        display: inline-block;
-        padding: 0.25rem 0.6rem;
-        background: rgba(124, 58, 237, 0.1);
-        color: #a78bfa;
-        border-radius: 6px;
-        font-size: 0.8rem;
-        margin-bottom: 1rem;
-    }
-
-    .template-features {
-        list-style: none;
-        padding: 0;
-        margin: 0 0 1rem 0;
-    }
-
-    .template-features li {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        padding: 0.25rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .template-features li i {
-        color: #10b981;
-        font-size: 0.75rem;
-    }
-
-    .view-link {
-        color: #00d4ff;
-        font-size: 0.85rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Hosting Grid */
-    .hosting-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .hosting-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .hosting-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .hosting-icon {
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        font-size: 1.5rem;
-    }
-
-    .hosting-icon img {
-        width: 28px;
-        height: 28px;
-    }
-
-    .hosting-info h4 {
-        color: #f8fafc;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .best-for {
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-
-    .free-badge {
-        margin-left: auto;
-        padding: 0.25rem 0.6rem;
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-        border-radius: 10px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    /* Mistakes Grid */
-    .mistakes-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
-    }
-
-    .mistake-card {
-        padding: 1.25rem;
-    }
-
-    .mistake-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .mistake-wrong, .mistake-right {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.9rem;
-    }
-
-    .mistake-wrong {
-        color: #f87171;
-    }
-
-    .mistake-wrong i {
-        color: #ef4444;
-    }
-
-    .mistake-right {
-        color: #10b981;
-        padding-left: 1.5rem;
-    }
-
-    .mistake-right i {
-        color: #10b981;
-    }
-
-    /* Checklist Section */
-    .checklist-container {
-        padding: 2rem;
-        max-width: 900px;
-        margin: 0 auto;
+      font-size: 2rem;
     }
 
     .checklist-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-        margin-bottom: 2rem;
+      grid-template-columns: 1fr;
     }
-
-    .checklist-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 8px;
-        transition: background 0.2s ease;
-    }
-
-    .checklist-item:hover {
-        background: rgba(124, 58, 237, 0.1);
-    }
-
-    .checklist-item input {
-        display: none;
-    }
-
-    .checkmark {
-        width: 22px;
-        height: 22px;
-        border: 2px solid #64748b;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-        flex-shrink: 0;
-    }
-
-    .checklist-item input:checked + .checkmark {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        border-color: #7c3aed;
-    }
-
-    .checklist-item input:checked + .checkmark::after {
-        content: '✓';
-        color: white;
-        font-weight: 700;
-    }
-
-    .check-text {
-        color: #cbd5e1;
-        font-size: 0.9rem;
-    }
-
-    .checklist-item input:checked ~ .check-text {
-        color: #10b981;
-        text-decoration: line-through;
-    }
-
-    .checklist-progress {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .progress-bar {
-        flex: 1;
-        height: 8px;
-        background: rgba(148, 163, 184, 0.2);
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .progress-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #7c3aed, #00d4ff);
-        width: 0%;
-        transition: width 0.3s ease;
-    }
-
-    .progress-text {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        white-space: nowrap;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-    }
-
-    .cta-content {
-        text-align: center;
-        padding: 3rem;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    .cta-content h2 {
-        color: #f8fafc;
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .cta-content p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        color: white;
-    }
-
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .cta-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Light Mode */
-    :global(body.light-mode) .page-hero h1,
-    :global(body.light-mode) .section-header h2,
-    :global(body.light-mode) .step-card h3,
-    :global(body.light-mode) .element-card h3,
-    :global(body.light-mode) .template-card h3,
-    :global(body.light-mode) .hosting-info h4,
-    :global(body.light-mode) .cta-content h2 {
-        color: #1e293b;
-    }
-
-    :global(body.light-mode) .hero-subtitle,
-    :global(body.light-mode) .section-header p,
-    :global(body.light-mode) .step-card > p,
-    :global(body.light-mode) .element-card > p,
-    :global(body.light-mode) .cta-content p {
-        color: #64748b;
-    }
-
-    :global(body.light-mode) .glass-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(148, 163, 184, 0.2);
-    }
-
-    :global(body.light-mode) .check-text {
-        color: #475569;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .page-hero h1 {
-            font-size: 2rem;
-        }
-
-        .checklist-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>

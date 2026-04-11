@@ -599,1488 +599,1848 @@ public class EventSourcedOrderRepository implements OrderRepository {
 ---
 
 <div class="architecture-devops-container">
-    <!-- Architecture & DevOps Section Header -->
-    <div class="arch-section-header" data-aos="fade-up" data-aos-delay="600">
-        <div class="arch-section-icon">
-            <i class="fas fa-code arch-main-icon"></i>
+  <!-- Architecture & DevOps Section Header -->
+  <div class="arch-section-header" data-aos="fade-up" data-aos-delay="600">
+    <div class="arch-section-icon">
+      <i class="fas fa-code arch-main-icon"></i>
+    </div>
+    <div class="arch-section-content">
+      <h3 class="arch-section-title">Arquitectura & <span class="gradient-text">DevOps</span></h3>
+      <p class="arch-section-subtitle">
+        Patrones de diseño, pipelines y mejores prácticas de la industria
+      </p>
+      <p class="arch-section-hint">
+        <i class="fas fa-hand-pointer"></i> Selecciona una arquitectura para ver detalles
+      </p>
+    </div>
+  </div>
+
+  <!-- Architecture Selector - Clickable Cards -->
+  <div class="arch-selector-grid" data-aos="fade-up" data-aos-delay="700">
+    <button class="arch-selector-card active" data-arch="microservices">
+      <div class="arch-selector-icon cyan">
+        <i class="fas fa-cubes"></i>
+      </div>
+      <span class="arch-selector-name">Microservices</span>
+      <span class="arch-selector-tag">Distributed</span>
+    </button>
+    <button class="arch-selector-card" data-arch="cicd">
+      <div class="arch-selector-icon cyan">
+        <i class="fab fa-github"></i>
+      </div>
+      <span class="arch-selector-name">CI/CD Pipeline</span>
+      <span class="arch-selector-tag">DevOps</span>
+    </button>
+    <button class="arch-selector-card" data-arch="clean">
+      <div class="arch-selector-icon purple">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <span class="arch-selector-name">Clean Architecture</span>
+      <span class="arch-selector-tag">SOLID</span>
+    </button>
+    <button class="arch-selector-card" data-arch="medallion">
+      <div class="arch-selector-icon amber">
+        <i class="fas fa-medal"></i>
+      </div>
+      <span class="arch-selector-name">Medallion</span>
+      <span class="arch-selector-tag">Data Lake</span>
+    </button>
+    <button class="arch-selector-card" data-arch="lakehouse">
+      <div class="arch-selector-icon green">
+        <i class="fas fa-warehouse"></i>
+      </div>
+      <span class="arch-selector-name">Lakehouse</span>
+      <span class="arch-selector-tag">Unified</span>
+    </button>
+    <button class="arch-selector-card" data-arch="governance">
+      <div class="arch-selector-icon red">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <span class="arch-selector-name">Data Governance</span>
+      <span class="arch-selector-tag">Compliance</span>
+    </button>
+    <button class="arch-selector-card" data-arch="hexagonal">
+      <div class="arch-selector-icon teal">
+        <i class="fas fa-hexagon"></i>
+      </div>
+      <span class="arch-selector-name">Hexagonal</span>
+      <span class="arch-selector-tag">Ports & Adapters</span>
+    </button>
+    <button class="arch-selector-card" data-arch="event-driven">
+      <div class="arch-selector-icon orange">
+        <i class="fas fa-bolt"></i>
+      </div>
+      <span class="arch-selector-name">Event-Driven</span>
+      <span class="arch-selector-tag">EDA</span>
+    </button>
+    <button class="arch-selector-card" data-arch="layered">
+      <div class="arch-selector-icon blue">
+        <i class="fas fa-layer-group"></i>
+      </div>
+      <span class="arch-selector-name">Layered (N-Tier)</span>
+      <span class="arch-selector-tag">Traditional</span>
+    </button>
+    <button class="arch-selector-card" data-arch="ddd">
+      <div class="arch-selector-icon pink">
+        <i class="fas fa-sitemap"></i>
+      </div>
+      <span class="arch-selector-name">DDD</span>
+      <span class="arch-selector-tag">Eric Evans</span>
+    </button>
+    <button class="arch-selector-card" data-arch="cqrs">
+      <div class="arch-selector-icon indigo">
+        <i class="fas fa-exchange-alt"></i>
+      </div>
+      <span class="arch-selector-name">CQRS</span>
+      <span class="arch-selector-tag">Read/Write Split</span>
+    </button>
+    <button class="arch-selector-card" data-arch="event-sourcing">
+      <div class="arch-selector-icon emerald">
+        <i class="fas fa-history"></i>
+      </div>
+      <span class="arch-selector-name">Event Sourcing</span>
+      <span class="arch-selector-tag">Event Log</span>
+    </button>
+  </div>
+
+  <!-- Architecture Detail Panels -->
+  <div class="arch-detail-container" data-aos="fade-up" data-aos-delay="800">
+    <!-- Microservices Panel -->
+    <div class="arch-detail-panel active" id="panel-microservices">
+      <div class="arch-card-xl glass-card microservices">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-cubes arch-card-icon cyan"></i>
+          </div>
+          <span>Microservices Architecture</span>
+          <span class="arch-badge">Distributed</span>
         </div>
-        <div class="arch-section-content">
-            <h3 class="arch-section-title">Arquitectura & <span class="gradient-text">DevOps</span></h3>
-            <p class="arch-section-subtitle">Patrones de diseño, pipelines y mejores prácticas de la industria</p>
-            <p class="arch-section-hint"><i class="fas fa-hand-pointer"></i> Selecciona una arquitectura para ver detalles</p>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-check-circle"></i> 99.99% Uptime</span>
+          <span class="metric-badge latency"><i class="fas fa-bolt"></i> &lt;50ms Latency</span>
+          <span class="metric-badge scale"><i class="fas fa-layer-group"></i> Auto-Scale</span>
         </div>
+        <div class="microservices-diagram-lg">
+          <div class="ms-layer client">
+            <span class="layer-label">Client</span>
+            <div class="ms-clients">
+              <span class="client-item"><i class="fas fa-globe"></i> Web</span>
+              <span class="client-item"><i class="fas fa-mobile-alt"></i> Mobile</span>
+              <span class="client-item"><i class="fas fa-robot"></i> API</span>
+            </div>
+          </div>
+          <div class="ms-arrow-down"><i class="fas fa-arrow-down"></i></div>
+          <div class="ms-gateway-lg">
+            <i class="fas fa-shield-alt"></i>
+            <span>API Gateway</span>
+            <small>Load Balancer · Auth · Rate Limit · Circuit Breaker</small>
+          </div>
+          <div class="ms-arrow-down"><i class="fas fa-arrow-down"></i></div>
+          <div class="ms-services-lg">
+            <div class="ms-service-lg">
+              <i class="fas fa-user"></i><span>Users</span><small>JWT</small>
+            </div>
+            <div class="ms-service-lg">
+              <i class="fas fa-box"></i><span>Products</span><small>CQRS</small>
+            </div>
+            <div class="ms-service-lg">
+              <i class="fas fa-shopping-cart"></i><span>Orders</span><small>Saga</small>
+            </div>
+            <div class="ms-service-lg">
+              <i class="fas fa-credit-card"></i><span>Payments</span><small>Events</small>
+            </div>
+            <div class="ms-service-lg">
+              <i class="fas fa-bell"></i><span>Notify</span><small>Pub/Sub</small>
+            </div>
+            <div class="ms-service-lg">
+              <i class="fas fa-search"></i><span>Search</span><small>ES</small>
+            </div>
+          </div>
+          <div class="ms-infra-lg">
+            <span class="ms-tag-lg docker"><i class="devicon-docker-plain"></i> Docker</span>
+            <span class="ms-tag-lg k8s"><i class="devicon-kubernetes-plain"></i> K8s</span>
+            <span class="ms-tag-lg kafka"><i class="fas fa-stream"></i> Kafka</span>
+            <span class="ms-tag-lg redis"><i class="devicon-redis-plain"></i> Redis</span>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
+          <div class="tips-grid">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i> Un servicio = una responsabilidad</span
+            >
+            <span class="tip-item"><i class="fas fa-check"></i> Comunicación asíncrona</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Database per service</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Circuit Breaker</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Architecture Selector - Clickable Cards -->
-    <div class="arch-selector-grid" data-aos="fade-up" data-aos-delay="700">
-        <button class="arch-selector-card active" data-arch="microservices">
-            <div class="arch-selector-icon cyan">
-                <i class="fas fa-cubes"></i>
+    <!-- CI/CD Panel -->
+    <div class="arch-detail-panel" id="panel-cicd">
+      <div class="arch-card-xl glass-card cicd">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fab fa-github arch-card-icon cyan"></i>
+          </div>
+          <span>CI/CD Pipeline</span>
+          <span class="arch-badge">DevOps</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-rocket"></i> 15 deploys/day</span>
+          <span class="metric-badge latency"><i class="fas fa-clock"></i> 8min build</span>
+          <span class="metric-badge scale"><i class="fas fa-shield-alt"></i> 95% coverage</span>
+        </div>
+        <div class="cicd-pipeline-lg">
+          <div class="pipeline-row">
+            <div class="pipeline-stage-lg code">
+              <i class="fas fa-code-branch"></i><span>Code</span><small>Git Push</small>
             </div>
-            <span class="arch-selector-name">Microservices</span>
-            <span class="arch-selector-tag">Distributed</span>
-        </button>
-        <button class="arch-selector-card" data-arch="cicd">
-            <div class="arch-selector-icon cyan">
-                <i class="fab fa-github"></i>
+            <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage-lg build">
+              <i class="fas fa-hammer"></i><span>Build</span><small>Maven</small>
             </div>
-            <span class="arch-selector-name">CI/CD Pipeline</span>
-            <span class="arch-selector-tag">DevOps</span>
-        </button>
-        <button class="arch-selector-card" data-arch="clean">
-            <div class="arch-selector-icon purple">
-                <i class="fas fa-layer-group"></i>
+            <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage-lg test">
+              <i class="fas fa-vial"></i><span>Test</span><small>Unit</small>
             </div>
-            <span class="arch-selector-name">Clean Architecture</span>
-            <span class="arch-selector-tag">SOLID</span>
-        </button>
-        <button class="arch-selector-card" data-arch="medallion">
-            <div class="arch-selector-icon amber">
-                <i class="fas fa-medal"></i>
+            <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage-lg security">
+              <i class="fas fa-shield-virus"></i><span>Security</span><small>SAST</small>
             </div>
-            <span class="arch-selector-name">Medallion</span>
-            <span class="arch-selector-tag">Data Lake</span>
-        </button>
-        <button class="arch-selector-card" data-arch="lakehouse">
-            <div class="arch-selector-icon green">
-                <i class="fas fa-warehouse"></i>
+            <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
+            <div class="pipeline-stage-lg deploy">
+              <i class="fas fa-rocket"></i><span>Deploy</span><small>Blue/Green</small>
             </div>
-            <span class="arch-selector-name">Lakehouse</span>
-            <span class="arch-selector-tag">Unified</span>
-        </button>
-        <button class="arch-selector-card" data-arch="governance">
-            <div class="arch-selector-icon red">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            <span class="arch-selector-name">Data Governance</span>
-            <span class="arch-selector-tag">Compliance</span>
-        </button>
-        <button class="arch-selector-card" data-arch="hexagonal">
-            <div class="arch-selector-icon teal">
-                <i class="fas fa-hexagon"></i>
-            </div>
-            <span class="arch-selector-name">Hexagonal</span>
-            <span class="arch-selector-tag">Ports & Adapters</span>
-        </button>
-        <button class="arch-selector-card" data-arch="event-driven">
-            <div class="arch-selector-icon orange">
-                <i class="fas fa-bolt"></i>
-            </div>
-            <span class="arch-selector-name">Event-Driven</span>
-            <span class="arch-selector-tag">EDA</span>
-        </button>
-        <button class="arch-selector-card" data-arch="layered">
-            <div class="arch-selector-icon blue">
-                <i class="fas fa-layer-group"></i>
-            </div>
-            <span class="arch-selector-name">Layered (N-Tier)</span>
-            <span class="arch-selector-tag">Traditional</span>
-        </button>
-        <button class="arch-selector-card" data-arch="ddd">
-            <div class="arch-selector-icon pink">
-                <i class="fas fa-sitemap"></i>
-            </div>
-            <span class="arch-selector-name">DDD</span>
-            <span class="arch-selector-tag">Eric Evans</span>
-        </button>
-        <button class="arch-selector-card" data-arch="cqrs">
-            <div class="arch-selector-icon indigo">
-                <i class="fas fa-exchange-alt"></i>
-            </div>
-            <span class="arch-selector-name">CQRS</span>
-            <span class="arch-selector-tag">Read/Write Split</span>
-        </button>
-        <button class="arch-selector-card" data-arch="event-sourcing">
-            <div class="arch-selector-icon emerald">
-                <i class="fas fa-history"></i>
-            </div>
-            <span class="arch-selector-name">Event Sourcing</span>
-            <span class="arch-selector-tag">Event Log</span>
-        </button>
+          </div>
+          <div class="pipeline-tools">
+            <span class="tool-tag"><i class="devicon-github-original"></i> Actions</span>
+            <span class="tool-tag"><i class="devicon-jenkins-plain"></i> Jenkins</span>
+            <span class="tool-tag"><i class="fas fa-ship"></i> ArgoCD</span>
+            <span class="tool-tag"><i class="devicon-terraform-plain"></i> Terraform</span>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
+          <div class="tips-grid">
+            <span class="tip-item"><i class="fas fa-check"></i> Commits pequeños y frecuentes</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Tests automatizados</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Rollback automático</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Infrastructure as Code</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Architecture Detail Panels -->
-    <div class="arch-detail-container" data-aos="fade-up" data-aos-delay="800">
-
-        <!-- Microservices Panel -->
-        <div class="arch-detail-panel active" id="panel-microservices">
-            <div class="arch-card-xl glass-card microservices">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-cubes arch-card-icon cyan"></i>
-                    </div>
-                    <span>Microservices Architecture</span>
-                    <span class="arch-badge">Distributed</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-check-circle"></i> 99.99% Uptime</span>
-                    <span class="metric-badge latency"><i class="fas fa-bolt"></i> &lt;50ms Latency</span>
-                    <span class="metric-badge scale"><i class="fas fa-layer-group"></i> Auto-Scale</span>
-                </div>
-                <div class="microservices-diagram-lg">
-                    <div class="ms-layer client">
-                        <span class="layer-label">Client</span>
-                        <div class="ms-clients">
-                            <span class="client-item"><i class="fas fa-globe"></i> Web</span>
-                            <span class="client-item"><i class="fas fa-mobile-alt"></i> Mobile</span>
-                            <span class="client-item"><i class="fas fa-robot"></i> API</span>
-                        </div>
-                    </div>
-                    <div class="ms-arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="ms-gateway-lg">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>API Gateway</span>
-                        <small>Load Balancer · Auth · Rate Limit · Circuit Breaker</small>
-                    </div>
-                    <div class="ms-arrow-down"><i class="fas fa-arrow-down"></i></div>
-                    <div class="ms-services-lg">
-                        <div class="ms-service-lg"><i class="fas fa-user"></i><span>Users</span><small>JWT</small></div>
-                        <div class="ms-service-lg"><i class="fas fa-box"></i><span>Products</span><small>CQRS</small></div>
-                        <div class="ms-service-lg"><i class="fas fa-shopping-cart"></i><span>Orders</span><small>Saga</small></div>
-                        <div class="ms-service-lg"><i class="fas fa-credit-card"></i><span>Payments</span><small>Events</small></div>
-                        <div class="ms-service-lg"><i class="fas fa-bell"></i><span>Notify</span><small>Pub/Sub</small></div>
-                        <div class="ms-service-lg"><i class="fas fa-search"></i><span>Search</span><small>ES</small></div>
-                    </div>
-                    <div class="ms-infra-lg">
-                        <span class="ms-tag-lg docker"><i class="devicon-docker-plain"></i> Docker</span>
-                        <span class="ms-tag-lg k8s"><i class="devicon-kubernetes-plain"></i> K8s</span>
-                        <span class="ms-tag-lg kafka"><i class="fas fa-stream"></i> Kafka</span>
-                        <span class="ms-tag-lg redis"><i class="devicon-redis-plain"></i> Redis</span>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Un servicio = una responsabilidad</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Comunicación asíncrona</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Database per service</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Circuit Breaker</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Clean Architecture Panel -->
+    <div class="arch-detail-panel" id="panel-clean">
+      <div class="arch-card-xl glass-card clean-arch">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-layer-group arch-card-icon purple"></i>
+          </div>
+          <span>Clean Architecture</span>
+          <span class="arch-badge">Robert C. Martin</span>
         </div>
 
-        <!-- CI/CD Panel -->
-        <div class="arch-detail-panel" id="panel-cicd">
-            <div class="arch-card-xl glass-card cicd">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fab fa-github arch-card-icon cyan"></i>
-                    </div>
-                    <span>CI/CD Pipeline</span>
-                    <span class="arch-badge">DevOps</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-rocket"></i> 15 deploys/day</span>
-                    <span class="metric-badge latency"><i class="fas fa-clock"></i> 8min build</span>
-                    <span class="metric-badge scale"><i class="fas fa-shield-alt"></i> 95% coverage</span>
-                </div>
-                <div class="cicd-pipeline-lg">
-                    <div class="pipeline-row">
-                        <div class="pipeline-stage-lg code"><i class="fas fa-code-branch"></i><span>Code</span><small>Git Push</small></div>
-                        <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
-                        <div class="pipeline-stage-lg build"><i class="fas fa-hammer"></i><span>Build</span><small>Maven</small></div>
-                        <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
-                        <div class="pipeline-stage-lg test"><i class="fas fa-vial"></i><span>Test</span><small>Unit</small></div>
-                        <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
-                        <div class="pipeline-stage-lg security"><i class="fas fa-shield-virus"></i><span>Security</span><small>SAST</small></div>
-                        <div class="pipeline-connector"><i class="fas fa-chevron-right"></i></div>
-                        <div class="pipeline-stage-lg deploy"><i class="fas fa-rocket"></i><span>Deploy</span><small>Blue/Green</small></div>
-                    </div>
-                    <div class="pipeline-tools">
-                        <span class="tool-tag"><i class="devicon-github-original"></i> Actions</span>
-                        <span class="tool-tag"><i class="devicon-jenkins-plain"></i> Jenkins</span>
-                        <span class="tool-tag"><i class="fas fa-ship"></i> ArgoCD</span>
-                        <span class="tool-tag"><i class="devicon-terraform-plain"></i> Terraform</span>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Commits pequeños y frecuentes</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Tests automatizados</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Rollback automático</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Infrastructure as Code</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Intro Banner -->
+        <div class="clean-intro-banner">
+          <div class="intro-icon"><i class="fas fa-book-open"></i></div>
+          <div class="intro-content">
+            <span class="intro-title">The Dependency Rule</span>
+            <p>
+              Las dependencias del código fuente solo pueden apuntar hacia adentro. Nada en un
+              círculo interno puede saber nada sobre algo en un círculo externo.
+            </p>
+          </div>
         </div>
 
-        <!-- Clean Architecture Panel -->
-        <div class="arch-detail-panel" id="panel-clean">
-            <div class="arch-card-xl glass-card clean-arch">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-layer-group arch-card-icon purple"></i>
-                    </div>
-                    <span>Clean Architecture</span>
-                    <span class="arch-badge">Robert C. Martin</span>
-                </div>
-
-                <!-- Intro Banner -->
-                <div class="clean-intro-banner">
-                    <div class="intro-icon"><i class="fas fa-book-open"></i></div>
-                    <div class="intro-content">
-                        <span class="intro-title">The Dependency Rule</span>
-                        <p>Las dependencias del código fuente solo pueden apuntar hacia adentro. Nada en un círculo interno puede saber nada sobre algo en un círculo externo.</p>
-                    </div>
-                </div>
-
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-code"></i> Framework Independent</span>
-                    <span class="metric-badge latency"><i class="fas fa-vial"></i> Testable</span>
-                    <span class="metric-badge scale"><i class="fas fa-database"></i> DB Independent</span>
-                </div>
-
-                <!-- Enhanced Concentric Circles Diagram -->
-                <div class="clean-architecture-enhanced">
-                    <div class="clean-circles-container">
-                        <!-- Outer Ring: Frameworks & Drivers -->
-                        <div class="clean-ring-enhanced frameworks">
-                            <span class="ring-label-top">Frameworks & Drivers</span>
-                            <div class="ring-items">
-                                <span class="ring-item"><i class="devicon-spring-original"></i> Spring</span>
-                                <span class="ring-item"><i class="fas fa-database"></i> JPA</span>
-                                <span class="ring-item"><i class="fas fa-globe"></i> REST</span>
-                                <span class="ring-item"><i class="fab fa-react"></i> UI</span>
-                            </div>
-                        </div>
-                        <!-- Interface Adapters Ring -->
-                        <div class="clean-ring-enhanced adapters">
-                            <span class="ring-label-top">Interface Adapters</span>
-                            <div class="ring-items">
-                                <span class="ring-item"><i class="fas fa-gamepad"></i> Controllers</span>
-                                <span class="ring-item"><i class="fas fa-exchange-alt"></i> Presenters</span>
-                                <span class="ring-item"><i class="fas fa-door-open"></i> Gateways</span>
-                            </div>
-                        </div>
-                        <!-- Application Business Rules Ring -->
-                        <div class="clean-ring-enhanced usecases">
-                            <span class="ring-label-top">Application Business Rules</span>
-                            <div class="ring-items">
-                                <span class="ring-item"><i class="fas fa-cogs"></i> Use Cases</span>
-                                <span class="ring-item"><i class="fas fa-plug"></i> Interactors</span>
-                            </div>
-                        </div>
-                        <!-- Core: Enterprise Business Rules -->
-                        <div class="clean-ring-enhanced entities">
-                            <span class="ring-label-top">Enterprise Business Rules</span>
-                            <div class="ring-items">
-                                <span class="ring-item"><i class="fas fa-cube"></i> Entities</span>
-                            </div>
-                        </div>
-                        <!-- Dependency Arrow -->
-                        <div class="dependency-arrow">
-                            <i class="fas fa-arrow-left"></i>
-                            <span>Dependencies</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Code Examples -->
-                <div class="clean-code-examples">
-                    <div class="code-tabs">
-                        <button class="code-tab active" data-tab="entity">Entity</button>
-                        <button class="code-tab" data-tab="usecase">Use Case</button>
-                        <button class="code-tab" data-tab="adapter">Adapter</button>
-                    </div>
-
-                    <!-- Entity Code -->
-                    <div class="code-panel active" id="clean-code-entity">
-                        <div class="code-header">
-                            <span class="code-filename">domain/entity/Order.java</span>
-                            <span class="code-badge">Enterprise Business Rules</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cleanEntityCode}></code></pre>
-                    </div>
-
-                    <!-- Use Case Code -->
-                    <div class="code-panel" id="clean-code-usecase">
-                        <div class="code-header">
-                            <span class="code-filename">application/usecase/CreateOrderUseCase.java</span>
-                            <span class="code-badge">Application Business Rules</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cleanUseCaseCode}></code></pre>
-                    </div>
-
-                    <!-- Adapter Code -->
-                    <div class="code-panel" id="clean-code-adapter">
-                        <div class="code-header">
-                            <span class="code-filename">infrastructure/adapter/JpaOrderRepository.java</span>
-                            <span class="code-badge">Interface Adapters</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cleanAdapterCode}></code></pre>
-                    </div>
-                </div>
-
-                <!-- Folder Structure -->
-                <div class="clean-folder-structure">
-                    <div class="folder-header"><i class="fas fa-folder-tree"></i> Estructura de Carpetas</div>
-                    <div class="folder-tree">
-                        <div class="folder-item root"><i class="fas fa-folder-open"></i> src/main/java</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-entities">domain</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> entity/</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> valueobject/</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> exception/</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-usecases">application</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> usecase/</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> port/ (interfaces)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> dto/</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-adapters">infrastructure</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> adapter/ (impl)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> config/</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> persistence/</div>
-                    </div>
-                </div>
-
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Principios Clave (Uncle Bob)</div>
-                    <div class="tips-grid expanded">
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Independiente de Frameworks:</strong> No casarse con ningún framework</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Testable:</strong> Reglas de negocio sin UI, DB, o servidor</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Independiente de UI:</strong> La UI puede cambiar sin afectar el sistema</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Independiente de DB:</strong> Oracle, MySQL, Mongo... no importa</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Independiente de Agencias Externas:</strong> Las reglas de negocio no saben del mundo exterior</span>
-                    </div>
-                </div>
-
-                <div class="arch-references">
-                    <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Clean Coder Blog (Original)
-                    </a>
-                    <a href="https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> Clean Architecture Book
-                    </a>
-                </div>
-            </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-code"></i> Framework Independent</span>
+          <span class="metric-badge latency"><i class="fas fa-vial"></i> Testable</span>
+          <span class="metric-badge scale"><i class="fas fa-database"></i> DB Independent</span>
         </div>
 
-        <!-- Medallion Panel -->
-        <div class="arch-detail-panel" id="panel-medallion">
-            <div class="arch-card-xl glass-card medallion">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-medal arch-card-icon amber"></i>
-                    </div>
-                    <span>Medallion Architecture</span>
-                    <span class="arch-badge">Data Lake</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-database"></i> PB Scale</span>
-                    <span class="metric-badge latency"><i class="fas fa-tachometer-alt"></i> Near Real-time</span>
-                    <span class="metric-badge scale"><i class="fas fa-chart-line"></i> BI Ready</span>
-                </div>
-                <div class="medallion-layers-lg">
-                    <div class="medal-layer-lg gold">
-                        <div class="medal-icon"><i class="fas fa-gem"></i></div>
-                        <div class="medal-info">
-                            <span class="medal-title">Gold Layer</span>
-                            <span class="medal-desc">Business Aggregates</span>
-                        </div>
-                    </div>
-                    <div class="medal-arrow"><i class="fas fa-arrow-up"></i> Transform</div>
-                    <div class="medal-layer-lg silver">
-                        <div class="medal-icon"><i class="fas fa-filter"></i></div>
-                        <div class="medal-info">
-                            <span class="medal-title">Silver Layer</span>
-                            <span class="medal-desc">Cleaned & Conformed</span>
-                        </div>
-                    </div>
-                    <div class="medal-arrow"><i class="fas fa-arrow-up"></i> Clean</div>
-                    <div class="medal-layer-lg bronze">
-                        <div class="medal-icon"><i class="fas fa-database"></i></div>
-                        <div class="medal-info">
-                            <span class="medal-title">Bronze Layer</span>
-                            <span class="medal-desc">Raw Ingestion</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Inmutabilidad en Bronze</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Schema evolution</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Particionamiento</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Data quality checks</span>
-                    </div>
-                </div>
+        <!-- Enhanced Concentric Circles Diagram -->
+        <div class="clean-architecture-enhanced">
+          <div class="clean-circles-container">
+            <!-- Outer Ring: Frameworks & Drivers -->
+            <div class="clean-ring-enhanced frameworks">
+              <span class="ring-label-top">Frameworks & Drivers</span>
+              <div class="ring-items">
+                <span class="ring-item"><i class="devicon-spring-original"></i> Spring</span>
+                <span class="ring-item"><i class="fas fa-database"></i> JPA</span>
+                <span class="ring-item"><i class="fas fa-globe"></i> REST</span>
+                <span class="ring-item"><i class="fab fa-react"></i> UI</span>
+              </div>
             </div>
+            <!-- Interface Adapters Ring -->
+            <div class="clean-ring-enhanced adapters">
+              <span class="ring-label-top">Interface Adapters</span>
+              <div class="ring-items">
+                <span class="ring-item"><i class="fas fa-gamepad"></i> Controllers</span>
+                <span class="ring-item"><i class="fas fa-exchange-alt"></i> Presenters</span>
+                <span class="ring-item"><i class="fas fa-door-open"></i> Gateways</span>
+              </div>
+            </div>
+            <!-- Application Business Rules Ring -->
+            <div class="clean-ring-enhanced usecases">
+              <span class="ring-label-top">Application Business Rules</span>
+              <div class="ring-items">
+                <span class="ring-item"><i class="fas fa-cogs"></i> Use Cases</span>
+                <span class="ring-item"><i class="fas fa-plug"></i> Interactors</span>
+              </div>
+            </div>
+            <!-- Core: Enterprise Business Rules -->
+            <div class="clean-ring-enhanced entities">
+              <span class="ring-label-top">Enterprise Business Rules</span>
+              <div class="ring-items">
+                <span class="ring-item"><i class="fas fa-cube"></i> Entities</span>
+              </div>
+            </div>
+            <!-- Dependency Arrow -->
+            <div class="dependency-arrow">
+              <i class="fas fa-arrow-left"></i>
+              <span>Dependencies</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Lakehouse Panel -->
-        <div class="arch-detail-panel" id="panel-lakehouse">
-            <div class="arch-card-xl glass-card lakehouse">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-warehouse arch-card-icon green"></i>
-                    </div>
-                    <span>Lakehouse Architecture</span>
-                    <span class="arch-badge">Unified</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-atom"></i> ACID</span>
-                    <span class="metric-badge latency"><i class="fas fa-history"></i> Time Travel</span>
-                    <span class="metric-badge scale"><i class="fas fa-coins"></i> Cost Efficient</span>
-                </div>
-                <div class="lakehouse-diagram-lg">
-                    <div class="lake-consumers">
-                        <div class="lake-comp-lg bi"><i class="fas fa-chart-pie"></i><span>BI & Reports</span></div>
-                        <div class="lake-comp-lg ml"><i class="fas fa-brain"></i><span>ML & AI</span></div>
-                        <div class="lake-comp-lg sql"><i class="fas fa-terminal"></i><span>SQL Analytics</span></div>
-                    </div>
-                    <div class="lake-arrow-lg"><i class="fas fa-arrows-alt-v"></i></div>
-                    <div class="lake-comp-lg delta">
-                        <i class="fas fa-table"></i>
-                        <span>Delta Lake / Iceberg / Hudi</span>
-                    </div>
-                    <div class="lake-arrow-lg"><i class="fas fa-arrows-alt-v"></i></div>
-                    <div class="lake-comp-lg storage">
-                        <i class="fas fa-cloud"></i>
-                        <span>Cloud Object Storage (S3/GCS/ADLS)</span>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Key Benefits</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Costo de Lake + ACID de DW</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Streaming + Batch unificado</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> BI y ML sobre mismos datos</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Open formats (Parquet)</span>
-                    </div>
-                </div>
+        <!-- Code Examples -->
+        <div class="clean-code-examples">
+          <div class="code-tabs">
+            <button class="code-tab active" data-tab="entity">Entity</button>
+            <button class="code-tab" data-tab="usecase">Use Case</button>
+            <button class="code-tab" data-tab="adapter">Adapter</button>
+          </div>
+
+          <!-- Entity Code -->
+          <div class="code-panel active" id="clean-code-entity">
+            <div class="code-header">
+              <span class="code-filename">domain/entity/Order.java</span>
+              <span class="code-badge">Enterprise Business Rules</span>
             </div>
+            <pre class="code-block"><code class="language-java" set:html={cleanEntityCode} /></pre>
+          </div>
+
+          <!-- Use Case Code -->
+          <div class="code-panel" id="clean-code-usecase">
+            <div class="code-header">
+              <span class="code-filename">application/usecase/CreateOrderUseCase.java</span>
+              <span class="code-badge">Application Business Rules</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={cleanUseCaseCode} /></pre>
+          </div>
+
+          <!-- Adapter Code -->
+          <div class="code-panel" id="clean-code-adapter">
+            <div class="code-header">
+              <span class="code-filename">infrastructure/adapter/JpaOrderRepository.java</span>
+              <span class="code-badge">Interface Adapters</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={cleanAdapterCode} /></pre>
+          </div>
         </div>
 
-        <!-- Data Governance Panel -->
-        <div class="arch-detail-panel" id="panel-governance">
-            <div class="arch-card-xl glass-card data-governance">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-shield-alt arch-card-icon red"></i>
-                    </div>
-                    <span>Data Governance</span>
-                    <span class="arch-badge governance">Compliance</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge governance-metric"><i class="fas fa-shield-alt"></i> GDPR/CCPA</span>
-                    <span class="metric-badge governance-metric"><i class="fas fa-fingerprint"></i> PII Protected</span>
-                    <span class="metric-badge governance-metric"><i class="fas fa-clipboard-check"></i> Auditable</span>
-                </div>
-                <div class="governance-framework">
-                    <!-- Data Catalog -->
-                    <div class="gov-pillar">
-                        <div class="gov-pillar-header catalog">
-                            <i class="fas fa-book-open"></i>
-                            <span>Data Catalog</span>
-                        </div>
-                        <div class="gov-pillar-content">
-                            <span class="gov-tool"><i class="fas fa-search"></i> Discovery</span>
-                            <span class="gov-tool"><i class="fas fa-tags"></i> Metadata</span>
-                            <span class="gov-tool"><i class="fas fa-project-diagram"></i> Lineage</span>
-                        </div>
-                        <div class="gov-tools-row">
-                            <a href="https://www.collibra.com/" target="_blank" rel="noopener" title="Collibra" class="gov-tool-link">Collibra</a>
-                            <a href="https://atlan.com/" target="_blank" rel="noopener" title="Atlan" class="gov-tool-link">Atlan</a>
-                            <a href="https://datahubproject.io/" target="_blank" rel="noopener" title="DataHub" class="gov-tool-link">DataHub</a>
-                        </div>
-                    </div>
-                    <!-- Data Quality -->
-                    <div class="gov-pillar">
-                        <div class="gov-pillar-header quality">
-                            <i class="fas fa-check-double"></i>
-                            <span>Data Quality</span>
-                        </div>
-                        <div class="gov-pillar-content">
-                            <span class="gov-tool"><i class="fas fa-ruler"></i> Validation</span>
-                            <span class="gov-tool"><i class="fas fa-chart-bar"></i> Profiling</span>
-                            <span class="gov-tool"><i class="fas fa-bell"></i> Anomaly</span>
-                        </div>
-                        <div class="gov-tools-row">
-                            <a href="https://greatexpectations.io/" target="_blank" rel="noopener" title="Great Expectations" class="gov-tool-link">GX</a>
-                            <a href="https://www.soda.io/" target="_blank" rel="noopener" title="Soda" class="gov-tool-link">Soda</a>
-                            <a href="https://www.montecarlodata.com/" target="_blank" rel="noopener" title="Monte Carlo" class="gov-tool-link">Monte Carlo</a>
-                        </div>
-                    </div>
-                    <!-- Data Security -->
-                    <div class="gov-pillar">
-                        <div class="gov-pillar-header security">
-                            <i class="fas fa-lock"></i>
-                            <span>Data Security</span>
-                        </div>
-                        <div class="gov-pillar-content">
-                            <span class="gov-tool"><i class="fas fa-user-shield"></i> RBAC</span>
-                            <span class="gov-tool"><i class="fas fa-mask"></i> Masking</span>
-                            <span class="gov-tool"><i class="fas fa-key"></i> Encryption</span>
-                        </div>
-                        <div class="gov-tools-row">
-                            <a href="https://privacera.com/" target="_blank" rel="noopener" title="Privacera" class="gov-tool-link">Privacera</a>
-                            <a href="https://immuta.com/" target="_blank" rel="noopener" title="Immuta" class="gov-tool-link">Immuta</a>
-                            <a href="https://www.hashicorp.com/products/vault" target="_blank" rel="noopener" title="Vault" class="gov-tool-link">Vault</a>
-                        </div>
-                    </div>
-                    <!-- Data Observability -->
-                    <div class="gov-pillar">
-                        <div class="gov-pillar-header observability">
-                            <i class="fas fa-eye"></i>
-                            <span>Observability</span>
-                        </div>
-                        <div class="gov-pillar-content">
-                            <span class="gov-tool"><i class="fas fa-heartbeat"></i> Health</span>
-                            <span class="gov-tool"><i class="fas fa-stream"></i> Freshness</span>
-                            <span class="gov-tool"><i class="fas fa-exclamation-triangle"></i> Alerts</span>
-                        </div>
-                        <div class="gov-tools-row">
-                            <a href="https://www.montecarlodata.com/" target="_blank" rel="noopener" title="Monte Carlo" class="gov-tool-link">Monte Carlo</a>
-                            <a href="https://www.bigeye.com/" target="_blank" rel="noopener" title="Bigeye" class="gov-tool-link">Bigeye</a>
-                            <a href="https://www.acceldata.io/" target="_blank" rel="noopener" title="Acceldata" class="gov-tool-link">Acceldata</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Governance Framework</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Data Stewardship</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Data Classification</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Retention Policies</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Access Controls</span>
-                    </div>
-                </div>
+        <!-- Folder Structure -->
+        <div class="clean-folder-structure">
+          <div class="folder-header"><i class="fas fa-folder-tree"></i> Estructura de Carpetas</div>
+          <div class="folder-tree">
+            <div class="folder-item root"><i class="fas fa-folder-open"></i> src/main/java</div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-entities">domain</span>
             </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> entity/</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> valueobject/</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> exception/</div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-usecases">application</span>
+            </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> usecase/</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> port/ (interfaces)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> dto/</div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-adapters">infrastructure</span>
+            </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> adapter/ (impl)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> config/</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> persistence/</div>
+          </div>
         </div>
 
-        <!-- Hexagonal Architecture Panel -->
-        <div class="arch-detail-panel" id="panel-hexagonal">
-            <div class="arch-card-xl glass-card hexagonal">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-hexagon arch-card-icon teal"></i>
-                    </div>
-                    <span>Hexagonal Architecture</span>
-                    <span class="arch-badge">Alistair Cockburn</span>
-                </div>
-
-                <!-- Intro Banner -->
-                <div class="hex-intro-banner">
-                    <div class="intro-icon"><i class="fas fa-plug"></i></div>
-                    <div class="intro-content">
-                        <span class="intro-title">Ports & Adapters Pattern</span>
-                        <p>Permite que una aplicación sea igualmente dirigida por usuarios, programas, tests automatizados, o scripts batch, y sea desarrollada y probada en aislamiento de sus dispositivos de ejecución y bases de datos.</p>
-                    </div>
-                </div>
-
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-plug"></i> Loosely Coupled</span>
-                    <span class="metric-badge latency"><i class="fas fa-vial"></i> Testable in Isolation</span>
-                    <span class="metric-badge scale"><i class="fas fa-exchange-alt"></i> Swappable Adapters</span>
-                </div>
-
-                <!-- Enhanced Hexagonal Diagram -->
-                <div class="hexagonal-enhanced">
-                    <div class="hex-diagram-container">
-                        <!-- Left Side: Driving/Primary Adapters -->
-                        <div class="hex-side left-side">
-                            <span class="side-label driving-label"><i class="fas fa-sign-in-alt"></i> Driving Adapters (Primary)</span>
-                            <div class="adapters-column">
-                                <div class="adapter-card driving">
-                                    <i class="fas fa-globe"></i>
-                                    <span class="adapter-name">REST Controller</span>
-                                    <span class="adapter-desc">HTTP requests</span>
-                                </div>
-                                <div class="adapter-card driving">
-                                    <i class="fas fa-terminal"></i>
-                                    <span class="adapter-name">CLI</span>
-                                    <span class="adapter-desc">Command line</span>
-                                </div>
-                                <div class="adapter-card driving">
-                                    <i class="fab fa-react"></i>
-                                    <span class="adapter-name">Web UI</span>
-                                    <span class="adapter-desc">User interface</span>
-                                </div>
-                                <div class="adapter-card driving">
-                                    <i class="fas fa-vial"></i>
-                                    <span class="adapter-name">Test Adapter</span>
-                                    <span class="adapter-desc">Unit/Integration</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Center: Ports and Domain -->
-                        <div class="hex-center">
-                            <div class="port-ring driving-ports">
-                                <span class="port-label">Driving Ports (Input)</span>
-                                <div class="port-items">
-                                    <span class="port-chip">OrderService</span>
-                                    <span class="port-chip">PaymentService</span>
-                                </div>
-                            </div>
-                            <div class="domain-hexagon">
-                                <span class="domain-title">Application Core</span>
-                                <div class="domain-content">
-                                    <span class="domain-chip entities"><i class="fas fa-cube"></i> Entities</span>
-                                    <span class="domain-chip usecases"><i class="fas fa-cogs"></i> Use Cases</span>
-                                    <span class="domain-chip services"><i class="fas fa-sitemap"></i> Domain Services</span>
-                                </div>
-                            </div>
-                            <div class="port-ring driven-ports">
-                                <span class="port-label">Driven Ports (Output)</span>
-                                <div class="port-items">
-                                    <span class="port-chip">OrderRepository</span>
-                                    <span class="port-chip">NotificationPort</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Side: Driven/Secondary Adapters -->
-                        <div class="hex-side right-side">
-                            <span class="side-label driven-label">Driven Adapters (Secondary) <i class="fas fa-sign-out-alt"></i></span>
-                            <div class="adapters-column">
-                                <div class="adapter-card driven">
-                                    <i class="devicon-postgresql-plain"></i>
-                                    <span class="adapter-name">PostgreSQL Adapter</span>
-                                    <span class="adapter-desc">Database impl</span>
-                                </div>
-                                <div class="adapter-card driven">
-                                    <i class="devicon-mongodb-plain"></i>
-                                    <span class="adapter-name">MongoDB Adapter</span>
-                                    <span class="adapter-desc">NoSQL impl</span>
-                                </div>
-                                <div class="adapter-card driven">
-                                    <i class="fas fa-envelope"></i>
-                                    <span class="adapter-name">SMTP Adapter</span>
-                                    <span class="adapter-desc">Email notifications</span>
-                                </div>
-                                <div class="adapter-card driven">
-                                    <i class="fas fa-cloud"></i>
-                                    <span class="adapter-name">AWS S3 Adapter</span>
-                                    <span class="adapter-desc">File storage</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Code Examples -->
-                <div class="hex-code-examples">
-                    <div class="code-tabs">
-                        <button class="code-tab active" data-tab="port">Port (Interface)</button>
-                        <button class="code-tab" data-tab="driving">Driving Adapter</button>
-                        <button class="code-tab" data-tab="driven">Driven Adapter</button>
-                    </div>
-
-                    <!-- Port Code -->
-                    <div class="code-panel active" id="hex-code-port">
-                        <div class="code-header">
-                            <span class="code-filename">application/port/OrderRepository.java</span>
-                            <span class="code-badge port">Driven Port (Output)</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={hexPortCode}></code></pre>
-                    </div>
-
-                    <!-- Driving Adapter Code -->
-                    <div class="code-panel" id="hex-code-driving">
-                        <div class="code-header">
-                            <span class="code-filename">adapter/in/web/OrderController.java</span>
-                            <span class="code-badge driving">Driving Adapter (Primary)</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={hexDrivingAdapterCode}></code></pre>
-                    </div>
-
-                    <!-- Driven Adapter Code -->
-                    <div class="code-panel" id="hex-code-driven">
-                        <div class="code-header">
-                            <span class="code-filename">adapter/out/persistence/PostgresOrderRepository.java</span>
-                            <span class="code-badge driven">Driven Adapter (Secondary)</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={hexDrivenAdapterCode}></code></pre>
-                    </div>
-                </div>
-
-                <!-- Folder Structure -->
-                <div class="hex-folder-structure">
-                    <div class="folder-header"><i class="fas fa-folder-tree"></i> Estructura de Carpetas</div>
-                    <div class="folder-tree">
-                        <div class="folder-item root"><i class="fas fa-folder-open"></i> src/main/java/com/app</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-driving">adapter/in</span> <span class="folder-tag">Driving</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> web/ (REST controllers)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> cli/ (Command line)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> messaging/ (Kafka consumers)</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-driven">adapter/out</span> <span class="folder-tag">Driven</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> persistence/ (JPA, Mongo)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> notification/ (Email, SMS)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> external/ (Third-party APIs)</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-domain">application</span> <span class="folder-tag">Core</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> port/in/ (Driving ports)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> port/out/ (Driven ports)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> service/ (Use cases)</div>
-                        <div class="folder-item l1"><i class="fas fa-folder"></i> <span class="folder-entities">domain</span> <span class="folder-tag">Core</span></div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> model/ (Entities, VOs)</div>
-                        <div class="folder-item l2"><i class="fas fa-folder"></i> event/ (Domain events)</div>
-                    </div>
-                </div>
-
-                <!-- Comparison with Clean Architecture -->
-                <div class="hex-comparison">
-                    <div class="comparison-header"><i class="fas fa-balance-scale"></i> Hexagonal vs Clean Architecture</div>
-                    <div class="comparison-grid">
-                        <div class="comparison-item">
-                            <span class="comp-label">Origen</span>
-                            <span class="comp-hex">Alistair Cockburn (2005)</span>
-                            <span class="comp-clean">Robert C. Martin (2012)</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="comp-label">Enfoque</span>
-                            <span class="comp-hex">Ports & Adapters</span>
-                            <span class="comp-clean">Círculos concéntricos</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="comp-label">Terminología</span>
-                            <span class="comp-hex">Driving/Driven, Primary/Secondary</span>
-                            <span class="comp-clean">Entities, Use Cases, Adapters, Frameworks</span>
-                        </div>
-                        <div class="comparison-item">
-                            <span class="comp-label">Similitud</span>
-                            <span class="comp-both">Ambas: Dominio en el centro, independiente de infraestructura</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Principios Clave (Alistair Cockburn)</div>
-                    <div class="tips-grid expanded">
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Driving Adapters:</strong> Inician la interacción (Controllers, CLI, Tests)</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Driven Adapters:</strong> Son llamados por la aplicación (DB, Email, APIs)</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Ports:</strong> Interfaces que definen cómo comunicarse con el dominio</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Testability:</strong> Reemplazar adapters reales por mocks/stubs</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Flexibility:</strong> Cambiar PostgreSQL por MongoDB sin tocar el dominio</span>
-                    </div>
-                </div>
-
-                <div class="arch-references">
-                    <a href="https://alistair.cockburn.us/hexagonal-architecture/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Alistair Cockburn (Original)
-                    </a>
-                    <a href="https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fab fa-netflix"></i> Netflix Tech Blog
-                    </a>
-                    <a href="https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> Herberto Graca
-                    </a>
-                </div>
-            </div>
+        <div class="arch-tips">
+          <div class="tip-header">
+            <i class="fas fa-lightbulb"></i> Principios Clave (Uncle Bob)
+          </div>
+          <div class="tips-grid expanded">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Independiente de Frameworks:</strong> No casarse con ningún framework</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Testable:</strong> Reglas de negocio sin UI, DB, o servidor</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Independiente de UI:</strong> La UI puede cambiar sin afectar el sistema</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Independiente de DB:</strong> Oracle, MySQL, Mongo... no importa</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Independiente de Agencias Externas:</strong> Las reglas de negocio no saben del
+              mundo exterior</span
+            >
+          </div>
         </div>
 
-        <!-- Event-Driven Architecture Panel -->
-        <div class="arch-detail-panel" id="panel-event-driven">
-            <div class="arch-card-xl glass-card event-driven">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-bolt arch-card-icon orange"></i>
-                    </div>
-                    <span>Event-Driven Architecture</span>
-                    <span class="arch-badge">EDA</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-unlink"></i> Loosely Coupled</span>
-                    <span class="metric-badge latency"><i class="fas fa-clock"></i> Real-time</span>
-                    <span class="metric-badge scale"><i class="fas fa-expand-arrows-alt"></i> Scalable</span>
-                </div>
-                <div class="eda-diagram">
-                    <div class="eda-producers">
-                        <span class="eda-label">Event Producers</span>
-                        <div class="eda-items">
-                            <div class="eda-item producer"><i class="fas fa-user"></i> User Service</div>
-                            <div class="eda-item producer"><i class="fas fa-shopping-cart"></i> Order Service</div>
-                            <div class="eda-item producer"><i class="fas fa-credit-card"></i> Payment Service</div>
-                        </div>
-                    </div>
-                    <div class="eda-broker">
-                        <div class="broker-icon">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
-                        <span class="broker-title">Event Broker</span>
-                        <div class="broker-tools">
-                            <span class="broker-tool"><i class="devicon-apachekafka-original"></i> Kafka</span>
-                            <span class="broker-tool"><i class="fas fa-cloud"></i> EventBridge</span>
-                            <span class="broker-tool"><i class="fas fa-stream"></i> Pulsar</span>
-                        </div>
-                        <div class="event-types">
-                            <span class="event-type">OrderCreated</span>
-                            <span class="event-type">PaymentProcessed</span>
-                            <span class="event-type">UserRegistered</span>
-                        </div>
-                    </div>
-                    <div class="eda-consumers">
-                        <span class="eda-label">Event Consumers</span>
-                        <div class="eda-items">
-                            <div class="eda-item consumer"><i class="fas fa-bell"></i> Notification</div>
-                            <div class="eda-item consumer"><i class="fas fa-chart-line"></i> Analytics</div>
-                            <div class="eda-item consumer"><i class="fas fa-warehouse"></i> Inventory</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Event Patterns</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Event Sourcing</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> CQRS (Command Query)</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Saga Pattern</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Outbox Pattern</span>
-                    </div>
-                </div>
-                <div class="arch-references">
-                    <a href="https://martinfowler.com/articles/201701-event-driven.html" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Martin Fowler
-                    </a>
-                    <a href="https://aws.amazon.com/event-driven-architecture/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fab fa-aws"></i> AWS EDA Guide
-                    </a>
-                </div>
-            </div>
+        <div class="arch-references">
+          <a
+            href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Clean Coder Blog (Original)
+          </a>
+          <a
+            href="https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> Clean Architecture Book
+          </a>
         </div>
-
-        <!-- Layered (N-Tier) Architecture Panel -->
-        <div class="arch-detail-panel" id="panel-layered">
-            <div class="arch-card-xl glass-card layered">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-layer-group arch-card-icon blue"></i>
-                    </div>
-                    <span>Layered Architecture (N-Tier)</span>
-                    <span class="arch-badge">Traditional</span>
-                </div>
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-th-list"></i> Organized</span>
-                    <span class="metric-badge latency"><i class="fas fa-graduation-cap"></i> Easy to Learn</span>
-                    <span class="metric-badge scale"><i class="fas fa-shield-alt"></i> Separation</span>
-                </div>
-                <div class="layered-diagram">
-                    <div class="layer-row presentation">
-                        <div class="layer-number">1</div>
-                        <div class="layer-content">
-                            <span class="layer-name">Presentation Layer</span>
-                            <span class="layer-desc">UI, Controllers, Views</span>
-                        </div>
-                        <div class="layer-tech">
-                            <span>React</span>
-                            <span>Angular</span>
-                            <span>REST API</span>
-                        </div>
-                    </div>
-                    <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
-                    <div class="layer-row business">
-                        <div class="layer-number">2</div>
-                        <div class="layer-content">
-                            <span class="layer-name">Business Logic Layer</span>
-                            <span class="layer-desc">Services, Use Cases, Domain</span>
-                        </div>
-                        <div class="layer-tech">
-                            <span>Spring</span>
-                            <span>.NET</span>
-                            <span>Django</span>
-                        </div>
-                    </div>
-                    <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
-                    <div class="layer-row persistence">
-                        <div class="layer-number">3</div>
-                        <div class="layer-content">
-                            <span class="layer-name">Data Access Layer</span>
-                            <span class="layer-desc">Repositories, ORM, DAOs</span>
-                        </div>
-                        <div class="layer-tech">
-                            <span>Hibernate</span>
-                            <span>EF Core</span>
-                            <span>SQLAlchemy</span>
-                        </div>
-                    </div>
-                    <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
-                    <div class="layer-row database">
-                        <div class="layer-number">4</div>
-                        <div class="layer-content">
-                            <span class="layer-name">Database Layer</span>
-                            <span class="layer-desc">Data Storage, Persistence</span>
-                        </div>
-                        <div class="layer-tech">
-                            <span>PostgreSQL</span>
-                            <span>MySQL</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices (Industry Standard)</div>
-                    <div class="tips-grid">
-                        <span class="tip-item"><i class="fas fa-check"></i> Cada capa solo conoce la inferior</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Separación clara de responsabilidades</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Ideal para aplicaciones enterprise</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> Fácil de entender y mantener</span>
-                    </div>
-                </div>
-                <div class="arch-references">
-                    <a href="https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fab fa-microsoft"></i> Microsoft N-Tier Guide
-                    </a>
-                    <a href="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> O'Reilly Patterns
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- DDD (Domain-Driven Design) Panel -->
-        <div class="arch-detail-panel" id="panel-ddd">
-            <div class="arch-card-xl glass-card ddd">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-sitemap arch-card-icon pink"></i>
-                    </div>
-                    <span>Domain-Driven Design (DDD)</span>
-                    <span class="arch-badge">Eric Evans (2003)</span>
-                </div>
-
-                <!-- Intro Banner -->
-                <div class="ddd-intro-banner">
-                    <div class="intro-icon"><i class="fas fa-book-open"></i></div>
-                    <div class="intro-content">
-                        <span class="intro-title">Tackling Complexity in the Heart of Software</span>
-                        <p>DDD es un enfoque para desarrollar software complejo conectando la implementación a un modelo evolutivo del dominio del negocio.</p>
-                    </div>
-                </div>
-
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-comments"></i> Ubiquitous Language</span>
-                    <span class="metric-badge latency"><i class="fas fa-th-large"></i> Bounded Contexts</span>
-                    <span class="metric-badge scale"><i class="fas fa-cube"></i> Aggregates</span>
-                </div>
-
-                <!-- DDD Building Blocks Diagram -->
-                <div class="ddd-building-blocks">
-                    <div class="bb-header"><i class="fas fa-cubes"></i> Building Blocks</div>
-                    <div class="bb-grid">
-                        <div class="bb-category strategic">
-                            <span class="bb-cat-title">Strategic Design</span>
-                            <div class="bb-items">
-                                <div class="bb-item">
-                                    <i class="fas fa-th-large"></i>
-                                    <span class="bb-name">Bounded Context</span>
-                                    <span class="bb-desc">Límite explícito donde el modelo es válido</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-comments"></i>
-                                    <span class="bb-name">Ubiquitous Language</span>
-                                    <span class="bb-desc">Lenguaje común entre devs y domain experts</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-project-diagram"></i>
-                                    <span class="bb-name">Context Map</span>
-                                    <span class="bb-desc">Relaciones entre bounded contexts</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bb-category tactical">
-                            <span class="bb-cat-title">Tactical Design</span>
-                            <div class="bb-items">
-                                <div class="bb-item">
-                                    <i class="fas fa-cube"></i>
-                                    <span class="bb-name">Entity</span>
-                                    <span class="bb-desc">Objeto con identidad única</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-coins"></i>
-                                    <span class="bb-name">Value Object</span>
-                                    <span class="bb-desc">Inmutable, sin identidad</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-object-group"></i>
-                                    <span class="bb-name">Aggregate</span>
-                                    <span class="bb-desc">Cluster de entidades con root</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-database"></i>
-                                    <span class="bb-name">Repository</span>
-                                    <span class="bb-desc">Abstracción de persistencia</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-cogs"></i>
-                                    <span class="bb-name">Domain Service</span>
-                                    <span class="bb-desc">Lógica que no pertenece a entidad</span>
-                                </div>
-                                <div class="bb-item">
-                                    <i class="fas fa-bolt"></i>
-                                    <span class="bb-name">Domain Event</span>
-                                    <span class="bb-desc">Algo significativo que ocurrió</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Code Examples -->
-                <div class="ddd-code-examples">
-                    <div class="code-tabs">
-                        <button class="code-tab active" data-tab="aggregate">Aggregate Root</button>
-                        <button class="code-tab" data-tab="valueobject">Value Object</button>
-                        <button class="code-tab" data-tab="domainservice">Domain Service</button>
-                    </div>
-
-                    <div class="code-panel active" id="ddd-code-aggregate">
-                        <div class="code-header">
-                            <span class="code-filename">domain/model/Order.java</span>
-                            <span class="code-badge">Aggregate Root</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={dddAggregateCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="ddd-code-valueobject">
-                        <div class="code-header">
-                            <span class="code-filename">domain/model/Money.java</span>
-                            <span class="code-badge">Value Object</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={dddValueObjectCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="ddd-code-domainservice">
-                        <div class="code-header">
-                            <span class="code-filename">domain/service/PricingService.java</span>
-                            <span class="code-badge">Domain Service + Event</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={dddDomainServiceCode}></code></pre>
-                    </div>
-                </div>
-
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Principios Clave (Eric Evans)</div>
-                    <div class="tips-grid expanded">
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Model-Driven Design:</strong> El código refleja el modelo del dominio</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Ubiquitous Language:</strong> Todos hablan el mismo idioma</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Bounded Context:</strong> Cada contexto tiene su propio modelo</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Aggregates:</strong> Garantizan consistencia transaccional</span>
-                    </div>
-                </div>
-
-                <div class="arch-references">
-                    <a href="https://www.domainlanguage.com/ddd/blue-book/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> Blue Book (Eric Evans)
-                    </a>
-                    <a href="https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> Red Book (Vaughn Vernon)
-                    </a>
-                    <a href="https://martinfowler.com/tags/domain%20driven%20design.html" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Martin Fowler DDD
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- CQRS Panel -->
-        <div class="arch-detail-panel" id="panel-cqrs">
-            <div class="arch-card-xl glass-card cqrs">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-exchange-alt arch-card-icon indigo"></i>
-                    </div>
-                    <span>CQRS</span>
-                    <span class="arch-badge">Greg Young</span>
-                </div>
-
-                <!-- Intro Banner -->
-                <div class="cqrs-intro-banner">
-                    <div class="intro-icon"><i class="fas fa-code-branch"></i></div>
-                    <div class="intro-content">
-                        <span class="intro-title">Command Query Responsibility Segregation</span>
-                        <p>Separar las operaciones de lectura (Query) de las de escritura (Command) permite optimizar cada una de forma independiente.</p>
-                    </div>
-                </div>
-
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-pen"></i> Write Model</span>
-                    <span class="metric-badge latency"><i class="fas fa-eye"></i> Read Model</span>
-                    <span class="metric-badge scale"><i class="fas fa-rocket"></i> Scalable</span>
-                </div>
-
-                <!-- CQRS Diagram -->
-                <div class="cqrs-diagram">
-                    <div class="cqrs-side command-side">
-                        <div class="cqrs-side-header command">
-                            <i class="fas fa-pen"></i>
-                            <span>Command Side (Write)</span>
-                        </div>
-                        <div class="cqrs-flow">
-                            <div class="cqrs-box"><i class="fas fa-terminal"></i> Command</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box"><i class="fas fa-cog"></i> Command Handler</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box"><i class="fas fa-cube"></i> Domain Model</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box db"><i class="fas fa-database"></i> Write DB</div>
-                        </div>
-                    </div>
-                    <div class="cqrs-center">
-                        <div class="cqrs-sync">
-                            <i class="fas fa-sync-alt"></i>
-                            <span>Event Bus</span>
-                            <span class="sync-detail">Eventual Consistency</span>
-                        </div>
-                    </div>
-                    <div class="cqrs-side query-side">
-                        <div class="cqrs-side-header query">
-                            <i class="fas fa-eye"></i>
-                            <span>Query Side (Read)</span>
-                        </div>
-                        <div class="cqrs-flow">
-                            <div class="cqrs-box"><i class="fas fa-search"></i> Query</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box"><i class="fas fa-filter"></i> Query Handler</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box"><i class="fas fa-table"></i> Read Model</div>
-                            <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
-                            <div class="cqrs-box db"><i class="fas fa-database"></i> Read DB</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Code Examples -->
-                <div class="cqrs-code-examples">
-                    <div class="code-tabs">
-                        <button class="code-tab active" data-tab="command">Command</button>
-                        <button class="code-tab" data-tab="query">Query</button>
-                        <button class="code-tab" data-tab="projection">Projection</button>
-                    </div>
-
-                    <div class="code-panel active" id="cqrs-code-command">
-                        <div class="code-header">
-                            <span class="code-filename">application/command/CreateOrderCommand.java</span>
-                            <span class="code-badge command">Command + Handler</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cqrsCommandCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="cqrs-code-query">
-                        <div class="code-header">
-                            <span class="code-filename">application/query/GetOrderDetailsQuery.java</span>
-                            <span class="code-badge query">Query + Handler</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cqrsQueryCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="cqrs-code-projection">
-                        <div class="code-header">
-                            <span class="code-filename">projection/OrderProjection.java</span>
-                            <span class="code-badge projection">Event → Read Model</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={cqrsProjectionCode}></code></pre>
-                    </div>
-                </div>
-
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Cuándo Usar CQRS</div>
-                    <div class="tips-grid expanded">
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Alta carga de lectura:</strong> Optimizar queries independientemente</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Modelos complejos:</strong> Write y Read tienen necesidades diferentes</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Escalabilidad:</strong> Escalar read/write por separado</span>
-                        <span class="tip-item"><i class="fas fa-exclamation-triangle"></i> <strong>No siempre:</strong> Agrega complejidad, evaluar si es necesario</span>
-                    </div>
-                </div>
-
-                <div class="arch-references">
-                    <a href="https://www.youtube.com/watch?v=JHGkaShoyNs" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fab fa-youtube"></i> Greg Young - CQRS
-                    </a>
-                    <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fab fa-microsoft"></i> Microsoft CQRS Pattern
-                    </a>
-                    <a href="https://martinfowler.com/bliki/CQRS.html" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Martin Fowler CQRS
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Event Sourcing Panel -->
-        <div class="arch-detail-panel" id="panel-event-sourcing">
-            <div class="arch-card-xl glass-card event-sourcing">
-                <div class="arch-header-lg">
-                    <div class="arch-icon-gif">
-                        <i class="fas fa-history arch-card-icon emerald"></i>
-                    </div>
-                    <span>Event Sourcing</span>
-                    <span class="arch-badge">Martin Fowler</span>
-                </div>
-
-                <!-- Intro Banner -->
-                <div class="es-intro-banner">
-                    <div class="intro-icon"><i class="fas fa-stream"></i></div>
-                    <div class="intro-content">
-                        <span class="intro-title">Events as the Source of Truth</span>
-                        <p>En lugar de almacenar el estado actual, almacenamos todos los eventos que ocurrieron. El estado se reconstruye reproduciendo los eventos.</p>
-                    </div>
-                </div>
-
-                <div class="arch-metrics">
-                    <span class="metric-badge uptime"><i class="fas fa-history"></i> Full History</span>
-                    <span class="metric-badge latency"><i class="fas fa-clock"></i> Time Travel</span>
-                    <span class="metric-badge scale"><i class="fas fa-file-alt"></i> Audit Trail</span>
-                </div>
-
-                <!-- Event Sourcing Diagram -->
-                <div class="es-diagram">
-                    <div class="es-timeline">
-                        <div class="es-event-row">
-                            <div class="es-event created">
-                                <div class="event-dot"></div>
-                                <div class="event-content">
-                                    <span class="event-type">OrderCreated</span>
-                                    <span class="event-time">t0</span>
-                                </div>
-                            </div>
-                            <div class="es-event line-added">
-                                <div class="event-dot"></div>
-                                <div class="event-content">
-                                    <span class="event-type">LineAdded</span>
-                                    <span class="event-time">t1</span>
-                                </div>
-                            </div>
-                            <div class="es-event line-added">
-                                <div class="event-dot"></div>
-                                <div class="event-content">
-                                    <span class="event-type">LineAdded</span>
-                                    <span class="event-time">t2</span>
-                                </div>
-                            </div>
-                            <div class="es-event submitted">
-                                <div class="event-dot"></div>
-                                <div class="event-content">
-                                    <span class="event-type">OrderSubmitted</span>
-                                    <span class="event-time">t3</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="es-timeline-line"></div>
-                    </div>
-                    <div class="es-reconstruction">
-                        <div class="es-arrow"><i class="fas fa-long-arrow-alt-down"></i> Replay Events</div>
-                        <div class="es-state">
-                            <span class="state-label">Current State</span>
-                            <div class="state-box">
-                                <span>Order #123</span>
-                                <span>Status: SUBMITTED</span>
-                                <span>Items: 2</span>
-                                <span>Total: $150.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Code Examples -->
-                <div class="es-code-examples">
-                    <div class="code-tabs">
-                        <button class="code-tab active" data-tab="aggregate">ES Aggregate</button>
-                        <button class="code-tab" data-tab="eventstore">Event Store</button>
-                        <button class="code-tab" data-tab="snapshot">Snapshots</button>
-                    </div>
-
-                    <div class="code-panel active" id="es-code-aggregate">
-                        <div class="code-header">
-                            <span class="code-filename">domain/Order.java</span>
-                            <span class="code-badge">Event Sourced Aggregate</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={esAggregateCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="es-code-eventstore">
-                        <div class="code-header">
-                            <span class="code-filename">infrastructure/PostgresEventStore.java</span>
-                            <span class="code-badge">Event Store</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={esEventStoreCode}></code></pre>
-                    </div>
-
-                    <div class="code-panel" id="es-code-snapshot">
-                        <div class="code-header">
-                            <span class="code-filename">infrastructure/EventSourcedRepository.java</span>
-                            <span class="code-badge">Snapshots</span>
-                        </div>
-                        <pre class="code-block"><code class="language-java" set:html={esSnapshotCode}></code></pre>
-                    </div>
-                </div>
-
-                <div class="arch-tips">
-                    <div class="tip-header"><i class="fas fa-lightbulb"></i> Beneficios de Event Sourcing</div>
-                    <div class="tips-grid expanded">
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Auditoría completa:</strong> Sabes exactamente qué pasó y cuándo</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Time Travel:</strong> Reconstruir estado en cualquier punto del tiempo</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Debug:</strong> Reproducir bugs con los mismos eventos</span>
-                        <span class="tip-item"><i class="fas fa-check"></i> <strong>Eventos:</strong> Base natural para event-driven architecture</span>
-                        <span class="tip-item"><i class="fas fa-exclamation-triangle"></i> <strong>Complejidad:</strong> Más difícil de implementar y mantener</span>
-                    </div>
-                </div>
-
-                <div class="arch-references">
-                    <a href="https://martinfowler.com/eaaDev/EventSourcing.html" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-external-link-alt"></i> Martin Fowler ES
-                    </a>
-                    <a href="https://www.eventstore.com/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-database"></i> EventStoreDB
-                    </a>
-                    <a href="https://docs.axoniq.io/reference-guide/" target="_blank" rel="noopener" class="ref-link">
-                        <i class="fas fa-book"></i> Axon Framework
-                    </a>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Medallion Panel -->
+    <div class="arch-detail-panel" id="panel-medallion">
+      <div class="arch-card-xl glass-card medallion">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-medal arch-card-icon amber"></i>
+          </div>
+          <span>Medallion Architecture</span>
+          <span class="arch-badge">Data Lake</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-database"></i> PB Scale</span>
+          <span class="metric-badge latency"
+            ><i class="fas fa-tachometer-alt"></i> Near Real-time</span
+          >
+          <span class="metric-badge scale"><i class="fas fa-chart-line"></i> BI Ready</span>
+        </div>
+        <div class="medallion-layers-lg">
+          <div class="medal-layer-lg gold">
+            <div class="medal-icon"><i class="fas fa-gem"></i></div>
+            <div class="medal-info">
+              <span class="medal-title">Gold Layer</span>
+              <span class="medal-desc">Business Aggregates</span>
+            </div>
+          </div>
+          <div class="medal-arrow"><i class="fas fa-arrow-up"></i> Transform</div>
+          <div class="medal-layer-lg silver">
+            <div class="medal-icon"><i class="fas fa-filter"></i></div>
+            <div class="medal-info">
+              <span class="medal-title">Silver Layer</span>
+              <span class="medal-desc">Cleaned & Conformed</span>
+            </div>
+          </div>
+          <div class="medal-arrow"><i class="fas fa-arrow-up"></i> Clean</div>
+          <div class="medal-layer-lg bronze">
+            <div class="medal-icon"><i class="fas fa-database"></i></div>
+            <div class="medal-info">
+              <span class="medal-title">Bronze Layer</span>
+              <span class="medal-desc">Raw Ingestion</span>
+            </div>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Best Practices</div>
+          <div class="tips-grid">
+            <span class="tip-item"><i class="fas fa-check"></i> Inmutabilidad en Bronze</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Schema evolution</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Particionamiento</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Data quality checks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lakehouse Panel -->
+    <div class="arch-detail-panel" id="panel-lakehouse">
+      <div class="arch-card-xl glass-card lakehouse">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-warehouse arch-card-icon green"></i>
+          </div>
+          <span>Lakehouse Architecture</span>
+          <span class="arch-badge">Unified</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-atom"></i> ACID</span>
+          <span class="metric-badge latency"><i class="fas fa-history"></i> Time Travel</span>
+          <span class="metric-badge scale"><i class="fas fa-coins"></i> Cost Efficient</span>
+        </div>
+        <div class="lakehouse-diagram-lg">
+          <div class="lake-consumers">
+            <div class="lake-comp-lg bi">
+              <i class="fas fa-chart-pie"></i><span>BI & Reports</span>
+            </div>
+            <div class="lake-comp-lg ml"><i class="fas fa-brain"></i><span>ML & AI</span></div>
+            <div class="lake-comp-lg sql">
+              <i class="fas fa-terminal"></i><span>SQL Analytics</span>
+            </div>
+          </div>
+          <div class="lake-arrow-lg"><i class="fas fa-arrows-alt-v"></i></div>
+          <div class="lake-comp-lg delta">
+            <i class="fas fa-table"></i>
+            <span>Delta Lake / Iceberg / Hudi</span>
+          </div>
+          <div class="lake-arrow-lg"><i class="fas fa-arrows-alt-v"></i></div>
+          <div class="lake-comp-lg storage">
+            <i class="fas fa-cloud"></i>
+            <span>Cloud Object Storage (S3/GCS/ADLS)</span>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Key Benefits</div>
+          <div class="tips-grid">
+            <span class="tip-item"><i class="fas fa-check"></i> Costo de Lake + ACID de DW</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Streaming + Batch unificado</span>
+            <span class="tip-item"><i class="fas fa-check"></i> BI y ML sobre mismos datos</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Open formats (Parquet)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Governance Panel -->
+    <div class="arch-detail-panel" id="panel-governance">
+      <div class="arch-card-xl glass-card data-governance">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-shield-alt arch-card-icon red"></i>
+          </div>
+          <span>Data Governance</span>
+          <span class="arch-badge governance">Compliance</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge governance-metric"
+            ><i class="fas fa-shield-alt"></i> GDPR/CCPA</span
+          >
+          <span class="metric-badge governance-metric"
+            ><i class="fas fa-fingerprint"></i> PII Protected</span
+          >
+          <span class="metric-badge governance-metric"
+            ><i class="fas fa-clipboard-check"></i> Auditable</span
+          >
+        </div>
+        <div class="governance-framework">
+          <!-- Data Catalog -->
+          <div class="gov-pillar">
+            <div class="gov-pillar-header catalog">
+              <i class="fas fa-book-open"></i>
+              <span>Data Catalog</span>
+            </div>
+            <div class="gov-pillar-content">
+              <span class="gov-tool"><i class="fas fa-search"></i> Discovery</span>
+              <span class="gov-tool"><i class="fas fa-tags"></i> Metadata</span>
+              <span class="gov-tool"><i class="fas fa-project-diagram"></i> Lineage</span>
+            </div>
+            <div class="gov-tools-row">
+              <a
+                href="https://www.collibra.com/"
+                target="_blank"
+                rel="noopener"
+                title="Collibra"
+                class="gov-tool-link">Collibra</a
+              >
+              <a
+                href="https://atlan.com/"
+                target="_blank"
+                rel="noopener"
+                title="Atlan"
+                class="gov-tool-link">Atlan</a
+              >
+              <a
+                href="https://datahubproject.io/"
+                target="_blank"
+                rel="noopener"
+                title="DataHub"
+                class="gov-tool-link">DataHub</a
+              >
+            </div>
+          </div>
+          <!-- Data Quality -->
+          <div class="gov-pillar">
+            <div class="gov-pillar-header quality">
+              <i class="fas fa-check-double"></i>
+              <span>Data Quality</span>
+            </div>
+            <div class="gov-pillar-content">
+              <span class="gov-tool"><i class="fas fa-ruler"></i> Validation</span>
+              <span class="gov-tool"><i class="fas fa-chart-bar"></i> Profiling</span>
+              <span class="gov-tool"><i class="fas fa-bell"></i> Anomaly</span>
+            </div>
+            <div class="gov-tools-row">
+              <a
+                href="https://greatexpectations.io/"
+                target="_blank"
+                rel="noopener"
+                title="Great Expectations"
+                class="gov-tool-link">GX</a
+              >
+              <a
+                href="https://www.soda.io/"
+                target="_blank"
+                rel="noopener"
+                title="Soda"
+                class="gov-tool-link">Soda</a
+              >
+              <a
+                href="https://www.montecarlodata.com/"
+                target="_blank"
+                rel="noopener"
+                title="Monte Carlo"
+                class="gov-tool-link">Monte Carlo</a
+              >
+            </div>
+          </div>
+          <!-- Data Security -->
+          <div class="gov-pillar">
+            <div class="gov-pillar-header security">
+              <i class="fas fa-lock"></i>
+              <span>Data Security</span>
+            </div>
+            <div class="gov-pillar-content">
+              <span class="gov-tool"><i class="fas fa-user-shield"></i> RBAC</span>
+              <span class="gov-tool"><i class="fas fa-mask"></i> Masking</span>
+              <span class="gov-tool"><i class="fas fa-key"></i> Encryption</span>
+            </div>
+            <div class="gov-tools-row">
+              <a
+                href="https://privacera.com/"
+                target="_blank"
+                rel="noopener"
+                title="Privacera"
+                class="gov-tool-link">Privacera</a
+              >
+              <a
+                href="https://immuta.com/"
+                target="_blank"
+                rel="noopener"
+                title="Immuta"
+                class="gov-tool-link">Immuta</a
+              >
+              <a
+                href="https://www.hashicorp.com/products/vault"
+                target="_blank"
+                rel="noopener"
+                title="Vault"
+                class="gov-tool-link">Vault</a
+              >
+            </div>
+          </div>
+          <!-- Data Observability -->
+          <div class="gov-pillar">
+            <div class="gov-pillar-header observability">
+              <i class="fas fa-eye"></i>
+              <span>Observability</span>
+            </div>
+            <div class="gov-pillar-content">
+              <span class="gov-tool"><i class="fas fa-heartbeat"></i> Health</span>
+              <span class="gov-tool"><i class="fas fa-stream"></i> Freshness</span>
+              <span class="gov-tool"><i class="fas fa-exclamation-triangle"></i> Alerts</span>
+            </div>
+            <div class="gov-tools-row">
+              <a
+                href="https://www.montecarlodata.com/"
+                target="_blank"
+                rel="noopener"
+                title="Monte Carlo"
+                class="gov-tool-link">Monte Carlo</a
+              >
+              <a
+                href="https://www.bigeye.com/"
+                target="_blank"
+                rel="noopener"
+                title="Bigeye"
+                class="gov-tool-link">Bigeye</a
+              >
+              <a
+                href="https://www.acceldata.io/"
+                target="_blank"
+                rel="noopener"
+                title="Acceldata"
+                class="gov-tool-link">Acceldata</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Governance Framework</div>
+          <div class="tips-grid">
+            <span class="tip-item"><i class="fas fa-check"></i> Data Stewardship</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Data Classification</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Retention Policies</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Access Controls</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hexagonal Architecture Panel -->
+    <div class="arch-detail-panel" id="panel-hexagonal">
+      <div class="arch-card-xl glass-card hexagonal">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-hexagon arch-card-icon teal"></i>
+          </div>
+          <span>Hexagonal Architecture</span>
+          <span class="arch-badge">Alistair Cockburn</span>
+        </div>
+
+        <!-- Intro Banner -->
+        <div class="hex-intro-banner">
+          <div class="intro-icon"><i class="fas fa-plug"></i></div>
+          <div class="intro-content">
+            <span class="intro-title">Ports & Adapters Pattern</span>
+            <p>
+              Permite que una aplicación sea igualmente dirigida por usuarios, programas, tests
+              automatizados, o scripts batch, y sea desarrollada y probada en aislamiento de sus
+              dispositivos de ejecución y bases de datos.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-plug"></i> Loosely Coupled</span>
+          <span class="metric-badge latency"><i class="fas fa-vial"></i> Testable in Isolation</span
+          >
+          <span class="metric-badge scale"
+            ><i class="fas fa-exchange-alt"></i> Swappable Adapters</span
+          >
+        </div>
+
+        <!-- Enhanced Hexagonal Diagram -->
+        <div class="hexagonal-enhanced">
+          <div class="hex-diagram-container">
+            <!-- Left Side: Driving/Primary Adapters -->
+            <div class="hex-side left-side">
+              <span class="side-label driving-label"
+                ><i class="fas fa-sign-in-alt"></i> Driving Adapters (Primary)</span
+              >
+              <div class="adapters-column">
+                <div class="adapter-card driving">
+                  <i class="fas fa-globe"></i>
+                  <span class="adapter-name">REST Controller</span>
+                  <span class="adapter-desc">HTTP requests</span>
+                </div>
+                <div class="adapter-card driving">
+                  <i class="fas fa-terminal"></i>
+                  <span class="adapter-name">CLI</span>
+                  <span class="adapter-desc">Command line</span>
+                </div>
+                <div class="adapter-card driving">
+                  <i class="fab fa-react"></i>
+                  <span class="adapter-name">Web UI</span>
+                  <span class="adapter-desc">User interface</span>
+                </div>
+                <div class="adapter-card driving">
+                  <i class="fas fa-vial"></i>
+                  <span class="adapter-name">Test Adapter</span>
+                  <span class="adapter-desc">Unit/Integration</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center: Ports and Domain -->
+            <div class="hex-center">
+              <div class="port-ring driving-ports">
+                <span class="port-label">Driving Ports (Input)</span>
+                <div class="port-items">
+                  <span class="port-chip">OrderService</span>
+                  <span class="port-chip">PaymentService</span>
+                </div>
+              </div>
+              <div class="domain-hexagon">
+                <span class="domain-title">Application Core</span>
+                <div class="domain-content">
+                  <span class="domain-chip entities"><i class="fas fa-cube"></i> Entities</span>
+                  <span class="domain-chip usecases"><i class="fas fa-cogs"></i> Use Cases</span>
+                  <span class="domain-chip services"
+                    ><i class="fas fa-sitemap"></i> Domain Services</span
+                  >
+                </div>
+              </div>
+              <div class="port-ring driven-ports">
+                <span class="port-label">Driven Ports (Output)</span>
+                <div class="port-items">
+                  <span class="port-chip">OrderRepository</span>
+                  <span class="port-chip">NotificationPort</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Side: Driven/Secondary Adapters -->
+            <div class="hex-side right-side">
+              <span class="side-label driven-label"
+                >Driven Adapters (Secondary) <i class="fas fa-sign-out-alt"></i></span
+              >
+              <div class="adapters-column">
+                <div class="adapter-card driven">
+                  <i class="devicon-postgresql-plain"></i>
+                  <span class="adapter-name">PostgreSQL Adapter</span>
+                  <span class="adapter-desc">Database impl</span>
+                </div>
+                <div class="adapter-card driven">
+                  <i class="devicon-mongodb-plain"></i>
+                  <span class="adapter-name">MongoDB Adapter</span>
+                  <span class="adapter-desc">NoSQL impl</span>
+                </div>
+                <div class="adapter-card driven">
+                  <i class="fas fa-envelope"></i>
+                  <span class="adapter-name">SMTP Adapter</span>
+                  <span class="adapter-desc">Email notifications</span>
+                </div>
+                <div class="adapter-card driven">
+                  <i class="fas fa-cloud"></i>
+                  <span class="adapter-name">AWS S3 Adapter</span>
+                  <span class="adapter-desc">File storage</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="hex-code-examples">
+          <div class="code-tabs">
+            <button class="code-tab active" data-tab="port">Port (Interface)</button>
+            <button class="code-tab" data-tab="driving">Driving Adapter</button>
+            <button class="code-tab" data-tab="driven">Driven Adapter</button>
+          </div>
+
+          <!-- Port Code -->
+          <div class="code-panel active" id="hex-code-port">
+            <div class="code-header">
+              <span class="code-filename">application/port/OrderRepository.java</span>
+              <span class="code-badge port">Driven Port (Output)</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={hexPortCode} /></pre>
+          </div>
+
+          <!-- Driving Adapter Code -->
+          <div class="code-panel" id="hex-code-driving">
+            <div class="code-header">
+              <span class="code-filename">adapter/in/web/OrderController.java</span>
+              <span class="code-badge driving">Driving Adapter (Primary)</span>
+            </div>
+            <pre
+              class="code-block"><code class="language-java" set:html={hexDrivingAdapterCode} /></pre>
+          </div>
+
+          <!-- Driven Adapter Code -->
+          <div class="code-panel" id="hex-code-driven">
+            <div class="code-header">
+              <span class="code-filename">adapter/out/persistence/PostgresOrderRepository.java</span
+              >
+              <span class="code-badge driven">Driven Adapter (Secondary)</span>
+            </div>
+            <pre
+              class="code-block"><code class="language-java" set:html={hexDrivenAdapterCode} /></pre>
+          </div>
+        </div>
+
+        <!-- Folder Structure -->
+        <div class="hex-folder-structure">
+          <div class="folder-header"><i class="fas fa-folder-tree"></i> Estructura de Carpetas</div>
+          <div class="folder-tree">
+            <div class="folder-item root">
+              <i class="fas fa-folder-open"></i> src/main/java/com/app
+            </div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-driving">adapter/in</span>
+              <span class="folder-tag">Driving</span>
+            </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> web/ (REST controllers)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> cli/ (Command line)</div>
+            <div class="folder-item l2">
+              <i class="fas fa-folder"></i> messaging/ (Kafka consumers)
+            </div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-driven">adapter/out</span>
+              <span class="folder-tag">Driven</span>
+            </div>
+            <div class="folder-item l2">
+              <i class="fas fa-folder"></i> persistence/ (JPA, Mongo)
+            </div>
+            <div class="folder-item l2">
+              <i class="fas fa-folder"></i> notification/ (Email, SMS)
+            </div>
+            <div class="folder-item l2">
+              <i class="fas fa-folder"></i> external/ (Third-party APIs)
+            </div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-domain">application</span>
+              <span class="folder-tag">Core</span>
+            </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> port/in/ (Driving ports)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> port/out/ (Driven ports)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> service/ (Use cases)</div>
+            <div class="folder-item l1">
+              <i class="fas fa-folder"></i>
+              <span class="folder-entities">domain</span>
+              <span class="folder-tag">Core</span>
+            </div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> model/ (Entities, VOs)</div>
+            <div class="folder-item l2"><i class="fas fa-folder"></i> event/ (Domain events)</div>
+          </div>
+        </div>
+
+        <!-- Comparison with Clean Architecture -->
+        <div class="hex-comparison">
+          <div class="comparison-header">
+            <i class="fas fa-balance-scale"></i> Hexagonal vs Clean Architecture
+          </div>
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <span class="comp-label">Origen</span>
+              <span class="comp-hex">Alistair Cockburn (2005)</span>
+              <span class="comp-clean">Robert C. Martin (2012)</span>
+            </div>
+            <div class="comparison-item">
+              <span class="comp-label">Enfoque</span>
+              <span class="comp-hex">Ports & Adapters</span>
+              <span class="comp-clean">Círculos concéntricos</span>
+            </div>
+            <div class="comparison-item">
+              <span class="comp-label">Terminología</span>
+              <span class="comp-hex">Driving/Driven, Primary/Secondary</span>
+              <span class="comp-clean">Entities, Use Cases, Adapters, Frameworks</span>
+            </div>
+            <div class="comparison-item">
+              <span class="comp-label">Similitud</span>
+              <span class="comp-both"
+                >Ambas: Dominio en el centro, independiente de infraestructura</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-tips">
+          <div class="tip-header">
+            <i class="fas fa-lightbulb"></i> Principios Clave (Alistair Cockburn)
+          </div>
+          <div class="tips-grid expanded">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Driving Adapters:</strong> Inician la interacción (Controllers, CLI, Tests)</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Driven Adapters:</strong> Son llamados por la aplicación (DB, Email, APIs)</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Ports:</strong> Interfaces que definen cómo comunicarse con el dominio</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Testability:</strong> Reemplazar adapters reales por mocks/stubs</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Flexibility:</strong> Cambiar PostgreSQL por MongoDB sin tocar el dominio</span
+            >
+          </div>
+        </div>
+
+        <div class="arch-references">
+          <a
+            href="https://alistair.cockburn.us/hexagonal-architecture/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Alistair Cockburn (Original)
+          </a>
+          <a
+            href="https://netflixtechblog.com/ready-for-changes-with-hexagonal-architecture-b315ec967749"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fab fa-netflix"></i> Netflix Tech Blog
+          </a>
+          <a
+            href="https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> Herberto Graca
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event-Driven Architecture Panel -->
+    <div class="arch-detail-panel" id="panel-event-driven">
+      <div class="arch-card-xl glass-card event-driven">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-bolt arch-card-icon orange"></i>
+          </div>
+          <span>Event-Driven Architecture</span>
+          <span class="arch-badge">EDA</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-unlink"></i> Loosely Coupled</span>
+          <span class="metric-badge latency"><i class="fas fa-clock"></i> Real-time</span>
+          <span class="metric-badge scale"><i class="fas fa-expand-arrows-alt"></i> Scalable</span>
+        </div>
+        <div class="eda-diagram">
+          <div class="eda-producers">
+            <span class="eda-label">Event Producers</span>
+            <div class="eda-items">
+              <div class="eda-item producer"><i class="fas fa-user"></i> User Service</div>
+              <div class="eda-item producer">
+                <i class="fas fa-shopping-cart"></i> Order Service
+              </div>
+              <div class="eda-item producer">
+                <i class="fas fa-credit-card"></i> Payment Service
+              </div>
+            </div>
+          </div>
+          <div class="eda-broker">
+            <div class="broker-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <span class="broker-title">Event Broker</span>
+            <div class="broker-tools">
+              <span class="broker-tool"><i class="devicon-apachekafka-original"></i> Kafka</span>
+              <span class="broker-tool"><i class="fas fa-cloud"></i> EventBridge</span>
+              <span class="broker-tool"><i class="fas fa-stream"></i> Pulsar</span>
+            </div>
+            <div class="event-types">
+              <span class="event-type">OrderCreated</span>
+              <span class="event-type">PaymentProcessed</span>
+              <span class="event-type">UserRegistered</span>
+            </div>
+          </div>
+          <div class="eda-consumers">
+            <span class="eda-label">Event Consumers</span>
+            <div class="eda-items">
+              <div class="eda-item consumer"><i class="fas fa-bell"></i> Notification</div>
+              <div class="eda-item consumer"><i class="fas fa-chart-line"></i> Analytics</div>
+              <div class="eda-item consumer"><i class="fas fa-warehouse"></i> Inventory</div>
+            </div>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Event Patterns</div>
+          <div class="tips-grid">
+            <span class="tip-item"><i class="fas fa-check"></i> Event Sourcing</span>
+            <span class="tip-item"><i class="fas fa-check"></i> CQRS (Command Query)</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Saga Pattern</span>
+            <span class="tip-item"><i class="fas fa-check"></i> Outbox Pattern</span>
+          </div>
+        </div>
+        <div class="arch-references">
+          <a
+            href="https://martinfowler.com/articles/201701-event-driven.html"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Martin Fowler
+          </a>
+          <a
+            href="https://aws.amazon.com/event-driven-architecture/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fab fa-aws"></i> AWS EDA Guide
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layered (N-Tier) Architecture Panel -->
+    <div class="arch-detail-panel" id="panel-layered">
+      <div class="arch-card-xl glass-card layered">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-layer-group arch-card-icon blue"></i>
+          </div>
+          <span>Layered Architecture (N-Tier)</span>
+          <span class="arch-badge">Traditional</span>
+        </div>
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-th-list"></i> Organized</span>
+          <span class="metric-badge latency"
+            ><i class="fas fa-graduation-cap"></i> Easy to Learn</span
+          >
+          <span class="metric-badge scale"><i class="fas fa-shield-alt"></i> Separation</span>
+        </div>
+        <div class="layered-diagram">
+          <div class="layer-row presentation">
+            <div class="layer-number">1</div>
+            <div class="layer-content">
+              <span class="layer-name">Presentation Layer</span>
+              <span class="layer-desc">UI, Controllers, Views</span>
+            </div>
+            <div class="layer-tech">
+              <span>React</span>
+              <span>Angular</span>
+              <span>REST API</span>
+            </div>
+          </div>
+          <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
+          <div class="layer-row business">
+            <div class="layer-number">2</div>
+            <div class="layer-content">
+              <span class="layer-name">Business Logic Layer</span>
+              <span class="layer-desc">Services, Use Cases, Domain</span>
+            </div>
+            <div class="layer-tech">
+              <span>Spring</span>
+              <span>.NET</span>
+              <span>Django</span>
+            </div>
+          </div>
+          <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
+          <div class="layer-row persistence">
+            <div class="layer-number">3</div>
+            <div class="layer-content">
+              <span class="layer-name">Data Access Layer</span>
+              <span class="layer-desc">Repositories, ORM, DAOs</span>
+            </div>
+            <div class="layer-tech">
+              <span>Hibernate</span>
+              <span>EF Core</span>
+              <span>SQLAlchemy</span>
+            </div>
+          </div>
+          <div class="layer-arrow"><i class="fas fa-arrow-down"></i></div>
+          <div class="layer-row database">
+            <div class="layer-number">4</div>
+            <div class="layer-content">
+              <span class="layer-name">Database Layer</span>
+              <span class="layer-desc">Data Storage, Persistence</span>
+            </div>
+            <div class="layer-tech">
+              <span>PostgreSQL</span>
+              <span>MySQL</span>
+              <span>MongoDB</span>
+            </div>
+          </div>
+        </div>
+        <div class="arch-tips">
+          <div class="tip-header">
+            <i class="fas fa-lightbulb"></i> Best Practices (Industry Standard)
+          </div>
+          <div class="tips-grid">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i> Cada capa solo conoce la inferior</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i> Separación clara de responsabilidades</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i> Ideal para aplicaciones enterprise</span
+            >
+            <span class="tip-item"><i class="fas fa-check"></i> Fácil de entender y mantener</span>
+          </div>
+        </div>
+        <div class="arch-references">
+          <a
+            href="https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fab fa-microsoft"></i> Microsoft N-Tier Guide
+          </a>
+          <a
+            href="https://www.oreilly.com/library/view/software-architecture-patterns/9781491971437/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> O'Reilly Patterns
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DDD (Domain-Driven Design) Panel -->
+    <div class="arch-detail-panel" id="panel-ddd">
+      <div class="arch-card-xl glass-card ddd">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-sitemap arch-card-icon pink"></i>
+          </div>
+          <span>Domain-Driven Design (DDD)</span>
+          <span class="arch-badge">Eric Evans (2003)</span>
+        </div>
+
+        <!-- Intro Banner -->
+        <div class="ddd-intro-banner">
+          <div class="intro-icon"><i class="fas fa-book-open"></i></div>
+          <div class="intro-content">
+            <span class="intro-title">Tackling Complexity in the Heart of Software</span>
+            <p>
+              DDD es un enfoque para desarrollar software complejo conectando la implementación a un
+              modelo evolutivo del dominio del negocio.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"
+            ><i class="fas fa-comments"></i> Ubiquitous Language</span
+          >
+          <span class="metric-badge latency"><i class="fas fa-th-large"></i> Bounded Contexts</span>
+          <span class="metric-badge scale"><i class="fas fa-cube"></i> Aggregates</span>
+        </div>
+
+        <!-- DDD Building Blocks Diagram -->
+        <div class="ddd-building-blocks">
+          <div class="bb-header"><i class="fas fa-cubes"></i> Building Blocks</div>
+          <div class="bb-grid">
+            <div class="bb-category strategic">
+              <span class="bb-cat-title">Strategic Design</span>
+              <div class="bb-items">
+                <div class="bb-item">
+                  <i class="fas fa-th-large"></i>
+                  <span class="bb-name">Bounded Context</span>
+                  <span class="bb-desc">Límite explícito donde el modelo es válido</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-comments"></i>
+                  <span class="bb-name">Ubiquitous Language</span>
+                  <span class="bb-desc">Lenguaje común entre devs y domain experts</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-project-diagram"></i>
+                  <span class="bb-name">Context Map</span>
+                  <span class="bb-desc">Relaciones entre bounded contexts</span>
+                </div>
+              </div>
+            </div>
+            <div class="bb-category tactical">
+              <span class="bb-cat-title">Tactical Design</span>
+              <div class="bb-items">
+                <div class="bb-item">
+                  <i class="fas fa-cube"></i>
+                  <span class="bb-name">Entity</span>
+                  <span class="bb-desc">Objeto con identidad única</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-coins"></i>
+                  <span class="bb-name">Value Object</span>
+                  <span class="bb-desc">Inmutable, sin identidad</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-object-group"></i>
+                  <span class="bb-name">Aggregate</span>
+                  <span class="bb-desc">Cluster de entidades con root</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-database"></i>
+                  <span class="bb-name">Repository</span>
+                  <span class="bb-desc">Abstracción de persistencia</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-cogs"></i>
+                  <span class="bb-name">Domain Service</span>
+                  <span class="bb-desc">Lógica que no pertenece a entidad</span>
+                </div>
+                <div class="bb-item">
+                  <i class="fas fa-bolt"></i>
+                  <span class="bb-name">Domain Event</span>
+                  <span class="bb-desc">Algo significativo que ocurrió</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="ddd-code-examples">
+          <div class="code-tabs">
+            <button class="code-tab active" data-tab="aggregate">Aggregate Root</button>
+            <button class="code-tab" data-tab="valueobject">Value Object</button>
+            <button class="code-tab" data-tab="domainservice">Domain Service</button>
+          </div>
+
+          <div class="code-panel active" id="ddd-code-aggregate">
+            <div class="code-header">
+              <span class="code-filename">domain/model/Order.java</span>
+              <span class="code-badge">Aggregate Root</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={dddAggregateCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="ddd-code-valueobject">
+            <div class="code-header">
+              <span class="code-filename">domain/model/Money.java</span>
+              <span class="code-badge">Value Object</span>
+            </div>
+            <pre
+              class="code-block"><code class="language-java" set:html={dddValueObjectCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="ddd-code-domainservice">
+            <div class="code-header">
+              <span class="code-filename">domain/service/PricingService.java</span>
+              <span class="code-badge">Domain Service + Event</span>
+            </div>
+            <pre
+              class="code-block"><code class="language-java" set:html={dddDomainServiceCode} /></pre>
+          </div>
+        </div>
+
+        <div class="arch-tips">
+          <div class="tip-header">
+            <i class="fas fa-lightbulb"></i> Principios Clave (Eric Evans)
+          </div>
+          <div class="tips-grid expanded">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Model-Driven Design:</strong> El código refleja el modelo del dominio</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Ubiquitous Language:</strong> Todos hablan el mismo idioma</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Bounded Context:</strong> Cada contexto tiene su propio modelo</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Aggregates:</strong> Garantizan consistencia transaccional</span
+            >
+          </div>
+        </div>
+
+        <div class="arch-references">
+          <a
+            href="https://www.domainlanguage.com/ddd/blue-book/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> Blue Book (Eric Evans)
+          </a>
+          <a
+            href="https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> Red Book (Vaughn Vernon)
+          </a>
+          <a
+            href="https://martinfowler.com/tags/domain%20driven%20design.html"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Martin Fowler DDD
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CQRS Panel -->
+    <div class="arch-detail-panel" id="panel-cqrs">
+      <div class="arch-card-xl glass-card cqrs">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-exchange-alt arch-card-icon indigo"></i>
+          </div>
+          <span>CQRS</span>
+          <span class="arch-badge">Greg Young</span>
+        </div>
+
+        <!-- Intro Banner -->
+        <div class="cqrs-intro-banner">
+          <div class="intro-icon"><i class="fas fa-code-branch"></i></div>
+          <div class="intro-content">
+            <span class="intro-title">Command Query Responsibility Segregation</span>
+            <p>
+              Separar las operaciones de lectura (Query) de las de escritura (Command) permite
+              optimizar cada una de forma independiente.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-pen"></i> Write Model</span>
+          <span class="metric-badge latency"><i class="fas fa-eye"></i> Read Model</span>
+          <span class="metric-badge scale"><i class="fas fa-rocket"></i> Scalable</span>
+        </div>
+
+        <!-- CQRS Diagram -->
+        <div class="cqrs-diagram">
+          <div class="cqrs-side command-side">
+            <div class="cqrs-side-header command">
+              <i class="fas fa-pen"></i>
+              <span>Command Side (Write)</span>
+            </div>
+            <div class="cqrs-flow">
+              <div class="cqrs-box"><i class="fas fa-terminal"></i> Command</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box"><i class="fas fa-cog"></i> Command Handler</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box"><i class="fas fa-cube"></i> Domain Model</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box db"><i class="fas fa-database"></i> Write DB</div>
+            </div>
+          </div>
+          <div class="cqrs-center">
+            <div class="cqrs-sync">
+              <i class="fas fa-sync-alt"></i>
+              <span>Event Bus</span>
+              <span class="sync-detail">Eventual Consistency</span>
+            </div>
+          </div>
+          <div class="cqrs-side query-side">
+            <div class="cqrs-side-header query">
+              <i class="fas fa-eye"></i>
+              <span>Query Side (Read)</span>
+            </div>
+            <div class="cqrs-flow">
+              <div class="cqrs-box"><i class="fas fa-search"></i> Query</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box"><i class="fas fa-filter"></i> Query Handler</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box"><i class="fas fa-table"></i> Read Model</div>
+              <div class="cqrs-arrow"><i class="fas fa-arrow-down"></i></div>
+              <div class="cqrs-box db"><i class="fas fa-database"></i> Read DB</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="cqrs-code-examples">
+          <div class="code-tabs">
+            <button class="code-tab active" data-tab="command">Command</button>
+            <button class="code-tab" data-tab="query">Query</button>
+            <button class="code-tab" data-tab="projection">Projection</button>
+          </div>
+
+          <div class="code-panel active" id="cqrs-code-command">
+            <div class="code-header">
+              <span class="code-filename">application/command/CreateOrderCommand.java</span>
+              <span class="code-badge command">Command + Handler</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={cqrsCommandCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="cqrs-code-query">
+            <div class="code-header">
+              <span class="code-filename">application/query/GetOrderDetailsQuery.java</span>
+              <span class="code-badge query">Query + Handler</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={cqrsQueryCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="cqrs-code-projection">
+            <div class="code-header">
+              <span class="code-filename">projection/OrderProjection.java</span>
+              <span class="code-badge projection">Event → Read Model</span>
+            </div>
+            <pre
+              class="code-block"><code class="language-java" set:html={cqrsProjectionCode} /></pre>
+          </div>
+        </div>
+
+        <div class="arch-tips">
+          <div class="tip-header"><i class="fas fa-lightbulb"></i> Cuándo Usar CQRS</div>
+          <div class="tips-grid expanded">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Alta carga de lectura:</strong> Optimizar queries independientemente</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Modelos complejos:</strong> Write y Read tienen necesidades diferentes</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Escalabilidad:</strong> Escalar read/write por separado</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-exclamation-triangle"></i>
+              <strong>No siempre:</strong> Agrega complejidad, evaluar si es necesario</span
+            >
+          </div>
+        </div>
+
+        <div class="arch-references">
+          <a
+            href="https://www.youtube.com/watch?v=JHGkaShoyNs"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fab fa-youtube"></i> Greg Young - CQRS
+          </a>
+          <a
+            href="https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fab fa-microsoft"></i> Microsoft CQRS Pattern
+          </a>
+          <a
+            href="https://martinfowler.com/bliki/CQRS.html"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Martin Fowler CQRS
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Sourcing Panel -->
+    <div class="arch-detail-panel" id="panel-event-sourcing">
+      <div class="arch-card-xl glass-card event-sourcing">
+        <div class="arch-header-lg">
+          <div class="arch-icon-gif">
+            <i class="fas fa-history arch-card-icon emerald"></i>
+          </div>
+          <span>Event Sourcing</span>
+          <span class="arch-badge">Martin Fowler</span>
+        </div>
+
+        <!-- Intro Banner -->
+        <div class="es-intro-banner">
+          <div class="intro-icon"><i class="fas fa-stream"></i></div>
+          <div class="intro-content">
+            <span class="intro-title">Events as the Source of Truth</span>
+            <p>
+              En lugar de almacenar el estado actual, almacenamos todos los eventos que ocurrieron.
+              El estado se reconstruye reproduciendo los eventos.
+            </p>
+          </div>
+        </div>
+
+        <div class="arch-metrics">
+          <span class="metric-badge uptime"><i class="fas fa-history"></i> Full History</span>
+          <span class="metric-badge latency"><i class="fas fa-clock"></i> Time Travel</span>
+          <span class="metric-badge scale"><i class="fas fa-file-alt"></i> Audit Trail</span>
+        </div>
+
+        <!-- Event Sourcing Diagram -->
+        <div class="es-diagram">
+          <div class="es-timeline">
+            <div class="es-event-row">
+              <div class="es-event created">
+                <div class="event-dot"></div>
+                <div class="event-content">
+                  <span class="event-type">OrderCreated</span>
+                  <span class="event-time">t0</span>
+                </div>
+              </div>
+              <div class="es-event line-added">
+                <div class="event-dot"></div>
+                <div class="event-content">
+                  <span class="event-type">LineAdded</span>
+                  <span class="event-time">t1</span>
+                </div>
+              </div>
+              <div class="es-event line-added">
+                <div class="event-dot"></div>
+                <div class="event-content">
+                  <span class="event-type">LineAdded</span>
+                  <span class="event-time">t2</span>
+                </div>
+              </div>
+              <div class="es-event submitted">
+                <div class="event-dot"></div>
+                <div class="event-content">
+                  <span class="event-type">OrderSubmitted</span>
+                  <span class="event-time">t3</span>
+                </div>
+              </div>
+            </div>
+            <div class="es-timeline-line"></div>
+          </div>
+          <div class="es-reconstruction">
+            <div class="es-arrow"><i class="fas fa-long-arrow-alt-down"></i> Replay Events</div>
+            <div class="es-state">
+              <span class="state-label">Current State</span>
+              <div class="state-box">
+                <span>Order #123</span>
+                <span>Status: SUBMITTED</span>
+                <span>Items: 2</span>
+                <span>Total: $150.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Examples -->
+        <div class="es-code-examples">
+          <div class="code-tabs">
+            <button class="code-tab active" data-tab="aggregate">ES Aggregate</button>
+            <button class="code-tab" data-tab="eventstore">Event Store</button>
+            <button class="code-tab" data-tab="snapshot">Snapshots</button>
+          </div>
+
+          <div class="code-panel active" id="es-code-aggregate">
+            <div class="code-header">
+              <span class="code-filename">domain/Order.java</span>
+              <span class="code-badge">Event Sourced Aggregate</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={esAggregateCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="es-code-eventstore">
+            <div class="code-header">
+              <span class="code-filename">infrastructure/PostgresEventStore.java</span>
+              <span class="code-badge">Event Store</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={esEventStoreCode} /></pre>
+          </div>
+
+          <div class="code-panel" id="es-code-snapshot">
+            <div class="code-header">
+              <span class="code-filename">infrastructure/EventSourcedRepository.java</span>
+              <span class="code-badge">Snapshots</span>
+            </div>
+            <pre class="code-block"><code class="language-java" set:html={esSnapshotCode} /></pre>
+          </div>
+        </div>
+
+        <div class="arch-tips">
+          <div class="tip-header">
+            <i class="fas fa-lightbulb"></i> Beneficios de Event Sourcing
+          </div>
+          <div class="tips-grid expanded">
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Auditoría completa:</strong> Sabes exactamente qué pasó y cuándo</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Time Travel:</strong> Reconstruir estado en cualquier punto del tiempo</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Debug:</strong> Reproducir bugs con los mismos eventos</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-check"></i>
+              <strong>Eventos:</strong> Base natural para event-driven architecture</span
+            >
+            <span class="tip-item"
+              ><i class="fas fa-exclamation-triangle"></i>
+              <strong>Complejidad:</strong> Más difícil de implementar y mantener</span
+            >
+          </div>
+        </div>
+
+        <div class="arch-references">
+          <a
+            href="https://martinfowler.com/eaaDev/EventSourcing.html"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-external-link-alt"></i> Martin Fowler ES
+          </a>
+          <a href="https://www.eventstore.com/" target="_blank" rel="noopener" class="ref-link">
+            <i class="fas fa-database"></i> EventStoreDB
+          </a>
+          <a
+            href="https://docs.axoniq.io/reference-guide/"
+            target="_blank"
+            rel="noopener"
+            class="ref-link"
+          >
+            <i class="fas fa-book"></i> Axon Framework
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script is:inline>
-    function initArchitectureSelector() {
-        const selectorCards = document.querySelectorAll('.arch-selector-card');
-        const detailPanels = document.querySelectorAll('.arch-detail-panel');
+  function initArchitectureSelector() {
+    const selectorCards = document.querySelectorAll(".arch-selector-card");
+    const detailPanels = document.querySelectorAll(".arch-detail-panel");
 
-        if (!selectorCards.length || !detailPanels.length) return;
+    if (!selectorCards.length || !detailPanels.length) return;
 
-        selectorCards.forEach(card => {
-            card.onclick = function() {
-                const archType = this.getAttribute('data-arch');
+    selectorCards.forEach((card) => {
+      card.onclick = function () {
+        const archType = this.getAttribute("data-arch");
 
-                // Update active selector
-                selectorCards.forEach(c => c.classList.remove('active'));
-                this.classList.add('active');
+        // Update active selector
+        selectorCards.forEach((c) => c.classList.remove("active"));
+        this.classList.add("active");
 
-                // Update visible panel with animation
-                detailPanels.forEach(panel => {
-                    if (panel.id === `panel-${archType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        // Update visible panel with animation
+        detailPanels.forEach((panel) => {
+          if (panel.id === `panel-${archType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
-    }
+      };
+    });
+  }
 
-    // Initialize on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initArchitectureSelector);
-    } else {
-        initArchitectureSelector();
-    }
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initArchitectureSelector);
+  } else {
+    initArchitectureSelector();
+  }
 
-    // Re-initialize on Astro view transitions
-    document.addEventListener('astro:page-load', initArchitectureSelector);
+  // Re-initialize on Astro view transitions
+  document.addEventListener("astro:page-load", initArchitectureSelector);
 
-    // Code tabs functionality for Clean and Hexagonal Architecture
-    function initCodeTabs() {
-        // Clean Architecture tabs
-        const cleanTabs = document.querySelectorAll('#panel-clean .code-tab');
-        const cleanPanels = document.querySelectorAll('#panel-clean .code-panel');
+  // Code tabs functionality for Clean and Hexagonal Architecture
+  function initCodeTabs() {
+    // Clean Architecture tabs
+    const cleanTabs = document.querySelectorAll("#panel-clean .code-tab");
+    const cleanPanels = document.querySelectorAll("#panel-clean .code-panel");
 
-        cleanTabs.forEach(tab => {
-            tab.onclick = function() {
-                const tabType = this.getAttribute('data-tab');
+    cleanTabs.forEach((tab) => {
+      tab.onclick = function () {
+        const tabType = this.getAttribute("data-tab");
 
-                cleanTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        cleanTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
 
-                cleanPanels.forEach(panel => {
-                    if (panel.id === `clean-code-${tabType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        cleanPanels.forEach((panel) => {
+          if (panel.id === `clean-code-${tabType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
+      };
+    });
 
-        // Hexagonal Architecture tabs
-        const hexTabs = document.querySelectorAll('#panel-hexagonal .code-tab');
-        const hexPanels = document.querySelectorAll('#panel-hexagonal .code-panel');
+    // Hexagonal Architecture tabs
+    const hexTabs = document.querySelectorAll("#panel-hexagonal .code-tab");
+    const hexPanels = document.querySelectorAll("#panel-hexagonal .code-panel");
 
-        hexTabs.forEach(tab => {
-            tab.onclick = function() {
-                const tabType = this.getAttribute('data-tab');
+    hexTabs.forEach((tab) => {
+      tab.onclick = function () {
+        const tabType = this.getAttribute("data-tab");
 
-                hexTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        hexTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
 
-                hexPanels.forEach(panel => {
-                    if (panel.id === `hex-code-${tabType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        hexPanels.forEach((panel) => {
+          if (panel.id === `hex-code-${tabType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
+      };
+    });
 
-        // DDD tabs
-        const dddTabs = document.querySelectorAll('#panel-ddd .code-tab');
-        const dddPanels = document.querySelectorAll('#panel-ddd .code-panel');
+    // DDD tabs
+    const dddTabs = document.querySelectorAll("#panel-ddd .code-tab");
+    const dddPanels = document.querySelectorAll("#panel-ddd .code-panel");
 
-        dddTabs.forEach(tab => {
-            tab.onclick = function() {
-                const tabType = this.getAttribute('data-tab');
+    dddTabs.forEach((tab) => {
+      tab.onclick = function () {
+        const tabType = this.getAttribute("data-tab");
 
-                dddTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        dddTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
 
-                dddPanels.forEach(panel => {
-                    if (panel.id === `ddd-code-${tabType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        dddPanels.forEach((panel) => {
+          if (panel.id === `ddd-code-${tabType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
+      };
+    });
 
-        // CQRS tabs
-        const cqrsTabs = document.querySelectorAll('#panel-cqrs .code-tab');
-        const cqrsPanels = document.querySelectorAll('#panel-cqrs .code-panel');
+    // CQRS tabs
+    const cqrsTabs = document.querySelectorAll("#panel-cqrs .code-tab");
+    const cqrsPanels = document.querySelectorAll("#panel-cqrs .code-panel");
 
-        cqrsTabs.forEach(tab => {
-            tab.onclick = function() {
-                const tabType = this.getAttribute('data-tab');
+    cqrsTabs.forEach((tab) => {
+      tab.onclick = function () {
+        const tabType = this.getAttribute("data-tab");
 
-                cqrsTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        cqrsTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
 
-                cqrsPanels.forEach(panel => {
-                    if (panel.id === `cqrs-code-${tabType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        cqrsPanels.forEach((panel) => {
+          if (panel.id === `cqrs-code-${tabType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
+      };
+    });
 
-        // Event Sourcing tabs
-        const esTabs = document.querySelectorAll('#panel-event-sourcing .code-tab');
-        const esPanels = document.querySelectorAll('#panel-event-sourcing .code-panel');
+    // Event Sourcing tabs
+    const esTabs = document.querySelectorAll("#panel-event-sourcing .code-tab");
+    const esPanels = document.querySelectorAll("#panel-event-sourcing .code-panel");
 
-        esTabs.forEach(tab => {
-            tab.onclick = function() {
-                const tabType = this.getAttribute('data-tab');
+    esTabs.forEach((tab) => {
+      tab.onclick = function () {
+        const tabType = this.getAttribute("data-tab");
 
-                esTabs.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
+        esTabs.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
 
-                esPanels.forEach(panel => {
-                    if (panel.id === `es-code-${tabType}`) {
-                        panel.classList.add('active');
-                    } else {
-                        panel.classList.remove('active');
-                    }
-                });
-            };
+        esPanels.forEach((panel) => {
+          if (panel.id === `es-code-${tabType}`) {
+            panel.classList.add("active");
+          } else {
+            panel.classList.remove("active");
+          }
         });
-    }
+      };
+    });
+  }
 
-    // Initialize code tabs
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCodeTabs);
-    } else {
-        initCodeTabs();
-    }
+  // Initialize code tabs
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCodeTabs);
+  } else {
+    initCodeTabs();
+  }
 
-    document.addEventListener('astro:page-load', initCodeTabs);
+  document.addEventListener("astro:page-load", initCodeTabs);
 </script>

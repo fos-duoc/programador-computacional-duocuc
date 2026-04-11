@@ -5,2246 +5,2393 @@
  * - Analista Programador Computacional (20 meses, B01-B10)
  * - Ingeniería en Desarrollo de Software (+14 meses, B11-B17)
  */
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import SubjectDrawer from '../../components/SubjectDrawer.astro';
-import AITutorSidePanel from '../../components/AITutorSidePanel.astro';
-import BestPracticeDrawer from '../../components/BestPracticeDrawer.astro';
-import TechDrawer from '../../components/TechDrawer.astro';
-import SubjectNavigationSidebar from '../../components/SubjectNavigationSidebar.astro';
-import MergedSidebarPanel from '../../components/MergedSidebarPanel.astro';
-import { bimestresYear1, bimestresYear2, bimestresYear3, bimestresYear4 } from '../../data/bimestres';
-import { nombreCortoToId, asignaturas } from '../../data/asignaturas';
-import { subjectToBestPractices, bestPractices } from '../../data/bestPractices';
-import { iconToTechId, technologies } from '../../data/technologies';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SubjectDrawer from "../../components/SubjectDrawer.astro";
+import AITutorSidePanel from "../../components/AITutorSidePanel.astro";
+import BestPracticeDrawer from "../../components/BestPracticeDrawer.astro";
+import TechDrawer from "../../components/TechDrawer.astro";
+import SubjectNavigationSidebar from "../../components/SubjectNavigationSidebar.astro";
+import MergedSidebarPanel from "../../components/MergedSidebarPanel.astro";
+import {
+  bimestresYear1,
+  bimestresYear2,
+  bimestresYear3,
+  bimestresYear4,
+} from "../../data/bimestres";
+import { nombreCortoToId, asignaturas } from "../../data/asignaturas";
+import { subjectToBestPractices, bestPractices } from "../../data/bestPractices";
+import { iconToTechId, technologies } from "../../data/technologies";
 
 const base = import.meta.env.BASE_URL;
 
 // Datos de ambos programas
 const programaAPC = {
-    nombre: "Analista Programador Computacional",
-    codigo: "1444729",
-    duracion: "20 meses",
-    bimestres: 10,
-    titulo: "Analista Programador Computacional",
-    modalidad: "Online",
-    jornada: "Diurna / Vespertina",
-    color: "cyan"
+  nombre: "Analista Programador Computacional",
+  codigo: "1444729",
+  duracion: "20 meses",
+  bimestres: 10,
+  titulo: "Analista Programador Computacional",
+  modalidad: "Online",
+  jornada: "Diurna / Vespertina",
+  color: "cyan",
 };
 
 const programaIDS = {
-    nombre: "Ingeniería en Desarrollo de Software",
-    codigo: "1444730",
-    duracion: "+14 meses (34 total)",
-    bimestres: 7,
-    titulo: "Ingeniero(a) en Desarrollo de Software",
-    modalidad: "Online",
-    jornada: "Diurna / Vespertina",
-    color: "purple"
+  nombre: "Ingeniería en Desarrollo de Software",
+  codigo: "1444730",
+  duracion: "+14 meses (34 total)",
+  bimestres: 7,
+  titulo: "Ingeniero(a) en Desarrollo de Software",
+  modalidad: "Online",
+  jornada: "Diurna / Vespertina",
+  color: "purple",
 };
 
 // Competencias por área
 const competencias = [
-    { area: "Programación", skills: ["Python", "Java", "JavaScript", "TypeScript"], icon: "fa-code" },
-    { area: "Bases de Datos", skills: ["SQL", "PostgreSQL", "Oracle", "MongoDB"], icon: "fa-database" },
-    { area: "Cloud & DevOps", skills: ["AWS", "Docker", "Kubernetes", "CI/CD"], icon: "fa-cloud" },
-    { area: "Frontend", skills: ["Angular", "React", "HTML/CSS", "Responsive"], icon: "fa-palette" },
-    { area: "Mobile", skills: ["Kotlin", "Flutter", "React Native"], icon: "fa-mobile-alt" },
-    { area: "Arquitectura", skills: ["Clean Architecture", "Microservicios", "API REST"], icon: "fa-sitemap" }
+  { area: "Programación", skills: ["Python", "Java", "JavaScript", "TypeScript"], icon: "fa-code" },
+  {
+    area: "Bases de Datos",
+    skills: ["SQL", "PostgreSQL", "Oracle", "MongoDB"],
+    icon: "fa-database",
+  },
+  { area: "Cloud & DevOps", skills: ["AWS", "Docker", "Kubernetes", "CI/CD"], icon: "fa-cloud" },
+  { area: "Frontend", skills: ["Angular", "React", "HTML/CSS", "Responsive"], icon: "fa-palette" },
+  { area: "Mobile", skills: ["Kotlin", "Flutter", "React Native"], icon: "fa-mobile-alt" },
+  {
+    area: "Arquitectura",
+    skills: ["Clean Architecture", "Microservicios", "API REST"],
+    icon: "fa-sitemap",
+  },
 ];
 
 // Subject links mapping
 const subjectLinks: Record<string, string> = {
-    "Fundamentos Prog.": "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Fundamentos-Programacion",
-    "Modelamiento BD": "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-Datos",
-    "Antropologia": "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Antropologia",
-    "POO I": "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Programacion-OO-I",
-    "Computacion Nube": "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Computacion-Nube",
-    "Comunicacion": "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Comunicacion"
+  "Fundamentos Prog.":
+    "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Fundamentos-Programacion",
+  "Modelamiento BD":
+    "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-Datos",
+  Antropologia:
+    "Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Antropologia",
+  "POO I": "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Programacion-OO-I",
+  "Computacion Nube": "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Computacion-Nube",
+  Comunicacion: "Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Comunicacion",
 };
 
 // Area icons for tooltips
 const areaIcons: Record<string, string> = {
-    'programacion': 'fa-code',
-    'base-datos': 'fa-database',
-    'cloud': 'fa-cloud',
-    'metodologias': 'fa-project-diagram',
-    'fundamentos': 'fa-book',
-    'seguridad': 'fa-shield-alt',
-    'frontend': 'fa-palette',
-    'mobile': 'fa-mobile-alt',
-    'arquitectura': 'fa-sitemap',
-    'softskills': 'fa-users'
+  programacion: "fa-code",
+  "base-datos": "fa-database",
+  cloud: "fa-cloud",
+  metodologias: "fa-project-diagram",
+  fundamentos: "fa-book",
+  seguridad: "fa-shield-alt",
+  frontend: "fa-palette",
+  mobile: "fa-mobile-alt",
+  arquitectura: "fa-sitemap",
+  softskills: "fa-users",
 };
 
 // Generate premium tooltip for a subject
 function getSubjectTooltip(subjectName: string, subjectId?: string): string {
-    if (!subjectId || !asignaturas[subjectId]) {
-        return `${subjectName}|Click para ver detalles de la asignatura||subject|fa-book|ASIGNATURA`;
-    }
+  if (!subjectId || !asignaturas[subjectId]) {
+    return `${subjectName}|Click para ver detalles de la asignatura||subject|fa-book|ASIGNATURA`;
+  }
 
-    const asig = asignaturas[subjectId];
-    const title = asig.nombreCorto || asig.nombre;
+  const asig = asignaturas[subjectId];
+  const title = asig.nombreCorto || asig.nombre;
 
-    // Build description (truncate if too long)
-    let desc = asig.descripcion || asig.proposito || 'Asignatura del plan de estudios';
-    if (desc.length > 120) {
-        desc = desc.substring(0, 117) + '...';
-    }
+  // Build description (truncate if too long)
+  let desc = asig.descripcion || asig.proposito || "Asignatura del plan de estudios";
+  if (desc.length > 120) {
+    desc = desc.substring(0, 117) + "...";
+  }
 
-    // Build features from keywords or technologies
-    let features: string[] = [];
-    if (asig.palabrasClave && asig.palabrasClave.length > 0) {
-        features = asig.palabrasClave.slice(0, 3);
-    } else if (asig.tecnologias && asig.tecnologias.length > 0) {
-        features = asig.tecnologias.slice(0, 3).map(t => t.nombre);
-    }
-    const featuresStr = features.join(',');
+  // Build features from keywords or technologies
+  let features: string[] = [];
+  if (asig.palabrasClave && asig.palabrasClave.length > 0) {
+    features = asig.palabrasClave.slice(0, 3);
+  } else if (asig.tecnologias && asig.tecnologias.length > 0) {
+    features = asig.tecnologias.slice(0, 3).map((t) => t.nombre);
+  }
+  const featuresStr = features.join(",");
 
-    // Get icon based on area
-    const icon = areaIcons[asig.area] || 'fa-book';
+  // Get icon based on area
+  const icon = areaIcons[asig.area] || "fa-book";
 
-    // Category label
-    const bimestreLabel = `B${String(asig.bimestre).padStart(2, '0')} - ${asig.creditos} CR`;
+  // Category label
+  const bimestreLabel = `B${String(asig.bimestre).padStart(2, "0")} - ${asig.creditos} CR`;
 
-    return `${title}|${desc}|${featuresStr}|subject|${icon}|${bimestreLabel}`;
+  return `${title}|${desc}|${featuresStr}|subject|${icon}|${bimestreLabel}`;
 }
 
 // Generate premium tooltip for bimestre cards
-function getBimestreTooltip(bimNumber: number, bimTitle: string, subjects: {name: string}[], isIDS = false): string {
-    const programLabel = isIDS ? 'IDS' : 'APC';
-    const subjectNames = subjects.map(s => s.name).slice(0, 3).join(', ');
-    const totalSubjects = subjects.length;
-    return `Bimestre ${bimNumber}|${bimTitle}. ${totalSubjects} asignaturas: ${subjectNames}|Click para explorar,${totalSubjects} asignaturas|bimestre|fa-calendar-alt|${programLabel}`;
+function getBimestreTooltip(
+  bimNumber: number,
+  bimTitle: string,
+  subjects: { name: string }[],
+  isIDS = false,
+): string {
+  const programLabel = isIDS ? "IDS" : "APC";
+  const subjectNames = subjects
+    .map((s) => s.name)
+    .slice(0, 3)
+    .join(", ");
+  const totalSubjects = subjects.length;
+  return `Bimestre ${bimNumber}|${bimTitle}. ${totalSubjects} asignaturas: ${subjectNames}|Click para explorar,${totalSubjects} asignaturas|bimestre|fa-calendar-alt|${programLabel}`;
 }
 
 // Generate premium tooltip for tech icons
 function getTechTooltip(techId: string): string {
-    if (!techId || !technologies[techId]) {
-        return '';
-    }
-    const tech = technologies[techId];
-    const desc = tech.descripcion || `Tecnología utilizada en el programa`;
-    const truncDesc = desc.length > 100 ? desc.substring(0, 97) + '...' : desc;
-    const features = tech.tags ? tech.tags.slice(0, 3).join(',') : '';
-    return `${tech.nombre}|${truncDesc}|${features}|tech|fa-cog|TECNOLOGÍA`;
+  if (!techId || !technologies[techId]) {
+    return "";
+  }
+  const tech = technologies[techId];
+  const desc = tech.descripcion || `Tecnología utilizada en el programa`;
+  const truncDesc = desc.length > 100 ? desc.substring(0, 97) + "..." : desc;
+  const features = tech.tags ? tech.tags.slice(0, 3).join(",") : "";
+  return `${tech.nombre}|${truncDesc}|${features}|tech|fa-cog|TECNOLOGÍA`;
 }
 
 // Generate premium tooltip for best practice icons
-function getBestPracticeTooltip(bp: typeof bestPractices[keyof typeof bestPractices]): string {
-    if (!bp) return '';
-    const desc = bp.descripcionCorta || bp.descripcion || 'Buena práctica de desarrollo';
-    const truncDesc = desc.length > 100 ? desc.substring(0, 97) + '...' : desc;
-    const category = bp.categoria?.toUpperCase() || 'PRÁCTICA';
-    return `${bp.nombreCorto || bp.nombre}|${truncDesc}||bestpractice|${bp.icon}|${category}`;
+function getBestPracticeTooltip(bp: (typeof bestPractices)[keyof typeof bestPractices]): string {
+  if (!bp) return "";
+  const desc = bp.descripcionCorta || bp.descripcion || "Buena práctica de desarrollo";
+  const truncDesc = desc.length > 100 ? desc.substring(0, 97) + "..." : desc;
+  const category = bp.categoria?.toUpperCase() || "PRÁCTICA";
+  return `${bp.nombreCorto || bp.nombre}|${truncDesc}||bestpractice|${bp.icon}|${category}`;
 }
 ---
 
 <Layout title="Sala de Estudio | DuocUC Informática">
-    <Header />
-    <SubjectNavigationSidebar />
-    <main class="malla-page">
-        <!-- Hero Section -->
-        <section class="malla-hero">
-            <div class="hero-background">
-                <div class="hero-gradient"></div>
-                <div class="hero-grid"></div>
-            </div>
+  <Header />
+  <SubjectNavigationSidebar />
+  <main class="malla-page">
+    <!-- Hero Section -->
+    <section class="malla-hero">
+      <div class="hero-background">
+        <div class="hero-gradient"></div>
+        <div class="hero-grid"></div>
+      </div>
 
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Plan de Estudios 2025</span>
-                </div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Plan de Estudios 2025</span>
+        </div>
 
-                <h1 class="hero-title">
-                    <span class="title-main">Sala de Estudio</span>
-                    <span class="title-accent">Explora las Asignaturas</span>
-                </h1>
+        <h1 class="hero-title">
+          <span class="title-main">Sala de Estudio</span>
+          <span class="title-accent">Explora las Asignaturas</span>
+        </h1>
 
-                <p class="hero-description">
-                    Dos programas, una trayectoria profesional completa. Desde fundamentos de programación
-                    hasta arquitectura de software empresarial en 17 bimestres de formación intensiva.
-                </p>
+        <p class="hero-description">
+          Dos programas, una trayectoria profesional completa. Desde fundamentos de programación
+          hasta arquitectura de software empresarial en 17 bimestres de formación intensiva.
+        </p>
 
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-value">17</span>
-                        <span class="stat-label">Bimestres</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-value">40+</span>
-                        <span class="stat-label">Asignaturas</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-value">2</span>
-                        <span class="stat-label">Títulos</span>
-                    </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-value">34</span>
-                        <span class="stat-label">Meses</span>
-                    </div>
-                </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">17</span>
+            <span class="stat-label">Bimestres</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">40+</span>
+            <span class="stat-label">Asignaturas</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">2</span>
+            <span class="stat-label">Títulos</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">34</span>
+            <span class="stat-label">Meses</span>
+          </div>
+        </div>
 
-                <div class="hero-ctas">
-                    <a href="#programa-apc" class="cta-btn primary">
-                        <i class="fas fa-laptop-code"></i>
-                        <span>Analista Programador</span>
-                    </a>
-                    <a href="#programa-ids" class="cta-btn secondary">
-                        <i class="fas fa-microchip"></i>
-                        <span>Ingeniería en Software</span>
-                    </a>
-                </div>
-            </div>
+        <div class="hero-ctas">
+          <a href="#programa-apc" class="cta-btn primary">
+            <i class="fas fa-laptop-code"></i>
+            <span>Analista Programador</span>
+          </a>
+          <a href="#programa-ids" class="cta-btn secondary">
+            <i class="fas fa-microchip"></i>
+            <span>Ingeniería en Software</span>
+          </a>
+        </div>
+      </div>
 
-            <!-- Program Cards Preview -->
-            <div class="program-cards-preview">
-                <div class="preview-card apc">
-                    <div class="card-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Técnico</h3>
-                        <p>20 meses • 10 bimestres</p>
-                    </div>
-                </div>
-                <div class="preview-connector">
-                    <i class="fas fa-arrow-right"></i>
-                </div>
-                <div class="preview-card ids">
-                    <div class="card-icon">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-                    <div class="card-info">
-                        <h3>Ingeniero</h3>
-                        <p>+14 meses • 7 bimestres</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Program Cards Preview -->
+      <div class="program-cards-preview">
+        <div class="preview-card apc">
+          <div class="card-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <div class="card-info">
+            <h3>Técnico</h3>
+            <p>20 meses • 10 bimestres</p>
+          </div>
+        </div>
+        <div class="preview-connector">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+        <div class="preview-card ids">
+          <div class="card-icon">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <div class="card-info">
+            <h3>Ingeniero</h3>
+            <p>+14 meses • 7 bimestres</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Quick Navigation -->
-        <nav class="quick-nav" aria-label="Navegación rápida">
-            <a href="#programa-apc" class="nav-pill cyan">
-                <i class="fas fa-laptop-code"></i>
-                Analista Programador
-            </a>
-            <a href="#programa-ids" class="nav-pill purple">
-                <i class="fas fa-microchip"></i>
-                Ingeniería Software
-            </a>
-            <a href="#competencias" class="nav-pill green">
-                <i class="fas fa-chart-radar"></i>
-                Competencias
-            </a>
-            <a href="#descargas" class="nav-pill amber">
-                <i class="fas fa-download"></i>
-                Descargar Malla
-            </a>
-        </nav>
+    <!-- Quick Navigation -->
+    <nav class="quick-nav" aria-label="Navegación rápida">
+      <a href="#programa-apc" class="nav-pill cyan">
+        <i class="fas fa-laptop-code"></i>
+        Analista Programador
+      </a>
+      <a href="#programa-ids" class="nav-pill purple">
+        <i class="fas fa-microchip"></i>
+        Ingeniería Software
+      </a>
+      <a href="#competencias" class="nav-pill green">
+        <i class="fas fa-chart-radar"></i>
+        Competencias
+      </a>
+      <a href="#descargas" class="nav-pill amber">
+        <i class="fas fa-download"></i>
+        Descargar Malla
+      </a>
+    </nav>
 
-        <!-- Programa APC Section -->
-        <section id="programa-apc" class="program-section">
-            <div class="section-header">
-                <div class="program-badge cyan">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="program-title">
-                    <h2>{programaAPC.nombre}</h2>
-                    <div class="program-meta">
-                        <span class="meta-item"><i class="fas fa-clock"></i> {programaAPC.duracion}</span>
-                        <span class="meta-item"><i class="fas fa-calendar-alt"></i> {programaAPC.bimestres} bimestres</span>
-                        <span class="meta-item"><i class="fas fa-building"></i> {programaAPC.modalidad}</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Programa APC Section -->
+    <section id="programa-apc" class="program-section">
+      <div class="section-header">
+        <div class="program-badge cyan">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <div class="program-title">
+          <h2>{programaAPC.nombre}</h2>
+          <div class="program-meta">
+            <span class="meta-item"><i class="fas fa-clock"></i> {programaAPC.duracion}</span>
+            <span class="meta-item"
+              ><i class="fas fa-calendar-alt"></i> {programaAPC.bimestres} bimestres</span
+            >
+            <span class="meta-item"><i class="fas fa-building"></i> {programaAPC.modalidad}</span>
+          </div>
+        </div>
+      </div>
 
-            <!-- Timeline APC -->
-            <div class="curriculum-timeline">
-                <!-- Año 1 -->
-                <div class="year-section">
-                    <div class="year-header">
-                        <span class="year-badge">Año 1</span>
-                        <span class="year-title">Fundamentos de Programación</span>
-                    </div>
-                    <div class="bimestres-grid">
-                        {bimestresYear1.map((bim) => (
-                            <div class="bimestre-card" data-bimestre={bim.number} data-premium-tooltip={getBimestreTooltip(bim.number, bim.title, bim.subjects, false)}>
-                                <div class="card-header">
-                                    <span class="bim-number">B{bim.number}</span>
-                                    <span class="bim-title">{bim.title}</span>
-                                </div>
-                                <div class="card-subjects">
-                                    {bim.subjects.map((subject) => {
-                                        const subjectId = nombreCortoToId[subject.name];
-                                        const hasData = !!subjectId;
-                                        const practiceIds = subjectId ? (subjectToBestPractices[subjectId] || []) : [];
-                                        const practices = practiceIds.map(id => bestPractices[id]).filter(Boolean).slice(0, 4);
-                                        const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
-                                        return (
-                                            <div class="subject-wrapper">
-                                                <button
-                                                    type="button"
-                                                    class="subject-chip clickable"
-                                                    data-subject-id={subjectId}
-                                                    data-subject-name={subject.name}
-                                                    aria-label={`Ver detalles de ${subject.name}`}
-                                                    data-premium-tooltip={subjectTooltip}
-                                                >
-                                                    {subject.iconType === 'fontawesome' ? (
-                                                        <i class={subject.icon}></i>
-                                                    ) : (
-                                                        <i class={`devicon-${subject.icon}`}></i>
-                                                    )}
-                                                    <span>{subject.name}</span>
-                                                    <i class="fas fa-chevron-right chip-arrow"></i>
-                                                </button>
-                                                {practices.length > 0 && (
-                                                    <div class="subject-best-practices">
-                                                        {practices.map((bp) => (
-                                                            <button
-                                                                type="button"
-                                                                class={`bp-icon-btn ${bp.color}`}
-                                                                data-bp-id={bp.id}
-                                                                title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
-                                                                aria-label={`Ver ${bp.nombre}`}
-                                                                data-premium-tooltip={getBestPracticeTooltip(bp)}
-                                                            >
-                                                                <i class={bp.icon}></i>
-                                                            </button>
-                                                        ))}
-                                                        {practiceIds.length > 4 && (
-                                                            <span class="bp-more">+{practiceIds.length - 4}</span>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div class="card-tech">
-                                    {bim.techIcons.map((icon) => {
-                                        const iconClass = icon.startsWith('fas') ? '' : icon;
-                                        const techId = iconToTechId[iconClass];
-                                        const hasTech = !!techId && !!technologies[techId];
-                                        return hasTech ? (
-                                            <button type="button" class="tech-icon-btn" data-tech-id={techId} title={technologies[techId]?.nombre} data-premium-tooltip={getTechTooltip(techId)}>
-                                                <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                            </button>
-                                        ) : (
-                                            <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                        );
-                                    })}
-                                </div>
+      <!-- Timeline APC -->
+      <div class="curriculum-timeline">
+        <!-- Año 1 -->
+        <div class="year-section">
+          <div class="year-header">
+            <span class="year-badge">Año 1</span>
+            <span class="year-title">Fundamentos de Programación</span>
+          </div>
+          <div class="bimestres-grid">
+            {
+              bimestresYear1.map((bim) => (
+                <div
+                  class="bimestre-card"
+                  data-bimestre={bim.number}
+                  data-premium-tooltip={getBimestreTooltip(
+                    bim.number,
+                    bim.title,
+                    bim.subjects,
+                    false,
+                  )}
+                >
+                  <div class="card-header">
+                    <span class="bim-number">B{bim.number}</span>
+                    <span class="bim-title">{bim.title}</span>
+                  </div>
+                  <div class="card-subjects">
+                    {bim.subjects.map((subject) => {
+                      const subjectId = nombreCortoToId[subject.name];
+                      const hasData = !!subjectId;
+                      const practiceIds = subjectId ? subjectToBestPractices[subjectId] || [] : [];
+                      const practices = practiceIds
+                        .map((id) => bestPractices[id])
+                        .filter(Boolean)
+                        .slice(0, 4);
+                      const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
+                      return (
+                        <div class="subject-wrapper">
+                          <button
+                            type="button"
+                            class="subject-chip clickable"
+                            data-subject-id={subjectId}
+                            data-subject-name={subject.name}
+                            aria-label={`Ver detalles de ${subject.name}`}
+                            data-premium-tooltip={subjectTooltip}
+                          >
+                            {subject.iconType === "fontawesome" ? (
+                              <i class={subject.icon} />
+                            ) : (
+                              <i class={`devicon-${subject.icon}`} />
+                            )}
+                            <span>{subject.name}</span>
+                            <i class="fas fa-chevron-right chip-arrow" />
+                          </button>
+                          {practices.length > 0 && (
+                            <div class="subject-best-practices">
+                              {practices.map((bp) => (
+                                <button
+                                  type="button"
+                                  class={`bp-icon-btn ${bp.color}`}
+                                  data-bp-id={bp.id}
+                                  title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
+                                  aria-label={`Ver ${bp.nombre}`}
+                                  data-premium-tooltip={getBestPracticeTooltip(bp)}
+                                >
+                                  <i class={bp.icon} />
+                                </button>
+                              ))}
+                              {practiceIds.length > 4 && (
+                                <span class="bp-more">+{practiceIds.length - 4}</span>
+                              )}
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                <!-- Año 2 -->
-                <div class="year-section">
-                    <div class="year-header">
-                        <span class="year-badge">Año 2</span>
-                        <span class="year-title">Desarrollo de Software</span>
-                    </div>
-                    <div class="bimestres-grid">
-                        {bimestresYear2.map((bim) => (
-                            <div class={`bimestre-card ${bim.featured ? 'featured' : ''}`} data-bimestre={bim.number} data-premium-tooltip={getBimestreTooltip(bim.number, bim.title, bim.subjects, false)}>
-                                <div class="card-header">
-                                    <span class="bim-number">B{bim.number}</span>
-                                    <span class="bim-title">{bim.title}</span>
-                                    {bim.featured && <span class="featured-badge">Salida Intermedia</span>}
-                                </div>
-                                <div class="card-subjects">
-                                    {bim.subjects.map((subject) => {
-                                        const subjectId = nombreCortoToId[subject.name];
-                                        const hasData = !!subjectId;
-                                        const practiceIds = subjectId ? (subjectToBestPractices[subjectId] || []) : [];
-                                        const practices = practiceIds.map(id => bestPractices[id]).filter(Boolean).slice(0, 4);
-                                        const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
-                                        return (
-                                            <div class="subject-wrapper">
-                                                <button
-                                                    type="button"
-                                                    class="subject-chip clickable"
-                                                    data-subject-id={subjectId}
-                                                    data-subject-name={subject.name}
-                                                    aria-label={`Ver detalles de ${subject.name}`}
-                                                    data-premium-tooltip={subjectTooltip}
-                                                >
-                                                    {subject.iconType === 'fontawesome' ? (
-                                                        <i class={subject.icon}></i>
-                                                    ) : (
-                                                        <i class={`devicon-${subject.icon}`}></i>
-                                                    )}
-                                                    <span>{subject.name}</span>
-                                                    <i class="fas fa-chevron-right chip-arrow"></i>
-                                                </button>
-                                                {practices.length > 0 && (
-                                                    <div class="subject-best-practices">
-                                                        {practices.map((bp) => (
-                                                            <button
-                                                                type="button"
-                                                                class={`bp-icon-btn ${bp.color}`}
-                                                                data-bp-id={bp.id}
-                                                                title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
-                                                                aria-label={`Ver ${bp.nombre}`}
-                                                                data-premium-tooltip={getBestPracticeTooltip(bp)}
-                                                            >
-                                                                <i class={bp.icon}></i>
-                                                            </button>
-                                                        ))}
-                                                        {practiceIds.length > 4 && (
-                                                            <span class="bp-more">+{practiceIds.length - 4}</span>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div class="card-tech">
-                                    {bim.techIcons.map((icon) => {
-                                        const iconClass = icon.startsWith('fas') ? '' : icon;
-                                        const techId = iconToTechId[iconClass];
-                                        const hasTech = !!techId && !!technologies[techId];
-                                        return hasTech ? (
-                                            <button type="button" class="tech-icon-btn" data-tech-id={techId} title={technologies[techId]?.nombre} data-premium-tooltip={getTechTooltip(techId)}>
-                                                <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                            </button>
-                                        ) : (
-                                            <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <!-- Título APC -->
-                <div class="milestone-banner cyan">
-                    <div class="milestone-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="milestone-content">
-                        <h3>Título: {programaAPC.titulo}</h3>
-                        <p>Completar los 10 bimestres del programa técnico</p>
-                    </div>
-                    <div class="milestone-badge">
-                        <span>20 meses</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Programa IDS Section -->
-        <section id="programa-ids" class="program-section">
-            <div class="section-header">
-                <div class="program-badge purple">
-                    <i class="fas fa-microchip"></i>
-                </div>
-                <div class="program-title">
-                    <h2>{programaIDS.nombre}</h2>
-                    <p class="program-subtitle">Continuación del programa técnico hacia título profesional</p>
-                    <div class="program-meta">
-                        <span class="meta-item"><i class="fas fa-clock"></i> {programaIDS.duracion}</span>
-                        <span class="meta-item"><i class="fas fa-calendar-alt"></i> {programaIDS.bimestres} bimestres adicionales</span>
-                        <span class="meta-item"><i class="fas fa-building"></i> {programaIDS.modalidad}</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Timeline IDS -->
-            <div class="curriculum-timeline">
-                <!-- Año 3 -->
-                <div class="year-section">
-                    <div class="year-header">
-                        <span class="year-badge purple">Año 3</span>
-                        <span class="year-title">Desarrollo Fullstack & Cloud</span>
-                    </div>
-                    <div class="bimestres-grid">
-                        {bimestresYear3.map((bim) => (
-                            <div class="bimestre-card ids" data-bimestre={bim.number} data-premium-tooltip={getBimestreTooltip(bim.number, bim.title, bim.subjects, true)}>
-                                <div class="card-header">
-                                    <span class="bim-number">B{bim.number}</span>
-                                    <span class="bim-title">{bim.title}</span>
-                                </div>
-                                <div class="card-subjects">
-                                    {bim.subjects.map((subject) => {
-                                        const subjectId = nombreCortoToId[subject.name];
-                                        const hasData = !!subjectId;
-                                        const practiceIds = subjectId ? (subjectToBestPractices[subjectId] || []) : [];
-                                        const practices = practiceIds.map(id => bestPractices[id]).filter(Boolean).slice(0, 4);
-                                        const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
-                                        return (
-                                            <div class="subject-wrapper">
-                                                <button
-                                                    type="button"
-                                                    class="subject-chip clickable"
-                                                    data-subject-id={subjectId}
-                                                    data-subject-name={subject.name}
-                                                    aria-label={`Ver detalles de ${subject.name}`}
-                                                    data-premium-tooltip={subjectTooltip}
-                                                >
-                                                    {subject.iconType === 'fontawesome' ? (
-                                                        <i class={subject.icon}></i>
-                                                    ) : (
-                                                        <i class={`devicon-${subject.icon}`}></i>
-                                                    )}
-                                                    <span>{subject.name}</span>
-                                                    <i class="fas fa-chevron-right chip-arrow"></i>
-                                                </button>
-                                                {practices.length > 0 && (
-                                                    <div class="subject-best-practices">
-                                                        {practices.map((bp) => (
-                                                            <button
-                                                                type="button"
-                                                                class={`bp-icon-btn ${bp.color}`}
-                                                                data-bp-id={bp.id}
-                                                                title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
-                                                                aria-label={`Ver ${bp.nombre}`}
-                                                                data-premium-tooltip={getBestPracticeTooltip(bp)}
-                                                            >
-                                                                <i class={bp.icon}></i>
-                                                            </button>
-                                                        ))}
-                                                        {practiceIds.length > 4 && (
-                                                            <span class="bp-more">+{practiceIds.length - 4}</span>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div class="card-tech">
-                                    {bim.techIcons.map((icon) => {
-                                        const iconClass = icon.startsWith('fas') ? '' : icon;
-                                        const techId = iconToTechId[iconClass];
-                                        const hasTech = !!techId && !!technologies[techId];
-                                        return hasTech ? (
-                                            <button type="button" class="tech-icon-btn" data-tech-id={techId} title={technologies[techId]?.nombre} data-premium-tooltip={getTechTooltip(techId)}>
-                                                <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                            </button>
-                                        ) : (
-                                            <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <!-- Año 4 -->
-                <div class="year-section">
-                    <div class="year-header">
-                        <span class="year-badge purple">Año 4</span>
-                        <span class="year-title">Arquitectura & Gestión de Proyectos</span>
-                    </div>
-                    <div class="bimestres-grid">
-                        {bimestresYear4.map((bim) => (
-                            <div class="bimestre-card ids" data-bimestre={bim.number} data-premium-tooltip={getBimestreTooltip(bim.number, bim.title, bim.subjects, true)}>
-                                <div class="card-header">
-                                    <span class="bim-number">B{bim.number}</span>
-                                    <span class="bim-title">{bim.title}</span>
-                                </div>
-                                <div class="card-subjects">
-                                    {bim.subjects.map((subject) => {
-                                        const subjectId = nombreCortoToId[subject.name];
-                                        const hasData = !!subjectId;
-                                        const practiceIds = subjectId ? (subjectToBestPractices[subjectId] || []) : [];
-                                        const practices = practiceIds.map(id => bestPractices[id]).filter(Boolean).slice(0, 4);
-                                        const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
-                                        return (
-                                            <div class="subject-wrapper">
-                                                <button
-                                                    type="button"
-                                                    class="subject-chip clickable"
-                                                    data-subject-id={subjectId}
-                                                    data-subject-name={subject.name}
-                                                    aria-label={`Ver detalles de ${subject.name}`}
-                                                    data-premium-tooltip={subjectTooltip}
-                                                >
-                                                    {subject.iconType === 'fontawesome' ? (
-                                                        <i class={subject.icon}></i>
-                                                    ) : (
-                                                        <i class={`devicon-${subject.icon}`}></i>
-                                                    )}
-                                                    <span>{subject.name}</span>
-                                                    <i class="fas fa-chevron-right chip-arrow"></i>
-                                                </button>
-                                                {practices.length > 0 && (
-                                                    <div class="subject-best-practices">
-                                                        {practices.map((bp) => (
-                                                            <button
-                                                                type="button"
-                                                                class={`bp-icon-btn ${bp.color}`}
-                                                                data-bp-id={bp.id}
-                                                                title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
-                                                                aria-label={`Ver ${bp.nombre}`}
-                                                                data-premium-tooltip={getBestPracticeTooltip(bp)}
-                                                            >
-                                                                <i class={bp.icon}></i>
-                                                            </button>
-                                                        ))}
-                                                        {practiceIds.length > 4 && (
-                                                            <span class="bp-more">+{practiceIds.length - 4}</span>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                <div class="card-tech">
-                                    {bim.techIcons.map((icon) => {
-                                        const iconClass = icon.startsWith('fas') ? '' : icon;
-                                        const techId = iconToTechId[iconClass];
-                                        const hasTech = !!techId && !!technologies[techId];
-                                        return hasTech ? (
-                                            <button type="button" class="tech-icon-btn" data-tech-id={techId} title={technologies[techId]?.nombre} data-premium-tooltip={getTechTooltip(techId)}>
-                                                <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                            </button>
-                                        ) : (
-                                            <i class={icon.startsWith('fas') ? icon : `devicon-${icon}`}></i>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                <!-- Título IDS -->
-                <div class="milestone-banner purple">
-                    <div class="milestone-icon">
-                        <i class="fas fa-user-graduate"></i>
-                    </div>
-                    <div class="milestone-content">
-                        <h3>Título: {programaIDS.titulo}</h3>
-                        <p>Completar los 17 bimestres del programa completo</p>
-                    </div>
-                    <div class="milestone-badge">
-                        <span>34 meses total</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Competencias Section -->
-        <section id="competencias" class="competencias-section">
-            <div class="section-header centered">
-                <h2>Competencias del Perfil de Egreso</h2>
-                <p>Habilidades técnicas que desarrollarás durante el programa</p>
-            </div>
-
-            <div class="competencias-grid">
-                {competencias.map((comp) => (
-                    <div class="competencia-card">
-                        <div class="comp-icon">
-                            <i class={`fas ${comp.icon}`}></i>
+                          )}
                         </div>
-                        <h3>{comp.area}</h3>
-                        <div class="comp-skills">
-                            {comp.skills.map((skill) => (
-                                <span class="skill-tag">{skill}</span>
-                            ))}
+                      );
+                    })}
+                  </div>
+                  <div class="card-tech">
+                    {bim.techIcons.map((icon) => {
+                      const iconClass = icon.startsWith("fas") ? "" : icon;
+                      const techId = iconToTechId[iconClass];
+                      const hasTech = !!techId && !!technologies[techId];
+                      return hasTech ? (
+                        <button
+                          type="button"
+                          class="tech-icon-btn"
+                          data-tech-id={techId}
+                          title={technologies[techId]?.nombre}
+                          data-premium-tooltip={getTechTooltip(techId)}
+                        >
+                          <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                        </button>
+                      ) : (
+                        <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Año 2 -->
+        <div class="year-section">
+          <div class="year-header">
+            <span class="year-badge">Año 2</span>
+            <span class="year-title">Desarrollo de Software</span>
+          </div>
+          <div class="bimestres-grid">
+            {
+              bimestresYear2.map((bim) => (
+                <div
+                  class={`bimestre-card ${bim.featured ? "featured" : ""}`}
+                  data-bimestre={bim.number}
+                  data-premium-tooltip={getBimestreTooltip(
+                    bim.number,
+                    bim.title,
+                    bim.subjects,
+                    false,
+                  )}
+                >
+                  <div class="card-header">
+                    <span class="bim-number">B{bim.number}</span>
+                    <span class="bim-title">{bim.title}</span>
+                    {bim.featured && <span class="featured-badge">Salida Intermedia</span>}
+                  </div>
+                  <div class="card-subjects">
+                    {bim.subjects.map((subject) => {
+                      const subjectId = nombreCortoToId[subject.name];
+                      const hasData = !!subjectId;
+                      const practiceIds = subjectId ? subjectToBestPractices[subjectId] || [] : [];
+                      const practices = practiceIds
+                        .map((id) => bestPractices[id])
+                        .filter(Boolean)
+                        .slice(0, 4);
+                      const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
+                      return (
+                        <div class="subject-wrapper">
+                          <button
+                            type="button"
+                            class="subject-chip clickable"
+                            data-subject-id={subjectId}
+                            data-subject-name={subject.name}
+                            aria-label={`Ver detalles de ${subject.name}`}
+                            data-premium-tooltip={subjectTooltip}
+                          >
+                            {subject.iconType === "fontawesome" ? (
+                              <i class={subject.icon} />
+                            ) : (
+                              <i class={`devicon-${subject.icon}`} />
+                            )}
+                            <span>{subject.name}</span>
+                            <i class="fas fa-chevron-right chip-arrow" />
+                          </button>
+                          {practices.length > 0 && (
+                            <div class="subject-best-practices">
+                              {practices.map((bp) => (
+                                <button
+                                  type="button"
+                                  class={`bp-icon-btn ${bp.color}`}
+                                  data-bp-id={bp.id}
+                                  title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
+                                  aria-label={`Ver ${bp.nombre}`}
+                                  data-premium-tooltip={getBestPracticeTooltip(bp)}
+                                >
+                                  <i class={bp.icon} />
+                                </button>
+                              ))}
+                              {practiceIds.length > 4 && (
+                                <span class="bp-more">+{practiceIds.length - 4}</span>
+                              )}
+                            </div>
+                          )}
                         </div>
-                    </div>
+                      );
+                    })}
+                  </div>
+                  <div class="card-tech">
+                    {bim.techIcons.map((icon) => {
+                      const iconClass = icon.startsWith("fas") ? "" : icon;
+                      const techId = iconToTechId[iconClass];
+                      const hasTech = !!techId && !!technologies[techId];
+                      return hasTech ? (
+                        <button
+                          type="button"
+                          class="tech-icon-btn"
+                          data-tech-id={techId}
+                          title={technologies[techId]?.nombre}
+                          data-premium-tooltip={getTechTooltip(techId)}
+                        >
+                          <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                        </button>
+                      ) : (
+                        <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Título APC -->
+        <div class="milestone-banner cyan">
+          <div class="milestone-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="milestone-content">
+            <h3>Título: {programaAPC.titulo}</h3>
+            <p>Completar los 10 bimestres del programa técnico</p>
+          </div>
+          <div class="milestone-badge">
+            <span>20 meses</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programa IDS Section -->
+    <section id="programa-ids" class="program-section">
+      <div class="section-header">
+        <div class="program-badge purple">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="program-title">
+          <h2>{programaIDS.nombre}</h2>
+          <p class="program-subtitle">Continuación del programa técnico hacia título profesional</p>
+          <div class="program-meta">
+            <span class="meta-item"><i class="fas fa-clock"></i> {programaIDS.duracion}</span>
+            <span class="meta-item"
+              ><i class="fas fa-calendar-alt"></i>
+              {programaIDS.bimestres} bimestres adicionales</span
+            >
+            <span class="meta-item"><i class="fas fa-building"></i> {programaIDS.modalidad}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline IDS -->
+      <div class="curriculum-timeline">
+        <!-- Año 3 -->
+        <div class="year-section">
+          <div class="year-header">
+            <span class="year-badge purple">Año 3</span>
+            <span class="year-title">Desarrollo Fullstack & Cloud</span>
+          </div>
+          <div class="bimestres-grid">
+            {
+              bimestresYear3.map((bim) => (
+                <div
+                  class="bimestre-card ids"
+                  data-bimestre={bim.number}
+                  data-premium-tooltip={getBimestreTooltip(
+                    bim.number,
+                    bim.title,
+                    bim.subjects,
+                    true,
+                  )}
+                >
+                  <div class="card-header">
+                    <span class="bim-number">B{bim.number}</span>
+                    <span class="bim-title">{bim.title}</span>
+                  </div>
+                  <div class="card-subjects">
+                    {bim.subjects.map((subject) => {
+                      const subjectId = nombreCortoToId[subject.name];
+                      const hasData = !!subjectId;
+                      const practiceIds = subjectId ? subjectToBestPractices[subjectId] || [] : [];
+                      const practices = practiceIds
+                        .map((id) => bestPractices[id])
+                        .filter(Boolean)
+                        .slice(0, 4);
+                      const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
+                      return (
+                        <div class="subject-wrapper">
+                          <button
+                            type="button"
+                            class="subject-chip clickable"
+                            data-subject-id={subjectId}
+                            data-subject-name={subject.name}
+                            aria-label={`Ver detalles de ${subject.name}`}
+                            data-premium-tooltip={subjectTooltip}
+                          >
+                            {subject.iconType === "fontawesome" ? (
+                              <i class={subject.icon} />
+                            ) : (
+                              <i class={`devicon-${subject.icon}`} />
+                            )}
+                            <span>{subject.name}</span>
+                            <i class="fas fa-chevron-right chip-arrow" />
+                          </button>
+                          {practices.length > 0 && (
+                            <div class="subject-best-practices">
+                              {practices.map((bp) => (
+                                <button
+                                  type="button"
+                                  class={`bp-icon-btn ${bp.color}`}
+                                  data-bp-id={bp.id}
+                                  title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
+                                  aria-label={`Ver ${bp.nombre}`}
+                                  data-premium-tooltip={getBestPracticeTooltip(bp)}
+                                >
+                                  <i class={bp.icon} />
+                                </button>
+                              ))}
+                              {practiceIds.length > 4 && (
+                                <span class="bp-more">+{practiceIds.length - 4}</span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div class="card-tech">
+                    {bim.techIcons.map((icon) => {
+                      const iconClass = icon.startsWith("fas") ? "" : icon;
+                      const techId = iconToTechId[iconClass];
+                      const hasTech = !!techId && !!technologies[techId];
+                      return hasTech ? (
+                        <button
+                          type="button"
+                          class="tech-icon-btn"
+                          data-tech-id={techId}
+                          title={technologies[techId]?.nombre}
+                          data-premium-tooltip={getTechTooltip(techId)}
+                        >
+                          <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                        </button>
+                      ) : (
+                        <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Año 4 -->
+        <div class="year-section">
+          <div class="year-header">
+            <span class="year-badge purple">Año 4</span>
+            <span class="year-title">Arquitectura & Gestión de Proyectos</span>
+          </div>
+          <div class="bimestres-grid">
+            {
+              bimestresYear4.map((bim) => (
+                <div
+                  class="bimestre-card ids"
+                  data-bimestre={bim.number}
+                  data-premium-tooltip={getBimestreTooltip(
+                    bim.number,
+                    bim.title,
+                    bim.subjects,
+                    true,
+                  )}
+                >
+                  <div class="card-header">
+                    <span class="bim-number">B{bim.number}</span>
+                    <span class="bim-title">{bim.title}</span>
+                  </div>
+                  <div class="card-subjects">
+                    {bim.subjects.map((subject) => {
+                      const subjectId = nombreCortoToId[subject.name];
+                      const hasData = !!subjectId;
+                      const practiceIds = subjectId ? subjectToBestPractices[subjectId] || [] : [];
+                      const practices = practiceIds
+                        .map((id) => bestPractices[id])
+                        .filter(Boolean)
+                        .slice(0, 4);
+                      const subjectTooltip = getSubjectTooltip(subject.name, subjectId);
+                      return (
+                        <div class="subject-wrapper">
+                          <button
+                            type="button"
+                            class="subject-chip clickable"
+                            data-subject-id={subjectId}
+                            data-subject-name={subject.name}
+                            aria-label={`Ver detalles de ${subject.name}`}
+                            data-premium-tooltip={subjectTooltip}
+                          >
+                            {subject.iconType === "fontawesome" ? (
+                              <i class={subject.icon} />
+                            ) : (
+                              <i class={`devicon-${subject.icon}`} />
+                            )}
+                            <span>{subject.name}</span>
+                            <i class="fas fa-chevron-right chip-arrow" />
+                          </button>
+                          {practices.length > 0 && (
+                            <div class="subject-best-practices">
+                              {practices.map((bp) => (
+                                <button
+                                  type="button"
+                                  class={`bp-icon-btn ${bp.color}`}
+                                  data-bp-id={bp.id}
+                                  title={`${bp.nombreCorto}: ${bp.descripcionCorta}`}
+                                  aria-label={`Ver ${bp.nombre}`}
+                                  data-premium-tooltip={getBestPracticeTooltip(bp)}
+                                >
+                                  <i class={bp.icon} />
+                                </button>
+                              ))}
+                              {practiceIds.length > 4 && (
+                                <span class="bp-more">+{practiceIds.length - 4}</span>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div class="card-tech">
+                    {bim.techIcons.map((icon) => {
+                      const iconClass = icon.startsWith("fas") ? "" : icon;
+                      const techId = iconToTechId[iconClass];
+                      const hasTech = !!techId && !!technologies[techId];
+                      return hasTech ? (
+                        <button
+                          type="button"
+                          class="tech-icon-btn"
+                          data-tech-id={techId}
+                          title={technologies[techId]?.nombre}
+                          data-premium-tooltip={getTechTooltip(techId)}
+                        >
+                          <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                        </button>
+                      ) : (
+                        <i class={icon.startsWith("fas") ? icon : `devicon-${icon}`} />
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Título IDS -->
+        <div class="milestone-banner purple">
+          <div class="milestone-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="milestone-content">
+            <h3>Título: {programaIDS.titulo}</h3>
+            <p>Completar los 17 bimestres del programa completo</p>
+          </div>
+          <div class="milestone-badge">
+            <span>34 meses total</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Competencias Section -->
+    <section id="competencias" class="competencias-section">
+      <div class="section-header centered">
+        <h2>Competencias del Perfil de Egreso</h2>
+        <p>Habilidades técnicas que desarrollarás durante el programa</p>
+      </div>
+
+      <div class="competencias-grid">
+        {
+          competencias.map((comp) => (
+            <div class="competencia-card">
+              <div class="comp-icon">
+                <i class={`fas ${comp.icon}`} />
+              </div>
+              <h3>{comp.area}</h3>
+              <div class="comp-skills">
+                {comp.skills.map((skill) => (
+                  <span class="skill-tag">{skill}</span>
                 ))}
+              </div>
             </div>
-        </section>
+          ))
+        }
+      </div>
+    </section>
 
-        <!-- Descargas Section -->
-        <section id="descargas" class="downloads-section">
-            <div class="section-header centered">
-                <h2>Descargar Malla Curricular</h2>
-                <p>Documentos oficiales del plan de estudios</p>
-            </div>
+    <!-- Descargas Section -->
+    <section id="descargas" class="downloads-section">
+      <div class="section-header centered">
+        <h2>Descargar Malla Curricular</h2>
+        <p>Documentos oficiales del plan de estudios</p>
+      </div>
 
-            <div class="downloads-grid">
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-tecnico-2025.jpg"
-                   target="_blank" class="download-card">
-                    <div class="download-icon cyan">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <div class="download-info">
-                        <h3>Malla APC 2025</h3>
-                        <p>Analista Programador Computacional</p>
-                        <span class="file-type">JPG • Presencial</span>
-                    </div>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
+      <div class="downloads-grid">
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-tecnico-2025.jpg"
+          target="_blank"
+          class="download-card"
+        >
+          <div class="download-icon cyan">
+            <i class="fas fa-file-image"></i>
+          </div>
+          <div class="download-info">
+            <h3>Malla APC 2025</h3>
+            <p>Analista Programador Computacional</p>
+            <span class="file-type">JPG • Presencial</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
 
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-ing-software-2025.jpg"
-                   target="_blank" class="download-card">
-                    <div class="download-icon purple">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <div class="download-info">
-                        <h3>Malla IDS 2025</h3>
-                        <p>Ingeniería en Desarrollo de Software</p>
-                        <span class="file-type">JPG • Presencial</span>
-                    </div>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-ing-software-2025.jpg"
+          target="_blank"
+          class="download-card"
+        >
+          <div class="download-icon purple">
+            <i class="fas fa-file-image"></i>
+          </div>
+          <div class="download-info">
+            <h3>Malla IDS 2025</h3>
+            <p>Ingeniería en Desarrollo de Software</p>
+            <span class="file-type">JPG • Presencial</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
 
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-programador-2025.jpg"
-                   target="_blank" class="download-card">
-                    <div class="download-icon green">
-                        <i class="fas fa-file-image"></i>
-                    </div>
-                    <div class="download-info">
-                        <h3>Malla Técnico 2025</h3>
-                        <p>Técnico en Programación</p>
-                        <span class="file-type">JPG • Online</span>
-                    </div>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/blob/main/_Recursos-Adicionales/mallas/malla-programador-2025.jpg"
+          target="_blank"
+          class="download-card"
+        >
+          <div class="download-icon green">
+            <i class="fas fa-file-image"></i>
+          </div>
+          <div class="download-info">
+            <h3>Malla Técnico 2025</h3>
+            <p>Técnico en Programación</p>
+            <span class="file-type">JPG • Online</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
 
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/_Recursos-Adicionales/mallas"
-                   target="_blank" class="download-card">
-                    <div class="download-icon amber">
-                        <i class="fas fa-folder-open"></i>
-                    </div>
-                    <div class="download-info">
-                        <h3>Todas las Mallas</h3>
-                        <p>Ver carpeta completa en GitHub</p>
-                        <span class="file-type">10 archivos</span>
-                    </div>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </section>
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/_Recursos-Adicionales/mallas"
+          target="_blank"
+          class="download-card"
+        >
+          <div class="download-icon amber">
+            <i class="fas fa-folder-open"></i>
+          </div>
+          <div class="download-info">
+            <h3>Todas las Mallas</h3>
+            <p>Ver carpeta completa en GitHub</p>
+            <span class="file-type">10 archivos</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>¿Listo para comenzar tu carrera en tecnología?</h2>
-                <p>Explora las trayectorias profesionales disponibles después de graduarte</p>
-                <div class="cta-buttons">
-                    <a href={`${base}/trayectorias`} class="cta-btn primary">
-                        <i class="fas fa-route"></i>
-                        Ver Trayectorias Profesionales
-                    </a>
-                    <a href={`${base}/proyectos`} class="cta-btn secondary">
-                        <i class="fas fa-project-diagram"></i>
-                        Ver Proyectos de Práctica
-                    </a>
-                </div>
-            </div>
-        </section>
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>¿Listo para comenzar tu carrera en tecnología?</h2>
+        <p>Explora las trayectorias profesionales disponibles después de graduarte</p>
+        <div class="cta-buttons">
+          <a href={`${base}/trayectorias`} class="cta-btn primary">
+            <i class="fas fa-route"></i>
+            Ver Trayectorias Profesionales
+          </a>
+          <a href={`${base}/proyectos`} class="cta-btn secondary">
+            <i class="fas fa-project-diagram"></i>
+            Ver Proyectos de Práctica
+          </a>
+        </div>
+      </div>
+    </section>
 
-        <!-- Subject Drawer Component -->
-        <SubjectDrawer />
+    <!-- Subject Drawer Component -->
+    <SubjectDrawer />
 
-        <!-- Best Practice Drawer Component -->
-        <BestPracticeDrawer />
+    <!-- Best Practice Drawer Component -->
+    <BestPracticeDrawer />
 
-        <!-- Tech Drawer Component -->
-        <TechDrawer />
+    <!-- Tech Drawer Component -->
+    <TechDrawer />
 
-        <!-- AI Tutor Side Panel (Coursera Coach Style) -->
-        <AITutorSidePanel />
+    <!-- AI Tutor Side Panel (Coursera Coach Style) -->
+    <AITutorSidePanel />
 
-        <!-- Merged Sidebar Panel (appears when sidebars collide) -->
-        <MergedSidebarPanel />
-    </main>
-    <Footer />
+    <!-- Merged Sidebar Panel (appears when sidebars collide) -->
+    <MergedSidebarPanel />
+  </main>
+  <Footer />
 </Layout>
 
 <style>
-    /* =============================================
+  /* =============================================
        MALLA CURRICULAR PAGE - Premium Design
        ============================================= */
 
-    /* Hide scroll-to-bottom button to avoid overlap with AI Tutor expand button */
-    :global(#scroll-to-bottom) {
-        display: none !important;
-    }
+  /* Hide scroll-to-bottom button to avoid overlap with AI Tutor expand button */
+  :global(#scroll-to-bottom) {
+    display: none !important;
+  }
 
-    .malla-page {
-        min-height: 100vh;
-        padding-top: 80px;
-        /* No margin adjustments - sidebars are pure overlays */
-    }
+  .malla-page {
+    min-height: 100vh;
+    padding-top: 80px;
+    /* No margin adjustments - sidebars are pure overlays */
+  }
 
-    /* Quick-nav stays full width - sidebars are overlays */
-    .quick-nav {
-        left: 0;
-        width: 100%;
-    }
+  /* Quick-nav stays full width - sidebars are overlays */
+  .quick-nav {
+    left: 0;
+    width: 100%;
+  }
 
-    /* Hero Section */
+  /* Hero Section */
+  .malla-hero {
+    position: relative;
+    padding: 4rem 2rem 6rem;
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 30px;
+    color: #22d3ee;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .hero-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .title-main {
+    display: block;
+    font-family: "Sora", sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+
+  .title-accent {
+    display: block;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 500;
+    color: #22d3ee;
+    margin-top: 0.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-value {
+    font-family: "Sora", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.3), transparent);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+  }
+
+  .cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+  }
+
+  .cta-btn.secondary {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+  }
+
+  .cta-btn.secondary:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+
+  /* Program Cards Preview */
+  .program-cards-preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .preview-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .preview-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .preview-card.apc {
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+
+  .preview-card.apc:hover {
+    background: rgba(6, 182, 212, 0.1);
+  }
+
+  .preview-card.ids {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .preview-card.ids:hover {
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+  }
+
+  .preview-card.apc .card-icon {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+
+  .preview-card.ids .card-icon {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .card-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .card-info p {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  .preview-connector {
+    color: #64748b;
+    font-size: 1.25rem;
+  }
+
+  /* Quick Navigation */
+  .quick-nav {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 70px;
+    z-index: 100;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-pill:hover {
+    transform: translateY(-1px);
+  }
+
+  .nav-pill.cyan:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #22d3ee;
+  }
+
+  .nav-pill.purple:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+  }
+
+  .nav-pill.green:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34d399;
+  }
+
+  .nav-pill.amber:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #fbbf24;
+  }
+
+  /* Program Sections */
+  .program-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    scroll-margin-top: 140px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-header.centered {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .program-badge {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .program-badge.cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+
+  .program-badge.purple {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .program-title h2 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .program-subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .program-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+  }
+
+  .meta-item i {
+    color: #64748b;
+  }
+
+  /* Timeline */
+  .curriculum-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .year-section {
+    position: relative;
+  }
+
+  .year-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .year-badge {
+    padding: 0.4rem 1rem;
+    background: rgba(6, 182, 212, 0.2);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 20px;
+    color: #22d3ee;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .year-badge.purple {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+  }
+
+  .year-title {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+  .bimestres-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  /* Bimestre Cards */
+  .bimestre-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
+
+  .bimestre-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(6, 182, 212, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .bimestre-card.ids:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .bimestre-card.featured {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.05);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .bim-number {
+    padding: 0.3rem 0.6rem;
+    background: rgba(6, 182, 212, 0.2);
+    border-radius: 6px;
+    color: #22d3ee;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .bimestre-card.ids .bim-number {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .bim-title {
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 0.95rem;
+  }
+
+  .featured-badge {
+    padding: 0.2rem 0.5rem;
+    background: rgba(245, 158, 11, 0.2);
+    border-radius: 4px;
+    color: #fbbf24;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .card-subjects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .subject-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    cursor: default;
+  }
+
+  /* Clickable subject chips (have data) */
+  button.subject-chip.clickable {
+    cursor: pointer;
+    justify-content: space-between;
+  }
+
+  button.subject-chip.clickable:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #22d3ee;
+    transform: translateX(2px);
+  }
+
+  button.subject-chip.clickable:hover i:first-child {
+    color: #22d3ee;
+  }
+
+  .chip-arrow {
+    font-size: 0.7rem !important;
+    color: #475569 !important;
+    margin-left: auto;
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
+  }
+
+  button.subject-chip.clickable:hover .chip-arrow {
+    transform: translateX(3px);
+    color: #22d3ee !important;
+  }
+
+  a.subject-chip:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #22d3ee;
+  }
+
+  .subject-chip i:first-child {
+    font-size: 1rem;
+    color: #64748b;
+  }
+
+  .card-tech {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .card-tech i {
+    font-size: 1.25rem;
+    color: #64748b;
+    transition: color 0.2s ease;
+  }
+
+  .card-tech i:hover {
+    color: #94a3b8;
+  }
+
+  /* Subject Wrapper - Contains chip + best practices icons */
+  .subject-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .subject-best-practices {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding-left: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .bp-icon-btn {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+  }
+
+  .bp-icon-btn i {
+    font-size: 0.65rem;
+    color: #64748b;
+    transition: color 0.2s ease;
+  }
+
+  .bp-icon-btn:hover {
+    transform: scale(1.15);
+  }
+
+  /* Color variants for BP icons */
+  .bp-icon-btn.cyan {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: rgba(6, 182, 212, 0.1);
+  }
+  .bp-icon-btn.cyan i {
+    color: #22d3ee;
+  }
+  .bp-icon-btn.cyan:hover {
+    background: rgba(6, 182, 212, 0.25);
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+  }
+
+  .bp-icon-btn.purple {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(139, 92, 246, 0.1);
+  }
+  .bp-icon-btn.purple i {
+    color: #a78bfa;
+  }
+  .bp-icon-btn.purple:hover {
+    background: rgba(139, 92, 246, 0.25);
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
+  }
+
+  .bp-icon-btn.green {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.1);
+  }
+  .bp-icon-btn.green i {
+    color: #4ade80;
+  }
+  .bp-icon-btn.green:hover {
+    background: rgba(34, 197, 94, 0.25);
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+  }
+
+  .bp-icon-btn.amber {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.1);
+  }
+  .bp-icon-btn.amber i {
+    color: #fbbf24;
+  }
+  .bp-icon-btn.amber:hover {
+    background: rgba(245, 158, 11, 0.25);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  }
+
+  .bp-icon-btn.rose {
+    border-color: rgba(244, 63, 94, 0.3);
+    background: rgba(244, 63, 94, 0.1);
+  }
+  .bp-icon-btn.rose i {
+    color: #fb7185;
+  }
+  .bp-icon-btn.rose:hover {
+    background: rgba(244, 63, 94, 0.25);
+    box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+  }
+
+  .bp-more {
+    font-size: 0.6rem;
+    color: #64748b;
+    font-weight: 600;
+    padding: 0 0.25rem;
+  }
+
+  /* Tech Icon Buttons */
+  .tech-icon-btn {
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+  }
+
+  .tech-icon-btn i {
+    font-size: 1.25rem;
+    color: #64748b;
+    transition: all 0.2s ease;
+  }
+
+  .tech-icon-btn:hover {
+    transform: scale(1.2);
+  }
+
+  .tech-icon-btn:hover i {
+    color: #22d3ee;
+  }
+
+  /* Milestone Banner */
+  .milestone-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    margin-top: 2rem;
+  }
+
+  .milestone-banner.cyan {
+    border-color: rgba(6, 182, 212, 0.3);
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), transparent);
+  }
+
+  .milestone-banner.purple {
+    border-color: rgba(139, 92, 246, 0.3);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
+  }
+
+  .milestone-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .milestone-banner.cyan .milestone-icon {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+
+  .milestone-banner.purple .milestone-icon {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .milestone-content {
+    flex: 1;
+  }
+
+  .milestone-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .milestone-content p {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  .milestone-badge {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+  }
+
+  .milestone-badge span {
+    font-weight: 600;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  /* Competencias Section */
+  .competencias-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-margin-top: 140px;
+  }
+
+  .competencias-section h2 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .competencias-section > .section-header p {
+    color: #64748b;
+    margin-bottom: 2rem;
+  }
+
+  .competencias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .competencia-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .competencia-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(6, 182, 212, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .comp-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 182, 212, 0.1);
+    border-radius: 14px;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    color: #22d3ee;
+  }
+
+  .competencia-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.75rem;
+  }
+
+  .comp-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .skill-tag {
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 0.75rem;
+  }
+
+  /* Downloads Section */
+  .downloads-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-margin-top: 140px;
+  }
+
+  .downloads-section h2 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .downloads-section > .section-header p {
+    color: #64748b;
+    margin-bottom: 2rem;
+  }
+
+  .downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .download-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .download-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+  }
+
+  .download-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .download-icon.cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+  }
+
+  .download-icon.purple {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .download-icon.green {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+  }
+
+  .download-icon.amber {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+  }
+
+  .download-info {
+    flex: 1;
+  }
+
+  .download-info h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .download-info p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .file-type {
+    color: #475569;
+    font-size: 0.75rem;
+  }
+
+  .download-card > i:last-child {
+    color: #475569;
+    font-size: 0.9rem;
+  }
+
+  .download-card:hover > i:last-child {
+    color: #94a3b8;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* =============================================
+       LIGHT MODE
+       ============================================= */
+  :global([data-theme="light"]) .malla-hero {
+    background: linear-gradient(to bottom, #f8fafc, #ffffff);
+  }
+
+  :global([data-theme="light"]) .hero-gradient {
+    background:
+      radial-gradient(ellipse at top, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+  }
+
+  :global([data-theme="light"]) .hero-grid {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+
+  :global([data-theme="light"]) .hero-badge {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .title-main {
+    background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  :global([data-theme="light"]) .title-accent {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .hero-description {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .stat-label {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .cta-btn.secondary {
+    background: rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .preview-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  :global([data-theme="light"]) .card-info h3 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .quick-nav {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-pill {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .program-title h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .year-badge {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .year-badge.purple {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .bimestre-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  :global([data-theme="light"]) .bimestre-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .bim-number {
+    background: rgba(6, 182, 212, 0.1);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .bimestre-card.ids .bim-number {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .bim-title {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .subject-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) a.subject-chip:hover {
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) button.subject-chip.clickable:hover {
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.2);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) button.subject-chip.clickable:hover i:first-child {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .chip-arrow {
+    color: #94a3b8 !important;
+  }
+
+  :global([data-theme="light"]) button.subject-chip.clickable:hover .chip-arrow {
+    color: #0891b2 !important;
+  }
+
+  /* Light mode for BP icons */
+  :global([data-theme="light"]) .bp-icon-btn {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .bp-icon-btn.cyan {
+    background: rgba(6, 182, 212, 0.08);
+    border-color: rgba(6, 182, 212, 0.2);
+  }
+  :global([data-theme="light"]) .bp-icon-btn.cyan i {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .bp-icon-btn.purple {
+    background: rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+  :global([data-theme="light"]) .bp-icon-btn.purple i {
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .bp-icon-btn.green {
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.2);
+  }
+  :global([data-theme="light"]) .bp-icon-btn.green i {
+    color: #16a34a;
+  }
+
+  :global([data-theme="light"]) .bp-icon-btn.amber {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.2);
+  }
+  :global([data-theme="light"]) .bp-icon-btn.amber i {
+    color: #d97706;
+  }
+
+  :global([data-theme="light"]) .bp-icon-btn.rose {
+    background: rgba(244, 63, 94, 0.08);
+    border-color: rgba(244, 63, 94, 0.2);
+  }
+  :global([data-theme="light"]) .bp-icon-btn.rose i {
+    color: #e11d48;
+  }
+
+  :global([data-theme="light"]) .bp-more {
+    color: #64748b;
+  }
+
+  /* Light mode for Tech Icon Buttons */
+  :global([data-theme="light"]) .tech-icon-btn i {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .tech-icon-btn:hover i {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .milestone-banner {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .milestone-banner.cyan {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), transparent);
+    border-color: rgba(6, 182, 212, 0.2);
+  }
+
+  :global([data-theme="light"]) .milestone-banner.purple {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), transparent);
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+
+  :global([data-theme="light"]) .milestone-content h3 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .competencia-card,
+  :global([data-theme="light"]) .download-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .competencia-card:hover,
+  :global([data-theme="light"]) .download-card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .competencia-card h3,
+  :global([data-theme="light"]) .download-info h3 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .competencias-section h2,
+  :global([data-theme="light"]) .downloads-section h2,
+  :global([data-theme="light"]) .cta-content h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .cta-section {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.03), rgba(139, 92, 246, 0.03));
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* =============================================
+       RESPONSIVE
+       ============================================= */
+  @media (max-width: 768px) {
     .malla-hero {
-        position: relative;
-        padding: 4rem 2rem 6rem;
-        overflow: hidden;
-        min-height: 70vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hero-background {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-    }
-
-    .hero-gradient {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(ellipse at top, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-                    radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
-    }
-
-    .hero-grid {
-        position: absolute;
-        inset: 0;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        background-size: 50px 50px;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 800px;
-        text-align: center;
-    }
-
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(6, 182, 212, 0.1);
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 30px;
-        color: #22d3ee;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .hero-title {
-        margin-bottom: 1.5rem;
-    }
-
-    .title-main {
-        display: block;
-        font-family: 'Sora', sans-serif;
-        font-size: clamp(2.5rem, 6vw, 4rem);
-        font-weight: 800;
-        background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1.1;
-    }
-
-    .title-accent {
-        display: block;
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
-        font-weight: 500;
-        color: #22d3ee;
-        margin-top: 0.5rem;
-    }
-
-    .hero-description {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        line-height: 1.7;
-        margin-bottom: 2rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+      padding: 3rem 1.5rem 4rem;
+      min-height: auto;
     }
 
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2.5rem;
-        flex-wrap: wrap;
-    }
-
-    .stat-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .stat-value {
-        font-family: 'Sora', sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #22d3ee, #a78bfa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .stat-label {
-        font-size: 0.85rem;
-        color: #64748b;
-        font-weight: 500;
+      gap: 1rem;
     }
 
     .stat-divider {
-        width: 1px;
-        height: 40px;
-        background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, 0.3), transparent);
+      display: none;
     }
 
-    .hero-ctas {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.875rem 1.5rem;
-        border-radius: 12px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #06b6d4, #0891b2);
-        color: #ffffff;
-        box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-    }
-
-    .cta-btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
-    }
-
-    .cta-btn.secondary {
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        color: #a78bfa;
-    }
-
-    .cta-btn.secondary:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.5);
-    }
-
-    /* Program Cards Preview */
     .program-cards-preview {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-top: 3rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    .preview-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.5rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-    }
-
-    .preview-card:hover {
-        transform: translateY(-2px);
-    }
-
-    .preview-card.apc {
-        border-color: rgba(6, 182, 212, 0.3);
-    }
-
-    .preview-card.apc:hover {
-        background: rgba(6, 182, 212, 0.1);
-    }
-
-    .preview-card.ids {
-        border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .preview-card.ids:hover {
-        background: rgba(139, 92, 246, 0.1);
-    }
-
-    .card-icon {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        font-size: 1.25rem;
-    }
-
-    .preview-card.apc .card-icon {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-    }
-
-    .preview-card.ids .card-icon {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .card-info h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .card-info p {
-        font-size: 0.8rem;
-        color: #64748b;
+      flex-direction: column;
     }
 
     .preview-connector {
-        color: #64748b;
-        font-size: 1.25rem;
+      transform: rotate(90deg);
     }
 
-    /* Quick Navigation */
     .quick-nav {
-        display: flex;
-        justify-content: center;
-        gap: 0.75rem;
-        padding: 1.5rem 2rem;
-        background: rgba(15, 23, 42, 0.8);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 70px;
-        z-index: 100;
-        flex-wrap: wrap;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      top: 60px;
+      padding: 1rem;
+      gap: 0.5rem;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
     }
 
     .nav-pill {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 1.25rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 30px;
-        color: #94a3b8;
-        text-decoration: none;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .nav-pill:hover {
-        transform: translateY(-1px);
-    }
-
-    .nav-pill.cyan:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.3);
-        color: #22d3ee;
-    }
-
-    .nav-pill.purple:hover {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #a78bfa;
-    }
-
-    .nav-pill.green:hover {
-        background: rgba(16, 185, 129, 0.1);
-        border-color: rgba(16, 185, 129, 0.3);
-        color: #34d399;
-    }
-
-    .nav-pill.amber:hover {
-        background: rgba(245, 158, 11, 0.1);
-        border-color: rgba(245, 158, 11, 0.3);
-        color: #fbbf24;
-    }
-
-    /* Program Sections */
-    .program-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-        scroll-margin-top: 140px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .section-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .section-header.centered {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .program-badge {
-        width: 64px;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 16px;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    .program-badge.cyan {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-    }
-
-    .program-badge.purple {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .program-title h2 {
-        font-family: 'Sora', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .program-subtitle {
-        color: #64748b;
-        font-size: 0.95rem;
-        margin-bottom: 0.75rem;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     .program-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .meta-item {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        color: #94a3b8;
-        font-size: 0.85rem;
-    }
-
-    .meta-item i {
-        color: #64748b;
-    }
-
-    /* Timeline */
-    .curriculum-timeline {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
-
-    .year-section {
-        position: relative;
-    }
-
-    .year-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .year-badge {
-        padding: 0.4rem 1rem;
-        background: rgba(6, 182, 212, 0.2);
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        border-radius: 20px;
-        color: #22d3ee;
-        font-size: 0.85rem;
-        font-weight: 600;
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .year-badge.purple {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #a78bfa;
-    }
-
-    .year-title {
-        color: #94a3b8;
-        font-size: 1rem;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
     .bimestres-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.25rem;
+      grid-template-columns: 1fr;
     }
 
-    /* Bimestre Cards */
-    .bimestre-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 1.25rem;
-        transition: all 0.3s ease;
-    }
-
-    .bimestre-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(6, 182, 212, 0.3);
-        transform: translateY(-2px);
-    }
-
-    .bimestre-card.ids:hover {
-        border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .bimestre-card.featured {
-        border-color: rgba(245, 158, 11, 0.3);
-        background: rgba(245, 158, 11, 0.05);
-    }
-
-    .card-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .bim-number {
-        padding: 0.3rem 0.6rem;
-        background: rgba(6, 182, 212, 0.2);
-        border-radius: 6px;
-        color: #22d3ee;
-        font-size: 0.75rem;
-        font-weight: 700;
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .bimestre-card.ids .bim-number {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .bim-title {
-        font-weight: 600;
-        color: #f8fafc;
-        font-size: 0.95rem;
-    }
-
-    .featured-badge {
-        padding: 0.2rem 0.5rem;
-        background: rgba(245, 158, 11, 0.2);
-        border-radius: 4px;
-        color: #fbbf24;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-
-    .card-subjects {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .subject-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 0.75rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        color: #94a3b8;
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        font-family: inherit;
-        cursor: default;
-    }
-
-    /* Clickable subject chips (have data) */
-    button.subject-chip.clickable {
-        cursor: pointer;
-        justify-content: space-between;
-    }
-
-    button.subject-chip.clickable:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.3);
-        color: #22d3ee;
-        transform: translateX(2px);
-    }
-
-    button.subject-chip.clickable:hover i:first-child {
-        color: #22d3ee;
-    }
-
-    .chip-arrow {
-        font-size: 0.7rem !important;
-        color: #475569 !important;
-        margin-left: auto;
-        transition: transform 0.2s ease, color 0.2s ease;
-    }
-
-    button.subject-chip.clickable:hover .chip-arrow {
-        transform: translateX(3px);
-        color: #22d3ee !important;
-    }
-
-    a.subject-chip:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.3);
-        color: #22d3ee;
-    }
-
-    .subject-chip i:first-child {
-        font-size: 1rem;
-        color: #64748b;
-    }
-
-    .card-tech {
-        display: flex;
-        gap: 0.5rem;
-        padding-top: 0.75rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .card-tech i {
-        font-size: 1.25rem;
-        color: #64748b;
-        transition: color 0.2s ease;
-    }
-
-    .card-tech i:hover {
-        color: #94a3b8;
-    }
-
-    /* Subject Wrapper - Contains chip + best practices icons */
-    .subject-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-    }
-
-    .subject-best-practices {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding-left: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .bp-icon-btn {
-        width: 22px;
-        height: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.03);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        padding: 0;
-    }
-
-    .bp-icon-btn i {
-        font-size: 0.65rem;
-        color: #64748b;
-        transition: color 0.2s ease;
-    }
-
-    .bp-icon-btn:hover {
-        transform: scale(1.15);
-    }
-
-    /* Color variants for BP icons */
-    .bp-icon-btn.cyan {
-        border-color: rgba(6, 182, 212, 0.3);
-        background: rgba(6, 182, 212, 0.1);
-    }
-    .bp-icon-btn.cyan i { color: #22d3ee; }
-    .bp-icon-btn.cyan:hover {
-        background: rgba(6, 182, 212, 0.25);
-        box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
-    }
-
-    .bp-icon-btn.purple {
-        border-color: rgba(139, 92, 246, 0.3);
-        background: rgba(139, 92, 246, 0.1);
-    }
-    .bp-icon-btn.purple i { color: #a78bfa; }
-    .bp-icon-btn.purple:hover {
-        background: rgba(139, 92, 246, 0.25);
-        box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
-    }
-
-    .bp-icon-btn.green {
-        border-color: rgba(34, 197, 94, 0.3);
-        background: rgba(34, 197, 94, 0.1);
-    }
-    .bp-icon-btn.green i { color: #4ade80; }
-    .bp-icon-btn.green:hover {
-        background: rgba(34, 197, 94, 0.25);
-        box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
-    }
-
-    .bp-icon-btn.amber {
-        border-color: rgba(245, 158, 11, 0.3);
-        background: rgba(245, 158, 11, 0.1);
-    }
-    .bp-icon-btn.amber i { color: #fbbf24; }
-    .bp-icon-btn.amber:hover {
-        background: rgba(245, 158, 11, 0.25);
-        box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
-    }
-
-    .bp-icon-btn.rose {
-        border-color: rgba(244, 63, 94, 0.3);
-        background: rgba(244, 63, 94, 0.1);
-    }
-    .bp-icon-btn.rose i { color: #fb7185; }
-    .bp-icon-btn.rose:hover {
-        background: rgba(244, 63, 94, 0.25);
-        box-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
-    }
-
-    .bp-more {
-        font-size: 0.6rem;
-        color: #64748b;
-        font-weight: 600;
-        padding: 0 0.25rem;
-    }
-
-    /* Tech Icon Buttons */
-    .tech-icon-btn {
-        padding: 0;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        border-radius: 4px;
-    }
-
-    .tech-icon-btn i {
-        font-size: 1.25rem;
-        color: #64748b;
-        transition: all 0.2s ease;
-    }
-
-    .tech-icon-btn:hover {
-        transform: scale(1.2);
-    }
-
-    .tech-icon-btn:hover i {
-        color: #22d3ee;
-    }
-
-    /* Milestone Banner */
     .milestone-banner {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 1.5rem 2rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        margin-top: 2rem;
-    }
-
-    .milestone-banner.cyan {
-        border-color: rgba(6, 182, 212, 0.3);
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), transparent);
-    }
-
-    .milestone-banner.purple {
-        border-color: rgba(139, 92, 246, 0.3);
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
-    }
-
-    .milestone-icon {
-        width: 56px;
-        height: 56px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 14px;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    .milestone-banner.cyan .milestone-icon {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-    }
-
-    .milestone-banner.purple .milestone-icon {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .milestone-content {
-        flex: 1;
-    }
-
-    .milestone-content h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .milestone-content p {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
-    .milestone-badge {
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-    }
-
-    .milestone-badge span {
-        font-weight: 600;
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    /* Competencias Section */
-    .competencias-section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        scroll-margin-top: 140px;
-    }
-
-    .competencias-section h2 {
-        font-family: 'Sora', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .competencias-section > .section-header p {
-        color: #64748b;
-        margin-bottom: 2rem;
-    }
-
-    .competencias-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.25rem;
-    }
-
-    .competencia-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 1.5rem;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-
-    .competencia-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(6, 182, 212, 0.3);
-        transform: translateY(-2px);
-    }
-
-    .comp-icon {
-        width: 56px;
-        height: 56px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(6, 182, 212, 0.1);
-        border-radius: 14px;
-        margin: 0 auto 1rem;
-        font-size: 1.5rem;
-        color: #22d3ee;
-    }
-
-    .competencia-card h3 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.75rem;
-    }
-
-    .comp-skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        justify-content: center;
-    }
-
-    .skill-tag {
-        padding: 0.3rem 0.6rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        color: #94a3b8;
-        font-size: 0.75rem;
-    }
-
-    /* Downloads Section */
-    .downloads-section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        scroll-margin-top: 140px;
-    }
-
-    .downloads-section h2 {
-        font-family: 'Sora', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .downloads-section > .section-header p {
-        color: #64748b;
-        margin-bottom: 2rem;
-    }
-
-    .downloads-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-    }
-
-    .download-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.25rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 14px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .download-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        transform: translateY(-2px);
-    }
-
-    .download-icon {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        font-size: 1.25rem;
-        flex-shrink: 0;
-    }
-
-    .download-icon.cyan {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-    }
-
-    .download-icon.purple {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .download-icon.green {
-        background: rgba(16, 185, 129, 0.2);
-        color: #34d399;
-    }
-
-    .download-icon.amber {
-        background: rgba(245, 158, 11, 0.2);
-        color: #fbbf24;
-    }
-
-    .download-info {
-        flex: 1;
-    }
-
-    .download-info h3 {
-        font-size: 0.95rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .download-info p {
-        color: #64748b;
-        font-size: 0.85rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .file-type {
-        color: #475569;
-        font-size: 0.75rem;
-    }
-
-    .download-card > i:last-child {
-        color: #475569;
-        font-size: 0.9rem;
-    }
-
-    .download-card:hover > i:last-child {
-        color: #94a3b8;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .cta-content {
-        max-width: 700px;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .cta-content h2 {
-        font-family: 'Sora', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.75rem;
-    }
-
-    .cta-content p {
-        color: #64748b;
-        margin-bottom: 1.5rem;
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
     }
 
     .cta-buttons {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
+      flex-direction: column;
     }
 
-    /* =============================================
-       LIGHT MODE
-       ============================================= */
-    :global([data-theme="light"]) .malla-hero {
-        background: linear-gradient(to bottom, #f8fafc, #ffffff);
+    .cta-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title .title-main {
+      font-size: 2rem;
     }
 
-    :global([data-theme="light"]) .hero-gradient {
-        background: radial-gradient(ellipse at top, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-                    radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+    .hero-title .title-accent {
+      font-size: 1rem;
     }
 
-    :global([data-theme="light"]) .hero-grid {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    .program-title h2 {
+      font-size: 1.4rem;
     }
-
-    :global([data-theme="light"]) .hero-badge {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.2);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .title-main {
-        background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .title-accent {
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .hero-description {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .stat-label {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .cta-btn.secondary {
-        background: rgba(139, 92, 246, 0.08);
-        border-color: rgba(139, 92, 246, 0.2);
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .preview-card {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    :global([data-theme="light"]) .card-info h3 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .quick-nav {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-pill {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .program-title h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .year-badge {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.2);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .year-badge.purple {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.2);
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .bimestre-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    }
-
-    :global([data-theme="light"]) .bimestre-card:hover {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .bim-number {
-        background: rgba(6, 182, 212, 0.1);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .bimestre-card.ids .bim-number {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .bim-title {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .subject-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) a.subject-chip:hover {
-        background: rgba(6, 182, 212, 0.08);
-        border-color: rgba(6, 182, 212, 0.2);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) button.subject-chip.clickable:hover {
-        background: rgba(6, 182, 212, 0.08);
-        border-color: rgba(6, 182, 212, 0.2);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) button.subject-chip.clickable:hover i:first-child {
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .chip-arrow {
-        color: #94a3b8 !important;
-    }
-
-    :global([data-theme="light"]) button.subject-chip.clickable:hover .chip-arrow {
-        color: #0891b2 !important;
-    }
-
-    /* Light mode for BP icons */
-    :global([data-theme="light"]) .bp-icon-btn {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .bp-icon-btn.cyan {
-        background: rgba(6, 182, 212, 0.08);
-        border-color: rgba(6, 182, 212, 0.2);
-    }
-    :global([data-theme="light"]) .bp-icon-btn.cyan i { color: #0891b2; }
-
-    :global([data-theme="light"]) .bp-icon-btn.purple {
-        background: rgba(139, 92, 246, 0.08);
-        border-color: rgba(139, 92, 246, 0.2);
-    }
-    :global([data-theme="light"]) .bp-icon-btn.purple i { color: #7c3aed; }
-
-    :global([data-theme="light"]) .bp-icon-btn.green {
-        background: rgba(34, 197, 94, 0.08);
-        border-color: rgba(34, 197, 94, 0.2);
-    }
-    :global([data-theme="light"]) .bp-icon-btn.green i { color: #16a34a; }
-
-    :global([data-theme="light"]) .bp-icon-btn.amber {
-        background: rgba(245, 158, 11, 0.08);
-        border-color: rgba(245, 158, 11, 0.2);
-    }
-    :global([data-theme="light"]) .bp-icon-btn.amber i { color: #d97706; }
-
-    :global([data-theme="light"]) .bp-icon-btn.rose {
-        background: rgba(244, 63, 94, 0.08);
-        border-color: rgba(244, 63, 94, 0.2);
-    }
-    :global([data-theme="light"]) .bp-icon-btn.rose i { color: #e11d48; }
-
-    :global([data-theme="light"]) .bp-more {
-        color: #64748b;
-    }
-
-    /* Light mode for Tech Icon Buttons */
-    :global([data-theme="light"]) .tech-icon-btn i {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .tech-icon-btn:hover i {
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .milestone-banner {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .milestone-banner.cyan {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), transparent);
-        border-color: rgba(6, 182, 212, 0.2);
-    }
-
-    :global([data-theme="light"]) .milestone-banner.purple {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), transparent);
-        border-color: rgba(139, 92, 246, 0.2);
-    }
-
-    :global([data-theme="light"]) .milestone-content h3 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .competencia-card,
-    :global([data-theme="light"]) .download-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .competencia-card:hover,
-    :global([data-theme="light"]) .download-card:hover {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .competencia-card h3,
-    :global([data-theme="light"]) .download-info h3 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .competencias-section h2,
-    :global([data-theme="light"]) .downloads-section h2,
-    :global([data-theme="light"]) .cta-content h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .cta-section {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.03), rgba(139, 92, 246, 0.03));
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    /* =============================================
-       RESPONSIVE
-       ============================================= */
-    @media (max-width: 768px) {
-        .malla-hero {
-            padding: 3rem 1.5rem 4rem;
-            min-height: auto;
-        }
-
-        .hero-stats {
-            gap: 1rem;
-        }
-
-        .stat-divider {
-            display: none;
-        }
-
-        .program-cards-preview {
-            flex-direction: column;
-        }
-
-        .preview-connector {
-            transform: rotate(90deg);
-        }
-
-        .quick-nav {
-            top: 60px;
-            padding: 1rem;
-            gap: 0.5rem;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            justify-content: flex-start;
-        }
-
-        .nav-pill {
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .section-header {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .program-meta {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .bimestres-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .milestone-banner {
-            flex-direction: column;
-            text-align: center;
-            gap: 1rem;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-        }
-
-        .cta-btn {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-title .title-main {
-            font-size: 2rem;
-        }
-
-        .hero-title .title-accent {
-            font-size: 1rem;
-        }
-
-        .program-title h2 {
-            font-size: 1.4rem;
-        }
-    }
+  }
 </style>
 
 <script define:vars={{ asignaturasData: asignaturas }}>
-    // Inicializar event listeners para subject chips
-    function initSubjectChips() {
-        const chips = document.querySelectorAll('button.subject-chip.clickable');
+  // Inicializar event listeners para subject chips
+  function initSubjectChips() {
+    const chips = document.querySelectorAll("button.subject-chip.clickable");
 
-        chips.forEach(chip => {
-            // Prevenir doble inicialización usando data attribute
-            if (chip.hasAttribute('data-listener-attached')) return;
-            chip.setAttribute('data-listener-attached', 'true');
+    chips.forEach((chip) => {
+      // Prevenir doble inicialización usando data attribute
+      if (chip.hasAttribute("data-listener-attached")) return;
+      chip.setAttribute("data-listener-attached", "true");
 
-            chip.addEventListener('click', (e) => {
-                e.preventDefault();
-                const subjectId = chip.getAttribute('data-subject-id');
-                const subjectName = chip.getAttribute('data-subject-name') || '';
-                if (subjectId && typeof window.openSubjectDrawer === 'function') {
-                    window.openSubjectDrawer(subjectId, subjectName);
+      chip.addEventListener("click", (e) => {
+        e.preventDefault();
+        const subjectId = chip.getAttribute("data-subject-id");
+        const subjectName = chip.getAttribute("data-subject-name") || "";
+        if (subjectId && typeof window.openSubjectDrawer === "function") {
+          window.openSubjectDrawer(subjectId, subjectName);
 
-                    // Show AI Tutor side panel with subject context
-                    const asignatura = asignaturasData[subjectId];
-                    if (typeof window.showAITutor === 'function') {
-                        // Usar datos de asignatura si existen, o el nombre del chip
-                        const tutorName = asignatura?.nombre || subjectName;
-                        const tutorCode = asignatura?.codigo || 'TBD';
-                        window.showAITutor(tutorName, tutorCode);
-                    }
-                }
-            });
-        });
-    }
-
-    // Clear AI Tutor state on initial page navigation (not View Transitions)
-    // This ensures the page loads clean without any pre-opened panels
-    function clearInitialState() {
-        // Only run on initial navigation TO sala-de-estudio
-        // Check if this is a fresh navigation (not a View Transition within the page)
-        const isInitialLoad = !document.startViewTransition;
-        const lastPage = sessionStorage.getItem('lastSalaPage');
-        const currentPage = window.location.pathname;
-
-        // If coming from a different page, clear the AI Tutor state
-        if (lastPage !== currentPage) {
-            sessionStorage.removeItem('aiTutorState');
+          // Show AI Tutor side panel with subject context
+          const asignatura = asignaturasData[subjectId];
+          if (typeof window.showAITutor === "function") {
+            // Usar datos de asignatura si existen, o el nombre del chip
+            const tutorName = asignatura?.nombre || subjectName;
+            const tutorCode = asignatura?.codigo || "TBD";
+            window.showAITutor(tutorName, tutorCode);
+          }
         }
-        sessionStorage.setItem('lastSalaPage', currentPage);
-    }
-
-    // Asegurar estado inicial de los paneles
-    function ensureDrawersClosed() {
-        // Cerrar SubjectDrawer
-        const drawer = document.getElementById('subject-drawer');
-        if (drawer) {
-            drawer.classList.remove('open');
-            drawer.setAttribute('aria-hidden', 'true');
-        }
-
-        // AI Tutor: abierto por defecto con contexto de Sala de Estudio
-        // Solo abrir si no hay un estado guardado (evita duplicar al volver a la página)
-        const savedState = sessionStorage.getItem('aiTutorState');
-        if (!savedState && typeof window.showAITutor === 'function') {
-            // Dar tiempo a que el componente AITutorSidePanel se inicialice completamente
-            setTimeout(() => {
-                if (typeof window.showAITutor === 'function') {
-                    window.showAITutor('Sala de Estudio', 'SALA');
-                }
-            }, 350);
-        } else if (savedState) {
-            // Si hay estado guardado, verificar que la tarjeta de bienvenida premium esté presente
-            const tutorPanel = document.getElementById('ai-tutor-panel');
-            const aiExpandBtn = document.getElementById('ai-tutor-expand-btn');
-            const messagesContainer = document.getElementById('tutor-messages');
-
-            if (tutorPanel) {
-                tutorPanel.classList.add('visible');
-                tutorPanel.classList.remove('minimized');
-            }
-            if (aiExpandBtn) {
-                aiExpandBtn.classList.remove('visible');
-            }
-
-            // Verificar después de un frame si la tarjeta premium está presente
-            // Si no, restaurarla manualmente
-            requestAnimationFrame(() => {
-                try {
-                    const state = JSON.parse(savedState);
-                    if (state.isPremiumWelcome && messagesContainer) {
-                        const premiumCard = messagesContainer.querySelector('.premium-welcome-card');
-                        if (!premiumCard) {
-                            // La tarjeta no está, re-crearla
-                            const template = document.getElementById('premium-welcome-template');
-                            if (template) {
-                                const welcomeCard = template.content.cloneNode(true);
-                                messagesContainer.innerHTML = ''; // Limpiar cualquier contenido previo
-                                messagesContainer.appendChild(welcomeCard);
-                            }
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Error checking premium welcome state:', e);
-                }
-            });
-        }
-    }
-
-    // Inicializar event listeners para iconos de mejores prácticas
-    function initBestPracticeIcons() {
-        const bpBtns = document.querySelectorAll('.bp-icon-btn');
-
-        bpBtns.forEach(btn => {
-            // Prevenir doble inicialización
-            if (btn.hasAttribute('data-bp-listener-attached')) return;
-            btn.setAttribute('data-bp-listener-attached', 'true');
-
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Evitar que se abra el drawer de asignatura
-                const bpId = btn.getAttribute('data-bp-id');
-                if (bpId && typeof window.openBestPracticeDrawer === 'function') {
-                    window.openBestPracticeDrawer(bpId);
-                }
-            });
-        });
-    }
-
-    // Inicializar event listeners para iconos de tecnologías
-    function initTechIcons() {
-        const techBtns = document.querySelectorAll('.tech-icon-btn');
-
-        techBtns.forEach(btn => {
-            // Prevenir doble inicialización
-            if (btn.hasAttribute('data-tech-listener-attached')) return;
-            btn.setAttribute('data-tech-listener-attached', 'true');
-
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const techId = btn.getAttribute('data-tech-id');
-                if (techId && typeof window.openTechDrawer === 'function') {
-                    window.openTechDrawer(techId);
-                }
-            });
-        });
-    }
-
-    // Sidebars are pure overlays - no layout adjustments needed
-    function initSidebarLayoutSync() {
-        // All sidebars (SubjectNavigationSidebar, SubjectDrawer, AITutor)
-        // are position:fixed overlays that don't affect main content layout.
-        // No margin/padding adjustments required.
-    }
-
-    // Inicializar en carga inicial y View Transitions
-    document.addEventListener('DOMContentLoaded', () => {
-        clearInitialState();
-        ensureDrawersClosed();
-        initSubjectChips();
-        initBestPracticeIcons();
-        initTechIcons();
-        initSidebarLayoutSync();
+      });
     });
-    document.addEventListener('astro:page-load', () => {
-        clearInitialState();
-        ensureDrawersClosed();
-        initSubjectChips();
-        initBestPracticeIcons();
-        initTechIcons();
-        initSidebarLayoutSync();
+  }
+
+  // Clear AI Tutor state on initial page navigation (not View Transitions)
+  // This ensures the page loads clean without any pre-opened panels
+  function clearInitialState() {
+    // Only run on initial navigation TO sala-de-estudio
+    // Check if this is a fresh navigation (not a View Transition within the page)
+    const isInitialLoad = !document.startViewTransition;
+    const lastPage = sessionStorage.getItem("lastSalaPage");
+    const currentPage = window.location.pathname;
+
+    // If coming from a different page, clear the AI Tutor state
+    if (lastPage !== currentPage) {
+      sessionStorage.removeItem("aiTutorState");
+    }
+    sessionStorage.setItem("lastSalaPage", currentPage);
+  }
+
+  // Asegurar estado inicial de los paneles
+  function ensureDrawersClosed() {
+    // Cerrar SubjectDrawer
+    const drawer = document.getElementById("subject-drawer");
+    if (drawer) {
+      drawer.classList.remove("open");
+      drawer.setAttribute("aria-hidden", "true");
+    }
+
+    // AI Tutor: abierto por defecto con contexto de Sala de Estudio
+    // Solo abrir si no hay un estado guardado (evita duplicar al volver a la página)
+    const savedState = sessionStorage.getItem("aiTutorState");
+    if (!savedState && typeof window.showAITutor === "function") {
+      // Dar tiempo a que el componente AITutorSidePanel se inicialice completamente
+      setTimeout(() => {
+        if (typeof window.showAITutor === "function") {
+          window.showAITutor("Sala de Estudio", "SALA");
+        }
+      }, 350);
+    } else if (savedState) {
+      // Si hay estado guardado, verificar que la tarjeta de bienvenida premium esté presente
+      const tutorPanel = document.getElementById("ai-tutor-panel");
+      const aiExpandBtn = document.getElementById("ai-tutor-expand-btn");
+      const messagesContainer = document.getElementById("tutor-messages");
+
+      if (tutorPanel) {
+        tutorPanel.classList.add("visible");
+        tutorPanel.classList.remove("minimized");
+      }
+      if (aiExpandBtn) {
+        aiExpandBtn.classList.remove("visible");
+      }
+
+      // Verificar después de un frame si la tarjeta premium está presente
+      // Si no, restaurarla manualmente
+      requestAnimationFrame(() => {
+        try {
+          const state = JSON.parse(savedState);
+          if (state.isPremiumWelcome && messagesContainer) {
+            const premiumCard = messagesContainer.querySelector(".premium-welcome-card");
+            if (!premiumCard) {
+              // La tarjeta no está, re-crearla
+              const template = document.getElementById("premium-welcome-template");
+              if (template) {
+                const welcomeCard = template.content.cloneNode(true);
+                messagesContainer.innerHTML = ""; // Limpiar cualquier contenido previo
+                messagesContainer.appendChild(welcomeCard);
+              }
+            }
+          }
+        } catch (e) {
+          console.warn("Error checking premium welcome state:", e);
+        }
+      });
+    }
+  }
+
+  // Inicializar event listeners para iconos de mejores prácticas
+  function initBestPracticeIcons() {
+    const bpBtns = document.querySelectorAll(".bp-icon-btn");
+
+    bpBtns.forEach((btn) => {
+      // Prevenir doble inicialización
+      if (btn.hasAttribute("data-bp-listener-attached")) return;
+      btn.setAttribute("data-bp-listener-attached", "true");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // Evitar que se abra el drawer de asignatura
+        const bpId = btn.getAttribute("data-bp-id");
+        if (bpId && typeof window.openBestPracticeDrawer === "function") {
+          window.openBestPracticeDrawer(bpId);
+        }
+      });
     });
+  }
+
+  // Inicializar event listeners para iconos de tecnologías
+  function initTechIcons() {
+    const techBtns = document.querySelectorAll(".tech-icon-btn");
+
+    techBtns.forEach((btn) => {
+      // Prevenir doble inicialización
+      if (btn.hasAttribute("data-tech-listener-attached")) return;
+      btn.setAttribute("data-tech-listener-attached", "true");
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const techId = btn.getAttribute("data-tech-id");
+        if (techId && typeof window.openTechDrawer === "function") {
+          window.openTechDrawer(techId);
+        }
+      });
+    });
+  }
+
+  // Sidebars are pure overlays - no layout adjustments needed
+  function initSidebarLayoutSync() {
+    // All sidebars (SubjectNavigationSidebar, SubjectDrawer, AITutor)
+    // are position:fixed overlays that don't affect main content layout.
+    // No margin/padding adjustments required.
+  }
+
+  // Inicializar en carga inicial y View Transitions
+  document.addEventListener("DOMContentLoaded", () => {
+    clearInitialState();
+    ensureDrawersClosed();
+    initSubjectChips();
+    initBestPracticeIcons();
+    initTechIcons();
+    initSidebarLayoutSync();
+  });
+  document.addEventListener("astro:page-load", () => {
+    clearInitialState();
+    ensureDrawersClosed();
+    initSubjectChips();
+    initBestPracticeIcons();
+    initTechIcons();
+    initSidebarLayoutSync();
+  });
 </script>

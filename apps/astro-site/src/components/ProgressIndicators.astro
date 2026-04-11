@@ -3,949 +3,1046 @@
 // Features: Linear, Circular, Determinate, Indeterminate variants
 
 interface Props {
-    showDemo?: boolean;
+  showDemo?: boolean;
 }
 
 const { showDemo = true } = Astro.props;
 
 // Sample data for demo
 const skillProgress = [
-    { name: "Python", level: 92, color: "#3776ab", icon: "devicon-python-plain colored" },
-    { name: "JavaScript", level: 88, color: "#f7df1e", icon: "devicon-javascript-plain colored" },
-    { name: "SQL", level: 85, color: "#00758f", icon: "devicon-azuresqldatabase-plain colored" },
-    { name: "React", level: 78, color: "#61dafb", icon: "devicon-react-original colored" },
-    { name: "Docker", level: 72, color: "#2496ed", icon: "devicon-docker-plain colored" },
-    { name: "AWS", level: 65, color: "#ff9900", icon: "devicon-amazonwebservices-plain-wordmark colored" },
+  { name: "Python", level: 92, color: "#3776ab", icon: "devicon-python-plain colored" },
+  { name: "JavaScript", level: 88, color: "#f7df1e", icon: "devicon-javascript-plain colored" },
+  { name: "SQL", level: 85, color: "#00758f", icon: "devicon-azuresqldatabase-plain colored" },
+  { name: "React", level: 78, color: "#61dafb", icon: "devicon-react-original colored" },
+  { name: "Docker", level: 72, color: "#2496ed", icon: "devicon-docker-plain colored" },
+  {
+    name: "AWS",
+    level: 65,
+    color: "#ff9900",
+    icon: "devicon-amazonwebservices-plain-wordmark colored",
+  },
 ];
 
 const circularMetrics = [
-    { label: "Completado", value: 87, color: "#10b981", icon: "fa-check-circle" },
-    { label: "En Progreso", value: 45, color: "#f59e0b", icon: "fa-clock" },
-    { label: "Code Quality", value: 94, color: "#8b5cf6", icon: "fa-code" },
-    { label: "Test Coverage", value: 78, color: "#06b6d4", icon: "fa-vial" },
+  { label: "Completado", value: 87, color: "#10b981", icon: "fa-check-circle" },
+  { label: "En Progreso", value: 45, color: "#f59e0b", icon: "fa-clock" },
+  { label: "Code Quality", value: 94, color: "#8b5cf6", icon: "fa-code" },
+  { label: "Test Coverage", value: 78, color: "#06b6d4", icon: "fa-vial" },
 ];
 ---
 
 <section id="progress-indicators" class="progress-section">
-    <!-- Section Header -->
-    <div class="progress-header" data-aos="fade-up">
-        <div class="header-icon-wrap">
-            <i class="fas fa-chart-line"></i>
+  <!-- Section Header -->
+  <div class="progress-header" data-aos="fade-up">
+    <div class="header-icon-wrap">
+      <i class="fas fa-chart-line"></i>
+    </div>
+    <div class="header-text">
+      <h2>Progress <span class="gradient-text">Indicators</span></h2>
+      <p>Visualiza tu progreso con indicadores premium</p>
+    </div>
+  </div>
+
+  <div class="progress-grid" data-aos="fade-up" data-aos-delay="100">
+    <!-- Linear Progress Section -->
+    <div class="progress-card glass-card">
+      <div class="card-header">
+        <h3><i class="fas fa-bars-progress"></i> Linear Progress</h3>
+        <span class="badge">Determinate</span>
+      </div>
+      <div class="card-content">
+        <!-- Skill Bars -->
+        <div class="skill-bars">
+          {
+            skillProgress.map((skill, idx) => (
+              <div class="skill-bar-item" data-aos="fade-right" data-aos-delay={100 + idx * 50}>
+                <div class="skill-info">
+                  <div class="skill-name">
+                    <i class={skill.icon} />
+                    <span>{skill.name}</span>
+                  </div>
+                  <span class="skill-level">{skill.level}%</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar-track">
+                    <div
+                      class="progress-bar-fill"
+                      style={`--progress: ${skill.level}%; --bar-color: ${skill.color}`}
+                      data-progress={skill.level}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          }
         </div>
-        <div class="header-text">
-            <h2>Progress <span class="gradient-text">Indicators</span></h2>
-            <p>Visualiza tu progreso con indicadores premium</p>
-        </div>
+      </div>
     </div>
 
-    <div class="progress-grid" data-aos="fade-up" data-aos-delay="100">
-        <!-- Linear Progress Section -->
-        <div class="progress-card glass-card">
-            <div class="card-header">
-                <h3><i class="fas fa-bars-progress"></i> Linear Progress</h3>
-                <span class="badge">Determinate</span>
-            </div>
-            <div class="card-content">
-                <!-- Skill Bars -->
-                <div class="skill-bars">
-                    {skillProgress.map((skill, idx) => (
-                        <div class="skill-bar-item" data-aos="fade-right" data-aos-delay={100 + idx * 50}>
-                            <div class="skill-info">
-                                <div class="skill-name">
-                                    <i class={skill.icon}></i>
-                                    <span>{skill.name}</span>
-                                </div>
-                                <span class="skill-level">{skill.level}%</span>
-                            </div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-track">
-                                    <div
-                                        class="progress-bar-fill"
-                                        style={`--progress: ${skill.level}%; --bar-color: ${skill.color}`}
-                                        data-progress={skill.level}
-                                    ></div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+    <!-- Circular Progress Section -->
+    <div class="progress-card glass-card">
+      <div class="card-header">
+        <h3><i class="fas fa-circle-notch"></i> Circular Progress</h3>
+        <span class="badge">Animated</span>
+      </div>
+      <div class="card-content">
+        <div class="circular-grid">
+          {
+            circularMetrics.map((metric, idx) => (
+              <div class="circular-item" data-aos="zoom-in" data-aos-delay={100 + idx * 75}>
+                <div
+                  class="circular-progress"
+                  style={`--progress: ${metric.value}; --ring-color: ${metric.color}`}
+                >
+                  <svg viewBox="0 0 100 100">
+                    <circle class="progress-bg" cx="50" cy="50" r="45" />
+                    <circle class="progress-ring" cx="50" cy="50" r="45" />
+                  </svg>
+                  <div class="progress-content">
+                    <i class={`fas ${metric.icon}`} style={`color: ${metric.color}`} />
+                    <span class="progress-value">{metric.value}%</span>
+                  </div>
                 </div>
-            </div>
+                <span class="circular-label">{metric.label}</span>
+              </div>
+            ))
+          }
         </div>
-
-        <!-- Circular Progress Section -->
-        <div class="progress-card glass-card">
-            <div class="card-header">
-                <h3><i class="fas fa-circle-notch"></i> Circular Progress</h3>
-                <span class="badge">Animated</span>
-            </div>
-            <div class="card-content">
-                <div class="circular-grid">
-                    {circularMetrics.map((metric, idx) => (
-                        <div class="circular-item" data-aos="zoom-in" data-aos-delay={100 + idx * 75}>
-                            <div class="circular-progress" style={`--progress: ${metric.value}; --ring-color: ${metric.color}`}>
-                                <svg viewBox="0 0 100 100">
-                                    <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
-                                    <circle class="progress-ring" cx="50" cy="50" r="45"></circle>
-                                </svg>
-                                <div class="progress-content">
-                                    <i class={`fas ${metric.icon}`} style={`color: ${metric.color}`}></i>
-                                    <span class="progress-value">{metric.value}%</span>
-                                </div>
-                            </div>
-                            <span class="circular-label">{metric.label}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-
-        <!-- Indeterminate Progress -->
-        <div class="progress-card glass-card full-width">
-            <div class="card-header">
-                <h3><i class="fas fa-spinner"></i> Indeterminate Progress</h3>
-                <span class="badge">Loading States</span>
-            </div>
-            <div class="card-content">
-                <div class="loading-demos">
-                    <!-- Linear Indeterminate -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Linear Loading</span>
-                        <div class="progress-bar-container indeterminate">
-                            <div class="progress-bar-track">
-                                <div class="progress-bar-fill indeterminate-fill"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dotted Loading -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Dot Loader</span>
-                        <div class="dot-loader">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                    </div>
-
-                    <!-- Spinner Loading -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Spinner</span>
-                        <div class="spinner-loader">
-                            <div class="spinner"></div>
-                        </div>
-                    </div>
-
-                    <!-- Pulse Loading -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Pulse Ring</span>
-                        <div class="pulse-loader">
-                            <div class="pulse-ring"></div>
-                            <div class="pulse-ring"></div>
-                            <div class="pulse-core"></div>
-                        </div>
-                    </div>
-
-                    <!-- Wave Loading -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Wave Bars</span>
-                        <div class="wave-loader">
-                            <span class="wave-bar"></span>
-                            <span class="wave-bar"></span>
-                            <span class="wave-bar"></span>
-                            <span class="wave-bar"></span>
-                            <span class="wave-bar"></span>
-                        </div>
-                    </div>
-
-                    <!-- Circular Indeterminate -->
-                    <div class="loading-demo-item">
-                        <span class="demo-label">Circular</span>
-                        <div class="circular-loader">
-                            <svg viewBox="0 0 50 50">
-                                <circle cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Step Progress -->
-        <div class="progress-card glass-card full-width">
-            <div class="card-header">
-                <h3><i class="fas fa-tasks"></i> Step Progress</h3>
-                <span class="badge">Multi-Step</span>
-            </div>
-            <div class="card-content">
-                <div class="step-progress">
-                    <div class="step completed">
-                        <div class="step-marker">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div class="step-info">
-                            <span class="step-title">Fundamentos</span>
-                            <span class="step-desc">Bimestres 1-4</span>
-                        </div>
-                    </div>
-                    <div class="step-connector completed"></div>
-                    <div class="step completed">
-                        <div class="step-marker">
-                            <i class="fas fa-check"></i>
-                        </div>
-                        <div class="step-info">
-                            <span class="step-title">Especialización</span>
-                            <span class="step-desc">Bimestres 5-8</span>
-                        </div>
-                    </div>
-                    <div class="step-connector active"></div>
-                    <div class="step active">
-                        <div class="step-marker">
-                            <span>3</span>
-                        </div>
-                        <div class="step-info">
-                            <span class="step-title">Proyecto</span>
-                            <span class="step-desc">Bimestres 9-10</span>
-                        </div>
-                    </div>
-                    <div class="step-connector"></div>
-                    <div class="step">
-                        <div class="step-marker">
-                            <span>4</span>
-                        </div>
-                        <div class="step-info">
-                            <span class="step-title">Título</span>
-                            <span class="step-desc">Analista Programador</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <!-- Indeterminate Progress -->
+    <div class="progress-card glass-card full-width">
+      <div class="card-header">
+        <h3><i class="fas fa-spinner"></i> Indeterminate Progress</h3>
+        <span class="badge">Loading States</span>
+      </div>
+      <div class="card-content">
+        <div class="loading-demos">
+          <!-- Linear Indeterminate -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Linear Loading</span>
+            <div class="progress-bar-container indeterminate">
+              <div class="progress-bar-track">
+                <div class="progress-bar-fill indeterminate-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dotted Loading -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Dot Loader</span>
+            <div class="dot-loader">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <!-- Spinner Loading -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Spinner</span>
+            <div class="spinner-loader">
+              <div class="spinner"></div>
+            </div>
+          </div>
+
+          <!-- Pulse Loading -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Pulse Ring</span>
+            <div class="pulse-loader">
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring"></div>
+              <div class="pulse-core"></div>
+            </div>
+          </div>
+
+          <!-- Wave Loading -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Wave Bars</span>
+            <div class="wave-loader">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </div>
+          </div>
+
+          <!-- Circular Indeterminate -->
+          <div class="loading-demo-item">
+            <span class="demo-label">Circular</span>
+            <div class="circular-loader">
+              <svg viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20" fill="none" stroke-width="4"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step Progress -->
+    <div class="progress-card glass-card full-width">
+      <div class="card-header">
+        <h3><i class="fas fa-tasks"></i> Step Progress</h3>
+        <span class="badge">Multi-Step</span>
+      </div>
+      <div class="card-content">
+        <div class="step-progress">
+          <div class="step completed">
+            <div class="step-marker">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="step-info">
+              <span class="step-title">Fundamentos</span>
+              <span class="step-desc">Bimestres 1-4</span>
+            </div>
+          </div>
+          <div class="step-connector completed"></div>
+          <div class="step completed">
+            <div class="step-marker">
+              <i class="fas fa-check"></i>
+            </div>
+            <div class="step-info">
+              <span class="step-title">Especialización</span>
+              <span class="step-desc">Bimestres 5-8</span>
+            </div>
+          </div>
+          <div class="step-connector active"></div>
+          <div class="step active">
+            <div class="step-marker">
+              <span>3</span>
+            </div>
+            <div class="step-info">
+              <span class="step-title">Proyecto</span>
+              <span class="step-desc">Bimestres 9-10</span>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step">
+            <div class="step-marker">
+              <span>4</span>
+            </div>
+            <div class="step-info">
+              <span class="step-title">Título</span>
+              <span class="step-desc">Analista Programador</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    /* Progress Section Styles */
-    .progress-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  /* Progress Section Styles */
+  .progress-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    .progress-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
+  .progress-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 
-    .progress-header .header-icon-wrap {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: var(--accent-cyan, #00d4ff);
-    }
+  .progress-header .header-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-cyan, #00d4ff);
+  }
 
-    .progress-header h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0;
-    }
+  .progress-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
 
-    .progress-header p {
-        color: var(--text-muted, #94a3b8);
-        margin: 0;
-    }
+  .progress-header p {
+    color: var(--text-muted, #94a3b8);
+    margin: 0;
+  }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .progress-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
+  .progress-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 
-    .progress-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 1.5rem;
-        backdrop-filter: blur(10px);
-    }
+  .progress-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
 
-    .progress-card.full-width {
-        grid-column: 1 / -1;
-    }
+  .progress-card.full-width {
+    grid-column: 1 / -1;
+  }
 
-    .card-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .card-header h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+  .card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    .card-header h3 i {
-        color: var(--accent-cyan, #00d4ff);
-    }
+  .card-header h3 i {
+    color: var(--accent-cyan, #00d4ff);
+  }
 
-    .badge {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.75rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 20px;
-        color: #00d4ff;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+  .badge {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    color: #00d4ff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-    /* Linear Progress Bars */
-    .skill-bars {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+  /* Linear Progress Bars */
+  .skill-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .skill-bar-item {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+  .skill-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-    .skill-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .skill-name {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
+  .skill-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
 
-    .skill-name i {
-        font-size: 1.2rem;
-    }
+  .skill-name i {
+    font-size: 1.2rem;
+  }
 
-    .skill-level {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: var(--accent-cyan, #00d4ff);
-    }
+  .skill-level {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-cyan, #00d4ff);
+  }
 
-    .progress-bar-container {
-        width: 100%;
-    }
+  .progress-bar-container {
+    width: 100%;
+  }
 
-    .progress-bar-track {
-        height: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-        position: relative;
-    }
+  .progress-bar-track {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
 
-    .progress-bar-fill {
-        height: 100%;
-        width: 0;
-        background: linear-gradient(90deg, var(--bar-color), color-mix(in srgb, var(--bar-color) 70%, white));
-        border-radius: 4px;
-        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 0 10px var(--bar-color);
-        animation: fillProgress 1.5s ease-out forwards;
-        animation-delay: 0.3s;
-    }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(
+      90deg,
+      var(--bar-color),
+      color-mix(in srgb, var(--bar-color) 70%, white)
+    );
+    border-radius: 4px;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px var(--bar-color);
+    animation: fillProgress 1.5s ease-out forwards;
+    animation-delay: 0.3s;
+  }
 
-    @keyframes fillProgress {
-        from { width: 0; }
-        to { width: var(--progress); }
+  @keyframes fillProgress {
+    from {
+      width: 0;
     }
+    to {
+      width: var(--progress);
+    }
+  }
 
-    /* Circular Progress */
+  /* Circular Progress */
+  .circular-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .circular-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .circular-progress {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+
+  .circular-progress svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+  }
+
+  .circular-progress .progress-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 8;
+  }
+
+  .circular-progress .progress-ring {
+    fill: none;
+    stroke: var(--ring-color);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: calc(283 - (283 * var(--progress)) / 100);
+    filter: drop-shadow(0 0 6px var(--ring-color));
+    transition: stroke-dashoffset 1.5s ease-out;
+    animation: circularFill 1.5s ease-out forwards;
+  }
+
+  @keyframes circularFill {
+    from {
+      stroke-dashoffset: 283;
+    }
+    to {
+      stroke-dashoffset: calc(283 - (283 * var(--progress)) / 100);
+    }
+  }
+
+  .progress-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .progress-content i {
+    font-size: 1.25rem;
+  }
+
+  .progress-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .circular-label {
+    font-size: 0.85rem;
+    color: var(--text-muted, #94a3b8);
+    font-weight: 500;
+  }
+
+  /* Indeterminate Loaders */
+  .loading-demos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+  }
+
+  .loading-demo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .demo-label {
+    font-size: 0.8rem;
+    color: var(--text-muted, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Indeterminate Linear */
+  .indeterminate-fill {
+    width: 30% !important;
+    animation: indeterminateSlide 1.5s ease-in-out infinite !important;
+    background: linear-gradient(90deg, #00d4ff, #7c3aed, #00d4ff) !important;
+    background-size: 200% 100%;
+  }
+
+  @keyframes indeterminateSlide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+
+  /* Dot Loader */
+  .dot-loader {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot-loader .dot {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-cyan, #00d4ff);
+    border-radius: 50%;
+    animation: dotBounce 1.4s ease-in-out infinite;
+  }
+
+  .dot-loader .dot:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .dot-loader .dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .dot-loader .dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes dotBounce {
+    0%,
+    80%,
+    100% {
+      transform: scale(0.6);
+      opacity: 0.5;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Spinner Loader */
+  .spinner-loader {
+    width: 40px;
+    height: 40px;
+  }
+
+  .spinner {
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent-cyan, #00d4ff);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Pulse Loader */
+  .pulse-loader {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--accent-cyan, #00d4ff);
+    border-radius: 50%;
+    animation: pulseRing 1.5s ease-out infinite;
+  }
+
+  .pulse-ring:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .pulse-core {
+    width: 12px;
+    height: 12px;
+    background: var(--accent-cyan, #00d4ff);
+    border-radius: 50%;
+    animation: pulseCore 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: scale(0.3);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulseCore {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  /* Wave Loader */
+  .wave-loader {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+    height: 30px;
+  }
+
+  .wave-bar {
+    width: 4px;
+    height: 10px;
+    background: var(--accent-cyan, #00d4ff);
+    border-radius: 2px;
+    animation: waveBar 1.2s ease-in-out infinite;
+  }
+
+  .wave-bar:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .wave-bar:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .wave-bar:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .wave-bar:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .wave-bar:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes waveBar {
+    0%,
+    100% {
+      height: 10px;
+    }
+    50% {
+      height: 30px;
+    }
+  }
+
+  /* Circular Indeterminate Loader */
+  .circular-loader {
+    width: 40px;
+    height: 40px;
+  }
+
+  .circular-loader svg {
+    animation: spin 1.5s linear infinite;
+  }
+
+  .circular-loader circle {
+    stroke: var(--accent-cyan, #00d4ff);
+    stroke-dasharray: 80, 126;
+    stroke-linecap: round;
+    animation: circularDash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes circularDash {
+    0% {
+      stroke-dasharray: 1, 126;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 80, 126;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 80, 126;
+      stroke-dashoffset: -126;
+    }
+  }
+
+  /* Step Progress */
+  .step-progress {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 0 0 auto;
+  }
+
+  .step-marker {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted, #94a3b8);
+    transition: all 0.3s ease;
+  }
+
+  .step.completed .step-marker {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    border-color: #10b981;
+    color: white;
+  }
+
+  .step.active .step-marker {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    border-color: #00d4ff;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    animation: activeStep 2s ease-in-out infinite;
+  }
+
+  @keyframes activeStep {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+    }
+  }
+
+  .step-info {
+    text-align: center;
+  }
+
+  .step-title {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .step-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted, #94a3b8);
+  }
+
+  .step-connector {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 24px 0.5rem;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-connector.completed {
+    background: linear-gradient(90deg, #10b981, #34d399);
+  }
+
+  .step-connector.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .step-connector.active::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, #00d4ff, #7c3aed);
+    animation: progressFlow 2s ease-in-out infinite;
+  }
+
+  @keyframes progressFlow {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
     .circular-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .circular-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-    }
-
-    .circular-progress {
-        position: relative;
-        width: 100px;
-        height: 100px;
-    }
-
-    .circular-progress svg {
-        transform: rotate(-90deg);
-        width: 100%;
-        height: 100%;
-    }
-
-    .circular-progress .progress-bg {
-        fill: none;
-        stroke: rgba(255, 255, 255, 0.1);
-        stroke-width: 8;
-    }
-
-    .circular-progress .progress-ring {
-        fill: none;
-        stroke: var(--ring-color);
-        stroke-width: 8;
-        stroke-linecap: round;
-        stroke-dasharray: 283;
-        stroke-dashoffset: calc(283 - (283 * var(--progress)) / 100);
-        filter: drop-shadow(0 0 6px var(--ring-color));
-        transition: stroke-dashoffset 1.5s ease-out;
-        animation: circularFill 1.5s ease-out forwards;
-    }
-
-    @keyframes circularFill {
-        from { stroke-dashoffset: 283; }
-        to { stroke-dashoffset: calc(283 - (283 * var(--progress)) / 100); }
-    }
-
-    .progress-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-    }
-
-    .progress-content i {
-        font-size: 1.25rem;
-    }
-
-    .progress-value {
-        font-size: 1.1rem;
-        font-weight: 700;
-    }
-
-    .circular-label {
-        font-size: 0.85rem;
-        color: var(--text-muted, #94a3b8);
-        font-weight: 500;
-    }
-
-    /* Indeterminate Loaders */
     .loading-demos {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .progress-grid {
+      grid-template-columns: 1fr;
     }
 
-    .loading-demo-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .demo-label {
-        font-size: 0.8rem;
-        color: var(--text-muted, #94a3b8);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* Indeterminate Linear */
-    .indeterminate-fill {
-        width: 30% !important;
-        animation: indeterminateSlide 1.5s ease-in-out infinite !important;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed, #00d4ff) !important;
-        background-size: 200% 100%;
-    }
-
-    @keyframes indeterminateSlide {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(400%); }
-    }
-
-    /* Dot Loader */
-    .dot-loader {
-        display: flex;
-        gap: 6px;
-    }
-
-    .dot-loader .dot {
-        width: 10px;
-        height: 10px;
-        background: var(--accent-cyan, #00d4ff);
-        border-radius: 50%;
-        animation: dotBounce 1.4s ease-in-out infinite;
-    }
-
-    .dot-loader .dot:nth-child(1) { animation-delay: 0s; }
-    .dot-loader .dot:nth-child(2) { animation-delay: 0.2s; }
-    .dot-loader .dot:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes dotBounce {
-        0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
-        40% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Spinner Loader */
-    .spinner-loader {
-        width: 40px;
-        height: 40px;
-    }
-
-    .spinner {
-        width: 100%;
-        height: 100%;
-        border: 3px solid rgba(255, 255, 255, 0.1);
-        border-top-color: var(--accent-cyan, #00d4ff);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        to { transform: rotate(360deg); }
-    }
-
-    /* Pulse Loader */
-    .pulse-loader {
-        position: relative;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .pulse-ring {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 2px solid var(--accent-cyan, #00d4ff);
-        border-radius: 50%;
-        animation: pulseRing 1.5s ease-out infinite;
-    }
-
-    .pulse-ring:nth-child(2) {
-        animation-delay: 0.5s;
-    }
-
-    .pulse-core {
-        width: 12px;
-        height: 12px;
-        background: var(--accent-cyan, #00d4ff);
-        border-radius: 50%;
-        animation: pulseCore 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulseRing {
-        0% { transform: scale(0.3); opacity: 1; }
-        100% { transform: scale(1); opacity: 0; }
-    }
-
-    @keyframes pulseCore {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-    }
-
-    /* Wave Loader */
-    .wave-loader {
-        display: flex;
-        gap: 4px;
-        align-items: flex-end;
-        height: 30px;
-    }
-
-    .wave-bar {
-        width: 4px;
-        height: 10px;
-        background: var(--accent-cyan, #00d4ff);
-        border-radius: 2px;
-        animation: waveBar 1.2s ease-in-out infinite;
-    }
-
-    .wave-bar:nth-child(1) { animation-delay: 0s; }
-    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
-    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
-    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
-    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
-
-    @keyframes waveBar {
-        0%, 100% { height: 10px; }
-        50% { height: 30px; }
-    }
-
-    /* Circular Indeterminate Loader */
-    .circular-loader {
-        width: 40px;
-        height: 40px;
-    }
-
-    .circular-loader svg {
-        animation: spin 1.5s linear infinite;
-    }
-
-    .circular-loader circle {
-        stroke: var(--accent-cyan, #00d4ff);
-        stroke-dasharray: 80, 126;
-        stroke-linecap: round;
-        animation: circularDash 1.5s ease-in-out infinite;
-    }
-
-    @keyframes circularDash {
-        0% { stroke-dasharray: 1, 126; stroke-dashoffset: 0; }
-        50% { stroke-dasharray: 80, 126; stroke-dashoffset: -35; }
-        100% { stroke-dasharray: 80, 126; stroke-dashoffset: -126; }
-    }
-
-    /* Step Progress */
     .step-progress {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        padding: 1rem 0;
+      flex-direction: column;
+      gap: 0;
     }
 
     .step {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-        flex: 0 0 auto;
-    }
-
-    .step-marker {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-muted, #94a3b8);
-        transition: all 0.3s ease;
-    }
-
-    .step.completed .step-marker {
-        background: linear-gradient(135deg, #10b981, #34d399);
-        border-color: #10b981;
-        color: white;
-    }
-
-    .step.active .step-marker {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        border-color: #00d4ff;
-        color: white;
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        animation: activeStep 2s ease-in-out infinite;
-    }
-
-    @keyframes activeStep {
-        0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
-        50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+      flex-direction: row;
+      gap: 1rem;
+      width: 100%;
     }
 
     .step-info {
-        text-align: center;
-    }
-
-    .step-title {
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 0.25rem;
-    }
-
-    .step-desc {
-        display: block;
-        font-size: 0.75rem;
-        color: var(--text-muted, #94a3b8);
+      text-align: left;
     }
 
     .step-connector {
-        flex: 1;
-        height: 3px;
-        background: rgba(255, 255, 255, 0.1);
-        margin: 24px 0.5rem;
-        border-radius: 2px;
-        position: relative;
-        overflow: hidden;
+      width: 3px;
+      height: 30px;
+      margin: 0 0 0 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .progress-section {
+      padding: 2rem 1rem;
     }
 
-    .step-connector.completed {
-        background: linear-gradient(90deg, #10b981, #34d399);
+    .loading-demos {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .step-connector.active {
-        background: rgba(255, 255, 255, 0.1);
+    .circular-progress {
+      width: 80px;
+      height: 80px;
     }
+  }
 
-    .step-connector.active::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 50%;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed);
-        animation: progressFlow 2s ease-in-out infinite;
-    }
-
-    @keyframes progressFlow {
-        0% { transform: translateX(-100%); }
-        50% { transform: translateX(0%); }
-        100% { transform: translateX(0%); }
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-        .circular-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .loading-demos {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 900px) {
-        .progress-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .step-progress {
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .step {
-            flex-direction: row;
-            gap: 1rem;
-            width: 100%;
-        }
-
-        .step-info {
-            text-align: left;
-        }
-
-        .step-connector {
-            width: 3px;
-            height: 30px;
-            margin: 0 0 0 24px;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .progress-section {
-            padding: 2rem 1rem;
-        }
-
-        .loading-demos {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .circular-progress {
-            width: 80px;
-            height: 80px;
-        }
-    }
-
-    /* ============================================
+  /* ============================================
        LIGHT MODE - Enterprise Grade Styles
        ============================================ */
 
-    :global([data-theme="light"]) .progress-section {
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
-    }
+  :global([data-theme="light"]) .progress-section {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
+  }
 
-    :global([data-theme="light"]) .progress-header .header-icon-wrap {
-        background: linear-gradient(135deg, rgba(8, 145, 178, 0.15), rgba(109, 40, 217, 0.15));
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .progress-header .header-icon-wrap {
+    background: linear-gradient(135deg, rgba(8, 145, 178, 0.15), rgba(109, 40, 217, 0.15));
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .progress-header h2 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .progress-header h2 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .progress-header p {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .progress-header p {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .progress-card {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    }
+  :global([data-theme="light"]) .progress-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.05),
+      0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  }
 
-    :global([data-theme="light"]) .progress-card:hover {
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-    }
+  :global([data-theme="light"]) .progress-card:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.08),
+      0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  }
 
-    :global([data-theme="light"]) .card-header {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
+  :global([data-theme="light"]) .card-header {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
 
-    :global([data-theme="light"]) .card-header h3 {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .card-header h3 {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .card-header h3 i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .card-header h3 i {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .badge {
-        background: rgba(8, 145, 178, 0.1);
-        border-color: rgba(8, 145, 178, 0.25);
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .badge {
+    background: rgba(8, 145, 178, 0.1);
+    border-color: rgba(8, 145, 178, 0.25);
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .skill-name {
-        color: #334155;
-    }
+  :global([data-theme="light"]) .skill-name {
+    color: #334155;
+  }
 
-    :global([data-theme="light"]) .skill-level {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .skill-level {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .progress-bar-track {
-        background: rgba(0, 0, 0, 0.08);
-    }
+  :global([data-theme="light"]) .progress-bar-track {
+    background: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .circular-progress .progress-bg {
-        stroke: rgba(0, 0, 0, 0.08);
-    }
+  :global([data-theme="light"]) .circular-progress .progress-bg {
+    stroke: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .progress-value {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .progress-value {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .circular-label {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .circular-label {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .demo-label {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .demo-label {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .step-marker {
-        background: rgba(0, 0, 0, 0.04);
-        border-color: rgba(0, 0, 0, 0.15);
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .step-marker {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .step-title {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .step-title {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .step-desc {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .step-desc {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .step-connector {
-        background: rgba(0, 0, 0, 0.08);
-    }
+  :global([data-theme="light"]) .step-connector {
+    background: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .step.completed .step-marker {
-        background: linear-gradient(135deg, #059669, #10b981);
-        border-color: #059669;
-    }
+  :global([data-theme="light"]) .step.completed .step-marker {
+    background: linear-gradient(135deg, #059669, #10b981);
+    border-color: #059669;
+  }
 
-    :global([data-theme="light"]) .step.active .step-marker {
-        background: linear-gradient(135deg, #0891b2, #6d28d9);
-        border-color: #0891b2;
-        box-shadow: 0 0 20px rgba(8, 145, 178, 0.4);
-    }
+  :global([data-theme="light"]) .step.active .step-marker {
+    background: linear-gradient(135deg, #0891b2, #6d28d9);
+    border-color: #0891b2;
+    box-shadow: 0 0 20px rgba(8, 145, 178, 0.4);
+  }
 
-    :global([data-theme="light"]) .spinner {
-        border-color: rgba(0, 0, 0, 0.1);
-        border-top-color: #0891b2;
-    }
+  :global([data-theme="light"]) .spinner {
+    border-color: rgba(0, 0, 0, 0.1);
+    border-top-color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .pulse-ring {
-        border-color: #0891b2;
-    }
+  :global([data-theme="light"]) .pulse-ring {
+    border-color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .pulse-core {
-        background: #0891b2;
-    }
+  :global([data-theme="light"]) .pulse-core {
+    background: #0891b2;
+  }
 
-    :global([data-theme="light"]) .dot-loader .dot {
-        background: #0891b2;
-    }
+  :global([data-theme="light"]) .dot-loader .dot {
+    background: #0891b2;
+  }
 
-    :global([data-theme="light"]) .wave-bar {
-        background: #0891b2;
-    }
+  :global([data-theme="light"]) .wave-bar {
+    background: #0891b2;
+  }
 
-    :global([data-theme="light"]) .circular-loader circle {
-        stroke: #0891b2;
-    }
+  :global([data-theme="light"]) .circular-loader circle {
+    stroke: #0891b2;
+  }
 
-    :global([data-theme="light"]) .indeterminate-fill {
-        background: linear-gradient(90deg, #0891b2, #6d28d9, #0891b2) !important;
-    }
+  :global([data-theme="light"]) .indeterminate-fill {
+    background: linear-gradient(90deg, #0891b2, #6d28d9, #0891b2) !important;
+  }
 </style>
 
 <script is:inline>
-    // Initialize progress animations when in view
-    function initProgressAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.progress-bar-fill');
-                    progressBars.forEach(bar => {
-                        const progress = bar.dataset.progress;
-                        bar.style.width = progress + '%';
-                    });
-                    observer.unobserve(entry.target);
-                }
+  // Initialize progress animations when in view
+  function initProgressAnimations() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll(".progress-bar-fill");
+            progressBars.forEach((bar) => {
+              const progress = bar.dataset.progress;
+              bar.style.width = progress + "%";
             });
-        }, { threshold: 0.2 });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
 
-        const progressSection = document.querySelector('#progress-indicators');
-        if (progressSection) {
-            observer.observe(progressSection);
-        }
+    const progressSection = document.querySelector("#progress-indicators");
+    if (progressSection) {
+      observer.observe(progressSection);
     }
+  }
 
-    // Run on load and after page transitions
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initProgressAnimations);
-    } else {
-        initProgressAnimations();
-    }
+  // Run on load and after page transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initProgressAnimations);
+  } else {
+    initProgressAnimations();
+  }
 
-    document.addEventListener('astro:page-load', initProgressAnimations);
+  document.addEventListener("astro:page-load", initProgressAnimations);
 </script>
