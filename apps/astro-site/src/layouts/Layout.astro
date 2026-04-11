@@ -10,10 +10,10 @@ interface Props {
 const {
   title,
   description = "Repositorio de materiales del programa Analista Programador Computacional - DuocUC Online 2025. 10 bimestres, 25+ asignaturas, 65+ tecnologías.",
-  image = "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/og-image.png",
+  image = "https://fos-duoc.github.io/programador-computacional-duocuc/og-image.png",
 } = Astro.props;
 
-const siteUrl = "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC";
+const siteUrl = "https://fos-duoc.github.io/programador-computacional-duocuc";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 
 // Cache busting version - update this on each deploy
@@ -70,9 +70,9 @@ const BUILD_VERSION = Date.now().toString(36);
         "@type": "EducationalOrganization",
         "name": "DuocUC - Escuela de Informática",
         "description": "Programa Analista Programador Computacional e Ingeniería en Desarrollo de Software",
-        "url": "https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC",
+        "url": "https://fos-duoc.github.io/programador-computacional-duocuc",
         "logo": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
-        "sameAs": ["https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"],
+        "sameAs": ["https://github.com/fos-duoc/programador-computacional-duocuc"],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Programas de Estudio",
@@ -270,33 +270,29 @@ const BUILD_VERSION = Date.now().toString(36);
     <!-- Main Styles with dynamic cache busting -->
     <link
       rel="stylesheet"
-      href={`/Analista-Programador-Computacional-DuocUC/assets/css/style.css?v=${BUILD_VERSION}`}
+      href={`/programador-computacional-duocuc/assets/css/style.css?v=${BUILD_VERSION}`}
     />
 
     <!-- Favicons + PWA -->
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/Analista-Programador-Computacional-DuocUC/favicon.svg"
-    />
+    <link rel="icon" type="image/svg+xml" href="/programador-computacional-duocuc/favicon.svg" />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/Analista-Programador-Computacional-DuocUC/icon-32.png"
+      href="/programador-computacional-duocuc/icon-32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/Analista-Programador-Computacional-DuocUC/icon-16.png"
+      href="/programador-computacional-duocuc/icon-16.png"
     />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/Analista-Programador-Computacional-DuocUC/apple-touch-icon.png"
+      href="/programador-computacional-duocuc/apple-touch-icon.png"
     />
-    <link rel="manifest" href="/Analista-Programador-Computacional-DuocUC/site.webmanifest" />
+    <link rel="manifest" href="/programador-computacional-duocuc/site.webmanifest" />
     <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#667eea" media="(prefers-color-scheme: light)" />
   </head>
@@ -784,55 +780,55 @@ const BUILD_VERSION = Date.now().toString(36);
         pages: [
           {
             name: "Inicio",
-            url: "/Analista-Programador-Computacional-DuocUC/inicio",
+            url: "/programador-computacional-duocuc/inicio",
             icon: "fa-home",
             category: "Páginas",
           },
           {
             name: "Stack Tecnológico",
-            url: "/Analista-Programador-Computacional-DuocUC/stack",
+            url: "/programador-computacional-duocuc/stack",
             icon: "fa-layer-group",
             category: "Páginas",
           },
           {
             name: "Arquitectura",
-            url: "/Analista-Programador-Computacional-DuocUC/arquitectura",
+            url: "/programador-computacional-duocuc/arquitectura",
             icon: "fa-sitemap",
             category: "Páginas",
           },
           {
             name: "Recursos",
-            url: "/Analista-Programador-Computacional-DuocUC/recursos",
+            url: "/programador-computacional-duocuc/recursos",
             icon: "fa-tools",
             category: "Páginas",
           },
           {
             name: "Proyectos",
-            url: "/Analista-Programador-Computacional-DuocUC/proyectos",
+            url: "/programador-computacional-duocuc/proyectos",
             icon: "fa-project-diagram",
             category: "Páginas",
           },
           {
             name: "Trayectorias Profesionales",
-            url: "/Analista-Programador-Computacional-DuocUC/trayectorias",
+            url: "/programador-computacional-duocuc/trayectorias",
             icon: "fa-route",
             category: "Páginas",
           },
           {
             name: "Portafolio",
-            url: "/Analista-Programador-Computacional-DuocUC/portafolio",
+            url: "/programador-computacional-duocuc/portafolio",
             icon: "fa-briefcase",
             category: "Páginas",
           },
           {
             name: "Laboratorios",
-            url: "/Analista-Programador-Computacional-DuocUC/laboratorios",
+            url: "/programador-computacional-duocuc/laboratorios",
             icon: "fa-flask",
             category: "Páginas",
           },
           {
             name: "Comunidad",
-            url: "/Analista-Programador-Computacional-DuocUC/comunidad",
+            url: "/programador-computacional-duocuc/comunidad",
             icon: "fa-users",
             category: "Páginas",
           },
@@ -917,7 +913,7 @@ const BUILD_VERSION = Date.now().toString(36);
           { name: "Cambiar tema", action: "toggle-theme", icon: "fa-adjust", category: "Acciones" },
           {
             name: "Ir a GitHub",
-            url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC",
+            url: "https://github.com/fos-duoc/programador-computacional-duocuc",
             icon: "fa-github",
             category: "Enlaces",
           },
