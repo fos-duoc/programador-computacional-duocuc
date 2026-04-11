@@ -25,6 +25,9 @@ jobs:
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
         run: |
+          # NOTA: el slug `analista-programador-computacional-duocuc` es intencional.
+          # El repo en GitHub se renombró a `programador-computacional-duocuc` el 2026-04-11,
+          # pero el mirror en GitLab aún no fue renombrado en la plataforma. Ver context.md § Rename.
           git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/fos-duoc/analista-programador-computacional-duocuc.git || true
           git push gitlab --all --force
           git push gitlab --tags --force
@@ -60,6 +63,9 @@ jobs:
         env:
           BITBUCKET_TOKEN: ${{ secrets.BITBUCKET_TOKEN }}
         run: |
+          # NOTA: el slug `analista-programador-computacional-duocuc` es intencional.
+          # Mismo caso que GitLab: el mirror en Bitbucket aún no fue renombrado
+          # en la plataforma. Ver context.md § Rename.
           git remote add bitbucket https://fos-duoc-admin:${BITBUCKET_TOKEN}@bitbucket.org/fos-duoc/analista-programador-computacional-duocuc.git || true
           git remote set-url bitbucket https://fos-duoc-admin:${BITBUCKET_TOKEN}@bitbucket.org/fos-duoc/analista-programador-computacional-duocuc.git
           git push bitbucket --all --force

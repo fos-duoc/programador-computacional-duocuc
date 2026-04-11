@@ -125,6 +125,11 @@ const isComunidad = currentPath.includes("/comunidad");
         <i class="fas fa-moon" id="theme-icon-dark"></i>
         <i class="fas fa-sun" id="theme-icon-light"></i>
       </button>
+      {
+        /* NOTA: los mirrors de GitLab y Bitbucket usan el slug viejo a propósito.
+          Los repos en esas plataformas aún no fueron renombrados al nuevo slug
+          `programador-computacional-duocuc`. GitHub y Azure sí. Ver context.md § Rename. */
+      }
       <div class="repo-icons">
         <a
           href="https://github.com/fos-duoc/programador-computacional-duocuc"
@@ -220,6 +225,7 @@ const isComunidad = currentPath.includes("/comunidad");
         </a>
       </div>
       <div class="mobile-nav-footer">
+        {/* Mismo NOTA que arriba: GitLab + Bitbucket usan slug viejo a propósito. */}
         <div class="mobile-nav-repos">
           <a
             href="https://github.com/fos-duoc/programador-computacional-duocuc"
