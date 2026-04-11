@@ -4,7 +4,7 @@
 
 ## Stack
 
-- **Astro** 5.18.x — SSG con islands. Build sale a `docs/` (GitHub Pages).
+- **Astro** 5.18.x — SSG con islands. Build sale a `apps/astro-site/dist/` (gitignored). Deploy vía `.github/workflows/deploy-pages.yml`.
 - **TypeScript** 5.9.x — `extends astro/tsconfigs/strict`.
 - **Iconos**: `astro-icon` + `@iconify-json/{devicon,mdi,simple-icons}`.
 - **Compresión**: `astro-compress` + `@playform/compress` (HTML, CSS, JS, imágenes).
@@ -14,22 +14,32 @@
 
 ## Decisiones clave
 
-### outDir compartido (`../../docs`) — tech debt
+### Deploy vía GitHub Actions (no más `docs/` compartido)
 
-El `astro.config.mjs` produce a `../../docs` (raíz del repo) para que GitHub Pages lo sirva sin GitHub Actions adicional. Esto significa que **el contenido de `docs/` está commiteado** y se actualiza con cada `npm run build`.
+`apps/astro-site/astro.config.mjs` usa el `outDir` por defecto (`dist/`, gitignored). El sitio se publica con `.github/workflows/deploy-pages.yml` que:
 
-**Problema**: `docs/` también aloja documentación estructurada (`context.md`, `sessions/`, `conventions.md`, `architecture/`, `archive/`). Astro por defecto **vacía el outDir** antes de cada build, lo que borraría esos `.md`.
+1. Hace build de `apps/astro-site/` en CI con Node del `.nvmrc`.
+2. Sube `apps/astro-site/dist/` como artifact con `actions/upload-pages-artifact@v3`.
+3. Despliega con `actions/deploy-pages@v4`.
 
-**Mitigación actual**: en `astro.config.mjs` se setea `vite.build.emptyOutDir: false`. El build escribe encima de los archivos generados (HTML, CSS, JS, sitemap) sin tocar los `.md` que viven al lado.
+**Trigger**: push a `main` con cambios en `apps/astro-site/**` o el propio workflow. También `workflow_dispatch` manual.
 
-**Migración recomendada (follow-up)**:
+**Concurrency**: una deploy a la vez (cancel-in-progress: false), para no dejar el sitio en estado intermedio.
 
-1. Cambiar `outDir` de Astro a `dist/` (default).
-2. Crear `.github/workflows/deploy-pages.yml` que construye y publica con `actions/deploy-pages@v4`.
-3. En GitHub repo settings → Pages → Source: cambiar de "Deploy from a branch (docs/)" a "GitHub Actions".
-4. Eliminar de git los archivos generados en `docs/` (dejando solo los `.md` estructurados).
+**Permisos mínimos**: `contents:read`, `pages:write`, `id-token:write`.
 
-Esta migración convierte `docs/` en una carpeta 100% source-of-truth y desacopla deploy del workflow local.
+#### Requisito de configuración manual
+
+En GitHub repo settings → **Pages → Source** debe estar en **"GitHub Actions"** (no "Deploy from a branch"). Si está en branch, los pushes no triggerizan el workflow.
+
+#### Historia previa (eliminada)
+
+Antes, el sitio se deployaba directo desde `docs/` en `main` (configuración de Pages). Esto causaba:
+- `docs/` mezclaba ~50 archivos generados (HTML, CSS, JS, sitemap) con docs estructuradas (`context.md`, `conventions.md`, `architecture/`, `archive/`).
+- Astro vaciaba el outDir por defecto, borrando los `.md` accidentalmente. Mitigado temporalmente con `vite.build.emptyOutDir: false`.
+- Cada `npm run build` ensuciaba el git status con los hashes nuevos del compress.
+
+La migración a workflow + `dist/` resuelve los tres problemas.
 
 ### TTS dual-engine
 
@@ -97,8 +107,8 @@ Astro 6.x (latest) requiere **Node ≥22.12.0**. Actualmente Node 20.20 en `.nvm
 cd apps/astro-site
 
 npm run dev        # localhost:4321
-npm run build      # genera ../../docs/ (cuidado: se mezcla con docs estructuradas)
-npm run preview    # sirve docs/ buildeado
+npm run build      # genera apps/astro-site/dist/ (gitignored)
+npm run preview    # sirve dist/ buildeado en localhost:4321
 npm run check      # astro check (informativo, no bloqueante)
 npm run lint       # eslint + prettier check
 npm run lint:fix   # arregla lo arreglable
