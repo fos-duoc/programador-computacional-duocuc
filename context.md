@@ -102,9 +102,13 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 
 ## Tech debt conocida
 
+- **🔥 Data dumps inline (~880 KB/page)**: `sala-de-estudio/index.html` pesa 1.26 MB porque `data/asignaturas.ts` (8022 líneas) y `data/technologies.ts` se serializan inline vía `define:vars` en cada componente que los usa. Migración propuesta: mover a `public/data/*.json` con fetch async + loading state. Riesgo medio (toca el Tutor AI). Plan completo en `docs/architecture/astro-site.md`. Ahorro estimado: -800 KB por page.
 - **astro-site/tsconfig**: `extends astro/tsconfigs/strict` con 379 errores de TS pre-existentes en el código del Tutor AI. `astro check` no es bloqueante en CI hasta limpieza gradual.
-- **astro-site lint warnings**: 65 warnings residuales (post auto-fix) — mayormente unused vars sin prefijo `_` y ocasional `any` en código del Tutor AI. Limpiables a mano sin riesgo.
+- **astro-site lint warnings**: 65 warnings residuales (post auto-fix) — mayormente unused vars sin prefijo `_` y ocasional `any`. Limpiables a mano.
 - **Astro 6**: requiere Node ≥22.12. Pendiente bump de runtime + test integral del Tutor AI.
+- **5 vulnerabilidades npm moderate** en `@astrojs/check` → volar-service-yaml. Sin fix mayor disponible. Esperar upstream.
+- **Tests**: ni JS/Astro ni Python tienen tests. Sprint 5 del audit lo cubre.
+- **Lighthouse CI**: no configurado todavía. Sprint 5 del audit.
 
 ### ⚠️ Acción manual requerida del usuario
 
@@ -117,4 +121,4 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 - **Fecha**: 2026-04-11
 - **Sesión**: sessions/2026-04-11.md
 - **Branch al cierre**: `chore/modernize-and-restructure`
-- **Commit**: `ef851b11`
+- **Commit**: `0cb5903f`
