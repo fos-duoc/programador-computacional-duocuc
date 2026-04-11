@@ -2,7 +2,6 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import compress from "@playform/compress";
-import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,14 +14,13 @@ export default defineConfig({
     assets: "assets",
     inlineStylesheets: "auto",
   },
+  // Prefetch built-in (Astro 5+): precarga páginas linkeadas cuando entran al
+  // viewport o el usuario hace hover. Mejora la latencia entre navegaciones.
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: "viewport",
+  },
   integrations: [
-    icon({
-      include: {
-        mdi: ["*"],
-        "simple-icons": ["*"],
-        devicon: ["*"],
-      },
-    }),
     sitemap(),
     compress({
       CSS: true,
@@ -32,9 +30,11 @@ export default defineConfig({
           collapseWhitespace: true,
         },
       },
-      Image: false,
+      // Optimiza imágenes durante el build (sharp). Antes Image:false porque
+      // el outDir compartido con docs/ causaba conflictos; ahora dist/ es limpio.
+      Image: true,
       JavaScript: true,
-      SVG: false,
+      SVG: true,
     }),
   ],
   vite: {
