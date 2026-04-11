@@ -42,8 +42,8 @@
 
 <sub>10 Bimestres · Título Técnico</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-tecnico-2025.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-tecnico-2025.jpg" width="450" alt="Malla Técnico 2025"/>
+<a href="resources/mallas/malla-tecnico-2025.jpg">
+<img src="resources/mallas/malla-tecnico-2025.jpg" width="450" alt="Malla Técnico 2025"/>
 </a>
 
 </td>
@@ -53,8 +53,8 @@
 
 <sub>7 Bimestres · Continuidad</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-ing-software-2025.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-ing-software-2025.jpg" width="450" alt="Malla Ing Software 2025"/>
+<a href="resources/mallas/malla-ing-software-2025.jpg">
+<img src="resources/mallas/malla-ing-software-2025.jpg" width="450" alt="Malla Ing Software 2025"/>
 </a>
 
 </td>
@@ -71,8 +71,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-desarrollo-software.png">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-desarrollo-software.png" width="280" alt="Malla Desarrollo Software"/>
+<a href="resources/mallas/malla-presencial-desarrollo-software.png">
+<img src="resources/mallas/malla-presencial-desarrollo-software.png" width="280" alt="Malla Desarrollo Software"/>
 </a>
 
 </td>
@@ -82,8 +82,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-ingenieria-datos.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-ingenieria-datos.jpg" width="280" alt="Malla Ingeniería de Datos"/>
+<a href="resources/mallas/malla-presencial-ingenieria-datos.jpg">
+<img src="resources/mallas/malla-presencial-ingenieria-datos.jpg" width="280" alt="Malla Ingeniería de Datos"/>
 </a>
 
 </td>
@@ -93,8 +93,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-inteligencia-artificial.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-inteligencia-artificial.jpg" width="280" alt="Malla Inteligencia Artificial"/>
+<a href="resources/mallas/malla-presencial-inteligencia-artificial.jpg">
+<img src="resources/mallas/malla-presencial-inteligencia-artificial.jpg" width="280" alt="Malla Inteligencia Artificial"/>
 </a>
 
 </td>
@@ -106,8 +106,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-automatizacion.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-automatizacion.jpg" width="280" alt="Malla Automatización"/>
+<a href="resources/mallas/malla-presencial-automatizacion.jpg">
+<img src="resources/mallas/malla-presencial-automatizacion.jpg" width="280" alt="Malla Automatización"/>
 </a>
 
 </td>
@@ -117,8 +117,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-ciencia-datos.jpg">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-ciencia-datos.jpg" width="280" alt="Malla Ciencia de Datos"/>
+<a href="resources/mallas/malla-presencial-ciencia-datos.jpg">
+<img src="resources/mallas/malla-presencial-ciencia-datos.jpg" width="280" alt="Malla Ciencia de Datos"/>
 </a>
 
 </td>
@@ -128,8 +128,8 @@
 
 <sub>8 Semestres · Presencial Diurno</sub>
 
-<a href="_Recursos-Adicionales/mallas/malla-presencial-informatica.png">
-<img src="_Recursos-Adicionales/mallas/malla-presencial-informatica.png" width="280" alt="Malla Ing Informática"/>
+<a href="resources/mallas/malla-presencial-informatica.png">
+<img src="resources/mallas/malla-presencial-informatica.png" width="280" alt="Malla Ing Informática"/>
 </a>
 
 </td>
@@ -553,33 +553,43 @@
 ## 📂 Estructura del Repositorio
 
 ```
-📁 Bimestre-XX/
+Analista-Programador-Computacional-DuocUC/
 │
-├── 📁 Asignatura/
-│   │
-│   ├── 📄 README.md              ◀━━━ 📋 Cheatsheet (código copy-paste ready)
-│   │
-│   ├── 📁 Exp1/                  ◀━━━ 🔬 Experiencia 1
-│   │   ├── 📁 Semana-01/
-│   │   ├── 📁 Semana-02/
-│   │   └── 📁 Semana-03/
-│   │
-│   ├── 📁 Exp2/                  ◀━━━ 🔬 Experiencia 2
-│   │   ├── 📁 Semana-04/
-│   │   └── 📁 Semana-05/
-│   │
-│   ├── 📁 Exp3/                  ◀━━━ 🔬 Experiencia 3
-│   │   ├── 📁 Semana-06/
-│   │   ├── 📁 Semana-07/
-│   │   └── 📁 Semana-08/
-│   │
-│   ├── 📁 Actividades/           ◀━━━ 📝 Evaluaciones
-│   │
-│   └── 📁 Archivos-Curso/        ◀━━━ 📚 Material original
+├── 📁 apps/
+│   └── 📁 astro-site/             ◀━━━ 🌐 Sitio Astro (Tutor AI, recursos)
 │
-└── 📁 _Recursos-Adicionales/
-    ├── 📁 mallas/                ◀━━━ 📊 PDFs malla curricular
-    └── 📁 documentos/            ◀━━━ 📋 Reglamentos
+├── 📁 coursework/                 ◀━━━ 📚 Material académico (17 bimestres)
+│   ├── 📁 bimestre-XX-<slug>/
+│   │   ├── 📄 README.md           ◀━━━ 📋 Índice del bimestre
+│   │   └── 📁 <asignatura>/
+│   │       ├── 📄 README.md       ◀━━━ 📋 Cheatsheet de la asignatura
+│   │       ├── 📁 archivos-curso/ ◀━━━ 📚 Material original del profe
+│   │       ├── 📁 actividades/    ◀━━━ 📝 Evaluaciones formativas
+│   │       ├── 📁 exp1/           ◀━━━ 🔬 Experiencia 1 (semanas 1-3)
+│   │       │   ├── semana-01/
+│   │       │   ├── semana-02/
+│   │       │   └── semana-03/
+│   │       ├── 📁 exp2/           ◀━━━ 🔬 Experiencia 2 (semanas 4-5)
+│   │       └── 📁 exp3/           ◀━━━ 🔬 Experiencia 3 (semanas 6-8)
+│
+├── 📁 resources/                  ◀━━━ 🎒 Mallas, plantillas, referencias
+│   ├── 📁 mallas/
+│   ├── 📁 documentos/
+│   └── 📁 plantillas/
+│
+├── 📁 docs/                       ◀━━━ 📖 Documentación del repo
+│   ├── 📄 context.md              ◀━━━ 🧠 Snapshot vivo del proyecto
+│   ├── 📁 sessions/               ◀━━━ 📅 Bitácora de sesiones de trabajo
+│   ├── 📄 conventions.md
+│   ├── 📁 architecture/
+│   └── 📁 archive/                ◀━━━ 🗄️ Docs históricos
+│
+├── 📁 scripts/                    ◀━━━ 🔧 Helpers (update-context.sh, etc.)
+│
+├── 📄 pyproject.toml              ◀━━━ 🐍 uv coursework Python (3.13)
+├── 📄 .python-version             ◀━━━ Python pin (uv)
+├── 📄 .nvmrc                      ◀━━━ Node pin (nvm)
+└── 📄 README.md                   ◀━━━ 📍 estás aquí
 ```
 
 ---
