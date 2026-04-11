@@ -1050,7 +1050,7 @@
     canvas.addEventListener("drop", function (e) {
       e.preventDefault();
       canvas.classList.remove("drag-over");
-      var type = e.dataTransfer.getData("componentType");
+      const type = e.dataTransfer.getData("componentType");
       if (type) {
         addComponent(type);
       }
@@ -1059,9 +1059,9 @@
     function addComponent(type, config) {
       config = config || {};
       componentCounter++;
-      var id = "comp-" + componentCounter;
+      const id = "comp-" + componentCounter;
 
-      var component = {
+      const component = {
         id: id,
         type: type,
         title: config.title || getDefaultTitle(type),
@@ -1077,7 +1077,7 @@
     }
 
     function getDefaultTitle(type) {
-      var titles = {
+      const titles = {
         "bar-chart": "Gráfico de Barras",
         "line-chart": "Gráfico de Líneas",
         "pie-chart": "Gráfico de Pastel",
@@ -1105,13 +1105,13 @@
     }
 
     function renderComponent(component) {
-      var el = document.createElement("div");
+      const el = document.createElement("div");
       el.className = "dropped-component";
       el.id = component.id;
       el.style.gridColumn = component.gridColumn;
       el.style.gridRow = component.gridRow;
 
-      var headerHtml =
+      const headerHtml =
         '<div class="component-header">' +
         '<span class="component-title">' +
         component.title +
@@ -1121,7 +1121,7 @@
         "</div>" +
         "</div>";
 
-      var previewHtml = '<div class="component-preview">' + getPreviewHtml(component) + "</div>";
+      const previewHtml = '<div class="component-preview">' + getPreviewHtml(component) + "</div>";
 
       el.innerHTML = headerHtml + previewHtml;
 
@@ -1139,9 +1139,9 @@
 
     function getPreviewHtml(component) {
       if (component.type === "bar-chart") {
-        var bars = "";
-        var values = component.data.values || [65, 59, 80, 81, 56];
-        for (var i = 0; i < values.length; i++) {
+        let bars = "";
+        const values = component.data.values || [65, 59, 80, 81, 56];
+        for (let i = 0; i < values.length; i++) {
           bars += '<div class="bar" style="height: ' + values[i] + '%"></div>';
         }
         return '<div class="chart-preview"><div class="bar-chart-preview">' + bars + "</div></div>";
@@ -1168,7 +1168,7 @@
       components = components.filter(function (c) {
         return c.id !== id;
       });
-      var el = document.getElementById(id);
+      const el = document.getElementById(id);
       if (el) el.remove();
       if (components.length === 0) {
         canvas.classList.remove("has-components");
@@ -1244,7 +1244,7 @@
     });
 
     function generatePythonCode() {
-      var code = "# Dashboard generado con DashboardBuilder\n";
+      let code = "# Dashboard generado con DashboardBuilder\n";
       code += "import plotly.express as px\n";
       code += "import pandas as pd\n";
       code += "from dash import Dash, html, dcc\n\n";
@@ -1277,7 +1277,7 @@
     }
 
     function generateHTMLCode() {
-      var code = "<!DOCTYPE html>\n<html>\n<head>\n";
+      let code = "<!DOCTYPE html>\n<html>\n<head>\n";
       code += "    <title>Mi Dashboard</title>\n";
       code += '    <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>\n';
       code += "    <style>\n";
@@ -1322,7 +1322,7 @@
     });
 
     // Templates
-    var templates = {
+    const templates = {
       sales: [
         {
           type: "kpi-card",
@@ -1373,8 +1373,8 @@
 
     document.querySelectorAll(".template-card").forEach(function (card) {
       card.addEventListener("click", function () {
-        var templateName = card.dataset.template;
-        var template = templates[templateName];
+        const templateName = card.dataset.template;
+        const template = templates[templateName];
         if (!template) return;
 
         // Clear canvas

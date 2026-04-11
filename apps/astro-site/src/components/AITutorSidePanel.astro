@@ -5668,7 +5668,7 @@ const base = import.meta.env.BASE_URL;
     // Add initial assistant message with prominent greeting state
     // Special greeting for Sala de Estudio context - use premium welcome card
     let greetingMsg;
-    let usePremiumWelcome = subjectCode === "SALA" || subjectCode === "GEN";
+    const usePremiumWelcome = subjectCode === "SALA" || subjectCode === "GEN";
 
     if (usePremiumWelcome) {
       // Use premium animated welcome card for Sala de Estudio

@@ -3,792 +3,866 @@
 // Cada proyecto corresponde a asignaturas específicas del programa APC
 
 const projectLevels = [
-    {
-        level: "Fundamentos",
-        levelNum: 1,
-        color: "cyan",
-        icon: "fas fa-seedling",
-        description: "Proyectos para consolidar fundamentos de programación y pensamiento lógico",
-        bimestres: "B01-B02",
-        subjects: ["PRY1101", "MDY1101", "PRY2202"],
-        projects: [
-            {
-                name: "Sistema de Inventario CLI",
-                description: "Aplicación de consola que gestiona productos con menú, CRUD y persistencia en archivos TXT/CSV",
-                skills: ["Python", "Archivos", "Estructuras de datos", "Menú interactivo"],
-                duration: "2-3 semanas",
-                difficulty: 2,
-                subject: "PRY1101 - Fundamentos de Programación"
-            },
-            {
-                name: "Calculadora Científica POO",
-                description: "Calculadora con clases: Operacion, Historial, Validador. Aplica encapsulamiento y herencia",
-                skills: ["Java", "Clases", "Encapsulamiento", "ArrayList"],
-                duration: "2 semanas",
-                difficulty: 2,
-                subject: "PRY2202 - Desarrollo OO I"
-            },
-            {
-                name: "Modelo Entidad-Relación",
-                description: "Diseño completo de BD para sistema de biblioteca: entidades, relaciones, normalización 3NF",
-                skills: ["DER", "MER", "Normalización", "SQL DDL"],
-                duration: "1-2 semanas",
-                difficulty: 2,
-                subject: "MDY1101 - Modelamiento de Datos"
-            }
-        ]
-    },
-    {
-        level: "Desarrollo OO",
-        levelNum: 2,
-        color: "purple",
-        icon: "fas fa-cubes",
-        description: "Proyectos con arquitectura POO completa, herencia, interfaces y BD relacional",
-        bimestres: "B03-B04",
-        subjects: ["MDY3131", "PRY3131", "DAW4101"],
-        projects: [
-            {
-                name: "Sistema de Gestión Empresarial",
-                description: "CRUD completo con Java + PostgreSQL: Empleados, Departamentos, Proyectos. MVC + DAO",
-                skills: ["Java", "JDBC", "PostgreSQL", "MVC", "DAO Pattern"],
-                duration: "3-4 semanas",
-                difficulty: 3,
-                subject: "MDY3131 - Modelamiento BD"
-            },
-            {
-                name: "API REST con Spring Boot",
-                description: "Backend REST para gestión de usuarios y productos. JWT auth, validaciones, Swagger docs",
-                skills: ["Spring Boot", "JPA/Hibernate", "JWT", "Swagger"],
-                duration: "3-4 semanas",
-                difficulty: 3,
-                subject: "PRY3131 - Desarrollo OO II"
-            },
-            {
-                name: "Portafolio Web Responsive",
-                description: "Sitio web personal con HTML5, CSS3, JavaScript. Formulario de contacto, animaciones",
-                skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-                duration: "2-3 semanas",
-                difficulty: 2,
-                subject: "DAW4101 - Desarrollo de Aplicaciones Web"
-            }
-        ]
-    },
-    {
-        level: "Fullstack",
-        levelNum: 3,
-        color: "orange",
-        icon: "fas fa-layer-group",
-        description: "Proyectos fullstack con frontend moderno, backend robusto y deploy cloud",
-        bimestres: "B05-B07",
-        subjects: ["DAW5101", "PGY5101", "CLD6101"],
-        projects: [
-            {
-                name: "E-Commerce SPA",
-                description: "Tienda online con React/Vue: catálogo, carrito, checkout, panel admin. API REST propia",
-                skills: ["React/Vue", "Node.js/Spring", "PostgreSQL", "REST API"],
-                duration: "5-6 semanas",
-                difficulty: 4,
-                subject: "DAW5101 - Desarrollo Web Avanzado"
-            },
-            {
-                name: "Dashboard Tiempo Real",
-                description: "Panel de métricas con WebSockets: gráficos en vivo, alertas, filtros dinámicos",
-                skills: ["React", "Socket.io", "Chart.js", "Redis"],
-                duration: "3-4 semanas",
-                difficulty: 3,
-                subject: "PGY5101 - Programación Web"
-            },
-            {
-                name: "App Cloud-Native",
-                description: "Aplicación desplegada en AWS/GCP: EC2/Cloud Run, RDS, S3, CI/CD con GitHub Actions",
-                skills: ["AWS/GCP", "Docker", "CI/CD", "Terraform básico"],
-                duration: "4-5 semanas",
-                difficulty: 4,
-                subject: "CLD6101 - Computación en la Nube"
-            }
-        ]
-    },
-    {
-        level: "Integración",
-        levelNum: 4,
-        color: "green",
-        icon: "fas fa-rocket",
-        description: "Proyectos integradores: metodologías ágiles, testing y despliegue profesional",
-        bimestres: "B08-B10",
-        subjects: ["PGY6101", "DAM7101", "TIT10101"],
-        projects: [
-            {
-                name: "App Móvil Híbrida",
-                description: "Aplicación móvil con React Native/Flutter: auth, cámara, GPS, notificaciones push, offline",
-                skills: ["React Native/Flutter", "Firebase", "Push Notifications", "Offline Storage"],
-                duration: "6-8 semanas",
-                difficulty: 5,
-                subject: "DAM7101 - Desarrollo de Aplicaciones Móviles"
-            },
-            {
-                name: "Sistema con Microservicios",
-                description: "Arquitectura de 3+ microservicios: API Gateway, auth service, business service, Docker Compose",
-                skills: ["Docker", "API Gateway", "RabbitMQ/Kafka", "Kubernetes básico"],
-                duration: "5-6 semanas",
-                difficulty: 5,
-                subject: "PGY6101 - Programación de Software"
-            },
-            {
-                name: "Proyecto de Título",
-                description: "Desarrollo completo: levantamiento, diseño, implementación, testing, deploy y documentación",
-                skills: ["Metodología Scrum", "Git Flow", "Testing", "Documentación técnica"],
-                duration: "8-10 semanas",
-                difficulty: 5,
-                subject: "TIT10101 - Proyecto de Título"
-            }
-        ]
-    },
-    // ============== INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17) ==============
-    {
-        level: "Fullstack Avanzado",
-        levelNum: 5,
-        color: "rose",
-        icon: "fas fa-code-branch",
-        description: "Proyectos con arquitecturas limpias, patrones avanzados y BD distribuidas",
-        bimestres: "B11-B12",
-        badge: "IDS",
-        subjects: ["Fullstack I", "BD Aplicada", "Fullstack II", "Cloud Computing"],
-        projects: [
-            {
-                name: "Sistema con Clean Architecture",
-                description: "Aplicación con separación de capas: Domain, Application, Infrastructure. Use Cases, Entities, Repositories",
-                skills: ["Java/Kotlin", "Clean Architecture", "DI/IoC", "Unit Testing"],
-                duration: "5-6 semanas",
-                difficulty: 5,
-                subject: "Fullstack I - Clean Architecture"
-            },
-            {
-                name: "Data Warehouse con ETL",
-                description: "Diseño de DW con modelo dimensional (Star Schema), ETL pipeline con dbt, dashboards en Power BI",
-                skills: ["PostgreSQL", "dbt", "Power BI", "Dimensional Modeling"],
-                duration: "4-5 semanas",
-                difficulty: 4,
-                subject: "BD Aplicada - Data Warehouse"
-            },
-            {
-                name: "Plataforma SaaS Multi-tenant",
-                description: "Aplicación B2B con aislamiento de tenants, facturación, roles granulares, API públicas con rate limiting",
-                skills: ["Spring Boot", "Multi-tenancy", "Stripe API", "OAuth2"],
-                duration: "6-8 semanas",
-                difficulty: 5,
-                subject: "Fullstack II - SaaS Platform"
-            }
-        ]
-    },
-    {
-        level: "DevOps & Cloud Native",
-        levelNum: 6,
-        color: "amber",
-        icon: "fas fa-dharmachakra",
-        description: "Proyectos con CI/CD completo, contenedores y orquestación en producción",
-        bimestres: "B13-B14",
-        badge: "IDS",
-        subjects: ["Fullstack III", "DevOps", "Mobile", "Cloud Native I"],
-        projects: [
-            {
-                name: "Microservicios con DDD",
-                description: "Arquitectura de microservicios con Domain-Driven Design: Bounded Contexts, Aggregates, Events, CQRS",
-                skills: ["Java/Kotlin", "DDD", "Event Sourcing", "Kafka"],
-                duration: "6-8 semanas",
-                difficulty: 5,
-                subject: "Fullstack III - DDD Microservices"
-            },
-            {
-                name: "Pipeline CI/CD Completo",
-                description: "Infrastructure as Code: Terraform para provisioning, GitHub Actions CI/CD, ArgoCD para GitOps, observabilidad con Grafana",
-                skills: ["Terraform", "GitHub Actions", "ArgoCD", "Prometheus/Grafana"],
-                duration: "4-5 semanas",
-                difficulty: 4,
-                subject: "DevOps - CI/CD & GitOps"
-            },
-            {
-                name: "App Móvil Enterprise",
-                description: "Aplicación móvil con autenticación biométrica, sincronización offline-first, push notifications, analytics",
-                skills: ["Flutter/React Native", "SQLite", "Firebase", "Biometric Auth"],
-                duration: "5-6 semanas",
-                difficulty: 4,
-                subject: "Mobile - Enterprise App"
-            },
-            {
-                name: "Kubernetes Production Cluster",
-                description: "Despliegue en K8s: Helm charts, Ingress, ConfigMaps, Secrets, HPA, health checks, rolling updates",
-                skills: ["Kubernetes", "Helm", "Ingress", "HPA"],
-                duration: "4-5 semanas",
-                difficulty: 5,
-                subject: "Cloud Native I - Kubernetes"
-            }
-        ]
-    },
-    {
-        level: "Arquitectura & Gestión",
-        levelNum: 7,
-        color: "emerald",
-        icon: "fas fa-chess-king",
-        description: "Proyectos de arquitectura empresarial, seguridad y gestión de proyectos",
-        bimestres: "B15-B17",
-        badge: "IDS",
-        subjects: ["Cloud Native II", "Seguridad", "Gestión Proyectos", "Título IDS"],
-        projects: [
-            {
-                name: "Service Mesh & Zero Trust",
-                description: "Implementación de Istio/Linkerd con mTLS, canary deployments, circuit breakers, observabilidad distribuida",
-                skills: ["Istio", "mTLS", "Jaeger", "Kiali"],
-                duration: "5-6 semanas",
-                difficulty: 5,
-                subject: "Cloud Native II - Service Mesh"
-            },
-            {
-                name: "Security Hardening Project",
-                description: "Auditoría de seguridad: OWASP Top 10, SAST/DAST, secrets management con Vault, penetration testing básico",
-                skills: ["OWASP", "Vault", "SonarQube", "SAST/DAST"],
-                duration: "4-5 semanas",
-                difficulty: 4,
-                subject: "Seguridad - Security Engineering"
-            },
-            {
-                name: "Gestión de Proyecto Ágil",
-                description: "Liderazgo de proyecto real: estimación, planning, sprints, métricas (velocity, burndown), retrospectivas",
-                skills: ["Scrum Master", "Jira", "Confluence", "Métricas Ágiles"],
-                duration: "Durante todo el bimestre",
-                difficulty: 4,
-                subject: "Gestión Proyectos - Scrum Master"
-            },
-            {
-                name: "Proyecto de Título IDS",
-                description: "Solución empresarial completa: arquitectura documentada, microservicios, testing E2E, deploy K8s, monitoreo",
-                skills: ["Arquitectura", "Full CI/CD", "Testing E2E", "Documentación C4"],
-                duration: "10-12 semanas",
-                difficulty: 5,
-                subject: "Título IDS - Enterprise Solution"
-            }
-        ]
-    }
+  {
+    level: "Fundamentos",
+    levelNum: 1,
+    color: "cyan",
+    icon: "fas fa-seedling",
+    description: "Proyectos para consolidar fundamentos de programación y pensamiento lógico",
+    bimestres: "B01-B02",
+    subjects: ["PRY1101", "MDY1101", "PRY2202"],
+    projects: [
+      {
+        name: "Sistema de Inventario CLI",
+        description:
+          "Aplicación de consola que gestiona productos con menú, CRUD y persistencia en archivos TXT/CSV",
+        skills: ["Python", "Archivos", "Estructuras de datos", "Menú interactivo"],
+        duration: "2-3 semanas",
+        difficulty: 2,
+        subject: "PRY1101 - Fundamentos de Programación",
+      },
+      {
+        name: "Calculadora Científica POO",
+        description:
+          "Calculadora con clases: Operacion, Historial, Validador. Aplica encapsulamiento y herencia",
+        skills: ["Java", "Clases", "Encapsulamiento", "ArrayList"],
+        duration: "2 semanas",
+        difficulty: 2,
+        subject: "PRY2202 - Desarrollo OO I",
+      },
+      {
+        name: "Modelo Entidad-Relación",
+        description:
+          "Diseño completo de BD para sistema de biblioteca: entidades, relaciones, normalización 3NF",
+        skills: ["DER", "MER", "Normalización", "SQL DDL"],
+        duration: "1-2 semanas",
+        difficulty: 2,
+        subject: "MDY1101 - Modelamiento de Datos",
+      },
+    ],
+  },
+  {
+    level: "Desarrollo OO",
+    levelNum: 2,
+    color: "purple",
+    icon: "fas fa-cubes",
+    description: "Proyectos con arquitectura POO completa, herencia, interfaces y BD relacional",
+    bimestres: "B03-B04",
+    subjects: ["MDY3131", "PRY3131", "DAW4101"],
+    projects: [
+      {
+        name: "Sistema de Gestión Empresarial",
+        description:
+          "CRUD completo con Java + PostgreSQL: Empleados, Departamentos, Proyectos. MVC + DAO",
+        skills: ["Java", "JDBC", "PostgreSQL", "MVC", "DAO Pattern"],
+        duration: "3-4 semanas",
+        difficulty: 3,
+        subject: "MDY3131 - Modelamiento BD",
+      },
+      {
+        name: "API REST con Spring Boot",
+        description:
+          "Backend REST para gestión de usuarios y productos. JWT auth, validaciones, Swagger docs",
+        skills: ["Spring Boot", "JPA/Hibernate", "JWT", "Swagger"],
+        duration: "3-4 semanas",
+        difficulty: 3,
+        subject: "PRY3131 - Desarrollo OO II",
+      },
+      {
+        name: "Portafolio Web Responsive",
+        description:
+          "Sitio web personal con HTML5, CSS3, JavaScript. Formulario de contacto, animaciones",
+        skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+        duration: "2-3 semanas",
+        difficulty: 2,
+        subject: "DAW4101 - Desarrollo de Aplicaciones Web",
+      },
+    ],
+  },
+  {
+    level: "Fullstack",
+    levelNum: 3,
+    color: "orange",
+    icon: "fas fa-layer-group",
+    description: "Proyectos fullstack con frontend moderno, backend robusto y deploy cloud",
+    bimestres: "B05-B07",
+    subjects: ["DAW5101", "PGY5101", "CLD6101"],
+    projects: [
+      {
+        name: "E-Commerce SPA",
+        description:
+          "Tienda online con React/Vue: catálogo, carrito, checkout, panel admin. API REST propia",
+        skills: ["React/Vue", "Node.js/Spring", "PostgreSQL", "REST API"],
+        duration: "5-6 semanas",
+        difficulty: 4,
+        subject: "DAW5101 - Desarrollo Web Avanzado",
+      },
+      {
+        name: "Dashboard Tiempo Real",
+        description:
+          "Panel de métricas con WebSockets: gráficos en vivo, alertas, filtros dinámicos",
+        skills: ["React", "Socket.io", "Chart.js", "Redis"],
+        duration: "3-4 semanas",
+        difficulty: 3,
+        subject: "PGY5101 - Programación Web",
+      },
+      {
+        name: "App Cloud-Native",
+        description:
+          "Aplicación desplegada en AWS/GCP: EC2/Cloud Run, RDS, S3, CI/CD con GitHub Actions",
+        skills: ["AWS/GCP", "Docker", "CI/CD", "Terraform básico"],
+        duration: "4-5 semanas",
+        difficulty: 4,
+        subject: "CLD6101 - Computación en la Nube",
+      },
+    ],
+  },
+  {
+    level: "Integración",
+    levelNum: 4,
+    color: "green",
+    icon: "fas fa-rocket",
+    description: "Proyectos integradores: metodologías ágiles, testing y despliegue profesional",
+    bimestres: "B08-B10",
+    subjects: ["PGY6101", "DAM7101", "TIT10101"],
+    projects: [
+      {
+        name: "App Móvil Híbrida",
+        description:
+          "Aplicación móvil con React Native/Flutter: auth, cámara, GPS, notificaciones push, offline",
+        skills: ["React Native/Flutter", "Firebase", "Push Notifications", "Offline Storage"],
+        duration: "6-8 semanas",
+        difficulty: 5,
+        subject: "DAM7101 - Desarrollo de Aplicaciones Móviles",
+      },
+      {
+        name: "Sistema con Microservicios",
+        description:
+          "Arquitectura de 3+ microservicios: API Gateway, auth service, business service, Docker Compose",
+        skills: ["Docker", "API Gateway", "RabbitMQ/Kafka", "Kubernetes básico"],
+        duration: "5-6 semanas",
+        difficulty: 5,
+        subject: "PGY6101 - Programación de Software",
+      },
+      {
+        name: "Proyecto de Título",
+        description:
+          "Desarrollo completo: levantamiento, diseño, implementación, testing, deploy y documentación",
+        skills: ["Metodología Scrum", "Git Flow", "Testing", "Documentación técnica"],
+        duration: "8-10 semanas",
+        difficulty: 5,
+        subject: "TIT10101 - Proyecto de Título",
+      },
+    ],
+  },
+  // ============== INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17) ==============
+  {
+    level: "Fullstack Avanzado",
+    levelNum: 5,
+    color: "rose",
+    icon: "fas fa-code-branch",
+    description: "Proyectos con arquitecturas limpias, patrones avanzados y BD distribuidas",
+    bimestres: "B11-B12",
+    badge: "IDS",
+    subjects: ["Fullstack I", "BD Aplicada", "Fullstack II", "Cloud Computing"],
+    projects: [
+      {
+        name: "Sistema con Clean Architecture",
+        description:
+          "Aplicación con separación de capas: Domain, Application, Infrastructure. Use Cases, Entities, Repositories",
+        skills: ["Java/Kotlin", "Clean Architecture", "DI/IoC", "Unit Testing"],
+        duration: "5-6 semanas",
+        difficulty: 5,
+        subject: "Fullstack I - Clean Architecture",
+      },
+      {
+        name: "Data Warehouse con ETL",
+        description:
+          "Diseño de DW con modelo dimensional (Star Schema), ETL pipeline con dbt, dashboards en Power BI",
+        skills: ["PostgreSQL", "dbt", "Power BI", "Dimensional Modeling"],
+        duration: "4-5 semanas",
+        difficulty: 4,
+        subject: "BD Aplicada - Data Warehouse",
+      },
+      {
+        name: "Plataforma SaaS Multi-tenant",
+        description:
+          "Aplicación B2B con aislamiento de tenants, facturación, roles granulares, API públicas con rate limiting",
+        skills: ["Spring Boot", "Multi-tenancy", "Stripe API", "OAuth2"],
+        duration: "6-8 semanas",
+        difficulty: 5,
+        subject: "Fullstack II - SaaS Platform",
+      },
+    ],
+  },
+  {
+    level: "DevOps & Cloud Native",
+    levelNum: 6,
+    color: "amber",
+    icon: "fas fa-dharmachakra",
+    description: "Proyectos con CI/CD completo, contenedores y orquestación en producción",
+    bimestres: "B13-B14",
+    badge: "IDS",
+    subjects: ["Fullstack III", "DevOps", "Mobile", "Cloud Native I"],
+    projects: [
+      {
+        name: "Microservicios con DDD",
+        description:
+          "Arquitectura de microservicios con Domain-Driven Design: Bounded Contexts, Aggregates, Events, CQRS",
+        skills: ["Java/Kotlin", "DDD", "Event Sourcing", "Kafka"],
+        duration: "6-8 semanas",
+        difficulty: 5,
+        subject: "Fullstack III - DDD Microservices",
+      },
+      {
+        name: "Pipeline CI/CD Completo",
+        description:
+          "Infrastructure as Code: Terraform para provisioning, GitHub Actions CI/CD, ArgoCD para GitOps, observabilidad con Grafana",
+        skills: ["Terraform", "GitHub Actions", "ArgoCD", "Prometheus/Grafana"],
+        duration: "4-5 semanas",
+        difficulty: 4,
+        subject: "DevOps - CI/CD & GitOps",
+      },
+      {
+        name: "App Móvil Enterprise",
+        description:
+          "Aplicación móvil con autenticación biométrica, sincronización offline-first, push notifications, analytics",
+        skills: ["Flutter/React Native", "SQLite", "Firebase", "Biometric Auth"],
+        duration: "5-6 semanas",
+        difficulty: 4,
+        subject: "Mobile - Enterprise App",
+      },
+      {
+        name: "Kubernetes Production Cluster",
+        description:
+          "Despliegue en K8s: Helm charts, Ingress, ConfigMaps, Secrets, HPA, health checks, rolling updates",
+        skills: ["Kubernetes", "Helm", "Ingress", "HPA"],
+        duration: "4-5 semanas",
+        difficulty: 5,
+        subject: "Cloud Native I - Kubernetes",
+      },
+    ],
+  },
+  {
+    level: "Arquitectura & Gestión",
+    levelNum: 7,
+    color: "emerald",
+    icon: "fas fa-chess-king",
+    description: "Proyectos de arquitectura empresarial, seguridad y gestión de proyectos",
+    bimestres: "B15-B17",
+    badge: "IDS",
+    subjects: ["Cloud Native II", "Seguridad", "Gestión Proyectos", "Título IDS"],
+    projects: [
+      {
+        name: "Service Mesh & Zero Trust",
+        description:
+          "Implementación de Istio/Linkerd con mTLS, canary deployments, circuit breakers, observabilidad distribuida",
+        skills: ["Istio", "mTLS", "Jaeger", "Kiali"],
+        duration: "5-6 semanas",
+        difficulty: 5,
+        subject: "Cloud Native II - Service Mesh",
+      },
+      {
+        name: "Security Hardening Project",
+        description:
+          "Auditoría de seguridad: OWASP Top 10, SAST/DAST, secrets management con Vault, penetration testing básico",
+        skills: ["OWASP", "Vault", "SonarQube", "SAST/DAST"],
+        duration: "4-5 semanas",
+        difficulty: 4,
+        subject: "Seguridad - Security Engineering",
+      },
+      {
+        name: "Gestión de Proyecto Ágil",
+        description:
+          "Liderazgo de proyecto real: estimación, planning, sprints, métricas (velocity, burndown), retrospectivas",
+        skills: ["Scrum Master", "Jira", "Confluence", "Métricas Ágiles"],
+        duration: "Durante todo el bimestre",
+        difficulty: 4,
+        subject: "Gestión Proyectos - Scrum Master",
+      },
+      {
+        name: "Proyecto de Título IDS",
+        description:
+          "Solución empresarial completa: arquitectura documentada, microservicios, testing E2E, deploy K8s, monitoreo",
+        skills: ["Arquitectura", "Full CI/CD", "Testing E2E", "Documentación C4"],
+        duration: "10-12 semanas",
+        difficulty: 5,
+        subject: "Título IDS - Enterprise Solution",
+      },
+    ],
+  },
 ];
 
 const projectTips = [
-    { icon: "fas fa-git-alt", title: "Usa Git desde el día 1", desc: "Commits frecuentes, branches, PRs" },
-    { icon: "fas fa-file-alt", title: "Documenta tu proyecto", desc: "README, diagramas, API docs" },
-    { icon: "fas fa-vial", title: "Escribe tests", desc: "Unit tests, integration tests" },
-    { icon: "fas fa-cloud-upload-alt", title: "Despliega temprano", desc: "CI/CD desde el inicio" }
+  {
+    icon: "fas fa-git-alt",
+    title: "Usa Git desde el día 1",
+    desc: "Commits frecuentes, branches, PRs",
+  },
+  { icon: "fas fa-file-alt", title: "Documenta tu proyecto", desc: "README, diagramas, API docs" },
+  { icon: "fas fa-vial", title: "Escribe tests", desc: "Unit tests, integration tests" },
+  { icon: "fas fa-cloud-upload-alt", title: "Despliega temprano", desc: "CI/CD desde el inicio" },
 ];
 ---
 
 <section id="capstone-projects" class="capstone-section">
-    <div class="capstone-container">
-        <!-- Header -->
-        <div class="capstone-header" data-aos="fade-up">
-            <div class="capstone-header-icon">
-                <i class="fas fa-project-diagram"></i>
-            </div>
-            <h2>Proyectos Capstone</h2>
-            <p class="capstone-subtitle">Construye tu portafolio con proyectos reales por nivel</p>
-            <div class="capstone-stats">
-                <span class="capstone-stat">
-                    <i class="fas fa-folder-open"></i>
-                    <strong>23</strong> Proyectos
-                </span>
-                <span class="capstone-stat">
-                    <i class="fas fa-layer-group"></i>
-                    <strong>7</strong> Niveles
-                </span>
-                <span class="capstone-stat">
-                    <i class="fas fa-graduation-cap"></i>
-                    APC + IDS
-                </span>
-                <span class="capstone-stat">
-                    <i class="fas fa-briefcase"></i>
-                    Portfolio Ready
-                </span>
-            </div>
-        </div>
-
-        <!-- Project Levels -->
-        <div class="capstone-levels">
-            {projectLevels.map((level, levelIndex) => (
-                <div class={`capstone-level level-${level.color}`} data-aos="fade-up" data-aos-delay={levelIndex * 100}>
-                    <!-- Level Header -->
-                    <div class="level-header">
-                        <div class="level-badge">
-                            <i class={level.icon}></i>
-                            <span>Level {level.levelNum}</span>
-                            {level.badge && <span class="level-program-badge">{level.badge}</span>}
-                        </div>
-                        <div class="level-info">
-                            <h3>{level.level}</h3>
-                            <p>{level.description}</p>
-                            <div class="level-tags">
-                                <span class="level-bimestres">{level.bimestres}</span>
-                                {level.badge && <span class="level-badge-tag ids">{level.badge}</span>}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projects Grid -->
-                    <div class="projects-grid">
-                        {level.projects.map((project, projIndex) => (
-                            <div class="project-card glass-card" data-aos="zoom-in" data-aos-delay={100 + projIndex * 50}>
-                                <div class="project-header">
-                                    <h4>{project.name}</h4>
-                                    <div class="project-difficulty">
-                                        {[...Array(5)].map((_, i) => (
-                                            <i class={`fas fa-star ${i < project.difficulty ? 'filled' : ''}`}></i>
-                                        ))}
-                                    </div>
-                                </div>
-                                <p class="project-description">{project.description}</p>
-                                <div class="project-skills">
-                                    {project.skills.map(skill => (
-                                        <span class="project-skill">{skill}</span>
-                                    ))}
-                                </div>
-                                <div class="project-subject">
-                                    <i class="fas fa-book"></i> {project.subject}
-                                </div>
-                                <div class="project-footer">
-                                    <span class="project-duration">
-                                        <i class="fas fa-clock"></i> {project.duration}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            ))}
-        </div>
-
-        <!-- Project Tips -->
-        <div class="capstone-tips glass-card" data-aos="fade-up">
-            <div class="tips-title">
-                <i class="fas fa-lightbulb"></i>
-                <span>Tips para Proyectos Exitosos</span>
-            </div>
-            <div class="tips-grid">
-                {projectTips.map(tip => (
-                    <div class="tip-card">
-                        <div class="tip-icon">
-                            <i class={tip.icon}></i>
-                        </div>
-                        <div class="tip-content">
-                            <h5>{tip.title}</h5>
-                            <p>{tip.desc}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        <!-- CTA -->
-        <div class="capstone-cta" data-aos="fade-up">
-            <a href="https://github.com/new" target="_blank" rel="noopener" class="cta-button">
-                <i class="fab fa-github"></i>
-                Crear Nuevo Repositorio
-            </a>
-            <span class="cta-hint">Empieza tu primer proyecto hoy</span>
-        </div>
+  <div class="capstone-container">
+    <!-- Header -->
+    <div class="capstone-header" data-aos="fade-up">
+      <div class="capstone-header-icon">
+        <i class="fas fa-project-diagram"></i>
+      </div>
+      <h2>Proyectos Capstone</h2>
+      <p class="capstone-subtitle">Construye tu portafolio con proyectos reales por nivel</p>
+      <div class="capstone-stats">
+        <span class="capstone-stat">
+          <i class="fas fa-folder-open"></i>
+          <strong>23</strong> Proyectos
+        </span>
+        <span class="capstone-stat">
+          <i class="fas fa-layer-group"></i>
+          <strong>7</strong> Niveles
+        </span>
+        <span class="capstone-stat">
+          <i class="fas fa-graduation-cap"></i>
+          APC + IDS
+        </span>
+        <span class="capstone-stat">
+          <i class="fas fa-briefcase"></i>
+          Portfolio Ready
+        </span>
+      </div>
     </div>
+
+    <!-- Project Levels -->
+    <div class="capstone-levels">
+      {
+        projectLevels.map((level, levelIndex) => (
+          <div
+            class={`capstone-level level-${level.color}`}
+            data-aos="fade-up"
+            data-aos-delay={levelIndex * 100}
+          >
+            {/* Level Header */}
+            <div class="level-header">
+              <div class="level-badge">
+                <i class={level.icon} />
+                <span>Level {level.levelNum}</span>
+                {level.badge && <span class="level-program-badge">{level.badge}</span>}
+              </div>
+              <div class="level-info">
+                <h3>{level.level}</h3>
+                <p>{level.description}</p>
+                <div class="level-tags">
+                  <span class="level-bimestres">{level.bimestres}</span>
+                  {level.badge && <span class="level-badge-tag ids">{level.badge}</span>}
+                </div>
+              </div>
+            </div>
+
+            {/* Projects Grid */}
+            <div class="projects-grid">
+              {level.projects.map((project, projIndex) => (
+                <div
+                  class="project-card glass-card"
+                  data-aos="zoom-in"
+                  data-aos-delay={100 + projIndex * 50}
+                >
+                  <div class="project-header">
+                    <h4>{project.name}</h4>
+                    <div class="project-difficulty">
+                      {[...Array(5)].map((_, i) => (
+                        <i class={`fas fa-star ${i < project.difficulty ? "filled" : ""}`} />
+                      ))}
+                    </div>
+                  </div>
+                  <p class="project-description">{project.description}</p>
+                  <div class="project-skills">
+                    {project.skills.map((skill) => (
+                      <span class="project-skill">{skill}</span>
+                    ))}
+                  </div>
+                  <div class="project-subject">
+                    <i class="fas fa-book" /> {project.subject}
+                  </div>
+                  <div class="project-footer">
+                    <span class="project-duration">
+                      <i class="fas fa-clock" /> {project.duration}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Project Tips -->
+    <div class="capstone-tips glass-card" data-aos="fade-up">
+      <div class="tips-title">
+        <i class="fas fa-lightbulb"></i>
+        <span>Tips para Proyectos Exitosos</span>
+      </div>
+      <div class="tips-grid">
+        {
+          projectTips.map((tip) => (
+            <div class="tip-card">
+              <div class="tip-icon">
+                <i class={tip.icon} />
+              </div>
+              <div class="tip-content">
+                <h5>{tip.title}</h5>
+                <p>{tip.desc}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="capstone-cta" data-aos="fade-up">
+      <a href="https://github.com/new" target="_blank" rel="noopener" class="cta-button">
+        <i class="fab fa-github"></i>
+        Crear Nuevo Repositorio
+      </a>
+      <span class="cta-hint">Empieza tu primer proyecto hoy</span>
+    </div>
+  </div>
 </section>
 
 <style>
-    .capstone-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .capstone-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    /* Header */
-    .capstone-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  /* Header */
+  .capstone-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .capstone-header-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .capstone-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .capstone-header-icon i {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .capstone-header-icon i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
+  .capstone-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .capstone-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .capstone-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .capstone-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  .capstone-stat i {
+    color: #10b981;
+  }
+
+  .capstone-stat strong {
+    color: #f8fafc;
+  }
+
+  /* Levels */
+  .capstone-levels {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .capstone-level {
+    padding: 2rem;
+    background: rgba(18, 18, 26, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .level-cyan {
+    border-left: 4px solid #00d4ff;
+  }
+  .level-purple {
+    border-left: 4px solid #7c3aed;
+  }
+  .level-orange {
+    border-left: 4px solid #f59e0b;
+  }
+  .level-green {
+    border-left: 4px solid #10b981;
+  }
+  /* IDS Colors */
+  .level-rose {
+    border-left: 4px solid #f43f5e;
+  }
+  .level-amber {
+    border-left: 4px solid #f59e0b;
+  }
+  .level-emerald {
+    border-left: 4px solid #34d399;
+  }
+
+  .level-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .level-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    min-width: 80px;
+  }
+
+  .level-cyan .level-badge i {
+    color: #00d4ff;
+    font-size: 1.5rem;
+  }
+  .level-purple .level-badge i {
+    color: #7c3aed;
+    font-size: 1.5rem;
+  }
+  .level-orange .level-badge i {
+    color: #f59e0b;
+    font-size: 1.5rem;
+  }
+  .level-green .level-badge i {
+    color: #10b981;
+    font-size: 1.5rem;
+  }
+  /* IDS Level Icons */
+  .level-rose .level-badge i {
+    color: #f43f5e;
+    font-size: 1.5rem;
+  }
+  .level-amber .level-badge i {
+    color: #f59e0b;
+    font-size: 1.5rem;
+  }
+  .level-emerald .level-badge i {
+    color: #34d399;
+    font-size: 1.5rem;
+  }
+
+  /* IDS Program Badge */
+  .level-program-badge {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+
+  .level-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .level-badge-tag.ids {
+    padding: 0.2rem 0.5rem;
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(236, 72, 153, 0.2));
+    border: 1px solid rgba(244, 63, 94, 0.4);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    color: #f43f5e;
+    font-weight: 600;
+  }
+
+  .level-badge span {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+  }
+
+  .level-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .level-info p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-bimestres {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #00d4ff;
+    font-weight: 600;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    padding: 1.25rem;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-header h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .project-difficulty {
+    display: flex;
+    gap: 2px;
+  }
+
+  .project-difficulty i {
+    font-size: 0.65rem;
+    color: #334155;
+  }
+
+  .project-difficulty i.filled {
+    color: #ffd700;
+  }
+
+  .project-description {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .project-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-skill {
+    padding: 0.25rem 0.6rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    color: #00d4ff;
+    font-weight: 500;
+  }
+
+  .project-subject {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 8px;
+    font-size: 0.7rem;
+    color: #a78bfa;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-subject i {
+    font-size: 0.65rem;
+  }
+
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .project-duration {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  .project-duration i {
+    color: #f59e0b;
+  }
+
+  /* Tips */
+  .capstone-tips {
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+  }
+
+  .tips-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .tips-title i {
+    color: #f59e0b;
+    font-size: 1.25rem;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .tip-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+  }
+
+  .tip-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(245, 158, 11, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .tip-icon i {
+    color: #f59e0b;
+    font-size: 0.9rem;
+  }
+
+  .tip-content h5 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.2rem;
+  }
+
+  .tip-content p {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  /* CTA */
+  .capstone-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+  }
+
+  .cta-hint {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .capstone-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.75rem;
     }
-
-    .capstone-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    .capstone-stats {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .capstone-stat {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    .capstone-stat i {
-        color: #10b981;
-    }
-
-    .capstone-stat strong {
-        color: #f8fafc;
-    }
-
-    /* Levels */
-    .capstone-levels {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .capstone-level {
-        padding: 2rem;
-        background: rgba(18, 18, 26, 0.6);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .level-cyan { border-left: 4px solid #00d4ff; }
-    .level-purple { border-left: 4px solid #7c3aed; }
-    .level-orange { border-left: 4px solid #f59e0b; }
-    .level-green { border-left: 4px solid #10b981; }
-    /* IDS Colors */
-    .level-rose { border-left: 4px solid #f43f5e; }
-    .level-amber { border-left: 4px solid #f59e0b; }
-    .level-emerald { border-left: 4px solid #34d399; }
 
     .level-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
+      flex-direction: column;
     }
 
-    .level-badge {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        min-width: 80px;
-    }
-
-    .level-cyan .level-badge i { color: #00d4ff; font-size: 1.5rem; }
-    .level-purple .level-badge i { color: #7c3aed; font-size: 1.5rem; }
-    .level-orange .level-badge i { color: #f59e0b; font-size: 1.5rem; }
-    .level-green .level-badge i { color: #10b981; font-size: 1.5rem; }
-    /* IDS Level Icons */
-    .level-rose .level-badge i { color: #f43f5e; font-size: 1.5rem; }
-    .level-amber .level-badge i { color: #f59e0b; font-size: 1.5rem; }
-    .level-emerald .level-badge i { color: #34d399; font-size: 1.5rem; }
-
-    /* IDS Program Badge */
-    .level-program-badge {
-        display: inline-block;
-        margin-top: 0.5rem;
-        padding: 0.2rem 0.5rem;
-        background: linear-gradient(135deg, #f43f5e, #ec4899);
-        border-radius: 6px;
-        font-size: 0.65rem;
-        font-weight: 700;
-        color: white;
-        letter-spacing: 0.5px;
-    }
-
-    .level-tags {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .level-badge-tag.ids {
-        padding: 0.2rem 0.5rem;
-        background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(236, 72, 153, 0.2));
-        border: 1px solid rgba(244, 63, 94, 0.4);
-        border-radius: 8px;
-        font-size: 0.7rem;
-        color: #f43f5e;
-        font-weight: 600;
-    }
-
-    .level-badge span {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #94a3b8;
-        text-transform: uppercase;
-    }
-
-    .level-info h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .level-info p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .level-bimestres {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 12px;
-        font-size: 0.8rem;
-        color: #00d4ff;
-        font-weight: 600;
-    }
-
-    /* Projects Grid */
     .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-    }
-
-    .project-card {
-        padding: 1.25rem;
-        border-radius: 14px;
-        transition: all 0.3s ease;
-    }
-
-    .project-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .project-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-    }
-
-    .project-header h4 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f8fafc;
-    }
-
-    .project-difficulty {
-        display: flex;
-        gap: 2px;
-    }
-
-    .project-difficulty i {
-        font-size: 0.65rem;
-        color: #334155;
-    }
-
-    .project-difficulty i.filled {
-        color: #ffd700;
-    }
-
-    .project-description {
-        font-size: 0.85rem;
-        color: #94a3b8;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-    }
-
-    .project-skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .project-skill {
-        padding: 0.25rem 0.6rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.2);
-        border-radius: 8px;
-        font-size: 0.7rem;
-        color: #00d4ff;
-        font-weight: 500;
-    }
-
-    .project-subject {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.4rem 0.6rem;
-        background: rgba(124, 58, 237, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.2);
-        border-radius: 8px;
-        font-size: 0.7rem;
-        color: #a78bfa;
-        margin-bottom: 0.75rem;
-    }
-
-    .project-subject i {
-        font-size: 0.65rem;
-    }
-
-    .project-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .project-duration {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.8rem;
-        color: #64748b;
-    }
-
-    .project-duration i {
-        color: #f59e0b;
-    }
-
-    /* Tips */
-    .capstone-tips {
-        padding: 1.5rem;
-        border-radius: 16px;
-        margin-top: 2rem;
-    }
-
-    .tips-title {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .tips-title i {
-        color: #f59e0b;
-        font-size: 1.25rem;
+      grid-template-columns: 1fr;
     }
 
     .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+      grid-template-columns: 1fr;
     }
-
-    .tip-card {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 0.75rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-    }
-
-    .tip-icon {
-        width: 36px;
-        height: 36px;
-        background: rgba(245, 158, 11, 0.15);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .tip-icon i {
-        color: #f59e0b;
-        font-size: 0.9rem;
-    }
-
-    .tip-content h5 {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.2rem;
-    }
-
-    .tip-content p {
-        font-size: 0.75rem;
-        color: #64748b;
-    }
-
-    /* CTA */
-    .capstone-cta {
-        text-align: center;
-        margin-top: 2rem;
-    }
-
-    .cta-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 2rem;
-        background: linear-gradient(135deg, #10b981, #059669);
-        border-radius: 12px;
-        font-size: 1rem;
-        font-weight: 700;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
-    }
-
-    .cta-hint {
-        display: block;
-        margin-top: 0.75rem;
-        font-size: 0.85rem;
-        color: #64748b;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .capstone-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .level-header {
-            flex-direction: column;
-        }
-
-        .projects-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .tips-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>

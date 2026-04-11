@@ -1,1089 +1,1536 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 const base = import.meta.env.BASE_URL;
 
 // Career paths con roadmaps detallados
 const careerPaths = [
-    {
-        id: 'fullstack',
-        title: 'Full-Stack Developer',
-        icon: 'fas fa-layer-group',
-        color: '#06b6d4',
-        salary: '$1.200.000 - $3.500.000 CLP',
-        demand: 'Muy Alta',
-        description: 'Desarrolla aplicaciones web completas, desde el frontend hasta el backend y bases de datos.',
-        skills: ['HTML/CSS/JS', 'React/Vue/Angular', 'Node.js/Python', 'SQL/NoSQL', 'APIs REST', 'Git'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '3-6 meses', topics: ['HTML5, CSS3, JavaScript ES6+', 'Git y control de versiones', 'Lógica de programación'] },
-            { phase: 'Frontend', duration: '4-6 meses', topics: ['React o Vue.js', 'TypeScript', 'Estado y routing', 'Testing frontend'] },
-            { phase: 'Backend', duration: '4-6 meses', topics: ['Node.js/Express o Python/Django', 'APIs RESTful', 'Autenticación JWT', 'Bases de datos SQL/NoSQL'] },
-            { phase: 'DevOps Básico', duration: '2-3 meses', topics: ['Docker', 'CI/CD básico', 'Despliegue en cloud'] }
+  {
+    id: "fullstack",
+    title: "Full-Stack Developer",
+    icon: "fas fa-layer-group",
+    color: "#06b6d4",
+    salary: "$1.200.000 - $3.500.000 CLP",
+    demand: "Muy Alta",
+    description:
+      "Desarrolla aplicaciones web completas, desde el frontend hasta el backend y bases de datos.",
+    skills: ["HTML/CSS/JS", "React/Vue/Angular", "Node.js/Python", "SQL/NoSQL", "APIs REST", "Git"],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "3-6 meses",
+        topics: [
+          "HTML5, CSS3, JavaScript ES6+",
+          "Git y control de versiones",
+          "Lógica de programación",
         ],
-        certifications: ['AWS Certified Developer', 'Meta Front-End Developer', 'freeCodeCamp Full Stack'],
-        companies: ['Mercado Libre', 'Falabella', 'Cornershop', 'Buk', 'Fintual']
-    },
-    {
-        id: 'data-engineer',
-        title: 'Data Engineer',
-        icon: 'fas fa-database',
-        color: '#8b5cf6',
-        salary: '$1.500.000 - $4.500.000 CLP',
-        demand: 'Muy Alta',
-        description: 'Diseña, construye y mantiene la infraestructura de datos que permite el análisis y machine learning.',
-        skills: ['Python', 'SQL Avanzado', 'Spark/Airflow', 'Cloud (AWS/GCP/Azure)', 'ETL/ELT', 'Data Warehousing'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '3-4 meses', topics: ['Python avanzado', 'SQL avanzado (window functions, CTEs)', 'Linux y bash scripting'] },
-            { phase: 'Data Processing', duration: '4-6 meses', topics: ['Apache Spark', 'Pandas/Polars', 'ETL pipelines', 'Data quality'] },
-            { phase: 'Orquestación', duration: '3-4 meses', topics: ['Apache Airflow', 'Prefect/Dagster', 'Scheduling y monitoreo'] },
-            { phase: 'Cloud & DW', duration: '4-6 meses', topics: ['Snowflake/BigQuery/Redshift', 'AWS/GCP/Azure', 'dbt', 'Data modeling'] }
+      },
+      {
+        phase: "Frontend",
+        duration: "4-6 meses",
+        topics: ["React o Vue.js", "TypeScript", "Estado y routing", "Testing frontend"],
+      },
+      {
+        phase: "Backend",
+        duration: "4-6 meses",
+        topics: [
+          "Node.js/Express o Python/Django",
+          "APIs RESTful",
+          "Autenticación JWT",
+          "Bases de datos SQL/NoSQL",
         ],
-        certifications: ['Snowflake SnowPro Core', 'Databricks Data Engineer', 'AWS Data Analytics', 'Google Cloud Professional DE'],
-        companies: ['Walmart Chile', 'Banco de Chile', 'Falabella', 'Cencosud', 'Entel']
-    },
-    {
-        id: 'devops',
-        title: 'DevOps Engineer',
-        icon: 'fas fa-infinity',
-        color: '#f59e0b',
-        salary: '$1.800.000 - $5.000.000 CLP',
-        demand: 'Alta',
-        description: 'Automatiza procesos, gestiona infraestructura y asegura la entrega continua de software.',
-        skills: ['Linux', 'Docker/Kubernetes', 'CI/CD', 'Terraform/Ansible', 'Cloud Platforms', 'Monitoring'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '3-4 meses', topics: ['Linux administration', 'Bash/Python scripting', 'Networking basics', 'Git avanzado'] },
-            { phase: 'Containers', duration: '3-4 meses', topics: ['Docker profundo', 'Docker Compose', 'Kubernetes (CKA)', 'Helm charts'] },
-            { phase: 'CI/CD & IaC', duration: '4-5 meses', topics: ['GitHub Actions/GitLab CI', 'Jenkins', 'Terraform', 'Ansible'] },
-            { phase: 'Cloud & SRE', duration: '4-6 meses', topics: ['AWS/GCP/Azure', 'Prometheus/Grafana', 'ELK Stack', 'Incident management'] }
+      },
+      {
+        phase: "DevOps Básico",
+        duration: "2-3 meses",
+        topics: ["Docker", "CI/CD básico", "Despliegue en cloud"],
+      },
+    ],
+    certifications: [
+      "AWS Certified Developer",
+      "Meta Front-End Developer",
+      "freeCodeCamp Full Stack",
+    ],
+    companies: ["Mercado Libre", "Falabella", "Cornershop", "Buk", "Fintual"],
+  },
+  {
+    id: "data-engineer",
+    title: "Data Engineer",
+    icon: "fas fa-database",
+    color: "#8b5cf6",
+    salary: "$1.500.000 - $4.500.000 CLP",
+    demand: "Muy Alta",
+    description:
+      "Diseña, construye y mantiene la infraestructura de datos que permite el análisis y machine learning.",
+    skills: [
+      "Python",
+      "SQL Avanzado",
+      "Spark/Airflow",
+      "Cloud (AWS/GCP/Azure)",
+      "ETL/ELT",
+      "Data Warehousing",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "3-4 meses",
+        topics: [
+          "Python avanzado",
+          "SQL avanzado (window functions, CTEs)",
+          "Linux y bash scripting",
         ],
-        certifications: ['CKA - Kubernetes Admin', 'AWS Solutions Architect', 'Terraform Associate', 'RHCSA'],
-        companies: ['Globant', 'Thoughtworks', 'Mercado Libre', 'Cornershop', 'Nubank']
-    },
-    {
-        id: 'backend',
-        title: 'Backend Developer',
-        icon: 'fas fa-server',
-        color: '#10b981',
-        salary: '$1.200.000 - $3.800.000 CLP',
-        demand: 'Alta',
-        description: 'Especialista en lógica de negocio, APIs, bases de datos y arquitectura de sistemas.',
-        skills: ['Java/Python/Node.js', 'APIs REST/GraphQL', 'Microservicios', 'SQL/NoSQL', 'Message Queues', 'Testing'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '4-6 meses', topics: ['Java o Python profundo', 'POO y patrones de diseño', 'SQL avanzado', 'Git'] },
-            { phase: 'APIs & Frameworks', duration: '4-5 meses', topics: ['Spring Boot o Django/FastAPI', 'REST APIs', 'GraphQL', 'Autenticación/Autorización'] },
-            { phase: 'Arquitectura', duration: '4-6 meses', topics: ['Microservicios', 'Message queues (Kafka, RabbitMQ)', 'Caching (Redis)', 'Event-driven architecture'] },
-            { phase: 'Avanzado', duration: '3-4 meses', topics: ['Testing (unit, integration, e2e)', 'Performance optimization', 'Security best practices'] }
+      },
+      {
+        phase: "Data Processing",
+        duration: "4-6 meses",
+        topics: ["Apache Spark", "Pandas/Polars", "ETL pipelines", "Data quality"],
+      },
+      {
+        phase: "Orquestación",
+        duration: "3-4 meses",
+        topics: ["Apache Airflow", "Prefect/Dagster", "Scheduling y monitoreo"],
+      },
+      {
+        phase: "Cloud & DW",
+        duration: "4-6 meses",
+        topics: ["Snowflake/BigQuery/Redshift", "AWS/GCP/Azure", "dbt", "Data modeling"],
+      },
+    ],
+    certifications: [
+      "Snowflake SnowPro Core",
+      "Databricks Data Engineer",
+      "AWS Data Analytics",
+      "Google Cloud Professional DE",
+    ],
+    companies: ["Walmart Chile", "Banco de Chile", "Falabella", "Cencosud", "Entel"],
+  },
+  {
+    id: "devops",
+    title: "DevOps Engineer",
+    icon: "fas fa-infinity",
+    color: "#f59e0b",
+    salary: "$1.800.000 - $5.000.000 CLP",
+    demand: "Alta",
+    description:
+      "Automatiza procesos, gestiona infraestructura y asegura la entrega continua de software.",
+    skills: [
+      "Linux",
+      "Docker/Kubernetes",
+      "CI/CD",
+      "Terraform/Ansible",
+      "Cloud Platforms",
+      "Monitoring",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "3-4 meses",
+        topics: [
+          "Linux administration",
+          "Bash/Python scripting",
+          "Networking basics",
+          "Git avanzado",
         ],
-        certifications: ['Oracle Java Certified', 'AWS Developer Associate', 'Spring Professional'],
-        companies: ['Banco Estado', 'BCI', 'Scotiabank', 'Sura', 'Buk']
-    },
-    {
-        id: 'frontend',
-        title: 'Frontend Developer',
-        icon: 'fas fa-palette',
-        color: '#ec4899',
-        salary: '$1.000.000 - $3.200.000 CLP',
-        demand: 'Alta',
-        description: 'Crea interfaces de usuario interactivas, accesibles y con excelente experiencia de usuario.',
-        skills: ['HTML/CSS/JS', 'React/Vue/Angular', 'TypeScript', 'Responsive Design', 'Testing', 'Performance'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '3-5 meses', topics: ['HTML5 semántico', 'CSS3 avanzado (Flexbox, Grid)', 'JavaScript ES6+', 'Responsive design'] },
-            { phase: 'Framework', duration: '4-6 meses', topics: ['React o Vue.js', 'TypeScript', 'State management', 'Routing'] },
-            { phase: 'Avanzado', duration: '3-4 meses', topics: ['Testing (Jest, Cypress)', 'Performance optimization', 'SSR/SSG (Next.js)', 'Accessibility (a11y)'] },
-            { phase: 'Diseño', duration: '2-3 meses', topics: ['Design systems', 'Figma basics', 'Animaciones', 'UX principles'] }
+      },
+      {
+        phase: "Containers",
+        duration: "3-4 meses",
+        topics: ["Docker profundo", "Docker Compose", "Kubernetes (CKA)", "Helm charts"],
+      },
+      {
+        phase: "CI/CD & IaC",
+        duration: "4-5 meses",
+        topics: ["GitHub Actions/GitLab CI", "Jenkins", "Terraform", "Ansible"],
+      },
+      {
+        phase: "Cloud & SRE",
+        duration: "4-6 meses",
+        topics: ["AWS/GCP/Azure", "Prometheus/Grafana", "ELK Stack", "Incident management"],
+      },
+    ],
+    certifications: [
+      "CKA - Kubernetes Admin",
+      "AWS Solutions Architect",
+      "Terraform Associate",
+      "RHCSA",
+    ],
+    companies: ["Globant", "Thoughtworks", "Mercado Libre", "Cornershop", "Nubank"],
+  },
+  {
+    id: "backend",
+    title: "Backend Developer",
+    icon: "fas fa-server",
+    color: "#10b981",
+    salary: "$1.200.000 - $3.800.000 CLP",
+    demand: "Alta",
+    description:
+      "Especialista en lógica de negocio, APIs, bases de datos y arquitectura de sistemas.",
+    skills: [
+      "Java/Python/Node.js",
+      "APIs REST/GraphQL",
+      "Microservicios",
+      "SQL/NoSQL",
+      "Message Queues",
+      "Testing",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "4-6 meses",
+        topics: ["Java o Python profundo", "POO y patrones de diseño", "SQL avanzado", "Git"],
+      },
+      {
+        phase: "APIs & Frameworks",
+        duration: "4-5 meses",
+        topics: [
+          "Spring Boot o Django/FastAPI",
+          "REST APIs",
+          "GraphQL",
+          "Autenticación/Autorización",
         ],
-        certifications: ['Meta Front-End Developer', 'freeCodeCamp Responsive Web', 'Google UX Design'],
-        companies: ['NotCo', 'Betterfly', 'Buk', 'Kavak', 'Platanus']
-    },
-    {
-        id: 'cloud',
-        title: 'Cloud Architect',
-        icon: 'fas fa-cloud',
-        color: '#3b82f6',
-        salary: '$2.500.000 - $6.000.000 CLP',
-        demand: 'Alta',
-        description: 'Diseña soluciones cloud escalables, seguras y cost-effective para organizaciones.',
-        skills: ['AWS/GCP/Azure', 'Networking', 'Security', 'Cost Optimization', 'High Availability', 'Disaster Recovery'],
-        roadmap: [
-            { phase: 'Fundamentos Cloud', duration: '4-6 meses', topics: ['AWS/GCP/Azure basics', 'Compute, Storage, Networking', 'IAM y seguridad básica'] },
-            { phase: 'Arquitectura', duration: '5-7 meses', topics: ['Well-Architected Framework', 'High availability', 'Disaster recovery', 'Multi-region'] },
-            { phase: 'Especialización', duration: '4-6 meses', topics: ['Serverless', 'Containers en cloud', 'Data services', 'ML/AI services'] },
-            { phase: 'Enterprise', duration: '3-5 meses', topics: ['Cost optimization', 'Governance', 'Landing zones', 'Migration strategies'] }
+      },
+      {
+        phase: "Arquitectura",
+        duration: "4-6 meses",
+        topics: [
+          "Microservicios",
+          "Message queues (Kafka, RabbitMQ)",
+          "Caching (Redis)",
+          "Event-driven architecture",
         ],
-        certifications: ['AWS Solutions Architect Pro', 'GCP Professional Cloud Architect', 'Azure Solutions Architect'],
-        companies: ['Accenture', 'Deloitte', 'AWS', 'Google', 'Microsoft']
-    },
-    {
-        id: 'game-dev',
-        title: 'Game Developer',
-        icon: 'fas fa-gamepad',
-        color: '#ef4444',
-        salary: '$1.000.000 - $3.500.000 CLP',
-        demand: 'Media',
-        description: 'Crea videojuegos para PC, consolas y móviles usando motores de juego y programación de gráficos.',
-        skills: ['C#/C++', 'Unity/Unreal', 'Física y Matemáticas', '3D Modeling', 'Game Design', 'Shaders'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '4-6 meses', topics: ['C# o C++ profundo', 'Matemáticas para juegos (vectores, matrices)', 'Lógica de programación'] },
-            { phase: 'Motor de Juego', duration: '6-8 meses', topics: ['Unity o Unreal Engine', 'Física y colisiones', 'Animaciones', 'UI/UX para juegos'] },
-            { phase: 'Especialización', duration: '4-6 meses', topics: ['Shaders y gráficos', 'Networking para multiplayer', 'Optimización de rendimiento', 'Audio y efectos'] },
-            { phase: 'Publicación', duration: '2-4 meses', topics: ['Game design documents', 'Testing y QA', 'Publicación en stores', 'Marketing indie'] }
+      },
+      {
+        phase: "Avanzado",
+        duration: "3-4 meses",
+        topics: [
+          "Testing (unit, integration, e2e)",
+          "Performance optimization",
+          "Security best practices",
         ],
-        certifications: ['Unity Certified Developer', 'Unreal Engine Developer', 'Coursera Game Design'],
-        companies: ['Behaviour Chile', 'ACE Team', 'Wanako Games', 'Freelance/Indie']
-    },
-    {
-        id: 'data-analyst',
-        title: 'Data Analyst',
-        icon: 'fas fa-chart-bar',
-        color: '#f97316',
-        salary: '$1.000.000 - $2.800.000 CLP',
-        demand: 'Muy Alta',
-        description: 'Analiza datos para generar insights de negocio, crear reportes y dashboards para toma de decisiones.',
-        skills: ['SQL', 'Excel Avanzado', 'Python/R', 'Power BI/Tableau', 'Estadística', 'Storytelling'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '2-4 meses', topics: ['Excel avanzado (pivots, macros)', 'SQL básico a intermedio', 'Estadística descriptiva'] },
-            { phase: 'Análisis', duration: '3-5 meses', topics: ['SQL avanzado', 'Python para análisis (Pandas)', 'Limpieza de datos', 'Estadística inferencial'] },
-            { phase: 'Visualización', duration: '3-4 meses', topics: ['Power BI o Tableau', 'Data storytelling', 'Dashboards interactivos', 'KPIs y métricas'] },
-            { phase: 'Negocio', duration: '2-3 meses', topics: ['Entendimiento del negocio', 'Presentaciones ejecutivas', 'A/B testing', 'Forecasting básico'] }
+      },
+    ],
+    certifications: ["Oracle Java Certified", "AWS Developer Associate", "Spring Professional"],
+    companies: ["Banco Estado", "BCI", "Scotiabank", "Sura", "Buk"],
+  },
+  {
+    id: "frontend",
+    title: "Frontend Developer",
+    icon: "fas fa-palette",
+    color: "#ec4899",
+    salary: "$1.000.000 - $3.200.000 CLP",
+    demand: "Alta",
+    description:
+      "Crea interfaces de usuario interactivas, accesibles y con excelente experiencia de usuario.",
+    skills: [
+      "HTML/CSS/JS",
+      "React/Vue/Angular",
+      "TypeScript",
+      "Responsive Design",
+      "Testing",
+      "Performance",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "3-5 meses",
+        topics: [
+          "HTML5 semántico",
+          "CSS3 avanzado (Flexbox, Grid)",
+          "JavaScript ES6+",
+          "Responsive design",
         ],
-        certifications: ['Google Data Analytics', 'Microsoft Power BI', 'Tableau Desktop Specialist', 'IBM Data Analyst'],
-        companies: ['Banco de Chile', 'Falabella', 'Cencosud', 'Latam Airlines', 'SMU']
-    },
-    {
-        id: 'data-governance',
-        title: 'Data Governance Specialist',
-        icon: 'fas fa-shield-alt',
-        color: '#14b8a6',
-        salary: '$2.000.000 - $5.000.000 CLP',
-        demand: 'Alta',
-        description: 'Establece políticas de datos, asegura calidad, privacidad y cumplimiento regulatorio en organizaciones.',
-        skills: ['Data Quality', 'Metadata Management', 'Privacy (GDPR)', 'Data Cataloging', 'Master Data', 'Compliance'],
-        roadmap: [
-            { phase: 'Fundamentos', duration: '3-4 meses', topics: ['Conceptos de Data Governance', 'Frameworks (DAMA-DMBOK)', 'SQL y modelado de datos', 'Roles y responsabilidades'] },
-            { phase: 'Calidad de Datos', duration: '4-5 meses', topics: ['Data quality dimensions', 'Data profiling', 'Herramientas (Great Expectations, Soda)', 'Data lineage'] },
-            { phase: 'Privacidad y Compliance', duration: '3-4 meses', topics: ['GDPR, CCPA, Ley de Datos Chile', 'Data classification', 'PII y datos sensibles', 'Auditoría de datos'] },
-            { phase: 'Herramientas', duration: '3-4 meses', topics: ['Data catalogs (Atlan, Collibra)', 'Master Data Management', 'Metadata management', 'Data stewardship'] }
+      },
+      {
+        phase: "Framework",
+        duration: "4-6 meses",
+        topics: ["React o Vue.js", "TypeScript", "State management", "Routing"],
+      },
+      {
+        phase: "Avanzado",
+        duration: "3-4 meses",
+        topics: [
+          "Testing (Jest, Cypress)",
+          "Performance optimization",
+          "SSR/SSG (Next.js)",
+          "Accessibility (a11y)",
         ],
-        certifications: ['CDMP - Data Management Professional', 'DGSP - Data Governance Specialist', 'OneTrust Privacy Professional'],
-        companies: ['Banco Santander', 'BCI', 'AFP Habitat', 'Entel', 'Telefónica']
-    },
-    {
-        id: 'cloud-dw',
-        title: 'Cloud DW Developer & DBA',
-        icon: 'fas fa-warehouse',
-        color: '#6366f1',
-        salary: '$2.200.000 - $5.500.000 CLP',
-        demand: 'Alta',
-        description: 'Diseña, desarrolla y administra data warehouses en la nube, optimizando rendimiento y costos.',
-        skills: ['Snowflake/BigQuery/Redshift', 'SQL Avanzado', 'dbt', 'Data Modeling', 'Performance Tuning', 'Cost Management'],
-        roadmap: [
-            { phase: 'Fundamentos SQL', duration: '3-4 meses', topics: ['SQL avanzado (window functions, CTEs)', 'Modelado dimensional', 'Star/Snowflake schema', 'Slowly Changing Dimensions'] },
-            { phase: 'Cloud DW', duration: '5-7 meses', topics: ['Snowflake o BigQuery o Redshift', 'Arquitectura cloud DW', 'Clustering y partitioning', 'Materialized views'] },
-            { phase: 'Transformación', duration: '4-5 meses', topics: ['dbt (data build tool)', 'ELT patterns', 'Data quality en DW', 'Orquestación con Airflow'] },
-            { phase: 'Administración', duration: '3-4 meses', topics: ['Performance tuning', 'Cost optimization', 'Seguridad y RBAC', 'Monitoring y alertas'] }
+      },
+      {
+        phase: "Diseño",
+        duration: "2-3 meses",
+        topics: ["Design systems", "Figma basics", "Animaciones", "UX principles"],
+      },
+    ],
+    certifications: ["Meta Front-End Developer", "freeCodeCamp Responsive Web", "Google UX Design"],
+    companies: ["NotCo", "Betterfly", "Buk", "Kavak", "Platanus"],
+  },
+  {
+    id: "cloud",
+    title: "Cloud Architect",
+    icon: "fas fa-cloud",
+    color: "#3b82f6",
+    salary: "$2.500.000 - $6.000.000 CLP",
+    demand: "Alta",
+    description:
+      "Diseña soluciones cloud escalables, seguras y cost-effective para organizaciones.",
+    skills: [
+      "AWS/GCP/Azure",
+      "Networking",
+      "Security",
+      "Cost Optimization",
+      "High Availability",
+      "Disaster Recovery",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos Cloud",
+        duration: "4-6 meses",
+        topics: ["AWS/GCP/Azure basics", "Compute, Storage, Networking", "IAM y seguridad básica"],
+      },
+      {
+        phase: "Arquitectura",
+        duration: "5-7 meses",
+        topics: [
+          "Well-Architected Framework",
+          "High availability",
+          "Disaster recovery",
+          "Multi-region",
         ],
-        certifications: ['Snowflake SnowPro Core', 'Snowflake Data Engineer', 'Google BigQuery Specialist', 'AWS Redshift Specialty'],
-        companies: ['Walmart Chile', 'Falabella', 'Banco de Chile', 'Latam', 'Cencosud']
-    }
+      },
+      {
+        phase: "Especialización",
+        duration: "4-6 meses",
+        topics: ["Serverless", "Containers en cloud", "Data services", "ML/AI services"],
+      },
+      {
+        phase: "Enterprise",
+        duration: "3-5 meses",
+        topics: ["Cost optimization", "Governance", "Landing zones", "Migration strategies"],
+      },
+    ],
+    certifications: [
+      "AWS Solutions Architect Pro",
+      "GCP Professional Cloud Architect",
+      "Azure Solutions Architect",
+    ],
+    companies: ["Accenture", "Deloitte", "AWS", "Google", "Microsoft"],
+  },
+  {
+    id: "game-dev",
+    title: "Game Developer",
+    icon: "fas fa-gamepad",
+    color: "#ef4444",
+    salary: "$1.000.000 - $3.500.000 CLP",
+    demand: "Media",
+    description:
+      "Crea videojuegos para PC, consolas y móviles usando motores de juego y programación de gráficos.",
+    skills: [
+      "C#/C++",
+      "Unity/Unreal",
+      "Física y Matemáticas",
+      "3D Modeling",
+      "Game Design",
+      "Shaders",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "4-6 meses",
+        topics: [
+          "C# o C++ profundo",
+          "Matemáticas para juegos (vectores, matrices)",
+          "Lógica de programación",
+        ],
+      },
+      {
+        phase: "Motor de Juego",
+        duration: "6-8 meses",
+        topics: [
+          "Unity o Unreal Engine",
+          "Física y colisiones",
+          "Animaciones",
+          "UI/UX para juegos",
+        ],
+      },
+      {
+        phase: "Especialización",
+        duration: "4-6 meses",
+        topics: [
+          "Shaders y gráficos",
+          "Networking para multiplayer",
+          "Optimización de rendimiento",
+          "Audio y efectos",
+        ],
+      },
+      {
+        phase: "Publicación",
+        duration: "2-4 meses",
+        topics: [
+          "Game design documents",
+          "Testing y QA",
+          "Publicación en stores",
+          "Marketing indie",
+        ],
+      },
+    ],
+    certifications: [
+      "Unity Certified Developer",
+      "Unreal Engine Developer",
+      "Coursera Game Design",
+    ],
+    companies: ["Behaviour Chile", "ACE Team", "Wanako Games", "Freelance/Indie"],
+  },
+  {
+    id: "data-analyst",
+    title: "Data Analyst",
+    icon: "fas fa-chart-bar",
+    color: "#f97316",
+    salary: "$1.000.000 - $2.800.000 CLP",
+    demand: "Muy Alta",
+    description:
+      "Analiza datos para generar insights de negocio, crear reportes y dashboards para toma de decisiones.",
+    skills: [
+      "SQL",
+      "Excel Avanzado",
+      "Python/R",
+      "Power BI/Tableau",
+      "Estadística",
+      "Storytelling",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "2-4 meses",
+        topics: [
+          "Excel avanzado (pivots, macros)",
+          "SQL básico a intermedio",
+          "Estadística descriptiva",
+        ],
+      },
+      {
+        phase: "Análisis",
+        duration: "3-5 meses",
+        topics: [
+          "SQL avanzado",
+          "Python para análisis (Pandas)",
+          "Limpieza de datos",
+          "Estadística inferencial",
+        ],
+      },
+      {
+        phase: "Visualización",
+        duration: "3-4 meses",
+        topics: [
+          "Power BI o Tableau",
+          "Data storytelling",
+          "Dashboards interactivos",
+          "KPIs y métricas",
+        ],
+      },
+      {
+        phase: "Negocio",
+        duration: "2-3 meses",
+        topics: [
+          "Entendimiento del negocio",
+          "Presentaciones ejecutivas",
+          "A/B testing",
+          "Forecasting básico",
+        ],
+      },
+    ],
+    certifications: [
+      "Google Data Analytics",
+      "Microsoft Power BI",
+      "Tableau Desktop Specialist",
+      "IBM Data Analyst",
+    ],
+    companies: ["Banco de Chile", "Falabella", "Cencosud", "Latam Airlines", "SMU"],
+  },
+  {
+    id: "data-governance",
+    title: "Data Governance Specialist",
+    icon: "fas fa-shield-alt",
+    color: "#14b8a6",
+    salary: "$2.000.000 - $5.000.000 CLP",
+    demand: "Alta",
+    description:
+      "Establece políticas de datos, asegura calidad, privacidad y cumplimiento regulatorio en organizaciones.",
+    skills: [
+      "Data Quality",
+      "Metadata Management",
+      "Privacy (GDPR)",
+      "Data Cataloging",
+      "Master Data",
+      "Compliance",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos",
+        duration: "3-4 meses",
+        topics: [
+          "Conceptos de Data Governance",
+          "Frameworks (DAMA-DMBOK)",
+          "SQL y modelado de datos",
+          "Roles y responsabilidades",
+        ],
+      },
+      {
+        phase: "Calidad de Datos",
+        duration: "4-5 meses",
+        topics: [
+          "Data quality dimensions",
+          "Data profiling",
+          "Herramientas (Great Expectations, Soda)",
+          "Data lineage",
+        ],
+      },
+      {
+        phase: "Privacidad y Compliance",
+        duration: "3-4 meses",
+        topics: [
+          "GDPR, CCPA, Ley de Datos Chile",
+          "Data classification",
+          "PII y datos sensibles",
+          "Auditoría de datos",
+        ],
+      },
+      {
+        phase: "Herramientas",
+        duration: "3-4 meses",
+        topics: [
+          "Data catalogs (Atlan, Collibra)",
+          "Master Data Management",
+          "Metadata management",
+          "Data stewardship",
+        ],
+      },
+    ],
+    certifications: [
+      "CDMP - Data Management Professional",
+      "DGSP - Data Governance Specialist",
+      "OneTrust Privacy Professional",
+    ],
+    companies: ["Banco Santander", "BCI", "AFP Habitat", "Entel", "Telefónica"],
+  },
+  {
+    id: "cloud-dw",
+    title: "Cloud DW Developer & DBA",
+    icon: "fas fa-warehouse",
+    color: "#6366f1",
+    salary: "$2.200.000 - $5.500.000 CLP",
+    demand: "Alta",
+    description:
+      "Diseña, desarrolla y administra data warehouses en la nube, optimizando rendimiento y costos.",
+    skills: [
+      "Snowflake/BigQuery/Redshift",
+      "SQL Avanzado",
+      "dbt",
+      "Data Modeling",
+      "Performance Tuning",
+      "Cost Management",
+    ],
+    roadmap: [
+      {
+        phase: "Fundamentos SQL",
+        duration: "3-4 meses",
+        topics: [
+          "SQL avanzado (window functions, CTEs)",
+          "Modelado dimensional",
+          "Star/Snowflake schema",
+          "Slowly Changing Dimensions",
+        ],
+      },
+      {
+        phase: "Cloud DW",
+        duration: "5-7 meses",
+        topics: [
+          "Snowflake o BigQuery o Redshift",
+          "Arquitectura cloud DW",
+          "Clustering y partitioning",
+          "Materialized views",
+        ],
+      },
+      {
+        phase: "Transformación",
+        duration: "4-5 meses",
+        topics: [
+          "dbt (data build tool)",
+          "ELT patterns",
+          "Data quality en DW",
+          "Orquestación con Airflow",
+        ],
+      },
+      {
+        phase: "Administración",
+        duration: "3-4 meses",
+        topics: [
+          "Performance tuning",
+          "Cost optimization",
+          "Seguridad y RBAC",
+          "Monitoring y alertas",
+        ],
+      },
+    ],
+    certifications: [
+      "Snowflake SnowPro Core",
+      "Snowflake Data Engineer",
+      "Google BigQuery Specialist",
+      "AWS Redshift Specialty",
+    ],
+    companies: ["Walmart Chile", "Falabella", "Banco de Chile", "Latam", "Cencosud"],
+  },
 ];
 
 // Recursos de aprendizaje por área
 const learningResources = [
-    { name: 'roadmap.sh', url: 'https://roadmap.sh', description: 'Roadmaps visuales para cada carrera' },
-    { name: 'freeCodeCamp', url: 'https://freecodecamp.org', description: 'Cursos gratuitos con certificaciones' },
-    { name: 'Coursera', url: 'https://coursera.org', description: 'Cursos de universidades top' },
-    { name: 'LinkedIn Learning', url: 'https://linkedin.com/learning', description: 'Cursos profesionales (gratis con biblioteca)' }
+  {
+    name: "roadmap.sh",
+    url: "https://roadmap.sh",
+    description: "Roadmaps visuales para cada carrera",
+  },
+  {
+    name: "freeCodeCamp",
+    url: "https://freecodecamp.org",
+    description: "Cursos gratuitos con certificaciones",
+  },
+  { name: "Coursera", url: "https://coursera.org", description: "Cursos de universidades top" },
+  {
+    name: "LinkedIn Learning",
+    url: "https://linkedin.com/learning",
+    description: "Cursos profesionales (gratis con biblioteca)",
+  },
 ];
 
 // Tips de carrera
 const careerTips = [
-    { icon: 'fas fa-rocket', title: 'Empieza con proyectos', text: 'Construye proyectos reales desde el día 1. El portafolio vale más que los certificados.' },
-    { icon: 'fas fa-users', title: 'Haz networking', text: 'Participa en comunidades, meetups y conferencias. Las oportunidades vienen de conexiones.' },
-    { icon: 'fas fa-book', title: 'Nunca pares de aprender', text: 'La tecnología cambia rápido. Dedica tiempo semanal a aprender cosas nuevas.' },
-    { icon: 'fas fa-handshake', title: 'Busca mentoría', text: 'Un mentor puede acelerar tu carrera años. No tengas miedo de pedir ayuda.' }
+  {
+    icon: "fas fa-rocket",
+    title: "Empieza con proyectos",
+    text: "Construye proyectos reales desde el día 1. El portafolio vale más que los certificados.",
+  },
+  {
+    icon: "fas fa-users",
+    title: "Haz networking",
+    text: "Participa en comunidades, meetups y conferencias. Las oportunidades vienen de conexiones.",
+  },
+  {
+    icon: "fas fa-book",
+    title: "Nunca pares de aprender",
+    text: "La tecnología cambia rápido. Dedica tiempo semanal a aprender cosas nuevas.",
+  },
+  {
+    icon: "fas fa-handshake",
+    title: "Busca mentoría",
+    text: "Un mentor puede acelerar tu carrera años. No tengas miedo de pedir ayuda.",
+  },
 ];
 ---
 
 <Layout title="Career Paths - Trayectorias Profesionales TI">
-    <Header />
-    <main class="career-page">
-        <!-- Hero Section -->
-        <section class="career-hero">
-            <div class="hero-content">
-                <span class="hero-badge">
-                    <i class="fas fa-compass"></i> Guía de Carreras 2025
-                </span>
-                <h1>Trayectorias Profesionales</h1>
-                <p class="hero-subtitle">
-                    Descubre los caminos más demandados en tecnología, con roadmaps detallados,
-                    salarios reales del mercado chileno y recursos para avanzar en tu carrera.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">10</span>
-                        <span class="stat-label">Carreras</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">40</span>
-                        <span class="stat-label">Roadmaps</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">40+</span>
-                        <span class="stat-label">Certificaciones</span>
-                    </div>
+  <Header />
+  <main class="career-page">
+    <!-- Hero Section -->
+    <section class="career-hero">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fas fa-compass"></i> Guía de Carreras 2025
+        </span>
+        <h1>Trayectorias Profesionales</h1>
+        <p class="hero-subtitle">
+          Descubre los caminos más demandados en tecnología, con roadmaps detallados, salarios
+          reales del mercado chileno y recursos para avanzar en tu carrera.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">10</span>
+            <span class="stat-label">Carreras</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">40</span>
+            <span class="stat-label">Roadmaps</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">Certificaciones</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Paths Grid -->
+    <section class="careers-section">
+      <div class="section-header">
+        <h2><i class="fas fa-route"></i> Elige Tu Camino</h2>
+        <p>Cada carrera tiene su propio roadmap, skills requeridos y oportunidades</p>
+      </div>
+
+      <div class="careers-grid">
+        {
+          careerPaths.map((career) => (
+            <article class="career-card" style={`--career-color: ${career.color}`}>
+              <div class="career-header">
+                <div
+                  class="career-icon"
+                  style={`background: ${career.color}20; color: ${career.color}`}
+                >
+                  <i class={career.icon} />
                 </div>
-            </div>
-        </section>
-
-        <!-- Career Paths Grid -->
-        <section class="careers-section">
-            <div class="section-header">
-                <h2><i class="fas fa-route"></i> Elige Tu Camino</h2>
-                <p>Cada carrera tiene su propio roadmap, skills requeridos y oportunidades</p>
-            </div>
-
-            <div class="careers-grid">
-                {careerPaths.map(career => (
-                    <article class="career-card" style={`--career-color: ${career.color}`}>
-                        <div class="career-header">
-                            <div class="career-icon" style={`background: ${career.color}20; color: ${career.color}`}>
-                                <i class={career.icon}></i>
-                            </div>
-                            <div class="career-meta">
-                                <span class={`demand-badge ${career.demand === 'Muy Alta' ? 'hot' : ''}`}>
-                                    <i class="fas fa-fire"></i> {career.demand}
-                                </span>
-                            </div>
-                        </div>
-
-                        <h3>{career.title}</h3>
-                        <p class="career-description">{career.description}</p>
-
-                        <div class="skills-preview">
-                            <h4>Skills Clave</h4>
-                            <div class="skill-tags">
-                                {career.skills.slice(0, 4).map(skill => (
-                                    <span class="skill-tag">{skill}</span>
-                                ))}
-                                {career.skills.length > 4 && (
-                                    <span class="skill-tag more">+{career.skills.length - 4}</span>
-                                )}
-                            </div>
-                        </div>
-
-                        <button class="expand-btn" data-career={career.id}>
-                            <span>Ver Roadmap Completo</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-
-                        <!-- Expanded Content (hidden by default) -->
-                        <div class="career-expanded" id={`expanded-${career.id}`}>
-                            <div class="roadmap-timeline">
-                                <h4><i class="fas fa-map"></i> Roadmap de Aprendizaje</h4>
-                                {career.roadmap.map((phase, idx) => (
-                                    <div class="roadmap-phase">
-                                        <div class="phase-marker">
-                                            <span class="phase-number">{idx + 1}</span>
-                                        </div>
-                                        <div class="phase-content">
-                                            <div class="phase-header">
-                                                <h5>{phase.phase}</h5>
-                                                <span class="duration">{phase.duration}</span>
-                                            </div>
-                                            <ul>
-                                                {phase.topics.map(topic => (
-                                                    <li>{topic}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div class="certifications-section">
-                                <h4><i class="fas fa-certificate"></i> Certificaciones Recomendadas</h4>
-                                <div class="cert-list">
-                                    {career.certifications.map(cert => (
-                                        <span class="cert-badge">{cert}</span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div class="companies-section">
-                                <h4><i class="fas fa-building"></i> Empresas en Chile</h4>
-                                <div class="company-list">
-                                    {career.companies.map(company => (
-                                        <span class="company-badge">{company}</span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div class="salary-section">
-                                <h4><i class="fas fa-coins"></i> Rango Salarial en Chile</h4>
-                                <div class="salary-range">
-                                    <span class="salary-value">{career.salary}</span>
-                                    <span class="salary-note">Mensual bruto, según experiencia</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                ))}
-            </div>
-        </section>
-
-        <!-- Career Tips -->
-        <section class="tips-section">
-            <div class="section-header">
-                <h2><i class="fas fa-lightbulb"></i> Tips para Tu Carrera</h2>
-            </div>
-            <div class="tips-grid">
-                {careerTips.map(tip => (
-                    <div class="tip-card">
-                        <div class="tip-icon">
-                            <i class={tip.icon}></i>
-                        </div>
-                        <h4>{tip.title}</h4>
-                        <p>{tip.text}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Learning Resources -->
-        <section class="resources-section">
-            <div class="section-header">
-                <h2><i class="fas fa-graduation-cap"></i> Recursos de Aprendizaje</h2>
-            </div>
-            <div class="resources-grid">
-                {learningResources.map(resource => (
-                    <a href={resource.url} target="_blank" rel="noopener" class="resource-card">
-                        <h4>{resource.name}</h4>
-                        <p>{resource.description}</p>
-                        <span class="visit-link">Visitar <i class="fas fa-external-link-alt"></i></span>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>¿Listo para empezar?</h2>
-                <p>Explora los laboratorios interactivos y comienza a construir tu portafolio</p>
-                <div class="cta-buttons">
-                    <a href={`${base}/laboratorios`} class="cta-btn primary">
-                        <i class="fas fa-flask"></i> Laboratorios
-                    </a>
-                    <a href={`${base}/portafolio`} class="cta-btn secondary">
-                        <i class="fas fa-briefcase"></i> Guía de Portafolio
-                    </a>
+                <div class="career-meta">
+                  <span class={`demand-badge ${career.demand === "Muy Alta" ? "hot" : ""}`}>
+                    <i class="fas fa-fire" /> {career.demand}
+                  </span>
                 </div>
+              </div>
+
+              <h3>{career.title}</h3>
+              <p class="career-description">{career.description}</p>
+
+              <div class="skills-preview">
+                <h4>Skills Clave</h4>
+                <div class="skill-tags">
+                  {career.skills.slice(0, 4).map((skill) => (
+                    <span class="skill-tag">{skill}</span>
+                  ))}
+                  {career.skills.length > 4 && (
+                    <span class="skill-tag more">+{career.skills.length - 4}</span>
+                  )}
+                </div>
+              </div>
+
+              <button class="expand-btn" data-career={career.id}>
+                <span>Ver Roadmap Completo</span>
+                <i class="fas fa-chevron-down" />
+              </button>
+
+              {/* Expanded Content (hidden by default) */}
+              <div class="career-expanded" id={`expanded-${career.id}`}>
+                <div class="roadmap-timeline">
+                  <h4>
+                    <i class="fas fa-map" /> Roadmap de Aprendizaje
+                  </h4>
+                  {career.roadmap.map((phase, idx) => (
+                    <div class="roadmap-phase">
+                      <div class="phase-marker">
+                        <span class="phase-number">{idx + 1}</span>
+                      </div>
+                      <div class="phase-content">
+                        <div class="phase-header">
+                          <h5>{phase.phase}</h5>
+                          <span class="duration">{phase.duration}</span>
+                        </div>
+                        <ul>
+                          {phase.topics.map((topic) => (
+                            <li>{topic}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="certifications-section">
+                  <h4>
+                    <i class="fas fa-certificate" /> Certificaciones Recomendadas
+                  </h4>
+                  <div class="cert-list">
+                    {career.certifications.map((cert) => (
+                      <span class="cert-badge">{cert}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="companies-section">
+                  <h4>
+                    <i class="fas fa-building" /> Empresas en Chile
+                  </h4>
+                  <div class="company-list">
+                    {career.companies.map((company) => (
+                      <span class="company-badge">{company}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="salary-section">
+                  <h4>
+                    <i class="fas fa-coins" /> Rango Salarial en Chile
+                  </h4>
+                  <div class="salary-range">
+                    <span class="salary-value">{career.salary}</span>
+                    <span class="salary-note">Mensual bruto, según experiencia</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Career Tips -->
+    <section class="tips-section">
+      <div class="section-header">
+        <h2><i class="fas fa-lightbulb"></i> Tips para Tu Carrera</h2>
+      </div>
+      <div class="tips-grid">
+        {
+          careerTips.map((tip) => (
+            <div class="tip-card">
+              <div class="tip-icon">
+                <i class={tip.icon} />
+              </div>
+              <h4>{tip.title}</h4>
+              <p>{tip.text}</p>
             </div>
-        </section>
-    </main>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Learning Resources -->
+    <section class="resources-section">
+      <div class="section-header">
+        <h2><i class="fas fa-graduation-cap"></i> Recursos de Aprendizaje</h2>
+      </div>
+      <div class="resources-grid">
+        {
+          learningResources.map((resource) => (
+            <a href={resource.url} target="_blank" rel="noopener" class="resource-card">
+              <h4>{resource.name}</h4>
+              <p>{resource.description}</p>
+              <span class="visit-link">
+                Visitar <i class="fas fa-external-link-alt" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>¿Listo para empezar?</h2>
+        <p>Explora los laboratorios interactivos y comienza a construir tu portafolio</p>
+        <div class="cta-buttons">
+          <a href={`${base}/laboratorios`} class="cta-btn primary">
+            <i class="fas fa-flask"></i> Laboratorios
+          </a>
+          <a href={`${base}/portafolio`} class="cta-btn secondary">
+            <i class="fas fa-briefcase"></i> Guía de Portafolio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-    .career-page {
-        min-height: 100vh;
-        padding-bottom: 4rem;
-    }
+  .career-page {
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
 
-    /* Hero Section */
-    .career-hero {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
-        padding: 4rem 2rem;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  /* Hero Section */
+  .career-hero {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(6, 182, 212, 0.2);
-        border: 1px solid rgba(6, 182, 212, 0.3);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #06b6d4;
-        margin-bottom: 1rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(6, 182, 212, 0.2);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #06b6d4;
+    margin-bottom: 1rem;
+  }
 
+  .career-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #06b6d4;
+  }
+
+  .stat-label {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .section-header h2 i {
+    color: #06b6d4;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+    margin-top: 0.5rem;
+  }
+
+  /* Careers Section */
+  .careers-section {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .careers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Career Card */
+  .career-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .career-card:hover {
+    border-color: var(--career-color);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .career-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .career-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .demand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(100, 116, 139, 0.3);
+    color: #94a3b8;
+  }
+
+  .demand-badge.hot {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+  }
+
+  .career-card h3 {
+    font-size: 1.25rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .career-description {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  /* Salary Section - al final del roadmap */
+  .salary-section {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .salary-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .salary-section h4 i {
+    color: #10b981;
+  }
+
+  .salary-range {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+  }
+
+  .salary-value {
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .salary-note {
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  .skills-preview h4 {
+    font-size: 0.8rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .skill-tag {
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #67e8f9;
+  }
+
+  .skill-tag.more {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+  }
+
+  .expand-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .expand-btn:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #06b6d4;
+  }
+
+  .expand-btn.active i {
+    transform: rotate(180deg);
+  }
+
+  /* Expanded Content */
+  .career-expanded {
+    display: none;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .career-expanded.show {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Roadmap Timeline */
+  .roadmap-timeline {
+    margin-bottom: 1.5rem;
+  }
+
+  .roadmap-timeline h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #f8fafc;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .roadmap-timeline h4 i {
+    color: #06b6d4;
+  }
+
+  .roadmap-phase {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .roadmap-phase:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 35px;
+    bottom: -10px;
+    width: 2px;
+    background: linear-gradient(to bottom, #06b6d4, rgba(6, 182, 212, 0.2));
+  }
+
+  .phase-marker {
+    flex-shrink: 0;
+  }
+
+  .phase-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .phase-content {
+    flex: 1;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-content h5 {
+    color: #f8fafc;
+    font-size: 0.95rem;
+  }
+
+  .duration {
+    font-size: 0.75rem;
+    color: #06b6d4;
+    background: rgba(6, 182, 212, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+  }
+
+  .phase-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .phase-content li {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .phase-content li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #06b6d4;
+  }
+
+  /* Certifications */
+  .certifications-section,
+  .companies-section {
+    margin-bottom: 1rem;
+  }
+
+  .certifications-section h4,
+  .companies-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .certifications-section h4 i {
+    color: #f59e0b;
+  }
+
+  .companies-section h4 i {
+    color: #8b5cf6;
+  }
+
+  .cert-list,
+  .company-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .cert-badge {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #fbbf24;
+  }
+
+  .company-badge {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #a78bfa;
+  }
+
+  /* Tips Section */
+  .tips-section {
+    padding: 3rem 2rem;
+    background: rgba(6, 182, 212, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tip-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .tip-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .tip-icon i {
+    font-size: 1.25rem;
+    color: #06b6d4;
+  }
+
+  .tip-card h4 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Resources Section */
+  .resources-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .resource-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .resource-card:hover {
+    border-color: #06b6d4;
+    transform: translateY(-2px);
+  }
+
+  .resource-card h4 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .resource-card p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .visit-link {
+    color: #06b6d4;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-content p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    color: white;
+  }
+
+  .cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f8fafc;
+  }
+
+  .cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Light Mode */
+  :global([data-theme="light"]) .career-hero {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
+  }
+
+  :global([data-theme="light"]) .career-hero h1 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  :global([data-theme="light"]) .hero-subtitle,
+  :global([data-theme="light"]) .career-description,
+  :global([data-theme="light"]) .tip-card p,
+  :global([data-theme="light"]) .resource-card p,
+  :global([data-theme="light"]) .phase-content li,
+  :global([data-theme="light"]) .cta-content p {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .section-header h2,
+  :global([data-theme="light"]) .career-card h3,
+  :global([data-theme="light"]) .tip-card h4,
+  :global([data-theme="light"]) .resource-card h4,
+  :global([data-theme="light"]) .phase-content h5,
+  :global([data-theme="light"]) .cta-content h2 {
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .career-card,
+  :global([data-theme="light"]) .tip-card,
+  :global([data-theme="light"]) .resource-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :global([data-theme="light"]) .expand-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .cta-btn.secondary {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .salary-section h4 {
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .salary-range {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.02));
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  :global([data-theme="light"]) .salary-value {
+    color: #059669;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .career-hero h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        color: #94a3b8;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 2rem;
+      font-size: 1.75rem;
     }
 
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-    }
-
-    .stat {
-        text-align: center;
-    }
-
-    .stat-number {
-        display: block;
-        font-size: 2rem;
-        font-weight: 700;
-        color: #06b6d4;
-    }
-
-    .stat-label {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
-    /* Section Headers */
-    .section-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .section-header h2 {
-        font-size: 1.75rem;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-
-    .section-header h2 i {
-        color: #06b6d4;
-    }
-
-    .section-header p {
-        color: #94a3b8;
-        margin-top: 0.5rem;
-    }
-
-    /* Careers Section */
-    .careers-section {
-        padding: 3rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
+      gap: 1.5rem;
     }
 
     .careers-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-        gap: 1.5rem;
-    }
-
-    /* Career Card */
-    .career-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .career-card:hover {
-        border-color: var(--career-color);
-        box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
-        transform: translateY(-2px);
-    }
-
-    .career-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 1rem;
-    }
-
-    .career-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .demand-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.3rem 0.6rem;
-        border-radius: 12px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        background: rgba(100, 116, 139, 0.3);
-        color: #94a3b8;
-    }
-
-    .demand-badge.hot {
-        background: rgba(239, 68, 68, 0.2);
-        color: #f87171;
-    }
-
-    .career-card h3 {
-        font-size: 1.25rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .career-description {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-    }
-
-    /* Salary Section - al final del roadmap */
-    .salary-section {
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(16, 185, 129, 0.2);
-    }
-
-    .salary-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .salary-section h4 i {
-        color: #10b981;
-    }
-
-    .salary-range {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        padding: 1rem 1.25rem;
-        border-radius: 12px;
-    }
-
-    .salary-value {
-        color: #10b981;
-        font-weight: 700;
-        font-size: 1.1rem;
-    }
-
-    .salary-note {
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-
-    .skills-preview h4 {
-        font-size: 0.8rem;
-        color: #64748b;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 0.5rem;
-    }
-
-    .skill-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
-
-    .skill-tag {
-        background: rgba(6, 182, 212, 0.1);
-        border: 1px solid rgba(6, 182, 212, 0.2);
-        padding: 0.25rem 0.5rem;
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: #67e8f9;
-    }
-
-    .skill-tag.more {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-    }
-
-    .expand-btn {
-        width: 100%;
-        margin-top: 1rem;
-        padding: 0.75rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .expand-btn:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.3);
-        color: #06b6d4;
-    }
-
-    .expand-btn.active i {
-        transform: rotate(180deg);
-    }
-
-    /* Expanded Content */
-    .career-expanded {
-        display: none;
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .career-expanded.show {
-        display: block;
-        animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Roadmap Timeline */
-    .roadmap-timeline {
-        margin-bottom: 1.5rem;
-    }
-
-    .roadmap-timeline h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #f8fafc;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .roadmap-timeline h4 i {
-        color: #06b6d4;
-    }
-
-    .roadmap-phase {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        position: relative;
-    }
-
-    .roadmap-phase:not(:last-child)::before {
-        content: '';
-        position: absolute;
-        left: 15px;
-        top: 35px;
-        bottom: -10px;
-        width: 2px;
-        background: linear-gradient(to bottom, #06b6d4, rgba(6, 182, 212, 0.2));
-    }
-
-    .phase-marker {
-        flex-shrink: 0;
-    }
-
-    .phase-number {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 700;
-        font-size: 0.85rem;
-    }
-
-    .phase-content {
-        flex: 1;
-    }
-
-    .phase-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-    }
-
-    .phase-content h5 {
-        color: #f8fafc;
-        font-size: 0.95rem;
-    }
-
-    .duration {
-        font-size: 0.75rem;
-        color: #06b6d4;
-        background: rgba(6, 182, 212, 0.1);
-        padding: 0.2rem 0.5rem;
-        border-radius: 10px;
-    }
-
-    .phase-content ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .phase-content li {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        padding: 0.2rem 0;
-        padding-left: 1rem;
-        position: relative;
-    }
-
-    .phase-content li::before {
-        content: '→';
-        position: absolute;
-        left: 0;
-        color: #06b6d4;
-    }
-
-    /* Certifications */
-    .certifications-section,
-    .companies-section {
-        margin-bottom: 1rem;
-    }
-
-    .certifications-section h4,
-    .companies-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .certifications-section h4 i {
-        color: #f59e0b;
-    }
-
-    .companies-section h4 i {
-        color: #8b5cf6;
-    }
-
-    .cert-list,
-    .company-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
-
-    .cert-badge {
-        background: rgba(245, 158, 11, 0.1);
-        border: 1px solid rgba(245, 158, 11, 0.2);
-        padding: 0.3rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: #fbbf24;
-    }
-
-    .company-badge {
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        padding: 0.3rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: #a78bfa;
-    }
-
-    /* Tips Section */
-    .tips-section {
-        padding: 3rem 2rem;
-        background: rgba(6, 182, 212, 0.03);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      grid-template-columns: 1fr;
     }
 
     .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .tip-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .tip-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
-
-    .tip-icon i {
-        font-size: 1.25rem;
-        color: #06b6d4;
-    }
-
-    .tip-card h4 {
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .tip-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-
-    /* Resources Section */
-    .resources-section {
-        padding: 3rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .resources-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1rem;
-    }
-
-    .resource-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .resource-card:hover {
-        border-color: #06b6d4;
-        transform: translateY(-2px);
-    }
-
-    .resource-card h4 {
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .resource-card p {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .visit-link {
-        color: #06b6d4;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
-        text-align: center;
-    }
-
-    .cta-content h2 {
-        font-size: 1.75rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .cta-content p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
+      grid-template-columns: 1fr;
     }
 
     .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-        color: white;
-    }
-
-    .cta-btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
-    }
-
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #f8fafc;
-    }
-
-    .cta-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.15);
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .career-hero {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
-    }
-
-    :global([data-theme="light"]) .career-hero h1 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .hero-subtitle,
-    :global([data-theme="light"]) .career-description,
-    :global([data-theme="light"]) .tip-card p,
-    :global([data-theme="light"]) .resource-card p,
-    :global([data-theme="light"]) .phase-content li,
-    :global([data-theme="light"]) .cta-content p {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .section-header h2,
-    :global([data-theme="light"]) .career-card h3,
-    :global([data-theme="light"]) .tip-card h4,
-    :global([data-theme="light"]) .resource-card h4,
-    :global([data-theme="light"]) .phase-content h5,
-    :global([data-theme="light"]) .cta-content h2 {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .career-card,
-    :global([data-theme="light"]) .tip-card,
-    :global([data-theme="light"]) .resource-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.1);
-    }
-
-    :global([data-theme="light"]) .expand-btn {
-        background: rgba(0, 0, 0, 0.05);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .cta-btn.secondary {
-        background: rgba(0, 0, 0, 0.05);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .salary-section h4 {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .salary-range {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.02));
-        border-color: rgba(16, 185, 129, 0.2);
-    }
-
-    :global([data-theme="light"]) .salary-value {
-        color: #059669;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .career-hero h1 {
-            font-size: 1.75rem;
-        }
-
-        .hero-stats {
-            gap: 1.5rem;
-        }
-
-        .careers-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .tips-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+  }
 </style>
 
 <script>
-    function initCareerPage() {
-        const expandBtns = document.querySelectorAll('.expand-btn');
+  function initCareerPage() {
+    const expandBtns = document.querySelectorAll(".expand-btn");
 
-        expandBtns.forEach(btn => {
-            btn.onclick = () => {
-                const careerId = btn.getAttribute('data-career');
-                const expanded = document.getElementById(`expanded-${careerId}`);
+    expandBtns.forEach((btn) => {
+      btn.onclick = () => {
+        const careerId = btn.getAttribute("data-career");
+        const expanded = document.getElementById(`expanded-${careerId}`);
 
-                if (expanded) {
-                    expanded.classList.toggle('show');
-                    btn.classList.toggle('active');
+        if (expanded) {
+          expanded.classList.toggle("show");
+          btn.classList.toggle("active");
 
-                    // Update button text
-                    const span = btn.querySelector('span');
-                    if (expanded.classList.contains('show')) {
-                        span.textContent = 'Ocultar Roadmap';
-                    } else {
-                        span.textContent = 'Ver Roadmap Completo';
-                    }
-                }
-            };
-        });
-    }
+          // Update button text
+          const span = btn.querySelector("span");
+          if (expanded.classList.contains("show")) {
+            span.textContent = "Ocultar Roadmap";
+          } else {
+            span.textContent = "Ver Roadmap Completo";
+          }
+        }
+      };
+    });
+  }
 
-    // Initialize on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCareerPage);
-    } else {
-        initCareerPage();
-    }
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCareerPage);
+  } else {
+    initCareerPage();
+  }
 
-    // Re-initialize on View Transitions
-    document.addEventListener('astro:page-load', initCareerPage);
+  // Re-initialize on View Transitions
+  document.addEventListener("astro:page-load", initCareerPage);
 </script>

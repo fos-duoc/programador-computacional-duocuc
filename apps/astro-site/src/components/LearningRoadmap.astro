@@ -4,1093 +4,1439 @@
 // Modalidad: 100% Online | Código Malla: 1444729-2025
 
 const roadmapPhases = [
-    {
-        phase: 1,
-        title: "Fundamentos de Programación",
-        period: "B01-B02",
-        months: "Meses 1-4",
-        color: "cyan",
-        icon: "fas fa-seedling",
-        description: "Bases sólidas en lógica, algoritmos y primeros pasos en POO",
-        subjects: ["Fundamentos de Programación", "Modelamiento de BD", "Desarrollo OO I", "Intro Cloud Computing"],
-        skills: [
-            { name: "Lógica y Algoritmos", level: "core", tools: ["Pseudocódigo", "Diagramas de flujo", "PSeInt"], competency: "Pensamiento computacional" },
-            { name: "Python Fundamentals", level: "core", tools: ["Variables", "Control de flujo", "Funciones", "Listas"], competency: "Programación básica" },
-            { name: "Modelamiento de Datos", level: "core", tools: ["Modelo E-R", "Normalización", "MySQL Workbench"], competency: "Diseño de BD" },
-            { name: "POO con Java", level: "core", tools: ["Clases", "Objetos", "Constructores", "Métodos"], competency: "Paradigma OO" },
-            { name: "Cloud Computing Intro", level: "essential", tools: ["IaaS", "PaaS", "SaaS", "AWS/Azure/GCP"], competency: "Fundamentos cloud" },
-            { name: "Control de Versiones", level: "essential", tools: ["Git", "GitHub", "Commits", "Branches"], competency: "Colaboración" }
-        ],
-        milestone: "Primer programa OOP funcional con persistencia",
-        certifications: ["GitHub Foundations", "AWS Cloud Practitioner (preparación)"]
-    },
-    {
-        phase: 2,
-        title: "POO Avanzado & DevOps",
-        period: "B03-B04",
-        months: "Meses 5-8",
-        color: "purple",
-        icon: "fas fa-cubes",
-        description: "Profundización en POO, SQL avanzado y herramientas DevOps",
-        subjects: ["Desarrollo OO II", "Herramientas DevOps", "Consulta de BD", "Seguridad Informática"],
-        skills: [
-            { name: "POO Avanzado", level: "core", tools: ["Herencia", "Polimorfismo", "Interfaces", "Clases abstractas"], competency: "4 pilares POO" },
-            { name: "Principios SOLID", level: "core", tools: ["SRP", "OCP", "LSP", "ISP", "DIP"], competency: "Diseño limpio" },
-            { name: "SQL Consultas", level: "core", tools: ["JOINs", "Subconsultas", "Vistas", "Índices"], competency: "Manipulación datos" },
-            { name: "Docker", level: "core", tools: ["Containers", "Images", "Docker Compose", "Volumes"], competency: "Contenedores" },
-            { name: "CI/CD Pipelines", level: "essential", tools: ["GitHub Actions", "Jenkins", "Automatización"], competency: "Integración continua" },
-            { name: "Seguridad Básica", level: "essential", tools: ["OWASP Top 10", "Input validation", "Sanitización"], competency: "Seguridad" }
-        ],
-        milestone: "Aplicación OOP con BD y pipeline CI/CD",
-        certifications: ["Oracle Java SE", "Docker Essentials"]
-    },
-    {
-        phase: 3,
-        title: "Backend & Cloud Native",
-        period: "B05-B06",
-        months: "Meses 9-12",
-        color: "green",
-        icon: "fas fa-server",
-        description: "Desarrollo de APIs, SQL avanzado y metodologías ágiles",
-        subjects: ["Programación de BD", "Desarrollo Cloud Native", "Gestión de Requisitos", "Backend I", "Ing. Software I"],
-        skills: [
-            { name: "APIs RESTful", level: "core", tools: ["Endpoints", "HTTP Methods", "JSON", "Status codes"], competency: "Servicios web" },
-            { name: "Spring Boot", level: "core", tools: ["Controllers", "Services", "Repositories", "JPA"], competency: "Framework Java" },
-            { name: "SQL Procedural", level: "core", tools: ["Stored Procedures", "Triggers", "Funciones", "Transacciones"], competency: "BD avanzado" },
-            { name: "Cloud Native", level: "core", tools: ["Kubernetes basics", "Microservicios", "12-Factor App"], competency: "Nube" },
-            { name: "Scrum/Kanban", level: "essential", tools: ["User Stories", "Sprint Planning", "Jira", "Retrospectivas"], competency: "Metodologías ágiles" },
-            { name: "Testing", level: "essential", tools: ["JUnit", "Mockito", "Unit tests", "Integration tests"], competency: "Calidad" }
-        ],
-        milestone: "API REST completa con autenticación y tests",
-        certifications: ["AWS Developer Associate (preparación)", "Scrum Foundation"]
-    },
-    {
-        phase: 4,
-        title: "Fullstack & Arquitectura",
-        period: "B07-B08",
-        months: "Meses 13-16",
-        color: "orange",
-        icon: "fas fa-layer-group",
-        description: "Frontend moderno, arquitectura de software y seguridad",
-        subjects: ["Backend II", "Backend III", "Ing. Software II", "Arquitectura SW", "Frontend I", "Frontend II"],
-        skills: [
-            { name: "React/Angular", level: "core", tools: ["Components", "Hooks/Services", "State", "Routing"], competency: "Frontend moderno" },
-            { name: "TypeScript", level: "core", tools: ["Types", "Interfaces", "Generics", "Decorators"], competency: "Tipado estático" },
-            { name: "Microservicios", level: "core", tools: ["API Gateway", "Service mesh", "RabbitMQ/Kafka"], competency: "Arquitectura distribuida" },
-            { name: "Arquitectura SW", level: "core", tools: ["Clean Architecture", "Patrones de diseño", "DDD basics"], competency: "Diseño de sistemas" },
-            { name: "Seguridad Avanzada", level: "essential", tools: ["JWT", "OAuth 2.0", "Spring Security"], competency: "Autenticación" },
-            { name: "DevOps Avanzado", level: "essential", tools: ["Terraform", "Monitoring", "Grafana"], competency: "Infraestructura" }
-        ],
-        milestone: "Aplicación Fullstack desplegada en la nube",
-        certifications: ["Azure Developer", "Kubernetes CKAD (preparación)"]
-    },
-    {
-        phase: 5,
-        title: "Mobile & Título APC",
-        period: "B09-B10",
-        months: "Meses 17-20",
-        color: "pink",
-        icon: "fas fa-mobile-alt",
-        description: "Desarrollo móvil multiplataforma y proyecto integrador",
-        subjects: ["Frontend III", "App Móviles I", "App Móviles II", "Taller Aplicado SW"],
-        skills: [
-            { name: "React Native / Flutter", level: "core", tools: ["Components", "Navigation", "State management", "Native APIs"], competency: "Mobile cross-platform" },
-            { name: "App Stores", level: "core", tools: ["Google Play", "App Store", "CI/CD Mobile", "Distribución"], competency: "Publicación" },
-            { name: "Proyecto Capstone", level: "core", tools: ["Análisis", "Diseño", "Desarrollo", "Deploy"], competency: "Integración total" },
-            { name: "UX/UI Mobile", level: "essential", tools: ["Material Design", "Human Interface", "Accesibilidad"], competency: "Experiencia usuario" },
-            { name: "Backend Mobile", level: "essential", tools: ["Firebase", "Push notifications", "Offline sync"], competency: "Servicios móviles" },
-            { name: "Soft Skills", level: "essential", tools: ["Presentaciones", "Documentación", "Trabajo en equipo"], competency: "Profesionalismo" }
-        ],
-        milestone: "TÍTULO: Analista Programador Computacional",
-        certifications: ["Google Associate Android Developer", "Meta React Native"],
-        isMilestoneTitle: true
-    },
-    // ═══════════════════════════════════════════════════════════════════
-    // INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17) - 7 Bimestres adicionales
-    // ═══════════════════════════════════════════════════════════════════
-    {
-        phase: 6,
-        title: "Arquitectura & DevOps Avanzado",
-        period: "B11-B14",
-        months: "Meses 21-28",
-        color: "red",
-        icon: "fas fa-drafting-compass",
-        description: "Arquitecturas empresariales, patrones avanzados y DevOps de nivel senior",
-        subjects: ["Fullstack I", "Fullstack II", "Fullstack III", "BD Aplicada", "Cloud Computing", "DevOps"],
-        skills: [
-            { name: "Clean Architecture", level: "core", tools: ["Entities", "Use Cases", "Adapters", "Dependency Rule"], competency: "Arquitectura limpia" },
-            { name: "Hexagonal (Ports & Adapters)", level: "core", tools: ["Input Ports", "Output Ports", "Domain Core", "Adapters"], competency: "Desacoplamiento" },
-            { name: "Domain-Driven Design", level: "core", tools: ["Bounded Context", "Aggregates", "Value Objects", "Domain Events"], competency: "Diseño de dominio" },
-            { name: "Kubernetes Avanzado", level: "core", tools: ["Deployments", "Services", "Ingress", "HPA", "ConfigMaps"], competency: "Orquestación" },
-            { name: "Infrastructure as Code", level: "core", tools: ["Terraform", "CloudFormation", "Ansible", "GitOps"], competency: "Automatización" },
-            { name: "Observabilidad", level: "essential", tools: ["Prometheus", "Grafana", "ELK Stack", "Distributed Tracing"], competency: "Monitoreo" }
-        ],
-        milestone: "Sistema empresarial con Clean Architecture y K8s",
-        certifications: ["CKA (Kubernetes Admin)", "Terraform Associate", "AWS Solutions Architect"]
-    },
-    {
-        phase: 7,
-        title: "Ingeniería Avanzada & Título IDS",
-        period: "B15-B17",
-        months: "Meses 29-34",
-        color: "gold",
-        icon: "fas fa-award",
-        description: "IA/ML, Data Engineering, gestión de proyectos y proyecto de título de ingeniería",
-        subjects: ["Cloud Native II", "Seguridad y Calidad", "Evaluación y Gestión Proyectos SW", "Ética Profesional", "Taller Aplicado SW (IDS)"],
-        skills: [
-            { name: "Event Sourcing & CQRS", level: "core", tools: ["Event Store", "Projections", "Command/Query separation", "Kafka"], competency: "Arquitectura eventos" },
-            { name: "Data Engineering", level: "core", tools: ["dbt", "Airflow", "Data Lakes", "Medallion Architecture"], competency: "Pipelines de datos" },
-            { name: "AI/ML Integration", level: "core", tools: ["LangChain", "OpenAI API", "FastAPI", "Model Serving"], competency: "Integración IA" },
-            { name: "Testing Avanzado", level: "core", tools: ["TDD", "Contract Testing", "Chaos Engineering", "Load Testing"], competency: "Calidad enterprise" },
-            { name: "Gestión de Proyectos SW", level: "essential", tools: ["Estimación", "Planning Poker", "Velocity", "Métricas"], competency: "Liderazgo técnico" },
-            { name: "Seguridad Enterprise", level: "essential", tools: ["OWASP", "Pen Testing", "Security Audits", "Compliance"], competency: "Seguridad avanzada" }
-        ],
-        milestone: "TÍTULO: Ingeniero(a) en Desarrollo de Software",
-        certifications: ["TOGAF", "AWS Solutions Architect Professional", "Google Cloud Architect"],
-        isMilestoneTitle: true,
-        isFinalTitle: true
-    }
+  {
+    phase: 1,
+    title: "Fundamentos de Programación",
+    period: "B01-B02",
+    months: "Meses 1-4",
+    color: "cyan",
+    icon: "fas fa-seedling",
+    description: "Bases sólidas en lógica, algoritmos y primeros pasos en POO",
+    subjects: [
+      "Fundamentos de Programación",
+      "Modelamiento de BD",
+      "Desarrollo OO I",
+      "Intro Cloud Computing",
+    ],
+    skills: [
+      {
+        name: "Lógica y Algoritmos",
+        level: "core",
+        tools: ["Pseudocódigo", "Diagramas de flujo", "PSeInt"],
+        competency: "Pensamiento computacional",
+      },
+      {
+        name: "Python Fundamentals",
+        level: "core",
+        tools: ["Variables", "Control de flujo", "Funciones", "Listas"],
+        competency: "Programación básica",
+      },
+      {
+        name: "Modelamiento de Datos",
+        level: "core",
+        tools: ["Modelo E-R", "Normalización", "MySQL Workbench"],
+        competency: "Diseño de BD",
+      },
+      {
+        name: "POO con Java",
+        level: "core",
+        tools: ["Clases", "Objetos", "Constructores", "Métodos"],
+        competency: "Paradigma OO",
+      },
+      {
+        name: "Cloud Computing Intro",
+        level: "essential",
+        tools: ["IaaS", "PaaS", "SaaS", "AWS/Azure/GCP"],
+        competency: "Fundamentos cloud",
+      },
+      {
+        name: "Control de Versiones",
+        level: "essential",
+        tools: ["Git", "GitHub", "Commits", "Branches"],
+        competency: "Colaboración",
+      },
+    ],
+    milestone: "Primer programa OOP funcional con persistencia",
+    certifications: ["GitHub Foundations", "AWS Cloud Practitioner (preparación)"],
+  },
+  {
+    phase: 2,
+    title: "POO Avanzado & DevOps",
+    period: "B03-B04",
+    months: "Meses 5-8",
+    color: "purple",
+    icon: "fas fa-cubes",
+    description: "Profundización en POO, SQL avanzado y herramientas DevOps",
+    subjects: [
+      "Desarrollo OO II",
+      "Herramientas DevOps",
+      "Consulta de BD",
+      "Seguridad Informática",
+    ],
+    skills: [
+      {
+        name: "POO Avanzado",
+        level: "core",
+        tools: ["Herencia", "Polimorfismo", "Interfaces", "Clases abstractas"],
+        competency: "4 pilares POO",
+      },
+      {
+        name: "Principios SOLID",
+        level: "core",
+        tools: ["SRP", "OCP", "LSP", "ISP", "DIP"],
+        competency: "Diseño limpio",
+      },
+      {
+        name: "SQL Consultas",
+        level: "core",
+        tools: ["JOINs", "Subconsultas", "Vistas", "Índices"],
+        competency: "Manipulación datos",
+      },
+      {
+        name: "Docker",
+        level: "core",
+        tools: ["Containers", "Images", "Docker Compose", "Volumes"],
+        competency: "Contenedores",
+      },
+      {
+        name: "CI/CD Pipelines",
+        level: "essential",
+        tools: ["GitHub Actions", "Jenkins", "Automatización"],
+        competency: "Integración continua",
+      },
+      {
+        name: "Seguridad Básica",
+        level: "essential",
+        tools: ["OWASP Top 10", "Input validation", "Sanitización"],
+        competency: "Seguridad",
+      },
+    ],
+    milestone: "Aplicación OOP con BD y pipeline CI/CD",
+    certifications: ["Oracle Java SE", "Docker Essentials"],
+  },
+  {
+    phase: 3,
+    title: "Backend & Cloud Native",
+    period: "B05-B06",
+    months: "Meses 9-12",
+    color: "green",
+    icon: "fas fa-server",
+    description: "Desarrollo de APIs, SQL avanzado y metodologías ágiles",
+    subjects: [
+      "Programación de BD",
+      "Desarrollo Cloud Native",
+      "Gestión de Requisitos",
+      "Backend I",
+      "Ing. Software I",
+    ],
+    skills: [
+      {
+        name: "APIs RESTful",
+        level: "core",
+        tools: ["Endpoints", "HTTP Methods", "JSON", "Status codes"],
+        competency: "Servicios web",
+      },
+      {
+        name: "Spring Boot",
+        level: "core",
+        tools: ["Controllers", "Services", "Repositories", "JPA"],
+        competency: "Framework Java",
+      },
+      {
+        name: "SQL Procedural",
+        level: "core",
+        tools: ["Stored Procedures", "Triggers", "Funciones", "Transacciones"],
+        competency: "BD avanzado",
+      },
+      {
+        name: "Cloud Native",
+        level: "core",
+        tools: ["Kubernetes basics", "Microservicios", "12-Factor App"],
+        competency: "Nube",
+      },
+      {
+        name: "Scrum/Kanban",
+        level: "essential",
+        tools: ["User Stories", "Sprint Planning", "Jira", "Retrospectivas"],
+        competency: "Metodologías ágiles",
+      },
+      {
+        name: "Testing",
+        level: "essential",
+        tools: ["JUnit", "Mockito", "Unit tests", "Integration tests"],
+        competency: "Calidad",
+      },
+    ],
+    milestone: "API REST completa con autenticación y tests",
+    certifications: ["AWS Developer Associate (preparación)", "Scrum Foundation"],
+  },
+  {
+    phase: 4,
+    title: "Fullstack & Arquitectura",
+    period: "B07-B08",
+    months: "Meses 13-16",
+    color: "orange",
+    icon: "fas fa-layer-group",
+    description: "Frontend moderno, arquitectura de software y seguridad",
+    subjects: [
+      "Backend II",
+      "Backend III",
+      "Ing. Software II",
+      "Arquitectura SW",
+      "Frontend I",
+      "Frontend II",
+    ],
+    skills: [
+      {
+        name: "React/Angular",
+        level: "core",
+        tools: ["Components", "Hooks/Services", "State", "Routing"],
+        competency: "Frontend moderno",
+      },
+      {
+        name: "TypeScript",
+        level: "core",
+        tools: ["Types", "Interfaces", "Generics", "Decorators"],
+        competency: "Tipado estático",
+      },
+      {
+        name: "Microservicios",
+        level: "core",
+        tools: ["API Gateway", "Service mesh", "RabbitMQ/Kafka"],
+        competency: "Arquitectura distribuida",
+      },
+      {
+        name: "Arquitectura SW",
+        level: "core",
+        tools: ["Clean Architecture", "Patrones de diseño", "DDD basics"],
+        competency: "Diseño de sistemas",
+      },
+      {
+        name: "Seguridad Avanzada",
+        level: "essential",
+        tools: ["JWT", "OAuth 2.0", "Spring Security"],
+        competency: "Autenticación",
+      },
+      {
+        name: "DevOps Avanzado",
+        level: "essential",
+        tools: ["Terraform", "Monitoring", "Grafana"],
+        competency: "Infraestructura",
+      },
+    ],
+    milestone: "Aplicación Fullstack desplegada en la nube",
+    certifications: ["Azure Developer", "Kubernetes CKAD (preparación)"],
+  },
+  {
+    phase: 5,
+    title: "Mobile & Título APC",
+    period: "B09-B10",
+    months: "Meses 17-20",
+    color: "pink",
+    icon: "fas fa-mobile-alt",
+    description: "Desarrollo móvil multiplataforma y proyecto integrador",
+    subjects: ["Frontend III", "App Móviles I", "App Móviles II", "Taller Aplicado SW"],
+    skills: [
+      {
+        name: "React Native / Flutter",
+        level: "core",
+        tools: ["Components", "Navigation", "State management", "Native APIs"],
+        competency: "Mobile cross-platform",
+      },
+      {
+        name: "App Stores",
+        level: "core",
+        tools: ["Google Play", "App Store", "CI/CD Mobile", "Distribución"],
+        competency: "Publicación",
+      },
+      {
+        name: "Proyecto Capstone",
+        level: "core",
+        tools: ["Análisis", "Diseño", "Desarrollo", "Deploy"],
+        competency: "Integración total",
+      },
+      {
+        name: "UX/UI Mobile",
+        level: "essential",
+        tools: ["Material Design", "Human Interface", "Accesibilidad"],
+        competency: "Experiencia usuario",
+      },
+      {
+        name: "Backend Mobile",
+        level: "essential",
+        tools: ["Firebase", "Push notifications", "Offline sync"],
+        competency: "Servicios móviles",
+      },
+      {
+        name: "Soft Skills",
+        level: "essential",
+        tools: ["Presentaciones", "Documentación", "Trabajo en equipo"],
+        competency: "Profesionalismo",
+      },
+    ],
+    milestone: "TÍTULO: Analista Programador Computacional",
+    certifications: ["Google Associate Android Developer", "Meta React Native"],
+    isMilestoneTitle: true,
+  },
+  // ═══════════════════════════════════════════════════════════════════
+  // INGENIERÍA EN DESARROLLO DE SOFTWARE (B11-B17) - 7 Bimestres adicionales
+  // ═══════════════════════════════════════════════════════════════════
+  {
+    phase: 6,
+    title: "Arquitectura & DevOps Avanzado",
+    period: "B11-B14",
+    months: "Meses 21-28",
+    color: "red",
+    icon: "fas fa-drafting-compass",
+    description: "Arquitecturas empresariales, patrones avanzados y DevOps de nivel senior",
+    subjects: [
+      "Fullstack I",
+      "Fullstack II",
+      "Fullstack III",
+      "BD Aplicada",
+      "Cloud Computing",
+      "DevOps",
+    ],
+    skills: [
+      {
+        name: "Clean Architecture",
+        level: "core",
+        tools: ["Entities", "Use Cases", "Adapters", "Dependency Rule"],
+        competency: "Arquitectura limpia",
+      },
+      {
+        name: "Hexagonal (Ports & Adapters)",
+        level: "core",
+        tools: ["Input Ports", "Output Ports", "Domain Core", "Adapters"],
+        competency: "Desacoplamiento",
+      },
+      {
+        name: "Domain-Driven Design",
+        level: "core",
+        tools: ["Bounded Context", "Aggregates", "Value Objects", "Domain Events"],
+        competency: "Diseño de dominio",
+      },
+      {
+        name: "Kubernetes Avanzado",
+        level: "core",
+        tools: ["Deployments", "Services", "Ingress", "HPA", "ConfigMaps"],
+        competency: "Orquestación",
+      },
+      {
+        name: "Infrastructure as Code",
+        level: "core",
+        tools: ["Terraform", "CloudFormation", "Ansible", "GitOps"],
+        competency: "Automatización",
+      },
+      {
+        name: "Observabilidad",
+        level: "essential",
+        tools: ["Prometheus", "Grafana", "ELK Stack", "Distributed Tracing"],
+        competency: "Monitoreo",
+      },
+    ],
+    milestone: "Sistema empresarial con Clean Architecture y K8s",
+    certifications: ["CKA (Kubernetes Admin)", "Terraform Associate", "AWS Solutions Architect"],
+  },
+  {
+    phase: 7,
+    title: "Ingeniería Avanzada & Título IDS",
+    period: "B15-B17",
+    months: "Meses 29-34",
+    color: "gold",
+    icon: "fas fa-award",
+    description: "IA/ML, Data Engineering, gestión de proyectos y proyecto de título de ingeniería",
+    subjects: [
+      "Cloud Native II",
+      "Seguridad y Calidad",
+      "Evaluación y Gestión Proyectos SW",
+      "Ética Profesional",
+      "Taller Aplicado SW (IDS)",
+    ],
+    skills: [
+      {
+        name: "Event Sourcing & CQRS",
+        level: "core",
+        tools: ["Event Store", "Projections", "Command/Query separation", "Kafka"],
+        competency: "Arquitectura eventos",
+      },
+      {
+        name: "Data Engineering",
+        level: "core",
+        tools: ["dbt", "Airflow", "Data Lakes", "Medallion Architecture"],
+        competency: "Pipelines de datos",
+      },
+      {
+        name: "AI/ML Integration",
+        level: "core",
+        tools: ["LangChain", "OpenAI API", "FastAPI", "Model Serving"],
+        competency: "Integración IA",
+      },
+      {
+        name: "Testing Avanzado",
+        level: "core",
+        tools: ["TDD", "Contract Testing", "Chaos Engineering", "Load Testing"],
+        competency: "Calidad enterprise",
+      },
+      {
+        name: "Gestión de Proyectos SW",
+        level: "essential",
+        tools: ["Estimación", "Planning Poker", "Velocity", "Métricas"],
+        competency: "Liderazgo técnico",
+      },
+      {
+        name: "Seguridad Enterprise",
+        level: "essential",
+        tools: ["OWASP", "Pen Testing", "Security Audits", "Compliance"],
+        competency: "Seguridad avanzada",
+      },
+    ],
+    milestone: "TÍTULO: Ingeniero(a) en Desarrollo de Software",
+    certifications: ["TOGAF", "AWS Solutions Architect Professional", "Google Cloud Architect"],
+    isMilestoneTitle: true,
+    isFinalTitle: true,
+  },
 ];
 
 // Badges de logro alineados con competencias reales
 const badges = [
-    { icon: "fas fa-code", name: "First Commit", description: "Tu primer código en GitHub", phase: 1 },
-    { icon: "fas fa-cubes", name: "OOP Master", description: "Dominas los 4 pilares de POO", phase: 2 },
-    { icon: "fas fa-database", name: "Data Architect", description: "SQL avanzado y modelamiento", phase: 2 },
-    { icon: "fas fa-server", name: "API Builder", description: "API REST funcional", phase: 3 },
-    { icon: "fas fa-cloud", name: "Cloud Native", description: "Deploy en Kubernetes", phase: 4 },
-    { icon: "fas fa-mobile-alt", name: "Mobile Dev", description: "App publicada en Store", phase: 5 },
-    { icon: "fas fa-graduation-cap", name: "APC Graduate", description: "Título Analista Programador", phase: 5 },
-    // Badges de Ingeniería en Desarrollo de Software (Fases 6-7)
-    { icon: "fas fa-drafting-compass", name: "Architect", description: "Clean/Hexagonal Architecture", phase: 6 },
-    { icon: "fas fa-network-wired", name: "DDD Expert", description: "Domain-Driven Design aplicado", phase: 6 },
-    { icon: "fas fa-dharmachakra", name: "K8s Admin", description: "Kubernetes en producción", phase: 6 },
-    { icon: "fas fa-robot", name: "AI Integrator", description: "ML/AI en aplicaciones", phase: 7 },
-    { icon: "fas fa-award", name: "IDS Engineer", description: "Título Ingeniero de Software", phase: 7 }
+  {
+    icon: "fas fa-code",
+    name: "First Commit",
+    description: "Tu primer código en GitHub",
+    phase: 1,
+  },
+  {
+    icon: "fas fa-cubes",
+    name: "OOP Master",
+    description: "Dominas los 4 pilares de POO",
+    phase: 2,
+  },
+  {
+    icon: "fas fa-database",
+    name: "Data Architect",
+    description: "SQL avanzado y modelamiento",
+    phase: 2,
+  },
+  { icon: "fas fa-server", name: "API Builder", description: "API REST funcional", phase: 3 },
+  { icon: "fas fa-cloud", name: "Cloud Native", description: "Deploy en Kubernetes", phase: 4 },
+  {
+    icon: "fas fa-mobile-alt",
+    name: "Mobile Dev",
+    description: "App publicada en Store",
+    phase: 5,
+  },
+  {
+    icon: "fas fa-graduation-cap",
+    name: "APC Graduate",
+    description: "Título Analista Programador",
+    phase: 5,
+  },
+  // Badges de Ingeniería en Desarrollo de Software (Fases 6-7)
+  {
+    icon: "fas fa-drafting-compass",
+    name: "Architect",
+    description: "Clean/Hexagonal Architecture",
+    phase: 6,
+  },
+  {
+    icon: "fas fa-network-wired",
+    name: "DDD Expert",
+    description: "Domain-Driven Design aplicado",
+    phase: 6,
+  },
+  {
+    icon: "fas fa-dharmachakra",
+    name: "K8s Admin",
+    description: "Kubernetes en producción",
+    phase: 6,
+  },
+  { icon: "fas fa-robot", name: "AI Integrator", description: "ML/AI en aplicaciones", phase: 7 },
+  {
+    icon: "fas fa-award",
+    name: "IDS Engineer",
+    description: "Título Ingeniero de Software",
+    phase: 7,
+  },
 ];
 
 // Competencias transversales del programa
 const transversalSkills = [
-    { name: "Trabajo en equipo", icon: "fas fa-users" },
-    { name: "Pensamiento analítico", icon: "fas fa-brain" },
-    { name: "Comunicación efectiva", icon: "fas fa-comments" },
-    { name: "Aprendizaje continuo", icon: "fas fa-book-reader" },
-    { name: "Ética profesional", icon: "fas fa-balance-scale" }
+  { name: "Trabajo en equipo", icon: "fas fa-users" },
+  { name: "Pensamiento analítico", icon: "fas fa-brain" },
+  { name: "Comunicación efectiva", icon: "fas fa-comments" },
+  { name: "Aprendizaje continuo", icon: "fas fa-book-reader" },
+  { name: "Ética profesional", icon: "fas fa-balance-scale" },
 ];
 ---
 
 <section id="learning-roadmap" class="roadmap-section">
-    <div class="roadmap-container">
-        <!-- Header Premium -->
-        <div class="roadmap-header" data-aos="fade-up">
-            <div class="roadmap-header-icon">
-                <i class="fas fa-route"></i>
-            </div>
-            <div class="roadmap-badges-row">
-                <div class="roadmap-badge">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Malla 1444729-2025 | Online</span>
-                </div>
-                <div class="roadmap-badge engineering">
-                    <i class="fas fa-award"></i>
-                    <span>Ingeniería en Desarrollo de Software</span>
-                </div>
-            </div>
-            <h2>Learning Roadmap Completo</h2>
-            <p class="roadmap-subtitle">De 0 a Ingeniero de Software en 34 meses: APC (20 meses) + IDS (14 meses)</p>
-            <div class="roadmap-stats-row">
-                <span class="roadmap-stat">
-                    <i class="fas fa-flag-checkered"></i>
-                    <strong>7</strong> Fases
-                </span>
-                <span class="roadmap-stat">
-                    <i class="fas fa-book"></i>
-                    <strong>17</strong> Bimestres
-                </span>
-                <span class="roadmap-stat">
-                    <i class="fas fa-trophy"></i>
-                    <strong>42+</strong> Skills
-                </span>
-                <span class="roadmap-stat">
-                    <i class="fas fa-medal"></i>
-                    <strong>12</strong> Badges
-                </span>
-                <span class="roadmap-stat highlight">
-                    <i class="fas fa-award"></i>
-                    <strong>2</strong> Títulos
-                </span>
-            </div>
+  <div class="roadmap-container">
+    <!-- Header Premium -->
+    <div class="roadmap-header" data-aos="fade-up">
+      <div class="roadmap-header-icon">
+        <i class="fas fa-route"></i>
+      </div>
+      <div class="roadmap-badges-row">
+        <div class="roadmap-badge">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Malla 1444729-2025 | Online</span>
         </div>
-
-        <!-- Competencias Transversales -->
-        <div class="transversal-skills" data-aos="fade-up">
-            <span class="transversal-label">Competencias Transversales:</span>
-            <div class="transversal-grid">
-                {transversalSkills.map(skill => (
-                    <span class="transversal-item">
-                        <i class={skill.icon}></i>
-                        {skill.name}
-                    </span>
-                ))}
-            </div>
+        <div class="roadmap-badge engineering">
+          <i class="fas fa-award"></i>
+          <span>Ingeniería en Desarrollo de Software</span>
         </div>
-
-        <!-- Timeline -->
-        <div class="roadmap-timeline">
-            {roadmapPhases.map((phase, index) => (
-                <div class={`roadmap-phase phase-${phase.color}`} data-aos="fade-up" data-aos-delay={100 * index}>
-                    <!-- Phase Header -->
-                    <div class="phase-header">
-                        <div class="phase-number">{phase.phase}</div>
-                        <div class="phase-icon">
-                            <i class={phase.icon}></i>
-                        </div>
-                        <div class="phase-title-group">
-                            <h3>{phase.title}</h3>
-                            <p class="phase-description">{phase.description}</p>
-                            <div class="phase-meta">
-                                <span class="phase-period">{phase.period}</span>
-                                <span class="phase-months">{phase.months}</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Asignaturas -->
-                    <div class="phase-subjects">
-                        <span class="subjects-label"><i class="fas fa-book-open"></i> Asignaturas:</span>
-                        <div class="subjects-list">
-                            {phase.subjects.map(subject => (
-                                <span class="subject-chip">{subject}</span>
-                            ))}
-                        </div>
-                    </div>
-
-                    <!-- Skills Grid -->
-                    <div class="phase-skills">
-                        {phase.skills.map(skill => (
-                            <div class={`skill-card ${skill.level}`}>
-                                <div class="skill-name">
-                                    <span class={`skill-level-dot ${skill.level}`}></span>
-                                    {skill.name}
-                                </div>
-                                <div class="skill-competency">
-                                    <i class="fas fa-star"></i> {skill.competency}
-                                </div>
-                                <div class="skill-tools">
-                                    {skill.tools.map(tool => (
-                                        <span class="skill-tool">{tool}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <!-- Certificaciones sugeridas -->
-                    {phase.certifications && phase.certifications.length > 0 && (
-                        <div class="phase-certifications">
-                            <span class="cert-label"><i class="fas fa-certificate"></i> Certificaciones sugeridas:</span>
-                            <div class="cert-list">
-                                {phase.certifications.map(cert => (
-                                    <span class="cert-chip">{cert}</span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    <!-- Milestone -->
-                    <div class={`phase-milestone ${phase.phase === 5 ? 'final' : ''}`}>
-                        <i class={phase.phase === 5 ? 'fas fa-graduation-cap' : 'fas fa-flag'}></i>
-                        <span>{phase.milestone}</span>
-                    </div>
-
-                    <!-- Connection Line -->
-                    {index < roadmapPhases.length - 1 && (
-                        <div class="phase-connector">
-                            <div class="connector-line"></div>
-                            <div class="connector-arrow">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            ))}
-        </div>
-
-        <!-- Badges Section -->
-        <div class="roadmap-badges glass-card" data-aos="fade-up">
-            <div class="badges-header">
-                <i class="fas fa-award"></i>
-                <span>Badges de Logro</span>
-                <span class="badges-subtitle">Desbloquea a medida que avanzas</span>
-            </div>
-            <div class="badges-grid">
-                {badges.map((badge, index) => (
-                    <div class="badge-item" data-aos="zoom-in" data-aos-delay={50 * index}>
-                        <div class="badge-icon">
-                            <i class={badge.icon}></i>
-                        </div>
-                        <div class="badge-info">
-                            <span class="badge-name">{badge.name}</span>
-                            <span class="badge-desc">{badge.description}</span>
-                            <span class="badge-phase">Fase {badge.phase}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        <!-- Legend -->
-        <div class="roadmap-legend" data-aos="fade-up">
-            <span class="legend-item">
-                <span class="skill-level-dot core"></span>
-                Core Skills (Obligatorio)
-            </span>
-            <span class="legend-item">
-                <span class="skill-level-dot essential"></span>
-                Essential Skills (Recomendado)
-            </span>
-        </div>
-
-        <!-- CTA Roadmap Completo -->
-        <div class="roadmap-cta" data-aos="fade-up">
-            <div class="cta-content complete">
-                <i class="fas fa-check-circle"></i>
-                <div class="cta-text">
-                    <span class="cta-title">Roadmap Completo: 2 Carreras, 2 Títulos</span>
-                    <span class="cta-desc">Analista Programador (B01-B10) → Ingeniero de Software (B11-B17)</span>
-                </div>
-                <a href="/Analista-Programador-Computacional-DuocUC/recursos#certifications" class="cta-link">
-                    <span>Ver Certificaciones</span>
-                    <i class="fas fa-award"></i>
-                </a>
-            </div>
-        </div>
+      </div>
+      <h2>Learning Roadmap Completo</h2>
+      <p class="roadmap-subtitle">
+        De 0 a Ingeniero de Software en 34 meses: APC (20 meses) + IDS (14 meses)
+      </p>
+      <div class="roadmap-stats-row">
+        <span class="roadmap-stat">
+          <i class="fas fa-flag-checkered"></i>
+          <strong>7</strong> Fases
+        </span>
+        <span class="roadmap-stat">
+          <i class="fas fa-book"></i>
+          <strong>17</strong> Bimestres
+        </span>
+        <span class="roadmap-stat">
+          <i class="fas fa-trophy"></i>
+          <strong>42+</strong> Skills
+        </span>
+        <span class="roadmap-stat">
+          <i class="fas fa-medal"></i>
+          <strong>12</strong> Badges
+        </span>
+        <span class="roadmap-stat highlight">
+          <i class="fas fa-award"></i>
+          <strong>2</strong> Títulos
+        </span>
+      </div>
     </div>
+
+    <!-- Competencias Transversales -->
+    <div class="transversal-skills" data-aos="fade-up">
+      <span class="transversal-label">Competencias Transversales:</span>
+      <div class="transversal-grid">
+        {
+          transversalSkills.map((skill) => (
+            <span class="transversal-item">
+              <i class={skill.icon} />
+              {skill.name}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="roadmap-timeline">
+      {
+        roadmapPhases.map((phase, index) => (
+          <div
+            class={`roadmap-phase phase-${phase.color}`}
+            data-aos="fade-up"
+            data-aos-delay={100 * index}
+          >
+            {/* Phase Header */}
+            <div class="phase-header">
+              <div class="phase-number">{phase.phase}</div>
+              <div class="phase-icon">
+                <i class={phase.icon} />
+              </div>
+              <div class="phase-title-group">
+                <h3>{phase.title}</h3>
+                <p class="phase-description">{phase.description}</p>
+                <div class="phase-meta">
+                  <span class="phase-period">{phase.period}</span>
+                  <span class="phase-months">{phase.months}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Asignaturas */}
+            <div class="phase-subjects">
+              <span class="subjects-label">
+                <i class="fas fa-book-open" /> Asignaturas:
+              </span>
+              <div class="subjects-list">
+                {phase.subjects.map((subject) => (
+                  <span class="subject-chip">{subject}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Skills Grid */}
+            <div class="phase-skills">
+              {phase.skills.map((skill) => (
+                <div class={`skill-card ${skill.level}`}>
+                  <div class="skill-name">
+                    <span class={`skill-level-dot ${skill.level}`} />
+                    {skill.name}
+                  </div>
+                  <div class="skill-competency">
+                    <i class="fas fa-star" /> {skill.competency}
+                  </div>
+                  <div class="skill-tools">
+                    {skill.tools.map((tool) => (
+                      <span class="skill-tool">{tool}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Certificaciones sugeridas */}
+            {phase.certifications && phase.certifications.length > 0 && (
+              <div class="phase-certifications">
+                <span class="cert-label">
+                  <i class="fas fa-certificate" /> Certificaciones sugeridas:
+                </span>
+                <div class="cert-list">
+                  {phase.certifications.map((cert) => (
+                    <span class="cert-chip">{cert}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Milestone */}
+            <div class={`phase-milestone ${phase.phase === 5 ? "final" : ""}`}>
+              <i class={phase.phase === 5 ? "fas fa-graduation-cap" : "fas fa-flag"} />
+              <span>{phase.milestone}</span>
+            </div>
+
+            {/* Connection Line */}
+            {index < roadmapPhases.length - 1 && (
+              <div class="phase-connector">
+                <div class="connector-line" />
+                <div class="connector-arrow">
+                  <i class="fas fa-chevron-down" />
+                </div>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Badges Section -->
+    <div class="roadmap-badges glass-card" data-aos="fade-up">
+      <div class="badges-header">
+        <i class="fas fa-award"></i>
+        <span>Badges de Logro</span>
+        <span class="badges-subtitle">Desbloquea a medida que avanzas</span>
+      </div>
+      <div class="badges-grid">
+        {
+          badges.map((badge, index) => (
+            <div class="badge-item" data-aos="zoom-in" data-aos-delay={50 * index}>
+              <div class="badge-icon">
+                <i class={badge.icon} />
+              </div>
+              <div class="badge-info">
+                <span class="badge-name">{badge.name}</span>
+                <span class="badge-desc">{badge.description}</span>
+                <span class="badge-phase">Fase {badge.phase}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="roadmap-legend" data-aos="fade-up">
+      <span class="legend-item">
+        <span class="skill-level-dot core"></span>
+        Core Skills (Obligatorio)
+      </span>
+      <span class="legend-item">
+        <span class="skill-level-dot essential"></span>
+        Essential Skills (Recomendado)
+      </span>
+    </div>
+
+    <!-- CTA Roadmap Completo -->
+    <div class="roadmap-cta" data-aos="fade-up">
+      <div class="cta-content complete">
+        <i class="fas fa-check-circle"></i>
+        <div class="cta-text">
+          <span class="cta-title">Roadmap Completo: 2 Carreras, 2 Títulos</span>
+          <span class="cta-desc"
+            >Analista Programador (B01-B10) → Ingeniero de Software (B11-B17)</span
+          >
+        </div>
+        <a
+          href="/Analista-Programador-Computacional-DuocUC/recursos#certifications"
+          class="cta-link"
+        >
+          <span>Ver Certificaciones</span>
+          <i class="fas fa-award"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .roadmap-section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  .roadmap-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-    /* Header */
-    .roadmap-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
+  /* Header */
+  .roadmap-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
 
-    .roadmap-header-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1rem;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .roadmap-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .roadmap-header-icon i {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .roadmap-header-icon i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .roadmap-badges-row {
-        display: flex;
-        gap: 0.75rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 1rem;
-    }
+  .roadmap-badges-row {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
 
-    .roadmap-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        background: rgba(124, 58, 237, 0.15);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        border-radius: 20px;
-        font-size: 0.75rem;
-        color: #a78bfa;
-    }
+  .roadmap-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #a78bfa;
+  }
 
-    .roadmap-badge.engineering {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15));
-        border: 1px solid rgba(251, 191, 36, 0.4);
-        color: #fbbf24;
-    }
+  .roadmap-badge.engineering {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.15));
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+  }
 
-    .roadmap-badge.engineering i {
-        color: #fbbf24;
-    }
+  .roadmap-badge.engineering i {
+    color: #fbbf24;
+  }
 
+  .roadmap-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .roadmap-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .roadmap-stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .roadmap-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  .roadmap-stat i {
+    color: #00d4ff;
+  }
+
+  .roadmap-stat strong {
+    color: #f8fafc;
+  }
+
+  .roadmap-stat.highlight {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1));
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  .roadmap-stat.highlight i {
+    color: #fbbf24;
+  }
+
+  .roadmap-stat.highlight strong {
+    color: #fbbf24;
+  }
+
+  /* Competencias Transversales */
+  .transversal-skills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+    background: rgba(124, 58, 237, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+  }
+
+  .transversal-label {
+    font-size: 0.85rem;
+    color: #a78bfa;
+    font-weight: 600;
+  }
+
+  .transversal-grid {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .transversal-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #c4b5fd;
+  }
+
+  .transversal-item i {
+    font-size: 0.7rem;
+  }
+
+  /* Timeline */
+  .roadmap-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .roadmap-phase {
+    position: relative;
+    padding: 2rem;
+    background: rgba(18, 18, 26, 0.6);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1rem;
+  }
+
+  .roadmap-phase:hover {
+    background: rgba(18, 18, 26, 0.8);
+  }
+
+  /* Phase Colors */
+  .phase-cyan {
+    border-left: 4px solid #00d4ff;
+  }
+  .phase-purple {
+    border-left: 4px solid #7c3aed;
+  }
+  .phase-green {
+    border-left: 4px solid #10b981;
+  }
+  .phase-orange {
+    border-left: 4px solid #f59e0b;
+  }
+  .phase-pink {
+    border-left: 4px solid #ec4899;
+  }
+  .phase-red {
+    border-left: 4px solid #ef4444;
+  }
+  .phase-gold {
+    border-left: 4px solid #fbbf24;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), rgba(245, 158, 11, 0.05));
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .phase-number {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #00d4ff;
+  }
+
+  .phase-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phase-cyan .phase-icon i {
+    color: #00d4ff;
+  }
+  .phase-purple .phase-icon i {
+    color: #7c3aed;
+  }
+  .phase-green .phase-icon i {
+    color: #10b981;
+  }
+  .phase-orange .phase-icon i {
+    color: #f59e0b;
+  }
+  .phase-pink .phase-icon i {
+    color: #ec4899;
+  }
+  .phase-red .phase-icon i {
+    color: #ef4444;
+  }
+  .phase-gold .phase-icon i {
+    color: #fbbf24;
+  }
+
+  .phase-icon i {
+    font-size: 1.5rem;
+  }
+
+  .phase-title-group h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .phase-description {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .phase-period {
+    color: #00d4ff;
+    font-weight: 600;
+  }
+
+  .phase-months {
+    color: #64748b;
+  }
+
+  /* Asignaturas */
+  .phase-subjects {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+  }
+
+  .subjects-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+
+  .subjects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .subject-chip {
+    padding: 0.25rem 0.6rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: #00d4ff;
+  }
+
+  /* Skills Grid */
+  .phase-skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .skill-card.core {
+    border-left: 3px solid #00d4ff;
+  }
+
+  .skill-card.essential {
+    border-left: 3px solid #f59e0b;
+  }
+
+  .skill-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .skill-level-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .skill-level-dot.core {
+    background: #00d4ff;
+  }
+
+  .skill-level-dot.essential {
+    background: #f59e0b;
+  }
+
+  .skill-competency {
+    font-size: 0.7rem;
+    color: #a78bfa;
+    margin-bottom: 0.4rem;
+  }
+
+  .skill-competency i {
+    font-size: 0.6rem;
+    margin-right: 0.2rem;
+  }
+
+  .skill-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .skill-tool {
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    color: #64748b;
+  }
+
+  /* Certificaciones */
+  .phase-certifications {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(16, 185, 129, 0.1);
+  }
+
+  .cert-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #10b981;
+    margin-bottom: 0.4rem;
+  }
+
+  .cert-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .cert-chip {
+    padding: 0.2rem 0.5rem;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 4px;
+    font-size: 0.65rem;
+    color: #34d399;
+  }
+
+  /* Milestone */
+  .phase-milestone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #10b981;
+    font-weight: 600;
+  }
+
+  .phase-milestone.final {
+    background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(124, 58, 237, 0.2));
+    border-color: rgba(236, 72, 153, 0.4);
+    color: #ec4899;
+  }
+
+  /* Connector */
+  .phase-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.3));
+  }
+
+  .connector-arrow {
+    color: #7c3aed;
+    animation: bounce-down 1s infinite;
+  }
+
+  @keyframes bounce-down {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  /* Badges */
+  .roadmap-badges {
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+  }
+
+  .badges-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .badges-header i {
+    color: #ffd700;
+    font-size: 1.25rem;
+  }
+
+  .badges-subtitle {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 400;
+    margin-left: auto;
+  }
+
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .badge-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .badge-item:hover {
+    background: rgba(255, 215, 0, 0.1);
+    transform: scale(1.02);
+  }
+
+  .badge-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 152, 0, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge-icon i {
+    color: #ffd700;
+  }
+
+  .badge-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge-name {
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 0.85rem;
+  }
+
+  .badge-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  .badge-phase {
+    font-size: 0.65rem;
+    color: #7c3aed;
+    margin-top: 0.2rem;
+  }
+
+  /* Legend */
+  .roadmap-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  /* CTA */
+  .roadmap-cta {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .cta-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cta-content.complete {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(251, 191, 36, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .cta-content > i {
+    color: #7c3aed;
+    font-size: 1.5rem;
+  }
+
+  .cta-content.complete > i {
+    color: #10b981;
+  }
+
+  .cta-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .cta-title {
+    color: #f8fafc;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .cta-desc {
+    color: #94a3b8;
+    font-size: 0.8rem;
+  }
+
+  .cta-content > span {
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  .cta-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(124, 58, 237, 0.2);
+    border-radius: 8px;
+    color: #a78bfa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .cta-content.complete .cta-link {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
+    color: #fbbf24;
+  }
+
+  .cta-link:hover {
+    background: rgba(124, 58, 237, 0.3);
+    color: #c4b5fd;
+    transform: translateX(4px);
+  }
+
+  .cta-content.complete .cta-link:hover {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.3));
+    color: #fcd34d;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .roadmap-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.75rem;
     }
 
-    .roadmap-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
+    .phase-skills {
+      grid-template-columns: 1fr;
     }
 
     .roadmap-stats-row {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .roadmap-stat {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    .roadmap-stat i {
-        color: #00d4ff;
-    }
-
-    .roadmap-stat strong {
-        color: #f8fafc;
-    }
-
-    .roadmap-stat.highlight {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(245, 158, 11, 0.1));
-        padding: 0.4rem 0.8rem;
-        border-radius: 8px;
-        border: 1px solid rgba(251, 191, 36, 0.3);
-    }
-
-    .roadmap-stat.highlight i {
-        color: #fbbf24;
-    }
-
-    .roadmap-stat.highlight strong {
-        color: #fbbf24;
-    }
-
-    /* Competencias Transversales */
-    .transversal-skills {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-bottom: 2.5rem;
-        padding: 1rem;
-        background: rgba(124, 58, 237, 0.05);
-        border-radius: 12px;
-        border: 1px solid rgba(124, 58, 237, 0.15);
-    }
-
-    .transversal-label {
-        font-size: 0.85rem;
-        color: #a78bfa;
-        font-weight: 600;
-    }
-
-    .transversal-grid {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .transversal-item {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.3rem 0.6rem;
-        background: rgba(124, 58, 237, 0.1);
-        border-radius: 6px;
-        font-size: 0.75rem;
-        color: #c4b5fd;
-    }
-
-    .transversal-item i {
-        font-size: 0.7rem;
-    }
-
-    /* Timeline */
-    .roadmap-timeline {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .roadmap-phase {
-        position: relative;
-        padding: 2rem;
-        background: rgba(18, 18, 26, 0.6);
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        margin-bottom: 1rem;
-    }
-
-    .roadmap-phase:hover {
-        background: rgba(18, 18, 26, 0.8);
-    }
-
-    /* Phase Colors */
-    .phase-cyan { border-left: 4px solid #00d4ff; }
-    .phase-purple { border-left: 4px solid #7c3aed; }
-    .phase-green { border-left: 4px solid #10b981; }
-    .phase-orange { border-left: 4px solid #f59e0b; }
-    .phase-pink { border-left: 4px solid #ec4899; }
-    .phase-red { border-left: 4px solid #ef4444; }
-    .phase-gold { border-left: 4px solid #fbbf24; background: linear-gradient(135deg, rgba(251, 191, 36, 0.05), rgba(245, 158, 11, 0.05)); }
-
-    .phase-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .phase-number {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #00d4ff;
-    }
-
-    .phase-icon {
-        width: 50px;
-        height: 50px;
-        min-width: 50px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .phase-cyan .phase-icon i { color: #00d4ff; }
-    .phase-purple .phase-icon i { color: #7c3aed; }
-    .phase-green .phase-icon i { color: #10b981; }
-    .phase-orange .phase-icon i { color: #f59e0b; }
-    .phase-pink .phase-icon i { color: #ec4899; }
-    .phase-red .phase-icon i { color: #ef4444; }
-    .phase-gold .phase-icon i { color: #fbbf24; }
-
-    .phase-icon i {
-        font-size: 1.5rem;
-    }
-
-    .phase-title-group h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .phase-description {
-        font-size: 0.85rem;
-        color: #94a3b8;
-        margin-bottom: 0.5rem;
-    }
-
-    .phase-meta {
-        display: flex;
-        gap: 1rem;
-        font-size: 0.85rem;
-    }
-
-    .phase-period {
-        color: #00d4ff;
-        font-weight: 600;
-    }
-
-    .phase-months {
-        color: #64748b;
-    }
-
-    /* Asignaturas */
-    .phase-subjects {
-        margin-bottom: 1rem;
-        padding: 0.75rem;
-        background: rgba(255, 255, 255, 0.02);
-        border-radius: 8px;
-    }
-
-    .subjects-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-        color: #64748b;
-        margin-bottom: 0.5rem;
-    }
-
-    .subjects-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
-
-    .subject-chip {
-        padding: 0.25rem 0.6rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.2);
-        border-radius: 6px;
-        font-size: 0.7rem;
-        color: #00d4ff;
-    }
-
-    /* Skills Grid */
-    .phase-skills {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-    }
-
-    .skill-card {
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        padding: 0.75rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .skill-card.core {
-        border-left: 3px solid #00d4ff;
-    }
-
-    .skill-card.essential {
-        border-left: 3px solid #f59e0b;
-    }
-
-    .skill-name {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-weight: 600;
-        color: #f8fafc;
-        font-size: 0.85rem;
-        margin-bottom: 0.3rem;
-    }
-
-    .skill-level-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-    }
-
-    .skill-level-dot.core {
-        background: #00d4ff;
-    }
-
-    .skill-level-dot.essential {
-        background: #f59e0b;
-    }
-
-    .skill-competency {
-        font-size: 0.7rem;
-        color: #a78bfa;
-        margin-bottom: 0.4rem;
-    }
-
-    .skill-competency i {
-        font-size: 0.6rem;
-        margin-right: 0.2rem;
-    }
-
-    .skill-tools {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-    }
-
-    .skill-tool {
-        padding: 0.2rem 0.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        font-size: 0.65rem;
-        color: #64748b;
-    }
-
-    /* Certificaciones */
-    .phase-certifications {
-        margin-bottom: 1rem;
-        padding: 0.5rem 0.75rem;
-        background: rgba(16, 185, 129, 0.05);
-        border-radius: 8px;
-        border: 1px solid rgba(16, 185, 129, 0.1);
-    }
-
-    .cert-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.75rem;
-        color: #10b981;
-        margin-bottom: 0.4rem;
-    }
-
-    .cert-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
-
-    .cert-chip {
-        padding: 0.2rem 0.5rem;
-        background: rgba(16, 185, 129, 0.15);
-        border-radius: 4px;
-        font-size: 0.65rem;
-        color: #34d399;
-    }
-
-    /* Milestone */
-    .phase-milestone {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(16, 185, 129, 0.15);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #10b981;
-        font-weight: 600;
-    }
-
-    .phase-milestone.final {
-        background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(124, 58, 237, 0.2));
-        border-color: rgba(236, 72, 153, 0.4);
-        color: #ec4899;
-    }
-
-    /* Connector */
-    .phase-connector {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0.5rem 0;
-    }
-
-    .connector-line {
-        width: 2px;
-        height: 20px;
-        background: linear-gradient(180deg, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.3));
-    }
-
-    .connector-arrow {
-        color: #7c3aed;
-        animation: bounce-down 1s infinite;
-    }
-
-    @keyframes bounce-down {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(4px); }
-    }
-
-    /* Badges */
-    .roadmap-badges {
-        padding: 1.5rem;
-        border-radius: 16px;
-        margin-top: 2rem;
-    }
-
-    .badges-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .badges-header i {
-        color: #ffd700;
-        font-size: 1.25rem;
-    }
-
-    .badges-subtitle {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 400;
-        margin-left: auto;
+      gap: 1rem;
     }
 
     .badges-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 1rem;
+      grid-template-columns: 1fr;
     }
 
-    .badge-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        transition: all 0.3s ease;
+    .phase-header {
+      flex-wrap: wrap;
     }
 
-    .badge-item:hover {
-        background: rgba(255, 215, 0, 0.1);
-        transform: scale(1.02);
+    .transversal-skills {
+      flex-direction: column;
     }
+  }
 
-    .badge-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 152, 0, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  /* Light mode */
+  :global([data-theme="light"]) .roadmap-header h2 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    .badge-icon i {
-        color: #ffd700;
-    }
+  :global([data-theme="light"]) .roadmap-subtitle,
+  :global([data-theme="light"]) .roadmap-stat,
+  :global([data-theme="light"]) .phase-description,
+  :global([data-theme="light"]) .legend-item {
+    color: #64748b;
+  }
 
-    .badge-info {
-        display: flex;
-        flex-direction: column;
-    }
+  :global([data-theme="light"]) .roadmap-stat strong,
+  :global([data-theme="light"]) .phase-title-group h3,
+  :global([data-theme="light"]) .skill-name,
+  :global([data-theme="light"]) .badge-name {
+    color: #1e293b;
+  }
 
-    .badge-name {
-        font-weight: 600;
-        color: #f8fafc;
-        font-size: 0.85rem;
-    }
+  :global([data-theme="light"]) .roadmap-phase {
+    background: rgba(248, 250, 252, 0.9);
+    border-color: rgba(203, 213, 225, 0.5);
+  }
 
-    .badge-desc {
-        font-size: 0.7rem;
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .skill-card {
+    background: rgba(241, 245, 249, 0.8);
+    border-color: rgba(203, 213, 225, 0.3);
+  }
 
-    .badge-phase {
-        font-size: 0.65rem;
-        color: #7c3aed;
-        margin-top: 0.2rem;
-    }
+  :global([data-theme="light"]) .transversal-skills {
+    background: rgba(124, 58, 237, 0.05);
+    border-color: rgba(124, 58, 237, 0.1);
+  }
 
-    /* Legend */
-    .roadmap-legend {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-        margin-top: 1.5rem;
-        flex-wrap: wrap;
-    }
+  :global([data-theme="light"]) .cta-content {
+    background: rgba(124, 58, 237, 0.05);
+    border-color: rgba(124, 58, 237, 0.2);
+  }
 
-    .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
+  :global([data-theme="light"]) .cta-content.complete {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(251, 191, 36, 0.08));
+    border-color: rgba(16, 185, 129, 0.2);
+  }
 
-    /* CTA */
-    .roadmap-cta {
-        margin-top: 2rem;
-        text-align: center;
-    }
+  :global([data-theme="light"]) .cta-title {
+    color: #1e293b;
+  }
 
-    .cta-content {
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.5rem;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        border-radius: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  :global([data-theme="light"]) .cta-desc {
+    color: #64748b;
+  }
 
-    .cta-content.complete {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(251, 191, 36, 0.1));
-        border: 1px solid rgba(16, 185, 129, 0.3);
-    }
+  :global([data-theme="light"]) .roadmap-badge.engineering {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #b45309;
+  }
 
-    .cta-content > i {
-        color: #7c3aed;
-        font-size: 1.5rem;
-    }
+  :global([data-theme="light"]) .roadmap-stat.highlight {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.08));
+    border-color: rgba(245, 158, 11, 0.2);
+  }
 
-    .cta-content.complete > i {
-        color: #10b981;
-    }
+  :global([data-theme="light"]) .roadmap-stat.highlight strong {
+    color: #b45309;
+  }
 
-    .cta-text {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-    }
-
-    .cta-title {
-        color: #f8fafc;
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .cta-desc {
-        color: #94a3b8;
-        font-size: 0.8rem;
-    }
-
-    .cta-content > span {
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    .cta-link {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(124, 58, 237, 0.2);
-        border-radius: 8px;
-        color: #a78bfa;
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .cta-content.complete .cta-link {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(245, 158, 11, 0.2));
-        color: #fbbf24;
-    }
-
-    .cta-link:hover {
-        background: rgba(124, 58, 237, 0.3);
-        color: #c4b5fd;
-        transform: translateX(4px);
-    }
-
-    .cta-content.complete .cta-link:hover {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.3), rgba(245, 158, 11, 0.3));
-        color: #fcd34d;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .roadmap-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .phase-skills {
-            grid-template-columns: 1fr;
-        }
-
-        .roadmap-stats-row {
-            gap: 1rem;
-        }
-
-        .badges-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .phase-header {
-            flex-wrap: wrap;
-        }
-
-        .transversal-skills {
-            flex-direction: column;
-        }
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .roadmap-header h2 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .roadmap-subtitle,
-    :global([data-theme="light"]) .roadmap-stat,
-    :global([data-theme="light"]) .phase-description,
-    :global([data-theme="light"]) .legend-item {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .roadmap-stat strong,
-    :global([data-theme="light"]) .phase-title-group h3,
-    :global([data-theme="light"]) .skill-name,
-    :global([data-theme="light"]) .badge-name {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .roadmap-phase {
-        background: rgba(248, 250, 252, 0.9);
-        border-color: rgba(203, 213, 225, 0.5);
-    }
-
-    :global([data-theme="light"]) .skill-card {
-        background: rgba(241, 245, 249, 0.8);
-        border-color: rgba(203, 213, 225, 0.3);
-    }
-
-    :global([data-theme="light"]) .transversal-skills {
-        background: rgba(124, 58, 237, 0.05);
-        border-color: rgba(124, 58, 237, 0.1);
-    }
-
-    :global([data-theme="light"]) .cta-content {
-        background: rgba(124, 58, 237, 0.05);
-        border-color: rgba(124, 58, 237, 0.2);
-    }
-
-    :global([data-theme="light"]) .cta-content.complete {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(251, 191, 36, 0.08));
-        border-color: rgba(16, 185, 129, 0.2);
-    }
-
-    :global([data-theme="light"]) .cta-title {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .cta-desc {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .roadmap-badge.engineering {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1));
-        border-color: rgba(245, 158, 11, 0.3);
-        color: #b45309;
-    }
-
-    :global([data-theme="light"]) .roadmap-stat.highlight {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.08));
-        border-color: rgba(245, 158, 11, 0.2);
-    }
-
-    :global([data-theme="light"]) .roadmap-stat.highlight strong {
-        color: #b45309;
-    }
-
-    :global([data-theme="light"]) .phase-gold {
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.05));
-    }
+  :global([data-theme="light"]) .phase-gold {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.05));
+  }
 </style>
