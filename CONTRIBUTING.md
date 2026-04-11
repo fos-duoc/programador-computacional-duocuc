@@ -6,8 +6,8 @@ Repo personal de un estudiante del programa Analista Programador Computacional (
 
 ```bash
 # 1. Clonar
-git clone https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC.git
-cd Analista-Programador-Computacional-DuocUC
+git clone https://github.com/fos-duoc/programador-computacional-duocuc.git
+cd programador-computacional-duocuc
 
 # 2. Tooling Python (uv) — coursework + dev tools
 uv sync

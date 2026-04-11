@@ -266,7 +266,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Fundamentos-Programacion",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Fundamentos-Programacion",
       },
     ],
     color: "cyan",
@@ -547,7 +547,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-Datos",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Modelamiento-Datos",
       },
     ],
     color: "amber",
@@ -757,7 +757,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Antropologia",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-01%20-%20Antropologia%2C%20Fundamentos%20Prog.%2C%20Modelamiento%20BD/Antropologia",
       },
     ],
     color: "rose",
@@ -968,7 +968,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Programacion-OO-I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Programacion-OO-I",
       },
     ],
     color: "orange",
@@ -1223,7 +1223,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Computacion-Nube",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Computacion-Nube",
       },
     ],
     color: "yellow",
@@ -1490,7 +1490,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Comunicacion",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-02%20-%20POO%20I%2C%20Cloud%2C%20Comunicacion/Comunicacion",
       },
     ],
     color: "pink",
@@ -1710,7 +1710,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/Desarrollo%20Orientado%20a%20Objetos%20II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/Desarrollo%20Orientado%20a%20Objetos%20II",
       },
     ],
     color: "orange",
@@ -1922,7 +1922,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/DevOps",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/DevOps",
       },
     ],
     color: "blue",
@@ -2135,7 +2135,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/Etica",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-03%20-%20POO%20II%2C%20DevOps%2C%20Etica/Etica",
       },
     ],
     color: "rose",
@@ -2344,7 +2344,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad/SQL%20Consultas",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad/SQL%20Consultas",
       },
     ],
     color: "amber",
@@ -2549,7 +2549,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad/Seguridad%20Informatica",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-04%20-%20SQL%20Consultas%2C%20Seguridad/Seguridad%20Informatica",
       },
     ],
     color: "red",
@@ -2763,7 +2763,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Programacion%20SQL",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Programacion%20SQL",
       },
     ],
     color: "amber",
@@ -2970,7 +2970,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Cloud%20Native",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Cloud%20Native",
       },
     ],
     color: "blue",
@@ -3182,7 +3182,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Ingenieria%20de%20Requisitos",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-05%20-%20SQL%20Avanzado%2C%20Cloud%20Native/Ingenieria%20de%20Requisitos",
       },
     ],
     color: "purple",
@@ -3394,7 +3394,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Backend%20I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Backend%20I",
       },
     ],
     color: "green",
@@ -3601,7 +3601,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Ingenieria%20Software%20I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-06%20-%20Backend%20I%2C%20Ing.%20Software%20I/Ingenieria%20Software%20I",
       },
     ],
     color: "purple",
@@ -3812,7 +3812,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend%20II-III",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Backend%20II-III",
       },
     ],
     color: "green",
@@ -4015,7 +4015,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Ingenieria%20Software%20II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-07%20-%20Backend%20II-III%2C%20Ing.%20Software%20II/Ingenieria%20Software%20II",
       },
     ],
     color: "purple",
@@ -4223,7 +4223,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-08%20-%20Frontend%20I-II%2C%20Arquitectura%20SW/Frontend%20I-II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-08%20-%20Frontend%20I-II%2C%20Arquitectura%20SW/Frontend%20I-II",
       },
     ],
     color: "cyan",
@@ -4426,7 +4426,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-08%20-%20Frontend%20I-II%2C%20Arquitectura%20SW/Arquitectura%20Software",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-08%20-%20Frontend%20I-II%2C%20Arquitectura%20SW/Arquitectura%20Software",
       },
     ],
     color: "indigo",
@@ -4636,7 +4636,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-09%20-%20Mobile%20I%2C%20Frontend%20III/Mobile%20I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-09%20-%20Mobile%20I%2C%20Frontend%20III/Mobile%20I",
       },
     ],
     color: "blue",
@@ -4834,7 +4834,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-09%20-%20Mobile%20I%2C%20Frontend%20III/Frontend%20III",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-09%20-%20Mobile%20I%2C%20Frontend%20III/Frontend%20III",
       },
     ],
     color: "cyan",
@@ -5046,7 +5046,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-10%20-%20Mobile%20II%2C%20Taller%20de%20Titulo/Mobile%20II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-10%20-%20Mobile%20II%2C%20Taller%20de%20Titulo/Mobile%20II",
       },
     ],
     color: "blue",
@@ -5248,7 +5248,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-10%20-%20Mobile%20II%2C%20Taller%20de%20Titulo/Taller%20de%20Titulo",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-10%20-%20Mobile%20II%2C%20Taller%20de%20Titulo/Taller%20de%20Titulo",
       },
     ],
     color: "emerald",
@@ -5453,7 +5453,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/Desarrollo%20Fullstack%20I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/Desarrollo%20Fullstack%20I",
       },
     ],
     color: "teal",
@@ -5660,7 +5660,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/BD%20Aplicada",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-11%20-%20Desarrollo%20Fullstack%20I%2C%20BD%20Aplicada/BD%20Aplicada",
       },
     ],
     color: "amber",
@@ -5878,7 +5878,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Desarrollo%20Fullstack%20II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Desarrollo%20Fullstack%20II",
       },
     ],
     color: "teal",
@@ -6080,7 +6080,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Cloud%20Computing",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-12%20-%20Desarrollo%20Fullstack%20II%2C%20Cloud%20Computing/Cloud%20Computing",
       },
     ],
     color: "orange",
@@ -6291,7 +6291,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/Desarrollo%20Fullstack%20III",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-13%20-%20Desarrollo%20Fullstack%20III%2C%20DevOps/Desarrollo%20Fullstack%20III",
       },
     ],
     color: "teal",
@@ -6492,7 +6492,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Desarrollo%20App%20Moviles",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Desarrollo%20App%20Moviles",
       },
     ],
     color: "blue",
@@ -6699,7 +6699,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Cloud%20Native%20I",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-14%20-%20Desarrollo%20App%20Moviles%2C%20Cloud%20Native%20I/Cloud%20Native%20I",
       },
     ],
     color: "blue",
@@ -6913,7 +6913,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Cloud%20Native%20II",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Cloud%20Native%20II",
       },
     ],
     color: "blue",
@@ -7114,7 +7114,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Seguridad%20y%20Calidad",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-15%20-%20Cloud%20Native%20II%2C%20Seguridad%20y%20Calidad/Seguridad%20y%20Calidad",
       },
     ],
     color: "red",
@@ -7327,7 +7327,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Evaluacion%20Proyectos%20SW",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Evaluacion%20Proyectos%20SW",
       },
     ],
     color: "purple",
@@ -7535,7 +7535,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Gestion%20Proyectos%20SW",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-16%20-%20Evaluacion%20y%20Gestion%20Proyectos%20SW/Gestion%20Proyectos%20SW",
       },
     ],
     color: "purple",
@@ -7734,7 +7734,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Etica%20Profesional%20en%20TI",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Etica%20Profesional%20en%20TI",
       },
     ],
     color: "slate",
@@ -7927,7 +7927,7 @@ export const asignaturas: Record<string, Asignatura> = {
       {
         tipo: "Repositorio",
         nombre: "Materiales del Curso",
-        url: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Taller%20Aplicado%20de%20Software",
+        url: "https://github.com/fos-duoc/programador-computacional-duocuc/tree/main/Bimestre-17%20-%20Etica%20Profesional%2C%20Taller%20Aplicado%20SW/Taller%20Aplicado%20de%20Software",
       },
     ],
     color: "emerald",

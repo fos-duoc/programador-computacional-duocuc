@@ -14,7 +14,7 @@ Este repo es un proyecto académico personal. Solo la rama `main` recibe parches
 
 Si encuentras una vulnerabilidad de seguridad **NO abras un issue público**. En su lugar:
 
-1. **Privado**: usa [GitHub Security Advisories](https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/security/advisories/new) (preferido).
+1. **Privado**: usa [GitHub Security Advisories](https://github.com/fos-duoc/programador-computacional-duocuc/security/advisories/new) (preferido).
 2. **Email**: si no tienes cuenta de GitHub, escribe a `fuadonates@gmail.com` con el asunto `[SECURITY] <descripción corta>`.
 
 Incluye en el reporte:

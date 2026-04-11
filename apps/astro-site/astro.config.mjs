@@ -6,7 +6,7 @@ import compress from "@playform/compress";
 // https://astro.build/config
 export default defineConfig({
   site: "https://fos-duoc.github.io",
-  base: "/Analista-Programador-Computacional-DuocUC",
+  base: "/programador-computacional-duocuc",
   // outDir default: apps/astro-site/dist/ (gitignored).
   // El sitio se publica vía GitHub Actions (.github/workflows/deploy-pages.yml)
   // que sube apps/astro-site/dist/ como artifact y lo despliega a Pages.

@@ -553,7 +553,7 @@
 ## 📂 Estructura del Repositorio
 
 ```
-Analista-Programador-Computacional-DuocUC/
+programador-computacional-duocuc/
 │
 ├── 📁 apps/
 │   └── 📁 astro-site/             ◀━━━ 🌐 Sitio Astro (Tutor AI, recursos)
@@ -619,10 +619,10 @@ Analista-Programador-Computacional-DuocUC/
 
 ```bash
 # 1. Clonar repositorio
-git clone https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC.git
+git clone https://github.com/fos-duoc/programador-computacional-duocuc.git
 
 # 2. Navegar
-cd Analista-Programador-Computacional-DuocUC
+cd programador-computacional-duocuc
 
 # 3. Abrir en VS Code
 code .
