@@ -1,0 +1,97 @@
+# Pre-commit hooks (https://pre-commit.com)
+#
+# Setup:
+#   uv sync --group dev
+#   uv run pre-commit install --install-hooks
+#   uv run pre-commit install --hook-type commit-msg
+#
+# Run manually:
+#   uv run pre-commit run --all-files
+#
+# Bypass (NO recomendado):
+#   git commit --no-verify
+
+default_install_hook_types:
+  - pre-commit
+  - commit-msg
+
+default_stages: [pre-commit]
+
+repos:
+  # ─────────────────────────────────────────────────────────────────────────
+  # Hooks estándar de higiene
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/)
+      - id: end-of-file-fixer
+        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/)
+      - id: check-yaml
+        args: [--unsafe] # Permite YAML con tags personalizados (e.g. !secrets)
+      - id: check-json
+        # .vscode/*.json es JSONC (con comentarios) — VS Code lo parsea ok
+        # pero el parser estándar de JSON no.
+        exclude: ^(apps/astro-site/(node_modules|.astro|dist)/|.*\.code-workspace|\.vscode/)
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [--maxkb=2000]
+        exclude: ^(coursework/.*/(archivos-curso|exp[123])/|resources/mallas/)
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: ^(\.bat|\.cmd|\.ps1)$
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Python: ruff (lint + format)
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.10
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # JS / TS / Astro / CSS / Markdown: hooks locales (usan npm install)
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: prettier-astro-site
+        name: prettier (apps/astro-site)
+        language: system
+        entry: bash -c 'cd apps/astro-site && npx --no -- prettier --write --ignore-unknown "$@"' --
+        files: ^apps/astro-site/.*\.(js|mjs|cjs|ts|tsx|astro|css|scss|json|md|yml|yaml|html)$
+        exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
+
+      - id: eslint-astro-site
+        name: eslint (apps/astro-site)
+        language: system
+        entry: bash -c 'cd apps/astro-site && npx --no -- eslint --fix --max-warnings=200 "$@"' --
+        files: ^apps/astro-site/.*\.(js|mjs|cjs|ts|tsx|astro)$
+        exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Conventional Commits — enforcement de mensajes de commit
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.0.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args:
+          - --strict
+          # Types: positional args, no --types flag
+          - feat
+          - fix
+          - docs
+          - style
+          - refactor
+          - perf
+          - test
+          - build
+          - ci
+          - chore
+          - revert
