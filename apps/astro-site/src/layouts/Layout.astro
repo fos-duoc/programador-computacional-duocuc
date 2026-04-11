@@ -233,8 +233,7 @@ const BUILD_VERSION = Date.now().toString(36);
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
 
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- AOS CSS bundled vía import (ver script más abajo) -->
 
     <!-- Main Styles with dynamic cache busting -->
     <link
@@ -301,7 +300,15 @@ const BUILD_VERSION = Date.now().toString(36);
 
     <slot />
 
-    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- AOS self-hostado: bundleado por Astro/Vite, cacheable entre páginas. -->
+    <script>
+      import AOS from "aos";
+      import "aos/dist/aos.css";
+      // Exponer en window para que el inline script de abajo (con BUILD_VERSION)
+      // pueda llamar a AOS.init() / .refresh() desde sus callbacks.
+      // @ts-expect-error - aos no exporta tipos
+      window.AOS = AOS;
+    </script>
     <script is:inline define:vars={{ BUILD_VERSION }}>
       // Force cache refresh on new builds
       (function () {

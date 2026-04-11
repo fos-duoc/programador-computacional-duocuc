@@ -99,6 +99,34 @@ Astro 6.x (latest) requiere **Node ≥22.12.0**. Actualmente Node 20.20 en `.nvm
 4. Revisar CHANGELOG por breaking changes (especialmente Content Collections, integrations API).
 5. Smoke test integral del Tutor AI y todas las páginas.
 
+### Data dumps inline en HTML (~880 KB por página) — refactor pendiente
+
+`/sala-de-estudio/index.html` pesa **1.26 MB** post-build. Forensics:
+
+| Inline `<script>` | Tamaño | Origen |
+|---|---|---|
+| `subjectNavData` | 278 KB | `SubjectNavigationSidebar.astro` con `define:vars` desde `data/asignaturas.ts` (8022 líneas) |
+| `tooltipData` (tecnologías) | 325 KB | `TechDrawer.astro` con `define:vars` desde `data/technologies.ts` |
+| `asignaturasData` (full) | 276 KB | `SubjectDrawer.astro` con `define:vars` desde `data/asignaturas.ts` |
+| SOLID/Python data | 68 KB | Tooltips dumpeados inline |
+| Tutor AI logic | 44 KB | Lógica del componente |
+
+**Total ~880 KB son DATA dumps** que se inlinean en CADA página vía `<script define:vars={{ ... }}>`. El resto (~150 KB) es lógica JS legítima.
+
+**Por qué duele**:
+- Sin caché entre páginas: cada navegación re-baja toda la data.
+- 6× sobre el budget recomendado de 200 KB para una page.
+- LCP/FCP impactados: el browser tiene que parsear ~1 MB antes de hidratar.
+
+**Plan de migración (sesión dedicada con smoke test visual)**:
+1. Mover `data/asignaturas.ts` y `data/technologies.ts` a JSON estático en `public/data/*.json`.
+2. Reemplazar `define:vars` por `fetch('/data/asignaturas.json')` con loading state en los componentes que lo consumen.
+3. Cachear con `Cache-Control: public, max-age=31536000` (los JSON tienen hash en URL).
+4. Astro Content Collections opcional para type-safety si vale la pena.
+5. **Riesgo**: el Tutor AI y SubjectNavigationSidebar asumen data sync al script start. Async cambia la timing — hay que probar dropdowns, búsquedas y View Transitions.
+
+**Ahorro estimado**: -800 KB en cada page (sala-de-estudio: 1.26 MB → ~400 KB).
+
 ---
 
 ## Scripts útiles
