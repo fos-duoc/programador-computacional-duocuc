@@ -1,0 +1,85 @@
+[project]
+name = "coursework-duoc"
+version = "0.1.0"
+description = "Material y experimentos del programa Analista Programador Computacional - DuocUC"
+readme = "README.md"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+authors = [
+    { name = "fos-duoc" },
+]
+keywords = ["duoc", "coursework", "education", "analista-programador"]
+
+dependencies = [
+    # Notebooks / entorno interactivo
+    "jupyter>=1.1",
+    "jupyterlab>=4.3",
+    "ipykernel>=6.29",
+    "ipython>=8.30",
+
+    # Datos / analítica
+    "pandas>=2.2",
+    "numpy>=2.2",
+    "matplotlib>=3.10",
+    "seaborn>=0.13",
+
+    # HTTP / web
+    "requests>=2.32",
+    "httpx>=0.28",
+
+    # Bases de datos (Bimestres 03-05)
+    "sqlalchemy>=2.0",
+    "psycopg[binary]>=3.2",
+
+    # Utilidades
+    "python-dotenv>=1.0",
+    "rich>=13.9",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "ruff>=0.8",
+    "mypy>=1.13",
+]
+
+# Marcamos este proyecto como workspace independiente para evitar
+# que sea capturado por el workspace padre /home/fonate/projects/pyproject.toml
+[tool.uv.workspace]
+members = []
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "C90", # mccabe complexity
+]
+ignore = [
+    "E501", # line-too-long (lo maneja el formateador)
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.13"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["coursework", "tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = [
+    "-ra",
+    "--strict-markers",
+]
