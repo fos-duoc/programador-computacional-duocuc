@@ -26,9 +26,9 @@ repos:
     hooks:
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/)
+        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/|docs/archive/)
       - id: end-of-file-fixer
-        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/)
+        exclude: ^(apps/astro-site/dist/|coursework/.*/(archivos-curso|exp[123])/|docs/archive/)
       - id: check-yaml
         args: [--unsafe] # Permite YAML con tags personalizados (e.g. !secrets)
       - id: check-json
