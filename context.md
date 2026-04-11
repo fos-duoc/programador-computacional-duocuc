@@ -116,4 +116,4 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 - **Fecha**: 2026-04-11
 - **Sesión**: sessions/2026-04-11.md
 - **Branch al cierre**: `chore/modernize-and-restructure`
-- **Commit**: `5d15e2c1`
+- **Commit**: `77a6f261`
