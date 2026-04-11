@@ -8,11 +8,9 @@ import icon from "astro-icon";
 export default defineConfig({
   site: "https://fos-duoc.github.io",
   base: "/Analista-Programador-Computacional-DuocUC",
-  // outDir relativo al package: apps/astro-site/ → ../../docs (raíz del repo).
-  // El sitio se publica vía GitHub Pages desde docs/ (configuración del repo).
-  // Tech debt: docs/ mezcla build output con docs estructuradas (context.md, sessions/...).
-  // Migración recomendada: usar dist/ + workflow .github/workflows/deploy-astro.yml.
-  outDir: "../../docs",
+  // outDir default: apps/astro-site/dist/ (gitignored).
+  // El sitio se publica vía GitHub Actions (.github/workflows/deploy-pages.yml)
+  // que sube apps/astro-site/dist/ como artifact y lo despliega a Pages.
   build: {
     assets: "assets",
     inlineStylesheets: "auto",
@@ -43,9 +41,6 @@ export default defineConfig({
     build: {
       cssMinify: true,
       minify: "esbuild",
-      // No vaciar docs/ al construir — coexiste con docs estructuradas (context.md, sessions/, etc.).
-      // Ver docs/architecture/astro-site.md sección "outDir compartido".
-      emptyOutDir: false,
     },
   },
 });
