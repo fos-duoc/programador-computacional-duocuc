@@ -20,6 +20,25 @@ const base = import.meta.env.BASE_URL;
       content="Plataforma educativa para estudiantes del programa Analista Programador Computacional de DuocUC"
     />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}/icon-32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}/icon-16.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/apple-touch-icon.png`} />
+    <link rel="manifest" href={`${base}/site.webmanifest`} />
+    <meta name="theme-color" content="#0a0a0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#667eea" media="(prefers-color-scheme: light)" />
+
+    <!-- OG / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Analista Programador Computacional - DuocUC" />
+    <meta
+      property="og:description"
+      content="Plataforma educativa para estudiantes del programa Analista Programador Computacional de DuocUC"
+    />
+    <meta
+      property="og:image"
+      content="https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/og-image.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Astro View Transitions for smooth navigation -->
     <ViewTransitions />
@@ -55,6 +74,37 @@ const base = import.meta.env.BASE_URL;
     />
 
     <style>
+      /* Skip link (a11y) */
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 100000;
+        padding: 0.75rem 1.25rem;
+        background: #667eea;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 0 0 8px 0;
+      }
+      .skip-link:focus {
+        left: 0;
+        outline: 3px solid #fff;
+        outline-offset: 2px;
+      }
+
+      /* Respeto global a prefers-reduced-motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -560,6 +610,9 @@ const base = import.meta.env.BASE_URL;
     </style>
   </head>
   <body>
+    <!-- Skip link (a11y) — visible al recibir foco con tab -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Animated particles -->
     <div class="particles">
       <div class="particle"></div>
@@ -585,7 +638,7 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <!-- Main splash content -->
-    <div class="splash-content">
+    <main id="main-content" tabindex="-1" class="splash-content">
       <div class="logo-container">
         <div class="logo-glow"></div>
         <div class="logo-ring"></div>
@@ -627,7 +680,7 @@ const base = import.meta.env.BASE_URL;
         <i class="fas fa-arrow-right"></i>
         Ir directamente
       </a>
-    </div>
+    </main>
 
     <!-- Footer -->
     <div class="splash-footer">

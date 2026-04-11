@@ -1,0 +1,7 @@
+# https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/
+
+User-agent: *
+Allow: /
+
+# Sitemap autogenerado por @astrojs/sitemap
+Sitemap: https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/sitemap-index.xml

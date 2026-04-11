@@ -1,0 +1,39 @@
+{
+  "name": "Analista Programador Computacional - DuocUC",
+  "short_name": "APC DuocUC",
+  "description": "Repositorio de materiales del programa Analista Programador Computacional - DuocUC Online 2025. 17 bimestres, asignaturas, recursos y Tutor AI integrado.",
+  "start_url": "/Analista-Programador-Computacional-DuocUC/",
+  "scope": "/Analista-Programador-Computacional-DuocUC/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0f",
+  "theme_color": "#667eea",
+  "lang": "es-CL",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "/Analista-Programador-Computacional-DuocUC/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/Analista-Programador-Computacional-DuocUC/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Analista-Programador-Computacional-DuocUC/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Analista-Programador-Computacional-DuocUC/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
