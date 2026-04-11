@@ -1,6 +1,6 @@
-# CLAUDE.md — instrucciones para agentes de IA
+# llm.md — instrucciones para agentes de IA
 
-> Lee esto al inicio de cada sesión cuando trabajes con Claude Code (u otro agente) en este repositorio.
+> Lee esto al inicio de cada sesión cuando trabajes con un asistente LLM en este repositorio. Filename `llm.md` (lowercase) es la convención del repo para instrucciones a agentes.
 
 ## Antes de tocar nada
 
@@ -19,11 +19,12 @@
 
 ## Convenciones obligatorias
 
-- **Conventional Commits** (`feat`, `fix`, `docs`, `refactor`, `chore`, ...). Ver `docs/conventions.md`.
+- **Conventional Commits** (`feat`, `fix`, `docs`, `refactor`, `chore`, ...). Ver `docs/conventions.md`. Pre-commit hook enforza el formato.
 - **kebab-case** en todas las carpetas estructurales nuevas. Carpetas de entregables estudiantiles (proyectos en `coursework/*/exp*/semana-*/`) **no se renombran** — son del alumno.
 - **No commits sin que el usuario lo pida explícitamente.**
 - **No `--no-verify`, no `git push --force`, no `git reset --hard`** sin pedir permiso.
 - **Edita `.gitignore`/`.editorconfig`/`docs/conventions.md`** si introduces un patrón nuevo y notable.
+- **Gatekeeper anti-IA-mentions activo**: pre-commit hook bloquea menciones a marcas de asistentes de IA en commits y archivos staged. **No incluir Co-Authored-By trailers, ni firmas "Generated with [...]" en commits.** Ver `scripts/check-no-ai-mentions.sh`.
 
 ## Capas del repo
 
@@ -36,8 +37,9 @@
 
 ## Tech debt — no abrir lata sin pedir permiso
 
-- 379 errores de TypeScript strict en `astro-site` — código del Tutor AI. Limpieza gradual, no en bloque.
-- 87 warnings de ESLint en `astro-site` — fixables con `lint:fix` pero algunos tocan closures activos.
+- ~880 KB de data dumps inline en `sala-de-estudio/index.html` (data/asignaturas.ts y data/technologies.ts via define:vars). Migración a `public/data/*.json` con fetch async — sesión dedicada con smoke visual.
+- 379 errores de TypeScript strict en `astro-site` — limpieza gradual.
+- 65 warnings de ESLint residuales — limpiables a mano sin riesgo.
 - Astro 6.x pendiente — requiere bump de Node a 22.
 
 Ver `docs/architecture/astro-site.md` para detalles.
@@ -49,6 +51,9 @@ Ver `docs/architecture/astro-site.md` para detalles.
 git pull
 cat context.md
 ls -lt sessions/ | head
+
+# Asegurar hooks instalados (idempotente)
+./scripts/install-hooks.sh
 
 # Trabajo Python (coursework)
 uv sync          # asegura .venv al día

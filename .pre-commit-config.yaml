@@ -97,3 +97,23 @@ repos:
           - ci
           - chore
           - revert
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Gatekeeper anti-IA-mentions — bloquea menciones a marcas de asistentes
+  # de IA en commits y archivos staged. Mantiene el repo neutral.
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: no-ai-mentions-staged
+        name: gatekeeper anti-IA-mentions (staged files)
+        language: system
+        entry: ./scripts/check-no-ai-mentions.sh
+        pass_filenames: false
+        always_run: true
+
+      - id: no-ai-mentions-commit-msg
+        name: gatekeeper anti-IA-mentions (commit message)
+        language: system
+        entry: ./scripts/check-no-ai-mentions.sh
+        stages: [commit-msg]
+        pass_filenames: true
