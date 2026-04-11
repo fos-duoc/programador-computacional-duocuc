@@ -1442,7 +1442,7 @@ default_args = &#123;
     )
 
     <span class="code-comment"># Definir dependencias</span>
-    extract >> transform >> load</code></pre>
+    extract &gt;&gt; transform &gt;&gt; load</code></pre>
         </div>
         <div class="code-footer">
           <span class="code-meta"><i class="fas fa-clock"></i> Schedule: Daily 6:00 AM</span>
@@ -6259,7 +6259,7 @@ public class Producto implements Registrable {
               <div class="mutation-concept-visual">
                 <div class="mutation-step original">
                   <span class="step-label">Código Original</span>
-                  <code>if (x > 10)</code>
+                  <code>if (x &gt; 10)</code>
                 </div>
                 <div class="mutation-arrow">
                   <i class="fas fa-dna"></i>
@@ -6267,7 +6267,7 @@ public class Producto implements Registrable {
                 </div>
                 <div class="mutation-step mutant">
                   <span class="step-label">Mutante</span>
-                  <code>if (x >= 10)</code>
+                  <code>if (x &gt;= 10)</code>
                 </div>
                 <div class="mutation-result">
                   <span class="killed"
@@ -7062,7 +7062,7 @@ public class Producto implements Registrable {
   // Pipeline Mode Switcher
   function switchPipelineMode(mode) {
     // Update buttons - remove active from all, add to clicked
-    var buttons = document.querySelectorAll(".mode-btn");
+    const buttons = document.querySelectorAll(".mode-btn");
     buttons.forEach(function (btn) {
       btn.classList.remove("active");
       if (btn.dataset.mode === mode) {
@@ -7071,12 +7071,12 @@ public class Producto implements Registrable {
     });
 
     // Update pipeline views - hide all, show selected
-    var pipelines = document.querySelectorAll(".pipeline-mode");
+    const pipelines = document.querySelectorAll(".pipeline-mode");
     pipelines.forEach(function (pipeline) {
       pipeline.classList.remove("active");
     });
 
-    var targetPipeline = document.getElementById("pipeline-" + mode);
+    const targetPipeline = document.getElementById("pipeline-" + mode);
     if (targetPipeline) {
       targetPipeline.classList.add("active");
     }
@@ -7084,16 +7084,16 @@ public class Producto implements Registrable {
 
   // Initialize pipeline buttons
   function initPipelineButtons() {
-    var btnRealtime = document.getElementById("btn-realtime");
-    var btnBatch = document.getElementById("btn-batch");
-    var btnArchitecture = document.getElementById("btn-architecture");
-    var btnGovernance = document.getElementById("btn-governance");
-    var btnVisualization = document.getElementById("btn-visualization");
-    var btnIngestion = document.getElementById("btn-ingestion");
-    var btnOrchestration = document.getElementById("btn-orchestration");
-    var btnPatterns = document.getElementById("btn-patterns");
-    var btnProcessing = document.getElementById("btn-processing");
-    var btnStorage = document.getElementById("btn-storage");
+    const btnRealtime = document.getElementById("btn-realtime");
+    const btnBatch = document.getElementById("btn-batch");
+    const btnArchitecture = document.getElementById("btn-architecture");
+    const btnGovernance = document.getElementById("btn-governance");
+    const btnVisualization = document.getElementById("btn-visualization");
+    const btnIngestion = document.getElementById("btn-ingestion");
+    const btnOrchestration = document.getElementById("btn-orchestration");
+    const btnPatterns = document.getElementById("btn-patterns");
+    const btnProcessing = document.getElementById("btn-processing");
+    const btnStorage = document.getElementById("btn-storage");
 
     if (btnRealtime) {
       btnRealtime.onclick = function () {
@@ -7147,14 +7147,14 @@ public class Producto implements Registrable {
     }
 
     // Software Fundamentals buttons
-    var btnOop = document.getElementById("btn-oop");
-    var btnFunctional = document.getElementById("btn-functional");
-    var btnSolid = document.getElementById("btn-solid");
-    var btnCleancode = document.getElementById("btn-cleancode");
-    var btnTesting = document.getElementById("btn-testing");
-    var btnDesignpatterns = document.getElementById("btn-designpatterns");
-    var btnDsa = document.getElementById("btn-dsa");
-    var btnSecurity = document.getElementById("btn-security");
+    const btnOop = document.getElementById("btn-oop");
+    const btnFunctional = document.getElementById("btn-functional");
+    const btnSolid = document.getElementById("btn-solid");
+    const btnCleancode = document.getElementById("btn-cleancode");
+    const btnTesting = document.getElementById("btn-testing");
+    const btnDesignpatterns = document.getElementById("btn-designpatterns");
+    const btnDsa = document.getElementById("btn-dsa");
+    const btnSecurity = document.getElementById("btn-security");
 
     if (btnOop) {
       btnOop.onclick = function () {
@@ -7205,7 +7205,7 @@ public class Producto implements Registrable {
   // ===== Dashboard Tab Switcher =====
   function switchDashboardTab(tabName) {
     // Update tabs - remove active from all, add to clicked
-    var tabs = document.querySelectorAll(".dash-tab");
+    const tabs = document.querySelectorAll(".dash-tab");
     tabs.forEach(function (tab) {
       tab.classList.remove("active");
       if (tab.dataset.tab === tabName) {
@@ -7214,12 +7214,12 @@ public class Producto implements Registrable {
     });
 
     // Update panels - hide all, show selected
-    var panels = document.querySelectorAll(".dashboard-panel");
+    const panels = document.querySelectorAll(".dashboard-panel");
     panels.forEach(function (panel) {
       panel.classList.remove("active");
     });
 
-    var targetPanel = document.querySelector('.dashboard-panel[data-panel="' + tabName + '"]');
+    const targetPanel = document.querySelector('.dashboard-panel[data-panel="' + tabName + '"]');
     if (targetPanel) {
       targetPanel.classList.add("active");
     }
@@ -7227,10 +7227,10 @@ public class Producto implements Registrable {
 
   // Initialize dashboard tabs
   function initDashboardTabs() {
-    var dashTabs = document.querySelectorAll(".dash-tab[data-tab]");
+    const dashTabs = document.querySelectorAll(".dash-tab[data-tab]");
     dashTabs.forEach(function (tab) {
       tab.onclick = function () {
-        var tabName = this.dataset.tab;
+        const tabName = this.dataset.tab;
         if (tabName) {
           switchDashboardTab(tabName);
         }
@@ -7244,13 +7244,13 @@ public class Producto implements Registrable {
 
   // ===== GoF Design Patterns Selector =====
   function initGofPatterns() {
-    var patternButtons = document.querySelectorAll(".pattern-item.selectable");
-    var patternPanels = document.querySelectorAll(".gof-pattern-panel");
-    var gofHint = document.getElementById("gof-hint");
+    const patternButtons = document.querySelectorAll(".pattern-item.selectable");
+    const patternPanels = document.querySelectorAll(".gof-pattern-panel");
+    const gofHint = document.getElementById("gof-hint");
 
     patternButtons.forEach(function (btn) {
       btn.onclick = function () {
-        var patternName = this.dataset.pattern;
+        const patternName = this.dataset.pattern;
         if (!patternName) return;
 
         // Update button states
@@ -7268,7 +7268,7 @@ public class Producto implements Registrable {
         });
 
         // Show selected panel
-        var targetPanel = document.getElementById("gof-panel-" + patternName);
+        const targetPanel = document.getElementById("gof-panel-" + patternName);
         if (targetPanel) {
           targetPanel.classList.add("active");
         }
@@ -7282,10 +7282,10 @@ public class Producto implements Registrable {
 
   // ===== Testing Avanzado Selector =====
   function initTestingPanels() {
-    var pyramidButtons = document.querySelectorAll(".pyramid-level-btn");
-    var methodCards = document.querySelectorAll(".test-method-card.selectable");
-    var testPanels = document.querySelectorAll(".test-panel");
-    var testingHint = document.getElementById("testing-hint");
+    const pyramidButtons = document.querySelectorAll(".pyramid-level-btn");
+    const methodCards = document.querySelectorAll(".test-method-card.selectable");
+    const testPanels = document.querySelectorAll(".test-panel");
+    const testingHint = document.getElementById("testing-hint");
 
     function showTestPanel(testType) {
       // Hide hint
@@ -7307,7 +7307,7 @@ public class Producto implements Registrable {
       });
 
       // Show target panel
-      var targetPanel = document.getElementById("test-panel-" + testType);
+      const targetPanel = document.getElementById("test-panel-" + testType);
       if (targetPanel) {
         targetPanel.classList.add("active");
       }
@@ -7316,7 +7316,7 @@ public class Producto implements Registrable {
     // Pyramid level buttons
     pyramidButtons.forEach(function (btn) {
       btn.onclick = function () {
-        var testType = this.dataset.testType;
+        const testType = this.dataset.testType;
         if (!testType) return;
         this.classList.add("selected");
         showTestPanel(testType);
@@ -7326,7 +7326,7 @@ public class Producto implements Registrable {
     // Method cards
     methodCards.forEach(function (card) {
       card.onclick = function () {
-        var testType = this.dataset.testType;
+        const testType = this.dataset.testType;
         if (!testType) return;
         this.classList.add("selected");
         showTestPanel(testType);

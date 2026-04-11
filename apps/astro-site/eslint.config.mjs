@@ -6,17 +6,7 @@ import globals from "globals";
 
 export default tseslint.config(
   {
-    ignores: [
-      "dist/**",
-      ".astro/**",
-      "node_modules/**",
-      "public/**",
-      "original_index_backup.html",
-      // Páginas con tokens HTML que rompen el parser de Astro ESLint (tech debt — ver docs/architecture/astro-site.md)
-      "src/pages/laboratorios.astro",
-      "src/components/DataPipeline.astro",
-      "src/components/NotionEmbed.astro",
-    ],
+    ignores: ["dist/**", ".astro/**", "node_modules/**", "public/**", "original_index_backup.html"],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
