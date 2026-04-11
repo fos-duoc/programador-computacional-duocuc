@@ -103,6 +103,7 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 ## Tech debt conocida
 
 - **astro-site/tsconfig**: `extends astro/tsconfigs/strict` con 379 errores de TS pre-existentes en el código del Tutor AI. `astro check` no es bloqueante en CI hasta limpieza gradual.
+- **astro-site lint warnings**: 65 warnings residuales (post auto-fix) — mayormente unused vars sin prefijo `_` y ocasional `any` en código del Tutor AI. Limpiables a mano sin riesgo.
 - **Astro 6**: requiere Node ≥22.12. Pendiente bump de runtime + test integral del Tutor AI.
 
 ### ⚠️ Acción manual requerida del usuario
@@ -116,4 +117,4 @@ Hay un script helper: `scripts/update-context.sh` — crea la entrada del día y
 - **Fecha**: 2026-04-11
 - **Sesión**: sessions/2026-04-11.md
 - **Branch al cierre**: `chore/modernize-and-restructure`
-- **Commit**: `77a6f261`
+- **Commit**: `ef851b11`
