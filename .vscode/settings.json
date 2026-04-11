@@ -11,7 +11,7 @@
   // ┌──────────────────────────────────────────────────────────────────────────┐
   // │  EDITOR - Settings seguros                                              │
   // └──────────────────────────────────────────────────────────────────────────┘
-  
+
   "editor.fontSize": 14,
   "editor.fontFamily": "'JetBrains Mono', 'Cascadia Code', Consolas, monospace",
   "editor.fontLigatures": true,
@@ -29,7 +29,7 @@
 
   // ⚠️ CORREGIDO: formatOnSave habilitado
   "editor.formatOnSave": true,
-  
+
   // ⚠️ CORREGIDO: Sin code actions globales
   "editor.codeActionsOnSave": {},
 
@@ -102,7 +102,7 @@
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
   "python.analysis.autoImportCompletions": true,
-  
+
   // ⚠️ CORREGIDO: Inlay hints desactivados
   "python.analysis.inlayHints.functionReturnTypes": false,
   "python.analysis.inlayHints.variableTypes": false,
