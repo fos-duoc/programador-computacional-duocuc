@@ -4,95 +4,110 @@ const repoBase = "https://github.com/fos-duoc/Analista-Programador-Computacional
 ---
 
 <section id="recursos" class="recursos">
-    <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">
-            <i class="fas fa-cube"></i>
-            Centro de Recursos
-        </h2>
-        <p class="section-subtitle">Documentación, mallas curriculares y materiales del programa</p>
+  <div class="section-header" data-aos="fade-up">
+    <h2 class="section-title">
+      <i class="fas fa-cube"></i>
+      Centro de Recursos
+    </h2>
+    <p class="section-subtitle">Documentación, mallas curriculares y materiales del programa</p>
+  </div>
+
+  <!-- Resources Bento Grid -->
+  <div class="resources-bento" data-aos="fade-up" data-aos-duration="600">
+    <!-- Main Card: Mallas Curriculares -->
+    <a
+      href={`${repoBase}/tree/main/_Recursos-Adicionales/mallas`}
+      class="resource-card resource-main glass-card"
+      target="_blank"
+    >
+      <div class="resource-glow"></div>
+      <div class="resource-icon-wrapper">
+        <div class="resource-icon-bg">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <div class="resource-icon-ring"></div>
+      </div>
+      <div class="resource-content">
+        <span class="resource-badge">Actualizado 2025</span>
+        <h3>Mallas Curriculares</h3>
+        <p>
+          Planes de estudio oficiales con todas las asignaturas, prerequisitos y competencias por
+          nivel
+        </p>
+        <div class="resource-meta">
+          <span><i class="fas fa-file-alt"></i> 10 documentos</span>
+          <span><i class="fas fa-download"></i> PDF / PNG</span>
+        </div>
+      </div>
+      <div class="resource-arrow">
+        <i class="fas fa-arrow-right"></i>
+      </div>
+    </a>
+
+    <!-- Secondary Cards Row -->
+    <div class="resource-secondary-grid">
+      <!-- Documentos -->
+      <a
+        href={`${repoBase}/tree/main/_Recursos-Adicionales`}
+        class="resource-card resource-secondary glass-card"
+        target="_blank"
+      >
+        <div class="resource-icon-mini docs">
+          <i class="fas fa-book-open"></i>
+        </div>
+        <div class="resource-info">
+          <h4>Documentación</h4>
+          <p>Reglamentos, guías de estudio y material complementario</p>
+        </div>
+        <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
+      </a>
+
+      <!-- Repositorio GitHub -->
+      <a href={repoBase} class="resource-card resource-secondary glass-card" target="_blank">
+        <div class="resource-icon-mini github">
+          <i class="fab fa-github"></i>
+        </div>
+        <div class="resource-info">
+          <h4>Repositorio GitHub</h4>
+          <p>Código fuente, ejemplos y proyectos del programa</p>
+        </div>
+        <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
+      </a>
+
+      <!-- GitHub Pages -->
+      <a
+        href="https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/"
+        class="resource-card resource-secondary glass-card"
+        target="_blank"
+      >
+        <div class="resource-icon-mini pages">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="resource-info">
+          <h4>Landing Page</h4>
+          <p>Dashboard interactivo con navegación visual</p>
+        </div>
+        <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
+      </a>
     </div>
 
-    <!-- Resources Bento Grid -->
-    <div class="resources-bento" data-aos="fade-up" data-aos-duration="600">
-        <!-- Main Card: Mallas Curriculares -->
-        <a href={`${repoBase}/tree/main/_Recursos-Adicionales/mallas`} class="resource-card resource-main glass-card" target="_blank">
-            <div class="resource-glow"></div>
-            <div class="resource-icon-wrapper">
-                <div class="resource-icon-bg">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="resource-icon-ring"></div>
-            </div>
-            <div class="resource-content">
-                <span class="resource-badge">Actualizado 2025</span>
-                <h3>Mallas Curriculares</h3>
-                <p>Planes de estudio oficiales con todas las asignaturas, prerequisitos y competencias por nivel</p>
-                <div class="resource-meta">
-                    <span><i class="fas fa-file-alt"></i> 10 documentos</span>
-                    <span><i class="fas fa-download"></i> PDF / PNG</span>
-                </div>
-            </div>
-            <div class="resource-arrow">
-                <i class="fas fa-arrow-right"></i>
-            </div>
+    <!-- Quick Links Bar -->
+    <div class="resource-quick-links glass-card">
+      <span class="quick-links-label"><i class="fas fa-bolt"></i> Acceso Rápido</span>
+      <div class="quick-links-items">
+        <a href={`${repoBase}/issues`} target="_blank" class="quick-link">
+          <i class="fas fa-bug"></i> Issues
         </a>
-
-        <!-- Secondary Cards Row -->
-        <div class="resource-secondary-grid">
-            <!-- Documentos -->
-            <a href={`${repoBase}/tree/main/_Recursos-Adicionales`} class="resource-card resource-secondary glass-card" target="_blank">
-                <div class="resource-icon-mini docs">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <div class="resource-info">
-                    <h4>Documentación</h4>
-                    <p>Reglamentos, guías de estudio y material complementario</p>
-                </div>
-                <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
-            </a>
-
-            <!-- Repositorio GitHub -->
-            <a href={repoBase} class="resource-card resource-secondary glass-card" target="_blank">
-                <div class="resource-icon-mini github">
-                    <i class="fab fa-github"></i>
-                </div>
-                <div class="resource-info">
-                    <h4>Repositorio GitHub</h4>
-                    <p>Código fuente, ejemplos y proyectos del programa</p>
-                </div>
-                <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
-            </a>
-
-            <!-- GitHub Pages -->
-            <a href="https://fos-duoc.github.io/Analista-Programador-Computacional-DuocUC/" class="resource-card resource-secondary glass-card" target="_blank">
-                <div class="resource-icon-mini pages">
-                    <i class="fas fa-globe"></i>
-                </div>
-                <div class="resource-info">
-                    <h4>Landing Page</h4>
-                    <p>Dashboard interactivo con navegación visual</p>
-                </div>
-                <span class="resource-link-icon"><i class="fas fa-external-link-alt"></i></span>
-            </a>
-        </div>
-
-        <!-- Quick Links Bar -->
-        <div class="resource-quick-links glass-card">
-            <span class="quick-links-label"><i class="fas fa-bolt"></i> Acceso Rápido</span>
-            <div class="quick-links-items">
-                <a href={`${repoBase}/issues`} target="_blank" class="quick-link">
-                    <i class="fas fa-bug"></i> Issues
-                </a>
-                <a href={`${repoBase}/pulls`} target="_blank" class="quick-link">
-                    <i class="fas fa-code-branch"></i> Pull Requests
-                </a>
-                <a href={`${repoBase}/discussions`} target="_blank" class="quick-link">
-                    <i class="fas fa-comments"></i> Discusiones
-                </a>
-                <a href={`${repoBase}/stargazers`} target="_blank" class="quick-link">
-                    <i class="fas fa-star"></i> Stargazers
-                </a>
-            </div>
-        </div>
+        <a href={`${repoBase}/pulls`} target="_blank" class="quick-link">
+          <i class="fas fa-code-branch"></i> Pull Requests
+        </a>
+        <a href={`${repoBase}/discussions`} target="_blank" class="quick-link">
+          <i class="fas fa-comments"></i> Discusiones
+        </a>
+        <a href={`${repoBase}/stargazers`} target="_blank" class="quick-link">
+          <i class="fas fa-star"></i> Stargazers
+        </a>
+      </div>
     </div>
+  </div>
 </section>

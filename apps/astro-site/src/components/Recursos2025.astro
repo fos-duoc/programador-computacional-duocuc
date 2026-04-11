@@ -3,892 +3,961 @@
 // Basado en investigación de mejores recursos para aprendizaje 2025
 
 const books = [
-    {
-        title: "Designing Data-Intensive Applications",
-        author: "Martin Kleppmann",
-        description: "La biblia de sistemas distribuidos y arquitectura de datos",
-        category: "Data Engineering",
-        level: "Intermediate",
-        link: "https://dataintensive.net/"
-    },
-    {
-        title: "Fundamentals of Data Engineering",
-        author: "Joe Reis & Matt Housley",
-        description: "Guía completa para iniciar en ingeniería de datos",
-        category: "Data Engineering",
-        level: "Beginner",
-        link: "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/"
-    },
-    {
-        title: "Clean Code",
-        author: "Robert C. Martin",
-        description: "Principios y patrones para escribir código limpio",
-        category: "Software Engineering",
-        level: "All Levels",
-        link: "https://www.oreilly.com/library/view/clean-code-a/9780136083238/"
-    },
-    {
-        title: "System Design Interview",
-        author: "Alex Xu",
-        description: "Preparación para entrevistas de diseño de sistemas",
-        category: "Architecture",
-        level: "Advanced",
-        link: "https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF"
-    }
+  {
+    title: "Designing Data-Intensive Applications",
+    author: "Martin Kleppmann",
+    description: "La biblia de sistemas distribuidos y arquitectura de datos",
+    category: "Data Engineering",
+    level: "Intermediate",
+    link: "https://dataintensive.net/",
+  },
+  {
+    title: "Fundamentals of Data Engineering",
+    author: "Joe Reis & Matt Housley",
+    description: "Guía completa para iniciar en ingeniería de datos",
+    category: "Data Engineering",
+    level: "Beginner",
+    link: "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/",
+  },
+  {
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    description: "Principios y patrones para escribir código limpio",
+    category: "Software Engineering",
+    level: "All Levels",
+    link: "https://www.oreilly.com/library/view/clean-code-a/9780136083238/",
+  },
+  {
+    title: "System Design Interview",
+    author: "Alex Xu",
+    description: "Preparación para entrevistas de diseño de sistemas",
+    category: "Architecture",
+    level: "Advanced",
+    link: "https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF",
+  },
 ];
 
 const courses = [
-    {
-        name: "Coursera",
-        platform: "Coursera",
-        iconType: "img",
-        iconSrc: "https://cdn.simpleicons.org/coursera/0056D2",
-        description: "Cursos de Google, IBM, Meta y universidades top del mundo",
-        topics: ["Data Science", "Cloud", "ML/AI", "DevOps"],
-        link: "https://www.coursera.org/",
-        badge: "Certificaciones Pro"
-    },
-    {
-        name: "DataCamp",
-        platform: "DataCamp",
-        iconType: "img",
-        iconSrc: "https://cdn.simpleicons.org/datacamp/03EF62",
-        description: "Cursos interactivos de Python, SQL y Data Science",
-        topics: ["Python", "SQL", "Data Science", "ML"],
-        link: "https://www.datacamp.com/",
-        badge: "Tracks Completos"
-    },
-    {
-        name: "Whizlabs",
-        platform: "Whizlabs",
-        iconType: "img",
-        iconSrc: "https://www.whizlabs.com/favicon.ico",
-        description: "Preparación para certificaciones cloud AWS, Azure, GCP",
-        topics: ["AWS", "Azure", "GCP", "Kubernetes"],
-        link: "https://www.whizlabs.com/",
-        badge: "Cert Prep"
-    },
-    {
-        name: "freeCodeCamp",
-        platform: "freeCodeCamp",
-        iconType: "img",
-        iconSrc: "https://cdn.simpleicons.org/freecodecamp/FFFFFF",
-        description: "Certificaciones gratuitas en desarrollo web y más",
-        topics: ["HTML/CSS", "JavaScript", "React", "APIs"],
-        link: "https://www.freecodecamp.org/",
-        badge: "100% GRATIS"
-    }
+  {
+    name: "Coursera",
+    platform: "Coursera",
+    iconType: "img",
+    iconSrc: "https://cdn.simpleicons.org/coursera/0056D2",
+    description: "Cursos de Google, IBM, Meta y universidades top del mundo",
+    topics: ["Data Science", "Cloud", "ML/AI", "DevOps"],
+    link: "https://www.coursera.org/",
+    badge: "Certificaciones Pro",
+  },
+  {
+    name: "DataCamp",
+    platform: "DataCamp",
+    iconType: "img",
+    iconSrc: "https://cdn.simpleicons.org/datacamp/03EF62",
+    description: "Cursos interactivos de Python, SQL y Data Science",
+    topics: ["Python", "SQL", "Data Science", "ML"],
+    link: "https://www.datacamp.com/",
+    badge: "Tracks Completos",
+  },
+  {
+    name: "Whizlabs",
+    platform: "Whizlabs",
+    iconType: "img",
+    iconSrc: "https://www.whizlabs.com/favicon.ico",
+    description: "Preparación para certificaciones cloud AWS, Azure, GCP",
+    topics: ["AWS", "Azure", "GCP", "Kubernetes"],
+    link: "https://www.whizlabs.com/",
+    badge: "Cert Prep",
+  },
+  {
+    name: "freeCodeCamp",
+    platform: "freeCodeCamp",
+    iconType: "img",
+    iconSrc: "https://cdn.simpleicons.org/freecodecamp/FFFFFF",
+    description: "Certificaciones gratuitas en desarrollo web y más",
+    topics: ["HTML/CSS", "JavaScript", "React", "APIs"],
+    link: "https://www.freecodecamp.org/",
+    badge: "100% GRATIS",
+  },
 ];
 
 const communities = [
-    {
-        name: "r/learnprogramming",
-        platform: "Reddit",
-        icon: "fab fa-reddit",
-        members: "4M+",
-        description: "Comunidad para aprender programación",
-        link: "https://www.reddit.com/r/learnprogramming/"
-    },
-    {
-        name: "r/dataengineering",
-        platform: "Reddit",
-        icon: "fab fa-reddit",
-        members: "200K+",
-        description: "Discusiones de Data Engineering",
-        link: "https://www.reddit.com/r/dataengineering/"
-    },
-    {
-        name: "Dev.to",
-        platform: "Dev Community",
-        icon: "fab fa-dev",
-        members: "1M+",
-        description: "Artículos y discusiones de desarrollo",
-        link: "https://dev.to/"
-    },
-    {
-        name: "Stack Overflow",
-        platform: "Stack Exchange",
-        icon: "fab fa-stack-overflow",
-        members: "20M+",
-        description: "Q&A de programación más grande del mundo",
-        link: "https://stackoverflow.com/"
-    }
+  {
+    name: "r/learnprogramming",
+    platform: "Reddit",
+    icon: "fab fa-reddit",
+    members: "4M+",
+    description: "Comunidad para aprender programación",
+    link: "https://www.reddit.com/r/learnprogramming/",
+  },
+  {
+    name: "r/dataengineering",
+    platform: "Reddit",
+    icon: "fab fa-reddit",
+    members: "200K+",
+    description: "Discusiones de Data Engineering",
+    link: "https://www.reddit.com/r/dataengineering/",
+  },
+  {
+    name: "Dev.to",
+    platform: "Dev Community",
+    icon: "fab fa-dev",
+    members: "1M+",
+    description: "Artículos y discusiones de desarrollo",
+    link: "https://dev.to/",
+  },
+  {
+    name: "Stack Overflow",
+    platform: "Stack Exchange",
+    icon: "fab fa-stack-overflow",
+    members: "20M+",
+    description: "Q&A de programación más grande del mundo",
+    link: "https://stackoverflow.com/",
+  },
 ];
 
 const tools = [
-    { name: "VS Code", icon: "devicon-vscode-plain colored", link: "https://code.visualstudio.com/", desc: "Editor de código" },
-    { name: "Git", icon: "devicon-git-plain colored", link: "https://git-scm.com/", desc: "Control de versiones" },
-    { name: "Docker", icon: "devicon-docker-plain colored", link: "https://www.docker.com/", desc: "Contenedores" },
-    { name: "PostgreSQL", icon: "devicon-postgresql-plain colored", link: "https://www.postgresql.org/", desc: "Base de datos" },
-    { name: "Postman", icon: "devicon-postman-plain colored", link: "https://www.postman.com/", desc: "Testing APIs" },
-    { name: "Figma", icon: "devicon-figma-plain colored", link: "https://www.figma.com/", desc: "Diseño UI/UX" }
+  {
+    name: "VS Code",
+    icon: "devicon-vscode-plain colored",
+    link: "https://code.visualstudio.com/",
+    desc: "Editor de código",
+  },
+  {
+    name: "Git",
+    icon: "devicon-git-plain colored",
+    link: "https://git-scm.com/",
+    desc: "Control de versiones",
+  },
+  {
+    name: "Docker",
+    icon: "devicon-docker-plain colored",
+    link: "https://www.docker.com/",
+    desc: "Contenedores",
+  },
+  {
+    name: "PostgreSQL",
+    icon: "devicon-postgresql-plain colored",
+    link: "https://www.postgresql.org/",
+    desc: "Base de datos",
+  },
+  {
+    name: "Postman",
+    icon: "devicon-postman-plain colored",
+    link: "https://www.postman.com/",
+    desc: "Testing APIs",
+  },
+  {
+    name: "Figma",
+    icon: "devicon-figma-plain colored",
+    link: "https://www.figma.com/",
+    desc: "Diseño UI/UX",
+  },
 ];
 ---
 
 <section id="recursos-2025" class="recursos-section">
-    <div class="recursos-container">
-        <!-- Header -->
-        <div class="recursos-header" data-aos="fade-up">
-            <div class="recursos-header-icon">
-                <i class="fas fa-book-reader"></i>
-            </div>
-            <h2>Recursos de Aprendizaje 2025</h2>
-            <p class="recursos-subtitle">Libros, cursos y comunidades recomendados por la industria</p>
-        </div>
-
-        <!-- Books Section -->
-        <div class="recursos-category" data-aos="fade-up">
-            <div class="category-header">
-                <i class="fas fa-book"></i>
-                <h3>Libros Esenciales</h3>
-            </div>
-            <div class="books-grid">
-                {books.map((book, index) => (
-                    <a href={book.link} target="_blank" rel="noopener" class="book-card glass-card" data-aos="zoom-in" data-aos-delay={index * 50}>
-                        <div class="book-cover">
-                            <i class="fas fa-book"></i>
-                        </div>
-                        <div class="book-info">
-                            <h4>{book.title}</h4>
-                            <span class="book-author">by {book.author}</span>
-                            <p class="book-description">{book.description}</p>
-                            <div class="book-meta">
-                                <span class="book-category">{book.category}</span>
-                                <span class="book-level">{book.level}</span>
-                            </div>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </div>
-
-        <!-- Courses Section -->
-        <div class="recursos-category" data-aos="fade-up">
-            <div class="category-header">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Plataformas de Cursos</h3>
-            </div>
-            <div class="courses-grid">
-                {courses.map((course, index) => (
-                    <a href={course.link} target="_blank" rel="noopener" class="course-card glass-card" data-aos="zoom-in" data-aos-delay={index * 50}>
-                        <div class="course-header">
-                            <div class="course-icon">
-                                <img src={course.iconSrc} alt={course.name} class="course-logo" />
-                            </div>
-                            <span class="course-badge">{course.badge}</span>
-                        </div>
-                        <h4>{course.name}</h4>
-                        <span class="course-platform">{course.platform}</span>
-                        <p class="course-description">{course.description}</p>
-                        <div class="course-topics">
-                            {course.topics.map(topic => (
-                                <span class="topic-chip">{topic}</span>
-                            ))}
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </div>
-
-        <!-- Communities Section -->
-        <div class="recursos-category" data-aos="fade-up">
-            <div class="category-header">
-                <i class="fas fa-users"></i>
-                <h3>Comunidades</h3>
-            </div>
-            <div class="communities-grid">
-                {communities.map((community, index) => (
-                    <a href={community.link} target="_blank" rel="noopener" class="community-card glass-card" data-aos="zoom-in" data-aos-delay={index * 50}>
-                        <div class="community-icon">
-                            <i class={community.icon}></i>
-                        </div>
-                        <div class="community-info">
-                            <h4>{community.name}</h4>
-                            <span class="community-platform">{community.platform}</span>
-                            <span class="community-members">{community.members} miembros</span>
-                            <p class="community-description">{community.description}</p>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </div>
-
-        <!-- Essential Tools -->
-        <div class="recursos-category" data-aos="fade-up">
-            <div class="category-header">
-                <i class="fas fa-tools"></i>
-                <h3>Herramientas Esenciales</h3>
-            </div>
-            <div class="tools-grid">
-                {tools.map((tool, index) => (
-                    <a href={tool.link} target="_blank" rel="noopener" class="tool-card" data-aos="zoom-in" data-aos-delay={index * 30}>
-                        <i class={tool.icon}></i>
-                        <span class="tool-name">{tool.name}</span>
-                        <span class="tool-desc">{tool.desc}</span>
-                    </a>
-                ))}
-            </div>
-        </div>
-
-        <!-- Quick Links -->
-        <div class="quick-links glass-card" data-aos="fade-up">
-            <div class="quick-links-header">
-                <i class="fas fa-link"></i>
-                <span>Links Rápidos</span>
-            </div>
-            <div class="quick-links-grid">
-                <a href="https://roadmap.sh/" target="_blank" rel="noopener" class="quick-link">
-                    <i class="fas fa-route"></i>
-                    <span>roadmap.sh</span>
-                </a>
-                <a href="https://github.com/trending" target="_blank" rel="noopener" class="quick-link">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub Trending</span>
-                </a>
-                <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="quick-link">
-                    <i class="fab fa-hacker-news"></i>
-                    <span>Hacker News</span>
-                </a>
-                <a href="https://www.producthunt.com/" target="_blank" rel="noopener" class="quick-link">
-                    <i class="fab fa-product-hunt"></i>
-                    <span>Product Hunt</span>
-                </a>
-            </div>
-        </div>
+  <div class="recursos-container">
+    <!-- Header -->
+    <div class="recursos-header" data-aos="fade-up">
+      <div class="recursos-header-icon">
+        <i class="fas fa-book-reader"></i>
+      </div>
+      <h2>Recursos de Aprendizaje 2025</h2>
+      <p class="recursos-subtitle">Libros, cursos y comunidades recomendados por la industria</p>
     </div>
+
+    <!-- Books Section -->
+    <div class="recursos-category" data-aos="fade-up">
+      <div class="category-header">
+        <i class="fas fa-book"></i>
+        <h3>Libros Esenciales</h3>
+      </div>
+      <div class="books-grid">
+        {
+          books.map((book, index) => (
+            <a
+              href={book.link}
+              target="_blank"
+              rel="noopener"
+              class="book-card glass-card"
+              data-aos="zoom-in"
+              data-aos-delay={index * 50}
+            >
+              <div class="book-cover">
+                <i class="fas fa-book" />
+              </div>
+              <div class="book-info">
+                <h4>{book.title}</h4>
+                <span class="book-author">by {book.author}</span>
+                <p class="book-description">{book.description}</p>
+                <div class="book-meta">
+                  <span class="book-category">{book.category}</span>
+                  <span class="book-level">{book.level}</span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Courses Section -->
+    <div class="recursos-category" data-aos="fade-up">
+      <div class="category-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Plataformas de Cursos</h3>
+      </div>
+      <div class="courses-grid">
+        {
+          courses.map((course, index) => (
+            <a
+              href={course.link}
+              target="_blank"
+              rel="noopener"
+              class="course-card glass-card"
+              data-aos="zoom-in"
+              data-aos-delay={index * 50}
+            >
+              <div class="course-header">
+                <div class="course-icon">
+                  <img src={course.iconSrc} alt={course.name} class="course-logo" />
+                </div>
+                <span class="course-badge">{course.badge}</span>
+              </div>
+              <h4>{course.name}</h4>
+              <span class="course-platform">{course.platform}</span>
+              <p class="course-description">{course.description}</p>
+              <div class="course-topics">
+                {course.topics.map((topic) => (
+                  <span class="topic-chip">{topic}</span>
+                ))}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Communities Section -->
+    <div class="recursos-category" data-aos="fade-up">
+      <div class="category-header">
+        <i class="fas fa-users"></i>
+        <h3>Comunidades</h3>
+      </div>
+      <div class="communities-grid">
+        {
+          communities.map((community, index) => (
+            <a
+              href={community.link}
+              target="_blank"
+              rel="noopener"
+              class="community-card glass-card"
+              data-aos="zoom-in"
+              data-aos-delay={index * 50}
+            >
+              <div class="community-icon">
+                <i class={community.icon} />
+              </div>
+              <div class="community-info">
+                <h4>{community.name}</h4>
+                <span class="community-platform">{community.platform}</span>
+                <span class="community-members">{community.members} miembros</span>
+                <p class="community-description">{community.description}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Essential Tools -->
+    <div class="recursos-category" data-aos="fade-up">
+      <div class="category-header">
+        <i class="fas fa-tools"></i>
+        <h3>Herramientas Esenciales</h3>
+      </div>
+      <div class="tools-grid">
+        {
+          tools.map((tool, index) => (
+            <a
+              href={tool.link}
+              target="_blank"
+              rel="noopener"
+              class="tool-card"
+              data-aos="zoom-in"
+              data-aos-delay={index * 30}
+            >
+              <i class={tool.icon} />
+              <span class="tool-name">{tool.name}</span>
+              <span class="tool-desc">{tool.desc}</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links glass-card" data-aos="fade-up">
+      <div class="quick-links-header">
+        <i class="fas fa-link"></i>
+        <span>Links Rápidos</span>
+      </div>
+      <div class="quick-links-grid">
+        <a href="https://roadmap.sh/" target="_blank" rel="noopener" class="quick-link">
+          <i class="fas fa-route"></i>
+          <span>roadmap.sh</span>
+        </a>
+        <a href="https://github.com/trending" target="_blank" rel="noopener" class="quick-link">
+          <i class="fab fa-github"></i>
+          <span>GitHub Trending</span>
+        </a>
+        <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="quick-link">
+          <i class="fab fa-hacker-news"></i>
+          <span>Hacker News</span>
+        </a>
+        <a href="https://www.producthunt.com/" target="_blank" rel="noopener" class="quick-link">
+          <i class="fab fa-product-hunt"></i>
+          <span>Product Hunt</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .recursos-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .recursos-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    /* Header */
-    .recursos-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  /* Header */
+  .recursos-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .recursos-header-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .recursos-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .recursos-header-icon i {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #f59e0b, #ef4444);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .recursos-header-icon i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
+  .recursos-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .recursos-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+  }
+
+  /* Category */
+  .recursos-category {
+    margin-bottom: 3rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-header i {
+    font-size: 1.5rem;
+    color: #f59e0b;
+  }
+
+  .category-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  /* Books Grid */
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .book-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .book-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .book-cover {
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .book-cover i {
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .book-info h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .book-author {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .book-description {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .book-meta {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .book-category,
+  .book-level {
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+
+  .book-category {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+  }
+
+  .book-level {
+    background: rgba(124, 58, 237, 0.1);
+    color: #a78bfa;
+  }
+
+  /* Courses Grid */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .course-card {
+    padding: 1.25rem;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .course-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .course-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .course-icon i {
+    font-size: 1.25rem;
+    color: #10b981;
+  }
+
+  .course-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(1.2);
+  }
+
+  .course-badge {
+    padding: 0.2rem 0.6rem;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #10b981;
+  }
+
+  .course-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.2rem;
+  }
+
+  .course-platform {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .course-description {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  .course-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .topic-chip {
+    padding: 0.2rem 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    color: #64748b;
+  }
+
+  /* Communities Grid */
+  .communities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .community-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .community-card:hover {
+    transform: translateX(4px);
+  }
+
+  .community-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 69, 0, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .community-icon i {
+    font-size: 1.25rem;
+    color: #ff4500;
+  }
+
+  .community-info h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .community-platform {
+    font-size: 0.7rem;
+    color: #64748b;
+    display: block;
+  }
+
+  .community-members {
+    font-size: 0.7rem;
+    color: #10b981;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .community-description {
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  /* Tools Grid */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    background: rgba(18, 18, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-4px);
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .tool-card i {
+    font-size: 2rem;
+  }
+
+  .tool-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .tool-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  /* Quick Links */
+  .quick-links {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .quick-links-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .quick-links-header i {
+    color: #00d4ff;
+  }
+
+  .quick-links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .quick-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .quick-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+  }
+
+  .quick-link i {
+    font-size: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .recursos-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.75rem;
     }
 
-    .recursos-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-    }
-
-    /* Category */
-    .recursos-category {
-        margin-bottom: 3rem;
-    }
-
-    .category-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .category-header i {
-        font-size: 1.5rem;
-        color: #f59e0b;
-    }
-
-    .category-header h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #f8fafc;
-    }
-
-    /* Books Grid */
-    .books-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.25rem;
-    }
-
-    .book-card {
-        display: flex;
-        gap: 1rem;
-        padding: 1.25rem;
-        border-radius: 14px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .book-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .book-cover {
-        width: 60px;
-        height: 80px;
-        background: linear-gradient(135deg, #f59e0b, #ef4444);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .book-cover i {
-        font-size: 1.5rem;
-        color: white;
-    }
-
-    .book-info h4 {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.2rem;
-        line-height: 1.3;
-    }
-
-    .book-author {
-        font-size: 0.75rem;
-        color: #64748b;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .book-description {
-        font-size: 0.8rem;
-        color: #94a3b8;
-        line-height: 1.4;
-        margin-bottom: 0.5rem;
-    }
-
-    .book-meta {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .book-category, .book-level {
-        padding: 0.2rem 0.5rem;
-        border-radius: 6px;
-        font-size: 0.65rem;
-        font-weight: 600;
-    }
-
-    .book-category {
-        background: rgba(0, 212, 255, 0.1);
-        color: #00d4ff;
-    }
-
-    .book-level {
-        background: rgba(124, 58, 237, 0.1);
-        color: #a78bfa;
-    }
-
-    /* Courses Grid */
-    .courses-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.25rem;
-    }
-
-    .course-card {
-        padding: 1.25rem;
-        border-radius: 14px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .course-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .course-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-    }
-
-    .course-icon {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .course-icon i {
-        font-size: 1.25rem;
-        color: #10b981;
-    }
-
-    .course-logo {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-        filter: brightness(1.2);
-    }
-
-    .course-badge {
-        padding: 0.2rem 0.6rem;
-        background: rgba(16, 185, 129, 0.2);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 10px;
-        font-size: 0.65rem;
-        font-weight: 700;
-        color: #10b981;
-    }
-
-    .course-card h4 {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.2rem;
-    }
-
-    .course-platform {
-        font-size: 0.75rem;
-        color: #64748b;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .course-description {
-        font-size: 0.8rem;
-        color: #94a3b8;
-        line-height: 1.4;
-        margin-bottom: 0.75rem;
-    }
-
-    .course-topics {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.3rem;
-    }
-
-    .topic-chip {
-        padding: 0.2rem 0.5rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 6px;
-        font-size: 0.65rem;
-        color: #64748b;
-    }
-
-    /* Communities Grid */
+    .books-grid,
+    .courses-grid,
     .communities-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1rem;
+      grid-template-columns: 1fr;
     }
 
-    .community-card {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem;
-        border-radius: 12px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .community-card:hover {
-        transform: translateX(4px);
-    }
-
-    .community-icon {
-        width: 45px;
-        height: 45px;
-        background: rgba(255, 69, 0, 0.15);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .community-icon i {
-        font-size: 1.25rem;
-        color: #ff4500;
-    }
-
-    .community-info h4 {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: #f8fafc;
-    }
-
-    .community-platform {
-        font-size: 0.7rem;
-        color: #64748b;
-        display: block;
-    }
-
-    .community-members {
-        font-size: 0.7rem;
-        color: #10b981;
-        display: block;
-        margin-bottom: 0.25rem;
-    }
-
-    .community-description {
-        font-size: 0.75rem;
-        color: #94a3b8;
-    }
-
-    /* Tools Grid */
     .tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .tool-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1.25rem;
-        background: rgba(18, 18, 26, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .tool-card:hover {
-        transform: translateY(-4px);
-        background: rgba(0, 212, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .tool-card i {
-        font-size: 2rem;
-    }
-
-    .tool-name {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .tool-desc {
-        font-size: 0.7rem;
-        color: #64748b;
-    }
-
-    /* Quick Links */
-    .quick-links {
-        padding: 1.5rem;
-        border-radius: 16px;
-    }
-
-    .quick-links-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .quick-links-header i {
-        color: #00d4ff;
-    }
-
-    .quick-links-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-    }
-
-    .quick-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #94a3b8;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .quick-link:hover {
-        background: rgba(0, 212, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.3);
-        color: #00d4ff;
-    }
-
-    .quick-link i {
-        font-size: 1rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .recursos-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .books-grid, .courses-grid, .communities-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .tools-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    /* ============================================
+  /* ============================================
        LIGHT MODE - Enterprise Grade Styles
        WCAG AA compliant contrast ratios
        ============================================ */
 
-    :global([data-theme="light"]) .recursos-section {
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
-    }
+  :global([data-theme="light"]) .recursos-section {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
+  }
 
-    /* Header Light Mode */
-    :global([data-theme="light"]) .recursos-header-icon {
-        background: linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(220, 38, 38, 0.12));
-        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
-    }
+  /* Header Light Mode */
+  :global([data-theme="light"]) .recursos-header-icon {
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(220, 38, 38, 0.12));
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.12);
+  }
 
-    :global([data-theme="light"]) .recursos-header-icon i {
-        background: linear-gradient(135deg, #d97706, #dc2626);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  :global([data-theme="light"]) .recursos-header-icon i {
+    background: linear-gradient(135deg, #d97706, #dc2626);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    :global([data-theme="light"]) .recursos-header h2 {
-        background: linear-gradient(135deg, #0f172a, #334155);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: -0.02em;
-    }
+  :global([data-theme="light"]) .recursos-header h2 {
+    background: linear-gradient(135deg, #0f172a, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
 
-    :global([data-theme="light"]) .recursos-subtitle {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .recursos-subtitle {
+    color: #475569;
+  }
 
-    /* Category Header Light Mode */
-    :global([data-theme="light"]) .category-header i {
-        color: #d97706;
-    }
+  /* Category Header Light Mode */
+  :global([data-theme="light"]) .category-header i {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .category-header h3 {
-        color: #0f172a;
-        letter-spacing: -0.01em;
-    }
+  :global([data-theme="light"]) .category-header h3 {
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
 
-    /* Book Cards Light Mode */
-    :global([data-theme="light"]) .book-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Book Cards Light Mode */
+  :global([data-theme="light"]) .book-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .book-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        border-color: rgba(217, 119, 6, 0.2);
-    }
+  :global([data-theme="light"]) .book-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: rgba(217, 119, 6, 0.2);
+  }
 
-    :global([data-theme="light"]) .book-cover {
-        background: linear-gradient(135deg, #d97706, #dc2626);
-        box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25);
-    }
+  :global([data-theme="light"]) .book-cover {
+    background: linear-gradient(135deg, #d97706, #dc2626);
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25);
+  }
 
-    :global([data-theme="light"]) .book-info h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .book-info h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .book-author {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .book-author {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .book-description {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .book-description {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .book-category {
-        background: rgba(8, 145, 178, 0.1);
-        color: #0891b2;
-        border: 1px solid rgba(8, 145, 178, 0.15);
-    }
+  :global([data-theme="light"]) .book-category {
+    background: rgba(8, 145, 178, 0.1);
+    color: #0891b2;
+    border: 1px solid rgba(8, 145, 178, 0.15);
+  }
 
-    :global([data-theme="light"]) .book-level {
-        background: rgba(124, 58, 237, 0.08);
-        color: #7c3aed;
-        border: 1px solid rgba(124, 58, 237, 0.15);
-    }
+  :global([data-theme="light"]) .book-level {
+    background: rgba(124, 58, 237, 0.08);
+    color: #7c3aed;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+  }
 
-    /* Course Cards Light Mode */
-    :global([data-theme="light"]) .course-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Course Cards Light Mode */
+  :global([data-theme="light"]) .course-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .course-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        border-color: rgba(5, 150, 105, 0.2);
-    }
+  :global([data-theme="light"]) .course-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: rgba(5, 150, 105, 0.2);
+  }
 
-    :global([data-theme="light"]) .course-icon {
-        background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(8, 145, 178, 0.1));
-        border: 1px solid rgba(5, 150, 105, 0.12);
-    }
+  :global([data-theme="light"]) .course-icon {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.1), rgba(8, 145, 178, 0.1));
+    border: 1px solid rgba(5, 150, 105, 0.12);
+  }
 
-    :global([data-theme="light"]) .course-icon i {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .course-icon i {
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .course-logo {
-        filter: brightness(0.95);
-    }
+  :global([data-theme="light"]) .course-logo {
+    filter: brightness(0.95);
+  }
 
-    :global([data-theme="light"]) .course-badge {
-        background: rgba(5, 150, 105, 0.1);
-        border-color: rgba(5, 150, 105, 0.2);
-        color: #059669;
-    }
+  :global([data-theme="light"]) .course-badge {
+    background: rgba(5, 150, 105, 0.1);
+    border-color: rgba(5, 150, 105, 0.2);
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .course-card h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .course-card h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .course-platform {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .course-platform {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .course-description {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .course-description {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .topic-chip {
-        background: rgba(0, 0, 0, 0.04);
-        color: #475569;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-    }
+  :global([data-theme="light"]) .topic-chip {
+    background: rgba(0, 0, 0, 0.04);
+    color: #475569;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
 
-    /* Communities Light Mode */
-    :global([data-theme="light"]) .community-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Communities Light Mode */
+  :global([data-theme="light"]) .community-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .community-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border-color: rgba(255, 69, 0, 0.2);
-    }
+  :global([data-theme="light"]) .community-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 69, 0, 0.2);
+  }
 
-    :global([data-theme="light"]) .community-icon {
-        background: rgba(255, 69, 0, 0.1);
-        border: 1px solid rgba(255, 69, 0, 0.12);
-    }
+  :global([data-theme="light"]) .community-icon {
+    background: rgba(255, 69, 0, 0.1);
+    border: 1px solid rgba(255, 69, 0, 0.12);
+  }
 
-    :global([data-theme="light"]) .community-icon i {
-        color: #ea580c;
-    }
+  :global([data-theme="light"]) .community-icon i {
+    color: #ea580c;
+  }
 
-    :global([data-theme="light"]) .community-info h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .community-info h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .community-platform {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .community-platform {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .community-members {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .community-members {
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .community-description {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .community-description {
+    color: #475569;
+  }
 
-    /* Tools Light Mode */
-    :global([data-theme="light"]) .tool-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Tools Light Mode */
+  :global([data-theme="light"]) .tool-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .tool-card:hover {
-        background: rgba(8, 145, 178, 0.06);
-        border-color: rgba(8, 145, 178, 0.2);
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.1);
-    }
+  :global([data-theme="light"]) .tool-card:hover {
+    background: rgba(8, 145, 178, 0.06);
+    border-color: rgba(8, 145, 178, 0.2);
+    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.1);
+  }
 
-    :global([data-theme="light"]) .tool-name {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .tool-name {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .tool-desc {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .tool-desc {
+    color: #64748b;
+  }
 
-    /* Quick Links Light Mode */
-    :global([data-theme="light"]) .quick-links {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Quick Links Light Mode */
+  :global([data-theme="light"]) .quick-links {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .quick-links-header {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .quick-links-header {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .quick-links-header i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .quick-links-header i {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .quick-link {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
+  :global([data-theme="light"]) .quick-link {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .quick-link:hover {
-        background: rgba(8, 145, 178, 0.08);
-        border-color: rgba(8, 145, 178, 0.2);
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .quick-link:hover {
+    background: rgba(8, 145, 178, 0.08);
+    border-color: rgba(8, 145, 178, 0.2);
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .quick-link i {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .quick-link i {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .quick-link:hover i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .quick-link:hover i {
+    color: #0891b2;
+  }
 </style>

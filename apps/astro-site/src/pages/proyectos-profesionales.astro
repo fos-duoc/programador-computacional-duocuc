@@ -1,1262 +1,1349 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 
 const baseUrl = import.meta.env.BASE_URL;
 
 // Categorías de proyectos profesionales
 const projectCategories = [
-    { id: 'all', name: 'Todos', icon: 'fas fa-th-large' },
-    { id: 'web', name: 'Desarrollo Web', icon: 'fas fa-globe' },
-    { id: 'data', name: 'Data & Analytics', icon: 'fas fa-chart-bar' },
-    { id: 'mobile', name: 'Apps Móviles', icon: 'fas fa-mobile-alt' },
-    { id: 'automation', name: 'Automatización', icon: 'fas fa-robot' },
-    { id: 'consulting', name: 'Consultoría', icon: 'fas fa-briefcase' },
+  { id: "all", name: "Todos", icon: "fas fa-th-large" },
+  { id: "web", name: "Desarrollo Web", icon: "fas fa-globe" },
+  { id: "data", name: "Data & Analytics", icon: "fas fa-chart-bar" },
+  { id: "mobile", name: "Apps Móviles", icon: "fas fa-mobile-alt" },
+  { id: "automation", name: "Automatización", icon: "fas fa-robot" },
+  { id: "consulting", name: "Consultoría", icon: "fas fa-briefcase" },
 ];
 
 // Plataformas para encontrar trabajo freelance
 const freelancePlatforms = [
-    {
-        name: 'Upwork',
-        url: 'https://www.upwork.com/',
-        icon: 'img:https://cdn.simpleicons.org/upwork/14A800',
-        description: 'La plataforma freelance más grande del mundo',
-        avgRate: '$25-150/hr',
-        focus: 'Todo tipo de proyectos',
-        badge: 'Popular',
-        tips: ['Crear perfil completo', 'Conectar con propuestas personalizadas', 'Certificaciones agregan valor']
-    },
-    {
-        name: 'Fiverr',
-        url: 'https://www.fiverr.com/',
-        icon: 'img:https://cdn.simpleicons.org/fiverr/1DBF73',
-        description: 'Marketplace de servicios digitales por proyecto',
-        avgRate: '$50-500/proyecto',
-        focus: 'Proyectos pequeños-medianos',
-        badge: 'Para empezar',
-        tips: ['Crear gigs específicos', 'Responder rápido', 'Pedir reviews']
-    },
-    {
-        name: 'Toptal',
-        url: 'https://www.toptal.com/',
-        icon: 'img:https://cdn.simpleicons.org/toptal/3863A0',
-        description: 'Red exclusiva de freelancers top 3%',
-        avgRate: '$80-200/hr',
-        focus: 'Proyectos enterprise',
-        badge: 'Elite',
-        tips: ['Requiere proceso de selección riguroso', 'Proyectos de alta calidad', 'Clientes Fortune 500']
-    },
-    {
-        name: 'Freelancer',
-        url: 'https://www.freelancer.com/',
-        icon: 'img:https://cdn.simpleicons.org/freelancer/29B2FE',
-        description: 'Plataforma global de freelancing',
-        avgRate: '$15-100/hr',
-        focus: 'Todo tipo de proyectos',
-        badge: 'Global',
-        tips: ['Competir por proyectos', 'Construir reputación', 'Exámenes de habilidades']
-    },
-    {
-        name: 'LinkedIn Services',
-        url: 'https://www.linkedin.com/services/',
-        icon: 'devicon-linkedin-plain colored',
-        description: 'Ofrecer servicios desde tu perfil profesional',
-        avgRate: 'Variable',
-        focus: 'Red profesional',
-        badge: 'Networking',
-        tips: ['Usar tu red existente', 'Recomendaciones importantes', 'Perfil optimizado']
-    },
-    {
-        name: 'GitHub Sponsors',
-        url: 'https://github.com/sponsors',
-        icon: 'devicon-github-original',
-        description: 'Patrocinio para proyectos open source',
-        avgRate: '$5-1000+/mes',
-        focus: 'Open Source',
-        badge: 'OSS',
-        tips: ['Crear proyectos útiles', 'Documentar bien', 'Comunidad activa']
-    },
+  {
+    name: "Upwork",
+    url: "https://www.upwork.com/",
+    icon: "img:https://cdn.simpleicons.org/upwork/14A800",
+    description: "La plataforma freelance más grande del mundo",
+    avgRate: "$25-150/hr",
+    focus: "Todo tipo de proyectos",
+    badge: "Popular",
+    tips: [
+      "Crear perfil completo",
+      "Conectar con propuestas personalizadas",
+      "Certificaciones agregan valor",
+    ],
+  },
+  {
+    name: "Fiverr",
+    url: "https://www.fiverr.com/",
+    icon: "img:https://cdn.simpleicons.org/fiverr/1DBF73",
+    description: "Marketplace de servicios digitales por proyecto",
+    avgRate: "$50-500/proyecto",
+    focus: "Proyectos pequeños-medianos",
+    badge: "Para empezar",
+    tips: ["Crear gigs específicos", "Responder rápido", "Pedir reviews"],
+  },
+  {
+    name: "Toptal",
+    url: "https://www.toptal.com/",
+    icon: "img:https://cdn.simpleicons.org/toptal/3863A0",
+    description: "Red exclusiva de freelancers top 3%",
+    avgRate: "$80-200/hr",
+    focus: "Proyectos enterprise",
+    badge: "Elite",
+    tips: [
+      "Requiere proceso de selección riguroso",
+      "Proyectos de alta calidad",
+      "Clientes Fortune 500",
+    ],
+  },
+  {
+    name: "Freelancer",
+    url: "https://www.freelancer.com/",
+    icon: "img:https://cdn.simpleicons.org/freelancer/29B2FE",
+    description: "Plataforma global de freelancing",
+    avgRate: "$15-100/hr",
+    focus: "Todo tipo de proyectos",
+    badge: "Global",
+    tips: ["Competir por proyectos", "Construir reputación", "Exámenes de habilidades"],
+  },
+  {
+    name: "LinkedIn Services",
+    url: "https://www.linkedin.com/services/",
+    icon: "devicon-linkedin-plain colored",
+    description: "Ofrecer servicios desde tu perfil profesional",
+    avgRate: "Variable",
+    focus: "Red profesional",
+    badge: "Networking",
+    tips: ["Usar tu red existente", "Recomendaciones importantes", "Perfil optimizado"],
+  },
+  {
+    name: "GitHub Sponsors",
+    url: "https://github.com/sponsors",
+    icon: "devicon-github-original",
+    description: "Patrocinio para proyectos open source",
+    avgRate: "$5-1000+/mes",
+    focus: "Open Source",
+    badge: "OSS",
+    tips: ["Crear proyectos útiles", "Documentar bien", "Comunidad activa"],
+  },
 ];
 
 // Tipos de proyectos profesionales con precios y skills
 const projectTypes = [
-    {
-        id: 'landing',
-        category: 'web',
-        title: 'Landing Page Profesional',
-        description: 'Página de aterrizaje para empresas, productos o servicios con diseño moderno y optimizado para conversión.',
-        priceRange: '$200 - $800',
-        timeEstimate: '1-2 semanas',
-        difficulty: 'Principiante',
-        skills: ['HTML/CSS', 'JavaScript', 'Responsive', 'SEO'],
-        deliverables: ['Diseño responsive', 'Formulario de contacto', 'Integración analytics', 'Optimización SEO básica'],
-        tools: ['Figma', 'VS Code', 'GitHub', 'Netlify'],
-        clientType: 'Emprendedores, PYMEs',
-        hot: true
-    },
-    {
-        id: 'ecommerce',
-        category: 'web',
-        title: 'E-Commerce con WooCommerce/Shopify',
-        description: 'Tienda online completa con catálogo de productos, carrito de compras, pagos y gestión de inventario.',
-        priceRange: '$800 - $3,000',
-        timeEstimate: '3-6 semanas',
-        difficulty: 'Intermedio',
-        skills: ['WordPress', 'WooCommerce', 'Shopify', 'PHP', 'Payments'],
-        deliverables: ['Catálogo productos', 'Carrito de compras', 'Integración pagos', 'Panel admin'],
-        tools: ['WordPress', 'Shopify', 'Stripe', 'PayPal'],
-        clientType: 'Retailers, emprendedores',
-        hot: true
-    },
-    {
-        id: 'dashboard',
-        category: 'data',
-        title: 'Dashboard de Business Intelligence',
-        description: 'Tablero de control interactivo para visualizar KPIs, métricas de negocio y datos en tiempo real.',
-        priceRange: '$1,500 - $5,000',
-        timeEstimate: '4-8 semanas',
-        difficulty: 'Intermedio',
-        skills: ['Power BI', 'Tableau', 'SQL', 'Python', 'DAX'],
-        deliverables: ['Dashboard interactivo', 'Conexión datos', 'Visualizaciones', 'Documentación'],
-        tools: ['Power BI', 'Tableau', 'Excel', 'SQL Server'],
-        clientType: 'Empresas medianas-grandes',
-        hot: true
-    },
-    {
-        id: 'etl',
-        category: 'data',
-        title: 'Pipeline de Datos ETL',
-        description: 'Automatización de extracción, transformación y carga de datos desde múltiples fuentes.',
-        priceRange: '$2,000 - $8,000',
-        timeEstimate: '4-10 semanas',
-        difficulty: 'Avanzado',
-        skills: ['Python', 'SQL', 'Airflow', 'dbt', 'AWS/GCP'],
-        deliverables: ['Pipeline automatizado', 'Documentación', 'Monitoreo', 'Tests'],
-        tools: ['Airflow', 'dbt', 'Snowflake', 'Python'],
-        clientType: 'Empresas data-driven'
-    },
-    {
-        id: 'mobile-app',
-        category: 'mobile',
-        title: 'App Móvil Cross-Platform',
-        description: 'Aplicación móvil para iOS y Android con funcionalidades personalizadas.',
-        priceRange: '$3,000 - $15,000',
-        timeEstimate: '8-16 semanas',
-        difficulty: 'Avanzado',
-        skills: ['React Native', 'Flutter', 'Firebase', 'APIs'],
-        deliverables: ['App iOS', 'App Android', 'Backend', 'Testing'],
-        tools: ['React Native', 'Expo', 'Firebase', 'Figma'],
-        clientType: 'Startups, empresas'
-    },
-    {
-        id: 'automation',
-        category: 'automation',
-        title: 'Automatización de Procesos (RPA)',
-        description: 'Automatizar tareas repetitivas con bots y workflows inteligentes.',
-        priceRange: '$500 - $3,000',
-        timeEstimate: '2-6 semanas',
-        difficulty: 'Intermedio',
-        skills: ['n8n', 'Zapier', 'Python', 'APIs'],
-        deliverables: ['Workflows automatizados', 'Documentación', 'Capacitación'],
-        tools: ['n8n', 'Zapier', 'Make', 'UiPath'],
-        clientType: 'PYMEs, startups',
-        hot: true
-    },
-    {
-        id: 'api',
-        category: 'web',
-        title: 'API REST/GraphQL',
-        description: 'Desarrollo de APIs para conectar sistemas y exponer datos de forma segura.',
-        priceRange: '$1,000 - $5,000',
-        timeEstimate: '3-8 semanas',
-        difficulty: 'Intermedio',
-        skills: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'Docker'],
-        deliverables: ['API documentada', 'Autenticación', 'Tests', 'Deploy'],
-        tools: ['FastAPI', 'NestJS', 'Postman', 'Swagger'],
-        clientType: 'Empresas tech, startups'
-    },
-    {
-        id: 'consulting',
-        category: 'consulting',
-        title: 'Consultoría Técnica',
-        description: 'Asesoría para arquitectura, mejores prácticas, code review y mentoring.',
-        priceRange: '$50 - $150/hr',
-        timeEstimate: 'Por hora',
-        difficulty: 'Avanzado',
-        skills: ['Arquitectura', 'Code Review', 'Mentoring', 'Best Practices'],
-        deliverables: ['Recomendaciones', 'Documentación', 'Sesiones', 'Roadmap'],
-        tools: ['Diagramas', 'Docs', 'Video calls'],
-        clientType: 'CTOs, equipos dev'
-    },
+  {
+    id: "landing",
+    category: "web",
+    title: "Landing Page Profesional",
+    description:
+      "Página de aterrizaje para empresas, productos o servicios con diseño moderno y optimizado para conversión.",
+    priceRange: "$200 - $800",
+    timeEstimate: "1-2 semanas",
+    difficulty: "Principiante",
+    skills: ["HTML/CSS", "JavaScript", "Responsive", "SEO"],
+    deliverables: [
+      "Diseño responsive",
+      "Formulario de contacto",
+      "Integración analytics",
+      "Optimización SEO básica",
+    ],
+    tools: ["Figma", "VS Code", "GitHub", "Netlify"],
+    clientType: "Emprendedores, PYMEs",
+    hot: true,
+  },
+  {
+    id: "ecommerce",
+    category: "web",
+    title: "E-Commerce con WooCommerce/Shopify",
+    description:
+      "Tienda online completa con catálogo de productos, carrito de compras, pagos y gestión de inventario.",
+    priceRange: "$800 - $3,000",
+    timeEstimate: "3-6 semanas",
+    difficulty: "Intermedio",
+    skills: ["WordPress", "WooCommerce", "Shopify", "PHP", "Payments"],
+    deliverables: ["Catálogo productos", "Carrito de compras", "Integración pagos", "Panel admin"],
+    tools: ["WordPress", "Shopify", "Stripe", "PayPal"],
+    clientType: "Retailers, emprendedores",
+    hot: true,
+  },
+  {
+    id: "dashboard",
+    category: "data",
+    title: "Dashboard de Business Intelligence",
+    description:
+      "Tablero de control interactivo para visualizar KPIs, métricas de negocio y datos en tiempo real.",
+    priceRange: "$1,500 - $5,000",
+    timeEstimate: "4-8 semanas",
+    difficulty: "Intermedio",
+    skills: ["Power BI", "Tableau", "SQL", "Python", "DAX"],
+    deliverables: ["Dashboard interactivo", "Conexión datos", "Visualizaciones", "Documentación"],
+    tools: ["Power BI", "Tableau", "Excel", "SQL Server"],
+    clientType: "Empresas medianas-grandes",
+    hot: true,
+  },
+  {
+    id: "etl",
+    category: "data",
+    title: "Pipeline de Datos ETL",
+    description:
+      "Automatización de extracción, transformación y carga de datos desde múltiples fuentes.",
+    priceRange: "$2,000 - $8,000",
+    timeEstimate: "4-10 semanas",
+    difficulty: "Avanzado",
+    skills: ["Python", "SQL", "Airflow", "dbt", "AWS/GCP"],
+    deliverables: ["Pipeline automatizado", "Documentación", "Monitoreo", "Tests"],
+    tools: ["Airflow", "dbt", "Snowflake", "Python"],
+    clientType: "Empresas data-driven",
+  },
+  {
+    id: "mobile-app",
+    category: "mobile",
+    title: "App Móvil Cross-Platform",
+    description: "Aplicación móvil para iOS y Android con funcionalidades personalizadas.",
+    priceRange: "$3,000 - $15,000",
+    timeEstimate: "8-16 semanas",
+    difficulty: "Avanzado",
+    skills: ["React Native", "Flutter", "Firebase", "APIs"],
+    deliverables: ["App iOS", "App Android", "Backend", "Testing"],
+    tools: ["React Native", "Expo", "Firebase", "Figma"],
+    clientType: "Startups, empresas",
+  },
+  {
+    id: "automation",
+    category: "automation",
+    title: "Automatización de Procesos (RPA)",
+    description: "Automatizar tareas repetitivas con bots y workflows inteligentes.",
+    priceRange: "$500 - $3,000",
+    timeEstimate: "2-6 semanas",
+    difficulty: "Intermedio",
+    skills: ["n8n", "Zapier", "Python", "APIs"],
+    deliverables: ["Workflows automatizados", "Documentación", "Capacitación"],
+    tools: ["n8n", "Zapier", "Make", "UiPath"],
+    clientType: "PYMEs, startups",
+    hot: true,
+  },
+  {
+    id: "api",
+    category: "web",
+    title: "API REST/GraphQL",
+    description: "Desarrollo de APIs para conectar sistemas y exponer datos de forma segura.",
+    priceRange: "$1,000 - $5,000",
+    timeEstimate: "3-8 semanas",
+    difficulty: "Intermedio",
+    skills: ["Node.js", "Python", "FastAPI", "PostgreSQL", "Docker"],
+    deliverables: ["API documentada", "Autenticación", "Tests", "Deploy"],
+    tools: ["FastAPI", "NestJS", "Postman", "Swagger"],
+    clientType: "Empresas tech, startups",
+  },
+  {
+    id: "consulting",
+    category: "consulting",
+    title: "Consultoría Técnica",
+    description: "Asesoría para arquitectura, mejores prácticas, code review y mentoring.",
+    priceRange: "$50 - $150/hr",
+    timeEstimate: "Por hora",
+    difficulty: "Avanzado",
+    skills: ["Arquitectura", "Code Review", "Mentoring", "Best Practices"],
+    deliverables: ["Recomendaciones", "Documentación", "Sesiones", "Roadmap"],
+    tools: ["Diagramas", "Docs", "Video calls"],
+    clientType: "CTOs, equipos dev",
+  },
 ];
 
 // Consejos para empezar
 const gettingStartedTips = [
-    {
-        icon: 'fas fa-user-circle',
-        title: 'Crea tu Portafolio',
-        description: 'Un portafolio con 3-5 proyectos de calidad es esencial para conseguir clientes.',
-        action: 'Ver guía de portafolio',
-        link: `${baseUrl}/proyectos-estudio`
-    },
-    {
-        icon: 'fas fa-certificate',
-        title: 'Obtén Certificaciones',
-        description: 'Certificaciones de AWS, Google, Microsoft agregan credibilidad a tu perfil.',
-        action: 'Ver certificaciones',
-        link: `${baseUrl}/recursos#certifications`
-    },
-    {
-        icon: 'fas fa-file-contract',
-        title: 'Contrato y Facturación',
-        description: 'Siempre usa contratos claros y factura profesionalmente.',
-        action: 'Descargar templates',
-        link: '#templates'
-    },
-    {
-        icon: 'fas fa-star',
-        title: 'Construye Reputación',
-        description: 'Las reviews y testimonios son cruciales para conseguir más clientes.',
-        action: 'Tips de reputación',
-        link: '#reputation'
-    },
+  {
+    icon: "fas fa-user-circle",
+    title: "Crea tu Portafolio",
+    description: "Un portafolio con 3-5 proyectos de calidad es esencial para conseguir clientes.",
+    action: "Ver guía de portafolio",
+    link: `${baseUrl}/proyectos-estudio`,
+  },
+  {
+    icon: "fas fa-certificate",
+    title: "Obtén Certificaciones",
+    description: "Certificaciones de AWS, Google, Microsoft agregan credibilidad a tu perfil.",
+    action: "Ver certificaciones",
+    link: `${baseUrl}/recursos#certifications`,
+  },
+  {
+    icon: "fas fa-file-contract",
+    title: "Contrato y Facturación",
+    description: "Siempre usa contratos claros y factura profesionalmente.",
+    action: "Descargar templates",
+    link: "#templates",
+  },
+  {
+    icon: "fas fa-star",
+    title: "Construye Reputación",
+    description: "Las reviews y testimonios son cruciales para conseguir más clientes.",
+    action: "Tips de reputación",
+    link: "#reputation",
+  },
 ];
 
 // Recursos legales y de facturación Chile
 const billingResources = [
-    {
-        name: 'SII - Inicio de Actividades',
-        url: 'https://www.sii.cl/',
-        description: 'Inicia actividades como independiente en el SII',
-        icon: 'fas fa-landmark'
-    },
-    {
-        name: 'Boleta de Honorarios',
-        url: 'https://www.sii.cl/servicios_online/1039-1182.html',
-        description: 'Emite boletas de honorarios electrónicas',
-        icon: 'fas fa-file-invoice'
-    },
-    {
-        name: 'Régimen Pro-PYME',
-        url: 'https://www.sii.cl/destacados/propyme/',
-        description: 'Beneficios tributarios para emprendedores',
-        icon: 'fas fa-briefcase'
-    },
-    {
-        name: 'Bsale / Nubox',
-        url: 'https://www.bsale.cl/',
-        description: 'Facturación electrónica simplificada',
-        icon: 'fas fa-receipt'
-    },
+  {
+    name: "SII - Inicio de Actividades",
+    url: "https://www.sii.cl/",
+    description: "Inicia actividades como independiente en el SII",
+    icon: "fas fa-landmark",
+  },
+  {
+    name: "Boleta de Honorarios",
+    url: "https://www.sii.cl/servicios_online/1039-1182.html",
+    description: "Emite boletas de honorarios electrónicas",
+    icon: "fas fa-file-invoice",
+  },
+  {
+    name: "Régimen Pro-PYME",
+    url: "https://www.sii.cl/destacados/propyme/",
+    description: "Beneficios tributarios para emprendedores",
+    icon: "fas fa-briefcase",
+  },
+  {
+    name: "Bsale / Nubox",
+    url: "https://www.bsale.cl/",
+    description: "Facturación electrónica simplificada",
+    icon: "fas fa-receipt",
+  },
 ];
 ---
 
 <Layout title="Proyectos Profesionales | Analista Programador Computacional - DuocUC">
-    <Header />
+  <Header />
 
-    <main class="professional-projects-page">
-        <!-- Hero Section -->
-        <section class="page-hero">
-            <div class="hero-content" data-aos="fade-up">
-                <div class="hero-badge">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Experiencia Real</span>
+  <main class="professional-projects-page">
+    <!-- Hero Section -->
+    <section class="page-hero">
+      <div class="hero-content" data-aos="fade-up">
+        <div class="hero-badge">
+          <i class="fas fa-briefcase"></i>
+          <span>Experiencia Real</span>
+        </div>
+        <h1>Proyectos <span class="gradient-text">Profesionales</span></h1>
+        <p class="hero-subtitle">
+          Gana experiencia y dinero real trabajando en proyectos freelance. Aprende a facturar,
+          gestionar clientes y construir tu carrera como desarrollador independiente.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">$500-15K</span>
+            <span class="stat-label">Por proyecto</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">8+</span>
+            <span class="stat-label">Tipos de proyectos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">6</span>
+            <span class="stat-label">Plataformas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting Started Tips -->
+    <section class="getting-started-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-rocket"></i> Cómo Empezar</h2>
+        <p>Pasos esenciales para comenzar tu carrera freelance</p>
+      </div>
+      <div class="tips-grid">
+        {
+          gettingStartedTips.map((tip, idx) => (
+            <a
+              href={tip.link}
+              class="tip-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 100}
+            >
+              <div class="tip-icon">
+                <i class={tip.icon} />
+              </div>
+              <h3>{tip.title}</h3>
+              <p>{tip.description}</p>
+              <span class="tip-action">
+                {tip.action} <i class="fas fa-arrow-right" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Freelance Platforms -->
+    <section class="platforms-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-globe"></i> Plataformas para Freelancers</h2>
+        <p>Encuentra clientes y proyectos en estas plataformas</p>
+      </div>
+      <div class="platforms-grid">
+        {
+          freelancePlatforms.map((platform, idx) => (
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener"
+              class="platform-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 75}
+            >
+              <div class="platform-header">
+                <div class="platform-icon">
+                  {platform.icon.startsWith("devicon") ? (
+                    <i class={platform.icon} />
+                  ) : platform.icon.startsWith("img:") ? (
+                    <img
+                      src={platform.icon.replace("img:", "")}
+                      alt={platform.name}
+                      width="32"
+                      height="32"
+                    />
+                  ) : (
+                    <i class={platform.icon} />
+                  )}
                 </div>
-                <h1>Proyectos <span class="gradient-text">Profesionales</span></h1>
-                <p class="hero-subtitle">
-                    Gana experiencia y dinero real trabajando en proyectos freelance.
-                    Aprende a facturar, gestionar clientes y construir tu carrera como desarrollador independiente.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-value">$500-15K</span>
-                        <span class="stat-label">Por proyecto</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">8+</span>
-                        <span class="stat-label">Tipos de proyectos</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value">6</span>
-                        <span class="stat-label">Plataformas</span>
-                    </div>
+                <div class="platform-info">
+                  <h3>{platform.name}</h3>
+                  <span
+                    class={`platform-badge badge-${platform.badge.toLowerCase().replace(" ", "-")}`}
+                  >
+                    {platform.badge}
+                  </span>
                 </div>
-            </div>
-        </section>
-
-        <!-- Getting Started Tips -->
-        <section class="getting-started-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-rocket"></i> Cómo Empezar</h2>
-                <p>Pasos esenciales para comenzar tu carrera freelance</p>
-            </div>
-            <div class="tips-grid">
-                {gettingStartedTips.map((tip, idx) => (
-                    <a href={tip.link} class="tip-card glass-card" data-aos="fade-up" data-aos-delay={idx * 100}>
-                        <div class="tip-icon">
-                            <i class={tip.icon}></i>
-                        </div>
-                        <h3>{tip.title}</h3>
-                        <p>{tip.description}</p>
-                        <span class="tip-action">{tip.action} <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Freelance Platforms -->
-        <section class="platforms-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-globe"></i> Plataformas para Freelancers</h2>
-                <p>Encuentra clientes y proyectos en estas plataformas</p>
-            </div>
-            <div class="platforms-grid">
-                {freelancePlatforms.map((platform, idx) => (
-                    <a href={platform.url} target="_blank" rel="noopener" class="platform-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
-                        <div class="platform-header">
-                            <div class="platform-icon">
-                                {platform.icon.startsWith('devicon') ? (
-                                    <i class={platform.icon}></i>
-                                ) : platform.icon.startsWith('img:') ? (
-                                    <img src={platform.icon.replace('img:', '')} alt={platform.name} width="32" height="32" />
-                                ) : (
-                                    <i class={platform.icon}></i>
-                                )}
-                            </div>
-                            <div class="platform-info">
-                                <h3>{platform.name}</h3>
-                                <span class={`platform-badge badge-${platform.badge.toLowerCase().replace(' ', '-')}`}>{platform.badge}</span>
-                            </div>
-                        </div>
-                        <p class="platform-desc">{platform.description}</p>
-                        <div class="platform-stats">
-                            <div class="platform-stat">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>{platform.avgRate}</span>
-                            </div>
-                            <div class="platform-stat">
-                                <i class="fas fa-crosshairs"></i>
-                                <span>{platform.focus}</span>
-                            </div>
-                        </div>
-                        <div class="platform-tips">
-                            <strong><i class="fas fa-lightbulb"></i> Tips:</strong>
-                            <ul>
-                                {platform.tips.map(tip => (
-                                    <li>{tip}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Project Types -->
-        <section class="projects-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-folder-open"></i> Tipos de Proyectos y Precios</h2>
-                <p>Proyectos reales con rangos de precios del mercado</p>
-            </div>
-
-            <!-- Category Filters -->
-            <div class="category-filters" data-aos="fade-up">
-                {projectCategories.map(cat => (
-                    <button class={`filter-btn ${cat.id === 'all' ? 'active' : ''}`} data-filter={cat.id}>
-                        <i class={cat.icon}></i>
-                        <span>{cat.name}</span>
-                    </button>
-                ))}
-            </div>
-
-            <div class="projects-grid">
-                {projectTypes.map((project, idx) => (
-                    <div class={`project-type-card glass-card ${project.hot ? 'hot' : ''}`}
-                         data-category={project.category}
-                         data-aos="fade-up"
-                         data-aos-delay={idx * 50}>
-                        <div class="project-header">
-                            <h3>{project.title}</h3>
-                            {project.hot && <span class="hot-badge">En demanda</span>}
-                        </div>
-                        <p class="project-desc">{project.description}</p>
-
-                        <div class="project-meta">
-                            <div class="meta-item price">
-                                <i class="fas fa-tag"></i>
-                                <span>{project.priceRange}</span>
-                            </div>
-                            <div class="meta-item time">
-                                <i class="fas fa-clock"></i>
-                                <span>{project.timeEstimate}</span>
-                            </div>
-                            <div class={`meta-item difficulty ${project.difficulty.toLowerCase()}`}>
-                                <i class="fas fa-signal"></i>
-                                <span>{project.difficulty}</span>
-                            </div>
-                        </div>
-
-                        <div class="project-skills">
-                            <strong>Skills requeridas:</strong>
-                            <div class="skills-list">
-                                {project.skills.map(skill => (
-                                    <span class="skill-tag">{skill}</span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div class="project-deliverables">
-                            <strong>Entregables típicos:</strong>
-                            <ul>
-                                {project.deliverables.map(d => (
-                                    <li><i class="fas fa-check"></i> {d}</li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div class="project-footer">
-                            <div class="client-type">
-                                <i class="fas fa-users"></i>
-                                <span>{project.clientType}</span>
-                            </div>
-                            <div class="project-tools">
-                                {project.tools.slice(0, 3).map(tool => (
-                                    <span class="tool-badge">{tool}</span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Billing & Legal Resources (Chile) -->
-        <section id="templates" class="billing-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-file-invoice-dollar"></i> Facturación y Legal (Chile)</h2>
-                <p>Recursos para facturar profesionalmente como independiente</p>
-            </div>
-            <div class="billing-grid">
-                {billingResources.map((resource, idx) => (
-                    <a href={resource.url} target="_blank" rel="noopener" class="billing-card glass-card" data-aos="fade-up" data-aos-delay={idx * 75}>
-                        <div class="billing-icon">
-                            <i class={resource.icon}></i>
-                        </div>
-                        <div class="billing-info">
-                            <h3>{resource.name}</h3>
-                            <p>{resource.description}</p>
-                        </div>
-                        <i class="fas fa-external-link-alt link-icon"></i>
-                    </a>
-                ))}
-            </div>
-
-            <div class="billing-tips glass-card" data-aos="fade-up">
-                <h3><i class="fas fa-info-circle"></i> Tips de Facturación</h3>
-                <div class="tips-content">
-                    <div class="tip-item">
-                        <strong>1. Inicio de Actividades</strong>
-                        <p>Debes iniciar actividades en el SII antes de emitir tu primera boleta.</p>
-                    </div>
-                    <div class="tip-item">
-                        <strong>2. Boleta de Honorarios</strong>
-                        <p>Para servicios profesionales, emite boleta de honorarios (retención 13.75% 2025).</p>
-                    </div>
-                    <div class="tip-item">
-                        <strong>3. Factura Exenta</strong>
-                        <p>Si facturas a empresas extranjeras, puedes emitir factura exenta de IVA.</p>
-                    </div>
-                    <div class="tip-item">
-                        <strong>4. Contrato</strong>
-                        <p>SIEMPRE firma un contrato antes de comenzar. Define alcance, pagos y plazos.</p>
-                    </div>
+              </div>
+              <p class="platform-desc">{platform.description}</p>
+              <div class="platform-stats">
+                <div class="platform-stat">
+                  <i class="fas fa-dollar-sign" />
+                  <span>{platform.avgRate}</span>
                 </div>
-            </div>
-        </section>
+                <div class="platform-stat">
+                  <i class="fas fa-crosshairs" />
+                  <span>{platform.focus}</span>
+                </div>
+              </div>
+              <div class="platform-tips">
+                <strong>
+                  <i class="fas fa-lightbulb" /> Tips:
+                </strong>
+                <ul>
+                  {platform.tips.map((tip) => (
+                    <li>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
 
-        <!-- Reputation Section -->
-        <section id="reputation" class="reputation-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2><i class="fas fa-star"></i> Construye tu Reputación</h2>
-                <p>La reputación es tu activo más valioso como freelancer</p>
-            </div>
-            <div class="reputation-grid">
-                <div class="reputation-card glass-card" data-aos="fade-up">
-                    <div class="rep-icon"><i class="fas fa-comments"></i></div>
-                    <h3>Comunicación Clara</h3>
-                    <p>Responde rápido, sé proactivo con updates y maneja expectativas desde el inicio.</p>
-                </div>
-                <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="rep-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Cumple Plazos</h3>
-                    <p>Entrega a tiempo o antes. Si hay delays, comunica inmediatamente.</p>
-                </div>
-                <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="rep-icon"><i class="fas fa-gem"></i></div>
-                    <h3>Calidad Consistente</h3>
-                    <p>Entrega trabajo de calidad consistente. Un trabajo mediocre arruina tu reputación.</p>
-                </div>
-                <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="rep-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>Pide Reviews</h3>
-                    <p>Al terminar exitosamente, pide una review/testimonio. Son oro para tu perfil.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Project Types -->
+    <section class="projects-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-folder-open"></i> Tipos de Proyectos y Precios</h2>
+        <p>Proyectos reales con rangos de precios del mercado</p>
+      </div>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content glass-card" data-aos="zoom-in">
-                <h2>¿Listo para tu Primer Proyecto?</h2>
-                <p>Construye tu portafolio con proyectos de práctica antes de buscar clientes reales</p>
-                <div class="cta-buttons">
-                    <a href={`${baseUrl}/proyectos-estudio`} class="cta-btn primary">
-                        <i class="fas fa-laptop-code"></i> Proyectos de Estudio
-                    </a>
-                    <a href={`${baseUrl}/recursos`} class="cta-btn secondary">
-                        <i class="fas fa-tools"></i> Herramientas y Recursos
-                    </a>
+      <!-- Category Filters -->
+      <div class="category-filters" data-aos="fade-up">
+        {
+          projectCategories.map((cat) => (
+            <button class={`filter-btn ${cat.id === "all" ? "active" : ""}`} data-filter={cat.id}>
+              <i class={cat.icon} />
+              <span>{cat.name}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="projects-grid">
+        {
+          projectTypes.map((project, idx) => (
+            <div
+              class={`project-type-card glass-card ${project.hot ? "hot" : ""}`}
+              data-category={project.category}
+              data-aos="fade-up"
+              data-aos-delay={idx * 50}
+            >
+              <div class="project-header">
+                <h3>{project.title}</h3>
+                {project.hot && <span class="hot-badge">En demanda</span>}
+              </div>
+              <p class="project-desc">{project.description}</p>
+
+              <div class="project-meta">
+                <div class="meta-item price">
+                  <i class="fas fa-tag" />
+                  <span>{project.priceRange}</span>
                 </div>
+                <div class="meta-item time">
+                  <i class="fas fa-clock" />
+                  <span>{project.timeEstimate}</span>
+                </div>
+                <div class={`meta-item difficulty ${project.difficulty.toLowerCase()}`}>
+                  <i class="fas fa-signal" />
+                  <span>{project.difficulty}</span>
+                </div>
+              </div>
+
+              <div class="project-skills">
+                <strong>Skills requeridas:</strong>
+                <div class="skills-list">
+                  {project.skills.map((skill) => (
+                    <span class="skill-tag">{skill}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="project-deliverables">
+                <strong>Entregables típicos:</strong>
+                <ul>
+                  {project.deliverables.map((d) => (
+                    <li>
+                      <i class="fas fa-check" /> {d}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="project-footer">
+                <div class="client-type">
+                  <i class="fas fa-users" />
+                  <span>{project.clientType}</span>
+                </div>
+                <div class="project-tools">
+                  {project.tools.slice(0, 3).map((tool) => (
+                    <span class="tool-badge">{tool}</span>
+                  ))}
+                </div>
+              </div>
             </div>
-        </section>
-    </main>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Billing & Legal Resources (Chile) -->
+    <section id="templates" class="billing-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-file-invoice-dollar"></i> Facturación y Legal (Chile)</h2>
+        <p>Recursos para facturar profesionalmente como independiente</p>
+      </div>
+      <div class="billing-grid">
+        {
+          billingResources.map((resource, idx) => (
+            <a
+              href={resource.url}
+              target="_blank"
+              rel="noopener"
+              class="billing-card glass-card"
+              data-aos="fade-up"
+              data-aos-delay={idx * 75}
+            >
+              <div class="billing-icon">
+                <i class={resource.icon} />
+              </div>
+              <div class="billing-info">
+                <h3>{resource.name}</h3>
+                <p>{resource.description}</p>
+              </div>
+              <i class="fas fa-external-link-alt link-icon" />
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="billing-tips glass-card" data-aos="fade-up">
+        <h3><i class="fas fa-info-circle"></i> Tips de Facturación</h3>
+        <div class="tips-content">
+          <div class="tip-item">
+            <strong>1. Inicio de Actividades</strong>
+            <p>Debes iniciar actividades en el SII antes de emitir tu primera boleta.</p>
+          </div>
+          <div class="tip-item">
+            <strong>2. Boleta de Honorarios</strong>
+            <p>Para servicios profesionales, emite boleta de honorarios (retención 13.75% 2025).</p>
+          </div>
+          <div class="tip-item">
+            <strong>3. Factura Exenta</strong>
+            <p>Si facturas a empresas extranjeras, puedes emitir factura exenta de IVA.</p>
+          </div>
+          <div class="tip-item">
+            <strong>4. Contrato</strong>
+            <p>SIEMPRE firma un contrato antes de comenzar. Define alcance, pagos y plazos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reputation Section -->
+    <section id="reputation" class="reputation-section">
+      <div class="section-header" data-aos="fade-up">
+        <h2><i class="fas fa-star"></i> Construye tu Reputación</h2>
+        <p>La reputación es tu activo más valioso como freelancer</p>
+      </div>
+      <div class="reputation-grid">
+        <div class="reputation-card glass-card" data-aos="fade-up">
+          <div class="rep-icon"><i class="fas fa-comments"></i></div>
+          <h3>Comunicación Clara</h3>
+          <p>Responde rápido, sé proactivo con updates y maneja expectativas desde el inicio.</p>
+        </div>
+        <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="rep-icon"><i class="fas fa-clock"></i></div>
+          <h3>Cumple Plazos</h3>
+          <p>Entrega a tiempo o antes. Si hay delays, comunica inmediatamente.</p>
+        </div>
+        <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="rep-icon"><i class="fas fa-gem"></i></div>
+          <h3>Calidad Consistente</h3>
+          <p>Entrega trabajo de calidad consistente. Un trabajo mediocre arruina tu reputación.</p>
+        </div>
+        <div class="reputation-card glass-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="rep-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h3>Pide Reviews</h3>
+          <p>Al terminar exitosamente, pide una review/testimonio. Son oro para tu perfil.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content glass-card" data-aos="zoom-in">
+        <h2>¿Listo para tu Primer Proyecto?</h2>
+        <p>Construye tu portafolio con proyectos de práctica antes de buscar clientes reales</p>
+        <div class="cta-buttons">
+          <a href={`${baseUrl}/proyectos-estudio`} class="cta-btn primary">
+            <i class="fas fa-laptop-code"></i> Proyectos de Estudio
+          </a>
+          <a href={`${baseUrl}/recursos`} class="cta-btn secondary">
+            <i class="fas fa-tools"></i> Herramientas y Recursos
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <script is:inline>
-document.addEventListener('astro:page-load', initProfessionalProjects);
-document.addEventListener('DOMContentLoaded', initProfessionalProjects);
+  document.addEventListener("astro:page-load", initProfessionalProjects);
+  document.addEventListener("DOMContentLoaded", initProfessionalProjects);
 
-function initProfessionalProjects() {
+  function initProfessionalProjects() {
     // Category filters
-    const filterBtns = document.querySelectorAll('.category-filters .filter-btn');
-    const projectCards = document.querySelectorAll('.project-type-card');
+    const filterBtns = document.querySelectorAll(".category-filters .filter-btn");
+    const projectCards = document.querySelectorAll(".project-type-card");
 
-    filterBtns.forEach(btn => {
-        btn.onclick = () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    filterBtns.forEach((btn) => {
+      btn.onclick = () => {
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-            const filter = btn.dataset.filter;
-            projectCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'flex';
-                    card.style.animation = 'fadeIn 0.3s ease';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        };
+        const filter = btn.dataset.filter;
+        projectCards.forEach((card) => {
+          if (filter === "all" || card.dataset.category === filter) {
+            card.style.display = "flex";
+            card.style.animation = "fadeIn 0.3s ease";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      };
     });
-}
+  }
 </script>
 
 <style>
-    .professional-projects-page {
-        padding-top: 80px;
-    }
+  .professional-projects-page {
+    padding-top: 80px;
+  }
 
-    /* Hero Section */
-    .page-hero {
-        padding: 4rem 2rem;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
-    }
+  /* Hero Section */
+  .page-hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #00d4ff;
-        margin-bottom: 1.5rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #00d4ff;
+    margin-bottom: 1.5rem;
+  }
 
+  .page-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #f8fafc;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .hero-stats .stat {
+    text-align: center;
+  }
+
+  .hero-stats .stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #00d4ff;
+  }
+
+  .hero-stats .stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+
+  /* Sections Common */
+  section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-header h2 i {
+    color: #00d4ff;
+    margin-right: 0.75rem;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+  }
+
+  .glass-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Getting Started Tips */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip-card {
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .tip-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #00d4ff;
+  }
+
+  .tip-card h3 {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .tip-action {
+    color: #00d4ff;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Platforms Section */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .platform-card {
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .platform-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .platform-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    font-size: 1.5rem;
+  }
+
+  .platform-icon img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .platform-info h3 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .platform-badge {
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .badge-popular {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+  }
+  .badge-para-empezar {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+  }
+  .badge-elite {
+    background: rgba(124, 58, 237, 0.2);
+    color: #a78bfa;
+  }
+  .badge-global {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+  }
+  .badge-networking {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+  }
+  .badge-oss {
+    background: rgba(236, 72, 153, 0.2);
+    color: #f472b6;
+  }
+
+  .platform-desc {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .platform-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .platform-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+  }
+
+  .platform-stat i {
+    color: #00d4ff;
+  }
+
+  .platform-tips {
+    font-size: 0.85rem;
+  }
+
+  .platform-tips strong {
+    color: #fbbf24;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .platform-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .platform-tips li {
+    color: #94a3b8;
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.25rem;
+  }
+
+  .platform-tips li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #64748b;
+  }
+
+  /* Category Filters */
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #f8fafc;
+  }
+
+  .filter-btn.active {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.5);
+    color: #00d4ff;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-type-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .project-type-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .project-type-card.hot {
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-header h3 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+  }
+
+  .hot-badge {
+    padding: 0.25rem 0.75rem;
+    background: rgba(239, 68, 68, 0.2);
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: #f87171;
+  }
+
+  .project-desc {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.85rem;
+  }
+
+  .meta-item.price {
+    color: #10b981;
+  }
+
+  .meta-item.time {
+    color: #60a5fa;
+  }
+
+  .meta-item.difficulty {
+    color: #fbbf24;
+  }
+
+  .meta-item.difficulty.avanzado {
+    color: #f87171;
+  }
+
+  .meta-item.difficulty.principiante {
+    color: #10b981;
+  }
+
+  .project-skills strong,
+  .project-deliverables strong {
+    display: block;
+    color: #cbd5e1;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    padding: 0.25rem 0.6rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #00d4ff;
+  }
+
+  .project-deliverables ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.25rem;
+  }
+
+  .project-deliverables li {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .project-deliverables li i {
+    color: #10b981;
+    font-size: 0.75rem;
+  }
+
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    margin-top: auto;
+  }
+
+  .client-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+    font-size: 0.85rem;
+  }
+
+  .project-tools {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tool-badge {
+    padding: 0.2rem 0.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #a78bfa;
+  }
+
+  /* Billing Section */
+  .billing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .billing-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .billing-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .billing-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 10px;
+    color: #00d4ff;
+    font-size: 1.2rem;
+  }
+
+  .billing-info h3 {
+    color: #f8fafc;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .billing-info p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+  }
+
+  .link-icon {
+    color: #64748b;
+    margin-left: auto;
+  }
+
+  .billing-tips {
+    padding: 2rem;
+  }
+
+  .billing-tips h3 {
+    color: #f8fafc;
+    margin-bottom: 1.5rem;
+  }
+
+  .billing-tips h3 i {
+    color: #fbbf24;
+    margin-right: 0.5rem;
+  }
+
+  .tips-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tip-item strong {
+    color: #00d4ff;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-item p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  /* Reputation Section */
+  .reputation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .reputation-card {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .rep-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 16px;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    color: #00d4ff;
+  }
+
+  .reputation-card h3 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .reputation-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+  }
+
+  .cta-content {
+    text-align: center;
+    padding: 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-content h2 {
+    color: #f8fafc;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-content p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    color: white;
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Light Mode */
+  :global(body.light-mode) .page-hero h1,
+  :global(body.light-mode) .section-header h2,
+  :global(body.light-mode) .tip-card h3,
+  :global(body.light-mode) .platform-info h3,
+  :global(body.light-mode) .project-header h3,
+  :global(body.light-mode) .billing-info h3,
+  :global(body.light-mode) .billing-tips h3,
+  :global(body.light-mode) .reputation-card h3,
+  :global(body.light-mode) .cta-content h2 {
+    color: #1e293b;
+  }
+
+  :global(body.light-mode) .hero-subtitle,
+  :global(body.light-mode) .section-header p,
+  :global(body.light-mode) .tip-card p,
+  :global(body.light-mode) .platform-desc,
+  :global(body.light-mode) .project-desc,
+  :global(body.light-mode) .billing-info p,
+  :global(body.light-mode) .tip-item p,
+  :global(body.light-mode) .reputation-card p,
+  :global(body.light-mode) .cta-content p {
+    color: #64748b;
+  }
+
+  :global(body.light-mode) .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  :global(body.light-mode) .filter-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: #64748b;
+  }
+
+  :global(body.light-mode) .filter-btn.active {
+    background: rgba(0, 212, 255, 0.1);
+    color: #0891b2;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .page-hero h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        color: #f8fafc;
-    }
-
-    .gradient-text {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-subtitle {
-        font-size: 1.15rem;
-        color: #94a3b8;
-        line-height: 1.7;
-        margin-bottom: 2rem;
+      font-size: 2rem;
     }
 
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
+      gap: 1.5rem;
     }
 
-    .hero-stats .stat {
-        text-align: center;
-    }
-
-    .hero-stats .stat-value {
-        display: block;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #00d4ff;
-    }
-
-    .hero-stats .stat-label {
-        font-size: 0.85rem;
-        color: #64748b;
-    }
-
-    /* Sections Common */
-    section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 2.5rem;
-    }
-
-    .section-header h2 {
-        font-size: 2rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .section-header h2 i {
-        color: #00d4ff;
-        margin-right: 0.75rem;
-    }
-
-    .section-header p {
-        color: #94a3b8;
-    }
-
-    .glass-card {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        backdrop-filter: blur(10px);
-    }
-
-    /* Getting Started Tips */
-    .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .tip-card {
-        padding: 1.5rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .tip-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .tip-icon {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 12px;
-        margin-bottom: 1rem;
-        font-size: 1.25rem;
-        color: #00d4ff;
-    }
-
-    .tip-card h3 {
-        color: #f8fafc;
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .tip-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .tip-action {
-        color: #00d4ff;
-        font-size: 0.85rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    /* Platforms Section */
-    .platforms-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .platform-card {
-        padding: 1.5rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .platform-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .platform-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .platform-icon {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        font-size: 1.5rem;
-    }
-
-    .platform-icon img {
-        width: 28px;
-        height: 28px;
-    }
-
-    .platform-info h3 {
-        color: #f8fafc;
-        font-size: 1.2rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .platform-badge {
-        padding: 0.2rem 0.6rem;
-        border-radius: 10px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-
-    .badge-popular { background: rgba(0, 212, 255, 0.2); color: #00d4ff; }
-    .badge-para-empezar { background: rgba(16, 185, 129, 0.2); color: #10b981; }
-    .badge-elite { background: rgba(124, 58, 237, 0.2); color: #a78bfa; }
-    .badge-global { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
-    .badge-networking { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .badge-oss { background: rgba(236, 72, 153, 0.2); color: #f472b6; }
-
-    .platform-desc {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .platform-stats {
-        display: flex;
-        gap: 1.5rem;
-        margin-bottom: 1rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .platform-stat {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.85rem;
-        color: #cbd5e1;
-    }
-
-    .platform-stat i {
-        color: #00d4ff;
-    }
-
-    .platform-tips {
-        font-size: 0.85rem;
-    }
-
-    .platform-tips strong {
-        color: #fbbf24;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .platform-tips ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .platform-tips li {
-        color: #94a3b8;
-        padding-left: 1rem;
-        position: relative;
-        margin-bottom: 0.25rem;
-    }
-
-    .platform-tips li::before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        color: #64748b;
-    }
-
-    /* Category Filters */
-    .category-filters {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-    }
-
-    .filter-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover {
-        border-color: rgba(0, 212, 255, 0.3);
-        color: #f8fafc;
-    }
-
-    .filter-btn.active {
-        background: rgba(0, 212, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.5);
-        color: #00d4ff;
-    }
-
-    /* Projects Grid */
+    .platforms-grid,
     .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .project-type-card {
-        padding: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        transition: all 0.3s ease;
-    }
-
-    .project-type-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .project-type-card.hot {
-        border-color: rgba(239, 68, 68, 0.3);
-    }
-
-    .project-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-
-    .project-header h3 {
-        color: #f8fafc;
-        font-size: 1.2rem;
-    }
-
-    .hot-badge {
-        padding: 0.25rem 0.75rem;
-        background: rgba(239, 68, 68, 0.2);
-        border-radius: 10px;
-        font-size: 0.75rem;
-        color: #f87171;
-    }
-
-    .project-desc {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-
-    .project-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .meta-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        font-size: 0.85rem;
-    }
-
-    .meta-item.price {
-        color: #10b981;
-    }
-
-    .meta-item.time {
-        color: #60a5fa;
-    }
-
-    .meta-item.difficulty {
-        color: #fbbf24;
-    }
-
-    .meta-item.difficulty.avanzado {
-        color: #f87171;
-    }
-
-    .meta-item.difficulty.principiante {
-        color: #10b981;
-    }
-
-    .project-skills strong,
-    .project-deliverables strong {
-        display: block;
-        color: #cbd5e1;
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .skills-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-
-    .skill-tag {
-        padding: 0.25rem 0.6rem;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 6px;
-        font-size: 0.8rem;
-        color: #00d4ff;
+      grid-template-columns: 1fr;
     }
 
     .project-deliverables ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.25rem;
+      grid-template-columns: 1fr;
     }
+  }
 
-    .project-deliverables li {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
     }
-
-    .project-deliverables li i {
-        color: #10b981;
-        font-size: 0.75rem;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-
-    .project-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        margin-top: auto;
-    }
-
-    .client-type {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #64748b;
-        font-size: 0.85rem;
-    }
-
-    .project-tools {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .tool-badge {
-        padding: 0.2rem 0.5rem;
-        background: rgba(124, 58, 237, 0.1);
-        border-radius: 4px;
-        font-size: 0.75rem;
-        color: #a78bfa;
-    }
-
-    /* Billing Section */
-    .billing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    .billing-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .billing-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(0, 212, 255, 0.3);
-    }
-
-    .billing-icon {
-        width: 45px;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 10px;
-        color: #00d4ff;
-        font-size: 1.2rem;
-    }
-
-    .billing-info h3 {
-        color: #f8fafc;
-        font-size: 1rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .billing-info p {
-        color: #94a3b8;
-        font-size: 0.85rem;
-    }
-
-    .link-icon {
-        color: #64748b;
-        margin-left: auto;
-    }
-
-    .billing-tips {
-        padding: 2rem;
-    }
-
-    .billing-tips h3 {
-        color: #f8fafc;
-        margin-bottom: 1.5rem;
-    }
-
-    .billing-tips h3 i {
-        color: #fbbf24;
-        margin-right: 0.5rem;
-    }
-
-    .tips-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .tip-item strong {
-        color: #00d4ff;
-        display: block;
-        margin-bottom: 0.5rem;
-    }
-
-    .tip-item p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    /* Reputation Section */
-    .reputation-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .reputation-card {
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .rep-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 16px;
-        margin: 0 auto 1rem;
-        font-size: 1.5rem;
-        color: #00d4ff;
-    }
-
-    .reputation-card h3 {
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .reputation-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-    }
-
-    .cta-content {
-        text-align: center;
-        padding: 3rem;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    .cta-content h2 {
-        color: #f8fafc;
-        font-size: 1.75rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .cta-content p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        color: white;
-    }
-
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        color: #f8fafc;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .cta-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Light Mode */
-    :global(body.light-mode) .page-hero h1,
-    :global(body.light-mode) .section-header h2,
-    :global(body.light-mode) .tip-card h3,
-    :global(body.light-mode) .platform-info h3,
-    :global(body.light-mode) .project-header h3,
-    :global(body.light-mode) .billing-info h3,
-    :global(body.light-mode) .billing-tips h3,
-    :global(body.light-mode) .reputation-card h3,
-    :global(body.light-mode) .cta-content h2 {
-        color: #1e293b;
-    }
-
-    :global(body.light-mode) .hero-subtitle,
-    :global(body.light-mode) .section-header p,
-    :global(body.light-mode) .tip-card p,
-    :global(body.light-mode) .platform-desc,
-    :global(body.light-mode) .project-desc,
-    :global(body.light-mode) .billing-info p,
-    :global(body.light-mode) .tip-item p,
-    :global(body.light-mode) .reputation-card p,
-    :global(body.light-mode) .cta-content p {
-        color: #64748b;
-    }
-
-    :global(body.light-mode) .glass-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(148, 163, 184, 0.2);
-    }
-
-    :global(body.light-mode) .filter-btn {
-        background: rgba(255, 255, 255, 0.8);
-        color: #64748b;
-    }
-
-    :global(body.light-mode) .filter-btn.active {
-        background: rgba(0, 212, 255, 0.1);
-        color: #0891b2;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .page-hero h1 {
-            font-size: 2rem;
-        }
-
-        .hero-stats {
-            gap: 1.5rem;
-        }
-
-        .platforms-grid,
-        .projects-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .project-deliverables ul {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  }
 </style>

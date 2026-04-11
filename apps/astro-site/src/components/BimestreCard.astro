@@ -1,36 +1,44 @@
 ---
 interface Props {
-    number: string;
-    title: string;
-    subjects: Array<{
-        icon: string;
-        iconType?: 'devicon' | 'fontawesome';
-        name: string;
-    }>;
-    techIcons?: string[];
-    delay?: number;
+  number: string;
+  title: string;
+  subjects: Array<{
+    icon: string;
+    iconType?: "devicon" | "fontawesome";
+    name: string;
+  }>;
+  techIcons?: string[];
+  delay?: number;
 }
 
 const { number, title, subjects, techIcons = [], delay = 100 } = Astro.props;
 const repoUrl = `https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/tree/main/Bimestre%20${number}`;
 ---
 
-<a href={repoUrl} class="bimestre-card glass-card" data-bimestre={number} data-aos="fade-up" data-aos-delay={delay}>
-    <div class="card-header">
-        <span class="bimestre-number">B{number}</span>
-        <div class="tech-icons">
-            {techIcons.map(icon => (
-                <i class={`devicon-${icon} colored`}></i>
-            ))}
-        </div>
+<a
+  href={repoUrl}
+  class="bimestre-card glass-card"
+  data-bimestre={number}
+  data-aos="fade-up"
+  data-aos-delay={delay}
+>
+  <div class="card-header">
+    <span class="bimestre-number">B{number}</span>
+    <div class="tech-icons">
+      {techIcons.map((icon) => <i class={`devicon-${icon} colored`} />)}
     </div>
-    <h3 class="card-title">{title}</h3>
-    <ul class="card-subjects">
-        {subjects.map(subject => (
-            <li>
-                <i class={subject.iconType === 'fontawesome' ? subject.icon : `devicon-${subject.icon}`}></i>
-                {subject.name}
-            </li>
-        ))}
-    </ul>
+  </div>
+  <h3 class="card-title">{title}</h3>
+  <ul class="card-subjects">
+    {
+      subjects.map((subject) => (
+        <li>
+          <i
+            class={subject.iconType === "fontawesome" ? subject.icon : `devicon-${subject.icon}`}
+          />
+          {subject.name}
+        </li>
+      ))
+    }
+  </ul>
 </a>

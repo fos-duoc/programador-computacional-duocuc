@@ -63,7 +63,7 @@
 
       <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" id="ticket-search" placeholder="Buscar tickets...">
+        <input type="text" id="ticket-search" placeholder="Buscar tickets..." />
       </div>
 
       <div class="filter-group">
@@ -71,9 +71,15 @@
         <div class="filter-chips" id="type-filters">
           <button class="filter-chip active" data-filter="all">Todos</button>
           <button class="filter-chip" data-filter="bug"><i class="fas fa-bug"></i> Bug</button>
-          <button class="filter-chip" data-filter="feature"><i class="fas fa-star"></i> Feature</button>
-          <button class="filter-chip" data-filter="task"><i class="fas fa-check-square"></i> Task</button>
-          <button class="filter-chip" data-filter="improvement"><i class="fas fa-arrow-up"></i> Improvement</button>
+          <button class="filter-chip" data-filter="feature"
+            ><i class="fas fa-star"></i> Feature</button
+          >
+          <button class="filter-chip" data-filter="task"
+            ><i class="fas fa-check-square"></i> Task</button
+          >
+          <button class="filter-chip" data-filter="improvement"
+            ><i class="fas fa-arrow-up"></i> Improvement</button
+          >
         </div>
       </div>
 
@@ -235,12 +241,12 @@
       </div>
 
       <div id="ticket-form" class="ticket-form">
-        <input type="hidden" id="ticket-id">
+        <input type="hidden" id="ticket-id" />
 
         <div class="form-row">
           <div class="form-group full">
             <label>Título <span class="required">*</span></label>
-            <input type="text" id="ticket-title" placeholder="Describe brevemente el ticket">
+            <input type="text" id="ticket-title" placeholder="Describe brevemente el ticket" />
           </div>
         </div>
 
@@ -280,24 +286,25 @@
           </div>
           <div class="form-group">
             <label>Asignado a</label>
-            <input type="text" id="ticket-assignee" placeholder="Nombre del responsable">
+            <input type="text" id="ticket-assignee" placeholder="Nombre del responsable" />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label>Reportado por</label>
-            <input type="text" id="ticket-reporter" placeholder="Nombre del reportador">
+            <input type="text" id="ticket-reporter" placeholder="Nombre del reportador" />
           </div>
           <div class="form-group">
             <label>Fecha límite</label>
-            <input type="date" id="ticket-due-date">
+            <input type="date" id="ticket-due-date" />
           </div>
         </div>
 
         <div class="form-group full">
           <label>Descripción</label>
-          <textarea id="ticket-description" rows="4" placeholder="Describe el ticket en detalle..."></textarea>
+          <textarea id="ticket-description" rows="4" placeholder="Describe el ticket en detalle..."
+          ></textarea>
         </div>
 
         <!-- Campos específicos para Bug -->
@@ -306,7 +313,12 @@
           <div class="form-row">
             <div class="form-group">
               <label>Pasos para reproducir</label>
-              <textarea id="bug-steps" rows="3" placeholder="1. Ir a...&#10;2. Hacer clic en...&#10;3. Observar..."></textarea>
+              <textarea
+                id="bug-steps"
+                rows="3"
+                placeholder="1. Ir a...
+2. Hacer clic en...
+3. Observar..."></textarea>
             </div>
             <div class="form-group">
               <label>Resultado esperado</label>
@@ -320,7 +332,7 @@
             </div>
             <div class="form-group">
               <label>Entorno</label>
-              <input type="text" id="bug-environment" placeholder="Browser, OS, versión...">
+              <input type="text" id="bug-environment" placeholder="Browser, OS, versión..." />
             </div>
           </div>
         </div>
@@ -328,7 +340,11 @@
         <div class="form-row">
           <div class="form-group">
             <label>Labels</label>
-            <input type="text" id="ticket-labels" placeholder="frontend, backend, api... (separados por coma)">
+            <input
+              type="text"
+              id="ticket-labels"
+              placeholder="frontend, backend, api... (separados por coma)"
+            />
           </div>
           <div class="form-group">
             <label>Story Points</label>
@@ -494,7 +510,7 @@
 
   .badge.jira {
     background: rgba(0, 82, 204, 0.2);
-    color: #2684FF;
+    color: #2684ff;
     border: 1px solid rgba(0, 82, 204, 0.4);
   }
 
@@ -539,12 +555,24 @@
     margin-bottom: 0.5rem;
   }
 
-  .type-card[data-type="bug"] i { color: #ef4444; }
-  .type-card[data-type="feature"] i { color: #8b5cf6; }
-  .type-card[data-type="task"] i { color: #06b6d4; }
-  .type-card[data-type="improvement"] i { color: #22c55e; }
-  .type-card[data-type="epic"] i { color: #f59e0b; }
-  .type-card[data-type="spike"] i { color: #ec4899; }
+  .type-card[data-type="bug"] i {
+    color: #ef4444;
+  }
+  .type-card[data-type="feature"] i {
+    color: #8b5cf6;
+  }
+  .type-card[data-type="task"] i {
+    color: #06b6d4;
+  }
+  .type-card[data-type="improvement"] i {
+    color: #22c55e;
+  }
+  .type-card[data-type="epic"] i {
+    color: #f59e0b;
+  }
+  .type-card[data-type="spike"] i {
+    color: #ec4899;
+  }
 
   .type-card h4 {
     margin: 0 0 0.25rem;
@@ -872,12 +900,30 @@
     font-size: 0.9rem;
   }
 
-  .ticket-type-icon.bug { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
-  .ticket-type-icon.feature { background: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
-  .ticket-type-icon.task { background: rgba(6, 182, 212, 0.2); color: #06b6d4; }
-  .ticket-type-icon.improvement { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
-  .ticket-type-icon.epic { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-  .ticket-type-icon.spike { background: rgba(236, 72, 153, 0.2); color: #ec4899; }
+  .ticket-type-icon.bug {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+  .ticket-type-icon.feature {
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+  }
+  .ticket-type-icon.task {
+    background: rgba(6, 182, 212, 0.2);
+    color: #06b6d4;
+  }
+  .ticket-type-icon.improvement {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+  }
+  .ticket-type-icon.epic {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+  }
+  .ticket-type-icon.spike {
+    background: rgba(236, 72, 153, 0.2);
+    color: #ec4899;
+  }
 
   .ticket-content {
     flex: 1;
@@ -920,11 +966,26 @@
     text-transform: uppercase;
   }
 
-  .status-badge.open { background: rgba(100, 116, 139, 0.2); color: #94a3b8; }
-  .status-badge.in-progress { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
-  .status-badge.review { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
-  .status-badge.done { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
-  .status-badge.closed { background: rgba(100, 116, 139, 0.3); color: #64748b; }
+  .status-badge.open {
+    background: rgba(100, 116, 139, 0.2);
+    color: #94a3b8;
+  }
+  .status-badge.in-progress {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+  }
+  .status-badge.review {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+  }
+  .status-badge.done {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+  }
+  .status-badge.closed {
+    background: rgba(100, 116, 139, 0.3);
+    color: #64748b;
+  }
 
   .priority-indicator {
     font-size: 0.7rem;
@@ -989,10 +1050,18 @@
     border-radius: 50%;
   }
 
-  .status-indicator.open { background: #64748b; }
-  .status-indicator.in-progress { background: #3b82f6; }
-  .status-indicator.review { background: #f59e0b; }
-  .status-indicator.done { background: #22c55e; }
+  .status-indicator.open {
+    background: #64748b;
+  }
+  .status-indicator.in-progress {
+    background: #3b82f6;
+  }
+  .status-indicator.review {
+    background: #f59e0b;
+  }
+  .status-indicator.done {
+    background: #22c55e;
+  }
 
   .kanban-column .column-count {
     margin-left: auto;
@@ -1511,166 +1580,332 @@
 </style>
 
 <script is:inline>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     // Estado
     let tickets = [];
     let ticketCounter = 0;
     let editingTicketId = null;
-    let currentView = 'list';
-    let filters = { type: 'all', status: 'all', priority: 'all', assignee: '', search: '' };
+    let currentView = "list";
+    let filters = { type: "all", status: "all", priority: "all", assignee: "", search: "" };
 
     // Elements
-    const ticketsList = document.getElementById('tickets-list');
-    const detailPanel = document.getElementById('detail-panel');
-    const ticketForm = document.getElementById('ticket-form');
+    const ticketsList = document.getElementById("tickets-list");
+    const detailPanel = document.getElementById("detail-panel");
+    const ticketForm = document.getElementById("ticket-form");
 
     // Templates
     const templates = {
       software: [
-        { type: 'bug', title: 'Login no funciona en Safari', priority: 'high', status: 'open', labels: ['frontend', 'auth'] },
-        { type: 'bug', title: 'Error 500 al guardar formulario', priority: 'critical', status: 'in-progress', labels: ['backend', 'api'] },
-        { type: 'feature', title: 'Implementar autenticación OAuth2', priority: 'high', status: 'open', labels: ['auth', 'security'] },
-        { type: 'feature', title: 'Dashboard de analytics', priority: 'medium', status: 'open', labels: ['frontend', 'analytics'] },
-        { type: 'task', title: 'Actualizar dependencias npm', priority: 'low', status: 'open', labels: ['devops'] },
-        { type: 'improvement', title: 'Optimizar queries de base de datos', priority: 'medium', status: 'review', labels: ['backend', 'performance'] },
-        { type: 'spike', title: 'Investigar migración a microservicios', priority: 'medium', status: 'in-progress', labels: ['architecture'] }
+        {
+          type: "bug",
+          title: "Login no funciona en Safari",
+          priority: "high",
+          status: "open",
+          labels: ["frontend", "auth"],
+        },
+        {
+          type: "bug",
+          title: "Error 500 al guardar formulario",
+          priority: "critical",
+          status: "in-progress",
+          labels: ["backend", "api"],
+        },
+        {
+          type: "feature",
+          title: "Implementar autenticación OAuth2",
+          priority: "high",
+          status: "open",
+          labels: ["auth", "security"],
+        },
+        {
+          type: "feature",
+          title: "Dashboard de analytics",
+          priority: "medium",
+          status: "open",
+          labels: ["frontend", "analytics"],
+        },
+        {
+          type: "task",
+          title: "Actualizar dependencias npm",
+          priority: "low",
+          status: "open",
+          labels: ["devops"],
+        },
+        {
+          type: "improvement",
+          title: "Optimizar queries de base de datos",
+          priority: "medium",
+          status: "review",
+          labels: ["backend", "performance"],
+        },
+        {
+          type: "spike",
+          title: "Investigar migración a microservicios",
+          priority: "medium",
+          status: "in-progress",
+          labels: ["architecture"],
+        },
       ],
       support: [
-        { type: 'bug', title: 'Cliente reporta datos incorrectos en factura', priority: 'high', status: 'open', labels: ['billing', 'urgent'] },
-        { type: 'task', title: 'Responder consulta sobre política de devolución', priority: 'medium', status: 'open', labels: ['customer-service'] },
-        { type: 'feature', title: 'Solicitud: exportar reportes en Excel', priority: 'medium', status: 'open', labels: ['feature-request'] },
-        { type: 'bug', title: 'Usuario no puede resetear contraseña', priority: 'critical', status: 'in-progress', labels: ['auth', 'urgent'] },
-        { type: 'improvement', title: 'Mejorar FAQ con preguntas frecuentes', priority: 'low', status: 'open', labels: ['documentation'] }
+        {
+          type: "bug",
+          title: "Cliente reporta datos incorrectos en factura",
+          priority: "high",
+          status: "open",
+          labels: ["billing", "urgent"],
+        },
+        {
+          type: "task",
+          title: "Responder consulta sobre política de devolución",
+          priority: "medium",
+          status: "open",
+          labels: ["customer-service"],
+        },
+        {
+          type: "feature",
+          title: "Solicitud: exportar reportes en Excel",
+          priority: "medium",
+          status: "open",
+          labels: ["feature-request"],
+        },
+        {
+          type: "bug",
+          title: "Usuario no puede resetear contraseña",
+          priority: "critical",
+          status: "in-progress",
+          labels: ["auth", "urgent"],
+        },
+        {
+          type: "improvement",
+          title: "Mejorar FAQ con preguntas frecuentes",
+          priority: "low",
+          status: "open",
+          labels: ["documentation"],
+        },
       ],
       marketing: [
-        { type: 'task', title: 'Crear banners para campaña de verano', priority: 'high', status: 'open', labels: ['design', 'campaign'] },
-        { type: 'task', title: 'Redactar copy para email marketing', priority: 'medium', status: 'in-progress', labels: ['content', 'email'] },
-        { type: 'feature', title: 'Landing page para Black Friday', priority: 'high', status: 'open', labels: ['web', 'campaign'] },
-        { type: 'task', title: 'Configurar píxel de Facebook Ads', priority: 'medium', status: 'open', labels: ['analytics', 'ads'] },
-        { type: 'improvement', title: 'A/B test en botones de CTA', priority: 'medium', status: 'review', labels: ['ux', 'conversion'] },
-        { type: 'task', title: 'Análisis de competencia Q4', priority: 'low', status: 'open', labels: ['research'] }
+        {
+          type: "task",
+          title: "Crear banners para campaña de verano",
+          priority: "high",
+          status: "open",
+          labels: ["design", "campaign"],
+        },
+        {
+          type: "task",
+          title: "Redactar copy para email marketing",
+          priority: "medium",
+          status: "in-progress",
+          labels: ["content", "email"],
+        },
+        {
+          type: "feature",
+          title: "Landing page para Black Friday",
+          priority: "high",
+          status: "open",
+          labels: ["web", "campaign"],
+        },
+        {
+          type: "task",
+          title: "Configurar píxel de Facebook Ads",
+          priority: "medium",
+          status: "open",
+          labels: ["analytics", "ads"],
+        },
+        {
+          type: "improvement",
+          title: "A/B test en botones de CTA",
+          priority: "medium",
+          status: "review",
+          labels: ["ux", "conversion"],
+        },
+        {
+          type: "task",
+          title: "Análisis de competencia Q4",
+          priority: "low",
+          status: "open",
+          labels: ["research"],
+        },
       ],
       devops: [
-        { type: 'task', title: 'Configurar pipeline CI/CD en GitLab', priority: 'high', status: 'in-progress', labels: ['ci-cd', 'gitlab'] },
-        { type: 'bug', title: 'Deployment falla en producción', priority: 'critical', status: 'open', labels: ['deployment', 'urgent'] },
-        { type: 'feature', title: 'Implementar monitoreo con Prometheus', priority: 'high', status: 'open', labels: ['monitoring', 'observability'] },
-        { type: 'task', title: 'Backup automático de base de datos', priority: 'high', status: 'done', labels: ['database', 'backup'] },
-        { type: 'improvement', title: 'Optimizar imágenes Docker', priority: 'medium', status: 'open', labels: ['docker', 'optimization'] },
-        { type: 'spike', title: 'Evaluar Kubernetes vs Docker Swarm', priority: 'medium', status: 'review', labels: ['infrastructure', 'research'] },
-        { type: 'task', title: 'Renovar certificados SSL', priority: 'high', status: 'open', labels: ['security', 'ssl'] }
-      ]
+        {
+          type: "task",
+          title: "Configurar pipeline CI/CD en GitLab",
+          priority: "high",
+          status: "in-progress",
+          labels: ["ci-cd", "gitlab"],
+        },
+        {
+          type: "bug",
+          title: "Deployment falla en producción",
+          priority: "critical",
+          status: "open",
+          labels: ["deployment", "urgent"],
+        },
+        {
+          type: "feature",
+          title: "Implementar monitoreo con Prometheus",
+          priority: "high",
+          status: "open",
+          labels: ["monitoring", "observability"],
+        },
+        {
+          type: "task",
+          title: "Backup automático de base de datos",
+          priority: "high",
+          status: "done",
+          labels: ["database", "backup"],
+        },
+        {
+          type: "improvement",
+          title: "Optimizar imágenes Docker",
+          priority: "medium",
+          status: "open",
+          labels: ["docker", "optimization"],
+        },
+        {
+          type: "spike",
+          title: "Evaluar Kubernetes vs Docker Swarm",
+          priority: "medium",
+          status: "review",
+          labels: ["infrastructure", "research"],
+        },
+        {
+          type: "task",
+          title: "Renovar certificados SSL",
+          priority: "high",
+          status: "open",
+          labels: ["security", "ssl"],
+        },
+      ],
     };
 
     // Create Ticket
-    function showCreateForm(type = 'task') {
+    function showCreateForm(type = "task") {
       editingTicketId = null;
       clearForm();
-      document.getElementById('ticket-type').value = type;
-      document.getElementById('detail-title').textContent = 'Nuevo Ticket';
-      toggleBugFields(type === 'bug');
-      detailPanel?.classList.add('open');
+      document.getElementById("ticket-type").value = type;
+      document.getElementById("detail-title").textContent = "Nuevo Ticket";
+      toggleBugFields(type === "bug");
+      detailPanel?.classList.add("open");
     }
 
     function showEditForm(ticketId) {
-      const ticket = tickets.find(t => t.id === ticketId);
+      const ticket = tickets.find((t) => t.id === ticketId);
       if (!ticket) return;
 
       editingTicketId = ticketId;
-      document.getElementById('detail-title').textContent = `Editar ${ticket.id}`;
+      document.getElementById("detail-title").textContent = `Editar ${ticket.id}`;
 
-      document.getElementById('ticket-title').value = ticket.title;
-      document.getElementById('ticket-type').value = ticket.type;
-      document.getElementById('ticket-status').value = ticket.status;
-      document.getElementById('ticket-priority').value = ticket.priority;
-      document.getElementById('ticket-assignee').value = ticket.assignee || '';
-      document.getElementById('ticket-reporter').value = ticket.reporter || '';
-      document.getElementById('ticket-due-date').value = ticket.dueDate || '';
-      document.getElementById('ticket-description').value = ticket.description || '';
-      document.getElementById('ticket-labels').value = ticket.labels?.join(', ') || '';
-      document.getElementById('ticket-points').value = ticket.points || '';
+      document.getElementById("ticket-title").value = ticket.title;
+      document.getElementById("ticket-type").value = ticket.type;
+      document.getElementById("ticket-status").value = ticket.status;
+      document.getElementById("ticket-priority").value = ticket.priority;
+      document.getElementById("ticket-assignee").value = ticket.assignee || "";
+      document.getElementById("ticket-reporter").value = ticket.reporter || "";
+      document.getElementById("ticket-due-date").value = ticket.dueDate || "";
+      document.getElementById("ticket-description").value = ticket.description || "";
+      document.getElementById("ticket-labels").value = ticket.labels?.join(", ") || "";
+      document.getElementById("ticket-points").value = ticket.points || "";
 
-      if (ticket.type === 'bug' && ticket.bugInfo) {
-        document.getElementById('bug-steps').value = ticket.bugInfo.steps || '';
-        document.getElementById('bug-expected').value = ticket.bugInfo.expected || '';
-        document.getElementById('bug-actual').value = ticket.bugInfo.actual || '';
-        document.getElementById('bug-environment').value = ticket.bugInfo.environment || '';
+      if (ticket.type === "bug" && ticket.bugInfo) {
+        document.getElementById("bug-steps").value = ticket.bugInfo.steps || "";
+        document.getElementById("bug-expected").value = ticket.bugInfo.expected || "";
+        document.getElementById("bug-actual").value = ticket.bugInfo.actual || "";
+        document.getElementById("bug-environment").value = ticket.bugInfo.environment || "";
       }
 
-      toggleBugFields(ticket.type === 'bug');
+      toggleBugFields(ticket.type === "bug");
       renderComments(ticket.comments || []);
-      detailPanel?.classList.add('open');
+      detailPanel?.classList.add("open");
     }
 
     function clearForm() {
-      document.getElementById('ticket-id').value = '';
-      document.getElementById('ticket-title').value = '';
-      document.getElementById('ticket-type').value = 'task';
-      document.getElementById('ticket-status').value = 'open';
-      document.getElementById('ticket-priority').value = 'medium';
-      document.getElementById('ticket-assignee').value = '';
-      document.getElementById('ticket-reporter').value = '';
-      document.getElementById('ticket-due-date').value = '';
-      document.getElementById('ticket-description').value = '';
-      document.getElementById('ticket-labels').value = '';
-      document.getElementById('ticket-points').value = '';
-      document.getElementById('bug-steps').value = '';
-      document.getElementById('bug-expected').value = '';
-      document.getElementById('bug-actual').value = '';
-      document.getElementById('bug-environment').value = '';
-      document.getElementById('comments-list').innerHTML = '';
+      document.getElementById("ticket-id").value = "";
+      document.getElementById("ticket-title").value = "";
+      document.getElementById("ticket-type").value = "task";
+      document.getElementById("ticket-status").value = "open";
+      document.getElementById("ticket-priority").value = "medium";
+      document.getElementById("ticket-assignee").value = "";
+      document.getElementById("ticket-reporter").value = "";
+      document.getElementById("ticket-due-date").value = "";
+      document.getElementById("ticket-description").value = "";
+      document.getElementById("ticket-labels").value = "";
+      document.getElementById("ticket-points").value = "";
+      document.getElementById("bug-steps").value = "";
+      document.getElementById("bug-expected").value = "";
+      document.getElementById("bug-actual").value = "";
+      document.getElementById("bug-environment").value = "";
+      document.getElementById("comments-list").innerHTML = "";
     }
 
     function toggleBugFields(show) {
-      const bugFields = document.getElementById('bug-fields');
+      const bugFields = document.getElementById("bug-fields");
       if (bugFields) {
-        bugFields.classList.toggle('hidden', !show);
+        bugFields.classList.toggle("hidden", !show);
       }
     }
 
     function saveTicket() {
-      const title = document.getElementById('ticket-title')?.value.trim();
+      const title = document.getElementById("ticket-title")?.value.trim();
       if (!title) {
-        alert('El título es requerido');
+        alert("El título es requerido");
         return;
       }
 
       const ticketData = {
         title,
-        type: document.getElementById('ticket-type')?.value || 'task',
-        status: document.getElementById('ticket-status')?.value || 'open',
-        priority: document.getElementById('ticket-priority')?.value || 'medium',
-        assignee: document.getElementById('ticket-assignee')?.value.trim() || '',
-        reporter: document.getElementById('ticket-reporter')?.value.trim() || '',
-        dueDate: document.getElementById('ticket-due-date')?.value || '',
-        description: document.getElementById('ticket-description')?.value.trim() || '',
-        labels: document.getElementById('ticket-labels')?.value.split(',').map(l => l.trim()).filter(l => l) || [],
-        points: document.getElementById('ticket-points')?.value || ''
+        type: document.getElementById("ticket-type")?.value || "task",
+        status: document.getElementById("ticket-status")?.value || "open",
+        priority: document.getElementById("ticket-priority")?.value || "medium",
+        assignee: document.getElementById("ticket-assignee")?.value.trim() || "",
+        reporter: document.getElementById("ticket-reporter")?.value.trim() || "",
+        dueDate: document.getElementById("ticket-due-date")?.value || "",
+        description: document.getElementById("ticket-description")?.value.trim() || "",
+        labels:
+          document
+            .getElementById("ticket-labels")
+            ?.value.split(",")
+            .map((l) => l.trim())
+            .filter((l) => l) || [],
+        points: document.getElementById("ticket-points")?.value || "",
       };
 
-      if (ticketData.type === 'bug') {
+      if (ticketData.type === "bug") {
         ticketData.bugInfo = {
-          steps: document.getElementById('bug-steps')?.value || '',
-          expected: document.getElementById('bug-expected')?.value || '',
-          actual: document.getElementById('bug-actual')?.value || '',
-          environment: document.getElementById('bug-environment')?.value || ''
+          steps: document.getElementById("bug-steps")?.value || "",
+          expected: document.getElementById("bug-expected")?.value || "",
+          actual: document.getElementById("bug-actual")?.value || "",
+          environment: document.getElementById("bug-environment")?.value || "",
         };
       }
 
       if (editingTicketId) {
-        const index = tickets.findIndex(t => t.id === editingTicketId);
+        const index = tickets.findIndex((t) => t.id === editingTicketId);
         if (index !== -1) {
-          tickets[index] = { ...tickets[index], ...ticketData, updatedAt: new Date().toISOString() };
+          tickets[index] = {
+            ...tickets[index],
+            ...ticketData,
+            updatedAt: new Date().toISOString(),
+          };
         }
       } else {
         ticketCounter++;
-        const prefixes = { bug: 'BUG', feature: 'FEAT', task: 'TASK', improvement: 'IMP', epic: 'EPIC', spike: 'SPIKE' };
-        const prefix = prefixes[ticketData.type] || 'TICKET';
+        const prefixes = {
+          bug: "BUG",
+          feature: "FEAT",
+          task: "TASK",
+          improvement: "IMP",
+          epic: "EPIC",
+          spike: "SPIKE",
+        };
+        const prefix = prefixes[ticketData.type] || "TICKET";
         tickets.push({
-          id: `${prefix}-${String(ticketCounter).padStart(4, '0')}`,
+          id: `${prefix}-${String(ticketCounter).padStart(4, "0")}`,
           ...ticketData,
           comments: [],
           createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString()
+          updatedAt: new Date().toISOString(),
         });
       }
 
@@ -1680,13 +1915,13 @@
     }
 
     function closeDetailPanel() {
-      detailPanel?.classList.remove('open');
+      detailPanel?.classList.remove("open");
       editingTicketId = null;
     }
 
     function deleteTicket(ticketId) {
-      if (confirm('¿Eliminar este ticket?')) {
-        tickets = tickets.filter(t => t.id !== ticketId);
+      if (confirm("¿Eliminar este ticket?")) {
+        tickets = tickets.filter((t) => t.id !== ticketId);
         renderTickets();
       }
     }
@@ -1694,7 +1929,7 @@
     // Render Tickets
     function renderTickets() {
       const filteredTickets = getFilteredTickets();
-      document.getElementById('ticket-count').textContent = `${filteredTickets.length} tickets`;
+      document.getElementById("ticket-count").textContent = `${filteredTickets.length} tickets`;
 
       renderListView(filteredTickets);
       renderBoardView(filteredTickets);
@@ -1702,13 +1937,19 @@
     }
 
     function getFilteredTickets() {
-      return tickets.filter(t => {
-        if (filters.type !== 'all' && t.type !== filters.type) return false;
-        if (filters.status !== 'all' && t.status !== filters.status) return false;
-        if (filters.priority !== 'all' && t.priority !== filters.priority) return false;
-        if (filters.assignee && filters.assignee !== 'unassigned' && t.assignee !== filters.assignee) return false;
-        if (filters.assignee === 'unassigned' && t.assignee) return false;
-        if (filters.search && !t.title.toLowerCase().includes(filters.search.toLowerCase())) return false;
+      return tickets.filter((t) => {
+        if (filters.type !== "all" && t.type !== filters.type) return false;
+        if (filters.status !== "all" && t.status !== filters.status) return false;
+        if (filters.priority !== "all" && t.priority !== filters.priority) return false;
+        if (
+          filters.assignee &&
+          filters.assignee !== "unassigned" &&
+          t.assignee !== filters.assignee
+        )
+          return false;
+        if (filters.assignee === "unassigned" && t.assignee) return false;
+        if (filters.search && !t.title.toLowerCase().includes(filters.search.toLowerCase()))
+          return false;
         return true;
       });
     }
@@ -1727,7 +1968,9 @@
         return;
       }
 
-      ticketsList.innerHTML = filteredTickets.map(ticket => `
+      ticketsList.innerHTML = filteredTickets
+        .map(
+          (ticket) => `
         <div class="ticket-item" data-id="${ticket.id}">
           <div class="ticket-type-icon ${ticket.type}">
             <i class="fas fa-${getTypeIcon(ticket.type)}"></i>
@@ -1740,38 +1983,47 @@
             <div class="ticket-meta">
               <span class="status-badge ${ticket.status}">${formatStatus(ticket.status)}</span>
               <span class="priority-indicator">${getPriorityIcon(ticket.priority)}</span>
-              ${ticket.assignee ? `<span class="ticket-assignee"><i class="fas fa-user"></i> ${ticket.assignee}</span>` : ''}
-              ${ticket.labels?.length ? `<div class="ticket-labels">${ticket.labels.slice(0, 2).map(l => `<span class="label-tag">${l}</span>`).join('')}</div>` : ''}
+              ${ticket.assignee ? `<span class="ticket-assignee"><i class="fas fa-user"></i> ${ticket.assignee}</span>` : ""}
+              ${
+                ticket.labels?.length
+                  ? `<div class="ticket-labels">${ticket.labels
+                      .slice(0, 2)
+                      .map((l) => `<span class="label-tag">${l}</span>`)
+                      .join("")}</div>`
+                  : ""
+              }
             </div>
           </div>
         </div>
-      `).join('');
+      `,
+        )
+        .join("");
 
-      ticketsList.querySelectorAll('.ticket-item').forEach(item => {
-        item.addEventListener('click', () => showEditForm(item.dataset.id));
+      ticketsList.querySelectorAll(".ticket-item").forEach((item) => {
+        item.addEventListener("click", () => showEditForm(item.dataset.id));
       });
     }
 
     function renderBoardView(filteredTickets) {
       const columns = {
-        open: document.getElementById('open-column'),
-        'in-progress': document.getElementById('in-progress-column'),
-        review: document.getElementById('review-column'),
-        done: document.getElementById('done-column')
+        open: document.getElementById("open-column"),
+        "in-progress": document.getElementById("in-progress-column"),
+        review: document.getElementById("review-column"),
+        done: document.getElementById("done-column"),
       };
 
-      Object.values(columns).forEach(col => {
-        if (col) col.innerHTML = '';
+      Object.values(columns).forEach((col) => {
+        if (col) col.innerHTML = "";
       });
 
-      const counts = { open: 0, 'in-progress': 0, review: 0, done: 0 };
+      const counts = { open: 0, "in-progress": 0, review: 0, done: 0 };
 
-      filteredTickets.forEach(ticket => {
+      filteredTickets.forEach((ticket) => {
         const column = columns[ticket.status];
         if (column) {
           counts[ticket.status]++;
-          const card = document.createElement('div');
-          card.className = 'kanban-card';
+          const card = document.createElement("div");
+          card.className = "kanban-card";
           card.draggable = true;
           card.dataset.id = ticket.id;
           card.innerHTML = `
@@ -1784,52 +2036,58 @@
             <div class="kanban-card-title">${ticket.title}</div>
             <div class="kanban-card-meta">
               <span>${getPriorityIcon(ticket.priority)}</span>
-              ${ticket.points ? `<span>${ticket.points} pts</span>` : ''}
+              ${ticket.points ? `<span>${ticket.points} pts</span>` : ""}
             </div>
           `;
           column.appendChild(card);
 
-          card.addEventListener('click', () => showEditForm(ticket.id));
-          card.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', ticket.id);
-            card.classList.add('dragging');
+          card.addEventListener("click", () => showEditForm(ticket.id));
+          card.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", ticket.id);
+            card.classList.add("dragging");
           });
-          card.addEventListener('dragend', () => card.classList.remove('dragging'));
+          card.addEventListener("dragend", () => card.classList.remove("dragging"));
         }
       });
 
-      document.getElementById('open-count').textContent = counts.open;
-      document.getElementById('in-progress-count').textContent = counts['in-progress'];
-      document.getElementById('review-count').textContent = counts.review;
-      document.getElementById('done-count').textContent = counts.done;
+      document.getElementById("open-count").textContent = counts.open;
+      document.getElementById("in-progress-count").textContent = counts["in-progress"];
+      document.getElementById("review-count").textContent = counts.review;
+      document.getElementById("done-count").textContent = counts.done;
     }
 
     function renderTableView(filteredTickets) {
-      const tbody = document.getElementById('tickets-table-body');
+      const tbody = document.getElementById("tickets-table-body");
       if (!tbody) return;
 
-      tbody.innerHTML = filteredTickets.map(ticket => `
+      tbody.innerHTML = filteredTickets
+        .map(
+          (ticket) => `
         <tr data-id="${ticket.id}" style="cursor:pointer;">
           <td><span class="ticket-id">${ticket.id}</span></td>
           <td><span class="ticket-type-icon ${ticket.type}" style="width:24px;height:24px;font-size:0.75rem;display:inline-flex;"><i class="fas fa-${getTypeIcon(ticket.type)}"></i></span></td>
           <td>${ticket.title}</td>
           <td><span class="status-badge ${ticket.status}">${formatStatus(ticket.status)}</span></td>
           <td>${getPriorityIcon(ticket.priority)} ${ticket.priority}</td>
-          <td>${ticket.assignee || '-'}</td>
+          <td>${ticket.assignee || "-"}</td>
           <td>${new Date(ticket.createdAt).toLocaleDateString()}</td>
         </tr>
-      `).join('');
+      `,
+        )
+        .join("");
 
-      tbody.querySelectorAll('tr').forEach(row => {
-        row.addEventListener('click', () => showEditForm(row.dataset.id));
+      tbody.querySelectorAll("tr").forEach((row) => {
+        row.addEventListener("click", () => showEditForm(row.dataset.id));
       });
     }
 
     function renderComments(comments) {
-      const list = document.getElementById('comments-list');
+      const list = document.getElementById("comments-list");
       if (!list) return;
 
-      list.innerHTML = comments.map(c => `
+      list.innerHTML = comments
+        .map(
+          (c) => `
         <div class="comment-item">
           <div class="comment-header">
             <span class="comment-author">${c.author}</span>
@@ -1837,130 +2095,151 @@
           </div>
           <div class="comment-text">${c.text}</div>
         </div>
-      `).join('');
+      `,
+        )
+        .join("");
     }
 
     function addComment() {
-      const textarea = document.getElementById('new-comment');
+      const textarea = document.getElementById("new-comment");
       const text = textarea?.value.trim();
       if (!text || !editingTicketId) return;
 
-      const ticket = tickets.find(t => t.id === editingTicketId);
+      const ticket = tickets.find((t) => t.id === editingTicketId);
       if (ticket) {
         if (!ticket.comments) ticket.comments = [];
         ticket.comments.push({
-          author: 'Usuario',
+          author: "Usuario",
           text,
-          date: new Date().toISOString()
+          date: new Date().toISOString(),
         });
         renderComments(ticket.comments);
-        textarea.value = '';
+        textarea.value = "";
       }
     }
 
     // Helpers
     function getTypeIcon(type) {
-      const icons = { bug: 'bug', feature: 'star', task: 'check-square', improvement: 'arrow-up', epic: 'bolt', spike: 'flask' };
-      return icons[type] || 'ticket-alt';
+      const icons = {
+        bug: "bug",
+        feature: "star",
+        task: "check-square",
+        improvement: "arrow-up",
+        epic: "bolt",
+        spike: "flask",
+      };
+      return icons[type] || "ticket-alt";
     }
 
     function getPriorityIcon(priority) {
-      const icons = { critical: '🔴', high: '🟠', medium: '🟡', low: '🟢' };
-      return icons[priority] || '⚪';
+      const icons = { critical: "🔴", high: "🟠", medium: "🟡", low: "🟢" };
+      return icons[priority] || "⚪";
     }
 
     function formatStatus(status) {
-      const labels = { open: 'Open', 'in-progress': 'In Progress', review: 'In Review', done: 'Done', closed: 'Closed' };
+      const labels = {
+        open: "Open",
+        "in-progress": "In Progress",
+        review: "In Review",
+        done: "Done",
+        closed: "Closed",
+      };
       return labels[status] || status;
     }
 
     function updateAssigneeFilter() {
-      const select = document.getElementById('assignee-filter');
+      const select = document.getElementById("assignee-filter");
       if (!select) return;
 
-      const assignees = [...new Set(tickets.map(t => t.assignee).filter(a => a))];
+      const assignees = [...new Set(tickets.map((t) => t.assignee).filter((a) => a))];
       select.innerHTML = `
         <option value="">Todos</option>
         <option value="unassigned">Sin asignar</option>
-        ${assignees.map(a => `<option value="${a}">${a}</option>`).join('')}
+        ${assignees.map((a) => `<option value="${a}">${a}</option>`).join("")}
       `;
     }
 
     // Event Listeners
-    document.getElementById('create-ticket-btn')?.addEventListener('click', () => showCreateForm());
+    document.getElementById("create-ticket-btn")?.addEventListener("click", () => showCreateForm());
 
-    document.querySelectorAll('.type-card').forEach(card => {
-      card.addEventListener('click', () => showCreateForm(card.dataset.type));
+    document.querySelectorAll(".type-card").forEach((card) => {
+      card.addEventListener("click", () => showCreateForm(card.dataset.type));
     });
 
-    document.getElementById('close-detail')?.addEventListener('click', closeDetailPanel);
-    document.getElementById('cancel-ticket')?.addEventListener('click', closeDetailPanel);
-    document.getElementById('save-ticket')?.addEventListener('click', saveTicket);
+    document.getElementById("close-detail")?.addEventListener("click", closeDetailPanel);
+    document.getElementById("cancel-ticket")?.addEventListener("click", closeDetailPanel);
+    document.getElementById("save-ticket")?.addEventListener("click", saveTicket);
 
-    document.getElementById('ticket-type')?.addEventListener('change', (e) => {
-      toggleBugFields(e.target.value === 'bug');
+    document.getElementById("ticket-type")?.addEventListener("change", (e) => {
+      toggleBugFields(e.target.value === "bug");
     });
 
-    document.getElementById('add-comment-btn')?.addEventListener('click', addComment);
+    document.getElementById("add-comment-btn")?.addEventListener("click", addComment);
 
     // View toggle
-    document.querySelectorAll('.view-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    document.querySelectorAll(".view-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".view-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
         currentView = btn.dataset.view;
 
-        document.querySelectorAll('.tickets-view').forEach(v => v.classList.remove('active'));
-        document.getElementById(`tickets-${currentView}-view`)?.classList.add('active');
+        document.querySelectorAll(".tickets-view").forEach((v) => v.classList.remove("active"));
+        document.getElementById(`tickets-${currentView}-view`)?.classList.add("active");
       });
     });
 
     // Filters
-    document.querySelectorAll('#type-filters .filter-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('#type-filters .filter-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
+    document.querySelectorAll("#type-filters .filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document
+          .querySelectorAll("#type-filters .filter-chip")
+          .forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
         filters.type = chip.dataset.filter;
         renderTickets();
       });
     });
 
-    document.querySelectorAll('#status-filters .filter-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('#status-filters .filter-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
+    document.querySelectorAll("#status-filters .filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document
+          .querySelectorAll("#status-filters .filter-chip")
+          .forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
         filters.status = chip.dataset.filter;
         renderTickets();
       });
     });
 
-    document.querySelectorAll('#priority-filters .filter-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.querySelectorAll('#priority-filters .filter-chip').forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
+    document.querySelectorAll("#priority-filters .filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document
+          .querySelectorAll("#priority-filters .filter-chip")
+          .forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
         filters.priority = chip.dataset.filter;
         renderTickets();
       });
     });
 
-    document.getElementById('assignee-filter')?.addEventListener('change', (e) => {
+    document.getElementById("assignee-filter")?.addEventListener("change", (e) => {
       filters.assignee = e.target.value;
       renderTickets();
     });
 
-    document.getElementById('ticket-search')?.addEventListener('input', (e) => {
+    document.getElementById("ticket-search")?.addEventListener("input", (e) => {
       filters.search = e.target.value;
       renderTickets();
     });
 
     // Kanban drag and drop
-    document.querySelectorAll('.kanban-column').forEach(column => {
-      column.addEventListener('dragover', (e) => e.preventDefault());
-      column.addEventListener('drop', (e) => {
+    document.querySelectorAll(".kanban-column").forEach((column) => {
+      column.addEventListener("dragover", (e) => e.preventDefault());
+      column.addEventListener("drop", (e) => {
         e.preventDefault();
-        const ticketId = e.dataTransfer.getData('text/plain');
+        const ticketId = e.dataTransfer.getData("text/plain");
         const newStatus = column.dataset.status;
-        const ticket = tickets.find(t => t.id === ticketId);
+        const ticket = tickets.find((t) => t.id === ticketId);
         if (ticket) {
           ticket.status = newStatus;
           ticket.updatedAt = new Date().toISOString();
@@ -1970,33 +2249,40 @@
     });
 
     // Templates
-    document.querySelectorAll('.template-card').forEach(card => {
-      card.addEventListener('click', () => {
+    document.querySelectorAll(".template-card").forEach((card) => {
+      card.addEventListener("click", () => {
         const templateName = card.dataset.template;
         const template = templates[templateName];
         if (!template) return;
 
-        if (tickets.length > 0 && !confirm('Esto reemplazará los tickets actuales. ¿Continuar?')) {
+        if (tickets.length > 0 && !confirm("Esto reemplazará los tickets actuales. ¿Continuar?")) {
           return;
         }
 
         tickets = [];
         ticketCounter = 0;
 
-        template.forEach(item => {
+        template.forEach((item) => {
           ticketCounter++;
-          const prefixes = { bug: 'BUG', feature: 'FEAT', task: 'TASK', improvement: 'IMP', epic: 'EPIC', spike: 'SPIKE' };
-          const prefix = prefixes[item.type] || 'TICKET';
+          const prefixes = {
+            bug: "BUG",
+            feature: "FEAT",
+            task: "TASK",
+            improvement: "IMP",
+            epic: "EPIC",
+            spike: "SPIKE",
+          };
+          const prefix = prefixes[item.type] || "TICKET";
           tickets.push({
-            id: `${prefix}-${String(ticketCounter).padStart(4, '0')}`,
+            id: `${prefix}-${String(ticketCounter).padStart(4, "0")}`,
             ...item,
-            assignee: '',
-            reporter: '',
-            dueDate: '',
-            description: '',
+            assignee: "",
+            reporter: "",
+            dueDate: "",
+            description: "",
             comments: [],
             createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
+            updatedAt: new Date().toISOString(),
           });
         });
 
@@ -2006,61 +2292,81 @@
     });
 
     // Export functions
-    document.getElementById('export-jira-csv')?.addEventListener('click', () => {
-      const headers = ['Issue Type', 'Summary', 'Priority', 'Status', 'Assignee', 'Reporter', 'Labels', 'Description'];
-      const rows = tickets.map(t => [
+    document.getElementById("export-jira-csv")?.addEventListener("click", () => {
+      const headers = [
+        "Issue Type",
+        "Summary",
+        "Priority",
+        "Status",
+        "Assignee",
+        "Reporter",
+        "Labels",
+        "Description",
+      ];
+      const rows = tickets.map((t) => [
         t.type.charAt(0).toUpperCase() + t.type.slice(1),
         t.title,
         t.priority.charAt(0).toUpperCase() + t.priority.slice(1),
         formatStatus(t.status),
-        t.assignee || '',
-        t.reporter || '',
-        t.labels?.join(';') || '',
-        t.description || ''
+        t.assignee || "",
+        t.reporter || "",
+        t.labels?.join(";") || "",
+        t.description || "",
       ]);
-      const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
-      downloadFile(csv, 'jira-tickets.csv', 'text/csv');
+      const csv = [headers, ...rows]
+        .map((row) => row.map((cell) => `"${cell}"`).join(","))
+        .join("\n");
+      downloadFile(csv, "jira-tickets.csv", "text/csv");
     });
 
-    document.getElementById('export-azure-csv')?.addEventListener('click', () => {
-      const rows = tickets.map(t => ({
-        'Work Item Type': t.type === 'bug' ? 'Bug' : t.type === 'feature' ? 'Feature' : 'Task',
+    document.getElementById("export-azure-csv")?.addEventListener("click", () => {
+      const rows = tickets.map((t) => ({
+        "Work Item Type": t.type === "bug" ? "Bug" : t.type === "feature" ? "Feature" : "Task",
         Title: t.title,
-        State: t.status === 'done' ? 'Done' : t.status === 'in-progress' ? 'Active' : 'New',
-        Priority: t.priority === 'critical' ? 1 : t.priority === 'high' ? 2 : t.priority === 'medium' ? 3 : 4,
-        'Assigned To': t.assignee || '',
-        Tags: t.labels?.join(';') || '',
-        Description: t.description || ''
+        State: t.status === "done" ? "Done" : t.status === "in-progress" ? "Active" : "New",
+        Priority:
+          t.priority === "critical"
+            ? 1
+            : t.priority === "high"
+              ? 2
+              : t.priority === "medium"
+                ? 3
+                : 4,
+        "Assigned To": t.assignee || "",
+        Tags: t.labels?.join(";") || "",
+        Description: t.description || "",
       }));
       const headers = Object.keys(rows[0] || {});
-      const csv = [headers, ...rows.map(r => headers.map(h => `"${r[h]}"`))].map(row => row.join(',')).join('\n');
-      downloadFile(csv, 'azure-devops-tickets.csv', 'text/csv');
+      const csv = [headers, ...rows.map((r) => headers.map((h) => `"${r[h]}"`))]
+        .map((row) => row.join(","))
+        .join("\n");
+      downloadFile(csv, "azure-devops-tickets.csv", "text/csv");
     });
 
-    document.getElementById('export-github-json')?.addEventListener('click', () => {
-      const issues = tickets.map(t => ({
+    document.getElementById("export-github-json")?.addEventListener("click", () => {
+      const issues = tickets.map((t) => ({
         title: t.title,
-        body: t.description || '',
+        body: t.description || "",
         labels: [...(t.labels || []), t.type, t.priority],
-        assignees: t.assignee ? [t.assignee] : []
+        assignees: t.assignee ? [t.assignee] : [],
       }));
-      downloadFile(JSON.stringify(issues, null, 2), 'github-issues.json', 'application/json');
+      downloadFile(JSON.stringify(issues, null, 2), "github-issues.json", "application/json");
     });
 
-    document.getElementById('export-markdown')?.addEventListener('click', () => {
+    document.getElementById("export-markdown")?.addEventListener("click", () => {
       let md = `# Tickets\n\n`;
       md += `| ID | Tipo | Título | Estado | Prioridad | Asignado |\n`;
       md += `|----|------|--------|--------|-----------|----------|\n`;
-      tickets.forEach(t => {
-        md += `| ${t.id} | ${t.type} | ${t.title} | ${formatStatus(t.status)} | ${t.priority} | ${t.assignee || '-'} |\n`;
+      tickets.forEach((t) => {
+        md += `| ${t.id} | ${t.type} | ${t.title} | ${formatStatus(t.status)} | ${t.priority} | ${t.assignee || "-"} |\n`;
       });
-      downloadFile(md, 'tickets.md', 'text/markdown');
+      downloadFile(md, "tickets.md", "text/markdown");
     });
 
     function downloadFile(content, filename, type) {
       const blob = new Blob([content], { type });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       a.click();

@@ -1,958 +1,1033 @@
 ---
 // Web Vitals Dashboard - Performance Metrics Visualization
 const vitals = [
-    {
-        name: "LCP",
-        fullName: "Largest Contentful Paint",
-        description: "Tiempo de carga del elemento más grande",
-        value: "1.2s",
-        target: "< 2.5s",
-        status: "good",
-        icon: "fas fa-image",
-        color: "#10b981",
-        percentage: 95
-    },
-    {
-        name: "FID",
-        fullName: "First Input Delay",
-        description: "Tiempo hasta primera interacción",
-        value: "18ms",
-        target: "< 100ms",
-        status: "good",
-        icon: "fas fa-hand-pointer",
-        color: "#10b981",
-        percentage: 98
-    },
-    {
-        name: "CLS",
-        fullName: "Cumulative Layout Shift",
-        description: "Estabilidad visual de la página",
-        value: "0.05",
-        target: "< 0.1",
-        status: "good",
-        icon: "fas fa-arrows-alt",
-        color: "#10b981",
-        percentage: 92
-    },
-    {
-        name: "TTFB",
-        fullName: "Time to First Byte",
-        description: "Tiempo de respuesta del servidor",
-        value: "180ms",
-        target: "< 800ms",
-        status: "good",
-        icon: "fas fa-server",
-        color: "#10b981",
-        percentage: 88
-    },
-    {
-        name: "INP",
-        fullName: "Interaction to Next Paint",
-        description: "Responsividad de interacciones",
-        value: "45ms",
-        target: "< 200ms",
-        status: "good",
-        icon: "fas fa-bolt",
-        color: "#10b981",
-        percentage: 94
-    },
-    {
-        name: "FCP",
-        fullName: "First Contentful Paint",
-        description: "Primer renderizado de contenido",
-        value: "0.8s",
-        target: "< 1.8s",
-        status: "good",
-        icon: "fas fa-paint-brush",
-        color: "#10b981",
-        percentage: 96
-    }
+  {
+    name: "LCP",
+    fullName: "Largest Contentful Paint",
+    description: "Tiempo de carga del elemento más grande",
+    value: "1.2s",
+    target: "< 2.5s",
+    status: "good",
+    icon: "fas fa-image",
+    color: "#10b981",
+    percentage: 95,
+  },
+  {
+    name: "FID",
+    fullName: "First Input Delay",
+    description: "Tiempo hasta primera interacción",
+    value: "18ms",
+    target: "< 100ms",
+    status: "good",
+    icon: "fas fa-hand-pointer",
+    color: "#10b981",
+    percentage: 98,
+  },
+  {
+    name: "CLS",
+    fullName: "Cumulative Layout Shift",
+    description: "Estabilidad visual de la página",
+    value: "0.05",
+    target: "< 0.1",
+    status: "good",
+    icon: "fas fa-arrows-alt",
+    color: "#10b981",
+    percentage: 92,
+  },
+  {
+    name: "TTFB",
+    fullName: "Time to First Byte",
+    description: "Tiempo de respuesta del servidor",
+    value: "180ms",
+    target: "< 800ms",
+    status: "good",
+    icon: "fas fa-server",
+    color: "#10b981",
+    percentage: 88,
+  },
+  {
+    name: "INP",
+    fullName: "Interaction to Next Paint",
+    description: "Responsividad de interacciones",
+    value: "45ms",
+    target: "< 200ms",
+    status: "good",
+    icon: "fas fa-bolt",
+    color: "#10b981",
+    percentage: 94,
+  },
+  {
+    name: "FCP",
+    fullName: "First Contentful Paint",
+    description: "Primer renderizado de contenido",
+    value: "0.8s",
+    target: "< 1.8s",
+    status: "good",
+    icon: "fas fa-paint-brush",
+    color: "#10b981",
+    percentage: 96,
+  },
 ];
 
 const techStack = [
-    { name: "Astro", version: "5.x", icon: "devicon-astro-plain", desc: "Static Site Generator" },
-    { name: "View Transitions", version: "Native", icon: "fas fa-exchange-alt", desc: "SPA-like navigation" },
-    { name: "CSS Grid/Flexbox", version: "Modern", icon: "devicon-css3-plain", desc: "Responsive layouts" },
-    { name: "GitHub Pages", version: "CDN", icon: "fab fa-github", desc: "Global distribution" },
-    { name: "Compress Plugin", version: "Latest", icon: "fas fa-compress-alt", desc: "HTML/CSS/JS minification" },
-    { name: "Sitemap", version: "Auto", icon: "fas fa-sitemap", desc: "SEO optimization" }
+  { name: "Astro", version: "5.x", icon: "devicon-astro-plain", desc: "Static Site Generator" },
+  {
+    name: "View Transitions",
+    version: "Native",
+    icon: "fas fa-exchange-alt",
+    desc: "SPA-like navigation",
+  },
+  {
+    name: "CSS Grid/Flexbox",
+    version: "Modern",
+    icon: "devicon-css3-plain",
+    desc: "Responsive layouts",
+  },
+  { name: "GitHub Pages", version: "CDN", icon: "fab fa-github", desc: "Global distribution" },
+  {
+    name: "Compress Plugin",
+    version: "Latest",
+    icon: "fas fa-compress-alt",
+    desc: "HTML/CSS/JS minification",
+  },
+  { name: "Sitemap", version: "Auto", icon: "fas fa-sitemap", desc: "SEO optimization" },
 ];
 
 const optimizations = [
-    { title: "Lazy Loading", desc: "Imágenes y componentes cargados bajo demanda", icon: "fas fa-hourglass-half" },
-    { title: "Code Splitting", desc: "JavaScript dividido por página", icon: "fas fa-cut" },
-    { title: "Asset Hashing", desc: "Cache busting automático", icon: "fas fa-hashtag" },
-    { title: "Preconnect", desc: "DNS prefetch para recursos externos", icon: "fas fa-link" },
-    { title: "Critical CSS", desc: "Estilos inline para above-the-fold", icon: "fas fa-bolt" },
-    { title: "Compression", desc: "Gzip/Brotli para todos los assets", icon: "fas fa-file-archive" }
+  {
+    title: "Lazy Loading",
+    desc: "Imágenes y componentes cargados bajo demanda",
+    icon: "fas fa-hourglass-half",
+  },
+  { title: "Code Splitting", desc: "JavaScript dividido por página", icon: "fas fa-cut" },
+  { title: "Asset Hashing", desc: "Cache busting automático", icon: "fas fa-hashtag" },
+  { title: "Preconnect", desc: "DNS prefetch para recursos externos", icon: "fas fa-link" },
+  { title: "Critical CSS", desc: "Estilos inline para above-the-fold", icon: "fas fa-bolt" },
+  { title: "Compression", desc: "Gzip/Brotli para todos los assets", icon: "fas fa-file-archive" },
 ];
 ---
 
 <section id="web-vitals" class="vitals-section">
-    <div class="vitals-header" data-aos="fade-up">
-        <div class="header-icon-wrap pulse-glow">
-            <i class="fas fa-tachometer-alt"></i>
-        </div>
-        <h2>Web Vitals <span class="gradient-text">Dashboard</span></h2>
-        <p>Métricas de rendimiento en tiempo real basadas en Core Web Vitals de Google</p>
+  <div class="vitals-header" data-aos="fade-up">
+    <div class="header-icon-wrap pulse-glow">
+      <i class="fas fa-tachometer-alt"></i>
+    </div>
+    <h2>Web Vitals <span class="gradient-text">Dashboard</span></h2>
+    <p>Métricas de rendimiento en tiempo real basadas en Core Web Vitals de Google</p>
 
-        <div class="score-badge">
-            <div class="score-ring">
-                <svg viewBox="0 0 36 36">
-                    <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                    <path class="score-fill" stroke-dasharray="94, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                </svg>
-                <span class="score-value">94</span>
+    <div class="score-badge">
+      <div class="score-ring">
+        <svg viewBox="0 0 36 36">
+          <path
+            class="score-bg"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          ></path>
+          <path
+            class="score-fill"
+            stroke-dasharray="94, 100"
+            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+          ></path>
+        </svg>
+        <span class="score-value">94</span>
+      </div>
+      <div class="score-info">
+        <span class="score-label">Performance Score</span>
+        <span class="score-status good"><i class="fas fa-check-circle"></i> Excelente</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vitals Grid -->
+  <div class="vitals-grid" data-aos="fade-up" data-aos-delay="100">
+    {
+      vitals.map((vital, idx) => (
+        <div
+          class={`vital-card glass-card ${vital.status}`}
+          data-aos="zoom-in"
+          data-aos-delay={50 + idx * 50}
+        >
+          <div class="vital-header">
+            <div class="vital-icon" style={`background: ${vital.color}20; color: ${vital.color};`}>
+              <i class={vital.icon} />
             </div>
-            <div class="score-info">
-                <span class="score-label">Performance Score</span>
-                <span class="score-status good"><i class="fas fa-check-circle"></i> Excelente</span>
+            <div class="vital-title">
+              <span class="vital-name">{vital.name}</span>
+              <span class="vital-full">{vital.fullName}</span>
             </div>
-        </div>
-    </div>
+            <span class={`status-badge ${vital.status}`}>
+              {vital.status === "good" && (
+                <>
+                  <i class="fas fa-check" /> Bueno
+                </>
+              )}
+              {vital.status === "needs-improvement" && (
+                <>
+                  <i class="fas fa-exclamation" /> Mejorable
+                </>
+              )}
+              {vital.status === "poor" && (
+                <>
+                  <i class="fas fa-times" /> Pobre
+                </>
+              )}
+            </span>
+          </div>
 
-    <!-- Vitals Grid -->
-    <div class="vitals-grid" data-aos="fade-up" data-aos-delay="100">
-        {vitals.map((vital, idx) => (
-            <div class={`vital-card glass-card ${vital.status}`} data-aos="zoom-in" data-aos-delay={50 + idx * 50}>
-                <div class="vital-header">
-                    <div class="vital-icon" style={`background: ${vital.color}20; color: ${vital.color};`}>
-                        <i class={vital.icon}></i>
-                    </div>
-                    <div class="vital-title">
-                        <span class="vital-name">{vital.name}</span>
-                        <span class="vital-full">{vital.fullName}</span>
-                    </div>
-                    <span class={`status-badge ${vital.status}`}>
-                        {vital.status === 'good' && <><i class="fas fa-check"></i> Bueno</>}
-                        {vital.status === 'needs-improvement' && <><i class="fas fa-exclamation"></i> Mejorable</>}
-                        {vital.status === 'poor' && <><i class="fas fa-times"></i> Pobre</>}
-                    </span>
-                </div>
+          <div class="vital-body">
+            <div class="vital-value">{vital.value}</div>
+            <div class="vital-target">Meta: {vital.target}</div>
+            <p class="vital-desc">{vital.description}</p>
+          </div>
 
-                <div class="vital-body">
-                    <div class="vital-value">{vital.value}</div>
-                    <div class="vital-target">Meta: {vital.target}</div>
-                    <p class="vital-desc">{vital.description}</p>
-                </div>
-
-                <div class="vital-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style={`width: ${vital.percentage}%; background: ${vital.color};`}></div>
-                    </div>
-                    <span class="progress-label">{vital.percentage}% óptimo</span>
-                </div>
+          <div class="vital-progress">
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                style={`width: ${vital.percentage}%; background: ${vital.color};`}
+              />
             </div>
-        ))}
-    </div>
+            <span class="progress-label">{vital.percentage}% óptimo</span>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 
-    <!-- Tech Stack Used -->
-    <div class="tech-stack-section" data-aos="fade-up" data-aos-delay="200">
-        <h3><i class="fas fa-layer-group"></i> Stack de Rendimiento</h3>
-        <div class="tech-stack-grid">
-            {techStack.map(tech => (
-                <div class="tech-item">
-                    <div class="tech-icon-wrap">
-                        <i class={tech.icon}></i>
-                    </div>
-                    <div class="tech-info">
-                        <span class="tech-name">{tech.name}</span>
-                        <span class="tech-version">{tech.version}</span>
-                    </div>
-                    <span class="tech-desc">{tech.desc}</span>
-                </div>
-            ))}
-        </div>
+  <!-- Tech Stack Used -->
+  <div class="tech-stack-section" data-aos="fade-up" data-aos-delay="200">
+    <h3><i class="fas fa-layer-group"></i> Stack de Rendimiento</h3>
+    <div class="tech-stack-grid">
+      {
+        techStack.map((tech) => (
+          <div class="tech-item">
+            <div class="tech-icon-wrap">
+              <i class={tech.icon} />
+            </div>
+            <div class="tech-info">
+              <span class="tech-name">{tech.name}</span>
+              <span class="tech-version">{tech.version}</span>
+            </div>
+            <span class="tech-desc">{tech.desc}</span>
+          </div>
+        ))
+      }
     </div>
+  </div>
 
-    <!-- Optimizations Applied -->
-    <div class="optimizations-section" data-aos="fade-up" data-aos-delay="300">
-        <h3><i class="fas fa-rocket"></i> Optimizaciones Aplicadas</h3>
-        <div class="optimizations-grid">
-            {optimizations.map(opt => (
-                <div class="opt-card">
-                    <div class="opt-icon">
-                        <i class={opt.icon}></i>
-                    </div>
-                    <div class="opt-content">
-                        <span class="opt-title">{opt.title}</span>
-                        <span class="opt-desc">{opt.desc}</span>
-                    </div>
-                    <i class="fas fa-check-circle opt-check"></i>
-                </div>
-            ))}
-        </div>
+  <!-- Optimizations Applied -->
+  <div class="optimizations-section" data-aos="fade-up" data-aos-delay="300">
+    <h3><i class="fas fa-rocket"></i> Optimizaciones Aplicadas</h3>
+    <div class="optimizations-grid">
+      {
+        optimizations.map((opt) => (
+          <div class="opt-card">
+            <div class="opt-icon">
+              <i class={opt.icon} />
+            </div>
+            <div class="opt-content">
+              <span class="opt-title">{opt.title}</span>
+              <span class="opt-desc">{opt.desc}</span>
+            </div>
+            <i class="fas fa-check-circle opt-check" />
+          </div>
+        ))
+      }
     </div>
+  </div>
 
-    <!-- Footer CTA -->
-    <div class="vitals-footer" data-aos="fade-up" data-aos-delay="400">
-        <div class="cta-content">
-            <h4>¿Quieres medir tu propio sitio?</h4>
-            <p>Usa estas herramientas gratuitas para analizar el rendimiento</p>
-        </div>
-        <div class="cta-buttons">
-            <a href="https://pagespeed.web.dev/" target="_blank" class="cta-btn google">
-                <i class="fab fa-google"></i> PageSpeed Insights
-            </a>
-            <a href="https://web.dev/measure/" target="_blank" class="cta-btn webdev">
-                <i class="fas fa-chart-line"></i> web.dev
-            </a>
-            <a href="https://developers.google.com/web/tools/lighthouse" target="_blank" class="cta-btn lighthouse">
-                <i class="fas fa-lightbulb"></i> Lighthouse
-            </a>
-        </div>
+  <!-- Footer CTA -->
+  <div class="vitals-footer" data-aos="fade-up" data-aos-delay="400">
+    <div class="cta-content">
+      <h4>¿Quieres medir tu propio sitio?</h4>
+      <p>Usa estas herramientas gratuitas para analizar el rendimiento</p>
     </div>
+    <div class="cta-buttons">
+      <a href="https://pagespeed.web.dev/" target="_blank" class="cta-btn google">
+        <i class="fab fa-google"></i> PageSpeed Insights
+      </a>
+      <a href="https://web.dev/measure/" target="_blank" class="cta-btn webdev">
+        <i class="fas fa-chart-line"></i> web.dev
+      </a>
+      <a
+        href="https://developers.google.com/web/tools/lighthouse"
+        target="_blank"
+        class="cta-btn lighthouse"
+      >
+        <i class="fas fa-lightbulb"></i> Lighthouse
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-    .vitals-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .vitals-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    .vitals-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  .vitals-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .header-icon-wrap {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 20px;
-        font-size: 2rem;
-        color: #10b981;
-    }
+  .header-icon-wrap {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 20px;
+    font-size: 2rem;
+    color: #10b981;
+  }
 
-    .pulse-glow {
-        animation: pulseGlow 2s ease-in-out infinite;
-    }
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
 
-    @keyframes pulseGlow {
-        0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
-        50% { box-shadow: 0 0 40px rgba(16, 185, 129, 0.5); }
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
     }
+    50% {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.5);
+    }
+  }
 
+  .vitals-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .vitals-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Score Badge */
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 2rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 20px;
+  }
+
+  .score-ring {
+    position: relative;
+    width: 70px;
+    height: 70px;
+  }
+
+  .score-ring svg {
+    transform: rotate(-90deg);
+  }
+
+  .score-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 3;
+  }
+
+  .score-fill {
+    fill: none;
+    stroke: #10b981;
+    stroke-width: 3;
+    stroke-linecap: round;
+    animation: scoreAnim 1.5s ease-out forwards;
+  }
+
+  @keyframes scoreAnim {
+    from {
+      stroke-dasharray: 0, 100;
+    }
+    to {
+      stroke-dasharray: 94, 100;
+    }
+  }
+
+  .score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #10b981;
+  }
+
+  .score-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .score-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .score-status {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .score-status.good {
+    color: #10b981;
+  }
+  .score-status.needs-improvement {
+    color: #f59e0b;
+  }
+  .score-status.poor {
+    color: #ef4444;
+  }
+
+  /* Vitals Grid */
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .vital-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .vital-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .vital-card.good {
+    border-left: 4px solid #10b981;
+  }
+
+  .vital-card.needs-improvement {
+    border-left: 4px solid #f59e0b;
+  }
+
+  .vital-card.poor {
+    border-left: 4px solid #ef4444;
+  }
+
+  .vital-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .vital-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+  }
+
+  .vital-title {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vital-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .vital-full {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .status-badge.good {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+  }
+
+  .status-badge.needs-improvement {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+  }
+
+  .status-badge.poor {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+  }
+
+  .vital-body {
+    margin-bottom: 1rem;
+  }
+
+  .vital-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .vital-target {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .vital-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .vital-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease-out;
+  }
+
+  .progress-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* Tech Stack */
+  .tech-stack-section,
+  .optimizations-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .tech-stack-section h3,
+  .optimizations-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .tech-stack-section h3 i,
+  .optimizations-section h3 i {
+    color: #00d4ff;
+  }
+
+  .tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .tech-item:hover {
+    background: rgba(0, 212, 255, 0.05);
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  .tech-icon-wrap {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    font-size: 1.25rem;
+    color: #00d4ff;
+  }
+
+  .tech-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tech-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .tech-version {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .tech-desc {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  /* Optimizations */
+  .optimizations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .opt-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+  }
+
+  .opt-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 8px;
+    color: #10b981;
+  }
+
+  .opt-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .opt-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .opt-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .opt-check {
+    color: #10b981;
+    font-size: 1.1rem;
+  }
+
+  /* Footer CTA */
+  .vitals-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    flex-wrap: wrap;
+  }
+
+  .cta-content h4 {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .cta-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.google {
+    background: rgba(66, 133, 244, 0.15);
+    color: #4285f4;
+    border: 1px solid rgba(66, 133, 244, 0.3);
+  }
+
+  .cta-btn.webdev {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+
+  .cta-btn.lighthouse {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .vitals-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin: 0 0 0.5rem;
+      font-size: 1.75rem;
     }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #10b981, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .vitals-header p {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-    }
-
-    /* Score Badge */
     .score-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 1.25rem 2rem;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.3);
-        border-radius: 20px;
+      flex-direction: column;
+      text-align: center;
     }
 
-    .score-ring {
-        position: relative;
-        width: 70px;
-        height: 70px;
-    }
-
-    .score-ring svg {
-        transform: rotate(-90deg);
-    }
-
-    .score-bg {
-        fill: none;
-        stroke: rgba(255, 255, 255, 0.1);
-        stroke-width: 3;
-    }
-
-    .score-fill {
-        fill: none;
-        stroke: #10b981;
-        stroke-width: 3;
-        stroke-linecap: round;
-        animation: scoreAnim 1.5s ease-out forwards;
-    }
-
-    @keyframes scoreAnim {
-        from { stroke-dasharray: 0, 100; }
-        to { stroke-dasharray: 94, 100; }
-    }
-
-    .score-value {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #10b981;
-    }
-
-    .score-info {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .score-label {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-    }
-
-    .score-status {
-        font-size: 1rem;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .score-status.good { color: #10b981; }
-    .score-status.needs-improvement { color: #f59e0b; }
-    .score-status.poor { color: #ef4444; }
-
-    /* Vitals Grid */
-    .vitals-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-    }
-
-    .vital-card {
-        padding: 1.5rem;
-        border-radius: 16px;
-        transition: all 0.3s ease;
-    }
-
-    .vital-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .vital-card.good {
-        border-left: 4px solid #10b981;
-    }
-
-    .vital-card.needs-improvement {
-        border-left: 4px solid #f59e0b;
-    }
-
-    .vital-card.poor {
-        border-left: 4px solid #ef4444;
-    }
-
-    .vital-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .vital-icon {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        font-size: 1.25rem;
-    }
-
-    .vital-title {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .vital-name {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: var(--text-primary);
-    }
-
-    .vital-full {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-    }
-
-    .status-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-
-    .status-badge.good {
-        background: rgba(16, 185, 129, 0.15);
-        color: #10b981;
-    }
-
-    .status-badge.needs-improvement {
-        background: rgba(245, 158, 11, 0.15);
-        color: #f59e0b;
-    }
-
-    .status-badge.poor {
-        background: rgba(239, 68, 68, 0.15);
-        color: #ef4444;
-    }
-
-    .vital-body {
-        margin-bottom: 1rem;
-    }
-
-    .vital-value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--text-primary);
-        margin-bottom: 0.25rem;
-    }
-
-    .vital-target {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin-bottom: 0.75rem;
-    }
-
-    .vital-desc {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin: 0;
-    }
-
-    .vital-progress {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .progress-bar {
-        flex: 1;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 3px;
-        overflow: hidden;
-    }
-
-    .progress-fill {
-        height: 100%;
-        border-radius: 3px;
-        transition: width 1s ease-out;
-    }
-
-    .progress-label {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        white-space: nowrap;
-    }
-
-    /* Tech Stack */
-    .tech-stack-section,
-    .optimizations-section {
-        margin-bottom: 2.5rem;
-    }
-
-    .tech-stack-section h3,
-    .optimizations-section h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
-        color: var(--text-primary);
-    }
-
-    .tech-stack-section h3 i,
-    .optimizations-section h3 i {
-        color: #00d4ff;
-    }
-
-    .tech-stack-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-    }
-
-    .tech-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        transition: all 0.3s ease;
-    }
-
-    .tech-item:hover {
-        background: rgba(0, 212, 255, 0.05);
-        border-color: rgba(0, 212, 255, 0.2);
-    }
-
-    .tech-icon-wrap {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 10px;
-        font-size: 1.25rem;
-        color: #00d4ff;
-    }
-
-    .tech-info {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .tech-name {
-        font-weight: 700;
-        font-size: 0.9rem;
-        color: var(--text-primary);
-    }
-
-    .tech-version {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-    }
-
-    .tech-desc {
-        margin-left: auto;
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-        background: rgba(255, 255, 255, 0.05);
-        padding: 0.25rem 0.6rem;
-        border-radius: 6px;
-    }
-
-    /* Optimizations */
-    .optimizations-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1rem;
-    }
-
-    .opt-card {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-        background: rgba(16, 185, 129, 0.05);
-        border: 1px solid rgba(16, 185, 129, 0.2);
-        border-radius: 12px;
-    }
-
-    .opt-icon {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(16, 185, 129, 0.15);
-        border-radius: 8px;
-        color: #10b981;
-    }
-
-    .opt-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .opt-title {
-        font-weight: 700;
-        font-size: 0.9rem;
-        color: var(--text-primary);
-    }
-
-    .opt-desc {
-        font-size: 0.75rem;
-        color: var(--text-secondary);
-    }
-
-    .opt-check {
-        color: #10b981;
-        font-size: 1.1rem;
-    }
-
-    /* Footer CTA */
     .vitals-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-        padding: 2rem;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
-        border: 1px solid rgba(0, 212, 255, 0.2);
-        border-radius: 20px;
-        flex-wrap: wrap;
-    }
-
-    .cta-content h4 {
-        font-size: 1.25rem;
-        margin: 0 0 0.25rem;
-    }
-
-    .cta-content p {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        margin: 0;
+      flex-direction: column;
+      text-align: center;
     }
 
     .cta-buttons {
-        display: flex;
-        gap: 0.75rem;
-        flex-wrap: wrap;
+      justify-content: center;
     }
+  }
 
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.25rem;
-        border-radius: 10px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.google {
-        background: rgba(66, 133, 244, 0.15);
-        color: #4285f4;
-        border: 1px solid rgba(66, 133, 244, 0.3);
-    }
-
-    .cta-btn.webdev {
-        background: rgba(0, 212, 255, 0.15);
-        color: #00d4ff;
-        border: 1px solid rgba(0, 212, 255, 0.3);
-    }
-
-    .cta-btn.lighthouse {
-        background: rgba(245, 158, 11, 0.15);
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .cta-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .vitals-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .score-badge {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .vitals-footer {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .cta-buttons {
-            justify-content: center;
-        }
-    }
-
-    /* ============================================
+  /* ============================================
        LIGHT MODE - Enterprise Grade Styles
        Typography: Inter/System fonts, proper weights
        Contrast: WCAG AA compliant
        ============================================ */
 
-    :global([data-theme="light"]) .vitals-section {
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
-    }
+  :global([data-theme="light"]) .vitals-section {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
+  }
 
-    /* Header Styles */
-    :global([data-theme="light"]) .header-icon-wrap {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(0, 212, 255, 0.12));
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-    }
+  /* Header Styles */
+  :global([data-theme="light"]) .header-icon-wrap {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(0, 212, 255, 0.12));
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  }
 
-    :global([data-theme="light"]) .header-icon-wrap i {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .header-icon-wrap i {
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .vitals-header h2 {
-        color: #0f172a;
-        letter-spacing: -0.02em;
-    }
+  :global([data-theme="light"]) .vitals-header h2 {
+    color: #0f172a;
+    letter-spacing: -0.02em;
+  }
 
-    :global([data-theme="light"]) .gradient-text {
-        background: linear-gradient(135deg, #059669, #0891b2);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  :global([data-theme="light"]) .gradient-text {
+    background: linear-gradient(135deg, #059669, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    :global([data-theme="light"]) .vitals-header p {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .vitals-header p {
+    color: #475569;
+  }
 
-    /* Score Badge */
-    :global([data-theme="light"]) .score-badge {
-        background: rgba(16, 185, 129, 0.06);
-        border-color: rgba(16, 185, 129, 0.2);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
-    }
+  /* Score Badge */
+  :global([data-theme="light"]) .score-badge {
+    background: rgba(16, 185, 129, 0.06);
+    border-color: rgba(16, 185, 129, 0.2);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+  }
 
-    :global([data-theme="light"]) .score-bg {
-        stroke: rgba(0, 0, 0, 0.08);
-    }
+  :global([data-theme="light"]) .score-bg {
+    stroke: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .score-fill {
-        stroke: #059669;
-    }
+  :global([data-theme="light"]) .score-fill {
+    stroke: #059669;
+  }
 
-    :global([data-theme="light"]) .score-value {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .score-value {
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .score-label {
-        color: #64748b;
-        font-weight: 500;
-    }
+  :global([data-theme="light"]) .score-label {
+    color: #64748b;
+    font-weight: 500;
+  }
 
-    :global([data-theme="light"]) .score-status.good {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .score-status.good {
+    color: #059669;
+  }
 
-    /* Vital Cards */
-    :global([data-theme="light"]) .vital-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow:
-            0 1px 3px rgba(0, 0, 0, 0.04),
-            0 4px 12px rgba(0, 0, 0, 0.03);
-    }
+  /* Vital Cards */
+  :global([data-theme="light"]) .vital-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 4px 12px rgba(0, 0, 0, 0.03);
+  }
 
-    :global([data-theme="light"]) .vital-card:hover {
-        box-shadow:
-            0 4px 12px rgba(0, 0, 0, 0.06),
-            0 8px 24px rgba(0, 0, 0, 0.04);
-        border-color: rgba(0, 0, 0, 0.1);
-    }
+  :global([data-theme="light"]) .vital-card:hover {
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.06),
+      0 8px 24px rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
 
-    :global([data-theme="light"]) .vital-card.good {
-        border-left: 4px solid #059669;
-    }
+  :global([data-theme="light"]) .vital-card.good {
+    border-left: 4px solid #059669;
+  }
 
-    :global([data-theme="light"]) .vital-card.needs-improvement {
-        border-left: 4px solid #d97706;
-    }
+  :global([data-theme="light"]) .vital-card.needs-improvement {
+    border-left: 4px solid #d97706;
+  }
 
-    :global([data-theme="light"]) .vital-card.poor {
-        border-left: 4px solid #dc2626;
-    }
+  :global([data-theme="light"]) .vital-card.poor {
+    border-left: 4px solid #dc2626;
+  }
 
-    :global([data-theme="light"]) .vital-name {
-        color: #0f172a;
-        font-weight: 700;
-        letter-spacing: -0.01em;
-    }
+  :global([data-theme="light"]) .vital-name {
+    color: #0f172a;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
 
-    :global([data-theme="light"]) .vital-full {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .vital-full {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .vital-value {
-        color: #0f172a;
-        font-weight: 800;
-    }
+  :global([data-theme="light"]) .vital-value {
+    color: #0f172a;
+    font-weight: 800;
+  }
 
-    :global([data-theme="light"]) .vital-target {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .vital-target {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .vital-desc {
-        color: #475569;
-        line-height: 1.5;
-    }
+  :global([data-theme="light"]) .vital-desc {
+    color: #475569;
+    line-height: 1.5;
+  }
 
-    /* Status Badges Light Mode */
-    :global([data-theme="light"]) .status-badge.good {
-        background: rgba(16, 185, 129, 0.1);
-        color: #059669;
-        border: 1px solid rgba(16, 185, 129, 0.2);
-    }
+  /* Status Badges Light Mode */
+  :global([data-theme="light"]) .status-badge.good {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
 
-    :global([data-theme="light"]) .status-badge.needs-improvement {
-        background: rgba(245, 158, 11, 0.1);
-        color: #d97706;
-        border: 1px solid rgba(245, 158, 11, 0.2);
-    }
+  :global([data-theme="light"]) .status-badge.needs-improvement {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
 
-    :global([data-theme="light"]) .status-badge.poor {
-        background: rgba(239, 68, 68, 0.1);
-        color: #dc2626;
-        border: 1px solid rgba(239, 68, 68, 0.2);
-    }
+  :global([data-theme="light"]) .status-badge.poor {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+  }
 
-    /* Progress Bar */
-    :global([data-theme="light"]) .progress-bar {
-        background: rgba(0, 0, 0, 0.06);
-    }
+  /* Progress Bar */
+  :global([data-theme="light"]) .progress-bar {
+    background: rgba(0, 0, 0, 0.06);
+  }
 
-    :global([data-theme="light"]) .progress-label {
-        color: #64748b;
-        font-weight: 500;
-    }
+  :global([data-theme="light"]) .progress-label {
+    color: #64748b;
+    font-weight: 500;
+  }
 
-    /* Tech Stack Section */
-    :global([data-theme="light"]) .tech-stack-section h3,
-    :global([data-theme="light"]) .optimizations-section h3 {
-        color: #0f172a;
-        font-weight: 700;
-    }
+  /* Tech Stack Section */
+  :global([data-theme="light"]) .tech-stack-section h3,
+  :global([data-theme="light"]) .optimizations-section h3 {
+    color: #0f172a;
+    font-weight: 700;
+  }
 
-    :global([data-theme="light"]) .tech-stack-section h3 i,
-    :global([data-theme="light"]) .optimizations-section h3 i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .tech-stack-section h3 i,
+  :global([data-theme="light"]) .optimizations-section h3 i {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .tech-item {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-    }
+  :global([data-theme="light"]) .tech-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  }
 
-    :global([data-theme="light"]) .tech-item:hover {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(8, 145, 178, 0.2);
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.08);
-    }
+  :global([data-theme="light"]) .tech-item:hover {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(8, 145, 178, 0.2);
+    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.08);
+  }
 
-    :global([data-theme="light"]) .tech-icon-wrap {
-        background: rgba(8, 145, 178, 0.08);
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .tech-icon-wrap {
+    background: rgba(8, 145, 178, 0.08);
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .tech-name {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .tech-name {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .tech-version {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .tech-version {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .tech-desc {
-        background: rgba(0, 0, 0, 0.04);
-        color: #475569;
-    }
+  :global([data-theme="light"]) .tech-desc {
+    background: rgba(0, 0, 0, 0.04);
+    color: #475569;
+  }
 
-    /* Optimizations Section */
-    :global([data-theme="light"]) .opt-card {
-        background: rgba(16, 185, 129, 0.04);
-        border-color: rgba(16, 185, 129, 0.15);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    }
+  /* Optimizations Section */
+  :global([data-theme="light"]) .opt-card {
+    background: rgba(16, 185, 129, 0.04);
+    border-color: rgba(16, 185, 129, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
 
-    :global([data-theme="light"]) .opt-card:hover {
-        background: rgba(16, 185, 129, 0.06);
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
-    }
+  :global([data-theme="light"]) .opt-card:hover {
+    background: rgba(16, 185, 129, 0.06);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
+  }
 
-    :global([data-theme="light"]) .opt-icon {
-        background: rgba(16, 185, 129, 0.1);
-        color: #059669;
-    }
+  :global([data-theme="light"]) .opt-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+  }
 
-    :global([data-theme="light"]) .opt-title {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .opt-title {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .opt-desc {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .opt-desc {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .opt-check {
-        color: #059669;
-    }
+  :global([data-theme="light"]) .opt-check {
+    color: #059669;
+  }
 
-    /* Footer CTA */
-    :global([data-theme="light"]) .vitals-footer {
-        background: linear-gradient(135deg, rgba(8, 145, 178, 0.06), rgba(124, 58, 237, 0.06));
-        border-color: rgba(8, 145, 178, 0.15);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-    }
+  /* Footer CTA */
+  :global([data-theme="light"]) .vitals-footer {
+    background: linear-gradient(135deg, rgba(8, 145, 178, 0.06), rgba(124, 58, 237, 0.06));
+    border-color: rgba(8, 145, 178, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
 
-    :global([data-theme="light"]) .cta-content h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .cta-content h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .cta-content p {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .cta-content p {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .cta-btn.google {
-        background: rgba(66, 133, 244, 0.08);
-        color: #2563eb;
-        border-color: rgba(66, 133, 244, 0.2);
-    }
+  :global([data-theme="light"]) .cta-btn.google {
+    background: rgba(66, 133, 244, 0.08);
+    color: #2563eb;
+    border-color: rgba(66, 133, 244, 0.2);
+  }
 
-    :global([data-theme="light"]) .cta-btn.google:hover {
-        background: rgba(66, 133, 244, 0.12);
-        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.15);
-    }
+  :global([data-theme="light"]) .cta-btn.google:hover {
+    background: rgba(66, 133, 244, 0.12);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.15);
+  }
 
-    :global([data-theme="light"]) .cta-btn.webdev {
-        background: rgba(8, 145, 178, 0.08);
-        color: #0891b2;
-        border-color: rgba(8, 145, 178, 0.2);
-    }
+  :global([data-theme="light"]) .cta-btn.webdev {
+    background: rgba(8, 145, 178, 0.08);
+    color: #0891b2;
+    border-color: rgba(8, 145, 178, 0.2);
+  }
 
-    :global([data-theme="light"]) .cta-btn.webdev:hover {
-        background: rgba(8, 145, 178, 0.12);
-        box-shadow: 0 4px 12px rgba(8, 145, 178, 0.15);
-    }
+  :global([data-theme="light"]) .cta-btn.webdev:hover {
+    background: rgba(8, 145, 178, 0.12);
+    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.15);
+  }
 
-    :global([data-theme="light"]) .cta-btn.lighthouse {
-        background: rgba(217, 119, 6, 0.08);
-        color: #d97706;
-        border-color: rgba(217, 119, 6, 0.2);
-    }
+  :global([data-theme="light"]) .cta-btn.lighthouse {
+    background: rgba(217, 119, 6, 0.08);
+    color: #d97706;
+    border-color: rgba(217, 119, 6, 0.2);
+  }
 
-    :global([data-theme="light"]) .cta-btn.lighthouse:hover {
-        background: rgba(217, 119, 6, 0.12);
-        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
-    }
+  :global([data-theme="light"]) .cta-btn.lighthouse:hover {
+    background: rgba(217, 119, 6, 0.12);
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.15);
+  }
 
-    /* Pulse Animation Light Mode */
-    :global([data-theme="light"]) .pulse-glow {
-        animation: pulseGlowLight 2s ease-in-out infinite;
-    }
+  /* Pulse Animation Light Mode */
+  :global([data-theme="light"]) .pulse-glow {
+    animation: pulseGlowLight 2s ease-in-out infinite;
+  }
 
-    @keyframes pulseGlowLight {
-        0%, 100% { box-shadow: 0 0 15px rgba(5, 150, 105, 0.2); }
-        50% { box-shadow: 0 0 25px rgba(5, 150, 105, 0.3); }
+  @keyframes pulseGlowLight {
+    0%,
+    100% {
+      box-shadow: 0 0 15px rgba(5, 150, 105, 0.2);
     }
+    50% {
+      box-shadow: 0 0 25px rgba(5, 150, 105, 0.3);
+    }
+  }
 </style>

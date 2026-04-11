@@ -2,141 +2,141 @@
 /**
  * /recursos/aprendizaje/ - Learning Resources Page
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import AIToolsSection from '../../../components/AIToolsSection.astro';
-import YouTubeSection from '../../../components/YouTubeSection.astro';
-import NotionEmbed from '../../../components/NotionEmbed.astro';
-import CodeSnippets from '../../../components/CodeSnippets.astro';
-import Recursos2025 from '../../../components/Recursos2025.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import AIToolsSection from "../../../components/AIToolsSection.astro";
+import YouTubeSection from "../../../components/YouTubeSection.astro";
+import NotionEmbed from "../../../components/NotionEmbed.astro";
+import CodeSnippets from "../../../components/CodeSnippets.astro";
+import Recursos2025 from "../../../components/Recursos2025.astro";
 ---
 
 <ResourcesLayout title="Aprendizaje | Recursos DuocUC" activeCategory="aprendizaje">
-    <div class="aprendizaje-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#ai-tools" class="nav-chip blue">
-                <i class="fas fa-robot"></i>
-                <span>AI Tools</span>
-            </a>
-            <a href="#videos" class="nav-chip blue">
-                <i class="fab fa-youtube"></i>
-                <span>Videos</span>
-            </a>
-            <a href="#notion-workspace" class="nav-chip blue">
-                <i class="fas fa-file-alt"></i>
-                <span>Notion</span>
-            </a>
-            <a href="#code-snippets" class="nav-chip blue">
-                <i class="fas fa-code"></i>
-                <span>Código</span>
-            </a>
-            <a href="#recursos-2025" class="nav-chip blue">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Cursos</span>
-            </a>
-        </nav>
+  <div class="aprendizaje-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#ai-tools" class="nav-chip blue">
+        <i class="fas fa-robot"></i>
+        <span>AI Tools</span>
+      </a>
+      <a href="#videos" class="nav-chip blue">
+        <i class="fab fa-youtube"></i>
+        <span>Videos</span>
+      </a>
+      <a href="#notion-workspace" class="nav-chip blue">
+        <i class="fas fa-file-alt"></i>
+        <span>Notion</span>
+      </a>
+      <a href="#code-snippets" class="nav-chip blue">
+        <i class="fas fa-code"></i>
+        <span>Código</span>
+      </a>
+      <a href="#recursos-2025" class="nav-chip blue">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Cursos</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="ai-tools">
-            <AIToolsSection />
-        </section>
+    <!-- Components -->
+    <section id="ai-tools">
+      <AIToolsSection />
+    </section>
 
-        <section id="videos">
-            <YouTubeSection />
-        </section>
+    <section id="videos">
+      <YouTubeSection />
+    </section>
 
-        <section id="notion-workspace">
-            <NotionEmbed />
-        </section>
+    <section id="notion-workspace">
+      <NotionEmbed />
+    </section>
 
-        <section id="code-snippets">
-            <CodeSnippets />
-        </section>
+    <section id="code-snippets">
+      <CodeSnippets />
+    </section>
 
-        <section id="recursos-2025">
-            <Recursos2025 />
-        </section>
-    </div>
+    <section id="recursos-2025">
+      <Recursos2025 />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .aprendizaje-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .aprendizaje-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip.blue:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip.blue:hover {
+    background: rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
+    color: #2563eb;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
+      overflow-x: auto;
+      flex-wrap: nowrap;
     }
 
     .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
+      white-space: nowrap;
     }
-
-    .nav-chip.blue:hover {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(59, 130, 246, 0.3);
-        color: #3b82f6;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip.blue:hover {
-        background: rgba(37, 99, 235, 0.1);
-        border-color: rgba(37, 99, 235, 0.3);
-        color: #2563eb;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-        }
-
-        .nav-chip {
-            white-space: nowrap;
-        }
-    }
+  }
 </style>

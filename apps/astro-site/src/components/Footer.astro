@@ -4,884 +4,1145 @@ const base = import.meta.env.BASE_URL;
 
 // Quick links del footer
 const quickLinks = [
-    { name: "Inicio", href: `${base}/inicio`, icon: "fa-home", tooltip: "Inicio|Página principal con Plan de Estudios y tecnologías|Hero,Bimestres,Stats|navigation|fa-home|NAVEGACIÓN" },
-    { name: "Stacks", href: `${base}/stacks`, icon: "fa-layer-group", tooltip: "Stack Tecnológico|150+ tecnologías con rankings actualizados|Languages,Frameworks,Tools|navigation|fa-layer-group|TECNOLOGÍAS" },
-    { name: "Arquitecturas", href: `${base}/arquitecturas`, icon: "fa-sitemap", tooltip: "Arquitectura|Patrones de diseño, pipelines y metodologías|Clean Arch,Scrum,DevOps|navigation|fa-sitemap|ARQUITECTURA" },
-    { name: "Recursos", href: `${base}/recursos`, icon: "fa-book-open", tooltip: "Recursos|Herramientas interactivas, videos y certificaciones|Gantt,SQL,Quizzes|navigation|fa-book-open|HERRAMIENTAS" },
-    { name: "Proyectos", href: `${base}/proyectos`, icon: "fa-folder-open", tooltip: "Proyectos|Roadmap de aprendizaje y portafolio profesional|Estudio,Trabajo,Portfolio|navigation|fa-folder-open|PROYECTOS" }
+  {
+    name: "Inicio",
+    href: `${base}/inicio`,
+    icon: "fa-home",
+    tooltip:
+      "Inicio|Página principal con Plan de Estudios y tecnologías|Hero,Bimestres,Stats|navigation|fa-home|NAVEGACIÓN",
+  },
+  {
+    name: "Stacks",
+    href: `${base}/stacks`,
+    icon: "fa-layer-group",
+    tooltip:
+      "Stack Tecnológico|150+ tecnologías con rankings actualizados|Languages,Frameworks,Tools|navigation|fa-layer-group|TECNOLOGÍAS",
+  },
+  {
+    name: "Arquitecturas",
+    href: `${base}/arquitecturas`,
+    icon: "fa-sitemap",
+    tooltip:
+      "Arquitectura|Patrones de diseño, pipelines y metodologías|Clean Arch,Scrum,DevOps|navigation|fa-sitemap|ARQUITECTURA",
+  },
+  {
+    name: "Recursos",
+    href: `${base}/recursos`,
+    icon: "fa-book-open",
+    tooltip:
+      "Recursos|Herramientas interactivas, videos y certificaciones|Gantt,SQL,Quizzes|navigation|fa-book-open|HERRAMIENTAS",
+  },
+  {
+    name: "Proyectos",
+    href: `${base}/proyectos`,
+    icon: "fa-folder-open",
+    tooltip:
+      "Proyectos|Roadmap de aprendizaje y portafolio profesional|Estudio,Trabajo,Portfolio|navigation|fa-folder-open|PROYECTOS",
+  },
 ];
 
 // Repositorios y links externos
 const repoLinks = [
-    { name: "GitHub", href: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC", icon: "fab fa-github", color: "#f8fafc", tooltip: "GitHub|Repositorio principal del proyecto|Stars,Forks,Issues|tool|fa-github|github.com" },
-    { name: "GitLab", href: "https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc", icon: "fab fa-gitlab", color: "#FC6D26", tooltip: "GitLab|Mirror del repositorio con CI/CD|Pipeline,Registry|tool|fa-gitlab|gitlab.com" },
-    { name: "BitBucket", href: "https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc", icon: "fab fa-bitbucket", color: "#2684FF", tooltip: "BitBucket|Mirror en Atlassian para integración Jira|Pipelines,Jira|tool|fa-bitbucket|bitbucket.org" },
-    { name: "Azure DevOps", href: "https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC", icon: "fab fa-microsoft", color: "#0078D4", tooltip: "Azure DevOps|Mirror con Azure Pipelines y Boards|CI/CD,Boards,Artifacts|tool|fa-microsoft|dev.azure.com" }
+  {
+    name: "GitHub",
+    href: "https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC",
+    icon: "fab fa-github",
+    color: "#f8fafc",
+    tooltip:
+      "GitHub|Repositorio principal del proyecto|Stars,Forks,Issues|tool|fa-github|github.com",
+  },
+  {
+    name: "GitLab",
+    href: "https://gitlab.com/fos-duoc/analista-programador-computacional-duocuc",
+    icon: "fab fa-gitlab",
+    color: "#FC6D26",
+    tooltip: "GitLab|Mirror del repositorio con CI/CD|Pipeline,Registry|tool|fa-gitlab|gitlab.com",
+  },
+  {
+    name: "BitBucket",
+    href: "https://bitbucket.org/fos-duoc/analista-programador-computacional-duocuc",
+    icon: "fab fa-bitbucket",
+    color: "#2684FF",
+    tooltip:
+      "BitBucket|Mirror en Atlassian para integración Jira|Pipelines,Jira|tool|fa-bitbucket|bitbucket.org",
+  },
+  {
+    name: "Azure DevOps",
+    href: "https://dev.azure.com/fos-duoc/Analista-Programador-Computacional-DuocUC",
+    icon: "fab fa-microsoft",
+    color: "#0078D4",
+    tooltip:
+      "Azure DevOps|Mirror con Azure Pipelines y Boards|CI/CD,Boards,Artifacts|tool|fa-microsoft|dev.azure.com",
+  },
 ];
 
 // Links institucionales
 const institutionalLinks = [
-    { name: "DuocUC", href: "https://www.duoc.cl/", icon: "fas fa-graduation-cap", color: "#00d4ff", tooltip: "DuocUC|Sitio oficial de Duoc UC|Carreras,Sedes,Admisión|info|fa-graduation-cap|duoc.cl" },
-    { name: "Malla", href: "https://www.duoc.cl/carreras/analista-programador-computacional/", icon: "fas fa-project-diagram", color: "#7c3aed", tooltip: "Malla Curricular|Plan de estudios oficial de la carrera|Asignaturas,Créditos,Duración|info|fa-project-diagram|duoc.cl" }
+  {
+    name: "DuocUC",
+    href: "https://www.duoc.cl/",
+    icon: "fas fa-graduation-cap",
+    color: "#00d4ff",
+    tooltip:
+      "DuocUC|Sitio oficial de Duoc UC|Carreras,Sedes,Admisión|info|fa-graduation-cap|duoc.cl",
+  },
+  {
+    name: "Malla",
+    href: "https://www.duoc.cl/carreras/analista-programador-computacional/",
+    icon: "fas fa-project-diagram",
+    color: "#7c3aed",
+    tooltip:
+      "Malla Curricular|Plan de estudios oficial de la carrera|Asignaturas,Créditos,Duración|info|fa-project-diagram|duoc.cl",
+  },
 ];
 
 // Tech stack usado
 const techStack = [
-    { name: "Astro", icon: "devicon-astro-plain", color: "#ff5a03", tooltip: "Astro|Framework moderno para sitios de contenido|Islands,Zero JS,SSG|tool|fa-rocket|Astro (2021)" },
-    { name: "TypeScript", icon: "devicon-typescript-plain", color: "#3178c6", tooltip: "TypeScript|JavaScript con tipado estático|Types,Interfaces|tool|fa-code|Microsoft (2012)" },
-    { name: "CSS3", icon: "devicon-css3-plain", color: "#264de4", tooltip: "CSS3|Estilos y diseño visual|Flexbox,Grid,Animations|tool|fa-paint-brush|W3C (2011)" },
-    { name: "HTML5", icon: "devicon-html5-plain", color: "#e34c26", tooltip: "HTML5|Estructura semántica web|Semantic,Accessible|tool|fa-code|W3C (2014)" }
+  {
+    name: "Astro",
+    icon: "devicon-astro-plain",
+    color: "#ff5a03",
+    tooltip:
+      "Astro|Framework moderno para sitios de contenido|Islands,Zero JS,SSG|tool|fa-rocket|Astro (2021)",
+  },
+  {
+    name: "TypeScript",
+    icon: "devicon-typescript-plain",
+    color: "#3178c6",
+    tooltip:
+      "TypeScript|JavaScript con tipado estático|Types,Interfaces|tool|fa-code|Microsoft (2012)",
+  },
+  {
+    name: "CSS3",
+    icon: "devicon-css3-plain",
+    color: "#264de4",
+    tooltip: "CSS3|Estilos y diseño visual|Flexbox,Grid,Animations|tool|fa-paint-brush|W3C (2011)",
+  },
+  {
+    name: "HTML5",
+    icon: "devicon-html5-plain",
+    color: "#e34c26",
+    tooltip: "HTML5|Estructura semántica web|Semantic,Accessible|tool|fa-code|W3C (2014)",
+  },
 ];
 
 // Stats compactos
 const stats = [
-    { value: "17", label: "Bimestres", tooltip: "Bimestres|17 bimestres académicos en 2 carreras|APC: 10,IDS: 7|info|fa-calendar-alt|ESTRUCTURA" },
-    { value: "40+", label: "Asignaturas", tooltip: "Asignaturas|Más de 40 asignaturas incluyendo Ingeniería en Software|Programación,Datos,Cloud,DevOps|info|fa-book|CONTENIDO" },
-    { value: "2", label: "Carreras", tooltip: "Carreras|Analista Programador + Ingeniería en Software|Técnico,Profesional|info|fa-user-graduate|PROGRAMA" }
+  {
+    value: "17",
+    label: "Bimestres",
+    tooltip:
+      "Bimestres|17 bimestres académicos en 2 carreras|APC: 10,IDS: 7|info|fa-calendar-alt|ESTRUCTURA",
+  },
+  {
+    value: "40+",
+    label: "Asignaturas",
+    tooltip:
+      "Asignaturas|Más de 40 asignaturas incluyendo Ingeniería en Software|Programación,Datos,Cloud,DevOps|info|fa-book|CONTENIDO",
+  },
+  {
+    value: "2",
+    label: "Carreras",
+    tooltip:
+      "Carreras|Analista Programador + Ingeniería en Software|Técnico,Profesional|info|fa-user-graduate|PROGRAMA",
+  },
 ];
 
 // Useful links
 const usefulLinks = [
-    { name: "Changelog", href: `https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/commits/main`, icon: "fas fa-history", tooltip: "Changelog|Historial de cambios y actualizaciones|Commits,Releases|info|fa-history|GITHUB" },
-    { name: "Issues", href: `https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/issues`, icon: "fas fa-bug", tooltip: "Issues|Reportar bugs o solicitar features|Bugs,Features,Help|info|fa-bug|GITHUB" }
+  {
+    name: "Changelog",
+    href: `https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/commits/main`,
+    icon: "fas fa-history",
+    tooltip:
+      "Changelog|Historial de cambios y actualizaciones|Commits,Releases|info|fa-history|GITHUB",
+  },
+  {
+    name: "Issues",
+    href: `https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC/issues`,
+    icon: "fas fa-bug",
+    tooltip: "Issues|Reportar bugs o solicitar features|Bugs,Features,Help|info|fa-bug|GITHUB",
+  },
 ];
 ---
 
 <footer class="footer-compact">
-    <!-- Wave separator -->
-    <div class="footer-wave">
-        <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-            <path d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,60 L0,60 Z" fill="url(#waveGradient)"/>
-            <defs>
-                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:rgba(0,212,255,0.08)"/>
-                    <stop offset="50%" style="stop-color:rgba(124,58,237,0.08)"/>
-                    <stop offset="100%" style="stop-color:rgba(244,114,182,0.08)"/>
-                </linearGradient>
-            </defs>
-        </svg>
-    </div>
+  <!-- Wave separator -->
+  <div class="footer-wave">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path
+        d="M0,30 C360,60 720,0 1080,30 C1260,45 1380,15 1440,30 L1440,60 L0,60 Z"
+        fill="url(#waveGradient)"></path>
+      <defs>
+        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:rgba(0,212,255,0.08)"></stop>
+          <stop offset="50%" style="stop-color:rgba(124,58,237,0.08)"></stop>
+          <stop offset="100%" style="stop-color:rgba(244,114,182,0.08)"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
 
-    <div class="footer-container">
-        <!-- Main Row -->
-        <div class="footer-main-row">
-            <!-- Brand -->
-            <div class="footer-brand" data-premium-tooltip="Analista Programador Computacional|Repositorio de materiales y recursos académicos para la carrera|Online,DuocUC,2025|info|fa-laptop-code|DUOC UC">
-                <div class="brand-logo">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-title">Analista Programador Computacional</span>
-                    <span class="brand-subtitle">DuocUC Online {currentYear}</span>
-                </div>
-            </div>
-
-            <!-- Quick Nav -->
-            <nav class="footer-nav">
-                {quickLinks.map((link) => (
-                    <a href={link.href} class="nav-link" data-premium-tooltip={link.tooltip}>
-                        <i class={`fas ${link.icon}`}></i>
-                        {link.name}
-                    </a>
-                ))}
-            </nav>
-
-            <!-- Repo Links -->
-            <div class="footer-repos">
-                <span class="repos-label">Repos:</span>
-                {repoLinks.map((link) => (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer"
-                       class="repo-link" style={`--repo-color: ${link.color};`}
-                       data-premium-tooltip={link.tooltip}>
-                        <i class={link.icon}></i>
-                    </a>
-                ))}
-            </div>
-
-            <!-- Institutional Links -->
-            <div class="footer-institutional">
-                {institutionalLinks.map((link) => (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer"
-                       class="institutional-link" style={`--inst-color: ${link.color};`}
-                       data-premium-tooltip={link.tooltip}>
-                        <i class={link.icon}></i>
-                        <span>{link.name}</span>
-                    </a>
-                ))}
-            </div>
-
-            <!-- Stats -->
-            <div class="footer-stats">
-                {stats.map((stat, i) => (
-                    <>
-                        <div class="stat-item" data-premium-tooltip={stat.tooltip}>
-                            <span class="stat-num">{stat.value}</span>
-                            <span class="stat-lbl">{stat.label}</span>
-                        </div>
-                        {i < stats.length - 1 && <span class="stat-divider">|</span>}
-                    </>
-                ))}
-            </div>
+  <div class="footer-container">
+    <!-- Main Row -->
+    <div class="footer-main-row">
+      <!-- Brand -->
+      <div
+        class="footer-brand"
+        data-premium-tooltip="Analista Programador Computacional|Repositorio de materiales y recursos académicos para la carrera|Online,DuocUC,2025|info|fa-laptop-code|DUOC UC"
+      >
+        <div class="brand-logo">
+          <i class="fas fa-laptop-code"></i>
         </div>
-
-        <!-- Bottom Row -->
-        <div class="footer-bottom-row">
-            <!-- Copyright + Made with -->
-            <div class="footer-copyright">
-                <i class="far fa-copyright"></i> {currentYear}
-                <span class="highlight">APC</span> - DuocUC
-                <span class="sep">·</span>
-                Hecho con <i class="fas fa-heart heart"></i> y <i class="fas fa-coffee coffee"></i> usando
-                <a href="https://astro.build" target="_blank" class="astro-link"
-                   data-premium-tooltip="Astro|Framework web moderno con Islands Architecture|Fast,SEO,DX|tool|fa-rocket|astro.build">
-                    <i class="devicon-astro-plain"></i> Astro
-                </a>
-            </div>
-
-            <!-- Useful Links -->
-            <div class="footer-useful">
-                {usefulLinks.map((link) => (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer"
-                       class="useful-link" data-premium-tooltip={link.tooltip}>
-                        <i class={link.icon}></i>
-                        <span>{link.name}</span>
-                    </a>
-                ))}
-            </div>
-
-            <!-- Tech Stack -->
-            <div class="footer-tech">
-                <span class="tech-label">Built with:</span>
-                {techStack.map((tech) => (
-                    <div class="tech-icon" style={`--color: ${tech.color};`}
-                         data-premium-tooltip={tech.tooltip}>
-                        <i class={tech.icon}></i>
-                    </div>
-                ))}
-            </div>
-
-            <!-- Keyboard Shortcut + Back to Top -->
-            <div class="footer-actions">
-                <div class="kbd-hint" data-premium-tooltip="Command Palette|Abre la paleta de comandos para navegación rápida|Buscar,Navegar,Acciones|feature|fa-keyboard|ATAJO">
-                    <kbd>⌘</kbd><kbd>K</kbd>
-                </div>
-                <div class="deploy-status" data-premium-tooltip="Deploy Status|El sitio está desplegado y funcionando correctamente|GitHub Pages,Live|info|fa-circle|HOSTING">
-                    <span class="status-dot"></span>
-                    <span>Live</span>
-                </div>
-                <button class="back-to-top" id="footerBackToTop"
-                        data-premium-tooltip="Volver Arriba|Scroll suave al inicio de la página||feature|fa-arrow-up|NAVEGACIÓN">
-                    <i class="fas fa-arrow-up"></i>
-                </button>
-            </div>
+        <div class="brand-text">
+          <span class="brand-title">Analista Programador Computacional</span>
+          <span class="brand-subtitle">DuocUC Online {currentYear}</span>
         </div>
+      </div>
+
+      <!-- Quick Nav -->
+      <nav class="footer-nav">
+        {
+          quickLinks.map((link) => (
+            <a href={link.href} class="nav-link" data-premium-tooltip={link.tooltip}>
+              <i class={`fas ${link.icon}`} />
+              {link.name}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Repo Links -->
+      <div class="footer-repos">
+        <span class="repos-label">Repos:</span>
+        {
+          repoLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="repo-link"
+              style={`--repo-color: ${link.color};`}
+              data-premium-tooltip={link.tooltip}
+            >
+              <i class={link.icon} />
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Institutional Links -->
+      <div class="footer-institutional">
+        {
+          institutionalLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="institutional-link"
+              style={`--inst-color: ${link.color};`}
+              data-premium-tooltip={link.tooltip}
+            >
+              <i class={link.icon} />
+              <span>{link.name}</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Stats -->
+      <div class="footer-stats">
+        {
+          stats.map((stat, i) => (
+            <>
+              <div class="stat-item" data-premium-tooltip={stat.tooltip}>
+                <span class="stat-num">{stat.value}</span>
+                <span class="stat-lbl">{stat.label}</span>
+              </div>
+              {i < stats.length - 1 && <span class="stat-divider">|</span>}
+            </>
+          ))
+        }
+      </div>
     </div>
 
-    <!-- Animated Background Blobs -->
-    <div class="footer-bg">
-        <!-- Large slow-moving blobs -->
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <!-- Medium morphing blobs -->
-        <div class="blob blob-4"></div>
-        <div class="blob blob-5"></div>
-        <!-- Small accent blobs -->
-        <div class="blob blob-6"></div>
-        <div class="blob blob-7"></div>
-        <!-- Gradient mesh overlay -->
-        <div class="gradient-mesh"></div>
+    <!-- Bottom Row -->
+    <div class="footer-bottom-row">
+      <!-- Copyright + Made with -->
+      <div class="footer-copyright">
+        <i class="far fa-copyright"></i>
+        {currentYear}
+        <span class="highlight">APC</span> - DuocUC
+        <span class="sep">·</span>
+        Hecho con <i class="fas fa-heart heart"></i> y <i class="fas fa-coffee coffee"></i> usando
+        <a
+          href="https://astro.build"
+          target="_blank"
+          class="astro-link"
+          data-premium-tooltip="Astro|Framework web moderno con Islands Architecture|Fast,SEO,DX|tool|fa-rocket|astro.build"
+        >
+          <i class="devicon-astro-plain"></i> Astro
+        </a>
+      </div>
+
+      <!-- Useful Links -->
+      <div class="footer-useful">
+        {
+          usefulLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="useful-link"
+              data-premium-tooltip={link.tooltip}
+            >
+              <i class={link.icon} />
+              <span>{link.name}</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="footer-tech">
+        <span class="tech-label">Built with:</span>
+        {
+          techStack.map((tech) => (
+            <div
+              class="tech-icon"
+              style={`--color: ${tech.color};`}
+              data-premium-tooltip={tech.tooltip}
+            >
+              <i class={tech.icon} />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Keyboard Shortcut + Back to Top -->
+      <div class="footer-actions">
+        <div
+          class="kbd-hint"
+          data-premium-tooltip="Command Palette|Abre la paleta de comandos para navegación rápida|Buscar,Navegar,Acciones|feature|fa-keyboard|ATAJO"
+        >
+          <kbd>⌘</kbd><kbd>K</kbd>
+        </div>
+        <div
+          class="deploy-status"
+          data-premium-tooltip="Deploy Status|El sitio está desplegado y funcionando correctamente|GitHub Pages,Live|info|fa-circle|HOSTING"
+        >
+          <span class="status-dot"></span>
+          <span>Live</span>
+        </div>
+        <button
+          class="back-to-top"
+          id="footerBackToTop"
+          data-premium-tooltip="Volver Arriba|Scroll suave al inicio de la página||feature|fa-arrow-up|NAVEGACIÓN"
+        >
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </div>
     </div>
+  </div>
+
+  <!-- Animated Background Blobs -->
+  <div class="footer-bg">
+    <!-- Large slow-moving blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <!-- Medium morphing blobs -->
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+    <!-- Small accent blobs -->
+    <div class="blob blob-6"></div>
+    <div class="blob blob-7"></div>
+    <!-- Gradient mesh overlay -->
+    <div class="gradient-mesh"></div>
+  </div>
 </footer>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const backToTop = document.getElementById('footerBackToTop');
-        if (backToTop) {
-            backToTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    });
+  document.addEventListener("astro:page-load", () => {
+    const backToTop = document.getElementById("footerBackToTop");
+    if (backToTop) {
+      backToTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
 </script>
 
 <style>
-    .footer-compact {
-        position: relative;
-        background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(8, 8, 16, 0.98) 100%);
-        overflow: hidden;
-    }
+  .footer-compact {
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(8, 8, 16, 0.98) 100%);
+    overflow: hidden;
+  }
 
-    .footer-wave {
-        position: absolute;
-        top: -1px;
-        left: 0;
-        right: 0;
-        height: 60px;
-    }
+  .footer-wave {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 60px;
+  }
 
-    .footer-wave svg {
-        width: 100%;
-        height: 100%;
-    }
+  .footer-wave svg {
+    width: 100%;
+    height: 100%;
+  }
 
-    .footer-container {
-        position: relative;
-        z-index: 2;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 4rem 2rem 1.5rem;
-    }
+  .footer-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem 1.5rem;
+  }
 
-    /* Main Row */
+  /* Main Row */
+  .footer-main-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+  }
+
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: default;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+    border-radius: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+  }
+
+  .brand-logo i {
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .brand-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .brand-subtitle {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* Navigation */
+  .footer-nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.6rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-link i {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .nav-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+  }
+
+  .nav-link:hover i {
+    color: #00d4ff;
+  }
+
+  /* Repo Links */
+  .footer-repos {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .repos-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+
+  .repo-link {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .repo-link:hover {
+    background: rgba(var(--repo-color), 0.15);
+    border-color: var(--repo-color);
+    color: var(--repo-color);
+    transform: translateY(-2px);
+  }
+
+  /* Institutional Links */
+  .footer-institutional {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .institutional-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.6rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+  }
+
+  .institutional-link i {
+    color: var(--inst-color);
+    font-size: 0.8rem;
+  }
+
+  .institutional-link:hover {
+    background: rgba(var(--inst-color), 0.1);
+    border-color: var(--inst-color);
+    color: var(--inst-color);
+  }
+
+  /* Stats */
+  .footer-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    cursor: default;
+  }
+
+  .stat-num {
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: "Space Grotesk", sans-serif;
+  }
+
+  .stat-lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .stat-divider {
+    color: rgba(255, 255, 255, 0.12);
+    font-weight: 300;
+  }
+
+  /* Bottom Row */
+  .footer-bottom-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-copyright {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  .footer-copyright .highlight {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .footer-copyright .sep {
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0 0.2rem;
+  }
+
+  .heart {
+    color: #ef4444;
+    animation: heartBeat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartBeat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+  }
+
+  .coffee {
+    color: #d97706;
+  }
+
+  .astro-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: #ff5a03;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .astro-link:hover {
+    color: #ff7a33;
+  }
+
+  /* Useful Links */
+  .footer-useful {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .useful-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.7rem;
+    transition: all 0.2s ease;
+  }
+
+  .useful-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+  }
+
+  /* Tech Stack */
+  .footer-tech {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .tech-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .tech-icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.2s ease;
+    cursor: default;
+  }
+
+  .tech-icon i {
+    font-size: 0.85rem;
+    color: var(--color);
+  }
+
+  .tech-icon:hover {
+    transform: translateY(-2px);
+    border-color: var(--color);
+  }
+
+  /* Actions */
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .kbd-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    cursor: default;
+  }
+
+  .kbd-hint kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 0.3rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    font-family: "SF Mono", "Monaco", monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  .deploy-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    font-size: 0.65rem;
+    color: #10b981;
+    cursor: default;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .back-to-top {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    color: #00d4ff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .back-to-top:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Animated Background Blobs */
+  .footer-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.18;
+    will-change: transform;
+  }
+
+  /* Blob 1: Cyan - Large, slow floating */
+  .blob-1 {
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, #00d4ff 0%, #0891b2 40%, transparent 70%);
+    bottom: -120px;
+    left: -100px;
+    animation:
+      blobFloat1 12s ease-in-out infinite,
+      blobMorph 16s ease-in-out infinite;
+  }
+
+  /* Blob 2: Purple - Large, orbiting motion */
+  .blob-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #7c3aed 0%, #6d28d9 40%, transparent 70%);
+    bottom: -80px;
+    right: -5%;
+    animation:
+      blobFloat2 10s ease-in-out infinite,
+      blobMorph 14s ease-in-out infinite reverse;
+  }
+
+  /* Blob 3: Pink - Center, pulsating */
+  .blob-3 {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, #f472b6 0%, #ec4899 40%, transparent 70%);
+    bottom: -60px;
+    left: 30%;
+    animation:
+      blobFloat3 14s ease-in-out infinite,
+      blobPulse 6s ease-in-out infinite;
+  }
+
+  /* Blob 4: Orange/Amber - Diagonal drift */
+  .blob-4 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, #ff5a03 0%, #f59e0b 40%, transparent 70%);
+    bottom: 0;
+    right: 20%;
+    animation:
+      blobFloat4 11s ease-in-out infinite,
+      blobMorph 12s ease-in-out infinite;
+  }
+
+  /* Blob 5: Green/Emerald - Medium, dynamic */
+  .blob-5 {
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, #10b981 0%, #059669 40%, transparent 70%);
+    bottom: -50px;
+    left: 15%;
+    animation:
+      blobFloat5 9s ease-in-out infinite,
+      blobPulse 5s ease-in-out infinite;
+  }
+
+  /* Blob 6: Blue - Accent, drifting */
+  .blob-6 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #3b82f6 0%, #2563eb 40%, transparent 70%);
+    bottom: 20px;
+    left: 50%;
+    animation:
+      blobFloat6 8s ease-in-out infinite,
+      blobMorph 10s ease-in-out infinite reverse;
+  }
+
+  /* Blob 7: Rose/Red - Smallest, quick pulse */
+  .blob-7 {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, #f43f5e 0%, #e11d48 40%, transparent 70%);
+    bottom: -20px;
+    right: 35%;
+    animation:
+      blobFloat7 7s ease-in-out infinite,
+      blobPulse 4s ease-in-out infinite;
+  }
+
+  /* Gradient mesh overlay for cohesion */
+  .gradient-mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 100%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(124, 58, 237, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(244, 114, 182, 0.03) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  /* Blob Animations - More Movement */
+  @keyframes blobFloat1 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(60px, -40px) scale(1.08);
+    }
+    50% {
+      transform: translate(100px, 20px) scale(0.92);
+    }
+    75% {
+      transform: translate(40px, -20px) scale(1.05);
+    }
+  }
+
+  @keyframes blobFloat2 {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+      transform: translate(-80px, -50px) rotate(8deg);
+    }
+    66% {
+      transform: translate(-40px, 40px) rotate(-8deg);
+    }
+  }
+
+  @keyframes blobFloat3 {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(50px, -30px);
+    }
+    40% {
+      transform: translate(-30px, -50px);
+    }
+    60% {
+      transform: translate(-50px, 20px);
+    }
+    80% {
+      transform: translate(30px, 30px);
+    }
+  }
+
+  @keyframes blobFloat4 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-70px, -40px) scale(1.15);
+    }
+  }
+
+  @keyframes blobFloat5 {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(40px, 20px);
+    }
+    50% {
+      transform: translate(-20px, 40px);
+    }
+    75% {
+      transform: translate(-40px, -20px);
+    }
+  }
+
+  @keyframes blobFloat6 {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate(60px, -50px) rotate(15deg);
+    }
+  }
+
+  @keyframes blobFloat7 {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    33% {
+      transform: translate(-30px, 30px);
+    }
+    66% {
+      transform: translate(30px, -30px);
+    }
+  }
+
+  @keyframes blobMorph {
+    0%,
+    100% {
+      border-radius: 50%;
+    }
+    25% {
+      border-radius: 65% 35% 60% 40% / 40% 60% 35% 65%;
+    }
+    50% {
+      border-radius: 40% 60% 35% 65% / 60% 40% 65% 35%;
+    }
+    75% {
+      border-radius: 60% 40% 65% 35% / 35% 65% 40% 60%;
+    }
+  }
+
+  @keyframes blobPulse {
+    0%,
+    100% {
+      opacity: 0.18;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.28;
+      transform: scale(1.12);
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .blob {
+      animation: none !important;
+    }
+  }
+
+  /* Light Mode */
+  :global([data-theme="light"]) .footer-compact {
+    background: linear-gradient(180deg, var(--bg-primary) 0%, #e2e8f0 100%);
+  }
+
+  :global([data-theme="light"]) .brand-logo {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+  }
+
+  :global([data-theme="light"]) .repo-link,
+  :global([data-theme="light"]) .tech-icon,
+  :global([data-theme="light"]) .institutional-link {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .footer-main-row {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .kbd-hint kbd {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .deploy-status {
+    background: rgba(16, 185, 129, 0.08);
+  }
+
+  :global([data-theme="light"]) .useful-link {
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  :global([data-theme="light"]) .blob {
+    opacity: 0.08;
+    filter: blur(100px);
+  }
+
+  :global([data-theme="light"]) .gradient-mesh {
+    background:
+      radial-gradient(ellipse at 20% 100%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(124, 58, 237, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(244, 114, 182, 0.02) 0%, transparent 40%);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
     .footer-main-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1.5rem;
-        padding-bottom: 1.25rem;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        flex-wrap: wrap;
+      justify-content: center;
     }
 
-    /* Brand */
     .footer-brand {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: default;
+      width: 100%;
+      justify-content: center;
     }
 
-    .brand-logo {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(124,58,237,0.15));
-        border-radius: 10px;
-        border: 1px solid rgba(0,212,255,0.25);
-    }
-
-    .brand-logo i {
-        font-size: 1.1rem;
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .brand-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0.1rem;
-    }
-
-    .brand-title {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .brand-subtitle {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    /* Navigation */
     .footer-nav {
-        display: flex;
-        gap: 0.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
     }
+  }
 
-    .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.6rem;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.8rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-    }
-
-    .nav-link i {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    .nav-link:hover {
-        background: rgba(0,212,255,0.1);
-        color: #00d4ff;
-    }
-
-    .nav-link:hover i {
-        color: #00d4ff;
-    }
-
-    /* Repo Links */
-    .footer-repos {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    .repos-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        margin-right: 0.25rem;
-    }
-
-    .repo-link {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255,255,255,0.04);
-        border-radius: 8px;
-        border: 1px solid rgba(255,255,255,0.08);
-        color: var(--text-secondary);
-        transition: all 0.2s ease;
-    }
-
-    .repo-link:hover {
-        background: rgba(var(--repo-color), 0.15);
-        border-color: var(--repo-color);
-        color: var(--repo-color);
-        transform: translateY(-2px);
-    }
-
-    /* Institutional Links */
-    .footer-institutional {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .institutional-link {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.35rem 0.6rem;
-        background: rgba(255,255,255,0.04);
-        border-radius: 6px;
-        border: 1px solid rgba(255,255,255,0.08);
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.75rem;
-        transition: all 0.2s ease;
-    }
-
-    .institutional-link i {
-        color: var(--inst-color);
-        font-size: 0.8rem;
-    }
-
-    .institutional-link:hover {
-        background: rgba(var(--inst-color), 0.1);
-        border-color: var(--inst-color);
-        color: var(--inst-color);
-    }
-
-    /* Stats */
+  @media (max-width: 900px) {
+    .footer-repos,
+    .footer-institutional,
     .footer-stats {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: 3rem 1.5rem 1.25rem;
     }
 
-    .stat-item {
-        display: flex;
-        align-items: baseline;
-        gap: 0.3rem;
-        cursor: default;
-    }
-
-    .stat-num {
-        font-size: 1rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-family: 'Space Grotesk', sans-serif;
-    }
-
-    .stat-lbl {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    .stat-divider {
-        color: rgba(255,255,255,0.12);
-        font-weight: 300;
-    }
-
-    /* Bottom Row */
     .footer-bottom-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 1rem;
-        gap: 1rem;
-        flex-wrap: wrap;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
     .footer-copyright {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        color: var(--text-muted);
-        font-size: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
     }
 
-    .footer-copyright .highlight {
-        color: var(--text-secondary);
-        font-weight: 500;
-    }
-
-    .footer-copyright .sep {
-        color: rgba(255,255,255,0.2);
-        margin: 0 0.2rem;
-    }
-
-    .heart {
-        color: #ef4444;
-        animation: heartBeat 1.5s ease-in-out infinite;
-    }
-
-    @keyframes heartBeat {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.15); }
-    }
-
-    .coffee {
-        color: #d97706;
-    }
-
-    .astro-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2rem;
-        color: #ff5a03;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s;
-    }
-
-    .astro-link:hover {
-        color: #ff7a33;
-    }
-
-    /* Useful Links */
-    .footer-useful {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .useful-link {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.3rem 0.5rem;
-        background: rgba(255,255,255,0.03);
-        border-radius: 5px;
-        color: var(--text-muted);
-        text-decoration: none;
-        font-size: 0.7rem;
-        transition: all 0.2s ease;
-    }
-
-    .useful-link:hover {
-        background: rgba(0,212,255,0.1);
-        color: #00d4ff;
-    }
-
-    /* Tech Stack */
-    .footer-tech {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    .tech-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    .tech-icon {
-        width: 26px;
-        height: 26px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255,255,255,0.04);
-        border-radius: 5px;
-        border: 1px solid rgba(255,255,255,0.08);
-        transition: all 0.2s ease;
-        cursor: default;
-    }
-
-    .tech-icon i {
-        font-size: 0.85rem;
-        color: var(--color);
-    }
-
-    .tech-icon:hover {
-        transform: translateY(-2px);
-        border-color: var(--color);
-    }
-
-    /* Actions */
+    .footer-useful,
+    .footer-tech,
     .footer-actions {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-link span {
+      display: none;
     }
 
-    .kbd-hint {
-        display: flex;
-        align-items: center;
-        gap: 0.15rem;
-        cursor: default;
+    .nav-link {
+      padding: 0.4rem;
     }
 
-    .kbd-hint kbd {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 20px;
-        height: 20px;
-        padding: 0 0.3rem;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(255,255,255,0.15);
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', monospace;
-        font-size: 0.65rem;
-        color: var(--text-muted);
+    .nav-link i {
+      font-size: 0.9rem;
     }
 
-    .deploy-status {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.25rem 0.5rem;
-        background: rgba(16, 185, 129, 0.1);
-        border: 1px solid rgba(16, 185, 129, 0.2);
-        border-radius: 12px;
-        font-size: 0.65rem;
-        color: #10b981;
-        cursor: default;
+    .brand-title {
+      font-size: 0.8rem;
     }
 
-    .status-dot {
-        width: 6px;
-        height: 6px;
-        background: #10b981;
-        border-radius: 50%;
-        animation: pulse 2s ease-in-out infinite;
+    .institutional-link span {
+      display: none;
     }
-
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.5; }
-    }
-
-    .back-to-top {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0,212,255,0.1);
-        border: 1px solid rgba(0,212,255,0.2);
-        border-radius: 8px;
-        color: #00d4ff;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .back-to-top:hover {
-        background: rgba(0,212,255,0.2);
-        transform: translateY(-2px);
-    }
-
-    /* Animated Background Blobs */
-    .footer-bg {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-        pointer-events: none;
-        z-index: 1;
-    }
-
-    .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(70px);
-        opacity: 0.18;
-        will-change: transform;
-    }
-
-    /* Blob 1: Cyan - Large, slow floating */
-    .blob-1 {
-        width: 450px;
-        height: 450px;
-        background: radial-gradient(circle, #00d4ff 0%, #0891b2 40%, transparent 70%);
-        bottom: -120px;
-        left: -100px;
-        animation: blobFloat1 12s ease-in-out infinite, blobMorph 16s ease-in-out infinite;
-    }
-
-    /* Blob 2: Purple - Large, orbiting motion */
-    .blob-2 {
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, #7c3aed 0%, #6d28d9 40%, transparent 70%);
-        bottom: -80px;
-        right: -5%;
-        animation: blobFloat2 10s ease-in-out infinite, blobMorph 14s ease-in-out infinite reverse;
-    }
-
-    /* Blob 3: Pink - Center, pulsating */
-    .blob-3 {
-        width: 320px;
-        height: 320px;
-        background: radial-gradient(circle, #f472b6 0%, #ec4899 40%, transparent 70%);
-        bottom: -60px;
-        left: 30%;
-        animation: blobFloat3 14s ease-in-out infinite, blobPulse 6s ease-in-out infinite;
-    }
-
-    /* Blob 4: Orange/Amber - Diagonal drift */
-    .blob-4 {
-        width: 280px;
-        height: 280px;
-        background: radial-gradient(circle, #ff5a03 0%, #f59e0b 40%, transparent 70%);
-        bottom: 0;
-        right: 20%;
-        animation: blobFloat4 11s ease-in-out infinite, blobMorph 12s ease-in-out infinite;
-    }
-
-    /* Blob 5: Green/Emerald - Medium, dynamic */
-    .blob-5 {
-        width: 240px;
-        height: 240px;
-        background: radial-gradient(circle, #10b981 0%, #059669 40%, transparent 70%);
-        bottom: -50px;
-        left: 15%;
-        animation: blobFloat5 9s ease-in-out infinite, blobPulse 5s ease-in-out infinite;
-    }
-
-    /* Blob 6: Blue - Accent, drifting */
-    .blob-6 {
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, #3b82f6 0%, #2563eb 40%, transparent 70%);
-        bottom: 20px;
-        left: 50%;
-        animation: blobFloat6 8s ease-in-out infinite, blobMorph 10s ease-in-out infinite reverse;
-    }
-
-    /* Blob 7: Rose/Red - Smallest, quick pulse */
-    .blob-7 {
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(circle, #f43f5e 0%, #e11d48 40%, transparent 70%);
-        bottom: -20px;
-        right: 35%;
-        animation: blobFloat7 7s ease-in-out infinite, blobPulse 4s ease-in-out infinite;
-    }
-
-    /* Gradient mesh overlay for cohesion */
-    .gradient-mesh {
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(ellipse at 20% 100%, rgba(0,212,255,0.05) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 100%, rgba(124,58,237,0.05) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 80%, rgba(244,114,182,0.03) 0%, transparent 40%);
-        pointer-events: none;
-    }
-
-    /* Blob Animations - More Movement */
-    @keyframes blobFloat1 {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        25% { transform: translate(60px, -40px) scale(1.08); }
-        50% { transform: translate(100px, 20px) scale(0.92); }
-        75% { transform: translate(40px, -20px) scale(1.05); }
-    }
-
-    @keyframes blobFloat2 {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        33% { transform: translate(-80px, -50px) rotate(8deg); }
-        66% { transform: translate(-40px, 40px) rotate(-8deg); }
-    }
-
-    @keyframes blobFloat3 {
-        0%, 100% { transform: translate(0, 0); }
-        20% { transform: translate(50px, -30px); }
-        40% { transform: translate(-30px, -50px); }
-        60% { transform: translate(-50px, 20px); }
-        80% { transform: translate(30px, 30px); }
-    }
-
-    @keyframes blobFloat4 {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(-70px, -40px) scale(1.15); }
-    }
-
-    @keyframes blobFloat5 {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(40px, 20px); }
-        50% { transform: translate(-20px, 40px); }
-        75% { transform: translate(-40px, -20px); }
-    }
-
-    @keyframes blobFloat6 {
-        0%, 100% { transform: translate(0, 0) rotate(0deg); }
-        50% { transform: translate(60px, -50px) rotate(15deg); }
-    }
-
-    @keyframes blobFloat7 {
-        0%, 100% { transform: translate(0, 0); }
-        33% { transform: translate(-30px, 30px); }
-        66% { transform: translate(30px, -30px); }
-    }
-
-    @keyframes blobMorph {
-        0%, 100% { border-radius: 50%; }
-        25% { border-radius: 65% 35% 60% 40% / 40% 60% 35% 65%; }
-        50% { border-radius: 40% 60% 35% 65% / 60% 40% 65% 35%; }
-        75% { border-radius: 60% 40% 65% 35% / 35% 65% 40% 60%; }
-    }
-
-    @keyframes blobPulse {
-        0%, 100% { opacity: 0.18; transform: scale(1); }
-        50% { opacity: 0.28; transform: scale(1.12); }
-    }
-
-    /* Reduce motion for accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        .blob {
-            animation: none !important;
-        }
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .footer-compact {
-        background: linear-gradient(180deg, var(--bg-primary) 0%, #e2e8f0 100%);
-    }
-
-    :global([data-theme="light"]) .brand-logo {
-        background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(124,58,237,0.1));
-    }
-
-    :global([data-theme="light"]) .repo-link,
-    :global([data-theme="light"]) .tech-icon,
-    :global([data-theme="light"]) .institutional-link {
-        background: rgba(0,0,0,0.04);
-        border-color: rgba(0,0,0,0.08);
-    }
-
-    :global([data-theme="light"]) .footer-main-row {
-        border-bottom-color: rgba(0,0,0,0.08);
-    }
-
-    :global([data-theme="light"]) .kbd-hint kbd {
-        background: rgba(0,0,0,0.06);
-        border-color: rgba(0,0,0,0.12);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .deploy-status {
-        background: rgba(16, 185, 129, 0.08);
-    }
-
-    :global([data-theme="light"]) .useful-link {
-        background: rgba(0,0,0,0.03);
-    }
-
-    :global([data-theme="light"]) .blob {
-        opacity: 0.08;
-        filter: blur(100px);
-    }
-
-    :global([data-theme="light"]) .gradient-mesh {
-        background:
-            radial-gradient(ellipse at 20% 100%, rgba(0,212,255,0.03) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 100%, rgba(124,58,237,0.03) 0%, transparent 50%),
-            radial-gradient(ellipse at 50% 80%, rgba(244,114,182,0.02) 0%, transparent 40%);
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-        .footer-main-row {
-            justify-content: center;
-        }
-
-        .footer-brand {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .footer-nav {
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-    }
-
-    @media (max-width: 900px) {
-        .footer-repos,
-        .footer-institutional,
-        .footer-stats {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .footer-container {
-            padding: 3rem 1.5rem 1.25rem;
-        }
-
-        .footer-bottom-row {
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-copyright {
-            flex-wrap: wrap;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .footer-useful,
-        .footer-tech,
-        .footer-actions {
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .nav-link span {
-            display: none;
-        }
-
-        .nav-link {
-            padding: 0.4rem;
-        }
-
-        .nav-link i {
-            font-size: 0.9rem;
-        }
-
-        .brand-title {
-            font-size: 0.8rem;
-        }
-
-        .institutional-link span {
-            display: none;
-        }
-    }
+  }
 </style>

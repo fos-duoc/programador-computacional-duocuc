@@ -10,151 +10,151 @@
  * - DashboardBuilder
  * - StreamlitGenerator
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import JavaClassGenerator from '../../../components/JavaClassGenerator.astro';
-import SQLQueryGeneratorSection from '../../../components/tools/SQLQueryGeneratorSection.astro';
-import ERDiagramGenerator from '../../../components/ERDiagramGenerator.astro';
-import PythonCodeGenerator from '../../../components/PythonCodeGenerator.astro';
-import DashboardBuilder from '../../../components/DashboardBuilder.astro';
-import StreamlitGenerator from '../../../components/StreamlitGenerator.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import JavaClassGenerator from "../../../components/JavaClassGenerator.astro";
+import SQLQueryGeneratorSection from "../../../components/tools/SQLQueryGeneratorSection.astro";
+import ERDiagramGenerator from "../../../components/ERDiagramGenerator.astro";
+import PythonCodeGenerator from "../../../components/PythonCodeGenerator.astro";
+import DashboardBuilder from "../../../components/DashboardBuilder.astro";
+import StreamlitGenerator from "../../../components/StreamlitGenerator.astro";
 ---
 
 <ResourcesLayout title="Generadores de Código | Recursos DuocUC" activeCategory="generadores">
-    <div class="generators-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#java-generator" class="nav-chip">
-                <i class="devicon-java-plain"></i>
-                <span>Java</span>
-            </a>
-            <a href="#sql-generator" class="nav-chip">
-                <i class="fas fa-database"></i>
-                <span>SQL</span>
-            </a>
-            <a href="#er-diagram" class="nav-chip">
-                <i class="fas fa-project-diagram"></i>
-                <span>ER Diagram</span>
-            </a>
-            <a href="#python-generator" class="nav-chip">
-                <i class="devicon-python-plain"></i>
-                <span>Python</span>
-            </a>
-            <a href="#dashboard-builder" class="nav-chip">
-                <i class="fas fa-chart-bar"></i>
-                <span>Dashboard</span>
-            </a>
-            <a href="#streamlit-generator" class="nav-chip">
-                <i class="fas fa-stream"></i>
-                <span>Streamlit</span>
-            </a>
-        </nav>
+  <div class="generators-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#java-generator" class="nav-chip">
+        <i class="devicon-java-plain"></i>
+        <span>Java</span>
+      </a>
+      <a href="#sql-generator" class="nav-chip">
+        <i class="fas fa-database"></i>
+        <span>SQL</span>
+      </a>
+      <a href="#er-diagram" class="nav-chip">
+        <i class="fas fa-project-diagram"></i>
+        <span>ER Diagram</span>
+      </a>
+      <a href="#python-generator" class="nav-chip">
+        <i class="devicon-python-plain"></i>
+        <span>Python</span>
+      </a>
+      <a href="#dashboard-builder" class="nav-chip">
+        <i class="fas fa-chart-bar"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="#streamlit-generator" class="nav-chip">
+        <i class="fas fa-stream"></i>
+        <span>Streamlit</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="java-generator">
-            <JavaClassGenerator />
-        </section>
+    <!-- Components -->
+    <section id="java-generator">
+      <JavaClassGenerator />
+    </section>
 
-        <section id="sql-generator">
-            <SQLQueryGeneratorSection />
-        </section>
+    <section id="sql-generator">
+      <SQLQueryGeneratorSection />
+    </section>
 
-        <section id="er-diagram">
-            <ERDiagramGenerator />
-        </section>
+    <section id="er-diagram">
+      <ERDiagramGenerator />
+    </section>
 
-        <section id="python-generator">
-            <PythonCodeGenerator />
-        </section>
+    <section id="python-generator">
+      <PythonCodeGenerator />
+    </section>
 
-        <section id="dashboard-builder">
-            <DashboardBuilder />
-        </section>
+    <section id="dashboard-builder">
+      <DashboardBuilder />
+    </section>
 
-        <section id="streamlit-generator">
-            <StreamlitGenerator />
-        </section>
-    </div>
+    <section id="streamlit-generator">
+      <StreamlitGenerator />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .generators-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .generators-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip:hover {
+    background: rgba(8, 145, 178, 0.1);
+    border-color: rgba(8, 145, 178, 0.3);
+    color: #0891b2;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
     }
 
     .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
+      white-space: nowrap;
     }
-
-    .nav-chip:hover {
-        background: rgba(0, 212, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.3);
-        color: #00d4ff;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip:hover {
-        background: rgba(8, 145, 178, 0.1);
-        border-color: rgba(8, 145, 178, 0.3);
-        color: #0891b2;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-            overflow-x: auto;
-            flex-wrap: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .nav-chip {
-            white-space: nowrap;
-        }
-    }
+  }
 </style>

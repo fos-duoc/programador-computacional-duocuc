@@ -54,13 +54,13 @@
       <div class="config-section">
         <div class="form-group">
           <label>Nombre del Sprint</label>
-          <input type="text" id="sprint-name" placeholder="Sprint 1 - MVP Features">
+          <input type="text" id="sprint-name" placeholder="Sprint 1 - MVP Features" />
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label>Fecha Inicio</label>
-            <input type="date" id="sprint-start">
+            <input type="date" id="sprint-start" />
           </div>
           <div class="form-group">
             <label>Duración</label>
@@ -75,12 +75,13 @@
 
         <div class="form-group">
           <label>Sprint Goal</label>
-          <textarea id="sprint-goal" rows="2" placeholder="Objetivo principal del sprint..."></textarea>
+          <textarea id="sprint-goal" rows="2" placeholder="Objetivo principal del sprint..."
+          ></textarea>
         </div>
 
         <div class="form-group">
           <label>Team Velocity (puntos/sprint)</label>
-          <input type="number" id="team-velocity" value="30" min="1" max="200">
+          <input type="number" id="team-velocity" value="30" min="1" max="200" />
         </div>
 
         <div class="velocity-indicator">
@@ -99,15 +100,15 @@
         <div class="team-roles">
           <div class="role-input">
             <label>Product Owner</label>
-            <input type="text" id="po-name" placeholder="Nombre PO">
+            <input type="text" id="po-name" placeholder="Nombre PO" />
           </div>
           <div class="role-input">
             <label>Scrum Master</label>
-            <input type="text" id="sm-name" placeholder="Nombre SM">
+            <input type="text" id="sm-name" placeholder="Nombre SM" />
           </div>
           <div class="role-input">
             <label>Dev Team Size</label>
-            <input type="number" id="team-size" value="5" min="3" max="9">
+            <input type="number" id="team-size" value="5" min="3" max="9" />
           </div>
         </div>
       </div>
@@ -132,15 +133,15 @@
         <div class="story-template">
           <div class="template-part">
             <label>Como</label>
-            <input type="text" id="story-role" placeholder="usuario, administrador, cliente...">
+            <input type="text" id="story-role" placeholder="usuario, administrador, cliente..." />
           </div>
           <div class="template-part">
             <label>Quiero</label>
-            <input type="text" id="story-want" placeholder="poder hacer algo...">
+            <input type="text" id="story-want" placeholder="poder hacer algo..." />
           </div>
           <div class="template-part">
             <label>Para</label>
-            <input type="text" id="story-benefit" placeholder="obtener algún beneficio...">
+            <input type="text" id="story-benefit" placeholder="obtener algún beneficio..." />
           </div>
         </div>
 
@@ -157,7 +158,7 @@
                 <button class="point-btn" data-points="13">13</button>
                 <button class="point-btn" data-points="21">21</button>
               </div>
-              <input type="hidden" id="story-points" value="">
+              <input type="hidden" id="story-points" value="" />
             </div>
 
             <div class="form-group">
@@ -174,24 +175,29 @@
           <div class="detail-row">
             <div class="form-group">
               <label>Epic</label>
-              <input type="text" id="story-epic" placeholder="Nombre del Epic">
+              <input type="text" id="story-epic" placeholder="Nombre del Epic" />
             </div>
             <div class="form-group">
               <label>Labels</label>
-              <input type="text" id="story-labels" placeholder="frontend, api, ux...">
+              <input type="text" id="story-labels" placeholder="frontend, api, ux..." />
             </div>
           </div>
 
           <div class="form-group">
             <label>Descripción</label>
-            <textarea id="story-description" rows="2" placeholder="Detalles adicionales..."></textarea>
+            <textarea id="story-description" rows="2" placeholder="Detalles adicionales..."
+            ></textarea>
           </div>
 
           <div class="form-group">
             <label>Criterios de Aceptación</label>
             <div id="acceptance-criteria" class="acceptance-criteria">
               <div class="ac-item">
-                <input type="text" class="ac-input" placeholder="Dado que... Cuando... Entonces...">
+                <input
+                  type="text"
+                  class="ac-input"
+                  placeholder="Dado que... Cuando... Entonces..."
+                />
                 <button class="btn-remove-ac"><i class="fas fa-minus"></i></button>
               </div>
             </div>
@@ -1437,110 +1443,278 @@
 </style>
 
 <script is:inline>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener("astro:page-load", () => {
     // Estado
     let stories = [];
     let storyCounter = 0;
     let editingStoryId = null;
-    const teamVelocity = () => parseInt(document.getElementById('team-velocity')?.value) || 30;
+    const teamVelocity = () => parseInt(document.getElementById("team-velocity")?.value) || 30;
 
     // Elements
-    const storyForm = document.getElementById('story-form');
-    const storiesList = document.getElementById('stories-list');
-    const addStoryBtn = document.getElementById('add-story-btn');
-    const closeFormBtn = document.getElementById('close-story-form');
-    const cancelStoryBtn = document.getElementById('cancel-story');
-    const saveStoryBtn = document.getElementById('save-story');
+    const storyForm = document.getElementById("story-form");
+    const storiesList = document.getElementById("stories-list");
+    const addStoryBtn = document.getElementById("add-story-btn");
+    const closeFormBtn = document.getElementById("close-story-form");
+    const cancelStoryBtn = document.getElementById("cancel-story");
+    const saveStoryBtn = document.getElementById("save-story");
 
     // Templates
     const templates = {
       ecommerce: [
-        { role: 'cliente', want: 'ver el catálogo de productos', benefit: 'encontrar lo que necesito', points: 3, priority: 'must', epic: 'Catálogo' },
-        { role: 'cliente', want: 'agregar productos al carrito', benefit: 'preparar mi compra', points: 5, priority: 'must', epic: 'Carrito' },
-        { role: 'cliente', want: 'realizar el pago con tarjeta', benefit: 'completar mi compra', points: 8, priority: 'must', epic: 'Pagos' },
-        { role: 'cliente', want: 'ver el historial de pedidos', benefit: 'revisar mis compras anteriores', points: 3, priority: 'should', epic: 'Cuenta' },
-        { role: 'admin', want: 'gestionar el inventario', benefit: 'mantener el stock actualizado', points: 5, priority: 'must', epic: 'Admin' },
-        { role: 'cliente', want: 'recibir notificaciones de envío', benefit: 'saber cuándo llega mi pedido', points: 3, priority: 'should', epic: 'Notificaciones' }
+        {
+          role: "cliente",
+          want: "ver el catálogo de productos",
+          benefit: "encontrar lo que necesito",
+          points: 3,
+          priority: "must",
+          epic: "Catálogo",
+        },
+        {
+          role: "cliente",
+          want: "agregar productos al carrito",
+          benefit: "preparar mi compra",
+          points: 5,
+          priority: "must",
+          epic: "Carrito",
+        },
+        {
+          role: "cliente",
+          want: "realizar el pago con tarjeta",
+          benefit: "completar mi compra",
+          points: 8,
+          priority: "must",
+          epic: "Pagos",
+        },
+        {
+          role: "cliente",
+          want: "ver el historial de pedidos",
+          benefit: "revisar mis compras anteriores",
+          points: 3,
+          priority: "should",
+          epic: "Cuenta",
+        },
+        {
+          role: "admin",
+          want: "gestionar el inventario",
+          benefit: "mantener el stock actualizado",
+          points: 5,
+          priority: "must",
+          epic: "Admin",
+        },
+        {
+          role: "cliente",
+          want: "recibir notificaciones de envío",
+          benefit: "saber cuándo llega mi pedido",
+          points: 3,
+          priority: "should",
+          epic: "Notificaciones",
+        },
       ],
       saas: [
-        { role: 'usuario', want: 'registrarme con email', benefit: 'acceder a la plataforma', points: 3, priority: 'must', epic: 'Auth' },
-        { role: 'usuario', want: 'iniciar sesión con OAuth', benefit: 'acceder rápidamente', points: 5, priority: 'should', epic: 'Auth' },
-        { role: 'usuario', want: 'ver mi dashboard personalizado', benefit: 'monitorear mis métricas', points: 8, priority: 'must', epic: 'Dashboard' },
-        { role: 'admin', want: 'gestionar usuarios y roles', benefit: 'controlar los accesos', points: 5, priority: 'must', epic: 'Admin' },
-        { role: 'usuario', want: 'exportar reportes en PDF', benefit: 'compartir información', points: 5, priority: 'could', epic: 'Reportes' },
-        { role: 'usuario', want: 'configurar notificaciones', benefit: 'recibir alertas relevantes', points: 3, priority: 'should', epic: 'Settings' }
+        {
+          role: "usuario",
+          want: "registrarme con email",
+          benefit: "acceder a la plataforma",
+          points: 3,
+          priority: "must",
+          epic: "Auth",
+        },
+        {
+          role: "usuario",
+          want: "iniciar sesión con OAuth",
+          benefit: "acceder rápidamente",
+          points: 5,
+          priority: "should",
+          epic: "Auth",
+        },
+        {
+          role: "usuario",
+          want: "ver mi dashboard personalizado",
+          benefit: "monitorear mis métricas",
+          points: 8,
+          priority: "must",
+          epic: "Dashboard",
+        },
+        {
+          role: "admin",
+          want: "gestionar usuarios y roles",
+          benefit: "controlar los accesos",
+          points: 5,
+          priority: "must",
+          epic: "Admin",
+        },
+        {
+          role: "usuario",
+          want: "exportar reportes en PDF",
+          benefit: "compartir información",
+          points: 5,
+          priority: "could",
+          epic: "Reportes",
+        },
+        {
+          role: "usuario",
+          want: "configurar notificaciones",
+          benefit: "recibir alertas relevantes",
+          points: 3,
+          priority: "should",
+          epic: "Settings",
+        },
       ],
       mobile: [
-        { role: 'usuario', want: 'iniciar sesión con biometría', benefit: 'acceder de forma segura y rápida', points: 5, priority: 'must', epic: 'Auth' },
-        { role: 'usuario', want: 'recibir push notifications', benefit: 'estar informado en tiempo real', points: 5, priority: 'must', epic: 'Notificaciones' },
-        { role: 'usuario', want: 'usar la app offline', benefit: 'acceder sin conexión', points: 8, priority: 'should', epic: 'Offline' },
-        { role: 'usuario', want: 'sincronizar datos entre dispositivos', benefit: 'continuar donde lo dejé', points: 8, priority: 'should', epic: 'Sync' },
-        { role: 'usuario', want: 'personalizar el tema de la app', benefit: 'tener una experiencia cómoda', points: 3, priority: 'could', epic: 'UX' },
-        { role: 'usuario', want: 'acceder con gestos rápidos', benefit: 'navegar eficientemente', points: 5, priority: 'could', epic: 'UX' }
+        {
+          role: "usuario",
+          want: "iniciar sesión con biometría",
+          benefit: "acceder de forma segura y rápida",
+          points: 5,
+          priority: "must",
+          epic: "Auth",
+        },
+        {
+          role: "usuario",
+          want: "recibir push notifications",
+          benefit: "estar informado en tiempo real",
+          points: 5,
+          priority: "must",
+          epic: "Notificaciones",
+        },
+        {
+          role: "usuario",
+          want: "usar la app offline",
+          benefit: "acceder sin conexión",
+          points: 8,
+          priority: "should",
+          epic: "Offline",
+        },
+        {
+          role: "usuario",
+          want: "sincronizar datos entre dispositivos",
+          benefit: "continuar donde lo dejé",
+          points: 8,
+          priority: "should",
+          epic: "Sync",
+        },
+        {
+          role: "usuario",
+          want: "personalizar el tema de la app",
+          benefit: "tener una experiencia cómoda",
+          points: 3,
+          priority: "could",
+          epic: "UX",
+        },
+        {
+          role: "usuario",
+          want: "acceder con gestos rápidos",
+          benefit: "navegar eficientemente",
+          points: 5,
+          priority: "could",
+          epic: "UX",
+        },
       ],
       api: [
-        { role: 'desarrollador', want: 'autenticarme con API Keys', benefit: 'acceder a los endpoints de forma segura', points: 5, priority: 'must', epic: 'Auth' },
-        { role: 'desarrollador', want: 'consultar documentación interactiva', benefit: 'entender cómo usar la API', points: 5, priority: 'must', epic: 'Docs' },
-        { role: 'desarrollador', want: 'recibir webhooks de eventos', benefit: 'reaccionar a cambios en tiempo real', points: 8, priority: 'should', epic: 'Events' },
-        { role: 'desarrollador', want: 'paginar resultados de listas', benefit: 'manejar grandes volúmenes de datos', points: 3, priority: 'must', epic: 'Core' },
-        { role: 'desarrollador', want: 'filtrar recursos con query params', benefit: 'obtener solo los datos necesarios', points: 5, priority: 'must', epic: 'Core' },
-        { role: 'admin', want: 'ver métricas de uso de la API', benefit: 'monitorear el consumo', points: 5, priority: 'should', epic: 'Analytics' }
-      ]
+        {
+          role: "desarrollador",
+          want: "autenticarme con API Keys",
+          benefit: "acceder a los endpoints de forma segura",
+          points: 5,
+          priority: "must",
+          epic: "Auth",
+        },
+        {
+          role: "desarrollador",
+          want: "consultar documentación interactiva",
+          benefit: "entender cómo usar la API",
+          points: 5,
+          priority: "must",
+          epic: "Docs",
+        },
+        {
+          role: "desarrollador",
+          want: "recibir webhooks de eventos",
+          benefit: "reaccionar a cambios en tiempo real",
+          points: 8,
+          priority: "should",
+          epic: "Events",
+        },
+        {
+          role: "desarrollador",
+          want: "paginar resultados de listas",
+          benefit: "manejar grandes volúmenes de datos",
+          points: 3,
+          priority: "must",
+          epic: "Core",
+        },
+        {
+          role: "desarrollador",
+          want: "filtrar recursos con query params",
+          benefit: "obtener solo los datos necesarios",
+          points: 5,
+          priority: "must",
+          epic: "Core",
+        },
+        {
+          role: "admin",
+          want: "ver métricas de uso de la API",
+          benefit: "monitorear el consumo",
+          points: 5,
+          priority: "should",
+          epic: "Analytics",
+        },
+      ],
     };
 
     // Show/Hide Story Form
     function showStoryForm(storyId = null) {
       editingStoryId = storyId;
-      storyForm?.classList.remove('hidden');
+      storyForm?.classList.remove("hidden");
 
       if (storyId) {
-        const story = stories.find(s => s.id === storyId);
+        const story = stories.find((s) => s.id === storyId);
         if (story) {
-          document.getElementById('story-form-title').textContent = `Editar Story ${story.id}`;
-          document.getElementById('story-role').value = story.role;
-          document.getElementById('story-want').value = story.want;
-          document.getElementById('story-benefit').value = story.benefit;
-          document.getElementById('story-points').value = story.points;
-          document.getElementById('story-priority').value = story.priority;
-          document.getElementById('story-epic').value = story.epic || '';
-          document.getElementById('story-labels').value = story.labels?.join(', ') || '';
-          document.getElementById('story-description').value = story.description || '';
+          document.getElementById("story-form-title").textContent = `Editar Story ${story.id}`;
+          document.getElementById("story-role").value = story.role;
+          document.getElementById("story-want").value = story.want;
+          document.getElementById("story-benefit").value = story.benefit;
+          document.getElementById("story-points").value = story.points;
+          document.getElementById("story-priority").value = story.priority;
+          document.getElementById("story-epic").value = story.epic || "";
+          document.getElementById("story-labels").value = story.labels?.join(", ") || "";
+          document.getElementById("story-description").value = story.description || "";
 
           // Select point button
-          document.querySelectorAll('.point-btn').forEach(btn => {
-            btn.classList.toggle('selected', parseInt(btn.dataset.points) === story.points);
+          document.querySelectorAll(".point-btn").forEach((btn) => {
+            btn.classList.toggle("selected", parseInt(btn.dataset.points) === story.points);
           });
 
           // Render acceptance criteria
           renderAcceptanceCriteria(story.acceptanceCriteria || []);
         }
       } else {
-        document.getElementById('story-form-title').textContent = 'Nueva User Story';
+        document.getElementById("story-form-title").textContent = "Nueva User Story";
         clearStoryForm();
       }
     }
 
     function hideStoryForm() {
-      storyForm?.classList.add('hidden');
+      storyForm?.classList.add("hidden");
       editingStoryId = null;
       clearStoryForm();
     }
 
     function clearStoryForm() {
-      document.getElementById('story-role').value = '';
-      document.getElementById('story-want').value = '';
-      document.getElementById('story-benefit').value = '';
-      document.getElementById('story-points').value = '';
-      document.getElementById('story-priority').value = 'must';
-      document.getElementById('story-epic').value = '';
-      document.getElementById('story-labels').value = '';
-      document.getElementById('story-description').value = '';
-      document.querySelectorAll('.point-btn').forEach(btn => btn.classList.remove('selected'));
+      document.getElementById("story-role").value = "";
+      document.getElementById("story-want").value = "";
+      document.getElementById("story-benefit").value = "";
+      document.getElementById("story-points").value = "";
+      document.getElementById("story-priority").value = "must";
+      document.getElementById("story-epic").value = "";
+      document.getElementById("story-labels").value = "";
+      document.getElementById("story-description").value = "";
+      document.querySelectorAll(".point-btn").forEach((btn) => btn.classList.remove("selected"));
       renderAcceptanceCriteria([]);
     }
 
     function renderAcceptanceCriteria(criteria) {
-      const container = document.getElementById('acceptance-criteria');
+      const container = document.getElementById("acceptance-criteria");
       if (!container) return;
 
       if (criteria.length === 0) {
@@ -1551,19 +1725,23 @@
           </div>
         `;
       } else {
-        container.innerHTML = criteria.map(ac => `
+        container.innerHTML = criteria
+          .map(
+            (ac) => `
           <div class="ac-item">
             <input type="text" class="ac-input" value="${ac}" placeholder="Dado que... Cuando... Entonces...">
             <button class="btn-remove-ac"><i class="fas fa-minus"></i></button>
           </div>
-        `).join('');
+        `,
+          )
+          .join("");
       }
 
       // Add remove listeners
-      container.querySelectorAll('.btn-remove-ac').forEach(btn => {
-        btn.addEventListener('click', () => {
-          if (container.querySelectorAll('.ac-item').length > 1) {
-            btn.closest('.ac-item')?.remove();
+      container.querySelectorAll(".btn-remove-ac").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (container.querySelectorAll(".ac-item").length > 1) {
+            btn.closest(".ac-item")?.remove();
           }
         });
       });
@@ -1571,17 +1749,23 @@
 
     // Save Story
     function saveStory() {
-      const role = document.getElementById('story-role')?.value.trim();
-      const want = document.getElementById('story-want')?.value.trim();
-      const benefit = document.getElementById('story-benefit')?.value.trim();
-      const points = parseInt(document.getElementById('story-points')?.value) || 0;
-      const priority = document.getElementById('story-priority')?.value || 'must';
-      const epic = document.getElementById('story-epic')?.value.trim();
-      const labels = document.getElementById('story-labels')?.value.split(',').map(l => l.trim()).filter(l => l);
-      const description = document.getElementById('story-description')?.value.trim();
+      const role = document.getElementById("story-role")?.value.trim();
+      const want = document.getElementById("story-want")?.value.trim();
+      const benefit = document.getElementById("story-benefit")?.value.trim();
+      const points = parseInt(document.getElementById("story-points")?.value) || 0;
+      const priority = document.getElementById("story-priority")?.value || "must";
+      const epic = document.getElementById("story-epic")?.value.trim();
+      const labels = document
+        .getElementById("story-labels")
+        ?.value.split(",")
+        .map((l) => l.trim())
+        .filter((l) => l);
+      const description = document.getElementById("story-description")?.value.trim();
 
-      const acInputs = document.querySelectorAll('.ac-input');
-      const acceptanceCriteria = Array.from(acInputs).map(input => input.value.trim()).filter(ac => ac);
+      const acInputs = document.querySelectorAll(".ac-input");
+      const acceptanceCriteria = Array.from(acInputs)
+        .map((input) => input.value.trim())
+        .filter((ac) => ac);
 
       if (!role || !want) {
         alert('Por favor completa al menos "Como" y "Quiero"');
@@ -1590,21 +1774,37 @@
 
       if (editingStoryId) {
         // Update existing story
-        const storyIndex = stories.findIndex(s => s.id === editingStoryId);
+        const storyIndex = stories.findIndex((s) => s.id === editingStoryId);
         if (storyIndex !== -1) {
           stories[storyIndex] = {
             ...stories[storyIndex],
-            role, want, benefit, points, priority, epic, labels, description, acceptanceCriteria
+            role,
+            want,
+            benefit,
+            points,
+            priority,
+            epic,
+            labels,
+            description,
+            acceptanceCriteria,
           };
         }
       } else {
         // Create new story
         storyCounter++;
         const story = {
-          id: `US-${String(storyCounter).padStart(3, '0')}`,
-          role, want, benefit, points, priority, epic, labels, description, acceptanceCriteria,
-          status: 'todo',
-          createdAt: new Date().toISOString()
+          id: `US-${String(storyCounter).padStart(3, "0")}`,
+          role,
+          want,
+          benefit,
+          points,
+          priority,
+          epic,
+          labels,
+          description,
+          acceptanceCriteria,
+          status: "todo",
+          createdAt: new Date().toISOString(),
         };
         stories.push(story);
       }
@@ -1631,18 +1831,20 @@
         return;
       }
 
-      storiesList.innerHTML = stories.map(story => `
+      storiesList.innerHTML = stories
+        .map(
+          (story) => `
         <div class="story-card" data-id="${story.id}">
           <div class="story-card-header">
             <span class="story-id">${story.id}</span>
             <span class="story-points-badge">${story.points} pts</span>
           </div>
           <div class="story-title">
-            Como <strong>${story.role}</strong>, quiero <strong>${story.want}</strong>${story.benefit ? `, para <strong>${story.benefit}</strong>` : ''}
+            Como <strong>${story.role}</strong>, quiero <strong>${story.want}</strong>${story.benefit ? `, para <strong>${story.benefit}</strong>` : ""}
           </div>
           <div class="story-meta">
             <span class="story-priority ${story.priority}">${story.priority.toUpperCase()}</span>
-            ${story.epic ? `<span class="story-epic-tag">${story.epic}</span>` : ''}
+            ${story.epic ? `<span class="story-epic-tag">${story.epic}</span>` : ""}
           </div>
           <div class="story-card-actions">
             <button class="btn-edit" data-id="${story.id}"><i class="fas fa-edit"></i> Editar</button>
@@ -1650,25 +1852,27 @@
             <button class="btn-delete" data-id="${story.id}"><i class="fas fa-trash"></i> Eliminar</button>
           </div>
         </div>
-      `).join('');
+      `,
+        )
+        .join("");
 
       // Add event listeners
-      storiesList.querySelectorAll('.btn-edit').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+      storiesList.querySelectorAll(".btn-edit").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
           e.stopPropagation();
           showStoryForm(btn.dataset.id);
         });
       });
 
-      storiesList.querySelectorAll('.btn-duplicate').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+      storiesList.querySelectorAll(".btn-duplicate").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
           e.stopPropagation();
           duplicateStory(btn.dataset.id);
         });
       });
 
-      storiesList.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+      storiesList.querySelectorAll(".btn-delete").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
           e.stopPropagation();
           deleteStory(btn.dataset.id);
         });
@@ -1676,13 +1880,13 @@
     }
 
     function duplicateStory(id) {
-      const story = stories.find(s => s.id === id);
+      const story = stories.find((s) => s.id === id);
       if (story) {
         storyCounter++;
         const newStory = {
           ...story,
-          id: `US-${String(storyCounter).padStart(3, '0')}`,
-          createdAt: new Date().toISOString()
+          id: `US-${String(storyCounter).padStart(3, "0")}`,
+          createdAt: new Date().toISOString(),
         };
         stories.push(newStory);
         renderStories();
@@ -1693,8 +1897,8 @@
     }
 
     function deleteStory(id) {
-      if (confirm('¿Eliminar esta user story?')) {
-        stories = stories.filter(s => s.id !== id);
+      if (confirm("¿Eliminar esta user story?")) {
+        stories = stories.filter((s) => s.id !== id);
         renderStories();
         updateSummary();
         updateVelocityIndicator();
@@ -1706,13 +1910,13 @@
     function updateSummary() {
       const totalStories = stories.length;
       const totalPoints = stories.reduce((sum, s) => sum + (s.points || 0), 0);
-      const mustCount = stories.filter(s => s.priority === 'must').length;
-      const shouldCount = stories.filter(s => s.priority === 'should').length;
+      const mustCount = stories.filter((s) => s.priority === "must").length;
+      const shouldCount = stories.filter((s) => s.priority === "should").length;
 
-      document.getElementById('total-stories').textContent = totalStories;
-      document.getElementById('total-points').textContent = totalPoints;
-      document.getElementById('must-count').textContent = mustCount;
-      document.getElementById('should-count').textContent = shouldCount;
+      document.getElementById("total-stories").textContent = totalStories;
+      document.getElementById("total-points").textContent = totalPoints;
+      document.getElementById("must-count").textContent = mustCount;
+      document.getElementById("should-count").textContent = shouldCount;
     }
 
     // Update Velocity Indicator
@@ -1721,41 +1925,41 @@
       const usedPoints = stories.reduce((sum, s) => sum + (s.points || 0), 0);
       const percentage = Math.min((usedPoints / velocity) * 100, 100);
 
-      const fill = document.getElementById('velocity-fill');
+      const fill = document.getElementById("velocity-fill");
       if (fill) {
         fill.style.width = `${percentage}%`;
-        fill.classList.remove('warning', 'danger');
+        fill.classList.remove("warning", "danger");
         if (percentage > 100) {
-          fill.classList.add('danger');
+          fill.classList.add("danger");
         } else if (percentage > 80) {
-          fill.classList.add('warning');
+          fill.classList.add("warning");
         }
       }
 
-      document.getElementById('points-used').textContent = usedPoints;
-      document.getElementById('points-available').textContent = Math.max(0, velocity - usedPoints);
+      document.getElementById("points-used").textContent = usedPoints;
+      document.getElementById("points-available").textContent = Math.max(0, velocity - usedPoints);
     }
 
     // Update Board
     function updateBoard() {
       const columns = {
-        todo: document.getElementById('todo-column'),
-        progress: document.getElementById('progress-column'),
-        review: document.getElementById('review-column'),
-        done: document.getElementById('done-column')
+        todo: document.getElementById("todo-column"),
+        progress: document.getElementById("progress-column"),
+        review: document.getElementById("review-column"),
+        done: document.getElementById("done-column"),
       };
 
       // Clear columns
-      Object.values(columns).forEach(col => {
-        if (col) col.innerHTML = '';
+      Object.values(columns).forEach((col) => {
+        if (col) col.innerHTML = "";
       });
 
       // Populate columns
-      stories.forEach(story => {
-        const column = columns[story.status || 'todo'];
+      stories.forEach((story) => {
+        const column = columns[story.status || "todo"];
         if (column) {
-          const card = document.createElement('div');
-          card.className = 'board-card';
+          const card = document.createElement("div");
+          card.className = "board-card";
           card.draggable = true;
           card.dataset.id = story.id;
           card.innerHTML = `
@@ -1768,36 +1972,44 @@
           column.appendChild(card);
 
           // Drag events
-          card.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', story.id);
-            card.classList.add('dragging');
+          card.addEventListener("dragstart", (e) => {
+            e.dataTransfer.setData("text/plain", story.id);
+            card.classList.add("dragging");
           });
 
-          card.addEventListener('dragend', () => {
-            card.classList.remove('dragging');
+          card.addEventListener("dragend", () => {
+            card.classList.remove("dragging");
           });
         }
       });
 
       // Update counts
-      document.getElementById('todo-count').textContent = stories.filter(s => s.status === 'todo').length;
-      document.getElementById('progress-count').textContent = stories.filter(s => s.status === 'progress').length;
-      document.getElementById('review-count').textContent = stories.filter(s => s.status === 'review').length;
-      document.getElementById('done-count').textContent = stories.filter(s => s.status === 'done').length;
+      document.getElementById("todo-count").textContent = stories.filter(
+        (s) => s.status === "todo",
+      ).length;
+      document.getElementById("progress-count").textContent = stories.filter(
+        (s) => s.status === "progress",
+      ).length;
+      document.getElementById("review-count").textContent = stories.filter(
+        (s) => s.status === "review",
+      ).length;
+      document.getElementById("done-count").textContent = stories.filter(
+        (s) => s.status === "done",
+      ).length;
     }
 
     // Board drag and drop
-    document.querySelectorAll('.board-column').forEach(column => {
-      column.addEventListener('dragover', (e) => {
+    document.querySelectorAll(".board-column").forEach((column) => {
+      column.addEventListener("dragover", (e) => {
         e.preventDefault();
       });
 
-      column.addEventListener('drop', (e) => {
+      column.addEventListener("drop", (e) => {
         e.preventDefault();
-        const storyId = e.dataTransfer.getData('text/plain');
+        const storyId = e.dataTransfer.getData("text/plain");
         const newStatus = column.dataset.status;
 
-        const story = stories.find(s => s.id === storyId);
+        const story = stories.find((s) => s.id === storyId);
         if (story) {
           story.status = newStatus;
           updateBoard();
@@ -1806,65 +2018,65 @@
     });
 
     // Event Listeners
-    addStoryBtn?.addEventListener('click', () => showStoryForm());
-    closeFormBtn?.addEventListener('click', hideStoryForm);
-    cancelStoryBtn?.addEventListener('click', hideStoryForm);
-    saveStoryBtn?.addEventListener('click', saveStory);
+    addStoryBtn?.addEventListener("click", () => showStoryForm());
+    closeFormBtn?.addEventListener("click", hideStoryForm);
+    cancelStoryBtn?.addEventListener("click", hideStoryForm);
+    saveStoryBtn?.addEventListener("click", saveStory);
 
     // Points selector
-    document.querySelectorAll('.point-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.point-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        document.getElementById('story-points').value = btn.dataset.points;
+    document.querySelectorAll(".point-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".point-btn").forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        document.getElementById("story-points").value = btn.dataset.points;
       });
     });
 
     // Add acceptance criteria
-    document.getElementById('add-ac-btn')?.addEventListener('click', () => {
-      const container = document.getElementById('acceptance-criteria');
-      const newItem = document.createElement('div');
-      newItem.className = 'ac-item';
+    document.getElementById("add-ac-btn")?.addEventListener("click", () => {
+      const container = document.getElementById("acceptance-criteria");
+      const newItem = document.createElement("div");
+      newItem.className = "ac-item";
       newItem.innerHTML = `
         <input type="text" class="ac-input" placeholder="Dado que... Cuando... Entonces...">
         <button class="btn-remove-ac"><i class="fas fa-minus"></i></button>
       `;
       container?.appendChild(newItem);
 
-      newItem.querySelector('.btn-remove-ac')?.addEventListener('click', () => {
-        if (container.querySelectorAll('.ac-item').length > 1) {
+      newItem.querySelector(".btn-remove-ac")?.addEventListener("click", () => {
+        if (container.querySelectorAll(".ac-item").length > 1) {
           newItem.remove();
         }
       });
     });
 
     // Velocity input change
-    document.getElementById('team-velocity')?.addEventListener('change', updateVelocityIndicator);
+    document.getElementById("team-velocity")?.addEventListener("change", updateVelocityIndicator);
 
     // Templates
-    document.querySelectorAll('.template-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+    document.querySelectorAll(".template-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
         const templateName = btn.dataset.template;
         const template = templates[templateName];
         if (!template) return;
 
-        if (stories.length > 0 && !confirm('Esto reemplazará las stories actuales. ¿Continuar?')) {
+        if (stories.length > 0 && !confirm("Esto reemplazará las stories actuales. ¿Continuar?")) {
           return;
         }
 
         stories = [];
         storyCounter = 0;
 
-        template.forEach(item => {
+        template.forEach((item) => {
           storyCounter++;
           stories.push({
-            id: `US-${String(storyCounter).padStart(3, '0')}`,
+            id: `US-${String(storyCounter).padStart(3, "0")}`,
             ...item,
             labels: [],
-            description: '',
+            description: "",
             acceptanceCriteria: [],
-            status: 'todo',
-            createdAt: new Date().toISOString()
+            status: "todo",
+            createdAt: new Date().toISOString(),
           });
         });
 
@@ -1876,46 +2088,65 @@
     });
 
     // Export functions
-    document.getElementById('export-jira')?.addEventListener('click', () => exportToJira());
-    document.getElementById('export-azure')?.addEventListener('click', () => exportToAzure());
-    document.getElementById('export-markdown')?.addEventListener('click', () => exportToMarkdown());
-    document.getElementById('export-json')?.addEventListener('click', () => exportToJson());
+    document.getElementById("export-jira")?.addEventListener("click", () => exportToJira());
+    document.getElementById("export-azure")?.addEventListener("click", () => exportToAzure());
+    document.getElementById("export-markdown")?.addEventListener("click", () => exportToMarkdown());
+    document.getElementById("export-json")?.addEventListener("click", () => exportToJson());
 
     function exportToJira() {
-      const headers = ['Summary', 'Issue Type', 'Priority', 'Story Points', 'Epic Link', 'Labels', 'Description'];
-      const rows = stories.map(s => [
-        `Como ${s.role}, quiero ${s.want}${s.benefit ? `, para ${s.benefit}` : ''}`,
-        'Story',
-        s.priority === 'must' ? 'Highest' : s.priority === 'should' ? 'High' : s.priority === 'could' ? 'Medium' : 'Low',
+      const headers = [
+        "Summary",
+        "Issue Type",
+        "Priority",
+        "Story Points",
+        "Epic Link",
+        "Labels",
+        "Description",
+      ];
+      const rows = stories.map((s) => [
+        `Como ${s.role}, quiero ${s.want}${s.benefit ? `, para ${s.benefit}` : ""}`,
+        "Story",
+        s.priority === "must"
+          ? "Highest"
+          : s.priority === "should"
+            ? "High"
+            : s.priority === "could"
+              ? "Medium"
+              : "Low",
         s.points,
-        s.epic || '',
-        s.labels?.join(';') || '',
-        s.description || ''
+        s.epic || "",
+        s.labels?.join(";") || "",
+        s.description || "",
       ]);
 
-      const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
-      downloadFile(csv, 'jira-import.csv', 'text/csv');
+      const csv = [headers, ...rows]
+        .map((row) => row.map((cell) => `"${cell}"`).join(","))
+        .join("\n");
+      downloadFile(csv, "jira-import.csv", "text/csv");
     }
 
     function exportToAzure() {
-      const rows = stories.map(s => ({
-        'Work Item Type': 'User Story',
+      const rows = stories.map((s) => ({
+        "Work Item Type": "User Story",
         Title: `Como ${s.role}, quiero ${s.want}`,
-        'Story Points': s.points,
-        Priority: s.priority === 'must' ? 1 : s.priority === 'should' ? 2 : s.priority === 'could' ? 3 : 4,
-        'Area Path': s.epic || '',
-        Description: `<p><strong>Beneficio:</strong> ${s.benefit || 'N/A'}</p>${s.description ? `<p>${s.description}</p>` : ''}`,
-        'Acceptance Criteria': s.acceptanceCriteria?.map(ac => `<li>${ac}</li>`).join('') || ''
+        "Story Points": s.points,
+        Priority:
+          s.priority === "must" ? 1 : s.priority === "should" ? 2 : s.priority === "could" ? 3 : 4,
+        "Area Path": s.epic || "",
+        Description: `<p><strong>Beneficio:</strong> ${s.benefit || "N/A"}</p>${s.description ? `<p>${s.description}</p>` : ""}`,
+        "Acceptance Criteria": s.acceptanceCriteria?.map((ac) => `<li>${ac}</li>`).join("") || "",
       }));
 
       const headers = Object.keys(rows[0] || {});
-      const csv = [headers, ...rows.map(r => headers.map(h => `"${r[h]}"`))].map(row => row.join(',')).join('\n');
-      downloadFile(csv, 'azure-devops-import.csv', 'text/csv');
+      const csv = [headers, ...rows.map((r) => headers.map((h) => `"${r[h]}"`))]
+        .map((row) => row.join(","))
+        .join("\n");
+      downloadFile(csv, "azure-devops-import.csv", "text/csv");
     }
 
     function exportToMarkdown() {
-      const sprintName = document.getElementById('sprint-name')?.value || 'Sprint';
-      const sprintGoal = document.getElementById('sprint-goal')?.value || '';
+      const sprintName = document.getElementById("sprint-name")?.value || "Sprint";
+      const sprintGoal = document.getElementById("sprint-goal")?.value || "";
 
       let md = `# ${sprintName}\n\n`;
       if (sprintGoal) md += `**Goal:** ${sprintGoal}\n\n`;
@@ -1924,52 +2155,52 @@
       md += `| ID | Story | Points | Priority | Epic |\n`;
       md += `|----|-------|--------|----------|------|\n`;
 
-      stories.forEach(s => {
-        md += `| ${s.id} | Como ${s.role}, quiero ${s.want} | ${s.points} | ${s.priority.toUpperCase()} | ${s.epic || '-'} |\n`;
+      stories.forEach((s) => {
+        md += `| ${s.id} | Como ${s.role}, quiero ${s.want} | ${s.points} | ${s.priority.toUpperCase()} | ${s.epic || "-"} |\n`;
       });
 
       md += `\n## Detalle\n\n`;
-      stories.forEach(s => {
+      stories.forEach((s) => {
         md += `### ${s.id}: ${s.want}\n\n`;
         md += `**Como** ${s.role}, **quiero** ${s.want}`;
         if (s.benefit) md += `, **para** ${s.benefit}`;
         md += `\n\n`;
         if (s.acceptanceCriteria?.length) {
           md += `**Criterios de Aceptación:**\n`;
-          s.acceptanceCriteria.forEach(ac => {
+          s.acceptanceCriteria.forEach((ac) => {
             md += `- ${ac}\n`;
           });
           md += `\n`;
         }
       });
 
-      downloadFile(md, 'sprint-backlog.md', 'text/markdown');
+      downloadFile(md, "sprint-backlog.md", "text/markdown");
     }
 
     function exportToJson() {
       const data = {
         sprint: {
-          name: document.getElementById('sprint-name')?.value || 'Sprint',
-          goal: document.getElementById('sprint-goal')?.value || '',
-          startDate: document.getElementById('sprint-start')?.value || '',
-          duration: document.getElementById('sprint-duration')?.value || '2',
-          velocity: teamVelocity()
+          name: document.getElementById("sprint-name")?.value || "Sprint",
+          goal: document.getElementById("sprint-goal")?.value || "",
+          startDate: document.getElementById("sprint-start")?.value || "",
+          duration: document.getElementById("sprint-duration")?.value || "2",
+          velocity: teamVelocity(),
         },
         team: {
-          productOwner: document.getElementById('po-name')?.value || '',
-          scrumMaster: document.getElementById('sm-name')?.value || '',
-          teamSize: document.getElementById('team-size')?.value || '5'
+          productOwner: document.getElementById("po-name")?.value || "",
+          scrumMaster: document.getElementById("sm-name")?.value || "",
+          teamSize: document.getElementById("team-size")?.value || "5",
         },
-        stories
+        stories,
       };
 
-      downloadFile(JSON.stringify(data, null, 2), 'sprint-data.json', 'application/json');
+      downloadFile(JSON.stringify(data, null, 2), "sprint-data.json", "application/json");
     }
 
     function downloadFile(content, filename, type) {
       const blob = new Blob([content], { type });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.href = url;
       a.download = filename;
       a.click();

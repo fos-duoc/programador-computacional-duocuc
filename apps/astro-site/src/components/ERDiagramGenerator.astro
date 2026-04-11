@@ -7,1003 +7,1029 @@
 ---
 
 <section id="er-generator" class="er-generator-section">
-    <div class="er-container">
-        <!-- Header -->
-        <div class="er-header" data-aos="fade-up">
-            <div class="header-icon">
-                <i class="fas fa-project-diagram"></i>
-            </div>
-            <div class="header-content">
-                <h2>Generador de Diagramas E-R</h2>
-                <p>Aprende modelamiento de datos creando diagramas Entidad-Relación interactivos</p>
-            </div>
-            <div class="header-badges">
-                <span class="badge db">Bases de Datos</span>
-                <span class="badge chen">Notación Chen</span>
-                <span class="badge beginner">Educativo</span>
-            </div>
-        </div>
-
-        <!-- Learning Panel -->
-        <div class="learning-panel" data-aos="fade-up" data-aos-delay="50">
-            <div class="concept-cards">
-                <div class="concept-card">
-                    <div class="concept-icon entity-icon">
-                        <i class="fas fa-square"></i>
-                    </div>
-                    <h4>Entidad</h4>
-                    <p>Objeto del mundo real con existencia independiente (ej: Cliente, Producto)</p>
-                </div>
-                <div class="concept-card">
-                    <div class="concept-icon attribute-icon">
-                        <i class="fas fa-circle"></i>
-                    </div>
-                    <h4>Atributo</h4>
-                    <p>Propiedad que describe una entidad (ej: nombre, fecha, precio)</p>
-                </div>
-                <div class="concept-card">
-                    <div class="concept-icon relation-icon">
-                        <i class="fas fa-diamond"></i>
-                    </div>
-                    <h4>Relación</h4>
-                    <p>Asociación entre entidades (ej: Cliente REALIZA Pedido)</p>
-                </div>
-                <div class="concept-card">
-                    <div class="concept-icon cardinality-icon">
-                        <i class="fas fa-arrows-alt-h"></i>
-                    </div>
-                    <h4>Cardinalidad</h4>
-                    <p>Cantidad de instancias en la relación (1:1, 1:N, N:M)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main Generator -->
-        <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
-            <!-- Left Panel - Configuration -->
-            <div class="config-panel">
-                <div class="panel-header">
-                    <i class="fas fa-cog"></i>
-                    <span>Constructor E-R</span>
-                </div>
-
-                <!-- Entities Section -->
-                <div class="config-section">
-                    <h4><i class="fas fa-square"></i> Entidades</h4>
-                    <div id="er-entities-list" class="entities-list">
-                        <!-- Dynamic entities -->
-                    </div>
-                    <button type="button" class="btn-add" id="er-add-entity">
-                        <i class="fas fa-plus"></i> Agregar Entidad
-                    </button>
-                </div>
-
-                <!-- Relations Section -->
-                <div class="config-section">
-                    <h4><i class="fas fa-link"></i> Relaciones</h4>
-                    <div id="er-relations-list" class="relations-list">
-                        <!-- Dynamic relations -->
-                    </div>
-                    <button type="button" class="btn-add" id="er-add-relation">
-                        <i class="fas fa-plus"></i> Agregar Relación
-                    </button>
-                </div>
-
-                <!-- Quick Templates -->
-                <div class="config-section">
-                    <h4><i class="fas fa-layer-group"></i> Ejemplos</h4>
-                    <div class="templates-mini">
-                        <button type="button" class="template-mini-btn" data-template="ecommerce">
-                            <i class="fas fa-shopping-cart"></i> E-Commerce
-                        </button>
-                        <button type="button" class="template-mini-btn" data-template="universidad">
-                            <i class="fas fa-graduation-cap"></i> Universidad
-                        </button>
-                        <button type="button" class="template-mini-btn" data-template="biblioteca">
-                            <i class="fas fa-book"></i> Biblioteca
-                        </button>
-                        <button type="button" class="template-mini-btn" data-template="hospital">
-                            <i class="fas fa-hospital"></i> Hospital
-                        </button>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-generate" id="er-generate-btn">
-                    <i class="fas fa-magic"></i> Generar Diagrama
-                </button>
-            </div>
-
-            <!-- Right Panel - Diagram Canvas -->
-            <div class="diagram-panel">
-                <div class="panel-header">
-                    <div class="panel-title">
-                        <i class="fas fa-project-diagram"></i>
-                        <span>Diagrama E-R</span>
-                    </div>
-                    <div class="panel-actions">
-                        <button type="button" class="btn-icon" id="er-export-png" title="Exportar PNG">
-                            <i class="fas fa-image"></i>
-                        </button>
-                        <button type="button" class="btn-icon" id="er-export-sql" title="Generar SQL">
-                            <i class="fas fa-database"></i>
-                        </button>
-                        <button type="button" class="btn-icon" id="er-clear" title="Limpiar">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="diagram-canvas" id="er-canvas">
-                    <div class="canvas-placeholder">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <p>Agrega entidades y relaciones, luego presiona "Generar Diagrama"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SQL Output -->
-        <div class="sql-output-section" data-aos="fade-up" data-aos-delay="200" id="er-sql-section" style="display: none;">
-            <div class="panel-header">
-                <i class="fas fa-database"></i>
-                <span>Script SQL Generado</span>
-                <button type="button" class="btn-icon" id="er-copy-sql" title="Copiar SQL">
-                    <i class="fas fa-copy"></i>
-                </button>
-            </div>
-            <div class="sql-output">
-                <pre><code id="er-sql-code" class="language-sql"></code></pre>
-            </div>
-        </div>
-
-        <!-- Cardinality Guide -->
-        <div class="cardinality-guide" data-aos="fade-up" data-aos-delay="300">
-            <h4><i class="fas fa-info-circle"></i> Guía de Cardinalidades</h4>
-            <div class="cardinality-examples">
-                <div class="cardinality-item">
-                    <div class="cardinality-visual">
-                        <span class="entity-box">A</span>
-                        <span class="line">─── 1:1 ───</span>
-                        <span class="entity-box">B</span>
-                    </div>
-                    <div class="cardinality-desc">
-                        <strong>Uno a Uno (1:1)</strong>
-                        <p>Cada instancia de A se relaciona con una única instancia de B y viceversa.</p>
-                        <span class="example">Ej: Persona ↔ Pasaporte</span>
-                    </div>
-                </div>
-                <div class="cardinality-item">
-                    <div class="cardinality-visual">
-                        <span class="entity-box">A</span>
-                        <span class="line">─── 1:N ───</span>
-                        <span class="entity-box">B</span>
-                    </div>
-                    <div class="cardinality-desc">
-                        <strong>Uno a Muchos (1:N)</strong>
-                        <p>Cada instancia de A se relaciona con muchas instancias de B.</p>
-                        <span class="example">Ej: Cliente → Pedidos</span>
-                    </div>
-                </div>
-                <div class="cardinality-item">
-                    <div class="cardinality-visual">
-                        <span class="entity-box">A</span>
-                        <span class="line">─── N:M ───</span>
-                        <span class="entity-box">B</span>
-                    </div>
-                    <div class="cardinality-desc">
-                        <strong>Muchos a Muchos (N:M)</strong>
-                        <p>Múltiples instancias de A se relacionan con múltiples de B.</p>
-                        <span class="example">Ej: Estudiantes ↔ Cursos</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="er-container">
+    <!-- Header -->
+    <div class="er-header" data-aos="fade-up">
+      <div class="header-icon">
+        <i class="fas fa-project-diagram"></i>
+      </div>
+      <div class="header-content">
+        <h2>Generador de Diagramas E-R</h2>
+        <p>Aprende modelamiento de datos creando diagramas Entidad-Relación interactivos</p>
+      </div>
+      <div class="header-badges">
+        <span class="badge db">Bases de Datos</span>
+        <span class="badge chen">Notación Chen</span>
+        <span class="badge beginner">Educativo</span>
+      </div>
     </div>
+
+    <!-- Learning Panel -->
+    <div class="learning-panel" data-aos="fade-up" data-aos-delay="50">
+      <div class="concept-cards">
+        <div class="concept-card">
+          <div class="concept-icon entity-icon">
+            <i class="fas fa-square"></i>
+          </div>
+          <h4>Entidad</h4>
+          <p>Objeto del mundo real con existencia independiente (ej: Cliente, Producto)</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-icon attribute-icon">
+            <i class="fas fa-circle"></i>
+          </div>
+          <h4>Atributo</h4>
+          <p>Propiedad que describe una entidad (ej: nombre, fecha, precio)</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-icon relation-icon">
+            <i class="fas fa-diamond"></i>
+          </div>
+          <h4>Relación</h4>
+          <p>Asociación entre entidades (ej: Cliente REALIZA Pedido)</p>
+        </div>
+        <div class="concept-card">
+          <div class="concept-icon cardinality-icon">
+            <i class="fas fa-arrows-alt-h"></i>
+          </div>
+          <h4>Cardinalidad</h4>
+          <p>Cantidad de instancias en la relación (1:1, 1:N, N:M)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Generator -->
+    <div class="generator-layout" data-aos="fade-up" data-aos-delay="100">
+      <!-- Left Panel - Configuration -->
+      <div class="config-panel">
+        <div class="panel-header">
+          <i class="fas fa-cog"></i>
+          <span>Constructor E-R</span>
+        </div>
+
+        <!-- Entities Section -->
+        <div class="config-section">
+          <h4><i class="fas fa-square"></i> Entidades</h4>
+          <div id="er-entities-list" class="entities-list">
+            <!-- Dynamic entities -->
+          </div>
+          <button type="button" class="btn-add" id="er-add-entity">
+            <i class="fas fa-plus"></i> Agregar Entidad
+          </button>
+        </div>
+
+        <!-- Relations Section -->
+        <div class="config-section">
+          <h4><i class="fas fa-link"></i> Relaciones</h4>
+          <div id="er-relations-list" class="relations-list">
+            <!-- Dynamic relations -->
+          </div>
+          <button type="button" class="btn-add" id="er-add-relation">
+            <i class="fas fa-plus"></i> Agregar Relación
+          </button>
+        </div>
+
+        <!-- Quick Templates -->
+        <div class="config-section">
+          <h4><i class="fas fa-layer-group"></i> Ejemplos</h4>
+          <div class="templates-mini">
+            <button type="button" class="template-mini-btn" data-template="ecommerce">
+              <i class="fas fa-shopping-cart"></i> E-Commerce
+            </button>
+            <button type="button" class="template-mini-btn" data-template="universidad">
+              <i class="fas fa-graduation-cap"></i> Universidad
+            </button>
+            <button type="button" class="template-mini-btn" data-template="biblioteca">
+              <i class="fas fa-book"></i> Biblioteca
+            </button>
+            <button type="button" class="template-mini-btn" data-template="hospital">
+              <i class="fas fa-hospital"></i> Hospital
+            </button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-generate" id="er-generate-btn">
+          <i class="fas fa-magic"></i> Generar Diagrama
+        </button>
+      </div>
+
+      <!-- Right Panel - Diagram Canvas -->
+      <div class="diagram-panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <i class="fas fa-project-diagram"></i>
+            <span>Diagrama E-R</span>
+          </div>
+          <div class="panel-actions">
+            <button type="button" class="btn-icon" id="er-export-png" title="Exportar PNG">
+              <i class="fas fa-image"></i>
+            </button>
+            <button type="button" class="btn-icon" id="er-export-sql" title="Generar SQL">
+              <i class="fas fa-database"></i>
+            </button>
+            <button type="button" class="btn-icon" id="er-clear" title="Limpiar">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+        <div class="diagram-canvas" id="er-canvas">
+          <div class="canvas-placeholder">
+            <i class="fas fa-mouse-pointer"></i>
+            <p>Agrega entidades y relaciones, luego presiona "Generar Diagrama"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SQL Output -->
+    <div
+      class="sql-output-section"
+      data-aos="fade-up"
+      data-aos-delay="200"
+      id="er-sql-section"
+      style="display: none;"
+    >
+      <div class="panel-header">
+        <i class="fas fa-database"></i>
+        <span>Script SQL Generado</span>
+        <button type="button" class="btn-icon" id="er-copy-sql" title="Copiar SQL">
+          <i class="fas fa-copy"></i>
+        </button>
+      </div>
+      <div class="sql-output">
+        <pre><code id="er-sql-code" class="language-sql" /></pre>
+      </div>
+    </div>
+
+    <!-- Cardinality Guide -->
+    <div class="cardinality-guide" data-aos="fade-up" data-aos-delay="300">
+      <h4><i class="fas fa-info-circle"></i> Guía de Cardinalidades</h4>
+      <div class="cardinality-examples">
+        <div class="cardinality-item">
+          <div class="cardinality-visual">
+            <span class="entity-box">A</span>
+            <span class="line">─── 1:1 ───</span>
+            <span class="entity-box">B</span>
+          </div>
+          <div class="cardinality-desc">
+            <strong>Uno a Uno (1:1)</strong>
+            <p>Cada instancia de A se relaciona con una única instancia de B y viceversa.</p>
+            <span class="example">Ej: Persona ↔ Pasaporte</span>
+          </div>
+        </div>
+        <div class="cardinality-item">
+          <div class="cardinality-visual">
+            <span class="entity-box">A</span>
+            <span class="line">─── 1:N ───</span>
+            <span class="entity-box">B</span>
+          </div>
+          <div class="cardinality-desc">
+            <strong>Uno a Muchos (1:N)</strong>
+            <p>Cada instancia de A se relaciona con muchas instancias de B.</p>
+            <span class="example">Ej: Cliente → Pedidos</span>
+          </div>
+        </div>
+        <div class="cardinality-item">
+          <div class="cardinality-visual">
+            <span class="entity-box">A</span>
+            <span class="line">─── N:M ───</span>
+            <span class="entity-box">B</span>
+          </div>
+          <div class="cardinality-desc">
+            <strong>Muchos a Muchos (N:M)</strong>
+            <p>Múltiples instancias de A se relacionan con múltiples de B.</p>
+            <span class="example">Ej: Estudiantes ↔ Cursos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .er-generator-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
-    }
+  .er-generator-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  }
 
-    .er-container {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .er-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    .er-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
-        border: 1px solid rgba(34, 197, 94, 0.2);
-        border-radius: 16px;
-    }
+  .er-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 16px;
+  }
 
-    .header-icon {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #22c55e, #10b981);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .header-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #22c55e, #10b981);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .header-icon i {
-        font-size: 2rem;
-        color: white;
-    }
+  .header-icon i {
+    font-size: 2rem;
+    color: white;
+  }
 
-    .header-content h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
+  .header-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
 
-    .header-content p {
-        color: #94a3b8;
-        font-size: 0.95rem;
-    }
+  .header-content p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+  }
 
-    .header-badges {
-        display: flex;
-        gap: 0.5rem;
-        margin-left: auto;
-    }
+  .header-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
 
-    .badge {
-        padding: 0.35rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
+  .badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
 
-    .badge.db {
-        background: rgba(34, 197, 94, 0.2);
-        color: #4ade80;
-        border: 1px solid rgba(34, 197, 94, 0.3);
-    }
+  .badge.db {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
 
-    .badge.chen {
-        background: rgba(59, 130, 246, 0.2);
-        color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-    }
+  .badge.chen {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
 
-    .badge.beginner {
-        background: rgba(251, 191, 36, 0.2);
-        color: #fbbf24;
-        border: 1px solid rgba(251, 191, 36, 0.3);
-    }
+  .badge.beginner {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
 
-    /* Learning Panel */
-    .learning-panel {
-        margin-bottom: 2rem;
+  /* Learning Panel */
+  .learning-panel {
+    margin-bottom: 2rem;
+  }
+
+  .concept-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .concept-card {
+    padding: 1.25rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .concept-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  .concept-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  .concept-icon i {
+    font-size: 1.5rem;
+  }
+
+  .entity-icon {
+    background: rgba(59, 130, 246, 0.2);
+  }
+  .entity-icon i {
+    color: #3b82f6;
+  }
+
+  .attribute-icon {
+    background: rgba(251, 191, 36, 0.2);
+  }
+  .attribute-icon i {
+    color: #fbbf24;
+  }
+
+  .relation-icon {
+    background: rgba(239, 68, 68, 0.2);
+  }
+  .relation-icon i {
+    color: #ef4444;
+  }
+
+  .cardinality-icon {
+    background: rgba(139, 92, 246, 0.2);
+  }
+  .cardinality-icon i {
+    color: #8b5cf6;
+  }
+
+  .concept-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .concept-card p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+
+  /* Generator Layout */
+  .generator-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .config-panel,
+  .diagram-panel {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .panel-header i {
+    color: #22c55e;
+  }
+
+  .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .panel-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-icon:hover {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+  }
+
+  .config-section {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .config-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 1rem;
+  }
+
+  .config-section h4 i {
+    color: #22c55e;
+    font-size: 0.85rem;
+  }
+
+  .entities-list,
+  .relations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  .entity-item,
+  .relation-item {
+    padding: 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+  }
+
+  .entity-header,
+  .relation-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .entity-header input,
+  .relation-header input {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 6px;
+    color: #f8fafc;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .attributes-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .attr-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: #fbbf24;
+  }
+
+  .attr-tag.pk {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+  }
+
+  .attr-tag button {
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  .attr-tag button:hover {
+    opacity: 1;
+  }
+
+  .add-attr-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .add-attr-row input {
+    flex: 1;
+    padding: 0.3rem 0.5rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 4px;
+    color: #f8fafc;
+    font-size: 0.75rem;
+  }
+
+  .add-attr-row select {
+    padding: 0.3rem 0.4rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 4px;
+    color: #f8fafc;
+    font-size: 0.75rem;
+  }
+
+  .btn-add-attr {
+    padding: 0.3rem 0.5rem;
+    background: rgba(34, 197, 94, 0.2);
+    border: none;
+    border-radius: 4px;
+    color: #22c55e;
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+
+  .relation-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .relation-row select {
+    flex: 1;
+    padding: 0.4rem;
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 6px;
+    color: #f8fafc;
+    font-size: 0.8rem;
+  }
+
+  .cardinality-select {
+    width: 70px !important;
+    flex: 0 0 70px !important;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .btn-remove {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(239, 68, 68, 0.2);
+    border-radius: 6px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .btn-remove:hover {
+    background: rgba(239, 68, 68, 0.4);
+  }
+
+  .btn-add {
+    width: 100%;
+    padding: 0.6rem;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px dashed rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    color: #22c55e;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-add:hover {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+  }
+
+  .templates-mini {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .template-mini-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+  }
+
+  .template-mini-btn:hover {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+  }
+
+  .btn-generate {
+    width: calc(100% - 2.5rem);
+    margin: 1.25rem;
+    padding: 0.85rem;
+    background: linear-gradient(135deg, #22c55e, #10b981);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-generate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  }
+
+  /* Diagram Canvas */
+  .diagram-canvas {
+    min-height: 500px;
+    padding: 2rem;
+    background: #0f172a;
+    position: relative;
+    overflow: auto;
+  }
+
+  .canvas-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #475569;
+  }
+
+  .canvas-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  .canvas-placeholder p {
+    font-size: 0.9rem;
+  }
+
+  .er-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .entities-row {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .er-entity {
+    min-width: 150px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid #3b82f6;
+    border-radius: 0;
+  }
+
+  .er-entity-name {
+    padding: 0.75rem 1rem;
+    background: rgba(59, 130, 246, 0.2);
+    font-weight: 700;
+    color: #3b82f6;
+    text-align: center;
+    border-bottom: 2px solid #3b82f6;
+  }
+
+  .er-entity-attrs {
+    padding: 0.75rem 1rem;
+  }
+
+  .er-attr {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .er-attr.pk {
+    color: #3b82f6;
+    font-weight: 600;
+  }
+
+  .er-attr.pk::before {
+    content: "🔑";
+    font-size: 0.75rem;
+  }
+
+  .relations-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .er-relation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(30, 41, 59, 0.3);
+    border-radius: 8px;
+  }
+
+  .er-relation-entity {
+    padding: 0.5rem 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 4px;
+    color: #3b82f6;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .er-relation-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #64748b;
+  }
+
+  .er-relation-diamond {
+    width: 80px;
+    height: 50px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid #ef4444;
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .er-relation-diamond span {
+    transform: rotate(-45deg);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #ef4444;
+    text-align: center;
+    max-width: 60px;
+    word-break: break-word;
+  }
+
+  .er-cardinality {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  /* SQL Output */
+  .sql-output-section {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .sql-output {
+    max-height: 300px;
+    overflow: auto;
+    background: #0f172a;
+    padding: 1rem;
+  }
+
+  .sql-output pre {
+    margin: 0;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .sql-output code {
+    color: #e2e8f0;
+  }
+
+  /* Cardinality Guide */
+  .cardinality-guide {
+    padding: 1.5rem;
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 16px;
+  }
+
+  .cardinality-guide h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #f8fafc;
+    margin-bottom: 1.25rem;
+  }
+
+  .cardinality-guide h4 i {
+    color: #22c55e;
+  }
+
+  .cardinality-examples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .cardinality-item {
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 10px;
+  }
+
+  .cardinality-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+  }
+
+  .entity-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.2);
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+    font-weight: 700;
+  }
+
+  .cardinality-visual .line {
+    color: #8b5cf6;
+    font-size: 0.9rem;
+  }
+
+  .cardinality-desc strong {
+    display: block;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .cardinality-desc p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardinality-desc .example {
+    font-size: 0.75rem;
+    color: #22c55e;
+    font-style: italic;
+  }
+
+  /* Light Mode */
+  :global([data-theme="light"]) .er-generator-section {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.9) 100%);
+  }
+
+  :global([data-theme="light"]) .er-header {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(16, 185, 129, 0.04));
+  }
+
+  :global([data-theme="light"]) .header-content h2,
+  :global([data-theme="light"]) .panel-header,
+  :global([data-theme="light"]) .config-section h4,
+  :global([data-theme="light"]) .concept-card h4,
+  :global([data-theme="light"]) .cardinality-guide h4,
+  :global([data-theme="light"]) .cardinality-desc strong {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .config-panel,
+  :global([data-theme="light"]) .diagram-panel,
+  :global([data-theme="light"]) .concept-card,
+  :global([data-theme="light"]) .sql-output-section,
+  :global([data-theme="light"]) .cardinality-guide,
+  :global([data-theme="light"]) .cardinality-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  :global([data-theme="light"]) .diagram-canvas,
+  :global([data-theme="light"]) .sql-output {
+    background: #1e293b;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .generator-layout {
+      grid-template-columns: 1fr;
     }
 
     .concept-cards {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .concept-card {
-        padding: 1.25rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 12px;
-        text-align: center;
-        transition: all 0.3s ease;
+    .er-header {
+      flex-direction: column;
+      text-align: center;
     }
 
-    .concept-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(34, 197, 94, 0.3);
-    }
-
-    .concept-icon {
-        width: 50px;
-        height: 50px;
-        margin: 0 auto 0.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-    }
-
-    .concept-icon i {
-        font-size: 1.5rem;
-    }
-
-    .entity-icon {
-        background: rgba(59, 130, 246, 0.2);
-    }
-    .entity-icon i { color: #3b82f6; }
-
-    .attribute-icon {
-        background: rgba(251, 191, 36, 0.2);
-    }
-    .attribute-icon i { color: #fbbf24; }
-
-    .relation-icon {
-        background: rgba(239, 68, 68, 0.2);
-    }
-    .relation-icon i { color: #ef4444; }
-
-    .cardinality-icon {
-        background: rgba(139, 92, 246, 0.2);
-    }
-    .cardinality-icon i { color: #8b5cf6; }
-
-    .concept-card h4 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .concept-card p {
-        font-size: 0.8rem;
-        color: #94a3b8;
-        line-height: 1.4;
-    }
-
-    /* Generator Layout */
-    .generator-layout {
-        display: grid;
-        grid-template-columns: 380px 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .config-panel, .diagram-panel {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        overflow: hidden;
-    }
-
-    .panel-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1rem 1.25rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .panel-header i {
-        color: #22c55e;
-    }
-
-    .panel-title {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        flex: 1;
-    }
-
-    .panel-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn-icon {
-        width: 36px;
-        height: 36px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn-icon:hover {
-        background: rgba(34, 197, 94, 0.2);
-        color: #22c55e;
-    }
-
-    .config-section {
-        padding: 1.25rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .config-section h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 1rem;
-    }
-
-    .config-section h4 i {
-        color: #22c55e;
-        font-size: 0.85rem;
-    }
-
-    .entities-list,
-    .relations-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        max-height: 250px;
-        overflow-y: auto;
-    }
-
-    .entity-item,
-    .relation-item {
-        padding: 0.75rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-    }
-
-    .entity-header,
-    .relation-header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .entity-header input,
-    .relation-header input {
-        flex: 1;
-        padding: 0.4rem 0.6rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 6px;
-        color: #f8fafc;
-        font-size: 0.85rem;
-        font-weight: 600;
-    }
-
-    .attributes-mini {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-top: 0.5rem;
-    }
-
-    .attr-tag {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.25rem 0.5rem;
-        background: rgba(251, 191, 36, 0.1);
-        border: 1px solid rgba(251, 191, 36, 0.2);
-        border-radius: 4px;
-        font-size: 0.75rem;
-        color: #fbbf24;
-    }
-
-    .attr-tag.pk {
-        background: rgba(59, 130, 246, 0.1);
-        border-color: rgba(59, 130, 246, 0.2);
-        color: #3b82f6;
-    }
-
-    .attr-tag button {
-        border: none;
-        background: none;
-        color: inherit;
-        cursor: pointer;
-        padding: 0;
-        font-size: 0.7rem;
-        opacity: 0.7;
-    }
-
-    .attr-tag button:hover {
-        opacity: 1;
-    }
-
-    .add-attr-row {
-        display: flex;
-        gap: 0.4rem;
-        margin-top: 0.5rem;
-    }
-
-    .add-attr-row input {
-        flex: 1;
-        padding: 0.3rem 0.5rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        border-radius: 4px;
-        color: #f8fafc;
-        font-size: 0.75rem;
-    }
-
-    .add-attr-row select {
-        padding: 0.3rem 0.4rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-        border-radius: 4px;
-        color: #f8fafc;
-        font-size: 0.75rem;
-    }
-
-    .btn-add-attr {
-        padding: 0.3rem 0.5rem;
-        background: rgba(34, 197, 94, 0.2);
-        border: none;
-        border-radius: 4px;
-        color: #22c55e;
-        cursor: pointer;
-        font-size: 0.75rem;
-    }
-
-    .relation-row {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-
-    .relation-row select {
-        flex: 1;
-        padding: 0.4rem;
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 6px;
-        color: #f8fafc;
-        font-size: 0.8rem;
-    }
-
-    .cardinality-select {
-        width: 70px !important;
-        flex: 0 0 70px !important;
-        text-align: center;
-        font-weight: 600;
-    }
-
-    .btn-remove {
-        width: 28px;
-        height: 28px;
-        border: none;
-        background: rgba(239, 68, 68, 0.2);
-        border-radius: 6px;
-        color: #ef4444;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .btn-remove:hover {
-        background: rgba(239, 68, 68, 0.4);
-    }
-
-    .btn-add {
-        width: 100%;
-        padding: 0.6rem;
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px dashed rgba(34, 197, 94, 0.3);
-        border-radius: 8px;
-        color: #22c55e;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-add:hover {
-        background: rgba(34, 197, 94, 0.2);
-        border-color: #22c55e;
-    }
-
-    .templates-mini {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
-
-    .template-mini-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.6rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.8rem;
-    }
-
-    .template-mini-btn:hover {
-        background: rgba(34, 197, 94, 0.1);
-        border-color: rgba(34, 197, 94, 0.3);
-        color: #22c55e;
-    }
-
-    .btn-generate {
-        width: calc(100% - 2.5rem);
-        margin: 1.25rem;
-        padding: 0.85rem;
-        background: linear-gradient(135deg, #22c55e, #10b981);
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-generate:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
-    }
-
-    /* Diagram Canvas */
-    .diagram-canvas {
-        min-height: 500px;
-        padding: 2rem;
-        background: #0f172a;
-        position: relative;
-        overflow: auto;
-    }
-
-    .canvas-placeholder {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: #475569;
-    }
-
-    .canvas-placeholder i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.5;
-    }
-
-    .canvas-placeholder p {
-        font-size: 0.9rem;
-    }
-
-    .er-diagram {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        align-items: center;
-        padding: 2rem;
-    }
-
-    .entities-row {
-        display: flex;
-        gap: 4rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .er-entity {
-        min-width: 150px;
-        background: rgba(59, 130, 246, 0.1);
-        border: 2px solid #3b82f6;
-        border-radius: 0;
-    }
-
-    .er-entity-name {
-        padding: 0.75rem 1rem;
-        background: rgba(59, 130, 246, 0.2);
-        font-weight: 700;
-        color: #3b82f6;
-        text-align: center;
-        border-bottom: 2px solid #3b82f6;
-    }
-
-    .er-entity-attrs {
-        padding: 0.75rem 1rem;
-    }
-
-    .er-attr {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.25rem 0;
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-
-    .er-attr.pk {
-        color: #3b82f6;
-        font-weight: 600;
-    }
-
-    .er-attr.pk::before {
-        content: '🔑';
-        font-size: 0.75rem;
-    }
-
-    .relations-row {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    .er-relation {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1rem;
-        background: rgba(30, 41, 59, 0.3);
-        border-radius: 8px;
-    }
-
-    .er-relation-entity {
-        padding: 0.5rem 1rem;
-        background: rgba(59, 130, 246, 0.1);
-        border: 1px solid rgba(59, 130, 246, 0.3);
-        border-radius: 4px;
-        color: #3b82f6;
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .er-relation-line {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #64748b;
-    }
-
-    .er-relation-diamond {
-        width: 80px;
-        height: 50px;
-        background: rgba(239, 68, 68, 0.1);
-        border: 2px solid #ef4444;
-        transform: rotate(45deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .er-relation-diamond span {
-        transform: rotate(-45deg);
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: #ef4444;
-        text-align: center;
-        max-width: 60px;
-        word-break: break-word;
-    }
-
-    .er-cardinality {
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: #8b5cf6;
-        background: rgba(139, 92, 246, 0.1);
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-    }
-
-    /* SQL Output */
-    .sql-output-section {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-        overflow: hidden;
-        margin-bottom: 2rem;
-    }
-
-    .sql-output {
-        max-height: 300px;
-        overflow: auto;
-        background: #0f172a;
-        padding: 1rem;
-    }
-
-    .sql-output pre {
-        margin: 0;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.85rem;
-        line-height: 1.6;
-    }
-
-    .sql-output code {
-        color: #e2e8f0;
-    }
-
-    /* Cardinality Guide */
-    .cardinality-guide {
-        padding: 1.5rem;
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 16px;
-    }
-
-    .cardinality-guide h4 {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1rem;
-        color: #f8fafc;
-        margin-bottom: 1.25rem;
-    }
-
-    .cardinality-guide h4 i {
-        color: #22c55e;
+    .header-badges {
+      margin-left: 0;
     }
 
     .cardinality-examples {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .er-generator-section {
+      padding: 2rem 1rem;
     }
 
-    .cardinality-item {
-        padding: 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 10px;
+    .concept-cards {
+      grid-template-columns: 1fr;
     }
-
-    .cardinality-visual {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        font-family: monospace;
-    }
-
-    .entity-box {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(59, 130, 246, 0.2);
-        border: 2px solid #3b82f6;
-        color: #3b82f6;
-        font-weight: 700;
-    }
-
-    .cardinality-visual .line {
-        color: #8b5cf6;
-        font-size: 0.9rem;
-    }
-
-    .cardinality-desc strong {
-        display: block;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        margin-bottom: 0.25rem;
-    }
-
-    .cardinality-desc p {
-        font-size: 0.8rem;
-        color: #94a3b8;
-        margin-bottom: 0.5rem;
-    }
-
-    .cardinality-desc .example {
-        font-size: 0.75rem;
-        color: #22c55e;
-        font-style: italic;
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .er-generator-section {
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.9) 100%);
-    }
-
-    :global([data-theme="light"]) .er-header {
-        background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(16, 185, 129, 0.04));
-    }
-
-    :global([data-theme="light"]) .header-content h2,
-    :global([data-theme="light"]) .panel-header,
-    :global([data-theme="light"]) .config-section h4,
-    :global([data-theme="light"]) .concept-card h4,
-    :global([data-theme="light"]) .cardinality-guide h4,
-    :global([data-theme="light"]) .cardinality-desc strong {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .config-panel,
-    :global([data-theme="light"]) .diagram-panel,
-    :global([data-theme="light"]) .concept-card,
-    :global([data-theme="light"]) .sql-output-section,
-    :global([data-theme="light"]) .cardinality-guide,
-    :global([data-theme="light"]) .cardinality-item {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(148, 163, 184, 0.2);
-    }
-
-    :global([data-theme="light"]) .diagram-canvas,
-    :global([data-theme="light"]) .sql-output {
-        background: #1e293b;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .generator-layout {
-            grid-template-columns: 1fr;
-        }
-
-        .concept-cards {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .er-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .header-badges {
-            margin-left: 0;
-        }
-
-        .cardinality-examples {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .er-generator-section {
-            padding: 2rem 1rem;
-        }
-
-        .concept-cards {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>
 
 <script is:inline>
-document.addEventListener('astro:page-load', function() {
-    const entitiesList = document.getElementById('er-entities-list');
-    const relationsList = document.getElementById('er-relations-list');
-    const addEntityBtn = document.getElementById('er-add-entity');
-    const addRelationBtn = document.getElementById('er-add-relation');
-    const generateBtn = document.getElementById('er-generate-btn');
-    const canvas = document.getElementById('er-canvas');
-    const sqlSection = document.getElementById('er-sql-section');
-    const sqlCode = document.getElementById('er-sql-code');
-    const copySqlBtn = document.getElementById('er-copy-sql');
-    const exportSqlBtn = document.getElementById('er-export-sql');
-    const clearBtn = document.getElementById('er-clear');
+  document.addEventListener("astro:page-load", function () {
+    const entitiesList = document.getElementById("er-entities-list");
+    const relationsList = document.getElementById("er-relations-list");
+    const addEntityBtn = document.getElementById("er-add-entity");
+    const addRelationBtn = document.getElementById("er-add-relation");
+    const generateBtn = document.getElementById("er-generate-btn");
+    const canvas = document.getElementById("er-canvas");
+    const sqlSection = document.getElementById("er-sql-section");
+    const sqlCode = document.getElementById("er-sql-code");
+    const copySqlBtn = document.getElementById("er-copy-sql");
+    const exportSqlBtn = document.getElementById("er-export-sql");
+    const clearBtn = document.getElementById("er-clear");
 
     if (!generateBtn) return;
 
-    const dataTypes = ['INT', 'VARCHAR(50)', 'VARCHAR(100)', 'VARCHAR(255)', 'TEXT', 'DATE', 'DATETIME', 'DECIMAL(10,2)', 'BOOLEAN', 'BIGINT'];
+    const dataTypes = [
+      "INT",
+      "VARCHAR(50)",
+      "VARCHAR(100)",
+      "VARCHAR(255)",
+      "TEXT",
+      "DATE",
+      "DATETIME",
+      "DECIMAL(10,2)",
+      "BOOLEAN",
+      "BIGINT",
+    ];
     let entityCounter = 0;
     let relationCounter = 0;
 
-    function addEntity(name = '', attributes = []) {
-        entityCounter++;
-        const id = `entity-${entityCounter}`;
-        const item = document.createElement('div');
-        item.className = 'entity-item';
-        item.dataset.entityId = id;
-        item.innerHTML = `
+    function addEntity(name = "", attributes = []) {
+      entityCounter++;
+      const id = `entity-${entityCounter}`;
+      const item = document.createElement("div");
+      item.className = "entity-item";
+      item.dataset.entityId = id;
+      item.innerHTML = `
             <div class="entity-header">
                 <input type="text" class="entity-name" placeholder="NombreEntidad" value="${name}">
                 <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
@@ -1012,7 +1038,7 @@ document.addEventListener('astro:page-load', function() {
             <div class="add-attr-row">
                 <input type="text" class="new-attr-name" placeholder="atributo">
                 <select class="new-attr-type">
-                    ${dataTypes.map(t => `<option value="${t}">${t}</option>`).join('')}
+                    ${dataTypes.map((t) => `<option value="${t}">${t}</option>`).join("")}
                 </select>
                 <label style="display:flex;align-items:center;gap:0.2rem;font-size:0.7rem;color:#3b82f6;">
                     <input type="checkbox" class="new-attr-pk"> PK
@@ -1021,59 +1047,59 @@ document.addEventListener('astro:page-load', function() {
             </div>
         `;
 
-        entitiesList.appendChild(item);
+      entitiesList.appendChild(item);
 
-        const attrsContainer = item.querySelector('.attributes-mini');
-        const nameInput = item.querySelector('.new-attr-name');
-        const typeSelect = item.querySelector('.new-attr-type');
-        const pkCheckbox = item.querySelector('.new-attr-pk');
-        const addAttrBtn = item.querySelector('.btn-add-attr');
+      const attrsContainer = item.querySelector(".attributes-mini");
+      const nameInput = item.querySelector(".new-attr-name");
+      const typeSelect = item.querySelector(".new-attr-type");
+      const pkCheckbox = item.querySelector(".new-attr-pk");
+      const addAttrBtn = item.querySelector(".btn-add-attr");
 
-        // Add predefined attributes
-        attributes.forEach(attr => addAttributeTag(attrsContainer, attr.name, attr.type, attr.pk));
+      // Add predefined attributes
+      attributes.forEach((attr) => addAttributeTag(attrsContainer, attr.name, attr.type, attr.pk));
 
-        addAttrBtn.addEventListener('click', () => {
-            const attrName = nameInput.value.trim();
-            if (attrName) {
-                addAttributeTag(attrsContainer, attrName, typeSelect.value, pkCheckbox.checked);
-                nameInput.value = '';
-                pkCheckbox.checked = false;
-                updateRelationSelects();
-            }
-        });
+      addAttrBtn.addEventListener("click", () => {
+        const attrName = nameInput.value.trim();
+        if (attrName) {
+          addAttributeTag(attrsContainer, attrName, typeSelect.value, pkCheckbox.checked);
+          nameInput.value = "";
+          pkCheckbox.checked = false;
+          updateRelationSelects();
+        }
+      });
 
-        nameInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') addAttrBtn.click();
-        });
+      nameInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") addAttrBtn.click();
+      });
 
-        item.querySelector('.btn-remove').addEventListener('click', () => {
-            item.remove();
-            updateRelationSelects();
-        });
-
+      item.querySelector(".btn-remove").addEventListener("click", () => {
+        item.remove();
         updateRelationSelects();
+      });
+
+      updateRelationSelects();
     }
 
     function addAttributeTag(container, name, type, isPK = false) {
-        const tag = document.createElement('span');
-        tag.className = `attr-tag ${isPK ? 'pk' : ''}`;
-        tag.innerHTML = `
-            ${isPK ? '<i class="fas fa-key"></i>' : ''}
+      const tag = document.createElement("span");
+      tag.className = `attr-tag ${isPK ? "pk" : ""}`;
+      tag.innerHTML = `
+            ${isPK ? '<i class="fas fa-key"></i>' : ""}
             ${name}
             <button type="button"><i class="fas fa-times"></i></button>
         `;
-        tag.dataset.attrName = name;
-        tag.dataset.attrType = type;
-        tag.dataset.attrPk = isPK;
-        tag.querySelector('button').addEventListener('click', () => tag.remove());
-        container.appendChild(tag);
+      tag.dataset.attrName = name;
+      tag.dataset.attrType = type;
+      tag.dataset.attrPk = isPK;
+      tag.querySelector("button").addEventListener("click", () => tag.remove());
+      container.appendChild(tag);
     }
 
-    function addRelation(entity1 = '', entity2 = '', name = '', cardinality = '1:N') {
-        relationCounter++;
-        const item = document.createElement('div');
-        item.className = 'relation-item';
-        item.innerHTML = `
+    function addRelation(entity1 = "", entity2 = "", name = "", cardinality = "1:N") {
+      relationCounter++;
+      const item = document.createElement("div");
+      item.className = "relation-item";
+      item.innerHTML = `
             <div class="relation-header">
                 <input type="text" class="relation-name" placeholder="RELACION" value="${name}">
                 <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
@@ -1081,131 +1107,135 @@ document.addEventListener('astro:page-load', function() {
             <div class="relation-row">
                 <select class="relation-entity1"></select>
                 <select class="cardinality-select">
-                    <option value="1:1" ${cardinality === '1:1' ? 'selected' : ''}>1:1</option>
-                    <option value="1:N" ${cardinality === '1:N' ? 'selected' : ''}>1:N</option>
-                    <option value="N:M" ${cardinality === 'N:M' ? 'selected' : ''}>N:M</option>
+                    <option value="1:1" ${cardinality === "1:1" ? "selected" : ""}>1:1</option>
+                    <option value="1:N" ${cardinality === "1:N" ? "selected" : ""}>1:N</option>
+                    <option value="N:M" ${cardinality === "N:M" ? "selected" : ""}>N:M</option>
                 </select>
                 <select class="relation-entity2"></select>
             </div>
         `;
 
-        relationsList.appendChild(item);
-        item.querySelector('.btn-remove').addEventListener('click', () => item.remove());
+      relationsList.appendChild(item);
+      item.querySelector(".btn-remove").addEventListener("click", () => item.remove());
 
-        // Populate entity selects
-        const select1 = item.querySelector('.relation-entity1');
-        const select2 = item.querySelector('.relation-entity2');
-        populateEntitySelect(select1, entity1);
-        populateEntitySelect(select2, entity2);
+      // Populate entity selects
+      const select1 = item.querySelector(".relation-entity1");
+      const select2 = item.querySelector(".relation-entity2");
+      populateEntitySelect(select1, entity1);
+      populateEntitySelect(select2, entity2);
     }
 
-    function populateEntitySelect(select, selectedValue = '') {
-        select.innerHTML = '<option value="">Seleccionar...</option>';
-        entitiesList.querySelectorAll('.entity-item').forEach(entity => {
-            const name = entity.querySelector('.entity-name').value || 'Sin nombre';
-            const option = document.createElement('option');
-            option.value = name;
-            option.textContent = name;
-            if (name === selectedValue) option.selected = true;
-            select.appendChild(option);
-        });
+    function populateEntitySelect(select, selectedValue = "") {
+      select.innerHTML = '<option value="">Seleccionar...</option>';
+      entitiesList.querySelectorAll(".entity-item").forEach((entity) => {
+        const name = entity.querySelector(".entity-name").value || "Sin nombre";
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        if (name === selectedValue) option.selected = true;
+        select.appendChild(option);
+      });
     }
 
     function updateRelationSelects() {
-        relationsList.querySelectorAll('.relation-item').forEach(item => {
-            const select1 = item.querySelector('.relation-entity1');
-            const select2 = item.querySelector('.relation-entity2');
-            const val1 = select1.value;
-            const val2 = select2.value;
-            populateEntitySelect(select1, val1);
-            populateEntitySelect(select2, val2);
-        });
+      relationsList.querySelectorAll(".relation-item").forEach((item) => {
+        const select1 = item.querySelector(".relation-entity1");
+        const select2 = item.querySelector(".relation-entity2");
+        const val1 = select1.value;
+        const val2 = select2.value;
+        populateEntitySelect(select1, val1);
+        populateEntitySelect(select2, val2);
+      });
     }
 
-    addEntityBtn.addEventListener('click', () => addEntity());
-    addRelationBtn.addEventListener('click', () => addRelation());
+    addEntityBtn.addEventListener("click", () => addEntity());
+    addRelationBtn.addEventListener("click", () => addRelation());
 
     // Generate Diagram
-    generateBtn.addEventListener('click', () => {
-        const entities = collectEntities();
-        const relations = collectRelations();
+    generateBtn.addEventListener("click", () => {
+      const entities = collectEntities();
+      const relations = collectRelations();
 
-        if (entities.length === 0) {
-            alert('Agrega al menos una entidad');
-            return;
-        }
+      if (entities.length === 0) {
+        alert("Agrega al menos una entidad");
+        return;
+      }
 
-        renderDiagram(entities, relations);
-        generateSQL(entities, relations);
+      renderDiagram(entities, relations);
+      generateSQL(entities, relations);
     });
 
     function collectEntities() {
-        const entities = [];
-        entitiesList.querySelectorAll('.entity-item').forEach(item => {
-            const name = item.querySelector('.entity-name').value.trim() || 'Entidad';
-            const attrs = [];
-            item.querySelectorAll('.attr-tag').forEach(tag => {
-                attrs.push({
-                    name: tag.dataset.attrName,
-                    type: tag.dataset.attrType,
-                    pk: tag.dataset.attrPk === 'true'
-                });
-            });
-            entities.push({ name, attributes: attrs });
+      const entities = [];
+      entitiesList.querySelectorAll(".entity-item").forEach((item) => {
+        const name = item.querySelector(".entity-name").value.trim() || "Entidad";
+        const attrs = [];
+        item.querySelectorAll(".attr-tag").forEach((tag) => {
+          attrs.push({
+            name: tag.dataset.attrName,
+            type: tag.dataset.attrType,
+            pk: tag.dataset.attrPk === "true",
+          });
         });
-        return entities;
+        entities.push({ name, attributes: attrs });
+      });
+      return entities;
     }
 
     function collectRelations() {
-        const relations = [];
-        relationsList.querySelectorAll('.relation-item').forEach(item => {
-            const name = item.querySelector('.relation-name').value.trim() || 'RELACION';
-            const entity1 = item.querySelector('.relation-entity1').value;
-            const entity2 = item.querySelector('.relation-entity2').value;
-            const cardinality = item.querySelector('.cardinality-select').value;
-            if (entity1 && entity2) {
-                relations.push({ name, entity1, entity2, cardinality });
-            }
-        });
-        return relations;
+      const relations = [];
+      relationsList.querySelectorAll(".relation-item").forEach((item) => {
+        const name = item.querySelector(".relation-name").value.trim() || "RELACION";
+        const entity1 = item.querySelector(".relation-entity1").value;
+        const entity2 = item.querySelector(".relation-entity2").value;
+        const cardinality = item.querySelector(".cardinality-select").value;
+        if (entity1 && entity2) {
+          relations.push({ name, entity1, entity2, cardinality });
+        }
+      });
+      return relations;
     }
 
     function renderDiagram(entities, relations) {
-        canvas.innerHTML = '';
+      canvas.innerHTML = "";
 
-        const diagram = document.createElement('div');
-        diagram.className = 'er-diagram';
+      const diagram = document.createElement("div");
+      diagram.className = "er-diagram";
 
-        // Entities row
-        const entitiesRow = document.createElement('div');
-        entitiesRow.className = 'entities-row';
+      // Entities row
+      const entitiesRow = document.createElement("div");
+      entitiesRow.className = "entities-row";
 
-        entities.forEach(entity => {
-            const entityEl = document.createElement('div');
-            entityEl.className = 'er-entity';
-            entityEl.innerHTML = `
+      entities.forEach((entity) => {
+        const entityEl = document.createElement("div");
+        entityEl.className = "er-entity";
+        entityEl.innerHTML = `
                 <div class="er-entity-name">${entity.name}</div>
                 <div class="er-entity-attrs">
-                    ${entity.attributes.map(a => `
-                        <div class="er-attr ${a.pk ? 'pk' : ''}">${a.name}: ${a.type}</div>
-                    `).join('')}
+                    ${entity.attributes
+                      .map(
+                        (a) => `
+                        <div class="er-attr ${a.pk ? "pk" : ""}">${a.name}: ${a.type}</div>
+                    `,
+                      )
+                      .join("")}
                 </div>
             `;
-            entitiesRow.appendChild(entityEl);
-        });
+        entitiesRow.appendChild(entityEl);
+      });
 
-        diagram.appendChild(entitiesRow);
+      diagram.appendChild(entitiesRow);
 
-        // Relations
-        if (relations.length > 0) {
-            const relationsRow = document.createElement('div');
-            relationsRow.className = 'relations-row';
+      // Relations
+      if (relations.length > 0) {
+        const relationsRow = document.createElement("div");
+        relationsRow.className = "relations-row";
 
-            relations.forEach(rel => {
-                const relEl = document.createElement('div');
-                relEl.className = 'er-relation';
-                const [card1, card2] = rel.cardinality.split(':');
-                relEl.innerHTML = `
+        relations.forEach((rel) => {
+          const relEl = document.createElement("div");
+          relEl.className = "er-relation";
+          const [card1, card2] = rel.cardinality.split(":");
+          relEl.innerHTML = `
                     <span class="er-relation-entity">${rel.entity1}</span>
                     <span class="er-cardinality">${card1}</span>
                     <span class="er-relation-line">───</span>
@@ -1214,223 +1244,261 @@ document.addEventListener('astro:page-load', function() {
                     <span class="er-cardinality">${card2}</span>
                     <span class="er-relation-entity">${rel.entity2}</span>
                 `;
-                relationsRow.appendChild(relEl);
-            });
+          relationsRow.appendChild(relEl);
+        });
 
-            diagram.appendChild(relationsRow);
-        }
+        diagram.appendChild(relationsRow);
+      }
 
-        canvas.appendChild(diagram);
+      canvas.appendChild(diagram);
     }
 
     function generateSQL(entities, relations) {
-        let sql = '-- Script SQL generado desde Diagrama E-R\n';
-        sql += '-- Generador DuocUC - Modelamiento de Datos\n\n';
+      let sql = "-- Script SQL generado desde Diagrama E-R\n";
+      sql += "-- Generador DuocUC - Modelamiento de Datos\n\n";
 
-        // Create tables for entities
-        entities.forEach(entity => {
-            const tableName = entity.name.toLowerCase().replace(/\s+/g, '_');
-            sql += `CREATE TABLE ${tableName} (\n`;
+      // Create tables for entities
+      entities.forEach((entity) => {
+        const tableName = entity.name.toLowerCase().replace(/\s+/g, "_");
+        sql += `CREATE TABLE ${tableName} (\n`;
 
-            const cols = [];
-            const pks = [];
-            entity.attributes.forEach(attr => {
-                const colName = attr.name.toLowerCase().replace(/\s+/g, '_');
-                cols.push(`    ${colName} ${attr.type}${attr.pk ? ' NOT NULL' : ''}`);
-                if (attr.pk) pks.push(colName);
-            });
-
-            sql += cols.join(',\n');
-            if (pks.length > 0) {
-                sql += `,\n    PRIMARY KEY (${pks.join(', ')})`;
-            }
-            sql += '\n);\n\n';
+        const cols = [];
+        const pks = [];
+        entity.attributes.forEach((attr) => {
+          const colName = attr.name.toLowerCase().replace(/\s+/g, "_");
+          cols.push(`    ${colName} ${attr.type}${attr.pk ? " NOT NULL" : ""}`);
+          if (attr.pk) pks.push(colName);
         });
 
-        // Create junction tables for N:M relations
-        relations.forEach(rel => {
-            if (rel.cardinality === 'N:M') {
-                const table1 = rel.entity1.toLowerCase().replace(/\s+/g, '_');
-                const table2 = rel.entity2.toLowerCase().replace(/\s+/g, '_');
-                const junctionTable = `${table1}_${table2}`;
+        sql += cols.join(",\n");
+        if (pks.length > 0) {
+          sql += `,\n    PRIMARY KEY (${pks.join(", ")})`;
+        }
+        sql += "\n);\n\n";
+      });
 
-                sql += `-- Tabla intermedia para relación N:M\n`;
-                sql += `CREATE TABLE ${junctionTable} (\n`;
-                sql += `    ${table1}_id INT NOT NULL,\n`;
-                sql += `    ${table2}_id INT NOT NULL,\n`;
-                sql += `    PRIMARY KEY (${table1}_id, ${table2}_id),\n`;
-                sql += `    FOREIGN KEY (${table1}_id) REFERENCES ${table1}(id),\n`;
-                sql += `    FOREIGN KEY (${table2}_id) REFERENCES ${table2}(id)\n`;
-                sql += `);\n\n`;
-            } else if (rel.cardinality === '1:N') {
-                const table2 = rel.entity2.toLowerCase().replace(/\s+/g, '_');
-                const table1 = rel.entity1.toLowerCase().replace(/\s+/g, '_');
-                sql += `-- FK para relación 1:N (agregar a ${table2})\n`;
-                sql += `-- ALTER TABLE ${table2} ADD COLUMN ${table1}_id INT;\n`;
-                sql += `-- ALTER TABLE ${table2} ADD FOREIGN KEY (${table1}_id) REFERENCES ${table1}(id);\n\n`;
-            }
-        });
+      // Create junction tables for N:M relations
+      relations.forEach((rel) => {
+        if (rel.cardinality === "N:M") {
+          const table1 = rel.entity1.toLowerCase().replace(/\s+/g, "_");
+          const table2 = rel.entity2.toLowerCase().replace(/\s+/g, "_");
+          const junctionTable = `${table1}_${table2}`;
 
-        sqlCode.textContent = sql;
-        sqlSection.style.display = 'block';
+          sql += `-- Tabla intermedia para relación N:M\n`;
+          sql += `CREATE TABLE ${junctionTable} (\n`;
+          sql += `    ${table1}_id INT NOT NULL,\n`;
+          sql += `    ${table2}_id INT NOT NULL,\n`;
+          sql += `    PRIMARY KEY (${table1}_id, ${table2}_id),\n`;
+          sql += `    FOREIGN KEY (${table1}_id) REFERENCES ${table1}(id),\n`;
+          sql += `    FOREIGN KEY (${table2}_id) REFERENCES ${table2}(id)\n`;
+          sql += `);\n\n`;
+        } else if (rel.cardinality === "1:N") {
+          const table2 = rel.entity2.toLowerCase().replace(/\s+/g, "_");
+          const table1 = rel.entity1.toLowerCase().replace(/\s+/g, "_");
+          sql += `-- FK para relación 1:N (agregar a ${table2})\n`;
+          sql += `-- ALTER TABLE ${table2} ADD COLUMN ${table1}_id INT;\n`;
+          sql += `-- ALTER TABLE ${table2} ADD FOREIGN KEY (${table1}_id) REFERENCES ${table1}(id);\n\n`;
+        }
+      });
+
+      sqlCode.textContent = sql;
+      sqlSection.style.display = "block";
     }
 
     // Copy SQL
-    copySqlBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(sqlCode.textContent);
-        copySqlBtn.innerHTML = '<i class="fas fa-check"></i>';
-        setTimeout(() => copySqlBtn.innerHTML = '<i class="fas fa-copy"></i>', 2000);
+    copySqlBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(sqlCode.textContent);
+      copySqlBtn.innerHTML = '<i class="fas fa-check"></i>';
+      setTimeout(() => (copySqlBtn.innerHTML = '<i class="fas fa-copy"></i>'), 2000);
     });
 
-    exportSqlBtn.addEventListener('click', () => {
-        const entities = collectEntities();
-        const relations = collectRelations();
-        generateSQL(entities, relations);
-        sqlSection.style.display = 'block';
-        sqlSection.scrollIntoView({ behavior: 'smooth' });
+    exportSqlBtn.addEventListener("click", () => {
+      const entities = collectEntities();
+      const relations = collectRelations();
+      generateSQL(entities, relations);
+      sqlSection.style.display = "block";
+      sqlSection.scrollIntoView({ behavior: "smooth" });
     });
 
-    clearBtn.addEventListener('click', () => {
-        entitiesList.innerHTML = '';
-        relationsList.innerHTML = '';
-        canvas.innerHTML = `
+    clearBtn.addEventListener("click", () => {
+      entitiesList.innerHTML = "";
+      relationsList.innerHTML = "";
+      canvas.innerHTML = `
             <div class="canvas-placeholder">
                 <i class="fas fa-mouse-pointer"></i>
                 <p>Agrega entidades y relaciones, luego presiona "Generar Diagrama"</p>
             </div>
         `;
-        sqlSection.style.display = 'none';
-        entityCounter = 0;
-        relationCounter = 0;
+      sqlSection.style.display = "none";
+      entityCounter = 0;
+      relationCounter = 0;
     });
 
     // Templates
     const templates = {
-        ecommerce: {
-            entities: [
-                { name: 'Cliente', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'email', type: 'VARCHAR(100)', pk: false }
-                ]},
-                { name: 'Pedido', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'fecha', type: 'DATETIME', pk: false },
-                    { name: 'total', type: 'DECIMAL(10,2)', pk: false }
-                ]},
-                { name: 'Producto', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'precio', type: 'DECIMAL(10,2)', pk: false }
-                ]}
+      ecommerce: {
+        entities: [
+          {
+            name: "Cliente",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "email", type: "VARCHAR(100)", pk: false },
             ],
-            relations: [
-                { entity1: 'Cliente', entity2: 'Pedido', name: 'REALIZA', cardinality: '1:N' },
-                { entity1: 'Pedido', entity2: 'Producto', name: 'CONTIENE', cardinality: 'N:M' }
-            ]
-        },
-        universidad: {
-            entities: [
-                { name: 'Estudiante', attributes: [
-                    { name: 'rut', type: 'VARCHAR(12)', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'carrera', type: 'VARCHAR(50)', pk: false }
-                ]},
-                { name: 'Curso', attributes: [
-                    { name: 'codigo', type: 'VARCHAR(10)', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'creditos', type: 'INT', pk: false }
-                ]},
-                { name: 'Profesor', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'departamento', type: 'VARCHAR(50)', pk: false }
-                ]}
+          },
+          {
+            name: "Pedido",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "fecha", type: "DATETIME", pk: false },
+              { name: "total", type: "DECIMAL(10,2)", pk: false },
             ],
-            relations: [
-                { entity1: 'Estudiante', entity2: 'Curso', name: 'INSCRIBE', cardinality: 'N:M' },
-                { entity1: 'Profesor', entity2: 'Curso', name: 'IMPARTE', cardinality: '1:N' }
-            ]
-        },
-        biblioteca: {
-            entities: [
-                { name: 'Libro', attributes: [
-                    { name: 'isbn', type: 'VARCHAR(20)', pk: true },
-                    { name: 'titulo', type: 'VARCHAR(200)', pk: false },
-                    { name: 'anio', type: 'INT', pk: false }
-                ]},
-                { name: 'Autor', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'nacionalidad', type: 'VARCHAR(50)', pk: false }
-                ]},
-                { name: 'Socio', attributes: [
-                    { name: 'numero', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'email', type: 'VARCHAR(100)', pk: false }
-                ]}
+          },
+          {
+            name: "Producto",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "precio", type: "DECIMAL(10,2)", pk: false },
             ],
-            relations: [
-                { entity1: 'Libro', entity2: 'Autor', name: 'ESCRITO_POR', cardinality: 'N:M' },
-                { entity1: 'Socio', entity2: 'Libro', name: 'PRESTA', cardinality: 'N:M' }
-            ]
-        },
-        hospital: {
-            entities: [
-                { name: 'Paciente', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'fecha_nac', type: 'DATE', pk: false }
-                ]},
-                { name: 'Medico', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'nombre', type: 'VARCHAR(100)', pk: false },
-                    { name: 'especialidad', type: 'VARCHAR(50)', pk: false }
-                ]},
-                { name: 'Cita', attributes: [
-                    { name: 'id', type: 'INT', pk: true },
-                    { name: 'fecha', type: 'DATETIME', pk: false },
-                    { name: 'motivo', type: 'TEXT', pk: false }
-                ]}
+          },
+        ],
+        relations: [
+          { entity1: "Cliente", entity2: "Pedido", name: "REALIZA", cardinality: "1:N" },
+          { entity1: "Pedido", entity2: "Producto", name: "CONTIENE", cardinality: "N:M" },
+        ],
+      },
+      universidad: {
+        entities: [
+          {
+            name: "Estudiante",
+            attributes: [
+              { name: "rut", type: "VARCHAR(12)", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "carrera", type: "VARCHAR(50)", pk: false },
             ],
-            relations: [
-                { entity1: 'Paciente', entity2: 'Cita', name: 'TIENE', cardinality: '1:N' },
-                { entity1: 'Medico', entity2: 'Cita', name: 'ATIENDE', cardinality: '1:N' }
-            ]
-        }
+          },
+          {
+            name: "Curso",
+            attributes: [
+              { name: "codigo", type: "VARCHAR(10)", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "creditos", type: "INT", pk: false },
+            ],
+          },
+          {
+            name: "Profesor",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "departamento", type: "VARCHAR(50)", pk: false },
+            ],
+          },
+        ],
+        relations: [
+          { entity1: "Estudiante", entity2: "Curso", name: "INSCRIBE", cardinality: "N:M" },
+          { entity1: "Profesor", entity2: "Curso", name: "IMPARTE", cardinality: "1:N" },
+        ],
+      },
+      biblioteca: {
+        entities: [
+          {
+            name: "Libro",
+            attributes: [
+              { name: "isbn", type: "VARCHAR(20)", pk: true },
+              { name: "titulo", type: "VARCHAR(200)", pk: false },
+              { name: "anio", type: "INT", pk: false },
+            ],
+          },
+          {
+            name: "Autor",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "nacionalidad", type: "VARCHAR(50)", pk: false },
+            ],
+          },
+          {
+            name: "Socio",
+            attributes: [
+              { name: "numero", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "email", type: "VARCHAR(100)", pk: false },
+            ],
+          },
+        ],
+        relations: [
+          { entity1: "Libro", entity2: "Autor", name: "ESCRITO_POR", cardinality: "N:M" },
+          { entity1: "Socio", entity2: "Libro", name: "PRESTA", cardinality: "N:M" },
+        ],
+      },
+      hospital: {
+        entities: [
+          {
+            name: "Paciente",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "fecha_nac", type: "DATE", pk: false },
+            ],
+          },
+          {
+            name: "Medico",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "nombre", type: "VARCHAR(100)", pk: false },
+              { name: "especialidad", type: "VARCHAR(50)", pk: false },
+            ],
+          },
+          {
+            name: "Cita",
+            attributes: [
+              { name: "id", type: "INT", pk: true },
+              { name: "fecha", type: "DATETIME", pk: false },
+              { name: "motivo", type: "TEXT", pk: false },
+            ],
+          },
+        ],
+        relations: [
+          { entity1: "Paciente", entity2: "Cita", name: "TIENE", cardinality: "1:N" },
+          { entity1: "Medico", entity2: "Cita", name: "ATIENDE", cardinality: "1:N" },
+        ],
+      },
     };
 
-    document.querySelectorAll('.template-mini-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const templateName = btn.dataset.template;
-            const template = templates[templateName];
-            if (!template) return;
+    document.querySelectorAll(".template-mini-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const templateName = btn.dataset.template;
+        const template = templates[templateName];
+        if (!template) return;
 
-            // Clear existing
-            entitiesList.innerHTML = '';
-            relationsList.innerHTML = '';
-            entityCounter = 0;
-            relationCounter = 0;
+        // Clear existing
+        entitiesList.innerHTML = "";
+        relationsList.innerHTML = "";
+        entityCounter = 0;
+        relationCounter = 0;
 
-            // Add entities
-            template.entities.forEach(e => addEntity(e.name, e.attributes));
+        // Add entities
+        template.entities.forEach((e) => addEntity(e.name, e.attributes));
 
-            // Add relations after a small delay to ensure selects are populated
-            setTimeout(() => {
-                template.relations.forEach(r => addRelation(r.entity1, r.entity2, r.name, r.cardinality));
-                generateBtn.click();
-            }, 100);
-        });
+        // Add relations after a small delay to ensure selects are populated
+        setTimeout(() => {
+          template.relations.forEach((r) =>
+            addRelation(r.entity1, r.entity2, r.name, r.cardinality),
+          );
+          generateBtn.click();
+        }, 100);
+      });
     });
 
     // Initialize with example
-    addEntity('Cliente', [
-        { name: 'id', type: 'INT', pk: true },
-        { name: 'nombre', type: 'VARCHAR(100)', pk: false }
+    addEntity("Cliente", [
+      { name: "id", type: "INT", pk: true },
+      { name: "nombre", type: "VARCHAR(100)", pk: false },
     ]);
-    addEntity('Pedido', [
-        { name: 'id', type: 'INT', pk: true },
-        { name: 'fecha', type: 'DATE', pk: false }
+    addEntity("Pedido", [
+      { name: "id", type: "INT", pk: true },
+      { name: "fecha", type: "DATE", pk: false },
     ]);
-});
+  });
 </script>

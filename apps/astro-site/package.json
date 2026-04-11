@@ -1,23 +1,42 @@
 {
   "name": "astro-site",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "description": "Sitio Astro del programa Analista Programador Computacional - DuocUC",
+  "engines": {
+    "node": ">=20.18.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint . --fix && prettier --write .",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.6.0",
-    "@iconify-json/devicon": "^1.2.55",
+    "@astrojs/sitemap": "^3.7.2",
+    "@iconify-json/devicon": "^1.2.62",
     "@iconify-json/mdi": "^1.2.3",
-    "@iconify-json/simple-icons": "^1.2.63",
-    "@playform/compress": "^0.2.0",
-    "astro": "^5.16.6",
-    "astro-compress": "^2.3.8",
+    "@iconify-json/simple-icons": "^1.2.77",
+    "@playform/compress": "^0.2.3",
+    "astro": "^5.18.1",
+    "astro-compress": "^2.4.1",
     "astro-icon": "^1.1.5",
-    "astro-seo": "^0.8.4",
-    "frappe-gantt": "^1.0.4"
+    "astro-seo": "^1.1.0",
+    "frappe-gantt": "^1.2.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.4.0",
+    "prettier": "^3.8.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.58.1"
   }
 }

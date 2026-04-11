@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+public
+package-lock.json
+original_index_backup.html
+
+# Archivos con tokens problemáticos para el parser de Astro/Prettier
+# (tech debt — ver docs/architecture/astro-site.md)
+src/components/CapstoneProjects.astro
+src/components/LearningRoadmap.astro
+src/components/NotionEmbed.astro
+src/components/TechStack2025.astro
+src/pages/trayectorias.astro

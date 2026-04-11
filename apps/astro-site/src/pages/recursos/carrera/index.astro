@@ -2,117 +2,117 @@
 /**
  * /recursos/carrera/ - Career Development Page
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import CertificationsSection from '../../../components/CertificationsSection.astro';
-import FAQSection from '../../../components/FAQSection.astro';
-import ProfessionalProjectsSection from '../../../components/ProfessionalProjectsSection.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import CertificationsSection from "../../../components/CertificationsSection.astro";
+import FAQSection from "../../../components/FAQSection.astro";
+import ProfessionalProjectsSection from "../../../components/ProfessionalProjectsSection.astro";
 ---
 
 <ResourcesLayout title="Carrera | Recursos DuocUC" activeCategory="carrera">
-    <div class="carrera-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#certifications" class="nav-chip purple">
-                <i class="fas fa-award"></i>
-                <span>Certificaciones</span>
-            </a>
-            <a href="#faq" class="nav-chip purple">
-                <i class="fas fa-question-circle"></i>
-                <span>FAQ</span>
-            </a>
-            <a href="#professional-projects" class="nav-chip purple">
-                <i class="fas fa-briefcase"></i>
-                <span>Proyectos Pro</span>
-            </a>
-        </nav>
+  <div class="carrera-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#certifications" class="nav-chip purple">
+        <i class="fas fa-award"></i>
+        <span>Certificaciones</span>
+      </a>
+      <a href="#faq" class="nav-chip purple">
+        <i class="fas fa-question-circle"></i>
+        <span>FAQ</span>
+      </a>
+      <a href="#professional-projects" class="nav-chip purple">
+        <i class="fas fa-briefcase"></i>
+        <span>Proyectos Pro</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="certifications">
-            <CertificationsSection />
-        </section>
+    <!-- Components -->
+    <section id="certifications">
+      <CertificationsSection />
+    </section>
 
-        <section id="faq">
-            <FAQSection />
-        </section>
+    <section id="faq">
+      <FAQSection />
+    </section>
 
-        <section id="professional-projects">
-            <ProfessionalProjectsSection />
-        </section>
-    </div>
+    <section id="professional-projects">
+      <ProfessionalProjectsSection />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .carrera-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .carrera-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip.purple:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.3);
+    color: #7c3aed;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip.purple:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.3);
+    color: #7c3aed;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
     }
-
-    .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .nav-chip.purple:hover {
-        background: rgba(124, 58, 237, 0.1);
-        border-color: rgba(124, 58, 237, 0.3);
-        color: #7c3aed;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip.purple:hover {
-        background: rgba(124, 58, 237, 0.1);
-        border-color: rgba(124, 58, 237, 0.3);
-        color: #7c3aed;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-        }
-    }
+  }
 </style>

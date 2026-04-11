@@ -3,369 +3,376 @@
 ---
 
 <section id="gantt-generator" class="tool-section">
-    <div class="tool-container gantt-container">
-        <!-- Header -->
-        <div class="tool-header">
-            <div class="tool-icon gantt-icon">
-                <i class="fas fa-project-diagram"></i>
-            </div>
-            <div class="tool-title">
-                <h2>Generador de Carta Gantt</h2>
-                <p>Planifica tus proyectos académicos visualmente</p>
-            </div>
-            <div class="template-badge">
-                <i class="fas fa-layer-group"></i>
-                <span>7 Templates</span>
-            </div>
-        </div>
-
-        <div class="gantt-tool">
-            <!-- Toolbar -->
-            <div class="gantt-toolbar">
-                <div class="toolbar-left">
-                    <button class="toolbar-btn add-task-btn" id="add-task-btn">
-                        <i class="fas fa-plus"></i>
-                        Nueva Tarea
-                    </button>
-                    <div class="template-dropdown">
-                        <button class="toolbar-btn template-btn" id="template-btn">
-                            <i class="fas fa-file-alt"></i>
-                            Templates
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="template-menu hidden" id="template-menu">
-                            <button class="template-option" data-template="web-project">
-                                <i class="fas fa-globe"></i>
-                                Proyecto Web (4 semanas)
-                            </button>
-                            <button class="template-option" data-template="scrum-sprint">
-                                <i class="fas fa-sync"></i>
-                                Sprint Scrum (2 semanas)
-                            </button>
-                            <button class="template-option" data-template="thesis">
-                                <i class="fas fa-graduation-cap"></i>
-                                Tesis/Trabajo Final (3 meses)
-                            </button>
-                            <button class="template-option" data-template="practice">
-                                <i class="fas fa-briefcase"></i>
-                                Práctica Profesional (8 semanas)
-                            </button>
-                            <button class="template-option" data-template="bimester">
-                                <i class="fas fa-calendar-alt"></i>
-                                Bimestre Académico (8 semanas)
-                            </button>
-                            <button class="template-option" data-template="semester">
-                                <i class="fas fa-calendar"></i>
-                                Semestre Académico (18 semanas)
-                            </button>
-                            <button class="template-option" data-template="annual">
-                                <i class="fas fa-calendar-check"></i>
-                                Plan Anual (12 meses)
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="toolbar-center">
-                    <div class="view-switcher">
-                        <button class="view-btn" data-view="Day">Día</button>
-                        <button class="view-btn active" data-view="Week">Semana</button>
-                        <button class="view-btn" data-view="Month">Mes</button>
-                        <button class="view-btn" data-view="Quarter">Trimestre</button>
-                        <button class="view-btn" data-view="Half Day">Semestre</button>
-                        <button class="view-btn" data-view="Year">Año</button>
-                    </div>
-                </div>
-                <div class="toolbar-right">
-                    <button class="toolbar-btn" id="export-png" title="Exportar como imagen">
-                        <i class="fas fa-image"></i>
-                        Exportar
-                    </button>
-                    <button class="toolbar-btn danger" id="clear-gantt" title="Limpiar todo">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Gantt Container -->
-            <div class="gantt-wrapper">
-                <div id="gantt-chart"></div>
-            </div>
-
-            <!-- Empty State -->
-            <div class="empty-state" id="empty-state">
-                <i class="fas fa-project-diagram"></i>
-                <h4>Sin tareas todavía</h4>
-                <p>Agrega una tarea o selecciona un template para comenzar</p>
-                <button class="start-btn" id="start-with-template">
-                    <i class="fas fa-magic"></i>
-                    Comenzar con Template
-                </button>
-            </div>
-
-            <!-- Task Modal -->
-            <div class="modal-overlay hidden" id="task-modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 id="modal-title">Nueva Tarea</h3>
-                        <button class="modal-close" id="modal-close">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    <form id="task-form">
-                        <div class="form-group">
-                            <label for="task-name">Nombre de la Tarea</label>
-                            <input type="text" id="task-name" required placeholder="Ej: Diseño de UI">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="task-start">Fecha Inicio</label>
-                                <input type="date" id="task-start" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="task-end">Fecha Fin</label>
-                                <input type="date" id="task-end" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="task-progress">Progreso (%)</label>
-                            <div class="progress-input">
-                                <input type="range" id="task-progress" min="0" max="100" value="0">
-                                <span id="progress-value">0%</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="task-assignee">Asignado a (opcional)</label>
-                            <input type="text" id="task-assignee" placeholder="Nombre del responsable">
-                        </div>
-                        <input type="hidden" id="task-id">
-                        <div class="modal-actions">
-                            <button type="button" class="btn-secondary" id="cancel-task">Cancelar</button>
-                            <button type="submit" class="btn-primary">
-                                <i class="fas fa-save"></i>
-                                Guardar
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Instructions -->
-            <div class="instructions-panel">
-                <h4><i class="fas fa-info-circle"></i> Instrucciones</h4>
-                <ul>
-                    <li><strong>Arrastrar barras:</strong> Mueve tareas horizontalmente para cambiar fechas</li>
-                    <li><strong>Redimensionar:</strong> Arrastra los bordes de las barras para ajustar duración</li>
-                    <li><strong>Clic en tarea:</strong> Edita los detalles de la tarea</li>
-                    <li><strong>Progreso:</strong> Arrastra el handle de progreso en cada barra</li>
-                </ul>
-            </div>
-        </div>
+  <div class="tool-container gantt-container">
+    <!-- Header -->
+    <div class="tool-header">
+      <div class="tool-icon gantt-icon">
+        <i class="fas fa-project-diagram"></i>
+      </div>
+      <div class="tool-title">
+        <h2>Generador de Carta Gantt</h2>
+        <p>Planifica tus proyectos académicos visualmente</p>
+      </div>
+      <div class="template-badge">
+        <i class="fas fa-layer-group"></i>
+        <span>7 Templates</span>
+      </div>
     </div>
+
+    <div class="gantt-tool">
+      <!-- Toolbar -->
+      <div class="gantt-toolbar">
+        <div class="toolbar-left">
+          <button class="toolbar-btn add-task-btn" id="add-task-btn">
+            <i class="fas fa-plus"></i>
+            Nueva Tarea
+          </button>
+          <div class="template-dropdown">
+            <button class="toolbar-btn template-btn" id="template-btn">
+              <i class="fas fa-file-alt"></i>
+              Templates
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="template-menu hidden" id="template-menu">
+              <button class="template-option" data-template="web-project">
+                <i class="fas fa-globe"></i>
+                Proyecto Web (4 semanas)
+              </button>
+              <button class="template-option" data-template="scrum-sprint">
+                <i class="fas fa-sync"></i>
+                Sprint Scrum (2 semanas)
+              </button>
+              <button class="template-option" data-template="thesis">
+                <i class="fas fa-graduation-cap"></i>
+                Tesis/Trabajo Final (3 meses)
+              </button>
+              <button class="template-option" data-template="practice">
+                <i class="fas fa-briefcase"></i>
+                Práctica Profesional (8 semanas)
+              </button>
+              <button class="template-option" data-template="bimester">
+                <i class="fas fa-calendar-alt"></i>
+                Bimestre Académico (8 semanas)
+              </button>
+              <button class="template-option" data-template="semester">
+                <i class="fas fa-calendar"></i>
+                Semestre Académico (18 semanas)
+              </button>
+              <button class="template-option" data-template="annual">
+                <i class="fas fa-calendar-check"></i>
+                Plan Anual (12 meses)
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="toolbar-center">
+          <div class="view-switcher">
+            <button class="view-btn" data-view="Day">Día</button>
+            <button class="view-btn active" data-view="Week">Semana</button>
+            <button class="view-btn" data-view="Month">Mes</button>
+            <button class="view-btn" data-view="Quarter">Trimestre</button>
+            <button class="view-btn" data-view="Half Day">Semestre</button>
+            <button class="view-btn" data-view="Year">Año</button>
+          </div>
+        </div>
+        <div class="toolbar-right">
+          <button class="toolbar-btn" id="export-png" title="Exportar como imagen">
+            <i class="fas fa-image"></i>
+            Exportar
+          </button>
+          <button class="toolbar-btn danger" id="clear-gantt" title="Limpiar todo">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gantt Container -->
+      <div class="gantt-wrapper">
+        <div id="gantt-chart"></div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="empty-state">
+        <i class="fas fa-project-diagram"></i>
+        <h4>Sin tareas todavía</h4>
+        <p>Agrega una tarea o selecciona un template para comenzar</p>
+        <button class="start-btn" id="start-with-template">
+          <i class="fas fa-magic"></i>
+          Comenzar con Template
+        </button>
+      </div>
+
+      <!-- Task Modal -->
+      <div class="modal-overlay hidden" id="task-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 id="modal-title">Nueva Tarea</h3>
+            <button class="modal-close" id="modal-close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form id="task-form">
+            <div class="form-group">
+              <label for="task-name">Nombre de la Tarea</label>
+              <input type="text" id="task-name" required placeholder="Ej: Diseño de UI" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="task-start">Fecha Inicio</label>
+                <input type="date" id="task-start" required />
+              </div>
+              <div class="form-group">
+                <label for="task-end">Fecha Fin</label>
+                <input type="date" id="task-end" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="task-progress">Progreso (%)</label>
+              <div class="progress-input">
+                <input type="range" id="task-progress" min="0" max="100" value="0" />
+                <span id="progress-value">0%</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="task-assignee">Asignado a (opcional)</label>
+              <input type="text" id="task-assignee" placeholder="Nombre del responsable" />
+            </div>
+            <input type="hidden" id="task-id" />
+            <div class="modal-actions">
+              <button type="button" class="btn-secondary" id="cancel-task">Cancelar</button>
+              <button type="submit" class="btn-primary">
+                <i class="fas fa-save"></i>
+                Guardar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Instructions -->
+      <div class="instructions-panel">
+        <h4><i class="fas fa-info-circle"></i> Instrucciones</h4>
+        <ul>
+          <li>
+            <strong>Arrastrar barras:</strong> Mueve tareas horizontalmente para cambiar fechas
+          </li>
+          <li>
+            <strong>Redimensionar:</strong> Arrastra los bordes de las barras para ajustar duración
+          </li>
+          <li><strong>Clic en tarea:</strong> Edita los detalles de la tarea</li>
+          <li><strong>Progreso:</strong> Arrastra el handle de progreso en cada barra</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.css"
+/>
 
 <script>
-    // Frappe Gantt integration
-    import Gantt from 'frappe-gantt';
+  // Frappe Gantt integration
+  import Gantt from "frappe-gantt";
 
-    // Templates
-    const templates = {
-        'web-project': {
-            name: 'Proyecto Web',
-            tasks: [
-                { name: 'Planificación', days: 3, progress: 100 },
-                { name: 'Diseño UI/UX', days: 5, progress: 0 },
-                { name: 'Setup del Proyecto', days: 2, progress: 0 },
-                { name: 'Desarrollo Frontend', days: 10, progress: 0 },
-                { name: 'Desarrollo Backend', days: 10, progress: 0 },
-                { name: 'Integración', days: 3, progress: 0 },
-                { name: 'Testing', days: 4, progress: 0 },
-                { name: 'Despliegue', days: 2, progress: 0 }
-            ]
-        },
-        'scrum-sprint': {
-            name: 'Sprint Scrum',
-            tasks: [
-                { name: 'Sprint Planning', days: 1, progress: 100 },
-                { name: 'User Story 1', days: 3, progress: 0 },
-                { name: 'User Story 2', days: 3, progress: 0 },
-                { name: 'User Story 3', days: 4, progress: 0 },
-                { name: 'Code Review', days: 2, progress: 0 },
-                { name: 'Sprint Review', days: 1, progress: 0 },
-                { name: 'Retrospectiva', days: 1, progress: 0 }
-            ]
-        },
-        'thesis': {
-            name: 'Tesis',
-            tasks: [
-                { name: 'Definición del Tema', days: 7, progress: 0 },
-                { name: 'Revisión Bibliográfica', days: 21, progress: 0 },
-                { name: 'Marco Teórico', days: 14, progress: 0 },
-                { name: 'Metodología', days: 10, progress: 0 },
-                { name: 'Desarrollo/Implementación', days: 30, progress: 0 },
-                { name: 'Análisis de Resultados', days: 14, progress: 0 },
-                { name: 'Conclusiones', days: 7, progress: 0 },
-                { name: 'Revisión Final', days: 7, progress: 0 }
-            ]
-        },
-        'practice': {
-            name: 'Práctica Profesional',
-            tasks: [
-                { name: 'Inducción', days: 5, progress: 0 },
-                { name: 'Capacitación Herramientas', days: 5, progress: 0 },
-                { name: 'Proyecto Asignado - Fase 1', days: 15, progress: 0 },
-                { name: 'Proyecto Asignado - Fase 2', days: 15, progress: 0 },
-                { name: 'Proyecto Asignado - Fase 3', days: 10, progress: 0 },
-                { name: 'Documentación', days: 5, progress: 0 },
-                { name: 'Presentación Final', days: 3, progress: 0 }
-            ]
-        },
-        'bimester': {
-            name: 'Bimestre Académico',
-            tasks: [
-                { name: 'Semana 1-2: Introducción', days: 14, progress: 0 },
-                { name: 'Semana 3: Experiencia 1', days: 7, progress: 0 },
-                { name: 'Evaluación Exp. 1', days: 3, progress: 0 },
-                { name: 'Semana 4-5: Experiencia 2', days: 14, progress: 0 },
-                { name: 'Evaluación Exp. 2', days: 3, progress: 0 },
-                { name: 'Semana 6-7: Experiencia 3', days: 14, progress: 0 },
-                { name: 'Evaluación Exp. 3', days: 3, progress: 0 },
-                { name: 'Semana 8: Examen Final', days: 5, progress: 0 }
-            ]
-        },
-        'semester': {
-            name: 'Semestre Académico',
-            tasks: [
-                { name: 'Bimestre 1 - Fundamentos', days: 56, progress: 0 },
-                { name: 'Evaluación Bimestre 1', days: 7, progress: 0 },
-                { name: 'Bimestre 2 - Desarrollo', days: 56, progress: 0 },
-                { name: 'Evaluación Bimestre 2', days: 7, progress: 0 },
-                { name: 'Proyecto Integrador', days: 21, progress: 0 },
-                { name: 'Exámenes Finales', days: 14, progress: 0 }
-            ]
-        },
-        'annual': {
-            name: 'Plan Anual',
-            tasks: [
-                { name: 'Q1: Planificación y Setup', days: 90, progress: 0 },
-                { name: 'Q2: Desarrollo Fase 1', days: 91, progress: 0 },
-                { name: 'Q3: Desarrollo Fase 2', days: 92, progress: 0 },
-                { name: 'Q4: Testing y Deploy', days: 92, progress: 0 }
-            ]
+  // Templates
+  const templates = {
+    "web-project": {
+      name: "Proyecto Web",
+      tasks: [
+        { name: "Planificación", days: 3, progress: 100 },
+        { name: "Diseño UI/UX", days: 5, progress: 0 },
+        { name: "Setup del Proyecto", days: 2, progress: 0 },
+        { name: "Desarrollo Frontend", days: 10, progress: 0 },
+        { name: "Desarrollo Backend", days: 10, progress: 0 },
+        { name: "Integración", days: 3, progress: 0 },
+        { name: "Testing", days: 4, progress: 0 },
+        { name: "Despliegue", days: 2, progress: 0 },
+      ],
+    },
+    "scrum-sprint": {
+      name: "Sprint Scrum",
+      tasks: [
+        { name: "Sprint Planning", days: 1, progress: 100 },
+        { name: "User Story 1", days: 3, progress: 0 },
+        { name: "User Story 2", days: 3, progress: 0 },
+        { name: "User Story 3", days: 4, progress: 0 },
+        { name: "Code Review", days: 2, progress: 0 },
+        { name: "Sprint Review", days: 1, progress: 0 },
+        { name: "Retrospectiva", days: 1, progress: 0 },
+      ],
+    },
+    thesis: {
+      name: "Tesis",
+      tasks: [
+        { name: "Definición del Tema", days: 7, progress: 0 },
+        { name: "Revisión Bibliográfica", days: 21, progress: 0 },
+        { name: "Marco Teórico", days: 14, progress: 0 },
+        { name: "Metodología", days: 10, progress: 0 },
+        { name: "Desarrollo/Implementación", days: 30, progress: 0 },
+        { name: "Análisis de Resultados", days: 14, progress: 0 },
+        { name: "Conclusiones", days: 7, progress: 0 },
+        { name: "Revisión Final", days: 7, progress: 0 },
+      ],
+    },
+    practice: {
+      name: "Práctica Profesional",
+      tasks: [
+        { name: "Inducción", days: 5, progress: 0 },
+        { name: "Capacitación Herramientas", days: 5, progress: 0 },
+        { name: "Proyecto Asignado - Fase 1", days: 15, progress: 0 },
+        { name: "Proyecto Asignado - Fase 2", days: 15, progress: 0 },
+        { name: "Proyecto Asignado - Fase 3", days: 10, progress: 0 },
+        { name: "Documentación", days: 5, progress: 0 },
+        { name: "Presentación Final", days: 3, progress: 0 },
+      ],
+    },
+    bimester: {
+      name: "Bimestre Académico",
+      tasks: [
+        { name: "Semana 1-2: Introducción", days: 14, progress: 0 },
+        { name: "Semana 3: Experiencia 1", days: 7, progress: 0 },
+        { name: "Evaluación Exp. 1", days: 3, progress: 0 },
+        { name: "Semana 4-5: Experiencia 2", days: 14, progress: 0 },
+        { name: "Evaluación Exp. 2", days: 3, progress: 0 },
+        { name: "Semana 6-7: Experiencia 3", days: 14, progress: 0 },
+        { name: "Evaluación Exp. 3", days: 3, progress: 0 },
+        { name: "Semana 8: Examen Final", days: 5, progress: 0 },
+      ],
+    },
+    semester: {
+      name: "Semestre Académico",
+      tasks: [
+        { name: "Bimestre 1 - Fundamentos", days: 56, progress: 0 },
+        { name: "Evaluación Bimestre 1", days: 7, progress: 0 },
+        { name: "Bimestre 2 - Desarrollo", days: 56, progress: 0 },
+        { name: "Evaluación Bimestre 2", days: 7, progress: 0 },
+        { name: "Proyecto Integrador", days: 21, progress: 0 },
+        { name: "Exámenes Finales", days: 14, progress: 0 },
+      ],
+    },
+    annual: {
+      name: "Plan Anual",
+      tasks: [
+        { name: "Q1: Planificación y Setup", days: 90, progress: 0 },
+        { name: "Q2: Desarrollo Fase 1", days: 91, progress: 0 },
+        { name: "Q3: Desarrollo Fase 2", days: 92, progress: 0 },
+        { name: "Q4: Testing y Deploy", days: 92, progress: 0 },
+      ],
+    },
+  };
+
+  function initGanttGenerator() {
+    let gantt = null;
+    let tasks = [];
+    let editingTaskId = null;
+
+    // DOM Elements
+    const chartContainer = document.getElementById("gantt-chart");
+    const emptyState = document.getElementById("empty-state");
+    const addTaskBtn = document.getElementById("add-task-btn");
+    const templateBtn = document.getElementById("template-btn");
+    const templateMenu = document.getElementById("template-menu");
+    const viewBtns = document.querySelectorAll(".view-btn");
+    const exportBtn = document.getElementById("export-png");
+    const clearBtn = document.getElementById("clear-gantt");
+    const startWithTemplateBtn = document.getElementById("start-with-template");
+
+    // Modal Elements
+    const modal = document.getElementById("task-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const taskForm = document.getElementById("task-form");
+    const taskName = document.getElementById("task-name");
+    const taskStart = document.getElementById("task-start");
+    const taskEnd = document.getElementById("task-end");
+    const taskProgress = document.getElementById("task-progress");
+    const progressValue = document.getElementById("progress-value");
+    const taskAssignee = document.getElementById("task-assignee");
+    const taskIdInput = document.getElementById("task-id");
+    const modalClose = document.getElementById("modal-close");
+    const cancelTask = document.getElementById("cancel-task");
+
+    if (!chartContainer) return;
+
+    // Load from localStorage
+    function loadTasks() {
+      const saved = localStorage.getItem("gantt-tasks");
+      if (saved) {
+        try {
+          tasks = JSON.parse(saved);
+          if (tasks.length > 0) {
+            renderGantt();
+          }
+        } catch (e) {
+          tasks = [];
         }
-    };
+      }
+      updateEmptyState();
+    }
 
-    function initGanttGenerator() {
-        let gantt = null;
-        let tasks = [];
-        let editingTaskId = null;
+    // Save to localStorage
+    function saveTasks() {
+      localStorage.setItem("gantt-tasks", JSON.stringify(tasks));
+    }
 
-        // DOM Elements
-        const chartContainer = document.getElementById('gantt-chart');
-        const emptyState = document.getElementById('empty-state');
-        const addTaskBtn = document.getElementById('add-task-btn');
-        const templateBtn = document.getElementById('template-btn');
-        const templateMenu = document.getElementById('template-menu');
-        const viewBtns = document.querySelectorAll('.view-btn');
-        const exportBtn = document.getElementById('export-png');
-        const clearBtn = document.getElementById('clear-gantt');
-        const startWithTemplateBtn = document.getElementById('start-with-template');
+    // Update empty state visibility
+    function updateEmptyState() {
+      if (tasks.length === 0) {
+        emptyState?.classList.remove("hidden");
+        chartContainer.style.display = "none";
+      } else {
+        emptyState?.classList.add("hidden");
+        chartContainer.style.display = "block";
+      }
+    }
 
-        // Modal Elements
-        const modal = document.getElementById('task-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const taskForm = document.getElementById('task-form');
-        const taskName = document.getElementById('task-name');
-        const taskStart = document.getElementById('task-start');
-        const taskEnd = document.getElementById('task-end');
-        const taskProgress = document.getElementById('task-progress');
-        const progressValue = document.getElementById('progress-value');
-        const taskAssignee = document.getElementById('task-assignee');
-        const taskIdInput = document.getElementById('task-id');
-        const modalClose = document.getElementById('modal-close');
-        const cancelTask = document.getElementById('cancel-task');
+    // Generate unique ID
+    function generateId() {
+      return "task-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9);
+    }
 
-        if (!chartContainer) return;
+    // Format date for Frappe Gantt
+    function formatDate(date) {
+      const d = new Date(date);
+      return d.toISOString().split("T")[0];
+    }
 
-        // Load from localStorage
-        function loadTasks() {
-            const saved = localStorage.getItem('gantt-tasks');
-            if (saved) {
-                try {
-                    tasks = JSON.parse(saved);
-                    if (tasks.length > 0) {
-                        renderGantt();
-                    }
-                } catch (e) {
-                    tasks = [];
-                }
-            }
-            updateEmptyState();
-        }
+    // Add days to date
+    function addDays(date, days) {
+      const result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
 
-        // Save to localStorage
-        function saveTasks() {
-            localStorage.setItem('gantt-tasks', JSON.stringify(tasks));
-        }
+    // Render Gantt chart
+    function renderGantt() {
+      if (tasks.length === 0) {
+        updateEmptyState();
+        return;
+      }
 
-        // Update empty state visibility
-        function updateEmptyState() {
-            if (tasks.length === 0) {
-                emptyState?.classList.remove('hidden');
-                chartContainer.style.display = 'none';
-            } else {
-                emptyState?.classList.add('hidden');
-                chartContainer.style.display = 'block';
-            }
-        }
+      const ganttTasks = tasks.map((t) => ({
+        id: t.id,
+        name: t.name,
+        start: t.start,
+        end: t.end,
+        progress: t.progress || 0,
+        custom_class: t.progress === 100 ? "completed" : "",
+      }));
 
-        // Generate unique ID
-        function generateId() {
-            return 'task-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-        }
+      // Destroy existing instance
+      if (gantt) {
+        chartContainer.innerHTML = "";
+      }
 
-        // Format date for Frappe Gantt
-        function formatDate(date) {
-            const d = new Date(date);
-            return d.toISOString().split('T')[0];
-        }
-
-        // Add days to date
-        function addDays(date, days) {
-            const result = new Date(date);
-            result.setDate(result.getDate() + days);
-            return result;
-        }
-
-        // Render Gantt chart
-        function renderGantt() {
-            if (tasks.length === 0) {
-                updateEmptyState();
-                return;
-            }
-
-            const ganttTasks = tasks.map(t => ({
-                id: t.id,
-                name: t.name,
-                start: t.start,
-                end: t.end,
-                progress: t.progress || 0,
-                custom_class: t.progress === 100 ? 'completed' : ''
-            }));
-
-            // Destroy existing instance
-            if (gantt) {
-                chartContainer.innerHTML = '';
-            }
-
-            gantt = new Gantt(chartContainer, ganttTasks, {
-                view_mode: 'Week',
-                date_format: 'YYYY-MM-DD',
-                language: 'es',
-                popup_trigger: 'click',
-                custom_popup_html: function(task) {
-                    return `
+      gantt = new Gantt(chartContainer, ganttTasks, {
+        view_mode: "Week",
+        date_format: "YYYY-MM-DD",
+        language: "es",
+        popup_trigger: "click",
+        custom_popup_html: function (task) {
+          return `
                         <div class="gantt-popup">
                             <h5>${task.name}</h5>
                             <p>Inicio: ${task.start}</p>
@@ -379,1022 +386,1026 @@
                             </button>
                         </div>
                     `;
-                },
-                on_date_change: function(task, start, end) {
-                    const idx = tasks.findIndex(t => t.id === task.id);
-                    if (idx !== -1) {
-                        tasks[idx].start = formatDate(start);
-                        tasks[idx].end = formatDate(end);
-                        saveTasks();
-                    }
-                },
-                on_progress_change: function(task, progress) {
-                    const idx = tasks.findIndex(t => t.id === task.id);
-                    if (idx !== -1) {
-                        tasks[idx].progress = progress;
-                        saveTasks();
-                    }
-                }
-            });
-
-            updateEmptyState();
-        }
-
-        // Global functions for popup buttons
-        window.editGanttTask = function(id) {
-            const task = tasks.find(t => t.id === id);
-            if (task) {
-                openModal(task);
-            }
-        };
-
-        window.deleteGanttTask = function(id) {
-            if (confirm('¿Eliminar esta tarea?')) {
-                tasks = tasks.filter(t => t.id !== id);
-                saveTasks();
-                renderGantt();
-            }
-        };
-
-        // Open modal
-        function openModal(task = null) {
-            if (task) {
-                modalTitle.textContent = 'Editar Tarea';
-                taskName.value = task.name;
-                taskStart.value = task.start;
-                taskEnd.value = task.end;
-                taskProgress.value = task.progress || 0;
-                progressValue.textContent = (task.progress || 0) + '%';
-                taskAssignee.value = task.assignee || '';
-                taskIdInput.value = task.id;
-                editingTaskId = task.id;
-            } else {
-                modalTitle.textContent = 'Nueva Tarea';
-                taskForm.reset();
-                const today = new Date();
-                taskStart.value = formatDate(today);
-                taskEnd.value = formatDate(addDays(today, 7));
-                progressValue.textContent = '0%';
-                taskIdInput.value = '';
-                editingTaskId = null;
-            }
-            modal?.classList.remove('hidden');
-        }
-
-        // Close modal
-        function closeModal() {
-            modal?.classList.add('hidden');
-            editingTaskId = null;
-        }
-
-        // Apply template
-        function applyTemplate(templateKey) {
-            const template = templates[templateKey];
-            if (!template) return;
-
-            if (tasks.length > 0 && !confirm('Esto reemplazará las tareas actuales. ¿Continuar?')) {
-                return;
-            }
-
-            tasks = [];
-            let currentDate = new Date();
-
-            template.tasks.forEach(t => {
-                const task = {
-                    id: generateId(),
-                    name: t.name,
-                    start: formatDate(currentDate),
-                    end: formatDate(addDays(currentDate, t.days - 1)),
-                    progress: t.progress || 0,
-                    assignee: ''
-                };
-                tasks.push(task);
-                currentDate = addDays(currentDate, t.days);
-            });
-
+        },
+        on_date_change: function (task, start, end) {
+          const idx = tasks.findIndex((t) => t.id === task.id);
+          if (idx !== -1) {
+            tasks[idx].start = formatDate(start);
+            tasks[idx].end = formatDate(end);
             saveTasks();
-            renderGantt();
-            templateMenu?.classList.add('hidden');
-        }
-
-        // Event Listeners
-        addTaskBtn?.addEventListener('click', () => openModal());
-
-        templateBtn?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            templateMenu?.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', () => {
-            templateMenu?.classList.add('hidden');
-        });
-
-        templateMenu?.querySelectorAll('.template-option').forEach(btn => {
-            btn.addEventListener('click', () => {
-                applyTemplate(btn.dataset.template);
-            });
-        });
-
-        startWithTemplateBtn?.addEventListener('click', () => {
-            templateMenu?.classList.remove('hidden');
-        });
-
-        viewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                viewBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                if (gantt) {
-                    gantt.change_view_mode(btn.dataset.view);
-                }
-            });
-        });
-
-        clearBtn?.addEventListener('click', () => {
-            if (confirm('¿Eliminar todas las tareas?')) {
-                tasks = [];
-                saveTasks();
-                if (gantt) {
-                    chartContainer.innerHTML = '';
-                    gantt = null;
-                }
-                updateEmptyState();
-            }
-        });
-
-        exportBtn?.addEventListener('click', async () => {
-            try {
-                // Use html2canvas if available, otherwise alert
-                if (typeof html2canvas !== 'undefined') {
-                    const canvas = await html2canvas(chartContainer);
-                    const link = document.createElement('a');
-                    link.download = 'gantt-chart.png';
-                    link.href = canvas.toDataURL();
-                    link.click();
-                } else {
-                    alert('Funcionalidad de exportación no disponible. Usa una captura de pantalla.');
-                }
-            } catch (e) {
-                alert('Error al exportar. Intenta con una captura de pantalla.');
-            }
-        });
-
-        modalClose?.addEventListener('click', closeModal);
-        cancelTask?.addEventListener('click', closeModal);
-
-        modal?.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        taskProgress?.addEventListener('input', () => {
-            progressValue.textContent = taskProgress.value + '%';
-        });
-
-        taskForm?.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const newTask = {
-                id: editingTaskId || generateId(),
-                name: taskName.value,
-                start: taskStart.value,
-                end: taskEnd.value,
-                progress: parseInt(taskProgress.value),
-                assignee: taskAssignee.value
-            };
-
-            if (editingTaskId) {
-                const idx = tasks.findIndex(t => t.id === editingTaskId);
-                if (idx !== -1) {
-                    tasks[idx] = newTask;
-                }
-            } else {
-                tasks.push(newTask);
-            }
-
+          }
+        },
+        on_progress_change: function (task, progress) {
+          const idx = tasks.findIndex((t) => t.id === task.id);
+          if (idx !== -1) {
+            tasks[idx].progress = progress;
             saveTasks();
-            renderGantt();
-            closeModal();
-        });
+          }
+        },
+      });
 
-        // Initialize
-        loadTasks();
+      updateEmptyState();
     }
 
-    // Initialize on page load and Astro transitions
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initGanttGenerator);
-    } else {
-        initGanttGenerator();
+    // Global functions for popup buttons
+    window.editGanttTask = function (id) {
+      const task = tasks.find((t) => t.id === id);
+      if (task) {
+        openModal(task);
+      }
+    };
+
+    window.deleteGanttTask = function (id) {
+      if (confirm("¿Eliminar esta tarea?")) {
+        tasks = tasks.filter((t) => t.id !== id);
+        saveTasks();
+        renderGantt();
+      }
+    };
+
+    // Open modal
+    function openModal(task = null) {
+      if (task) {
+        modalTitle.textContent = "Editar Tarea";
+        taskName.value = task.name;
+        taskStart.value = task.start;
+        taskEnd.value = task.end;
+        taskProgress.value = task.progress || 0;
+        progressValue.textContent = (task.progress || 0) + "%";
+        taskAssignee.value = task.assignee || "";
+        taskIdInput.value = task.id;
+        editingTaskId = task.id;
+      } else {
+        modalTitle.textContent = "Nueva Tarea";
+        taskForm.reset();
+        const today = new Date();
+        taskStart.value = formatDate(today);
+        taskEnd.value = formatDate(addDays(today, 7));
+        progressValue.textContent = "0%";
+        taskIdInput.value = "";
+        editingTaskId = null;
+      }
+      modal?.classList.remove("hidden");
     }
-    document.addEventListener('astro:page-load', initGanttGenerator);
+
+    // Close modal
+    function closeModal() {
+      modal?.classList.add("hidden");
+      editingTaskId = null;
+    }
+
+    // Apply template
+    function applyTemplate(templateKey) {
+      const template = templates[templateKey];
+      if (!template) return;
+
+      if (tasks.length > 0 && !confirm("Esto reemplazará las tareas actuales. ¿Continuar?")) {
+        return;
+      }
+
+      tasks = [];
+      let currentDate = new Date();
+
+      template.tasks.forEach((t) => {
+        const task = {
+          id: generateId(),
+          name: t.name,
+          start: formatDate(currentDate),
+          end: formatDate(addDays(currentDate, t.days - 1)),
+          progress: t.progress || 0,
+          assignee: "",
+        };
+        tasks.push(task);
+        currentDate = addDays(currentDate, t.days);
+      });
+
+      saveTasks();
+      renderGantt();
+      templateMenu?.classList.add("hidden");
+    }
+
+    // Event Listeners
+    addTaskBtn?.addEventListener("click", () => openModal());
+
+    templateBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      templateMenu?.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", () => {
+      templateMenu?.classList.add("hidden");
+    });
+
+    templateMenu?.querySelectorAll(".template-option").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        applyTemplate(btn.dataset.template);
+      });
+    });
+
+    startWithTemplateBtn?.addEventListener("click", () => {
+      templateMenu?.classList.remove("hidden");
+    });
+
+    viewBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        viewBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        if (gantt) {
+          gantt.change_view_mode(btn.dataset.view);
+        }
+      });
+    });
+
+    clearBtn?.addEventListener("click", () => {
+      if (confirm("¿Eliminar todas las tareas?")) {
+        tasks = [];
+        saveTasks();
+        if (gantt) {
+          chartContainer.innerHTML = "";
+          gantt = null;
+        }
+        updateEmptyState();
+      }
+    });
+
+    exportBtn?.addEventListener("click", async () => {
+      try {
+        // Use html2canvas if available, otherwise alert
+        if (typeof html2canvas !== "undefined") {
+          const canvas = await html2canvas(chartContainer);
+          const link = document.createElement("a");
+          link.download = "gantt-chart.png";
+          link.href = canvas.toDataURL();
+          link.click();
+        } else {
+          alert("Funcionalidad de exportación no disponible. Usa una captura de pantalla.");
+        }
+      } catch (e) {
+        alert("Error al exportar. Intenta con una captura de pantalla.");
+      }
+    });
+
+    modalClose?.addEventListener("click", closeModal);
+    cancelTask?.addEventListener("click", closeModal);
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    taskProgress?.addEventListener("input", () => {
+      progressValue.textContent = taskProgress.value + "%";
+    });
+
+    taskForm?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const newTask = {
+        id: editingTaskId || generateId(),
+        name: taskName.value,
+        start: taskStart.value,
+        end: taskEnd.value,
+        progress: parseInt(taskProgress.value),
+        assignee: taskAssignee.value,
+      };
+
+      if (editingTaskId) {
+        const idx = tasks.findIndex((t) => t.id === editingTaskId);
+        if (idx !== -1) {
+          tasks[idx] = newTask;
+        }
+      } else {
+        tasks.push(newTask);
+      }
+
+      saveTasks();
+      renderGantt();
+      closeModal();
+    });
+
+    // Initialize
+    loadTasks();
+  }
+
+  // Initialize on page load and Astro transitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initGanttGenerator);
+  } else {
+    initGanttGenerator();
+  }
+  document.addEventListener("astro:page-load", initGanttGenerator);
 </script>
 
 <style>
-    .tool-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(245, 158, 11, 0.03) 0%, transparent 100%);
-    }
+  .tool-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.03) 0%, transparent 100%);
+  }
 
-    .gantt-container {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
+  .gantt-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-    .tool-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
+  .tool-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
 
-    .gantt-icon {
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 88, 12, 0.2)) !important;
-        color: #f59e0b !important;
-    }
+  .gantt-icon {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(234, 88, 12, 0.2)) !important;
+    color: #f59e0b !important;
+  }
 
-    .tool-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 16px;
-        font-size: 1.5rem;
-    }
+  .tool-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    font-size: 1.5rem;
+  }
 
-    .tool-title h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        margin: 0;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .tool-title h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .tool-title p {
-        font-size: 0.9rem;
-        color: #64748b;
-        margin: 0.25rem 0 0 0;
-    }
+  .tool-title p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0.25rem 0 0 0;
+  }
 
-    .template-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(245, 158, 11, 0.1);
-        border: 1px solid rgba(245, 158, 11, 0.3);
-        border-radius: 20px;
-        font-size: 0.8rem;
-        color: #f59e0b;
-        margin-left: auto;
-    }
+  .template-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #f59e0b;
+    margin-left: auto;
+  }
 
-    .gantt-tool {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 1.5rem;
-        backdrop-filter: blur(10px);
-    }
+  .gantt-tool {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+  }
 
-    /* Toolbar */
+  /* Toolbar */
+  .gantt-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .toolbar-left,
+  .toolbar-right {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .toolbar-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .add-task-btn {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+  }
+
+  .add-task-btn:hover {
+    background: rgba(245, 158, 11, 0.2);
+  }
+
+  .toolbar-btn.danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+  }
+
+  /* Template Dropdown */
+  .template-dropdown {
+    position: relative;
+  }
+
+  .template-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    background: rgba(15, 23, 42, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 240px;
+    z-index: 100;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .template-menu.hidden {
+    display: none;
+  }
+
+  .template-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .template-option:hover {
+    background: rgba(245, 158, 11, 0.1);
+  }
+
+  .template-option i {
+    color: #f59e0b;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* View Switcher */
+  .view-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 0.25rem;
+    justify-content: center;
+  }
+
+  .view-btn {
+    padding: 0.4rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .view-btn:hover {
+    color: #94a3b8;
+  }
+
+  .view-btn.active {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+  }
+
+  /* Gantt Wrapper */
+  .gantt-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 300px;
+  }
+
+  #gantt-chart {
+    min-height: 300px;
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .empty-state.hidden {
+    display: none;
+  }
+
+  .empty-state i {
+    font-size: 3rem;
+    color: #475569;
+    margin-bottom: 1rem;
+  }
+
+  .empty-state h4 {
+    font-size: 1.25rem;
+    color: #f8fafc;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .empty-state p {
+    color: #64748b;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .start-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  .modal-content {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin: 0;
+  }
+
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="date"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #f59e0b;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .progress-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-input input[type="range"] {
+    flex: 1;
+    height: 8px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  .progress-input input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .progress-input span {
+    min-width: 40px;
+    text-align: right;
+    color: #f59e0b;
+    font-weight: 600;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-secondary,
+  .btn-primary {
+    flex: 1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #f59e0b, #ea580c);
+    border: none;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3);
+  }
+
+  /* Instructions */
+  .instructions-panel {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 12px;
+  }
+
+  .instructions-panel h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f59e0b;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .instructions-panel ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .instructions-panel li {
+    margin-bottom: 0.375rem;
+  }
+
+  /* Frappe Gantt Overrides */
+  :global(.gantt-container) {
+    background: transparent !important;
+  }
+
+  :global(.gantt .grid-background) {
+    fill: transparent !important;
+  }
+
+  :global(.gantt .grid-header) {
+    fill: rgba(15, 23, 42, 0.8) !important;
+  }
+
+  :global(.gantt .lower-text, .gantt .upper-text) {
+    fill: #94a3b8 !important;
+  }
+
+  :global(.gantt .bar) {
+    fill: #f59e0b !important;
+  }
+
+  :global(.gantt .bar-progress) {
+    fill: #ea580c !important;
+  }
+
+  :global(.gantt .bar-label) {
+    fill: #1e293b !important;
+    font-weight: 600 !important;
+  }
+
+  :global(.gantt .grid-row:nth-child(even)) {
+    fill: rgba(255, 255, 255, 0.02) !important;
+  }
+
+  :global(.gantt .today-highlight) {
+    fill: rgba(245, 158, 11, 0.1) !important;
+  }
+
+  :global(.gantt-popup) {
+    background: #1e293b !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  :global(.gantt-popup h5) {
+    color: #f8fafc !important;
+    margin: 0 0 0.5rem 0 !important;
+  }
+
+  :global(.gantt-popup p) {
+    color: #94a3b8 !important;
+    font-size: 0.85rem !important;
+    margin: 0.25rem 0 !important;
+  }
+
+  :global(.gantt-popup button) {
+    padding: 0.5rem 1rem !important;
+    background: rgba(245, 158, 11, 0.2) !important;
+    border: 1px solid rgba(245, 158, 11, 0.3) !important;
+    border-radius: 6px !important;
+    color: #f59e0b !important;
+    font-size: 0.8rem !important;
+    cursor: pointer !important;
+    margin-top: 0.5rem !important;
+    margin-right: 0.5rem !important;
+  }
+
+  :global(.gantt-popup button.delete) {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+    color: #ef4444 !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .gantt-toolbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        flex-wrap: wrap;
+      flex-direction: column;
+      align-items: stretch;
     }
 
     .toolbar-left,
+    .toolbar-center,
     .toolbar-right {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .toolbar-btn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .toolbar-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .add-task-btn {
-        background: rgba(245, 158, 11, 0.1);
-        border-color: rgba(245, 158, 11, 0.3);
-        color: #f59e0b;
-    }
-
-    .add-task-btn:hover {
-        background: rgba(245, 158, 11, 0.2);
-    }
-
-    .toolbar-btn.danger:hover {
-        background: rgba(239, 68, 68, 0.1);
-        border-color: rgba(239, 68, 68, 0.3);
-        color: #ef4444;
-    }
-
-    /* Template Dropdown */
-    .template-dropdown {
-        position: relative;
-    }
-
-    .template-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        margin-top: 0.5rem;
-        background: rgba(15, 23, 42, 0.98);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 0.5rem;
-        min-width: 240px;
-        z-index: 100;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .template-menu.hidden {
-        display: none;
-    }
-
-    .template-option {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        width: 100%;
-        padding: 0.75rem 1rem;
-        background: transparent;
-        border: none;
-        border-radius: 8px;
-        color: #f8fafc;
-        font-size: 0.85rem;
-        text-align: left;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    .template-option:hover {
-        background: rgba(245, 158, 11, 0.1);
-    }
-
-    .template-option i {
-        color: #f59e0b;
-        width: 20px;
-        text-align: center;
-    }
-
-    /* View Switcher */
-    .view-switcher {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.25rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 0.25rem;
-        justify-content: center;
-    }
-
-    .view-btn {
-        padding: 0.4rem 0.75rem;
-        background: transparent;
-        border: none;
-        border-radius: 8px;
-        color: #64748b;
-        font-size: 0.75rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        white-space: nowrap;
-    }
-
-    .view-btn:hover {
-        color: #94a3b8;
-    }
-
-    .view-btn.active {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-    }
-
-    /* Gantt Wrapper */
-    .gantt-wrapper {
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 12px;
-        overflow: hidden;
-        min-height: 300px;
-    }
-
-    #gantt-chart {
-        min-height: 300px;
-    }
-
-    /* Empty State */
-    .empty-state {
-        text-align: center;
-        padding: 4rem 2rem;
-    }
-
-    .empty-state.hidden {
-        display: none;
-    }
-
-    .empty-state i {
-        font-size: 3rem;
-        color: #475569;
-        margin-bottom: 1rem;
-    }
-
-    .empty-state h4 {
-        font-size: 1.25rem;
-        color: #f8fafc;
-        margin: 0 0 0.5rem 0;
-    }
-
-    .empty-state p {
-        color: #64748b;
-        margin: 0 0 1.5rem 0;
-    }
-
-    .start-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #f59e0b, #ea580c);
-        border: none;
-        border-radius: 10px;
-        color: white;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .start-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
-    }
-
-    /* Modal */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        padding: 2rem;
-    }
-
-    .modal-overlay.hidden {
-        display: none;
-    }
-
-    .modal-content {
-        background: #1e293b;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 2rem;
-        width: 100%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .modal-header h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin: 0;
-    }
-
-    .modal-close {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.05);
-        border: none;
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .modal-close:hover {
-        background: rgba(239, 68, 68, 0.1);
-        color: #ef4444;
-    }
-
-    .form-group {
-        margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-        display: block;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #94a3b8;
-        margin-bottom: 0.5rem;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="date"] {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        transition: border-color 0.2s;
-    }
-
-    .form-group input:focus {
-        outline: none;
-        border-color: #f59e0b;
+      justify-content: center;
     }
 
     .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+      grid-template-columns: 1fr;
     }
+  }
 
-    .progress-input {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .progress-input input[type="range"] {
-        flex: 1;
-        height: 8px;
-        -webkit-appearance: none;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-    }
-
-    .progress-input input::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: linear-gradient(135deg, #f59e0b, #ea580c);
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    .progress-input span {
-        min-width: 40px;
-        text-align: right;
-        color: #f59e0b;
-        font-weight: 600;
-    }
-
-    .modal-actions {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .btn-secondary,
-    .btn-primary {
-        flex: 1;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.2s;
-    }
-
-    .btn-secondary {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-    }
-
-    .btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #f59e0b, #ea580c);
-        border: none;
-        color: white;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3);
-    }
-
-    /* Instructions */
-    .instructions-panel {
-        margin-top: 1.5rem;
-        padding: 1rem;
-        background: rgba(245, 158, 11, 0.05);
-        border: 1px solid rgba(245, 158, 11, 0.2);
-        border-radius: 12px;
-    }
-
-    .instructions-panel h4 {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f59e0b;
-        margin: 0 0 0.75rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .instructions-panel ul {
-        margin: 0;
-        padding-left: 1.25rem;
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-
-    .instructions-panel li {
-        margin-bottom: 0.375rem;
-    }
-
-    /* Frappe Gantt Overrides */
-    :global(.gantt-container) {
-        background: transparent !important;
-    }
-
-    :global(.gantt .grid-background) {
-        fill: transparent !important;
-    }
-
-    :global(.gantt .grid-header) {
-        fill: rgba(15, 23, 42, 0.8) !important;
-    }
-
-    :global(.gantt .lower-text, .gantt .upper-text) {
-        fill: #94a3b8 !important;
-    }
-
-    :global(.gantt .bar) {
-        fill: #f59e0b !important;
-    }
-
-    :global(.gantt .bar-progress) {
-        fill: #ea580c !important;
-    }
-
-    :global(.gantt .bar-label) {
-        fill: #1e293b !important;
-        font-weight: 600 !important;
-    }
-
-    :global(.gantt .grid-row:nth-child(even)) {
-        fill: rgba(255, 255, 255, 0.02) !important;
-    }
-
-    :global(.gantt .today-highlight) {
-        fill: rgba(245, 158, 11, 0.1) !important;
-    }
-
-    :global(.gantt-popup) {
-        background: #1e293b !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 12px !important;
-        padding: 1rem !important;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
-    }
-
-    :global(.gantt-popup h5) {
-        color: #f8fafc !important;
-        margin: 0 0 0.5rem 0 !important;
-    }
-
-    :global(.gantt-popup p) {
-        color: #94a3b8 !important;
-        font-size: 0.85rem !important;
-        margin: 0.25rem 0 !important;
-    }
-
-    :global(.gantt-popup button) {
-        padding: 0.5rem 1rem !important;
-        background: rgba(245, 158, 11, 0.2) !important;
-        border: 1px solid rgba(245, 158, 11, 0.3) !important;
-        border-radius: 6px !important;
-        color: #f59e0b !important;
-        font-size: 0.8rem !important;
-        cursor: pointer !important;
-        margin-top: 0.5rem !important;
-        margin-right: 0.5rem !important;
-    }
-
-    :global(.gantt-popup button.delete) {
-        background: rgba(239, 68, 68, 0.1) !important;
-        border-color: rgba(239, 68, 68, 0.3) !important;
-        color: #ef4444 !important;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .gantt-toolbar {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .toolbar-left,
-        .toolbar-center,
-        .toolbar-right {
-            justify-content: center;
-        }
-
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* ============================================
+  /* ============================================
        LIGHT MODE - Enterprise Grade Styles
        WCAG AA compliant contrast ratios
        ============================================ */
 
-    :global([data-theme="light"]) .tool-section {
-        background: linear-gradient(180deg, rgba(217, 119, 6, 0.04) 0%, transparent 100%);
-    }
+  :global([data-theme="light"]) .tool-section {
+    background: linear-gradient(180deg, rgba(217, 119, 6, 0.04) 0%, transparent 100%);
+  }
 
-    :global([data-theme="light"]) .gantt-container {
-        background: transparent;
-    }
+  :global([data-theme="light"]) .gantt-container {
+    background: transparent;
+  }
 
-    :global([data-theme="light"]) .tool-title h2 {
-        background: linear-gradient(135deg, #0f172a, #334155);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: -0.02em;
-    }
+  :global([data-theme="light"]) .tool-title h2 {
+    background: linear-gradient(135deg, #0f172a, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
 
-    :global([data-theme="light"]) .tool-title p {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .tool-title p {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .gantt-icon {
-        background: linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(234, 88, 12, 0.12)) !important;
-        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.1);
-    }
+  :global([data-theme="light"]) .gantt-icon {
+    background: linear-gradient(
+      135deg,
+      rgba(217, 119, 6, 0.12),
+      rgba(234, 88, 12, 0.12)
+    ) !important;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.1);
+  }
 
-    :global([data-theme="light"]) .template-badge {
-        background: rgba(217, 119, 6, 0.08);
-        border-color: rgba(217, 119, 6, 0.2);
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .template-badge {
+    background: rgba(217, 119, 6, 0.08);
+    border-color: rgba(217, 119, 6, 0.2);
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .gantt-tool {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    }
+  :global([data-theme="light"]) .gantt-tool {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
 
-    /* Toolbar Light Mode */
-    :global([data-theme="light"]) .toolbar-btn {
-        background: rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
+  /* Toolbar Light Mode */
+  :global([data-theme="light"]) .toolbar-btn {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .toolbar-btn:hover {
-        background: rgba(0, 0, 0, 0.06);
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .toolbar-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .add-task-btn {
-        background: rgba(217, 119, 6, 0.1);
-        border-color: rgba(217, 119, 6, 0.25);
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .add-task-btn {
+    background: rgba(217, 119, 6, 0.1);
+    border-color: rgba(217, 119, 6, 0.25);
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .add-task-btn:hover {
-        background: rgba(217, 119, 6, 0.15);
-    }
+  :global([data-theme="light"]) .add-task-btn:hover {
+    background: rgba(217, 119, 6, 0.15);
+  }
 
-    :global([data-theme="light"]) .toolbar-btn.danger:hover {
-        background: rgba(220, 38, 38, 0.08);
-        border-color: rgba(220, 38, 38, 0.2);
-        color: #dc2626;
-    }
+  :global([data-theme="light"]) .toolbar-btn.danger:hover {
+    background: rgba(220, 38, 38, 0.08);
+    border-color: rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+  }
 
-    /* View Switcher Light Mode */
-    :global([data-theme="light"]) .view-switcher {
-        background: rgba(0, 0, 0, 0.04);
-    }
+  /* View Switcher Light Mode */
+  :global([data-theme="light"]) .view-switcher {
+    background: rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .view-btn {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .view-btn {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .view-btn:hover {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .view-btn:hover {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .view-btn.active {
-        background: rgba(217, 119, 6, 0.15);
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .view-btn.active {
+    background: rgba(217, 119, 6, 0.15);
+    color: #d97706;
+  }
 
-    /* Template Menu Light Mode */
-    :global([data-theme="light"]) .template-menu {
-        background: rgba(255, 255, 255, 0.98);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-    }
+  /* Template Menu Light Mode */
+  :global([data-theme="light"]) .template-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
 
-    :global([data-theme="light"]) .template-option {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .template-option {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .template-option:hover {
-        background: rgba(217, 119, 6, 0.08);
-    }
+  :global([data-theme="light"]) .template-option:hover {
+    background: rgba(217, 119, 6, 0.08);
+  }
 
-    :global([data-theme="light"]) .template-option i {
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .template-option i {
+    color: #d97706;
+  }
 
-    /* Gantt Wrapper Light Mode */
-    :global([data-theme="light"]) .gantt-wrapper {
-        background: rgba(248, 250, 252, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-    }
+  /* Gantt Wrapper Light Mode */
+  :global([data-theme="light"]) .gantt-wrapper {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
 
-    /* Empty State Light Mode */
-    :global([data-theme="light"]) .empty-state i {
-        color: #94a3b8;
-    }
+  /* Empty State Light Mode */
+  :global([data-theme="light"]) .empty-state i {
+    color: #94a3b8;
+  }
 
-    :global([data-theme="light"]) .empty-state h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .empty-state h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .empty-state p {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .empty-state p {
+    color: #64748b;
+  }
 
-    /* Modal Light Mode */
-    :global([data-theme="light"]) .modal-overlay {
-        background: rgba(0, 0, 0, 0.5);
-    }
+  /* Modal Light Mode */
+  :global([data-theme="light"]) .modal-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
 
-    :global([data-theme="light"]) .modal-content {
-        background: #ffffff;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
+  :global([data-theme="light"]) .modal-content {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  }
 
-    :global([data-theme="light"]) .modal-header h3 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .modal-header h3 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .modal-close {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .modal-close {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .modal-close:hover {
-        background: rgba(220, 38, 38, 0.08);
-        color: #dc2626;
-    }
+  :global([data-theme="light"]) .modal-close:hover {
+    background: rgba(220, 38, 38, 0.08);
+    color: #dc2626;
+  }
 
-    :global([data-theme="light"]) .form-group label {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .form-group label {
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .form-group input[type="text"],
-    :global([data-theme="light"]) .form-group input[type="date"] {
-        background: rgba(248, 250, 252, 0.8);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .form-group input[type="text"],
+  :global([data-theme="light"]) .form-group input[type="date"] {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .form-group input:focus {
-        border-color: #d97706;
-        box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
-    }
+  :global([data-theme="light"]) .form-group input:focus {
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+  }
 
-    :global([data-theme="light"]) .progress-input input[type="range"] {
-        background: rgba(0, 0, 0, 0.08);
-    }
+  :global([data-theme="light"]) .progress-input input[type="range"] {
+    background: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .progress-input span {
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .progress-input span {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .btn-secondary {
-        background: rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #475569;
-    }
+  :global([data-theme="light"]) .btn-secondary {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #475569;
+  }
 
-    :global([data-theme="light"]) .btn-secondary:hover {
-        background: rgba(0, 0, 0, 0.08);
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .btn-secondary:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #0f172a;
+  }
 
-    /* Instructions Light Mode */
-    :global([data-theme="light"]) .instructions-panel {
-        background: rgba(217, 119, 6, 0.04);
-        border-color: rgba(217, 119, 6, 0.15);
-    }
+  /* Instructions Light Mode */
+  :global([data-theme="light"]) .instructions-panel {
+    background: rgba(217, 119, 6, 0.04);
+    border-color: rgba(217, 119, 6, 0.15);
+  }
 
-    :global([data-theme="light"]) .instructions-panel h4 {
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .instructions-panel h4 {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .instructions-panel ul {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .instructions-panel ul {
+    color: #475569;
+  }
 
-    /* Frappe Gantt Light Mode Overrides */
-    :global([data-theme="light"] .gantt .grid-header) {
-        fill: rgba(248, 250, 252, 0.95) !important;
-    }
+  /* Frappe Gantt Light Mode Overrides */
+  :global([data-theme="light"] .gantt .grid-header) {
+    fill: rgba(248, 250, 252, 0.95) !important;
+  }
 
-    :global([data-theme="light"] .gantt .lower-text),
-    :global([data-theme="light"] .gantt .upper-text) {
-        fill: #475569 !important;
-    }
+  :global([data-theme="light"] .gantt .lower-text),
+  :global([data-theme="light"] .gantt .upper-text) {
+    fill: #475569 !important;
+  }
 
-    :global([data-theme="light"] .gantt .grid-row:nth-child(even)) {
-        fill: rgba(0, 0, 0, 0.02) !important;
-    }
+  :global([data-theme="light"] .gantt .grid-row:nth-child(even)) {
+    fill: rgba(0, 0, 0, 0.02) !important;
+  }
 
-    :global([data-theme="light"] .gantt .bar) {
-        fill: #f59e0b !important;
-    }
+  :global([data-theme="light"] .gantt .bar) {
+    fill: #f59e0b !important;
+  }
 
-    :global([data-theme="light"] .gantt .bar-progress) {
-        fill: #d97706 !important;
-    }
+  :global([data-theme="light"] .gantt .bar-progress) {
+    fill: #d97706 !important;
+  }
 
-    :global([data-theme="light"] .gantt .bar-label) {
-        fill: #ffffff !important;
-    }
+  :global([data-theme="light"] .gantt .bar-label) {
+    fill: #ffffff !important;
+  }
 
-    :global([data-theme="light"] .gantt .today-highlight) {
-        fill: rgba(217, 119, 6, 0.08) !important;
-    }
+  :global([data-theme="light"] .gantt .today-highlight) {
+    fill: rgba(217, 119, 6, 0.08) !important;
+  }
 
-    :global([data-theme="light"]) .gantt-popup {
-        background: #ffffff !important;
-        border: 1px solid rgba(0, 0, 0, 0.1) !important;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
-    }
+  :global([data-theme="light"]) .gantt-popup {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  }
 
-    :global([data-theme="light"]) .gantt-popup h5 {
-        color: #0f172a !important;
-    }
+  :global([data-theme="light"]) .gantt-popup h5 {
+    color: #0f172a !important;
+  }
 
-    :global([data-theme="light"]) .gantt-popup p {
-        color: #475569 !important;
-    }
+  :global([data-theme="light"]) .gantt-popup p {
+    color: #475569 !important;
+  }
 
-    :global([data-theme="light"]) .gantt-popup button {
-        background: rgba(217, 119, 6, 0.1) !important;
-        border-color: rgba(217, 119, 6, 0.2) !important;
-        color: #d97706 !important;
-    }
+  :global([data-theme="light"]) .gantt-popup button {
+    background: rgba(217, 119, 6, 0.1) !important;
+    border-color: rgba(217, 119, 6, 0.2) !important;
+    color: #d97706 !important;
+  }
 
-    :global([data-theme="light"]) .gantt-popup button.delete {
-        background: rgba(220, 38, 38, 0.08) !important;
-        border-color: rgba(220, 38, 38, 0.2) !important;
-        color: #dc2626 !important;
-    }
+  :global([data-theme="light"]) .gantt-popup button.delete {
+    background: rgba(220, 38, 38, 0.08) !important;
+    border-color: rgba(220, 38, 38, 0.2) !important;
+    color: #dc2626 !important;
+  }
 </style>

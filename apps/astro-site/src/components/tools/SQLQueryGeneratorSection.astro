@@ -3,1422 +3,1489 @@
 ---
 
 <section id="sql-generator" class="tool-section">
-    <div class="tool-container">
-        <!-- Header -->
-        <div class="tool-header">
-            <div class="tool-icon sql-icon">
-                <i class="fas fa-database"></i>
-            </div>
-            <div class="tool-title">
-                <h2>Generador de Queries SQL</h2>
-                <p>Constructor visual de consultas SQL para aprender y practicar</p>
-            </div>
-            <div class="dialect-badge">
-                <i class="fas fa-code"></i>
-                <span>SQL Estándar</span>
-            </div>
-        </div>
-
-        <div class="sql-tool">
-            <!-- Query Type Selector -->
-            <div class="query-type-selector">
-                <button class="type-btn active" data-type="SELECT">
-                    <i class="fas fa-search"></i> SELECT
-                </button>
-                <button class="type-btn" data-type="INSERT">
-                    <i class="fas fa-plus"></i> INSERT
-                </button>
-                <button class="type-btn" data-type="UPDATE">
-                    <i class="fas fa-edit"></i> UPDATE
-                </button>
-                <button class="type-btn" data-type="DELETE">
-                    <i class="fas fa-trash"></i> DELETE
-                </button>
-            </div>
-
-            <!-- Builder Area -->
-            <div class="builder-area">
-                <!-- SELECT Builder -->
-                <div class="builder-panel" id="select-builder">
-                    <!-- Table Selection -->
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">FROM</span>
-                            <span class="tooltip-icon" title="Tabla de la cual obtener datos">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                        </label>
-                        <select id="select-table" class="builder-select">
-                            <option value="">Selecciona una tabla...</option>
-                            <option value="usuarios">usuarios</option>
-                            <option value="productos">productos</option>
-                            <option value="pedidos">pedidos</option>
-                            <option value="categorias">categorias</option>
-                        </select>
-                    </div>
-
-                    <!-- Columns Selection -->
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">SELECT</span>
-                            <span class="tooltip-icon" title="Columnas a obtener">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                        </label>
-                        <div class="columns-container" id="columns-container">
-                            <div class="column-chips" id="column-chips">
-                                <span class="column-chip all-columns" data-column="*">
-                                    * (todas)
-                                </span>
-                            </div>
-                            <div class="available-columns" id="available-columns">
-                                <!-- Populated by JS based on selected table -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- WHERE Conditions -->
-                    <div class="builder-row conditions-row">
-                        <label class="row-label">
-                            <span class="keyword">WHERE</span>
-                            <span class="tooltip-icon" title="Condiciones de filtro">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                        </label>
-                        <div class="conditions-container" id="conditions-container">
-                            <div class="conditions-list" id="conditions-list">
-                                <!-- Conditions added by JS -->
-                            </div>
-                            <button class="add-condition-btn" id="add-condition">
-                                <i class="fas fa-plus"></i> Agregar Condición
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- ORDER BY -->
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">ORDER BY</span>
-                            <span class="tooltip-icon" title="Ordenar resultados">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                        </label>
-                        <div class="order-container">
-                            <select id="order-column" class="builder-select small">
-                                <option value="">Sin ordenar</option>
-                            </select>
-                            <select id="order-direction" class="builder-select tiny">
-                                <option value="ASC">ASC</option>
-                                <option value="DESC">DESC</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- LIMIT -->
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">LIMIT</span>
-                            <span class="tooltip-icon" title="Limitar número de resultados">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                        </label>
-                        <input type="number" id="limit-value" class="builder-input small" placeholder="Sin límite" min="1" max="1000">
-                    </div>
-                </div>
-
-                <!-- INSERT Builder -->
-                <div class="builder-panel hidden" id="insert-builder">
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">INTO</span>
-                        </label>
-                        <select id="insert-table" class="builder-select">
-                            <option value="">Selecciona una tabla...</option>
-                            <option value="usuarios">usuarios</option>
-                            <option value="productos">productos</option>
-                            <option value="pedidos">pedidos</option>
-                        </select>
-                    </div>
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">VALUES</span>
-                        </label>
-                        <div class="values-container" id="insert-values-container">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- UPDATE Builder -->
-                <div class="builder-panel hidden" id="update-builder">
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">UPDATE</span>
-                        </label>
-                        <select id="update-table" class="builder-select">
-                            <option value="">Selecciona una tabla...</option>
-                            <option value="usuarios">usuarios</option>
-                            <option value="productos">productos</option>
-                            <option value="pedidos">pedidos</option>
-                        </select>
-                    </div>
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">SET</span>
-                        </label>
-                        <div class="set-container" id="update-set-container">
-                            <!-- Populated by JS -->
-                        </div>
-                    </div>
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">WHERE</span>
-                        </label>
-                        <div class="conditions-container" id="update-conditions-container">
-                            <div class="conditions-list" id="update-conditions-list"></div>
-                            <button class="add-condition-btn" id="add-update-condition">
-                                <i class="fas fa-plus"></i> Agregar Condición
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DELETE Builder -->
-                <div class="builder-panel hidden" id="delete-builder">
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">FROM</span>
-                        </label>
-                        <select id="delete-table" class="builder-select">
-                            <option value="">Selecciona una tabla...</option>
-                            <option value="usuarios">usuarios</option>
-                            <option value="productos">productos</option>
-                            <option value="pedidos">pedidos</option>
-                        </select>
-                    </div>
-                    <div class="builder-row">
-                        <label class="row-label">
-                            <span class="keyword">WHERE</span>
-                            <span class="warning-badge">
-                                <i class="fas fa-exclamation-triangle"></i> Requerido
-                            </span>
-                        </label>
-                        <div class="conditions-container" id="delete-conditions-container">
-                            <div class="conditions-list" id="delete-conditions-list"></div>
-                            <button class="add-condition-btn" id="add-delete-condition">
-                                <i class="fas fa-plus"></i> Agregar Condición
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Query Preview -->
-            <div class="query-preview">
-                <div class="preview-header">
-                    <h4><i class="fas fa-code"></i> Query Generada</h4>
-                    <div class="preview-actions">
-                        <button id="format-query" class="preview-btn" title="Formatear">
-                            <i class="fas fa-align-left"></i>
-                        </button>
-                        <button id="copy-query" class="preview-btn" title="Copiar">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <button id="clear-query" class="preview-btn" title="Limpiar">
-                            <i class="fas fa-eraser"></i>
-                        </button>
-                    </div>
-                </div>
-                <pre class="query-code"><code id="generated-query">-- Selecciona una tabla para comenzar</code></pre>
-                <div class="copy-feedback" id="sql-copy-feedback">
-                    <i class="fas fa-check"></i> Query copiada
-                </div>
-            </div>
-
-            <!-- Schema Reference -->
-            <div class="schema-reference">
-                <div class="schema-header">
-                    <h4><i class="fas fa-table"></i> Esquema de Tablas</h4>
-                    <button id="toggle-schema" class="toggle-btn">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div class="schema-content" id="schema-content">
-                    <div class="schema-table">
-                        <h5>usuarios</h5>
-                        <ul>
-                            <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
-                            <li><span class="col-name">nombre</span> <span class="col-type">VARCHAR(100)</span></li>
-                            <li><span class="col-name">email</span> <span class="col-type">VARCHAR(255)</span></li>
-                            <li><span class="col-name">edad</span> <span class="col-type">INT</span></li>
-                            <li><span class="col-name">activo</span> <span class="col-type">BOOLEAN</span></li>
-                            <li><span class="col-name">created_at</span> <span class="col-type">DATETIME</span></li>
-                        </ul>
-                    </div>
-                    <div class="schema-table">
-                        <h5>productos</h5>
-                        <ul>
-                            <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
-                            <li><span class="col-name">nombre</span> <span class="col-type">VARCHAR(200)</span></li>
-                            <li><span class="col-name">precio</span> <span class="col-type">DECIMAL(10,2)</span></li>
-                            <li><span class="col-name">stock</span> <span class="col-type">INT</span></li>
-                            <li><span class="col-name">categoria_id</span> <span class="col-type">INT FK</span></li>
-                        </ul>
-                    </div>
-                    <div class="schema-table">
-                        <h5>pedidos</h5>
-                        <ul>
-                            <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
-                            <li><span class="col-name">usuario_id</span> <span class="col-type">INT FK</span></li>
-                            <li><span class="col-name">fecha</span> <span class="col-type">DATE</span></li>
-                            <li><span class="col-name">total</span> <span class="col-type">DECIMAL(10,2)</span></li>
-                            <li><span class="col-name">estado</span> <span class="col-type">VARCHAR(50)</span></li>
-                        </ul>
-                    </div>
-                    <div class="schema-table">
-                        <h5>categorias</h5>
-                        <ul>
-                            <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
-                            <li><span class="col-name">nombre</span> <span class="col-type">VARCHAR(100)</span></li>
-                            <li><span class="col-name">descripcion</span> <span class="col-type">TEXT</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="tool-container">
+    <!-- Header -->
+    <div class="tool-header">
+      <div class="tool-icon sql-icon">
+        <i class="fas fa-database"></i>
+      </div>
+      <div class="tool-title">
+        <h2>Generador de Queries SQL</h2>
+        <p>Constructor visual de consultas SQL para aprender y practicar</p>
+      </div>
+      <div class="dialect-badge">
+        <i class="fas fa-code"></i>
+        <span>SQL Estándar</span>
+      </div>
     </div>
+
+    <div class="sql-tool">
+      <!-- Query Type Selector -->
+      <div class="query-type-selector">
+        <button class="type-btn active" data-type="SELECT">
+          <i class="fas fa-search"></i> SELECT
+        </button>
+        <button class="type-btn" data-type="INSERT">
+          <i class="fas fa-plus"></i> INSERT
+        </button>
+        <button class="type-btn" data-type="UPDATE">
+          <i class="fas fa-edit"></i> UPDATE
+        </button>
+        <button class="type-btn" data-type="DELETE">
+          <i class="fas fa-trash"></i> DELETE
+        </button>
+      </div>
+
+      <!-- Builder Area -->
+      <div class="builder-area">
+        <!-- SELECT Builder -->
+        <div class="builder-panel" id="select-builder">
+          <!-- Table Selection -->
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">FROM</span>
+              <span class="tooltip-icon" title="Tabla de la cual obtener datos">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </label>
+            <select id="select-table" class="builder-select">
+              <option value="">Selecciona una tabla...</option>
+              <option value="usuarios">usuarios</option>
+              <option value="productos">productos</option>
+              <option value="pedidos">pedidos</option>
+              <option value="categorias">categorias</option>
+            </select>
+          </div>
+
+          <!-- Columns Selection -->
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">SELECT</span>
+              <span class="tooltip-icon" title="Columnas a obtener">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </label>
+            <div class="columns-container" id="columns-container">
+              <div class="column-chips" id="column-chips">
+                <span class="column-chip all-columns" data-column="*"> * (todas) </span>
+              </div>
+              <div class="available-columns" id="available-columns">
+                <!-- Populated by JS based on selected table -->
+              </div>
+            </div>
+          </div>
+
+          <!-- WHERE Conditions -->
+          <div class="builder-row conditions-row">
+            <label class="row-label">
+              <span class="keyword">WHERE</span>
+              <span class="tooltip-icon" title="Condiciones de filtro">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </label>
+            <div class="conditions-container" id="conditions-container">
+              <div class="conditions-list" id="conditions-list">
+                <!-- Conditions added by JS -->
+              </div>
+              <button class="add-condition-btn" id="add-condition">
+                <i class="fas fa-plus"></i> Agregar Condición
+              </button>
+            </div>
+          </div>
+
+          <!-- ORDER BY -->
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">ORDER BY</span>
+              <span class="tooltip-icon" title="Ordenar resultados">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </label>
+            <div class="order-container">
+              <select id="order-column" class="builder-select small">
+                <option value="">Sin ordenar</option>
+              </select>
+              <select id="order-direction" class="builder-select tiny">
+                <option value="ASC">ASC</option>
+                <option value="DESC">DESC</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- LIMIT -->
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">LIMIT</span>
+              <span class="tooltip-icon" title="Limitar número de resultados">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </label>
+            <input
+              type="number"
+              id="limit-value"
+              class="builder-input small"
+              placeholder="Sin límite"
+              min="1"
+              max="1000"
+            />
+          </div>
+        </div>
+
+        <!-- INSERT Builder -->
+        <div class="builder-panel hidden" id="insert-builder">
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">INTO</span>
+            </label>
+            <select id="insert-table" class="builder-select">
+              <option value="">Selecciona una tabla...</option>
+              <option value="usuarios">usuarios</option>
+              <option value="productos">productos</option>
+              <option value="pedidos">pedidos</option>
+            </select>
+          </div>
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">VALUES</span>
+            </label>
+            <div class="values-container" id="insert-values-container">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- UPDATE Builder -->
+        <div class="builder-panel hidden" id="update-builder">
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">UPDATE</span>
+            </label>
+            <select id="update-table" class="builder-select">
+              <option value="">Selecciona una tabla...</option>
+              <option value="usuarios">usuarios</option>
+              <option value="productos">productos</option>
+              <option value="pedidos">pedidos</option>
+            </select>
+          </div>
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">SET</span>
+            </label>
+            <div class="set-container" id="update-set-container">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">WHERE</span>
+            </label>
+            <div class="conditions-container" id="update-conditions-container">
+              <div class="conditions-list" id="update-conditions-list"></div>
+              <button class="add-condition-btn" id="add-update-condition">
+                <i class="fas fa-plus"></i> Agregar Condición
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DELETE Builder -->
+        <div class="builder-panel hidden" id="delete-builder">
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">FROM</span>
+            </label>
+            <select id="delete-table" class="builder-select">
+              <option value="">Selecciona una tabla...</option>
+              <option value="usuarios">usuarios</option>
+              <option value="productos">productos</option>
+              <option value="pedidos">pedidos</option>
+            </select>
+          </div>
+          <div class="builder-row">
+            <label class="row-label">
+              <span class="keyword">WHERE</span>
+              <span class="warning-badge">
+                <i class="fas fa-exclamation-triangle"></i> Requerido
+              </span>
+            </label>
+            <div class="conditions-container" id="delete-conditions-container">
+              <div class="conditions-list" id="delete-conditions-list"></div>
+              <button class="add-condition-btn" id="add-delete-condition">
+                <i class="fas fa-plus"></i> Agregar Condición
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Query Preview -->
+      <div class="query-preview">
+        <div class="preview-header">
+          <h4><i class="fas fa-code"></i> Query Generada</h4>
+          <div class="preview-actions">
+            <button id="format-query" class="preview-btn" title="Formatear">
+              <i class="fas fa-align-left"></i>
+            </button>
+            <button id="copy-query" class="preview-btn" title="Copiar">
+              <i class="fas fa-copy"></i>
+            </button>
+            <button id="clear-query" class="preview-btn" title="Limpiar">
+              <i class="fas fa-eraser"></i>
+            </button>
+          </div>
+        </div>
+        <pre
+          class="query-code"><code id="generated-query">-- Selecciona una tabla para comenzar</code></pre>
+        <div class="copy-feedback" id="sql-copy-feedback">
+          <i class="fas fa-check"></i> Query copiada
+        </div>
+      </div>
+
+      <!-- Schema Reference -->
+      <div class="schema-reference">
+        <div class="schema-header">
+          <h4><i class="fas fa-table"></i> Esquema de Tablas</h4>
+          <button id="toggle-schema" class="toggle-btn">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        <div class="schema-content" id="schema-content">
+          <div class="schema-table">
+            <h5>usuarios</h5>
+            <ul>
+              <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
+              <li>
+                <span class="col-name">nombre</span>
+                <span class="col-type">VARCHAR(100)</span>
+              </li>
+              <li>
+                <span class="col-name">email</span>
+                <span class="col-type">VARCHAR(255)</span>
+              </li>
+              <li><span class="col-name">edad</span> <span class="col-type">INT</span></li>
+              <li><span class="col-name">activo</span> <span class="col-type">BOOLEAN</span></li>
+              <li>
+                <span class="col-name">created_at</span>
+                <span class="col-type">DATETIME</span>
+              </li>
+            </ul>
+          </div>
+          <div class="schema-table">
+            <h5>productos</h5>
+            <ul>
+              <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
+              <li>
+                <span class="col-name">nombre</span>
+                <span class="col-type">VARCHAR(200)</span>
+              </li>
+              <li>
+                <span class="col-name">precio</span>
+                <span class="col-type">DECIMAL(10,2)</span>
+              </li>
+              <li><span class="col-name">stock</span> <span class="col-type">INT</span></li>
+              <li>
+                <span class="col-name">categoria_id</span>
+                <span class="col-type">INT FK</span>
+              </li>
+            </ul>
+          </div>
+          <div class="schema-table">
+            <h5>pedidos</h5>
+            <ul>
+              <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
+              <li><span class="col-name">usuario_id</span> <span class="col-type">INT FK</span></li>
+              <li><span class="col-name">fecha</span> <span class="col-type">DATE</span></li>
+              <li>
+                <span class="col-name">total</span>
+                <span class="col-type">DECIMAL(10,2)</span>
+              </li>
+              <li>
+                <span class="col-name">estado</span>
+                <span class="col-type">VARCHAR(50)</span>
+              </li>
+            </ul>
+          </div>
+          <div class="schema-table">
+            <h5>categorias</h5>
+            <ul>
+              <li><span class="col-name">id</span> <span class="col-type">INT PK</span></li>
+              <li>
+                <span class="col-name">nombre</span>
+                <span class="col-type">VARCHAR(100)</span>
+              </li>
+              <li><span class="col-name">descripcion</span> <span class="col-type">TEXT</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script>
-    // SQL Query Builder
-    class SQLQueryBuilder {
-        constructor() {
-            this.tables = {
-                usuarios: ['id', 'nombre', 'email', 'edad', 'activo', 'created_at'],
-                productos: ['id', 'nombre', 'precio', 'stock', 'categoria_id'],
-                pedidos: ['id', 'usuario_id', 'fecha', 'total', 'estado'],
-                categorias: ['id', 'nombre', 'descripcion']
-            };
+  // SQL Query Builder
+  class SQLQueryBuilder {
+    constructor() {
+      this.tables = {
+        usuarios: ["id", "nombre", "email", "edad", "activo", "created_at"],
+        productos: ["id", "nombre", "precio", "stock", "categoria_id"],
+        pedidos: ["id", "usuario_id", "fecha", "total", "estado"],
+        categorias: ["id", "nombre", "descripcion"],
+      };
 
-            this.operators = ['=', '!=', '>', '<', '>=', '<=', 'LIKE', 'IN', 'IS NULL', 'IS NOT NULL'];
-            this.queryType = 'SELECT';
-            this.selectedTable = '';
-            this.selectedColumns = ['*'];
-            this.conditions = [];
-            this.orderBy = { column: '', direction: 'ASC' };
-            this.limit = null;
-        }
-
-        setQueryType(type) {
-            this.queryType = type;
-            this.reset();
-        }
-
-        setTable(table) {
-            this.selectedTable = table;
-            this.selectedColumns = ['*'];
-            this.conditions = [];
-        }
-
-        setColumns(columns) {
-            this.selectedColumns = columns.length ? columns : ['*'];
-        }
-
-        addCondition(column, operator, value, connector = 'AND') {
-            this.conditions.push({ column, operator, value, connector });
-        }
-
-        removeCondition(index) {
-            this.conditions.splice(index, 1);
-        }
-
-        setOrderBy(column, direction) {
-            this.orderBy = { column, direction };
-        }
-
-        setLimit(limit) {
-            this.limit = limit ? parseInt(limit) : null;
-        }
-
-        reset() {
-            this.selectedTable = '';
-            this.selectedColumns = ['*'];
-            this.conditions = [];
-            this.orderBy = { column: '', direction: 'ASC' };
-            this.limit = null;
-        }
-
-        generateQuery(formatted = false) {
-            if (!this.selectedTable) {
-                return '-- Selecciona una tabla para comenzar';
-            }
-
-            const nl = formatted ? '\n' : ' ';
-            const indent = formatted ? '    ' : '';
-
-            switch (this.queryType) {
-                case 'SELECT':
-                    return this.generateSelect(nl, indent);
-                case 'INSERT':
-                    return this.generateInsert(nl, indent);
-                case 'UPDATE':
-                    return this.generateUpdate(nl, indent);
-                case 'DELETE':
-                    return this.generateDelete(nl, indent);
-                default:
-                    return '';
-            }
-        }
-
-        generateSelect(nl, indent) {
-            let query = `SELECT ${this.selectedColumns.join(', ')}${nl}`;
-            query += `FROM ${this.selectedTable}`;
-
-            if (this.conditions.length > 0) {
-                query += `${nl}WHERE `;
-                query += this.conditions.map((c, i) => {
-                    const prefix = i > 0 ? `${c.connector} ` : '';
-                    if (c.operator === 'IS NULL' || c.operator === 'IS NOT NULL') {
-                        return `${prefix}${c.column} ${c.operator}`;
-                    }
-                    const value = this.formatValue(c.value, c.operator);
-                    return `${prefix}${c.column} ${c.operator} ${value}`;
-                }).join(`${nl}${indent}`);
-            }
-
-            if (this.orderBy.column) {
-                query += `${nl}ORDER BY ${this.orderBy.column} ${this.orderBy.direction}`;
-            }
-
-            if (this.limit) {
-                query += `${nl}LIMIT ${this.limit}`;
-            }
-
-            return query + ';';
-        }
-
-        generateInsert(nl, indent) {
-            const columns = this.tables[this.selectedTable] || [];
-            const values = columns.map(col => {
-                const input = document.getElementById(`insert-${col}`);
-                return input ? this.formatValue(input.value) : 'NULL';
-            });
-
-            return `INSERT INTO ${this.selectedTable}${nl}(${columns.join(', ')})${nl}VALUES${nl}(${values.join(', ')});`;
-        }
-
-        generateUpdate(nl, indent) {
-            const columns = this.tables[this.selectedTable] || [];
-            const sets = columns
-                .filter(col => {
-                    const input = document.getElementById(`update-${col}`);
-                    return input && input.value;
-                })
-                .map(col => {
-                    const input = document.getElementById(`update-${col}`);
-                    return `${col} = ${this.formatValue(input.value)}`;
-                });
-
-            if (sets.length === 0) {
-                return '-- Ingresa valores para actualizar';
-            }
-
-            let query = `UPDATE ${this.selectedTable}${nl}SET ${sets.join(`,${nl}${indent}`)}`;
-
-            const conditionsList = document.getElementById('update-conditions-list');
-            if (conditionsList && conditionsList.children.length > 0) {
-                const conditions = this.parseConditionsFromDOM('update-conditions-list');
-                if (conditions.length > 0) {
-                    query += `${nl}WHERE `;
-                    query += conditions.map((c, i) => {
-                        const prefix = i > 0 ? `${c.connector} ` : '';
-                        return `${prefix}${c.column} ${c.operator} ${this.formatValue(c.value)}`;
-                    }).join(`${nl}${indent}`);
-                }
-            }
-
-            return query + ';';
-        }
-
-        generateDelete(nl, indent) {
-            let query = `DELETE FROM ${this.selectedTable}`;
-
-            const conditionsList = document.getElementById('delete-conditions-list');
-            if (conditionsList && conditionsList.children.length > 0) {
-                const conditions = this.parseConditionsFromDOM('delete-conditions-list');
-                if (conditions.length > 0) {
-                    query += `${nl}WHERE `;
-                    query += conditions.map((c, i) => {
-                        const prefix = i > 0 ? `${c.connector} ` : '';
-                        return `${prefix}${c.column} ${c.operator} ${this.formatValue(c.value)}`;
-                    }).join(`${nl}${indent}`);
-                }
-            } else {
-                return '-- ADVERTENCIA: DELETE sin WHERE eliminará todos los registros';
-            }
-
-            return query + ';';
-        }
-
-        parseConditionsFromDOM(listId) {
-            const list = document.getElementById(listId);
-            if (!list) return [];
-
-            return Array.from(list.children).map(item => {
-                const column = item.querySelector('.condition-column')?.value || '';
-                const operator = item.querySelector('.condition-operator')?.value || '=';
-                const value = item.querySelector('.condition-value')?.value || '';
-                const connector = item.querySelector('.condition-connector')?.value || 'AND';
-                return { column, operator, value, connector };
-            }).filter(c => c.column && c.value);
-        }
-
-        formatValue(value, operator = '=') {
-            if (!value || value === '') return 'NULL';
-            if (operator === 'IN') {
-                return `(${value.split(',').map(v => `'${v.trim()}'`).join(', ')})`;
-            }
-            if (!isNaN(value) && value !== '') return value;
-            if (value.toLowerCase() === 'true' || value.toLowerCase() === 'false') return value.toUpperCase();
-            return `'${value}'`;
-        }
+      this.operators = ["=", "!=", ">", "<", ">=", "<=", "LIKE", "IN", "IS NULL", "IS NOT NULL"];
+      this.queryType = "SELECT";
+      this.selectedTable = "";
+      this.selectedColumns = ["*"];
+      this.conditions = [];
+      this.orderBy = { column: "", direction: "ASC" };
+      this.limit = null;
     }
 
-    // UI Controller
-    function initSQLBuilder() {
-        const builder = new SQLQueryBuilder();
+    setQueryType(type) {
+      this.queryType = type;
+      this.reset();
+    }
 
-        // DOM Elements
-        const typeButtons = document.querySelectorAll('.type-btn');
-        const selectTable = document.getElementById('select-table');
-        const insertTable = document.getElementById('insert-table');
-        const updateTable = document.getElementById('update-table');
-        const deleteTable = document.getElementById('delete-table');
-        const availableColumns = document.getElementById('available-columns');
-        const columnChips = document.getElementById('column-chips');
-        const conditionsList = document.getElementById('conditions-list');
-        const addConditionBtn = document.getElementById('add-condition');
-        const orderColumn = document.getElementById('order-column');
-        const orderDirection = document.getElementById('order-direction');
-        const limitValue = document.getElementById('limit-value');
-        const generatedQuery = document.getElementById('generated-query');
-        const copyQueryBtn = document.getElementById('copy-query');
-        const formatQueryBtn = document.getElementById('format-query');
-        const clearQueryBtn = document.getElementById('clear-query');
-        const toggleSchemaBtn = document.getElementById('toggle-schema');
-        const schemaContent = document.getElementById('schema-content');
-        const sqlCopyFeedback = document.getElementById('sql-copy-feedback');
+    setTable(table) {
+      this.selectedTable = table;
+      this.selectedColumns = ["*"];
+      this.conditions = [];
+    }
 
-        if (!generatedQuery) return;
+    setColumns(columns) {
+      this.selectedColumns = columns.length ? columns : ["*"];
+    }
 
-        let isFormatted = true;
+    addCondition(column, operator, value, connector = "AND") {
+      this.conditions.push({ column, operator, value, connector });
+    }
 
-        // Query Type Switch
-        typeButtons.forEach(btn => {
-            btn.onclick = () => {
-                typeButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+    removeCondition(index) {
+      this.conditions.splice(index, 1);
+    }
 
-                const type = btn.dataset.type;
-                builder.setQueryType(type);
+    setOrderBy(column, direction) {
+      this.orderBy = { column, direction };
+    }
 
-                // Show/hide builders
-                document.querySelectorAll('.builder-panel').forEach(p => p.classList.add('hidden'));
-                document.getElementById(`${type.toLowerCase()}-builder`)?.classList.remove('hidden');
+    setLimit(limit) {
+      this.limit = limit ? parseInt(limit) : null;
+    }
 
-                updateQuery();
-            };
+    reset() {
+      this.selectedTable = "";
+      this.selectedColumns = ["*"];
+      this.conditions = [];
+      this.orderBy = { column: "", direction: "ASC" };
+      this.limit = null;
+    }
+
+    generateQuery(formatted = false) {
+      if (!this.selectedTable) {
+        return "-- Selecciona una tabla para comenzar";
+      }
+
+      const nl = formatted ? "\n" : " ";
+      const indent = formatted ? "    " : "";
+
+      switch (this.queryType) {
+        case "SELECT":
+          return this.generateSelect(nl, indent);
+        case "INSERT":
+          return this.generateInsert(nl, indent);
+        case "UPDATE":
+          return this.generateUpdate(nl, indent);
+        case "DELETE":
+          return this.generateDelete(nl, indent);
+        default:
+          return "";
+      }
+    }
+
+    generateSelect(nl, indent) {
+      let query = `SELECT ${this.selectedColumns.join(", ")}${nl}`;
+      query += `FROM ${this.selectedTable}`;
+
+      if (this.conditions.length > 0) {
+        query += `${nl}WHERE `;
+        query += this.conditions
+          .map((c, i) => {
+            const prefix = i > 0 ? `${c.connector} ` : "";
+            if (c.operator === "IS NULL" || c.operator === "IS NOT NULL") {
+              return `${prefix}${c.column} ${c.operator}`;
+            }
+            const value = this.formatValue(c.value, c.operator);
+            return `${prefix}${c.column} ${c.operator} ${value}`;
+          })
+          .join(`${nl}${indent}`);
+      }
+
+      if (this.orderBy.column) {
+        query += `${nl}ORDER BY ${this.orderBy.column} ${this.orderBy.direction}`;
+      }
+
+      if (this.limit) {
+        query += `${nl}LIMIT ${this.limit}`;
+      }
+
+      return query + ";";
+    }
+
+    generateInsert(nl, indent) {
+      const columns = this.tables[this.selectedTable] || [];
+      const values = columns.map((col) => {
+        const input = document.getElementById(`insert-${col}`);
+        return input ? this.formatValue(input.value) : "NULL";
+      });
+
+      return `INSERT INTO ${this.selectedTable}${nl}(${columns.join(", ")})${nl}VALUES${nl}(${values.join(", ")});`;
+    }
+
+    generateUpdate(nl, indent) {
+      const columns = this.tables[this.selectedTable] || [];
+      const sets = columns
+        .filter((col) => {
+          const input = document.getElementById(`update-${col}`);
+          return input && input.value;
+        })
+        .map((col) => {
+          const input = document.getElementById(`update-${col}`);
+          return `${col} = ${this.formatValue(input.value)}`;
         });
 
-        // Table Selection
-        function handleTableChange(tableSelect, builderType) {
-            if (!tableSelect) return;
+      if (sets.length === 0) {
+        return "-- Ingresa valores para actualizar";
+      }
 
-            tableSelect.onchange = () => {
-                const table = tableSelect.value;
-                builder.setTable(table);
+      let query = `UPDATE ${this.selectedTable}${nl}SET ${sets.join(`,${nl}${indent}`)}`;
 
-                if (builderType === 'select') {
-                    updateAvailableColumns(table);
-                    updateOrderByOptions(table);
-                } else if (builderType === 'insert') {
-                    updateInsertFields(table);
-                } else if (builderType === 'update') {
-                    updateUpdateFields(table);
-                }
+      const conditionsList = document.getElementById("update-conditions-list");
+      if (conditionsList && conditionsList.children.length > 0) {
+        const conditions = this.parseConditionsFromDOM("update-conditions-list");
+        if (conditions.length > 0) {
+          query += `${nl}WHERE `;
+          query += conditions
+            .map((c, i) => {
+              const prefix = i > 0 ? `${c.connector} ` : "";
+              return `${prefix}${c.column} ${c.operator} ${this.formatValue(c.value)}`;
+            })
+            .join(`${nl}${indent}`);
+        }
+      }
 
-                updateQuery();
-            };
+      return query + ";";
+    }
+
+    generateDelete(nl, indent) {
+      let query = `DELETE FROM ${this.selectedTable}`;
+
+      const conditionsList = document.getElementById("delete-conditions-list");
+      if (conditionsList && conditionsList.children.length > 0) {
+        const conditions = this.parseConditionsFromDOM("delete-conditions-list");
+        if (conditions.length > 0) {
+          query += `${nl}WHERE `;
+          query += conditions
+            .map((c, i) => {
+              const prefix = i > 0 ? `${c.connector} ` : "";
+              return `${prefix}${c.column} ${c.operator} ${this.formatValue(c.value)}`;
+            })
+            .join(`${nl}${indent}`);
+        }
+      } else {
+        return "-- ADVERTENCIA: DELETE sin WHERE eliminará todos los registros";
+      }
+
+      return query + ";";
+    }
+
+    parseConditionsFromDOM(listId) {
+      const list = document.getElementById(listId);
+      if (!list) return [];
+
+      return Array.from(list.children)
+        .map((item) => {
+          const column = item.querySelector(".condition-column")?.value || "";
+          const operator = item.querySelector(".condition-operator")?.value || "=";
+          const value = item.querySelector(".condition-value")?.value || "";
+          const connector = item.querySelector(".condition-connector")?.value || "AND";
+          return { column, operator, value, connector };
+        })
+        .filter((c) => c.column && c.value);
+    }
+
+    formatValue(value, operator = "=") {
+      if (!value || value === "") return "NULL";
+      if (operator === "IN") {
+        return `(${value
+          .split(",")
+          .map((v) => `'${v.trim()}'`)
+          .join(", ")})`;
+      }
+      if (!isNaN(value) && value !== "") return value;
+      if (value.toLowerCase() === "true" || value.toLowerCase() === "false")
+        return value.toUpperCase();
+      return `'${value}'`;
+    }
+  }
+
+  // UI Controller
+  function initSQLBuilder() {
+    const builder = new SQLQueryBuilder();
+
+    // DOM Elements
+    const typeButtons = document.querySelectorAll(".type-btn");
+    const selectTable = document.getElementById("select-table");
+    const insertTable = document.getElementById("insert-table");
+    const updateTable = document.getElementById("update-table");
+    const deleteTable = document.getElementById("delete-table");
+    const availableColumns = document.getElementById("available-columns");
+    const columnChips = document.getElementById("column-chips");
+    const conditionsList = document.getElementById("conditions-list");
+    const addConditionBtn = document.getElementById("add-condition");
+    const orderColumn = document.getElementById("order-column");
+    const orderDirection = document.getElementById("order-direction");
+    const limitValue = document.getElementById("limit-value");
+    const generatedQuery = document.getElementById("generated-query");
+    const copyQueryBtn = document.getElementById("copy-query");
+    const formatQueryBtn = document.getElementById("format-query");
+    const clearQueryBtn = document.getElementById("clear-query");
+    const toggleSchemaBtn = document.getElementById("toggle-schema");
+    const schemaContent = document.getElementById("schema-content");
+    const sqlCopyFeedback = document.getElementById("sql-copy-feedback");
+
+    if (!generatedQuery) return;
+
+    let isFormatted = true;
+
+    // Query Type Switch
+    typeButtons.forEach((btn) => {
+      btn.onclick = () => {
+        typeButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const type = btn.dataset.type;
+        builder.setQueryType(type);
+
+        // Show/hide builders
+        document.querySelectorAll(".builder-panel").forEach((p) => p.classList.add("hidden"));
+        document.getElementById(`${type.toLowerCase()}-builder`)?.classList.remove("hidden");
+
+        updateQuery();
+      };
+    });
+
+    // Table Selection
+    function handleTableChange(tableSelect, builderType) {
+      if (!tableSelect) return;
+
+      tableSelect.onchange = () => {
+        const table = tableSelect.value;
+        builder.setTable(table);
+
+        if (builderType === "select") {
+          updateAvailableColumns(table);
+          updateOrderByOptions(table);
+        } else if (builderType === "insert") {
+          updateInsertFields(table);
+        } else if (builderType === "update") {
+          updateUpdateFields(table);
         }
 
-        handleTableChange(selectTable, 'select');
-        handleTableChange(insertTable, 'insert');
-        handleTableChange(updateTable, 'update');
-        handleTableChange(deleteTable, 'delete');
+        updateQuery();
+      };
+    }
 
-        function updateAvailableColumns(table) {
-            if (!availableColumns || !columnChips) return;
+    handleTableChange(selectTable, "select");
+    handleTableChange(insertTable, "insert");
+    handleTableChange(updateTable, "update");
+    handleTableChange(deleteTable, "delete");
 
-            const columns = builder.tables[table] || [];
+    function updateAvailableColumns(table) {
+      if (!availableColumns || !columnChips) return;
 
-            // Reset chips
-            columnChips.innerHTML = '<span class="column-chip all-columns active" data-column="*">* (todas)</span>';
+      const columns = builder.tables[table] || [];
 
-            // Add available columns
-            availableColumns.innerHTML = columns.map(col =>
-                `<button class="column-btn" data-column="${col}">${col}</button>`
-            ).join('');
+      // Reset chips
+      columnChips.innerHTML =
+        '<span class="column-chip all-columns active" data-column="*">* (todas)</span>';
 
-            // Column button handlers
-            availableColumns.querySelectorAll('.column-btn').forEach(btn => {
-                btn.onclick = () => {
-                    const col = btn.dataset.column;
-                    addColumnChip(col);
-                    btn.classList.add('selected');
-                };
-            });
+      // Add available columns
+      availableColumns.innerHTML = columns
+        .map((col) => `<button class="column-btn" data-column="${col}">${col}</button>`)
+        .join("");
 
-            // All columns chip handler
-            columnChips.querySelector('.all-columns').onclick = () => {
-                builder.setColumns(['*']);
-                columnChips.innerHTML = '<span class="column-chip all-columns active" data-column="*">* (todas)</span>';
-                availableColumns.querySelectorAll('.column-btn').forEach(b => b.classList.remove('selected'));
-                updateQuery();
-            };
-        }
+      // Column button handlers
+      availableColumns.querySelectorAll(".column-btn").forEach((btn) => {
+        btn.onclick = () => {
+          const col = btn.dataset.column;
+          addColumnChip(col);
+          btn.classList.add("selected");
+        };
+      });
 
-        function addColumnChip(column) {
-            // Remove "all" chip if adding specific columns
-            const allChip = columnChips.querySelector('.all-columns');
-            if (allChip) allChip.remove();
+      // All columns chip handler
+      columnChips.querySelector(".all-columns").onclick = () => {
+        builder.setColumns(["*"]);
+        columnChips.innerHTML =
+          '<span class="column-chip all-columns active" data-column="*">* (todas)</span>';
+        availableColumns
+          .querySelectorAll(".column-btn")
+          .forEach((b) => b.classList.remove("selected"));
+        updateQuery();
+      };
+    }
 
-            // Check if already added
-            if (columnChips.querySelector(`[data-column="${column}"]`)) return;
+    function addColumnChip(column) {
+      // Remove "all" chip if adding specific columns
+      const allChip = columnChips.querySelector(".all-columns");
+      if (allChip) allChip.remove();
 
-            const chip = document.createElement('span');
-            chip.className = 'column-chip';
-            chip.dataset.column = column;
-            chip.innerHTML = `${column} <button class="remove-chip"><i class="fas fa-times"></i></button>`;
+      // Check if already added
+      if (columnChips.querySelector(`[data-column="${column}"]`)) return;
 
-            chip.querySelector('.remove-chip').onclick = (e) => {
-                e.stopPropagation();
-                chip.remove();
-                availableColumns.querySelector(`[data-column="${column}"]`)?.classList.remove('selected');
-                updateSelectedColumns();
-            };
+      const chip = document.createElement("span");
+      chip.className = "column-chip";
+      chip.dataset.column = column;
+      chip.innerHTML = `${column} <button class="remove-chip"><i class="fas fa-times"></i></button>`;
 
-            columnChips.appendChild(chip);
-            updateSelectedColumns();
-        }
+      chip.querySelector(".remove-chip").onclick = (e) => {
+        e.stopPropagation();
+        chip.remove();
+        availableColumns.querySelector(`[data-column="${column}"]`)?.classList.remove("selected");
+        updateSelectedColumns();
+      };
 
-        function updateSelectedColumns() {
-            const chips = columnChips.querySelectorAll('.column-chip:not(.all-columns)');
-            const columns = Array.from(chips).map(c => c.dataset.column);
-            builder.setColumns(columns);
-            updateQuery();
-        }
+      columnChips.appendChild(chip);
+      updateSelectedColumns();
+    }
 
-        function updateOrderByOptions(table) {
-            if (!orderColumn) return;
+    function updateSelectedColumns() {
+      const chips = columnChips.querySelectorAll(".column-chip:not(.all-columns)");
+      const columns = Array.from(chips).map((c) => c.dataset.column);
+      builder.setColumns(columns);
+      updateQuery();
+    }
 
-            const columns = builder.tables[table] || [];
-            orderColumn.innerHTML = '<option value="">Sin ordenar</option>' +
-                columns.map(col => `<option value="${col}">${col}</option>`).join('');
-        }
+    function updateOrderByOptions(table) {
+      if (!orderColumn) return;
 
-        function updateInsertFields(table) {
-            const container = document.getElementById('insert-values-container');
-            if (!container) return;
+      const columns = builder.tables[table] || [];
+      orderColumn.innerHTML =
+        '<option value="">Sin ordenar</option>' +
+        columns.map((col) => `<option value="${col}">${col}</option>`).join("");
+    }
 
-            const columns = builder.tables[table] || [];
-            container.innerHTML = columns.map(col => `
+    function updateInsertFields(table) {
+      const container = document.getElementById("insert-values-container");
+      if (!container) return;
+
+      const columns = builder.tables[table] || [];
+      container.innerHTML = columns
+        .map(
+          (col) => `
                 <div class="value-field">
                     <label>${col}</label>
                     <input type="text" id="insert-${col}" class="builder-input" placeholder="Valor...">
                 </div>
-            `).join('');
+            `,
+        )
+        .join("");
 
-            container.querySelectorAll('input').forEach(input => {
-                input.oninput = updateQuery;
-            });
-        }
+      container.querySelectorAll("input").forEach((input) => {
+        input.oninput = updateQuery;
+      });
+    }
 
-        function updateUpdateFields(table) {
-            const container = document.getElementById('update-set-container');
-            if (!container) return;
+    function updateUpdateFields(table) {
+      const container = document.getElementById("update-set-container");
+      if (!container) return;
 
-            const columns = builder.tables[table] || [];
-            container.innerHTML = columns.map(col => `
+      const columns = builder.tables[table] || [];
+      container.innerHTML = columns
+        .map(
+          (col) => `
                 <div class="value-field">
                     <label>${col}</label>
                     <input type="text" id="update-${col}" class="builder-input" placeholder="Nuevo valor...">
                 </div>
-            `).join('');
+            `,
+        )
+        .join("");
 
-            container.querySelectorAll('input').forEach(input => {
-                input.oninput = updateQuery;
-            });
-        }
+      container.querySelectorAll("input").forEach((input) => {
+        input.oninput = updateQuery;
+      });
+    }
 
-        // Conditions
-        function createConditionRow(listId) {
-            const list = document.getElementById(listId);
-            if (!list) return;
+    // Conditions
+    function createConditionRow(listId) {
+      const list = document.getElementById(listId);
+      if (!list) return;
 
-            const table = builder.selectedTable;
-            const columns = builder.tables[table] || [];
-            const isFirst = list.children.length === 0;
+      const table = builder.selectedTable;
+      const columns = builder.tables[table] || [];
+      const isFirst = list.children.length === 0;
 
-            const row = document.createElement('div');
-            row.className = 'condition-row';
-            row.innerHTML = `
-                ${!isFirst ? `
+      const row = document.createElement("div");
+      row.className = "condition-row";
+      row.innerHTML = `
+                ${
+                  !isFirst
+                    ? `
                     <select class="condition-connector builder-select tiny">
                         <option value="AND">AND</option>
                         <option value="OR">OR</option>
                     </select>
-                ` : ''}
+                `
+                    : ""
+                }
                 <select class="condition-column builder-select small">
                     <option value="">Columna...</option>
-                    ${columns.map(col => `<option value="${col}">${col}</option>`).join('')}
+                    ${columns.map((col) => `<option value="${col}">${col}</option>`).join("")}
                 </select>
                 <select class="condition-operator builder-select tiny">
-                    ${builder.operators.map(op => `<option value="${op}">${op}</option>`).join('')}
+                    ${builder.operators.map((op) => `<option value="${op}">${op}</option>`).join("")}
                 </select>
                 <input type="text" class="condition-value builder-input" placeholder="Valor...">
                 <button class="remove-condition-btn"><i class="fas fa-times"></i></button>
             `;
 
-            row.querySelector('.remove-condition-btn').onclick = () => {
-                row.remove();
-                updateQuery();
-            };
+      row.querySelector(".remove-condition-btn").onclick = () => {
+        row.remove();
+        updateQuery();
+      };
 
-            row.querySelectorAll('select, input').forEach(el => {
-                el.onchange = updateQuery;
-                el.oninput = updateQuery;
-            });
+      row.querySelectorAll("select, input").forEach((el) => {
+        el.onchange = updateQuery;
+        el.oninput = updateQuery;
+      });
 
-            list.appendChild(row);
-        }
-
-        if (addConditionBtn) {
-            addConditionBtn.onclick = () => createConditionRow('conditions-list');
-        }
-
-        document.getElementById('add-update-condition')?.addEventListener('click', () => {
-            createConditionRow('update-conditions-list');
-        });
-
-        document.getElementById('add-delete-condition')?.addEventListener('click', () => {
-            createConditionRow('delete-conditions-list');
-        });
-
-        // Order By
-        if (orderColumn) {
-            orderColumn.onchange = () => {
-                builder.setOrderBy(orderColumn.value, orderDirection?.value || 'ASC');
-                updateQuery();
-            };
-        }
-
-        if (orderDirection) {
-            orderDirection.onchange = () => {
-                builder.setOrderBy(orderColumn?.value || '', orderDirection.value);
-                updateQuery();
-            };
-        }
-
-        // Limit
-        if (limitValue) {
-            limitValue.oninput = () => {
-                builder.setLimit(limitValue.value);
-                updateQuery();
-            };
-        }
-
-        // Update query preview
-        function updateQuery() {
-            // Parse SELECT conditions from DOM
-            if (builder.queryType === 'SELECT') {
-                builder.conditions = builder.parseConditionsFromDOM('conditions-list');
-            }
-
-            const query = builder.generateQuery(isFormatted);
-            generatedQuery.textContent = query;
-        }
-
-        // Actions
-        if (formatQueryBtn) {
-            formatQueryBtn.onclick = () => {
-                isFormatted = !isFormatted;
-                formatQueryBtn.classList.toggle('active', isFormatted);
-                updateQuery();
-            };
-        }
-
-        if (copyQueryBtn) {
-            copyQueryBtn.onclick = async () => {
-                try {
-                    await navigator.clipboard.writeText(generatedQuery.textContent);
-                    if (sqlCopyFeedback) {
-                        sqlCopyFeedback.classList.add('show');
-                        setTimeout(() => sqlCopyFeedback.classList.remove('show'), 2000);
-                    }
-                } catch (err) {
-                    console.error('Failed to copy:', err);
-                }
-            };
-        }
-
-        if (clearQueryBtn) {
-            clearQueryBtn.onclick = () => {
-                builder.reset();
-                if (selectTable) selectTable.value = '';
-                if (insertTable) insertTable.value = '';
-                if (updateTable) updateTable.value = '';
-                if (deleteTable) deleteTable.value = '';
-                if (conditionsList) conditionsList.innerHTML = '';
-                if (columnChips) {
-                    columnChips.innerHTML = '<span class="column-chip all-columns" data-column="*">* (todas)</span>';
-                }
-                if (availableColumns) availableColumns.innerHTML = '';
-                if (orderColumn) orderColumn.innerHTML = '<option value="">Sin ordenar</option>';
-                if (limitValue) limitValue.value = '';
-
-                document.getElementById('insert-values-container')?.replaceChildren();
-                document.getElementById('update-set-container')?.replaceChildren();
-                document.getElementById('update-conditions-list')?.replaceChildren();
-                document.getElementById('delete-conditions-list')?.replaceChildren();
-
-                updateQuery();
-            };
-        }
-
-        // Schema toggle
-        if (toggleSchemaBtn && schemaContent) {
-            toggleSchemaBtn.onclick = () => {
-                schemaContent.classList.toggle('collapsed');
-                toggleSchemaBtn.querySelector('i').classList.toggle('fa-chevron-up');
-                toggleSchemaBtn.querySelector('i').classList.toggle('fa-chevron-down');
-            };
-        }
+      list.appendChild(row);
     }
 
-    // Initialize
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSQLBuilder);
-    } else {
-        initSQLBuilder();
+    if (addConditionBtn) {
+      addConditionBtn.onclick = () => createConditionRow("conditions-list");
     }
-    document.addEventListener('astro:page-load', initSQLBuilder);
+
+    document.getElementById("add-update-condition")?.addEventListener("click", () => {
+      createConditionRow("update-conditions-list");
+    });
+
+    document.getElementById("add-delete-condition")?.addEventListener("click", () => {
+      createConditionRow("delete-conditions-list");
+    });
+
+    // Order By
+    if (orderColumn) {
+      orderColumn.onchange = () => {
+        builder.setOrderBy(orderColumn.value, orderDirection?.value || "ASC");
+        updateQuery();
+      };
+    }
+
+    if (orderDirection) {
+      orderDirection.onchange = () => {
+        builder.setOrderBy(orderColumn?.value || "", orderDirection.value);
+        updateQuery();
+      };
+    }
+
+    // Limit
+    if (limitValue) {
+      limitValue.oninput = () => {
+        builder.setLimit(limitValue.value);
+        updateQuery();
+      };
+    }
+
+    // Update query preview
+    function updateQuery() {
+      // Parse SELECT conditions from DOM
+      if (builder.queryType === "SELECT") {
+        builder.conditions = builder.parseConditionsFromDOM("conditions-list");
+      }
+
+      const query = builder.generateQuery(isFormatted);
+      generatedQuery.textContent = query;
+    }
+
+    // Actions
+    if (formatQueryBtn) {
+      formatQueryBtn.onclick = () => {
+        isFormatted = !isFormatted;
+        formatQueryBtn.classList.toggle("active", isFormatted);
+        updateQuery();
+      };
+    }
+
+    if (copyQueryBtn) {
+      copyQueryBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(generatedQuery.textContent);
+          if (sqlCopyFeedback) {
+            sqlCopyFeedback.classList.add("show");
+            setTimeout(() => sqlCopyFeedback.classList.remove("show"), 2000);
+          }
+        } catch (err) {
+          console.error("Failed to copy:", err);
+        }
+      };
+    }
+
+    if (clearQueryBtn) {
+      clearQueryBtn.onclick = () => {
+        builder.reset();
+        if (selectTable) selectTable.value = "";
+        if (insertTable) insertTable.value = "";
+        if (updateTable) updateTable.value = "";
+        if (deleteTable) deleteTable.value = "";
+        if (conditionsList) conditionsList.innerHTML = "";
+        if (columnChips) {
+          columnChips.innerHTML =
+            '<span class="column-chip all-columns" data-column="*">* (todas)</span>';
+        }
+        if (availableColumns) availableColumns.innerHTML = "";
+        if (orderColumn) orderColumn.innerHTML = '<option value="">Sin ordenar</option>';
+        if (limitValue) limitValue.value = "";
+
+        document.getElementById("insert-values-container")?.replaceChildren();
+        document.getElementById("update-set-container")?.replaceChildren();
+        document.getElementById("update-conditions-list")?.replaceChildren();
+        document.getElementById("delete-conditions-list")?.replaceChildren();
+
+        updateQuery();
+      };
+    }
+
+    // Schema toggle
+    if (toggleSchemaBtn && schemaContent) {
+      toggleSchemaBtn.onclick = () => {
+        schemaContent.classList.toggle("collapsed");
+        toggleSchemaBtn.querySelector("i").classList.toggle("fa-chevron-up");
+        toggleSchemaBtn.querySelector("i").classList.toggle("fa-chevron-down");
+      };
+    }
+  }
+
+  // Initialize
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSQLBuilder);
+  } else {
+    initSQLBuilder();
+  }
+  document.addEventListener("astro:page-load", initSQLBuilder);
 </script>
 
 <style>
-    .tool-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, transparent 100%);
-    }
+  .tool-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.03) 0%, transparent 100%);
+  }
 
-    .tool-container {
-        max-width: 900px;
-        margin: 0 auto;
-    }
+  .tool-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 
-    .tool-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
+  .tool-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
 
-    .sql-icon {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2)) !important;
-        color: #a855f7 !important;
-    }
+  .sql-icon {
+    background: linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.2),
+      rgba(236, 72, 153, 0.2)
+    ) !important;
+    color: #a855f7 !important;
+  }
 
-    .tool-icon {
-        width: 60px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
-        border-radius: 16px;
-        font-size: 1.5rem;
-        color: #00d4ff;
-    }
+  .tool-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(139, 92, 246, 0.2));
+    border-radius: 16px;
+    font-size: 1.5rem;
+    color: #00d4ff;
+  }
 
-    .tool-title h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        margin: 0;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .tool-title h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .tool-title p {
-        font-size: 0.9rem;
-        color: #64748b;
-        margin: 0.25rem 0 0 0;
-    }
+  .tool-title p {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0.25rem 0 0 0;
+  }
 
-    .dialect-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        border-radius: 20px;
-        font-size: 0.8rem;
-        color: #a855f7;
-        margin-left: auto;
-    }
+  .dialect-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #a855f7;
+    margin-left: auto;
+  }
 
-    .sql-tool {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-    }
+  .sql-tool {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
 
-    /* Query Type Selector */
-    .query-type-selector {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
+  /* Query Type Selector */
+  .query-type-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
 
-    .type-btn {
-        padding: 0.75rem 1.25rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        color: #94a3b8;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        transition: all 0.2s;
-    }
+  .type-btn {
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+  }
 
-    .type-btn:hover {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.3);
-    }
+  .type-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
 
-    .type-btn.active {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-        border-color: #a855f7;
-        color: #f8fafc;
-    }
+  .type-btn.active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border-color: #a855f7;
+    color: #f8fafc;
+  }
 
-    /* Builder Area */
-    .builder-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
+  /* Builder Area */
+  .builder-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 
-    .builder-panel.hidden {
-        display: none;
-    }
+  .builder-panel.hidden {
+    display: none;
+  }
 
+  .builder-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .row-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+  }
+
+  .keyword {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    color: #a855f7;
+    font-size: 0.9rem;
+  }
+
+  .tooltip-icon {
+    color: #64748b;
+    font-size: 0.75rem;
+    cursor: help;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .builder-select {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .builder-select:focus {
+    outline: none;
+    border-color: #a855f7;
+  }
+
+  .builder-select.small {
+    max-width: 200px;
+  }
+
+  .builder-select.tiny {
+    max-width: 100px;
+  }
+
+  .builder-input {
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+  }
+
+  .builder-input:focus {
+    outline: none;
+    border-color: #a855f7;
+  }
+
+  .builder-input.small {
+    max-width: 120px;
+  }
+
+  /* Columns Container */
+  .columns-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .column-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .column-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #e9d5ff;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+  }
+
+  .column-chip.active,
+  .column-chip.all-columns {
+    background: rgba(139, 92, 246, 0.3);
+  }
+
+  .remove-chip {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.7rem;
+  }
+
+  .remove-chip:hover {
+    color: #ef4444;
+  }
+
+  .available-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .column-btn {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 0.8rem;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .column-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  .column-btn.selected {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: #a855f7;
+    color: #e9d5ff;
+  }
+
+  /* Conditions */
+  .conditions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .conditions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .condition-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .remove-condition-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 6px;
+    color: #ef4444;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .remove-condition-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+  }
+
+  .add-condition-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px dashed rgba(139, 92, 246, 0.3);
+    border-radius: 8px;
+    color: #a855f7;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: fit-content;
+  }
+
+  .add-condition-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-style: solid;
+  }
+
+  .order-container {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Values Fields */
+  .values-container,
+  .set-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .value-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .value-field label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  /* Query Preview */
+  .query-preview {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    position: relative;
+  }
+
+  .preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .preview-header h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #a855f7;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .preview-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .preview-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .preview-btn:hover,
+  .preview-btn.active {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a855f7;
+  }
+
+  .query-code {
+    margin: 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .query-code code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    color: #e9d5ff;
+    white-space: pre-wrap;
+    line-height: 1.6;
+  }
+
+  .copy-feedback {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: #10b981;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .copy-feedback.show {
+    opacity: 1;
+  }
+
+  /* Schema Reference */
+  .schema-reference {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
+  .schema-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .schema-header h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .toggle-btn {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .schema-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    transition: all 0.3s;
+  }
+
+  .schema-content.collapsed {
+    display: none;
+  }
+
+  .schema-table h5 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #a855f7;
+    margin: 0 0 0.75rem 0;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .schema-table ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .schema-table li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.375rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+  }
+
+  .col-name {
+    color: #f8fafc;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .col-type {
+    color: #64748b;
+    font-size: 0.7rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .builder-row {
-        display: grid;
-        grid-template-columns: 120px 1fr;
-        gap: 1rem;
-        align-items: start;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
     }
 
     .row-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding-top: 0.75rem;
-    }
-
-    .keyword {
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: 600;
-        color: #a855f7;
-        font-size: 0.9rem;
-    }
-
-    .tooltip-icon {
-        color: #64748b;
-        font-size: 0.75rem;
-        cursor: help;
-    }
-
-    .warning-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.25rem;
-        font-size: 0.7rem;
-        color: #f59e0b;
-        background: rgba(245, 158, 11, 0.1);
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-    }
-
-    .builder-select {
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: border-color 0.2s;
-    }
-
-    .builder-select:focus {
-        outline: none;
-        border-color: #a855f7;
-    }
-
-    .builder-select.small {
-        max-width: 200px;
-    }
-
-    .builder-select.tiny {
-        max-width: 100px;
-    }
-
-    .builder-input {
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: #f8fafc;
-        font-size: 0.9rem;
-        transition: border-color 0.2s;
-    }
-
-    .builder-input:focus {
-        outline: none;
-        border-color: #a855f7;
-    }
-
-    .builder-input.small {
-        max-width: 120px;
-    }
-
-    /* Columns Container */
-    .columns-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .column-chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-
-    .column-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 0.75rem;
-        background: rgba(139, 92, 246, 0.2);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        border-radius: 6px;
-        font-size: 0.85rem;
-        color: #e9d5ff;
-        font-family: 'JetBrains Mono', monospace;
-        cursor: pointer;
-    }
-
-    .column-chip.active,
-    .column-chip.all-columns {
-        background: rgba(139, 92, 246, 0.3);
-    }
-
-    .remove-chip {
-        background: none;
-        border: none;
-        color: #94a3b8;
-        cursor: pointer;
-        padding: 0;
-        font-size: 0.7rem;
-    }
-
-    .remove-chip:hover {
-        color: #ef4444;
-    }
-
-    .available-columns {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-
-    .column-btn {
-        padding: 0.5rem 0.75rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-        color: #94a3b8;
-        font-size: 0.8rem;
-        font-family: 'JetBrains Mono', monospace;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .column-btn:hover {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.3);
-    }
-
-    .column-btn.selected {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: #a855f7;
-        color: #e9d5ff;
-    }
-
-    /* Conditions */
-    .conditions-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .conditions-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+      padding-top: 0;
     }
 
     .condition-row {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
+      flex-direction: column;
+      align-items: stretch;
     }
 
-    .remove-condition-btn {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(239, 68, 68, 0.1);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        border-radius: 6px;
-        color: #ef4444;
-        cursor: pointer;
-        transition: all 0.2s;
+    .builder-select.small,
+    .builder-select.tiny,
+    .builder-input.small {
+      max-width: 100%;
     }
 
-    .remove-condition-btn:hover {
-        background: rgba(239, 68, 68, 0.2);
+    .query-type-selector {
+      flex-direction: column;
     }
 
-    .add-condition-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px dashed rgba(139, 92, 246, 0.3);
-        border-radius: 8px;
-        color: #a855f7;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        width: fit-content;
+    .type-btn {
+      justify-content: center;
     }
+  }
 
-    .add-condition-btn:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-style: solid;
-    }
+  /* Light Mode */
+  :global([data-theme="light"]) .sql-tool {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
 
-    .order-container {
-        display: flex;
-        gap: 0.5rem;
-    }
+  :global([data-theme="light"]) .tool-title h2 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    /* Values Fields */
-    .values-container,
-    .set-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 0.75rem;
-    }
+  :global([data-theme="light"]) .type-btn {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #64748b;
+  }
 
-    .value-field {
-        display: flex;
-        flex-direction: column;
-        gap: 0.375rem;
-    }
+  :global([data-theme="light"]) .type-btn.active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+    color: #1e293b;
+  }
 
-    .value-field label {
-        font-size: 0.75rem;
-        color: #94a3b8;
-        font-family: 'JetBrains Mono', monospace;
-    }
+  :global([data-theme="light"]) .builder-select,
+  :global([data-theme="light"]) .builder-input {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+  }
 
-    /* Query Preview */
-    .query-preview {
-        margin-top: 2rem;
-        padding: 1.5rem;
-        background: rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        border-radius: 12px;
-        position: relative;
-    }
+  :global([data-theme="light"]) .query-preview {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(139, 92, 246, 0.2);
+  }
 
-    .preview-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
+  :global([data-theme="light"]) .query-code {
+    background: rgba(0, 0, 0, 0.05);
+  }
 
-    .preview-header h4 {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #a855f7;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0;
-    }
+  :global([data-theme="light"]) .query-code code {
+    color: #7c3aed;
+  }
 
-    .preview-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
+  :global([data-theme="light"]) .schema-reference {
+    background: rgba(0, 0, 0, 0.02);
+  }
 
-    .preview-btn {
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
+  :global([data-theme="light"]) .column-btn {
+    background: rgba(0, 0, 0, 0.03);
+    color: #64748b;
+  }
 
-    .preview-btn:hover,
-    .preview-btn.active {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #a855f7;
-    }
-
-    .query-code {
-        margin: 0;
-        padding: 1rem;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 8px;
-        overflow-x: auto;
-    }
-
-    .query-code code {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.9rem;
-        color: #e9d5ff;
-        white-space: pre-wrap;
-        line-height: 1.6;
-    }
-
-    .copy-feedback {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-        background: #10b981;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-    }
-
-    .copy-feedback.show {
-        opacity: 1;
-    }
-
-    /* Schema Reference */
-    .schema-reference {
-        margin-top: 2rem;
-        padding: 1.25rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-    }
-
-    .schema-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .schema-header h4 {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #94a3b8;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0;
-    }
-
-    .toggle-btn {
-        background: transparent;
-        border: none;
-        color: #64748b;
-        cursor: pointer;
-        padding: 0.5rem;
-    }
-
-    .schema-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.25rem;
-        transition: all 0.3s;
-    }
-
-    .schema-content.collapsed {
-        display: none;
-    }
-
-    .schema-table h5 {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #a855f7;
-        margin: 0 0 0.75rem 0;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .schema-table ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .schema-table li {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.375rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        font-size: 0.8rem;
-    }
-
-    .col-name {
-        color: #f8fafc;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .col-type {
-        color: #64748b;
-        font-size: 0.7rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .builder-row {
-            grid-template-columns: 1fr;
-            gap: 0.5rem;
-        }
-
-        .row-label {
-            padding-top: 0;
-        }
-
-        .condition-row {
-            flex-direction: column;
-            align-items: stretch;
-        }
-
-        .builder-select.small,
-        .builder-select.tiny,
-        .builder-input.small {
-            max-width: 100%;
-        }
-
-        .query-type-selector {
-            flex-direction: column;
-        }
-
-        .type-btn {
-            justify-content: center;
-        }
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .sql-tool {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.1);
-    }
-
-    :global([data-theme="light"]) .tool-title h2 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .type-btn {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .type-btn.active {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .builder-select,
-    :global([data-theme="light"]) .builder-input {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .query-preview {
-        background: rgba(0, 0, 0, 0.03);
-        border-color: rgba(139, 92, 246, 0.2);
-    }
-
-    :global([data-theme="light"]) .query-code {
-        background: rgba(0, 0, 0, 0.05);
-    }
-
-    :global([data-theme="light"]) .query-code code {
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .schema-reference {
-        background: rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .column-btn {
-        background: rgba(0, 0, 0, 0.03);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .column-chip {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-    }
+  :global([data-theme="light"]) .column-chip {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+  }
 </style>

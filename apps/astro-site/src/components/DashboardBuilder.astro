@@ -7,1329 +7,1386 @@
 ---
 
 <section id="dashboard-builder" class="dashboard-builder-section">
-    <div class="dashboard-container">
-        <!-- Header -->
-        <div class="dashboard-header" data-aos="fade-up">
-            <div class="header-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="header-content">
-                <h2>Constructor de Dashboards</h2>
-                <p>Diseña dashboards interactivos estilo Tableau/Power BI con drag & drop</p>
-            </div>
-            <div class="header-badges">
-                <span class="badge bi">Business Intelligence</span>
-                <span class="badge viz">Data Viz</span>
-                <span class="badge drag">Drag & Drop</span>
-            </div>
-        </div>
-
-        <!-- Builder Layout -->
-        <div class="builder-layout" data-aos="fade-up" data-aos-delay="100">
-            <!-- Left Sidebar - Components -->
-            <div class="components-sidebar">
-                <div class="sidebar-header">
-                    <i class="fas fa-shapes"></i>
-                    <span>Componentes</span>
-                </div>
-
-                <!-- Charts -->
-                <div class="component-group">
-                    <h5><i class="fas fa-chart-bar"></i> Gráficos</h5>
-                    <div class="component-list">
-                        <div class="draggable-component" draggable="true" data-type="bar-chart">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Barras</span>
-                        </div>
-                        <div class="draggable-component" draggable="true" data-type="line-chart">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Líneas</span>
-                        </div>
-                        <div class="draggable-component" draggable="true" data-type="pie-chart">
-                            <i class="fas fa-chart-pie"></i>
-                            <span>Pastel</span>
-                        </div>
-                        <div class="draggable-component" draggable="true" data-type="area-chart">
-                            <i class="fas fa-chart-area"></i>
-                            <span>Área</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- KPIs -->
-                <div class="component-group">
-                    <h5><i class="fas fa-tachometer-alt"></i> KPIs</h5>
-                    <div class="component-list">
-                        <div class="draggable-component" draggable="true" data-type="kpi-card">
-                            <i class="fas fa-hashtag"></i>
-                            <span>KPI</span>
-                        </div>
-                        <div class="draggable-component" draggable="true" data-type="gauge">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Gauge</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Canvas Area -->
-            <div class="canvas-area">
-                <div class="canvas-toolbar">
-                    <span class="dashboard-title" contenteditable="true">Mi Dashboard</span>
-                    <div class="toolbar-right">
-                        <button class="toolbar-btn" id="db-clear-canvas" title="Limpiar">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        <button class="toolbar-btn" id="db-export-code" title="Exportar código">
-                            <i class="fas fa-code"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="dashboard-canvas" id="dashboard-canvas">
-                    <div class="canvas-grid">
-                        <!-- Components will be dropped here -->
-                    </div>
-                    <div class="drop-zone-placeholder">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <p>Arrastra componentes aquí</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Sidebar - Properties -->
-            <div class="properties-sidebar">
-                <div class="sidebar-header">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>Propiedades</span>
-                </div>
-                <div id="properties-content" class="properties-content">
-                    <div class="no-selection">
-                        <i class="fas fa-hand-pointer"></i>
-                        <p>Selecciona un componente</p>
-                    </div>
-                </div>
-
-                <!-- Templates -->
-                <div class="templates-section">
-                    <div class="sidebar-header">
-                        <i class="fas fa-magic"></i>
-                        <span>Templates</span>
-                    </div>
-                    <div class="templates-list">
-                        <div class="template-card" data-template="sales">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Ventas</span>
-                        </div>
-                        <div class="template-card" data-template="marketing">
-                            <i class="fas fa-bullhorn"></i>
-                            <span>Marketing</span>
-                        </div>
-                        <div class="template-card" data-template="finance">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Finanzas</span>
-                        </div>
-                        <div class="template-card" data-template="operations">
-                            <i class="fas fa-cogs"></i>
-                            <span>Operaciones</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <div class="dashboard-header" data-aos="fade-up">
+      <div class="header-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="header-content">
+        <h2>Constructor de Dashboards</h2>
+        <p>Diseña dashboards interactivos estilo Tableau/Power BI con drag & drop</p>
+      </div>
+      <div class="header-badges">
+        <span class="badge bi">Business Intelligence</span>
+        <span class="badge viz">Data Viz</span>
+        <span class="badge drag">Drag & Drop</span>
+      </div>
     </div>
 
-    <!-- Code Export Modal -->
-    <div id="code-modal" class="code-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Código del Dashboard</h3>
-                <button id="close-modal" class="close-btn">&times;</button>
+    <!-- Builder Layout -->
+    <div class="builder-layout" data-aos="fade-up" data-aos-delay="100">
+      <!-- Left Sidebar - Components -->
+      <div class="components-sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-shapes"></i>
+          <span>Componentes</span>
+        </div>
+
+        <!-- Charts -->
+        <div class="component-group">
+          <h5><i class="fas fa-chart-bar"></i> Gráficos</h5>
+          <div class="component-list">
+            <div class="draggable-component" draggable="true" data-type="bar-chart">
+              <i class="fas fa-chart-bar"></i>
+              <span>Barras</span>
             </div>
-            <div class="code-tabs">
-                <button class="code-tab active" data-lang="python">Python</button>
-                <button class="code-tab" data-lang="html">HTML</button>
+            <div class="draggable-component" draggable="true" data-type="line-chart">
+              <i class="fas fa-chart-line"></i>
+              <span>Líneas</span>
             </div>
-            <div class="code-output">
-                <pre><code id="generated-code"></code></pre>
+            <div class="draggable-component" draggable="true" data-type="pie-chart">
+              <i class="fas fa-chart-pie"></i>
+              <span>Pastel</span>
             </div>
-            <button id="copy-generated-code" class="copy-btn">
-                <i class="fas fa-copy"></i> Copiar Código
+            <div class="draggable-component" draggable="true" data-type="area-chart">
+              <i class="fas fa-chart-area"></i>
+              <span>Área</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="component-group">
+          <h5><i class="fas fa-tachometer-alt"></i> KPIs</h5>
+          <div class="component-list">
+            <div class="draggable-component" draggable="true" data-type="kpi-card">
+              <i class="fas fa-hashtag"></i>
+              <span>KPI</span>
+            </div>
+            <div class="draggable-component" draggable="true" data-type="gauge">
+              <i class="fas fa-tachometer-alt"></i>
+              <span>Gauge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas Area -->
+      <div class="canvas-area">
+        <div class="canvas-toolbar">
+          <span class="dashboard-title" contenteditable="true">Mi Dashboard</span>
+          <div class="toolbar-right">
+            <button class="toolbar-btn" id="db-clear-canvas" title="Limpiar">
+              <i class="fas fa-trash"></i>
             </button>
+            <button class="toolbar-btn" id="db-export-code" title="Exportar código">
+              <i class="fas fa-code"></i>
+            </button>
+          </div>
         </div>
+        <div class="dashboard-canvas" id="dashboard-canvas">
+          <div class="canvas-grid">
+            <!-- Components will be dropped here -->
+          </div>
+          <div class="drop-zone-placeholder">
+            <i class="fas fa-mouse-pointer"></i>
+            <p>Arrastra componentes aquí</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Sidebar - Properties -->
+      <div class="properties-sidebar">
+        <div class="sidebar-header">
+          <i class="fas fa-sliders-h"></i>
+          <span>Propiedades</span>
+        </div>
+        <div id="properties-content" class="properties-content">
+          <div class="no-selection">
+            <i class="fas fa-hand-pointer"></i>
+            <p>Selecciona un componente</p>
+          </div>
+        </div>
+
+        <!-- Templates -->
+        <div class="templates-section">
+          <div class="sidebar-header">
+            <i class="fas fa-magic"></i>
+            <span>Templates</span>
+          </div>
+          <div class="templates-list">
+            <div class="template-card" data-template="sales">
+              <i class="fas fa-shopping-cart"></i>
+              <span>Ventas</span>
+            </div>
+            <div class="template-card" data-template="marketing">
+              <i class="fas fa-bullhorn"></i>
+              <span>Marketing</span>
+            </div>
+            <div class="template-card" data-template="finance">
+              <i class="fas fa-dollar-sign"></i>
+              <span>Finanzas</span>
+            </div>
+            <div class="template-card" data-template="operations">
+              <i class="fas fa-cogs"></i>
+              <span>Operaciones</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Code Export Modal -->
+  <div id="code-modal" class="code-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Código del Dashboard</h3>
+        <button id="close-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="code-tabs">
+        <button class="code-tab active" data-lang="python">Python</button>
+        <button class="code-tab" data-lang="html">HTML</button>
+      </div>
+      <div class="code-output">
+        <pre><code id="generated-code" /></pre>
+      </div>
+      <button id="copy-generated-code" class="copy-btn">
+        <i class="fas fa-copy"></i> Copiar Código
+      </button>
+    </div>
+  </div>
 </section>
 
 <style>
-    .dashboard-builder-section {
-        padding: 4rem 2rem;
-        background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  .dashboard-builder-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);
+  }
+
+  .dashboard-container {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 16px;
+  }
+
+  .header-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-icon i {
+    font-size: 2rem;
+    color: white;
+  }
+
+  .header-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .header-content p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge.bi {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .badge.viz {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+
+  .badge.drag {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  /* Builder Layout */
+  .builder-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 280px;
+    gap: 1rem;
+    min-height: 600px;
+  }
+
+  /* Sidebars */
+  .components-sidebar,
+  .properties-sidebar {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #f8fafc;
+  }
+
+  .sidebar-header i {
+    color: #8b5cf6;
+  }
+
+  /* Component Groups */
+  .component-group {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .component-group h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .component-group h5 i {
+    font-size: 0.7rem;
+    color: #8b5cf6;
+  }
+
+  .component-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .draggable-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.6rem 0.4rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    cursor: grab;
+    transition: all 0.2s ease;
+    font-size: 0.7rem;
+    color: #94a3b8;
+  }
+
+  .draggable-component:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+    transform: translateY(-2px);
+  }
+
+  .draggable-component:active {
+    cursor: grabbing;
+  }
+
+  .draggable-component i {
+    font-size: 1.1rem;
+  }
+
+  /* Canvas Area */
+  .canvas-area {
+    background: rgba(30, 41, 59, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .dashboard-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .dashboard-title:focus {
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  .toolbar-right {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .toolbar-btn {
+    width: 34px;
+    height: 34px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 6px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toolbar-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    color: #8b5cf6;
+  }
+
+  .dashboard-canvas {
+    flex: 1;
+    padding: 1rem;
+    position: relative;
+    min-height: 500px;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .canvas-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem;
+    min-height: 100%;
+  }
+
+  .drop-zone-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #64748b;
+    pointer-events: none;
+  }
+
+  .drop-zone-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+  }
+
+  .drop-zone-placeholder p {
+    font-size: 0.9rem;
+  }
+
+  .dashboard-canvas.has-components .drop-zone-placeholder {
+    display: none;
+  }
+
+  /* Dropped Component */
+  .dropped-component {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .dropped-component:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+  }
+
+  .dropped-component.selected {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+  }
+
+  .component-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .component-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .component-actions {
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .dropped-component:hover .component-actions {
+    opacity: 1;
+  }
+
+  .comp-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 4px;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comp-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .component-preview {
+    padding: 1rem;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Chart Previews */
+  .chart-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .bar-chart-preview {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.4rem;
+    height: 100px;
+    padding: 0.5rem;
+  }
+
+  .bar-chart-preview .bar {
+    flex: 1;
+    background: linear-gradient(180deg, #8b5cf6, #a855f7);
+    border-radius: 4px 4px 0 0;
+    min-height: 20px;
+    transition: height 0.3s ease;
+  }
+
+  /* Properties */
+  .properties-content {
+    padding: 1rem;
+  }
+
+  .no-selection {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #64748b;
+  }
+
+  .no-selection i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.3;
+  }
+
+  .no-selection p {
+    font-size: 0.85rem;
+  }
+
+  /* Templates */
+  .templates-section {
+    margin-top: auto;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .templates-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .template-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 0.5rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .template-card:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #a78bfa;
+  }
+
+  .template-card i {
+    font-size: 1.25rem;
+  }
+
+  /* Code Modal */
+  .code-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .code-modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #1e293b;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .modal-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 8px;
+    color: #94a3b8;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .code-tabs {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .code-tab {
+    padding: 0.5rem 1rem;
+    background: rgba(148, 163, 184, 0.1);
+    border: none;
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .code-tab:hover {
+    background: rgba(139, 92, 246, 0.2);
+  }
+
+  .code-tab.active {
+    background: #8b5cf6;
+    color: white;
+  }
+
+  .code-output {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .code-output pre {
+    margin: 0;
+    font-family: "Fira Code", monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+  }
+
+  .copy-btn {
+    margin: 1rem 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Responsive */
+  @media (max-width: 1200px) {
+    .builder-layout {
+      grid-template-columns: 1fr;
     }
 
-    .dashboard-container {
-        max-width: 1600px;
-        margin: 0 auto;
+    .components-sidebar,
+    .properties-sidebar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-builder-section {
+      padding: 2rem 1rem;
     }
 
     .dashboard-header {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.05));
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        border-radius: 16px;
-    }
-
-    .header-icon {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #8b5cf6, #a855f7);
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .header-icon i {
-        font-size: 2rem;
-        color: white;
-    }
-
-    .header-content h2 {
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .header-content p {
-        color: #94a3b8;
-        font-size: 0.95rem;
+      flex-direction: column;
+      text-align: center;
     }
 
     .header-badges {
-        display: flex;
-        gap: 0.5rem;
-        margin-left: auto;
-    }
-
-    .badge {
-        padding: 0.35rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .badge.bi {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .badge.viz {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-    }
-
-    .badge.drag {
-        background: rgba(251, 191, 36, 0.2);
-        color: #fbbf24;
-        border: 1px solid rgba(251, 191, 36, 0.3);
-    }
-
-    /* Builder Layout */
-    .builder-layout {
-        display: grid;
-        grid-template-columns: 200px 1fr 280px;
-        gap: 1rem;
-        min-height: 600px;
-    }
-
-    /* Sidebars */
-    .components-sidebar,
-    .properties-sidebar {
-        background: rgba(30, 41, 59, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    .sidebar-header {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.85rem 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-        font-weight: 600;
-        font-size: 0.9rem;
-        color: #f8fafc;
-    }
-
-    .sidebar-header i {
-        color: #8b5cf6;
-    }
-
-    /* Component Groups */
-    .component-group {
-        padding: 0.75rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .component-group h5 {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #94a3b8;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
-    }
-
-    .component-group h5 i {
-        font-size: 0.7rem;
-        color: #8b5cf6;
-    }
-
-    .component-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.4rem;
-    }
-
-    .draggable-component {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-        padding: 0.6rem 0.4rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        cursor: grab;
-        transition: all 0.2s ease;
-        font-size: 0.7rem;
-        color: #94a3b8;
-    }
-
-    .draggable-component:hover {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #a78bfa;
-        transform: translateY(-2px);
-    }
-
-    .draggable-component:active {
-        cursor: grabbing;
-    }
-
-    .draggable-component i {
-        font-size: 1.1rem;
-    }
-
-    /* Canvas Area */
-    .canvas-area {
-        background: rgba(30, 41, 59, 0.3);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 12px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .canvas-toolbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .dashboard-title {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        padding: 0.25rem 0.5rem;
-        border-radius: 4px;
-        outline: none;
-    }
-
-    .dashboard-title:focus {
-        background: rgba(139, 92, 246, 0.1);
-    }
-
-    .toolbar-right {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .toolbar-btn {
-        width: 34px;
-        height: 34px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 6px;
-        color: #94a3b8;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .toolbar-btn:hover {
-        background: rgba(139, 92, 246, 0.2);
-        color: #8b5cf6;
-    }
-
-    .dashboard-canvas {
-        flex: 1;
-        padding: 1rem;
-        position: relative;
-        min-height: 500px;
-        background-image:
-            linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
-        background-size: 20px 20px;
-    }
-
-    .canvas-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-auto-rows: minmax(100px, auto);
-        gap: 1rem;
-        min-height: 100%;
-    }
-
-    .drop-zone-placeholder {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: #64748b;
-        pointer-events: none;
-    }
-
-    .drop-zone-placeholder i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.3;
-    }
-
-    .drop-zone-placeholder p {
-        font-size: 0.9rem;
-    }
-
-    .dashboard-canvas.has-components .drop-zone-placeholder {
-        display: none;
-    }
-
-    /* Dropped Component */
-    .dropped-component {
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .dropped-component:hover {
-        border-color: rgba(139, 92, 246, 0.5);
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
-    }
-
-    .dropped-component.selected {
-        border-color: #8b5cf6;
-        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
-    }
-
-    .component-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem 0.75rem;
-        background: rgba(15, 23, 42, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .component-title {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .component-actions {
-        display: flex;
-        gap: 0.25rem;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .dropped-component:hover .component-actions {
-        opacity: 1;
-    }
-
-    .comp-btn {
-        width: 24px;
-        height: 24px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 4px;
-        color: #94a3b8;
-        cursor: pointer;
-        font-size: 0.7rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .comp-btn:hover {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-    }
-
-    .component-preview {
-        padding: 1rem;
-        min-height: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Chart Previews */
-    .chart-preview {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .bar-chart-preview {
-        display: flex;
-        align-items: flex-end;
-        gap: 0.4rem;
-        height: 100px;
-        padding: 0.5rem;
-    }
-
-    .bar-chart-preview .bar {
-        flex: 1;
-        background: linear-gradient(180deg, #8b5cf6, #a855f7);
-        border-radius: 4px 4px 0 0;
-        min-height: 20px;
-        transition: height 0.3s ease;
-    }
-
-    /* Properties */
-    .properties-content {
-        padding: 1rem;
-    }
-
-    .no-selection {
-        text-align: center;
-        padding: 2rem 1rem;
-        color: #64748b;
-    }
-
-    .no-selection i {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        opacity: 0.3;
-    }
-
-    .no-selection p {
-        font-size: 0.85rem;
-    }
-
-    /* Templates */
-    .templates-section {
-        margin-top: auto;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .templates-list {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        padding: 0.75rem;
-    }
-
-    .template-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-        padding: 0.75rem 0.5rem;
-        background: rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-size: 0.75rem;
-        color: #94a3b8;
-    }
-
-    .template-card:hover {
-        background: rgba(139, 92, 246, 0.1);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #a78bfa;
-    }
-
-    .template-card i {
-        font-size: 1.25rem;
-    }
-
-    /* Code Modal */
-    .code-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.8);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-    }
-
-    .code-modal.active {
-        display: flex;
-    }
-
-    .modal-content {
-        background: #1e293b;
-        border-radius: 16px;
-        width: 100%;
-        max-width: 800px;
-        max-height: 80vh;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .modal-header h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #f8fafc;
-    }
-
-    .close-btn {
-        width: 32px;
-        height: 32px;
-        border: none;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 8px;
-        color: #94a3b8;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .close-btn:hover {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-    }
-
-    .code-tabs {
-        display: flex;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .code-tab {
-        padding: 0.5rem 1rem;
-        background: rgba(148, 163, 184, 0.1);
-        border: none;
-        border-radius: 6px;
-        color: #94a3b8;
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .code-tab:hover {
-        background: rgba(139, 92, 246, 0.2);
-    }
-
-    .code-tab.active {
-        background: #8b5cf6;
-        color: white;
-    }
-
-    .code-output {
-        flex: 1;
-        overflow: auto;
-        padding: 1rem 1.5rem;
-    }
-
-    .code-output pre {
-        margin: 0;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.85rem;
-        line-height: 1.6;
-        color: #e2e8f0;
-    }
-
-    .copy-btn {
-        margin: 1rem 1.5rem;
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #8b5cf6, #a855f7);
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .copy-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-        .builder-layout {
-            grid-template-columns: 1fr;
-        }
-
-        .components-sidebar,
-        .properties-sidebar {
-            display: none;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .dashboard-builder-section {
-            padding: 2rem 1rem;
-        }
-
-        .dashboard-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .header-badges {
-            margin-left: 0;
-        }
-    }
-
-    /* Light Mode - Enterprise Grade */
-    :global([data-theme="light"]) .dashboard-builder-section {
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-    }
-
-    :global([data-theme="light"]) .dashboard-header {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(168, 85, 247, 0.03));
-        border-color: rgba(139, 92, 246, 0.15);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .header-content h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .header-content p {
-        color: #475569;
-    }
-
-    /* Badges Light Mode */
-    :global([data-theme="light"]) .badge.bi {
-        background: rgba(139, 92, 246, 0.1);
-        color: #7c3aed;
-        border-color: rgba(139, 92, 246, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.viz {
-        background: rgba(6, 182, 212, 0.1);
-        color: #0891b2;
-        border-color: rgba(6, 182, 212, 0.25);
-    }
-
-    :global([data-theme="light"]) .badge.drag {
-        background: rgba(217, 119, 6, 0.1);
-        color: #b45309;
-        border-color: rgba(217, 119, 6, 0.25);
-    }
-
-    /* Sidebars Light Mode */
-    :global([data-theme="light"]) .components-sidebar,
-    :global([data-theme="light"]) .properties-sidebar {
-        background: rgba(255, 255, 255, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .sidebar-header {
-        background: rgba(248, 250, 252, 0.95);
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .sidebar-header i {
-        color: #7c3aed;
-    }
-
-    /* Component Groups Light Mode */
-    :global([data-theme="light"]) .component-group {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .component-group h5 {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .component-group h5 i {
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .draggable-component {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .draggable-component:hover {
-        background: rgba(139, 92, 246, 0.08);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #7c3aed;
-    }
-
-    /* Canvas Area Light Mode */
-    :global([data-theme="light"]) .canvas-area {
-        background: rgba(255, 255, 255, 0.98);
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .canvas-toolbar {
-        background: rgba(248, 250, 252, 0.98);
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .dashboard-title {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .dashboard-title:focus {
-        background: rgba(139, 92, 246, 0.08);
-    }
-
-    :global([data-theme="light"]) .toolbar-btn {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .toolbar-btn:hover {
-        background: rgba(139, 92, 246, 0.15);
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .dashboard-canvas {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-    }
-
-    :global([data-theme="light"]) .drop-zone-placeholder {
-        color: #94a3b8;
-    }
-
-    /* Dropped Components Light Mode */
-    :global([data-theme="light"]) .dropped-component {
-        background: rgba(255, 255, 255, 0.98);
-        border-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    :global([data-theme="light"]) .dropped-component:hover {
-        border-color: rgba(139, 92, 246, 0.4);
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.08);
-    }
-
-    :global([data-theme="light"]) .dropped-component.selected {
-        border-color: #7c3aed;
-        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
-    }
-
-    :global([data-theme="light"]) .component-header {
-        background: rgba(248, 250, 252, 0.95);
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .component-title {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .comp-btn {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .comp-btn:hover {
-        background: rgba(239, 68, 68, 0.15);
-        color: #dc2626;
-    }
-
-    /* Properties Panel Light Mode */
-    :global([data-theme="light"]) .properties-content {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .no-selection {
-        color: #94a3b8;
-    }
-
-    :global([data-theme="light"]) .property-group label {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .property-group input,
-    :global([data-theme="light"]) .property-group select {
-        background: rgba(248, 250, 252, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #0f172a;
-        border-radius: 6px;
-        padding: 0.5rem;
-    }
-
-    :global([data-theme="light"]) .property-group input:focus,
-    :global([data-theme="light"]) .property-group select:focus {
-        border-color: #7c3aed;
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
-        outline: none;
-    }
-
-    /* Templates Light Mode */
-    :global([data-theme="light"]) .templates-section {
-        border-top-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .template-card {
-        background: rgba(248, 250, 252, 0.95);
-        border-color: rgba(0, 0, 0, 0.08);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .template-card:hover {
-        background: rgba(139, 92, 246, 0.08);
-        border-color: rgba(139, 92, 246, 0.3);
-        color: #7c3aed;
-    }
-
-    /* Modal Light Mode */
-    :global([data-theme="light"]) .code-modal {
-        background: rgba(0, 0, 0, 0.5);
-    }
-
-    :global([data-theme="light"]) .modal-content {
-        background: #ffffff;
-        border-color: rgba(0, 0, 0, 0.1);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    :global([data-theme="light"]) .modal-header {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .modal-header h3 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .close-btn {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .close-btn:hover {
-        background: rgba(239, 68, 68, 0.15);
-        color: #dc2626;
-    }
-
-    :global([data-theme="light"]) .code-tabs {
-        border-bottom-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .code-tab {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .code-tab:hover {
-        background: rgba(139, 92, 246, 0.1);
-    }
-
-    :global([data-theme="light"]) .code-tab.active {
-        background: #7c3aed;
-        color: white;
-    }
-
-    :global([data-theme="light"]) .code-output {
-        background: rgba(248, 250, 252, 0.5);
-    }
-
-    :global([data-theme="light"]) .code-output pre {
-        background: #1e293b;
-        border-radius: 8px;
-        padding: 1rem;
-        color: #e2e8f0;
-    }
-
-    :global([data-theme="light"]) .copy-btn {
-        background: linear-gradient(135deg, #7c3aed, #8b5cf6);
-    }
-
-    :global([data-theme="light"]) .copy-btn:hover {
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
-    }
-
-    /* Bar Chart Preview Light Mode */
-    :global([data-theme="light"]) .bar-chart-preview .bar {
-        background: linear-gradient(180deg, #7c3aed, #8b5cf6);
-    }
+      margin-left: 0;
+    }
+  }
+
+  /* Light Mode - Enterprise Grade */
+  :global([data-theme="light"]) .dashboard-builder-section {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+  }
+
+  :global([data-theme="light"]) .dashboard-header {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(168, 85, 247, 0.03));
+    border-color: rgba(139, 92, 246, 0.15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .header-content h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .header-content p {
+    color: #475569;
+  }
+
+  /* Badges Light Mode */
+  :global([data-theme="light"]) .badge.bi {
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    border-color: rgba(139, 92, 246, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.viz {
+    background: rgba(6, 182, 212, 0.1);
+    color: #0891b2;
+    border-color: rgba(6, 182, 212, 0.25);
+  }
+
+  :global([data-theme="light"]) .badge.drag {
+    background: rgba(217, 119, 6, 0.1);
+    color: #b45309;
+    border-color: rgba(217, 119, 6, 0.25);
+  }
+
+  /* Sidebars Light Mode */
+  :global([data-theme="light"]) .components-sidebar,
+  :global([data-theme="light"]) .properties-sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .sidebar-header {
+    background: rgba(248, 250, 252, 0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .sidebar-header i {
+    color: #7c3aed;
+  }
+
+  /* Component Groups Light Mode */
+  :global([data-theme="light"]) .component-group {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .component-group h5 {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .component-group h5 i {
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .draggable-component {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .draggable-component:hover {
+    background: rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #7c3aed;
+  }
+
+  /* Canvas Area Light Mode */
+  :global([data-theme="light"]) .canvas-area {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .canvas-toolbar {
+    background: rgba(248, 250, 252, 0.98);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .dashboard-title {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .dashboard-title:focus {
+    background: rgba(139, 92, 246, 0.08);
+  }
+
+  :global([data-theme="light"]) .toolbar-btn {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .toolbar-btn:hover {
+    background: rgba(139, 92, 246, 0.15);
+    color: #7c3aed;
+  }
+
+  :global([data-theme="light"]) .dashboard-canvas {
+    background-image:
+      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+
+  :global([data-theme="light"]) .drop-zone-placeholder {
+    color: #94a3b8;
+  }
+
+  /* Dropped Components Light Mode */
+  :global([data-theme="light"]) .dropped-component {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  :global([data-theme="light"]) .dropped-component:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.08);
+  }
+
+  :global([data-theme="light"]) .dropped-component.selected {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  }
+
+  :global([data-theme="light"]) .component-header {
+    background: rgba(248, 250, 252, 0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .component-title {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .comp-btn {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .comp-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+  }
+
+  /* Properties Panel Light Mode */
+  :global([data-theme="light"]) .properties-content {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .no-selection {
+    color: #94a3b8;
+  }
+
+  :global([data-theme="light"]) .property-group label {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .property-group input,
+  :global([data-theme="light"]) .property-group select {
+    background: rgba(248, 250, 252, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #0f172a;
+    border-radius: 6px;
+    padding: 0.5rem;
+  }
+
+  :global([data-theme="light"]) .property-group input:focus,
+  :global([data-theme="light"]) .property-group select:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1);
+    outline: none;
+  }
+
+  /* Templates Light Mode */
+  :global([data-theme="light"]) .templates-section {
+    border-top-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .template-card {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .template-card:hover {
+    background: rgba(139, 92, 246, 0.08);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #7c3aed;
+  }
+
+  /* Modal Light Mode */
+  :global([data-theme="light"]) .code-modal {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  :global([data-theme="light"]) .modal-content {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+
+  :global([data-theme="light"]) .modal-header {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .modal-header h3 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .close-btn {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .close-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+  }
+
+  :global([data-theme="light"]) .code-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .code-tab {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .code-tab:hover {
+    background: rgba(139, 92, 246, 0.1);
+  }
+
+  :global([data-theme="light"]) .code-tab.active {
+    background: #7c3aed;
+    color: white;
+  }
+
+  :global([data-theme="light"]) .code-output {
+    background: rgba(248, 250, 252, 0.5);
+  }
+
+  :global([data-theme="light"]) .code-output pre {
+    background: #1e293b;
+    border-radius: 8px;
+    padding: 1rem;
+    color: #e2e8f0;
+  }
+
+  :global([data-theme="light"]) .copy-btn {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  }
+
+  :global([data-theme="light"]) .copy-btn:hover {
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
+  }
+
+  /* Bar Chart Preview Light Mode */
+  :global([data-theme="light"]) .bar-chart-preview .bar {
+    background: linear-gradient(180deg, #7c3aed, #8b5cf6);
+  }
 </style>
 
 <script is:inline>
-document.addEventListener('astro:page-load', function() {
-    const canvas = document.getElementById('dashboard-canvas');
-    const canvasGrid = canvas?.querySelector('.canvas-grid');
-    const propertiesContent = document.getElementById('properties-content');
-    const codeModal = document.getElementById('code-modal');
-    const generatedCode = document.getElementById('generated-code');
-    const exportBtn = document.getElementById('db-export-code');
-    const closeModalBtn = document.getElementById('close-modal');
-    const clearBtn = document.getElementById('db-clear-canvas');
-    const copyCodeBtn = document.getElementById('copy-generated-code');
-    const codeTabs = document.querySelectorAll('.code-tab');
+  document.addEventListener("astro:page-load", function () {
+    const canvas = document.getElementById("dashboard-canvas");
+    const canvasGrid = canvas?.querySelector(".canvas-grid");
+    const propertiesContent = document.getElementById("properties-content");
+    const codeModal = document.getElementById("code-modal");
+    const generatedCode = document.getElementById("generated-code");
+    const exportBtn = document.getElementById("db-export-code");
+    const closeModalBtn = document.getElementById("close-modal");
+    const clearBtn = document.getElementById("db-clear-canvas");
+    const copyCodeBtn = document.getElementById("copy-generated-code");
+    const codeTabs = document.querySelectorAll(".code-tab");
 
     if (!canvas) return;
 
     let components = [];
     let selectedComponent = null;
     let componentCounter = 0;
-    let currentCodeTab = 'python';
+    let currentCodeTab = "python";
 
     // Drag and Drop
-    document.querySelectorAll('.draggable-component').forEach(function(comp) {
-        comp.addEventListener('dragstart', function(e) {
-            e.dataTransfer.setData('componentType', comp.dataset.type);
-        });
+    document.querySelectorAll(".draggable-component").forEach(function (comp) {
+      comp.addEventListener("dragstart", function (e) {
+        e.dataTransfer.setData("componentType", comp.dataset.type);
+      });
     });
 
-    canvas.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        canvas.classList.add('drag-over');
+    canvas.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      canvas.classList.add("drag-over");
     });
 
-    canvas.addEventListener('dragleave', function() {
-        canvas.classList.remove('drag-over');
+    canvas.addEventListener("dragleave", function () {
+      canvas.classList.remove("drag-over");
     });
 
-    canvas.addEventListener('drop', function(e) {
-        e.preventDefault();
-        canvas.classList.remove('drag-over');
-        var type = e.dataTransfer.getData('componentType');
-        if (type) {
-            addComponent(type);
-        }
+    canvas.addEventListener("drop", function (e) {
+      e.preventDefault();
+      canvas.classList.remove("drag-over");
+      var type = e.dataTransfer.getData("componentType");
+      if (type) {
+        addComponent(type);
+      }
     });
 
     function addComponent(type, config) {
-        config = config || {};
-        componentCounter++;
-        var id = 'comp-' + componentCounter;
+      config = config || {};
+      componentCounter++;
+      var id = "comp-" + componentCounter;
 
-        var component = {
-            id: id,
-            type: type,
-            title: config.title || getDefaultTitle(type),
-            gridColumn: config.gridColumn || 'span 4',
-            gridRow: config.gridRow || 'span 2',
-            color: config.color || '#8b5cf6',
-            data: config.data || getDefaultData(type)
-        };
+      var component = {
+        id: id,
+        type: type,
+        title: config.title || getDefaultTitle(type),
+        gridColumn: config.gridColumn || "span 4",
+        gridRow: config.gridRow || "span 2",
+        color: config.color || "#8b5cf6",
+        data: config.data || getDefaultData(type),
+      };
 
-        components.push(component);
-        renderComponent(component);
-        canvas.classList.add('has-components');
+      components.push(component);
+      renderComponent(component);
+      canvas.classList.add("has-components");
     }
 
     function getDefaultTitle(type) {
-        var titles = {
-            'bar-chart': 'Gráfico de Barras',
-            'line-chart': 'Gráfico de Líneas',
-            'pie-chart': 'Gráfico de Pastel',
-            'area-chart': 'Gráfico de Área',
-            'kpi-card': 'KPI',
-            'gauge': 'Gauge'
-        };
-        return titles[type] || 'Componente';
+      var titles = {
+        "bar-chart": "Gráfico de Barras",
+        "line-chart": "Gráfico de Líneas",
+        "pie-chart": "Gráfico de Pastel",
+        "area-chart": "Gráfico de Área",
+        "kpi-card": "KPI",
+        gauge: "Gauge",
+      };
+      return titles[type] || "Componente";
     }
 
     function getDefaultData(type) {
-        if (type === 'bar-chart' || type === 'line-chart' || type === 'area-chart') {
-            return { labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'], values: [65, 59, 80, 81, 56] };
-        }
-        if (type === 'pie-chart') {
-            return { labels: ['A', 'B', 'C', 'D'], values: [35, 25, 25, 15] };
-        }
-        if (type === 'kpi-card') {
-            return { value: '$125,430', label: 'Ventas Totales', change: '+12.5%' };
-        }
-        if (type === 'gauge') {
-            return { value: 75, max: 100 };
-        }
-        return {};
+      if (type === "bar-chart" || type === "line-chart" || type === "area-chart") {
+        return { labels: ["Ene", "Feb", "Mar", "Abr", "May"], values: [65, 59, 80, 81, 56] };
+      }
+      if (type === "pie-chart") {
+        return { labels: ["A", "B", "C", "D"], values: [35, 25, 25, 15] };
+      }
+      if (type === "kpi-card") {
+        return { value: "$125,430", label: "Ventas Totales", change: "+12.5%" };
+      }
+      if (type === "gauge") {
+        return { value: 75, max: 100 };
+      }
+      return {};
     }
 
     function renderComponent(component) {
-        var el = document.createElement('div');
-        el.className = 'dropped-component';
-        el.id = component.id;
-        el.style.gridColumn = component.gridColumn;
-        el.style.gridRow = component.gridRow;
+      var el = document.createElement("div");
+      el.className = "dropped-component";
+      el.id = component.id;
+      el.style.gridColumn = component.gridColumn;
+      el.style.gridRow = component.gridRow;
 
-        var headerHtml = '<div class="component-header">' +
-            '<span class="component-title">' + component.title + '</span>' +
-            '<div class="component-actions">' +
-                '<button class="comp-btn delete-btn" title="Eliminar"><i class="fas fa-times"></i></button>' +
-            '</div>' +
-        '</div>';
+      var headerHtml =
+        '<div class="component-header">' +
+        '<span class="component-title">' +
+        component.title +
+        "</span>" +
+        '<div class="component-actions">' +
+        '<button class="comp-btn delete-btn" title="Eliminar"><i class="fas fa-times"></i></button>' +
+        "</div>" +
+        "</div>";
 
-        var previewHtml = '<div class="component-preview">' + getPreviewHtml(component) + '</div>';
+      var previewHtml = '<div class="component-preview">' + getPreviewHtml(component) + "</div>";
 
-        el.innerHTML = headerHtml + previewHtml;
+      el.innerHTML = headerHtml + previewHtml;
 
-        el.querySelector('.delete-btn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            removeComponent(component.id);
-        });
+      el.querySelector(".delete-btn").addEventListener("click", function (e) {
+        e.stopPropagation();
+        removeComponent(component.id);
+      });
 
-        el.addEventListener('click', function() {
-            selectComponent(component);
-        });
+      el.addEventListener("click", function () {
+        selectComponent(component);
+      });
 
-        canvasGrid.appendChild(el);
+      canvasGrid.appendChild(el);
     }
 
     function getPreviewHtml(component) {
-        if (component.type === 'bar-chart') {
-            var bars = '';
-            var values = component.data.values || [65, 59, 80, 81, 56];
-            for (var i = 0; i < values.length; i++) {
-                bars += '<div class="bar" style="height: ' + values[i] + '%"></div>';
-            }
-            return '<div class="chart-preview"><div class="bar-chart-preview">' + bars + '</div></div>';
+      if (component.type === "bar-chart") {
+        var bars = "";
+        var values = component.data.values || [65, 59, 80, 81, 56];
+        for (var i = 0; i < values.length; i++) {
+          bars += '<div class="bar" style="height: ' + values[i] + '%"></div>';
         }
-        if (component.type === 'kpi-card') {
-            return '<div style="text-align: center;">' +
-                '<div style="font-size: 2rem; font-weight: 700; color: #8b5cf6;">' + component.data.value + '</div>' +
-                '<div style="color: #94a3b8; font-size: 0.85rem;">' + component.data.label + '</div>' +
-                '<div style="color: #10b981; font-size: 0.8rem;">' + component.data.change + '</div>' +
-            '</div>';
-        }
-        return '<div style="color: #64748b;"><i class="fas fa-chart-bar" style="font-size: 3rem; opacity: 0.3;"></i></div>';
+        return '<div class="chart-preview"><div class="bar-chart-preview">' + bars + "</div></div>";
+      }
+      if (component.type === "kpi-card") {
+        return (
+          '<div style="text-align: center;">' +
+          '<div style="font-size: 2rem; font-weight: 700; color: #8b5cf6;">' +
+          component.data.value +
+          "</div>" +
+          '<div style="color: #94a3b8; font-size: 0.85rem;">' +
+          component.data.label +
+          "</div>" +
+          '<div style="color: #10b981; font-size: 0.8rem;">' +
+          component.data.change +
+          "</div>" +
+          "</div>"
+        );
+      }
+      return '<div style="color: #64748b;"><i class="fas fa-chart-bar" style="font-size: 3rem; opacity: 0.3;"></i></div>';
     }
 
     function removeComponent(id) {
-        components = components.filter(function(c) { return c.id !== id; });
-        var el = document.getElementById(id);
-        if (el) el.remove();
-        if (components.length === 0) {
-            canvas.classList.remove('has-components');
-        }
+      components = components.filter(function (c) {
+        return c.id !== id;
+      });
+      var el = document.getElementById(id);
+      if (el) el.remove();
+      if (components.length === 0) {
+        canvas.classList.remove("has-components");
+      }
     }
 
     function selectComponent(component) {
-        document.querySelectorAll('.dropped-component').forEach(function(el) {
-            el.classList.remove('selected');
-        });
-        document.getElementById(component.id).classList.add('selected');
-        selectedComponent = component;
-        showProperties(component);
+      document.querySelectorAll(".dropped-component").forEach(function (el) {
+        el.classList.remove("selected");
+      });
+      document.getElementById(component.id).classList.add("selected");
+      selectedComponent = component;
+      showProperties(component);
     }
 
     function showProperties(component) {
-        propertiesContent.innerHTML =
-            '<div class="property-group">' +
-                '<label>Título</label>' +
-                '<input type="text" id="prop-title" value="' + component.title + '">' +
-            '</div>' +
-            '<div class="property-group">' +
-                '<label>Ancho (columnas)</label>' +
-                '<input type="number" id="prop-cols" min="1" max="12" value="' + parseInt(component.gridColumn.replace('span ', '')) + '">' +
-            '</div>';
+      propertiesContent.innerHTML =
+        '<div class="property-group">' +
+        "<label>Título</label>" +
+        '<input type="text" id="prop-title" value="' +
+        component.title +
+        '">' +
+        "</div>" +
+        '<div class="property-group">' +
+        "<label>Ancho (columnas)</label>" +
+        '<input type="number" id="prop-cols" min="1" max="12" value="' +
+        parseInt(component.gridColumn.replace("span ", "")) +
+        '">' +
+        "</div>";
 
-        document.getElementById('prop-title').addEventListener('change', function(e) {
-            component.title = e.target.value;
-            document.querySelector('#' + component.id + ' .component-title').textContent = e.target.value;
-        });
+      document.getElementById("prop-title").addEventListener("change", function (e) {
+        component.title = e.target.value;
+        document.querySelector("#" + component.id + " .component-title").textContent =
+          e.target.value;
+      });
 
-        document.getElementById('prop-cols').addEventListener('change', function(e) {
-            component.gridColumn = 'span ' + e.target.value;
-            document.getElementById(component.id).style.gridColumn = component.gridColumn;
-        });
+      document.getElementById("prop-cols").addEventListener("change", function (e) {
+        component.gridColumn = "span " + e.target.value;
+        document.getElementById(component.id).style.gridColumn = component.gridColumn;
+      });
     }
 
     // Clear canvas
-    clearBtn?.addEventListener('click', function() {
-        canvasGrid.innerHTML = '';
-        components = [];
-        componentCounter = 0;
-        canvas.classList.remove('has-components');
-        propertiesContent.innerHTML = '<div class="no-selection"><i class="fas fa-hand-pointer"></i><p>Selecciona un componente</p></div>';
+    clearBtn?.addEventListener("click", function () {
+      canvasGrid.innerHTML = "";
+      components = [];
+      componentCounter = 0;
+      canvas.classList.remove("has-components");
+      propertiesContent.innerHTML =
+        '<div class="no-selection"><i class="fas fa-hand-pointer"></i><p>Selecciona un componente</p></div>';
     });
 
     // Export code
-    exportBtn?.addEventListener('click', function() {
-        generatedCode.textContent = generatePythonCode();
-        codeModal.classList.add('active');
+    exportBtn?.addEventListener("click", function () {
+      generatedCode.textContent = generatePythonCode();
+      codeModal.classList.add("active");
     });
 
-    closeModalBtn?.addEventListener('click', function() {
-        codeModal.classList.remove('active');
+    closeModalBtn?.addEventListener("click", function () {
+      codeModal.classList.remove("active");
     });
 
-    codeTabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-            codeTabs.forEach(function(t) { t.classList.remove('active'); });
-            tab.classList.add('active');
-            currentCodeTab = tab.dataset.lang;
-            generatedCode.textContent = currentCodeTab === 'python' ? generatePythonCode() : generateHTMLCode();
+    codeTabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        codeTabs.forEach(function (t) {
+          t.classList.remove("active");
         });
+        tab.classList.add("active");
+        currentCodeTab = tab.dataset.lang;
+        generatedCode.textContent =
+          currentCodeTab === "python" ? generatePythonCode() : generateHTMLCode();
+      });
     });
 
     function generatePythonCode() {
-        var code = '# Dashboard generado con DashboardBuilder\n';
-        code += 'import plotly.express as px\n';
-        code += 'import pandas as pd\n';
-        code += 'from dash import Dash, html, dcc\n\n';
-        code += 'app = Dash(__name__)\n\n';
-        code += 'app.layout = html.Div([\n';
+      var code = "# Dashboard generado con DashboardBuilder\n";
+      code += "import plotly.express as px\n";
+      code += "import pandas as pd\n";
+      code += "from dash import Dash, html, dcc\n\n";
+      code += "app = Dash(__name__)\n\n";
+      code += "app.layout = html.Div([\n";
 
-        components.forEach(function(comp, i) {
-            if (comp.type === 'bar-chart') {
-                code += '    # ' + comp.title + '\n';
-                code += '    dcc.Graph(\n';
-                code += '        figure=px.bar(\n';
-                code += '            x=' + JSON.stringify(comp.data.labels) + ',\n';
-                code += '            y=' + JSON.stringify(comp.data.values) + ',\n';
-                code += '            title="' + comp.title + '"\n';
-                code += '        )\n';
-                code += '    ),\n';
-            } else if (comp.type === 'kpi-card') {
-                code += '    html.Div([\n';
-                code += '        html.H2("' + comp.data.value + '"),\n';
-                code += '        html.P("' + comp.data.label + '")\n';
-                code += '    ]),\n';
-            }
-        });
+      components.forEach(function (comp, i) {
+        if (comp.type === "bar-chart") {
+          code += "    # " + comp.title + "\n";
+          code += "    dcc.Graph(\n";
+          code += "        figure=px.bar(\n";
+          code += "            x=" + JSON.stringify(comp.data.labels) + ",\n";
+          code += "            y=" + JSON.stringify(comp.data.values) + ",\n";
+          code += '            title="' + comp.title + '"\n';
+          code += "        )\n";
+          code += "    ),\n";
+        } else if (comp.type === "kpi-card") {
+          code += "    html.Div([\n";
+          code += '        html.H2("' + comp.data.value + '"),\n';
+          code += '        html.P("' + comp.data.label + '")\n';
+          code += "    ]),\n";
+        }
+      });
 
-        code += '])\n\n';
-        code += 'if __name__ == "__main__":\n';
-        code += '    app.run_server(debug=True)\n';
+      code += "])\n\n";
+      code += 'if __name__ == "__main__":\n';
+      code += "    app.run_server(debug=True)\n";
 
-        return code;
+      return code;
     }
 
     function generateHTMLCode() {
-        var code = '<!DOCTYPE html>\n<html>\n<head>\n';
-        code += '    <title>Mi Dashboard</title>\n';
-        code += '    <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>\n';
-        code += '    <style>\n';
-        code += '        .dashboard { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; padding: 2rem; }\n';
-        code += '        .card { background: #1e293b; border-radius: 12px; padding: 1rem; }\n';
-        code += '    </style>\n';
-        code += '</head>\n<body>\n';
-        code += '    <div class="dashboard">\n';
+      var code = "<!DOCTYPE html>\n<html>\n<head>\n";
+      code += "    <title>Mi Dashboard</title>\n";
+      code += '    <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>\n';
+      code += "    <style>\n";
+      code +=
+        "        .dashboard { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; padding: 2rem; }\n";
+      code += "        .card { background: #1e293b; border-radius: 12px; padding: 1rem; }\n";
+      code += "    </style>\n";
+      code += "</head>\n<body>\n";
+      code += '    <div class="dashboard">\n';
 
-        components.forEach(function(comp, i) {
-            code += '        <div class="card" style="grid-column: ' + comp.gridColumn + '; grid-row: ' + comp.gridRow + ';">\n';
-            code += '            <h3>' + comp.title + '</h3>\n';
-            if (comp.type.indexOf('chart') !== -1) {
-                code += '            <canvas id="chart' + i + '"></canvas>\n';
-            } else if (comp.type === 'kpi-card') {
-                code += '            <div class="kpi">\n';
-                code += '                <span class="value">' + comp.data.value + '</span>\n';
-                code += '                <span class="label">' + comp.data.label + '</span>\n';
-                code += '            </div>\n';
-            }
-            code += '        </div>\n';
-        });
+      components.forEach(function (comp, i) {
+        code +=
+          '        <div class="card" style="grid-column: ' +
+          comp.gridColumn +
+          "; grid-row: " +
+          comp.gridRow +
+          ';">\n';
+        code += "            <h3>" + comp.title + "</h3>\n";
+        if (comp.type.indexOf("chart") !== -1) {
+          code += '            <canvas id="chart' + i + '"></canvas>\n';
+        } else if (comp.type === "kpi-card") {
+          code += '            <div class="kpi">\n';
+          code += '                <span class="value">' + comp.data.value + "</span>\n";
+          code += '                <span class="label">' + comp.data.label + "</span>\n";
+          code += "            </div>\n";
+        }
+        code += "        </div>\n";
+      });
 
-        code += '    </div>\n';
-        code += '</body>\n</html>';
+      code += "    </div>\n";
+      code += "</body>\n</html>";
 
-        return code;
+      return code;
     }
 
-    copyCodeBtn?.addEventListener('click', function() {
-        navigator.clipboard.writeText(generatedCode.textContent);
-        copyCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
-        setTimeout(function() {
-            copyCodeBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Código';
-        }, 2000);
+    copyCodeBtn?.addEventListener("click", function () {
+      navigator.clipboard.writeText(generatedCode.textContent);
+      copyCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+      setTimeout(function () {
+        copyCodeBtn.innerHTML = '<i class="fas fa-copy"></i> Copiar Código';
+      }, 2000);
     });
 
     // Templates
     var templates = {
-        sales: [
-            { type: 'kpi-card', gridColumn: 'span 3', gridRow: 'span 1', title: 'Ventas Totales', data: { value: '$125,430', label: 'Este mes', change: '+12.5%' } },
-            { type: 'kpi-card', gridColumn: 'span 3', gridRow: 'span 1', title: 'Clientes', data: { value: '1,234', label: 'Activos', change: '+5.2%' } },
-            { type: 'bar-chart', gridColumn: 'span 6', gridRow: 'span 2', title: 'Ventas por Mes' }
-        ],
-        marketing: [
-            { type: 'line-chart', gridColumn: 'span 6', gridRow: 'span 2', title: 'Tráfico Web' },
-            { type: 'kpi-card', gridColumn: 'span 6', gridRow: 'span 1', title: 'Conversiones', data: { value: '2.4%', label: 'Tasa', change: '+0.5%' } }
-        ],
-        finance: [
-            { type: 'gauge', gridColumn: 'span 4', gridRow: 'span 2', title: 'Meta de Ingresos' },
-            { type: 'bar-chart', gridColumn: 'span 8', gridRow: 'span 2', title: 'Ingresos vs Gastos' }
-        ],
-        operations: [
-            { type: 'area-chart', gridColumn: 'span 12', gridRow: 'span 2', title: 'Producción Diaria' },
-            { type: 'kpi-card', gridColumn: 'span 4', gridRow: 'span 1', title: 'Unidades', data: { value: '15,432', label: 'Producidas', change: '+3%' } }
-        ]
+      sales: [
+        {
+          type: "kpi-card",
+          gridColumn: "span 3",
+          gridRow: "span 1",
+          title: "Ventas Totales",
+          data: { value: "$125,430", label: "Este mes", change: "+12.5%" },
+        },
+        {
+          type: "kpi-card",
+          gridColumn: "span 3",
+          gridRow: "span 1",
+          title: "Clientes",
+          data: { value: "1,234", label: "Activos", change: "+5.2%" },
+        },
+        { type: "bar-chart", gridColumn: "span 6", gridRow: "span 2", title: "Ventas por Mes" },
+      ],
+      marketing: [
+        { type: "line-chart", gridColumn: "span 6", gridRow: "span 2", title: "Tráfico Web" },
+        {
+          type: "kpi-card",
+          gridColumn: "span 6",
+          gridRow: "span 1",
+          title: "Conversiones",
+          data: { value: "2.4%", label: "Tasa", change: "+0.5%" },
+        },
+      ],
+      finance: [
+        { type: "gauge", gridColumn: "span 4", gridRow: "span 2", title: "Meta de Ingresos" },
+        { type: "bar-chart", gridColumn: "span 8", gridRow: "span 2", title: "Ingresos vs Gastos" },
+      ],
+      operations: [
+        {
+          type: "area-chart",
+          gridColumn: "span 12",
+          gridRow: "span 2",
+          title: "Producción Diaria",
+        },
+        {
+          type: "kpi-card",
+          gridColumn: "span 4",
+          gridRow: "span 1",
+          title: "Unidades",
+          data: { value: "15,432", label: "Producidas", change: "+3%" },
+        },
+      ],
     };
 
-    document.querySelectorAll('.template-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-            var templateName = card.dataset.template;
-            var template = templates[templateName];
-            if (!template) return;
+    document.querySelectorAll(".template-card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        var templateName = card.dataset.template;
+        var template = templates[templateName];
+        if (!template) return;
 
-            // Clear canvas
-            canvasGrid.innerHTML = '';
-            components = [];
-            componentCounter = 0;
+        // Clear canvas
+        canvasGrid.innerHTML = "";
+        components = [];
+        componentCounter = 0;
 
-            // Add template components
-            template.forEach(function(config) {
-                addComponent(config.type, config);
-            });
+        // Add template components
+        template.forEach(function (config) {
+          addComponent(config.type, config);
         });
+      });
     });
-});
+  });
 </script>

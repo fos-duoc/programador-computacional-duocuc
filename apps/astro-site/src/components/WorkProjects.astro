@@ -3,838 +3,866 @@
 // Real-world projects to showcase to employers
 
 const portfolioCategories = [
-    {
-        id: "frontend",
-        title: "Frontend & Landing Pages",
-        icon: "fas fa-desktop",
-        color: "#3b82f6",
-        projects: [
-            {
-                name: "Landing Page SaaS",
-                description: "Landing page moderna con animaciones, dark mode y formulario de contacto",
-                tech: ["React", "Tailwind", "Framer Motion"],
-                difficulty: "Intermedio",
-                timeEstimate: "1-2 semanas",
-                features: ["Responsive Design", "SEO Optimizado", "Animaciones", "Dark Mode"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Portfolio Personal",
-                description: "Sitio web personal para mostrar proyectos y habilidades técnicas",
-                tech: ["Astro", "TypeScript", "CSS"],
-                difficulty: "Principiante",
-                timeEstimate: "1 semana",
-                features: ["Blog integrado", "Proyectos showcase", "Contacto", "Analytics"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Dashboard Admin",
-                description: "Panel de administración con gráficos, tablas y gestión de usuarios",
-                tech: ["Next.js", "Recharts", "Shadcn/ui"],
-                difficulty: "Avanzado",
-                timeEstimate: "2-3 semanas",
-                features: ["Autenticación", "CRUD completo", "Gráficos interactivos", "Roles"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    },
-    {
-        id: "fullstack",
-        title: "Aplicaciones Full-Stack",
-        icon: "fas fa-layer-group",
-        color: "#8b5cf6",
-        projects: [
-            {
-                name: "E-Commerce Platform",
-                description: "Tienda online completa con carrito, pagos y panel de admin",
-                tech: ["Next.js", "Prisma", "Stripe", "PostgreSQL"],
-                difficulty: "Avanzado",
-                timeEstimate: "4-6 semanas",
-                features: ["Carrito de compras", "Pasarela de pago", "Inventario", "Pedidos"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Task Management App",
-                description: "Aplicación tipo Trello/Notion para gestión de proyectos",
-                tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-                difficulty: "Intermedio",
-                timeEstimate: "2-3 semanas",
-                features: ["Drag & Drop", "Tiempo real", "Colaboración", "Notificaciones"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Blog Platform",
-                description: "Plataforma de blogging con editor markdown y sistema de usuarios",
-                tech: ["Django", "PostgreSQL", "Redis", "Docker"],
-                difficulty: "Intermedio",
-                timeEstimate: "2-3 semanas",
-                features: ["Editor WYSIWYG", "Comentarios", "Tags/Categorías", "SEO"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    },
-    {
-        id: "api",
-        title: "APIs & Backend",
-        icon: "fas fa-server",
-        color: "#10b981",
-        projects: [
-            {
-                name: "REST API Template",
-                description: "API REST completa con autenticación JWT, documentación y tests",
-                tech: ["FastAPI", "PostgreSQL", "Docker", "Pytest"],
-                difficulty: "Intermedio",
-                timeEstimate: "1-2 semanas",
-                features: ["JWT Auth", "OpenAPI Docs", "Rate Limiting", "Tests"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "GraphQL API",
-                description: "API GraphQL con subscriptions para actualizaciones en tiempo real",
-                tech: ["Node.js", "Apollo", "Prisma", "Redis"],
-                difficulty: "Avanzado",
-                timeEstimate: "2-3 semanas",
-                features: ["Queries/Mutations", "Subscriptions", "DataLoaders", "Caching"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Microservices Demo",
-                description: "Arquitectura de microservicios con message queue y service mesh",
-                tech: ["Spring Boot", "Kafka", "Docker", "Kubernetes"],
-                difficulty: "Avanzado",
-                timeEstimate: "4-6 semanas",
-                features: ["Event-driven", "Service Discovery", "Circuit Breaker", "Monitoring"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    },
-    {
-        id: "data",
-        title: "Data & Analytics",
-        icon: "fas fa-chart-bar",
-        color: "#f59e0b",
-        projects: [
-            {
-                name: "ETL Pipeline",
-                description: "Pipeline de datos con extracción, transformación y carga automatizada",
-                tech: ["Python", "Airflow", "dbt", "Snowflake"],
-                difficulty: "Avanzado",
-                timeEstimate: "2-3 semanas",
-                features: ["Scheduling", "Monitoring", "Data Quality", "Lineage"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Dashboard Analytics",
-                description: "Dashboard interactivo con métricas de negocio y KPIs",
-                tech: ["Python", "Streamlit", "Pandas", "Plotly"],
-                difficulty: "Intermedio",
-                timeEstimate: "1-2 semanas",
-                features: ["Filtros dinámicos", "Exportar datos", "Gráficos interactivos", "KPIs"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "ML Model Deployment",
-                description: "Modelo de ML desplegado como API con monitoreo y versionado",
-                tech: ["Python", "FastAPI", "MLflow", "Docker"],
-                difficulty: "Avanzado",
-                timeEstimate: "2-3 semanas",
-                features: ["Model Serving", "A/B Testing", "Monitoring", "Versioning"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    },
-    {
-        id: "mobile",
-        title: "Mobile Apps",
-        icon: "fas fa-mobile-alt",
-        color: "#ec4899",
-        projects: [
-            {
-                name: "Expense Tracker",
-                description: "App móvil para tracking de gastos con gráficos y categorías",
-                tech: ["React Native", "Expo", "SQLite", "Chart.js"],
-                difficulty: "Intermedio",
-                timeEstimate: "2-3 semanas",
-                features: ["Offline-first", "Gráficos", "Categorías", "Exportar"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Social Media App",
-                description: "App tipo Instagram con feed, likes, comentarios y mensajes",
-                tech: ["Flutter", "Firebase", "Cloud Functions"],
-                difficulty: "Avanzado",
-                timeEstimate: "4-6 semanas",
-                features: ["Feed infinito", "Push Notifications", "Chat", "Stories"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Fitness Tracker",
-                description: "App de fitness con rutinas, progreso y sincronización con wearables",
-                tech: ["Kotlin", "Room", "Health Connect", "Compose"],
-                difficulty: "Avanzado",
-                timeEstimate: "3-4 semanas",
-                features: ["Rutinas", "Estadísticas", "Wearables", "Recordatorios"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    },
-    {
-        id: "devops",
-        title: "DevOps & Infrastructure",
-        icon: "fas fa-cogs",
-        color: "#06b6d4",
-        projects: [
-            {
-                name: "CI/CD Pipeline",
-                description: "Pipeline completo de CI/CD con tests, build y deploy automático",
-                tech: ["GitHub Actions", "Docker", "AWS", "Terraform"],
-                difficulty: "Intermedio",
-                timeEstimate: "1-2 semanas",
-                features: ["Automated Tests", "Multi-environment", "Rollback", "Notifications"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Infrastructure as Code",
-                description: "Infraestructura cloud completa definida como código",
-                tech: ["Terraform", "AWS", "Ansible", "Packer"],
-                difficulty: "Avanzado",
-                timeEstimate: "2-3 semanas",
-                features: ["Multi-region", "Auto-scaling", "Backup", "Monitoring"],
-                demoUrl: "#",
-                repoUrl: "#"
-            },
-            {
-                name: "Kubernetes Cluster",
-                description: "Cluster de Kubernetes con aplicaciones, ingress y monitoreo",
-                tech: ["Kubernetes", "Helm", "Prometheus", "Grafana"],
-                difficulty: "Avanzado",
-                timeEstimate: "3-4 semanas",
-                features: ["Deployments", "Services", "Ingress", "Observability"],
-                demoUrl: "#",
-                repoUrl: "#"
-            }
-        ]
-    }
+  {
+    id: "frontend",
+    title: "Frontend & Landing Pages",
+    icon: "fas fa-desktop",
+    color: "#3b82f6",
+    projects: [
+      {
+        name: "Landing Page SaaS",
+        description: "Landing page moderna con animaciones, dark mode y formulario de contacto",
+        tech: ["React", "Tailwind", "Framer Motion"],
+        difficulty: "Intermedio",
+        timeEstimate: "1-2 semanas",
+        features: ["Responsive Design", "SEO Optimizado", "Animaciones", "Dark Mode"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Portfolio Personal",
+        description: "Sitio web personal para mostrar proyectos y habilidades técnicas",
+        tech: ["Astro", "TypeScript", "CSS"],
+        difficulty: "Principiante",
+        timeEstimate: "1 semana",
+        features: ["Blog integrado", "Proyectos showcase", "Contacto", "Analytics"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Dashboard Admin",
+        description: "Panel de administración con gráficos, tablas y gestión de usuarios",
+        tech: ["Next.js", "Recharts", "Shadcn/ui"],
+        difficulty: "Avanzado",
+        timeEstimate: "2-3 semanas",
+        features: ["Autenticación", "CRUD completo", "Gráficos interactivos", "Roles"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
+  {
+    id: "fullstack",
+    title: "Aplicaciones Full-Stack",
+    icon: "fas fa-layer-group",
+    color: "#8b5cf6",
+    projects: [
+      {
+        name: "E-Commerce Platform",
+        description: "Tienda online completa con carrito, pagos y panel de admin",
+        tech: ["Next.js", "Prisma", "Stripe", "PostgreSQL"],
+        difficulty: "Avanzado",
+        timeEstimate: "4-6 semanas",
+        features: ["Carrito de compras", "Pasarela de pago", "Inventario", "Pedidos"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Task Management App",
+        description: "Aplicación tipo Trello/Notion para gestión de proyectos",
+        tech: ["React", "Node.js", "MongoDB", "Socket.io"],
+        difficulty: "Intermedio",
+        timeEstimate: "2-3 semanas",
+        features: ["Drag & Drop", "Tiempo real", "Colaboración", "Notificaciones"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Blog Platform",
+        description: "Plataforma de blogging con editor markdown y sistema de usuarios",
+        tech: ["Django", "PostgreSQL", "Redis", "Docker"],
+        difficulty: "Intermedio",
+        timeEstimate: "2-3 semanas",
+        features: ["Editor WYSIWYG", "Comentarios", "Tags/Categorías", "SEO"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
+  {
+    id: "api",
+    title: "APIs & Backend",
+    icon: "fas fa-server",
+    color: "#10b981",
+    projects: [
+      {
+        name: "REST API Template",
+        description: "API REST completa con autenticación JWT, documentación y tests",
+        tech: ["FastAPI", "PostgreSQL", "Docker", "Pytest"],
+        difficulty: "Intermedio",
+        timeEstimate: "1-2 semanas",
+        features: ["JWT Auth", "OpenAPI Docs", "Rate Limiting", "Tests"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "GraphQL API",
+        description: "API GraphQL con subscriptions para actualizaciones en tiempo real",
+        tech: ["Node.js", "Apollo", "Prisma", "Redis"],
+        difficulty: "Avanzado",
+        timeEstimate: "2-3 semanas",
+        features: ["Queries/Mutations", "Subscriptions", "DataLoaders", "Caching"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Microservices Demo",
+        description: "Arquitectura de microservicios con message queue y service mesh",
+        tech: ["Spring Boot", "Kafka", "Docker", "Kubernetes"],
+        difficulty: "Avanzado",
+        timeEstimate: "4-6 semanas",
+        features: ["Event-driven", "Service Discovery", "Circuit Breaker", "Monitoring"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
+  {
+    id: "data",
+    title: "Data & Analytics",
+    icon: "fas fa-chart-bar",
+    color: "#f59e0b",
+    projects: [
+      {
+        name: "ETL Pipeline",
+        description: "Pipeline de datos con extracción, transformación y carga automatizada",
+        tech: ["Python", "Airflow", "dbt", "Snowflake"],
+        difficulty: "Avanzado",
+        timeEstimate: "2-3 semanas",
+        features: ["Scheduling", "Monitoring", "Data Quality", "Lineage"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Dashboard Analytics",
+        description: "Dashboard interactivo con métricas de negocio y KPIs",
+        tech: ["Python", "Streamlit", "Pandas", "Plotly"],
+        difficulty: "Intermedio",
+        timeEstimate: "1-2 semanas",
+        features: ["Filtros dinámicos", "Exportar datos", "Gráficos interactivos", "KPIs"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "ML Model Deployment",
+        description: "Modelo de ML desplegado como API con monitoreo y versionado",
+        tech: ["Python", "FastAPI", "MLflow", "Docker"],
+        difficulty: "Avanzado",
+        timeEstimate: "2-3 semanas",
+        features: ["Model Serving", "A/B Testing", "Monitoring", "Versioning"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile Apps",
+    icon: "fas fa-mobile-alt",
+    color: "#ec4899",
+    projects: [
+      {
+        name: "Expense Tracker",
+        description: "App móvil para tracking de gastos con gráficos y categorías",
+        tech: ["React Native", "Expo", "SQLite", "Chart.js"],
+        difficulty: "Intermedio",
+        timeEstimate: "2-3 semanas",
+        features: ["Offline-first", "Gráficos", "Categorías", "Exportar"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Social Media App",
+        description: "App tipo Instagram con feed, likes, comentarios y mensajes",
+        tech: ["Flutter", "Firebase", "Cloud Functions"],
+        difficulty: "Avanzado",
+        timeEstimate: "4-6 semanas",
+        features: ["Feed infinito", "Push Notifications", "Chat", "Stories"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Fitness Tracker",
+        description: "App de fitness con rutinas, progreso y sincronización con wearables",
+        tech: ["Kotlin", "Room", "Health Connect", "Compose"],
+        difficulty: "Avanzado",
+        timeEstimate: "3-4 semanas",
+        features: ["Rutinas", "Estadísticas", "Wearables", "Recordatorios"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
+  {
+    id: "devops",
+    title: "DevOps & Infrastructure",
+    icon: "fas fa-cogs",
+    color: "#06b6d4",
+    projects: [
+      {
+        name: "CI/CD Pipeline",
+        description: "Pipeline completo de CI/CD con tests, build y deploy automático",
+        tech: ["GitHub Actions", "Docker", "AWS", "Terraform"],
+        difficulty: "Intermedio",
+        timeEstimate: "1-2 semanas",
+        features: ["Automated Tests", "Multi-environment", "Rollback", "Notifications"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Infrastructure as Code",
+        description: "Infraestructura cloud completa definida como código",
+        tech: ["Terraform", "AWS", "Ansible", "Packer"],
+        difficulty: "Avanzado",
+        timeEstimate: "2-3 semanas",
+        features: ["Multi-region", "Auto-scaling", "Backup", "Monitoring"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+      {
+        name: "Kubernetes Cluster",
+        description: "Cluster de Kubernetes con aplicaciones, ingress y monitoreo",
+        tech: ["Kubernetes", "Helm", "Prometheus", "Grafana"],
+        difficulty: "Avanzado",
+        timeEstimate: "3-4 semanas",
+        features: ["Deployments", "Services", "Ingress", "Observability"],
+        demoUrl: "#",
+        repoUrl: "#",
+      },
+    ],
+  },
 ];
 
 const portfolioTips = [
-    {
-        icon: "fas fa-code-branch",
-        title: "Código limpio",
-        description: "Mantén tu código bien estructurado, documentado y con buenos commits"
-    },
-    {
-        icon: "fas fa-file-alt",
-        title: "README completo",
-        description: "Incluye descripción, screenshots, instrucciones de instalación y tecnologías"
-    },
-    {
-        icon: "fas fa-globe",
-        title: "Demo en vivo",
-        description: "Despliega tus proyectos en Vercel, Netlify o Railway para mostrar funcionando"
-    },
-    {
-        icon: "fas fa-chart-line",
-        title: "Métricas reales",
-        description: "Si es posible, incluye métricas de rendimiento, usuarios o impacto"
-    }
+  {
+    icon: "fas fa-code-branch",
+    title: "Código limpio",
+    description: "Mantén tu código bien estructurado, documentado y con buenos commits",
+  },
+  {
+    icon: "fas fa-file-alt",
+    title: "README completo",
+    description: "Incluye descripción, screenshots, instrucciones de instalación y tecnologías",
+  },
+  {
+    icon: "fas fa-globe",
+    title: "Demo en vivo",
+    description: "Despliega tus proyectos en Vercel, Netlify o Railway para mostrar funcionando",
+  },
+  {
+    icon: "fas fa-chart-line",
+    title: "Métricas reales",
+    description: "Si es posible, incluye métricas de rendimiento, usuarios o impacto",
+  },
 ];
 ---
 
 <section id="work-projects" class="work-projects-section">
-    <!-- Section Header -->
-    <div class="section-header" data-aos="fade-up">
-        <div class="header-badge">
-            <i class="fas fa-briefcase"></i>
-            <span>Portafolio Profesional</span>
+  <!-- Section Header -->
+  <div class="section-header" data-aos="fade-up">
+    <div class="header-badge">
+      <i class="fas fa-briefcase"></i>
+      <span>Portafolio Profesional</span>
+    </div>
+    <h2>Proyectos de <span class="gradient-text">Trabajo</span></h2>
+    <p>Proyectos reales para destacar en entrevistas y conseguir tu primer empleo tech</p>
+  </div>
+
+  <!-- Portfolio Tips -->
+  <div class="tips-grid" data-aos="fade-up" data-aos-delay="100">
+    {
+      portfolioTips.map((tip, idx) => (
+        <div class="tip-card glass-card" data-aos="zoom-in" data-aos-delay={100 + idx * 50}>
+          <div class="tip-icon">
+            <i class={tip.icon} />
+          </div>
+          <h4>{tip.title}</h4>
+          <p>{tip.description}</p>
         </div>
-        <h2>Proyectos de <span class="gradient-text">Trabajo</span></h2>
-        <p>Proyectos reales para destacar en entrevistas y conseguir tu primer empleo tech</p>
-    </div>
+      ))
+    }
+  </div>
 
-    <!-- Portfolio Tips -->
-    <div class="tips-grid" data-aos="fade-up" data-aos-delay="100">
-        {portfolioTips.map((tip, idx) => (
-            <div class="tip-card glass-card" data-aos="zoom-in" data-aos-delay={100 + idx * 50}>
-                <div class="tip-icon">
-                    <i class={tip.icon}></i>
-                </div>
-                <h4>{tip.title}</h4>
-                <p>{tip.description}</p>
-            </div>
-        ))}
-    </div>
-
-    <!-- Category Filters -->
-    <div class="category-filters" data-aos="fade-up" data-aos-delay="150">
-        <button class="filter-btn active" data-filter="all">
-            <i class="fas fa-th-large"></i> Todos
+  <!-- Category Filters -->
+  <div class="category-filters" data-aos="fade-up" data-aos-delay="150">
+    <button class="filter-btn active" data-filter="all">
+      <i class="fas fa-th-large"></i> Todos
+    </button>
+    {
+      portfolioCategories.map((cat) => (
+        <button class="filter-btn" data-filter={cat.id} style={`--cat-color: ${cat.color}`}>
+          <i class={cat.icon} /> {cat.title.split(" ")[0]}
         </button>
-        {portfolioCategories.map(cat => (
-            <button class="filter-btn" data-filter={cat.id} style={`--cat-color: ${cat.color}`}>
-                <i class={cat.icon}></i> {cat.title.split(' ')[0]}
-            </button>
-        ))}
-    </div>
+      ))
+    }
+  </div>
 
-    <!-- Projects Grid -->
-    <div class="projects-container">
-        {portfolioCategories.map((category, catIdx) => (
-            <div class="category-section" data-category={category.id} data-aos="fade-up" data-aos-delay={50 + catIdx * 30}>
-                <div class="category-header" style={`--cat-color: ${category.color}`}>
-                    <div class="cat-icon">
-                        <i class={category.icon}></i>
-                    </div>
-                    <h3>{category.title}</h3>
-                    <span class="project-count">{category.projects.length} proyectos</span>
-                </div>
-
-                <div class="projects-grid">
-                    {category.projects.map((project, projIdx) => (
-                        <div class="project-card glass-card" data-aos="zoom-in" data-aos-delay={100 + projIdx * 50}>
-                            <div class="project-header">
-                                <h4>{project.name}</h4>
-                                <span class={`difficulty-badge ${project.difficulty.toLowerCase()}`}>
-                                    {project.difficulty}
-                                </span>
-                            </div>
-
-                            <p class="project-description">{project.description}</p>
-
-                            <div class="tech-stack">
-                                {project.tech.map(tech => (
-                                    <span class="tech-tag">{tech}</span>
-                                ))}
-                            </div>
-
-                            <div class="features-list">
-                                <span class="features-label">Features:</span>
-                                {project.features.map(feature => (
-                                    <span class="feature-tag">
-                                        <i class="fas fa-check"></i> {feature}
-                                    </span>
-                                ))}
-                            </div>
-
-                            <div class="project-footer">
-                                <span class="time-estimate">
-                                    <i class="fas fa-clock"></i> {project.timeEstimate}
-                                </span>
-                                <div class="project-actions">
-                                    <button class="action-btn demo" title="Ver Demo">
-                                        <i class="fas fa-external-link-alt"></i>
-                                    </button>
-                                    <button class="action-btn repo" title="Ver Código">
-                                        <i class="fab fa-github"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+  <!-- Projects Grid -->
+  <div class="projects-container">
+    {
+      portfolioCategories.map((category, catIdx) => (
+        <div
+          class="category-section"
+          data-category={category.id}
+          data-aos="fade-up"
+          data-aos-delay={50 + catIdx * 30}
+        >
+          <div class="category-header" style={`--cat-color: ${category.color}`}>
+            <div class="cat-icon">
+              <i class={category.icon} />
             </div>
-        ))}
-    </div>
+            <h3>{category.title}</h3>
+            <span class="project-count">{category.projects.length} proyectos</span>
+          </div>
 
-    <!-- Call to Action -->
-    <div class="cta-section glass-card" data-aos="fade-up">
-        <div class="cta-content">
-            <h3>¿Listo para construir tu portafolio?</h3>
-            <p>Empieza con proyectos pequeños y ve aumentando la complejidad. Lo importante es tener código que mostrar.</p>
+          <div class="projects-grid">
+            {category.projects.map((project, projIdx) => (
+              <div
+                class="project-card glass-card"
+                data-aos="zoom-in"
+                data-aos-delay={100 + projIdx * 50}
+              >
+                <div class="project-header">
+                  <h4>{project.name}</h4>
+                  <span class={`difficulty-badge ${project.difficulty.toLowerCase()}`}>
+                    {project.difficulty}
+                  </span>
+                </div>
+
+                <p class="project-description">{project.description}</p>
+
+                <div class="tech-stack">
+                  {project.tech.map((tech) => (
+                    <span class="tech-tag">{tech}</span>
+                  ))}
+                </div>
+
+                <div class="features-list">
+                  <span class="features-label">Features:</span>
+                  {project.features.map((feature) => (
+                    <span class="feature-tag">
+                      <i class="fas fa-check" /> {feature}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="project-footer">
+                  <span class="time-estimate">
+                    <i class="fas fa-clock" /> {project.timeEstimate}
+                  </span>
+                  <div class="project-actions">
+                    <button class="action-btn demo" title="Ver Demo">
+                      <i class="fas fa-external-link-alt" />
+                    </button>
+                    <button class="action-btn repo" title="Ver Código">
+                      <i class="fab fa-github" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="cta-actions">
-            <a href="https://github.com/new" target="_blank" class="cta-btn primary">
-                <i class="fab fa-github"></i> Crear Repositorio
-            </a>
-            <a href="https://vercel.com" target="_blank" class="cta-btn secondary">
-                <i class="fas fa-rocket"></i> Desplegar en Vercel
-            </a>
-        </div>
+      ))
+    }
+  </div>
+
+  <!-- Call to Action -->
+  <div class="cta-section glass-card" data-aos="fade-up">
+    <div class="cta-content">
+      <h3>¿Listo para construir tu portafolio?</h3>
+      <p>
+        Empieza con proyectos pequeños y ve aumentando la complejidad. Lo importante es tener código
+        que mostrar.
+      </p>
     </div>
+    <div class="cta-actions">
+      <a href="https://github.com/new" target="_blank" class="cta-btn primary">
+        <i class="fab fa-github"></i> Crear Repositorio
+      </a>
+      <a href="https://vercel.com" target="_blank" class="cta-btn secondary">
+        <i class="fas fa-rocket"></i> Desplegar en Vercel
+      </a>
+    </div>
+  </div>
 </section>
 
 <script is:inline>
-document.addEventListener('astro:page-load', initWorkProjects);
-document.addEventListener('DOMContentLoaded', initWorkProjects);
+  document.addEventListener("astro:page-load", initWorkProjects);
+  document.addEventListener("DOMContentLoaded", initWorkProjects);
 
-function initWorkProjects() {
-    const filterBtns = document.querySelectorAll('.work-projects-section .filter-btn');
-    const categorySections = document.querySelectorAll('.work-projects-section .category-section');
+  function initWorkProjects() {
+    const filterBtns = document.querySelectorAll(".work-projects-section .filter-btn");
+    const categorySections = document.querySelectorAll(".work-projects-section .category-section");
 
-    filterBtns.forEach(btn => {
-        btn.onclick = () => {
-            const filter = btn.dataset.filter;
+    filterBtns.forEach((btn) => {
+      btn.onclick = () => {
+        const filter = btn.dataset.filter;
 
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        // Update active button
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
 
-            // Filter sections
-            categorySections.forEach(section => {
-                if (filter === 'all' || section.dataset.category === filter) {
-                    section.style.display = 'block';
-                    section.style.animation = 'fadeIn 0.3s ease';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-        };
+        // Filter sections
+        categorySections.forEach((section) => {
+          if (filter === "all" || section.dataset.category === filter) {
+            section.style.display = "block";
+            section.style.animation = "fadeIn 0.3s ease";
+          } else {
+            section.style.display = "none";
+          }
+        });
+      };
     });
-}
+  }
 </script>
 
 <style>
-    .work-projects-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .work-projects-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    /* Section Header */
-    .section-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .header-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(139, 92, 246, 0.1);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #8b5cf6;
-        margin-bottom: 1rem;
-    }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #8b5cf6;
+    margin-bottom: 1rem;
+  }
 
-    .section-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-        color: var(--text-primary);
-    }
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #8b5cf6, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .gradient-text {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .section-header p {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-    }
+  .section-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
 
-    /* Tips Grid */
-    .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
+  /* Tips Grid */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
 
-    .tip-card {
-        padding: 1.25rem;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
+  .tip-card {
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
 
-    .tip-card:hover {
-        transform: translateY(-4px);
-    }
+  .tip-card:hover {
+    transform: translateY(-4px);
+  }
 
-    .tip-icon {
-        width: 50px;
-        height: 50px;
-        margin: 0 auto 0.75rem;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        color: #8b5cf6;
-    }
+  .tip-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #8b5cf6;
+  }
 
-    .tip-card h4 {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-    }
+  .tip-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
 
-    .tip-card p {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
-        line-height: 1.5;
-    }
+  .tip-card p {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
 
-    /* Category Filters */
-    .category-filters {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 2rem;
-    }
+  /* Category Filters */
+  .category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
 
-    .filter-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        font-size: 0.8rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
+  .filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
 
-    .filter-btn:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text-primary);
-    }
+  .filter-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+  }
 
-    .filter-btn.active {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-        border-color: rgba(139, 92, 246, 0.5);
-        color: #8b5cf6;
-    }
+  .filter-btn.active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #8b5cf6;
+  }
 
-    /* Category Sections */
-    .category-section {
-        margin-bottom: 2.5rem;
-    }
+  /* Category Sections */
+  .category-section {
+    margin-bottom: 2.5rem;
+  }
 
-    .category-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--border-color);
-    }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+  }
 
-    .cat-icon {
-        width: 36px;
-        height: 36px;
-        background: linear-gradient(135deg, var(--cat-color), color-mix(in srgb, var(--cat-color), white 30%));
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1rem;
-    }
+  .cat-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(
+      135deg,
+      var(--cat-color),
+      color-mix(in srgb, var(--cat-color), white 30%)
+    );
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+  }
 
-    .category-header h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        flex: 1;
-    }
+  .category-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    flex: 1;
+  }
 
-    .project-count {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        background: rgba(255, 255, 255, 0.05);
-        padding: 0.25rem 0.75rem;
-        border-radius: 12px;
-    }
+  .project-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+  }
 
-    /* Projects Grid */
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.25rem;
-    }
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
 
-    .project-card {
-        padding: 1.25rem;
-        transition: all 0.3s ease;
-    }
+  .project-card {
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+  }
 
-    .project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-    }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+  }
 
-    .project-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-    }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
 
-    .project-header h4 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--text-primary);
-    }
+  .project-header h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
 
-    .difficulty-badge {
-        font-size: 0.65rem;
-        font-weight: 600;
-        padding: 0.25rem 0.6rem;
-        border-radius: 6px;
-        text-transform: uppercase;
-    }
+  .difficulty-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
 
-    .difficulty-badge.principiante {
-        background: rgba(34, 197, 94, 0.15);
-        color: #22c55e;
-    }
+  .difficulty-badge.principiante {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+  }
 
-    .difficulty-badge.intermedio {
-        background: rgba(59, 130, 246, 0.15);
-        color: #3b82f6;
-    }
+  .difficulty-badge.intermedio {
+    background: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+  }
 
-    .difficulty-badge.avanzado {
-        background: rgba(168, 85, 247, 0.15);
-        color: #a855f7;
-    }
+  .difficulty-badge.avanzado {
+    background: rgba(168, 85, 247, 0.15);
+    color: #a855f7;
+  }
 
-    .project-description {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin-bottom: 1rem;
-        line-height: 1.5;
-    }
+  .project-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
 
-    .tech-stack {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-bottom: 0.75rem;
-    }
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
 
-    .tech-tag {
-        font-size: 0.7rem;
-        font-weight: 500;
-        padding: 0.2rem 0.5rem;
-        background: rgba(0, 212, 255, 0.1);
-        border: 1px solid rgba(0, 212, 255, 0.3);
-        border-radius: 4px;
-        color: #00d4ff;
-    }
+  .tech-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    color: #00d4ff;
+  }
 
-    .features-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.35rem;
-        margin-bottom: 1rem;
-        align-items: center;
-    }
+  .features-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
 
-    .features-label {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        font-weight: 600;
-    }
+  .features-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
 
-    .feature-tag {
-        font-size: 0.65rem;
-        color: var(--text-secondary);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2rem;
-    }
+  .feature-tag {
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
 
-    .feature-tag i {
-        color: #10b981;
-        font-size: 0.55rem;
-    }
+  .feature-tag i {
+    color: #10b981;
+    font-size: 0.55rem;
+  }
 
-    .project-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 0.75rem;
-        border-top: 1px solid var(--border-color);
-    }
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+  }
 
-    .time-estimate {
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-    }
+  .time-estimate {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 
-    .project-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
+  .project-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
 
-    .action-btn {
-        width: 32px;
-        height: 32px;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text-muted);
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .action-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .action-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text-primary);
-    }
+  .action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
 
-    .action-btn.demo:hover {
-        border-color: rgba(0, 212, 255, 0.5);
-        color: #00d4ff;
-    }
+  .action-btn.demo:hover {
+    border-color: rgba(0, 212, 255, 0.5);
+    color: #00d4ff;
+  }
 
-    .action-btn.repo:hover {
-        border-color: rgba(139, 92, 246, 0.5);
-        color: #8b5cf6;
-    }
+  .action-btn.repo:hover {
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #8b5cf6;
+  }
 
-    /* CTA Section */
+  /* CTA Section */
+  .cta-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    gap: 2rem;
+  }
+
+  .cta-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+  }
+
+  .cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.5);
+  }
+
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
     .cta-section {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2rem;
-        margin-top: 2rem;
-        gap: 2rem;
-    }
-
-    .cta-content h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-    }
-
-    .cta-content p {
-        font-size: 0.95rem;
-        color: var(--text-secondary);
+      flex-direction: column;
+      text-align: center;
     }
 
     .cta-actions {
-        display: flex;
-        gap: 1rem;
-        flex-shrink: 0;
+      flex-direction: column;
+      width: 100%;
     }
 
     .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .section-header h2 {
+      font-size: 1.75rem;
     }
 
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #8b5cf6, #ec4899);
-        color: white;
+    .projects-grid {
+      grid-template-columns: 1fr;
     }
 
-    .cta-btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+    .tips-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
 
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-color);
-        color: var(--text-primary);
+    .filter-btn {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
     }
+  }
 
-    .cta-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.5);
-    }
+  /* Light Mode */
+  :global([data-theme="light"]) .filter-btn {
+    background: rgba(0, 0, 0, 0.03);
+  }
 
-    /* Animation */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+  :global([data-theme="light"]) .project-card {
+    background: rgba(0, 0, 0, 0.02);
+  }
 
-    /* Responsive */
-    @media (max-width: 900px) {
-        .cta-section {
-            flex-direction: column;
-            text-align: center;
-        }
+  :global([data-theme="light"]) .tip-card {
+    background: rgba(0, 0, 0, 0.02);
+  }
 
-        .cta-actions {
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .cta-btn {
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 600px) {
-        .section-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .projects-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .tips-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .filter-btn {
-            padding: 0.4rem 0.75rem;
-            font-size: 0.75rem;
-        }
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .filter-btn {
-        background: rgba(0, 0, 0, 0.03);
-    }
-
-    :global([data-theme="light"]) .project-card {
-        background: rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .tip-card {
-        background: rgba(0, 0, 0, 0.02);
-    }
-
-    :global([data-theme="light"]) .action-btn {
-        background: rgba(0, 0, 0, 0.03);
-    }
+  :global([data-theme="light"]) .action-btn {
+    background: rgba(0, 0, 0, 0.03);
+  }
 </style>

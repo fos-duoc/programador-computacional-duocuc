@@ -1,1109 +1,1245 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 const base = import.meta.env.BASE_URL;
 
 // Comunidades tech en Chile
 const communities = [
-    {
-        name: 'JavaScript Chile',
-        type: 'Lenguaje',
-        icon: 'fab fa-js-square',
-        color: '#f7df1e',
-        members: '15K+',
-        description: 'Comunidad de desarrolladores JavaScript en Chile. Meetups mensuales, workshops y networking.',
-        links: { slack: 'https://jschile.slack.com', web: 'https://jschile.org', meetup: 'https://meetup.com/Javascript-Chile' }
+  {
+    name: "JavaScript Chile",
+    type: "Lenguaje",
+    icon: "fab fa-js-square",
+    color: "#f7df1e",
+    members: "15K+",
+    description:
+      "Comunidad de desarrolladores JavaScript en Chile. Meetups mensuales, workshops y networking.",
+    links: {
+      slack: "https://jschile.slack.com",
+      web: "https://jschile.org",
+      meetup: "https://meetup.com/Javascript-Chile",
     },
-    {
-        name: 'Python Chile',
-        type: 'Lenguaje',
-        icon: 'fab fa-python',
-        color: '#3776ab',
-        members: '8K+',
-        description: 'Comunidad de Python en Chile. PyDay, PyCon Chile, y grupos de estudio.',
-        links: { telegram: 'https://t.me/pythonchile', web: 'https://pythonchile.cl', twitter: 'https://twitter.com/pythonchile' }
+  },
+  {
+    name: "Python Chile",
+    type: "Lenguaje",
+    icon: "fab fa-python",
+    color: "#3776ab",
+    members: "8K+",
+    description: "Comunidad de Python en Chile. PyDay, PyCon Chile, y grupos de estudio.",
+    links: {
+      telegram: "https://t.me/pythonchile",
+      web: "https://pythonchile.cl",
+      twitter: "https://twitter.com/pythonchile",
     },
-    {
-        name: 'Women Who Code Santiago',
-        type: 'Diversidad',
-        icon: 'fas fa-female',
-        color: '#ec4899',
-        members: '3K+',
-        description: 'Red global de mujeres en tech. Mentorías, workshops y oportunidades laborales.',
-        links: { web: 'https://womenwhocode.com/santiago', twitter: 'https://twitter.com/WWCodeSantiago' }
+  },
+  {
+    name: "Women Who Code Santiago",
+    type: "Diversidad",
+    icon: "fas fa-female",
+    color: "#ec4899",
+    members: "3K+",
+    description: "Red global de mujeres en tech. Mentorías, workshops y oportunidades laborales.",
+    links: {
+      web: "https://womenwhocode.com/santiago",
+      twitter: "https://twitter.com/WWCodeSantiago",
     },
-    {
-        name: 'DevOps Chile',
-        type: 'Especialidad',
-        icon: 'fas fa-infinity',
-        color: '#f59e0b',
-        members: '5K+',
-        description: 'Comunidad de DevOps, SRE y Cloud. Meetups técnicos y casos de estudio.',
-        links: { telegram: 'https://t.me/devopschile', meetup: 'https://meetup.com/DevOps-Chile' }
+  },
+  {
+    name: "DevOps Chile",
+    type: "Especialidad",
+    icon: "fas fa-infinity",
+    color: "#f59e0b",
+    members: "5K+",
+    description: "Comunidad de DevOps, SRE y Cloud. Meetups técnicos y casos de estudio.",
+    links: { telegram: "https://t.me/devopschile", meetup: "https://meetup.com/DevOps-Chile" },
+  },
+  {
+    name: "Data Science Chile",
+    type: "Especialidad",
+    icon: "fas fa-chart-bar",
+    color: "#8b5cf6",
+    members: "10K+",
+    description:
+      "Científicos de datos, ML engineers y analistas. Compartiendo conocimiento y proyectos.",
+    links: {
+      telegram: "https://t.me/datasciencechile",
+      linkedin: "https://linkedin.com/groups/data-science-chile",
     },
-    {
-        name: 'Data Science Chile',
-        type: 'Especialidad',
-        icon: 'fas fa-chart-bar',
-        color: '#8b5cf6',
-        members: '10K+',
-        description: 'Científicos de datos, ML engineers y analistas. Compartiendo conocimiento y proyectos.',
-        links: { telegram: 'https://t.me/datasciencechile', linkedin: 'https://linkedin.com/groups/data-science-chile' }
+  },
+  {
+    name: "9punto5",
+    type: "Conferencia",
+    icon: "fas fa-microphone-alt",
+    color: "#06b6d4",
+    members: "20K+",
+    description:
+      "La conferencia de tecnología más grande de Latinoamérica. Networking de alto nivel.",
+    links: { web: "https://9punto5.cl", twitter: "https://twitter.com/9punto5" },
+  },
+  {
+    name: "Startup Chile Community",
+    type: "Emprendimiento",
+    icon: "fas fa-rocket",
+    color: "#10b981",
+    members: "12K+",
+    description: "Red de emprendedores tech. Mentores, inversores y founders.",
+    links: {
+      web: "https://startupchile.org",
+      linkedin: "https://linkedin.com/company/start-up-chile",
     },
-    {
-        name: '9punto5',
-        type: 'Conferencia',
-        icon: 'fas fa-microphone-alt',
-        color: '#06b6d4',
-        members: '20K+',
-        description: 'La conferencia de tecnología más grande de Latinoamérica. Networking de alto nivel.',
-        links: { web: 'https://9punto5.cl', twitter: 'https://twitter.com/9punto5' }
-    },
-    {
-        name: 'Startup Chile Community',
-        type: 'Emprendimiento',
-        icon: 'fas fa-rocket',
-        color: '#10b981',
-        members: '12K+',
-        description: 'Red de emprendedores tech. Mentores, inversores y founders.',
-        links: { web: 'https://startupchile.org', linkedin: 'https://linkedin.com/company/start-up-chile' }
-    },
-    {
-        name: 'AWS User Group Chile',
-        type: 'Cloud',
-        icon: 'fab fa-aws',
-        color: '#ff9900',
-        members: '4K+',
-        description: 'Grupo oficial de usuarios AWS en Chile. Meetups mensuales y certificaciones.',
-        links: { meetup: 'https://meetup.com/AWS-User-Group-Chile', web: 'https://awsugchile.com' }
-    }
+  },
+  {
+    name: "AWS User Group Chile",
+    type: "Cloud",
+    icon: "fab fa-aws",
+    color: "#ff9900",
+    members: "4K+",
+    description: "Grupo oficial de usuarios AWS en Chile. Meetups mensuales y certificaciones.",
+    links: { meetup: "https://meetup.com/AWS-User-Group-Chile", web: "https://awsugchile.com" },
+  },
 ];
 
 // Plataformas de networking
 const platforms = [
-    {
-        name: 'LinkedIn',
-        icon: 'fab fa-linkedin',
-        color: '#0077b5',
-        description: 'Red profesional #1. Mantén tu perfil actualizado y conecta con recruiters.',
-        tips: ['Optimiza tu headline', 'Publica contenido técnico', 'Únete a grupos', 'Pide recomendaciones']
-    },
-    {
-        name: 'GitHub',
-        icon: 'fab fa-github',
-        color: '#f8fafc',
-        description: 'Tu portafolio vivo. Contribuye a open source y muestra tu código.',
-        tips: ['Haz commits frecuentes', 'Contribuye a OSS', 'Documenta tus proyectos', 'Usa GitHub Discussions']
-    },
-    {
-        name: 'Twitter/X',
-        icon: 'fab fa-twitter',
-        color: '#1da1f2',
-        description: 'Conéctate con la comunidad tech global. Sigue líderes y comparte aprendizajes.',
-        tips: ['Sigue #100DaysOfCode', 'Comparte tu journey', 'Participa en Tech Twitter', 'Haz threads técnicos']
-    },
-    {
-        name: 'Discord',
-        icon: 'fab fa-discord',
-        color: '#5865f2',
-        description: 'Servidores de comunidades tech activas 24/7. Ideal para preguntas y colaboración.',
-        tips: ['Únete a servidores de tu stack', 'Participa en voice chats', 'Ayuda a otros', 'Comparte recursos']
-    }
+  {
+    name: "LinkedIn",
+    icon: "fab fa-linkedin",
+    color: "#0077b5",
+    description: "Red profesional #1. Mantén tu perfil actualizado y conecta con recruiters.",
+    tips: [
+      "Optimiza tu headline",
+      "Publica contenido técnico",
+      "Únete a grupos",
+      "Pide recomendaciones",
+    ],
+  },
+  {
+    name: "GitHub",
+    icon: "fab fa-github",
+    color: "#f8fafc",
+    description: "Tu portafolio vivo. Contribuye a open source y muestra tu código.",
+    tips: [
+      "Haz commits frecuentes",
+      "Contribuye a OSS",
+      "Documenta tus proyectos",
+      "Usa GitHub Discussions",
+    ],
+  },
+  {
+    name: "Twitter/X",
+    icon: "fab fa-twitter",
+    color: "#1da1f2",
+    description: "Conéctate con la comunidad tech global. Sigue líderes y comparte aprendizajes.",
+    tips: [
+      "Sigue #100DaysOfCode",
+      "Comparte tu journey",
+      "Participa en Tech Twitter",
+      "Haz threads técnicos",
+    ],
+  },
+  {
+    name: "Discord",
+    icon: "fab fa-discord",
+    color: "#5865f2",
+    description:
+      "Servidores de comunidades tech activas 24/7. Ideal para preguntas y colaboración.",
+    tips: [
+      "Únete a servidores de tu stack",
+      "Participa en voice chats",
+      "Ayuda a otros",
+      "Comparte recursos",
+    ],
+  },
 ];
 
 // Eventos tech en Chile
 const events = [
-    { name: 'PyCon Chile', date: 'Octubre/Noviembre', type: 'Conferencia', url: 'https://pycon.cl' },
-    { name: '9punto5', date: 'Noviembre', type: 'Conferencia', url: 'https://9punto5.cl' },
-    { name: 'JSConf Chile', date: 'Variado', type: 'Conferencia', url: 'https://jsconf.cl' },
-    { name: 'AWS Summit Santiago', date: 'Agosto', type: 'Cloud', url: 'https://aws.amazon.com/events/summits' },
-    { name: 'Google I/O Extended', date: 'Mayo', type: 'Conferencia', url: 'https://events.google.com/io' },
-    { name: 'DevFest Santiago', date: 'Octubre', type: 'Conferencia', url: 'https://gdg.community.dev' }
+  { name: "PyCon Chile", date: "Octubre/Noviembre", type: "Conferencia", url: "https://pycon.cl" },
+  { name: "9punto5", date: "Noviembre", type: "Conferencia", url: "https://9punto5.cl" },
+  { name: "JSConf Chile", date: "Variado", type: "Conferencia", url: "https://jsconf.cl" },
+  {
+    name: "AWS Summit Santiago",
+    date: "Agosto",
+    type: "Cloud",
+    url: "https://aws.amazon.com/events/summits",
+  },
+  {
+    name: "Google I/O Extended",
+    date: "Mayo",
+    type: "Conferencia",
+    url: "https://events.google.com/io",
+  },
+  {
+    name: "DevFest Santiago",
+    date: "Octubre",
+    type: "Conferencia",
+    url: "https://gdg.community.dev",
+  },
 ];
 
 // Tips de networking
 const networkingTips = [
-    { icon: 'fas fa-handshake', title: 'Sé genuino', text: 'No hagas networking solo por conseguir trabajo. Construye relaciones reales basadas en intereses comunes.' },
-    { icon: 'fas fa-gift', title: 'Da antes de pedir', text: 'Ofrece ayuda, comparte conocimiento, recomienda personas. La reciprocidad llegará naturalmente.' },
-    { icon: 'fas fa-calendar-check', title: 'Sé constante', text: 'Asiste regularmente a meetups. Las mejores conexiones se construyen con el tiempo.' },
-    { icon: 'fas fa-comment-dots', title: 'Haz follow-up', text: 'Después de conocer a alguien, conecta en LinkedIn y envía un mensaje personalizado.' }
+  {
+    icon: "fas fa-handshake",
+    title: "Sé genuino",
+    text: "No hagas networking solo por conseguir trabajo. Construye relaciones reales basadas en intereses comunes.",
+  },
+  {
+    icon: "fas fa-gift",
+    title: "Da antes de pedir",
+    text: "Ofrece ayuda, comparte conocimiento, recomienda personas. La reciprocidad llegará naturalmente.",
+  },
+  {
+    icon: "fas fa-calendar-check",
+    title: "Sé constante",
+    text: "Asiste regularmente a meetups. Las mejores conexiones se construyen con el tiempo.",
+  },
+  {
+    icon: "fas fa-comment-dots",
+    title: "Haz follow-up",
+    text: "Después de conocer a alguien, conecta en LinkedIn y envía un mensaje personalizado.",
+  },
 ];
 
 // Recursos para mentoría
 const mentorshipResources = [
-    { name: 'ADPList', url: 'https://adplist.org', description: 'Mentoría gratuita de profesionales tech' },
-    { name: 'Coding Coach', url: 'https://codingcoach.io', description: 'Encuentra mentores de programación' },
-    { name: 'MentorCruise', url: 'https://mentorcruise.com', description: 'Mentoría premium 1:1' },
-    { name: 'freeCodeCamp', url: 'https://forum.freecodecamp.org', description: 'Comunidad de apoyo para aprender' }
+  {
+    name: "ADPList",
+    url: "https://adplist.org",
+    description: "Mentoría gratuita de profesionales tech",
+  },
+  {
+    name: "Coding Coach",
+    url: "https://codingcoach.io",
+    description: "Encuentra mentores de programación",
+  },
+  { name: "MentorCruise", url: "https://mentorcruise.com", description: "Mentoría premium 1:1" },
+  {
+    name: "freeCodeCamp",
+    url: "https://forum.freecodecamp.org",
+    description: "Comunidad de apoyo para aprender",
+  },
 ];
 ---
 
 <Layout title="Comunidad - Networking Tech Chile">
-    <Header />
-    <main class="community-page">
-        <!-- Hero Section -->
-        <section class="community-hero">
-            <div class="hero-content">
-                <span class="hero-badge">
-                    <i class="fas fa-users"></i> Networking Tech 2025
-                </span>
-                <h1>Comunidad & Networking</h1>
-                <p class="hero-subtitle">
-                    Conecta con la comunidad tech chilena. Encuentra mentores, únete a comunidades
-                    y construye tu red profesional para impulsar tu carrera.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">8</span>
-                        <span class="stat-label">Comunidades</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">70K+</span>
-                        <span class="stat-label">Miembros</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">6</span>
-                        <span class="stat-label">Eventos/Año</span>
-                    </div>
+  <Header />
+  <main class="community-page">
+    <!-- Hero Section -->
+    <section class="community-hero">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fas fa-users"></i> Networking Tech 2025
+        </span>
+        <h1>Comunidad & Networking</h1>
+        <p class="hero-subtitle">
+          Conecta con la comunidad tech chilena. Encuentra mentores, únete a comunidades y construye
+          tu red profesional para impulsar tu carrera.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Comunidades</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">70K+</span>
+            <span class="stat-label">Miembros</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Eventos/Año</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Communities Grid -->
+    <section class="communities-section">
+      <div class="section-header">
+        <h2><i class="fas fa-globe"></i> Comunidades Tech en Chile</h2>
+        <p>Únete a grupos activos de desarrolladores en tu área de interés</p>
+      </div>
+
+      <div class="communities-grid">
+        {
+          communities.map((community) => (
+            <article class="community-card" style={`--community-color: ${community.color}`}>
+              <div class="community-header">
+                <div class="community-icon" style={`color: ${community.color}`}>
+                  <i class={community.icon} />
                 </div>
-            </div>
-        </section>
-
-        <!-- Communities Grid -->
-        <section class="communities-section">
-            <div class="section-header">
-                <h2><i class="fas fa-globe"></i> Comunidades Tech en Chile</h2>
-                <p>Únete a grupos activos de desarrolladores en tu área de interés</p>
-            </div>
-
-            <div class="communities-grid">
-                {communities.map(community => (
-                    <article class="community-card" style={`--community-color: ${community.color}`}>
-                        <div class="community-header">
-                            <div class="community-icon" style={`color: ${community.color}`}>
-                                <i class={community.icon}></i>
-                            </div>
-                            <div class="community-meta">
-                                <span class="type-badge">{community.type}</span>
-                                <span class="members-badge">
-                                    <i class="fas fa-users"></i> {community.members}
-                                </span>
-                            </div>
-                        </div>
-
-                        <h3>{community.name}</h3>
-                        <p class="community-description">{community.description}</p>
-
-                        <div class="community-links">
-                            {community.links.web && (
-                                <a href={community.links.web} target="_blank" rel="noopener" class="link-btn">
-                                    <i class="fas fa-globe"></i>
-                                </a>
-                            )}
-                            {community.links.slack && (
-                                <a href={community.links.slack} target="_blank" rel="noopener" class="link-btn slack">
-                                    <i class="fab fa-slack"></i>
-                                </a>
-                            )}
-                            {community.links.telegram && (
-                                <a href={community.links.telegram} target="_blank" rel="noopener" class="link-btn telegram">
-                                    <i class="fab fa-telegram"></i>
-                                </a>
-                            )}
-                            {community.links.meetup && (
-                                <a href={community.links.meetup} target="_blank" rel="noopener" class="link-btn meetup">
-                                    <i class="fab fa-meetup"></i>
-                                </a>
-                            )}
-                            {community.links.twitter && (
-                                <a href={community.links.twitter} target="_blank" rel="noopener" class="link-btn twitter">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            )}
-                            {community.links.linkedin && (
-                                <a href={community.links.linkedin} target="_blank" rel="noopener" class="link-btn linkedin">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                            )}
-                        </div>
-                    </article>
-                ))}
-            </div>
-        </section>
-
-        <!-- Platforms Section -->
-        <section class="platforms-section">
-            <div class="section-header">
-                <h2><i class="fas fa-share-alt"></i> Plataformas de Networking</h2>
-                <p>Construye tu presencia online y conecta con la comunidad global</p>
-            </div>
-
-            <div class="platforms-grid">
-                {platforms.map(platform => (
-                    <article class="platform-card">
-                        <div class="platform-icon" style={`color: ${platform.color}`}>
-                            <i class={platform.icon}></i>
-                        </div>
-                        <h3>{platform.name}</h3>
-                        <p>{platform.description}</p>
-                        <div class="platform-tips">
-                            <h4>Tips Clave:</h4>
-                            <ul>
-                                {platform.tips.map(tip => (
-                                    <li>{tip}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </article>
-                ))}
-            </div>
-        </section>
-
-        <!-- Events Section -->
-        <section class="events-section">
-            <div class="section-header">
-                <h2><i class="fas fa-calendar-alt"></i> Eventos Tech en Chile</h2>
-                <p>Conferencias y meetups para conectar presencialmente</p>
-            </div>
-
-            <div class="events-grid">
-                {events.map(event => (
-                    <a href={event.url} target="_blank" rel="noopener" class="event-card">
-                        <div class="event-date">
-                            <i class="fas fa-calendar"></i>
-                            <span>{event.date}</span>
-                        </div>
-                        <h4>{event.name}</h4>
-                        <span class="event-type">{event.type}</span>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Networking Tips -->
-        <section class="tips-section">
-            <div class="section-header">
-                <h2><i class="fas fa-lightbulb"></i> Tips de Networking Efectivo</h2>
-            </div>
-
-            <div class="tips-grid">
-                {networkingTips.map(tip => (
-                    <div class="tip-card">
-                        <div class="tip-icon">
-                            <i class={tip.icon}></i>
-                        </div>
-                        <h4>{tip.title}</h4>
-                        <p>{tip.text}</p>
-                    </div>
-                ))}
-            </div>
-        </section>
-
-        <!-- Mentorship Section -->
-        <section class="mentorship-section">
-            <div class="section-header">
-                <h2><i class="fas fa-chalkboard-teacher"></i> Encuentra un Mentor</h2>
-                <p>Acelera tu crecimiento con guía de profesionales experimentados</p>
-            </div>
-
-            <div class="mentorship-grid">
-                {mentorshipResources.map(resource => (
-                    <a href={resource.url} target="_blank" rel="noopener" class="mentorship-card">
-                        <h4>{resource.name}</h4>
-                        <p>{resource.description}</p>
-                        <span class="visit-link">Explorar <i class="fas fa-arrow-right"></i></span>
-                    </a>
-                ))}
-            </div>
-        </section>
-
-        <!-- Action Checklist -->
-        <section class="checklist-section">
-            <div class="section-header">
-                <h2><i class="fas fa-tasks"></i> Tu Plan de Acción</h2>
-                <p>Pasos concretos para comenzar tu networking esta semana</p>
-            </div>
-
-            <div class="checklist-container">
-                <div class="checklist-card">
-                    <div class="checklist-items">
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-1">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Optimiza tu perfil de LinkedIn con headline técnico</span>
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-2">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Únete a 2 comunidades tech de tu área</span>
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-3">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Agenda tu primer meetup presencial</span>
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-4">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Conecta con 5 profesionales de tu área</span>
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-5">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Solicita una mentoría en ADPList</span>
-                        </label>
-                        <label class="checklist-item">
-                            <input type="checkbox" id="check-6">
-                            <span class="checkmark"></span>
-                            <span class="item-text">Comparte tu primer post técnico en LinkedIn/Twitter</span>
-                        </label>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                        <span class="progress-text" id="progress-text">0/6 completados</span>
-                    </div>
+                <div class="community-meta">
+                  <span class="type-badge">{community.type}</span>
+                  <span class="members-badge">
+                    <i class="fas fa-users" /> {community.members}
+                  </span>
                 </div>
-            </div>
-        </section>
+              </div>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-content">
-                <h2>¿Listo para conectar?</h2>
-                <p>Explora las trayectorias profesionales y encuentra tu camino</p>
-                <div class="cta-buttons">
-                    <a href={`${base}/trayectorias`} class="cta-btn primary">
-                        <i class="fas fa-route"></i> Career Paths
-                    </a>
-                    <a href={`${base}/portafolio`} class="cta-btn secondary">
-                        <i class="fas fa-briefcase"></i> Arma tu Portafolio
-                    </a>
-                </div>
+              <h3>{community.name}</h3>
+              <p class="community-description">{community.description}</p>
+
+              <div class="community-links">
+                {community.links.web && (
+                  <a href={community.links.web} target="_blank" rel="noopener" class="link-btn">
+                    <i class="fas fa-globe" />
+                  </a>
+                )}
+                {community.links.slack && (
+                  <a
+                    href={community.links.slack}
+                    target="_blank"
+                    rel="noopener"
+                    class="link-btn slack"
+                  >
+                    <i class="fab fa-slack" />
+                  </a>
+                )}
+                {community.links.telegram && (
+                  <a
+                    href={community.links.telegram}
+                    target="_blank"
+                    rel="noopener"
+                    class="link-btn telegram"
+                  >
+                    <i class="fab fa-telegram" />
+                  </a>
+                )}
+                {community.links.meetup && (
+                  <a
+                    href={community.links.meetup}
+                    target="_blank"
+                    rel="noopener"
+                    class="link-btn meetup"
+                  >
+                    <i class="fab fa-meetup" />
+                  </a>
+                )}
+                {community.links.twitter && (
+                  <a
+                    href={community.links.twitter}
+                    target="_blank"
+                    rel="noopener"
+                    class="link-btn twitter"
+                  >
+                    <i class="fab fa-twitter" />
+                  </a>
+                )}
+                {community.links.linkedin && (
+                  <a
+                    href={community.links.linkedin}
+                    target="_blank"
+                    rel="noopener"
+                    class="link-btn linkedin"
+                  >
+                    <i class="fab fa-linkedin" />
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms-section">
+      <div class="section-header">
+        <h2><i class="fas fa-share-alt"></i> Plataformas de Networking</h2>
+        <p>Construye tu presencia online y conecta con la comunidad global</p>
+      </div>
+
+      <div class="platforms-grid">
+        {
+          platforms.map((platform) => (
+            <article class="platform-card">
+              <div class="platform-icon" style={`color: ${platform.color}`}>
+                <i class={platform.icon} />
+              </div>
+              <h3>{platform.name}</h3>
+              <p>{platform.description}</p>
+              <div class="platform-tips">
+                <h4>Tips Clave:</h4>
+                <ul>
+                  {platform.tips.map((tip) => (
+                    <li>{tip}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events-section">
+      <div class="section-header">
+        <h2><i class="fas fa-calendar-alt"></i> Eventos Tech en Chile</h2>
+        <p>Conferencias y meetups para conectar presencialmente</p>
+      </div>
+
+      <div class="events-grid">
+        {
+          events.map((event) => (
+            <a href={event.url} target="_blank" rel="noopener" class="event-card">
+              <div class="event-date">
+                <i class="fas fa-calendar" />
+                <span>{event.date}</span>
+              </div>
+              <h4>{event.name}</h4>
+              <span class="event-type">{event.type}</span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Networking Tips -->
+    <section class="tips-section">
+      <div class="section-header">
+        <h2><i class="fas fa-lightbulb"></i> Tips de Networking Efectivo</h2>
+      </div>
+
+      <div class="tips-grid">
+        {
+          networkingTips.map((tip) => (
+            <div class="tip-card">
+              <div class="tip-icon">
+                <i class={tip.icon} />
+              </div>
+              <h4>{tip.title}</h4>
+              <p>{tip.text}</p>
             </div>
-        </section>
-    </main>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section class="mentorship-section">
+      <div class="section-header">
+        <h2><i class="fas fa-chalkboard-teacher"></i> Encuentra un Mentor</h2>
+        <p>Acelera tu crecimiento con guía de profesionales experimentados</p>
+      </div>
+
+      <div class="mentorship-grid">
+        {
+          mentorshipResources.map((resource) => (
+            <a href={resource.url} target="_blank" rel="noopener" class="mentorship-card">
+              <h4>{resource.name}</h4>
+              <p>{resource.description}</p>
+              <span class="visit-link">
+                Explorar <i class="fas fa-arrow-right" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Action Checklist -->
+    <section class="checklist-section">
+      <div class="section-header">
+        <h2><i class="fas fa-tasks"></i> Tu Plan de Acción</h2>
+        <p>Pasos concretos para comenzar tu networking esta semana</p>
+      </div>
+
+      <div class="checklist-container">
+        <div class="checklist-card">
+          <div class="checklist-items">
+            <label class="checklist-item">
+              <input type="checkbox" id="check-1" />
+              <span class="checkmark"></span>
+              <span class="item-text">Optimiza tu perfil de LinkedIn con headline técnico</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="check-2" />
+              <span class="checkmark"></span>
+              <span class="item-text">Únete a 2 comunidades tech de tu área</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="check-3" />
+              <span class="checkmark"></span>
+              <span class="item-text">Agenda tu primer meetup presencial</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="check-4" />
+              <span class="checkmark"></span>
+              <span class="item-text">Conecta con 5 profesionales de tu área</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="check-5" />
+              <span class="checkmark"></span>
+              <span class="item-text">Solicita una mentoría en ADPList</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="check-6" />
+              <span class="checkmark"></span>
+              <span class="item-text">Comparte tu primer post técnico en LinkedIn/Twitter</span>
+            </label>
+          </div>
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0/6 completados</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <h2>¿Listo para conectar?</h2>
+        <p>Explora las trayectorias profesionales y encuentra tu camino</p>
+        <div class="cta-buttons">
+          <a href={`${base}/trayectorias`} class="cta-btn primary">
+            <i class="fas fa-route"></i> Career Paths
+          </a>
+          <a href={`${base}/portafolio`} class="cta-btn secondary">
+            <i class="fas fa-briefcase"></i> Arma tu Portafolio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
 
 <style>
-    .community-page {
-        min-height: 100vh;
-        padding-bottom: 4rem;
-    }
+  .community-page {
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
 
-    /* Hero Section */
-    .community-hero {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
-        padding: 4rem 2rem;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  /* Hero Section */
+  .community-hero {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: rgba(139, 92, 246, 0.2);
-        border: 1px solid rgba(139, 92, 246, 0.3);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #a78bfa;
-        margin-bottom: 1rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #a78bfa;
+    margin-bottom: 1rem;
+  }
 
+  .community-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a78bfa;
+  }
+
+  .stat-label {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .section-header h2 i {
+    color: #a78bfa;
+  }
+
+  .section-header p {
+    color: #94a3b8;
+    margin-top: 0.5rem;
+  }
+
+  /* Communities Section */
+  .communities-section {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .communities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .community-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .community-card:hover {
+    border-color: var(--community-color);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .community-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .community-icon {
+    font-size: 2.5rem;
+  }
+
+  .community-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-end;
+  }
+
+  .type-badge {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .members-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+
+  .community-card h3 {
+    font-size: 1.2rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .community-description {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .community-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .link-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .link-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #f8fafc;
+    transform: translateY(-2px);
+  }
+
+  .link-btn.slack:hover {
+    color: #4a154b;
+    background: rgba(74, 21, 75, 0.3);
+  }
+  .link-btn.telegram:hover {
+    color: #0088cc;
+    background: rgba(0, 136, 204, 0.3);
+  }
+  .link-btn.meetup:hover {
+    color: #ed1c40;
+    background: rgba(237, 28, 64, 0.3);
+  }
+  .link-btn.twitter:hover {
+    color: #1da1f2;
+    background: rgba(29, 161, 242, 0.3);
+  }
+  .link-btn.linkedin:hover {
+    color: #0077b5;
+    background: rgba(0, 119, 181, 0.3);
+  }
+
+  /* Platforms Section */
+  .platforms-section {
+    padding: 3rem 2rem;
+    background: rgba(139, 92, 246, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .platform-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .platform-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .platform-card h3 {
+    font-size: 1.2rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .platform-card > p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .platform-tips {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .platform-tips h4 {
+    font-size: 0.8rem;
+    color: #a78bfa;
+    margin-bottom: 0.5rem;
+  }
+
+  .platform-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .platform-tips li {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .platform-tips li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+  }
+
+  /* Events Section */
+  .events-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .event-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .event-card:hover {
+    border-color: #a78bfa;
+    transform: translateY(-2px);
+  }
+
+  .event-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #a78bfa;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-card h4 {
+    color: #f8fafc;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-type {
+    display: inline-block;
+    background: rgba(6, 182, 212, 0.2);
+    color: #67e8f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+  }
+
+  /* Tips Section */
+  .tips-section {
+    padding: 3rem 2rem;
+    background: rgba(6, 182, 212, 0.03);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tip-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .tip-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .tip-icon i {
+    font-size: 1.25rem;
+    color: #a78bfa;
+  }
+
+  .tip-card h4 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  /* Mentorship Section */
+  .mentorship-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mentorship-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .mentorship-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .mentorship-card:hover {
+    border-color: #10b981;
+    transform: translateY(-2px);
+  }
+
+  .mentorship-card h4 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .mentorship-card p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .visit-link {
+    color: #10b981;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* Checklist Section */
+  .checklist-section {
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+  }
+
+  .checklist-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .checklist-card {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+
+  .checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .checklist-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .checklist-item input {
+    display: none;
+  }
+
+  .checkmark {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #64748b;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .checkmark::after {
+    content: "✓";
+    color: white;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .checklist-item input:checked + .checkmark {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    border-color: #10b981;
+  }
+
+  .checklist-item input:checked + .checkmark::after {
+    opacity: 1;
+  }
+
+  .checklist-item input:checked ~ .item-text {
+    color: #64748b;
+    text-decoration: line-through;
+  }
+
+  .item-text {
+    color: #f8fafc;
+    font-size: 0.95rem;
+  }
+
+  .progress-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 1.75rem;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-content p {
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn.primary {
+    background: linear-gradient(135deg, #a78bfa, #06b6d4);
+    color: white;
+  }
+
+  .cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+  }
+
+  .cta-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f8fafc;
+  }
+
+  .cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Light Mode */
+  :global([data-theme="light"]) .community-hero {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
+  }
+
+  :global([data-theme="light"]) .community-hero h1 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  :global([data-theme="light"]) .hero-subtitle,
+  :global([data-theme="light"]) .community-description,
+  :global([data-theme="light"]) .platform-card > p,
+  :global([data-theme="light"]) .platform-tips li,
+  :global([data-theme="light"]) .tip-card p,
+  :global([data-theme="light"]) .mentorship-card p,
+  :global([data-theme="light"]) .cta-content p {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .section-header h2,
+  :global([data-theme="light"]) .community-card h3,
+  :global([data-theme="light"]) .platform-card h3,
+  :global([data-theme="light"]) .event-card h4,
+  :global([data-theme="light"]) .tip-card h4,
+  :global([data-theme="light"]) .mentorship-card h4,
+  :global([data-theme="light"]) .cta-content h2,
+  :global([data-theme="light"]) .item-text {
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .community-card,
+  :global([data-theme="light"]) .platform-card,
+  :global([data-theme="light"]) .event-card,
+  :global([data-theme="light"]) .tip-card,
+  :global([data-theme="light"]) .mentorship-card,
+  :global([data-theme="light"]) .checklist-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :global([data-theme="light"]) .link-btn {
+    background: rgba(0, 0, 0, 0.05);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .cta-btn.secondary {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+  }
+
+  :global([data-theme="light"]) .checklist-item input:checked ~ .item-text {
+    color: #94a3b8;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .community-hero h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        color: #94a3b8;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 2rem;
+      font-size: 1.75rem;
     }
 
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
+      gap: 1.5rem;
     }
 
-    .stat {
-        text-align: center;
-    }
-
-    .stat-number {
-        display: block;
-        font-size: 2rem;
-        font-weight: 700;
-        color: #a78bfa;
-    }
-
-    .stat-label {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
-    /* Section Headers */
-    .section-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .section-header h2 {
-        font-size: 1.75rem;
-        color: #f8fafc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-
-    .section-header h2 i {
-        color: #a78bfa;
-    }
-
-    .section-header p {
-        color: #94a3b8;
-        margin-top: 0.5rem;
-    }
-
-    /* Communities Section */
-    .communities-section {
-        padding: 3rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .communities-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .community-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .community-card:hover {
-        border-color: var(--community-color);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    }
-
-    .community-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 1rem;
-    }
-
-    .community-icon {
-        font-size: 2.5rem;
-    }
-
-    .community-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        align-items: flex-end;
-    }
-
-    .type-badge {
-        background: rgba(139, 92, 246, 0.2);
-        color: #a78bfa;
-        padding: 0.2rem 0.5rem;
-        border-radius: 8px;
-        font-size: 0.7rem;
-        font-weight: 600;
-    }
-
-    .members-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        color: #64748b;
-        font-size: 0.8rem;
-    }
-
-    .community-card h3 {
-        font-size: 1.2rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .community-description {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-    }
-
-    .community-links {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .link-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .link-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        color: #f8fafc;
-        transform: translateY(-2px);
-    }
-
-    .link-btn.slack:hover { color: #4a154b; background: rgba(74, 21, 75, 0.3); }
-    .link-btn.telegram:hover { color: #0088cc; background: rgba(0, 136, 204, 0.3); }
-    .link-btn.meetup:hover { color: #ed1c40; background: rgba(237, 28, 64, 0.3); }
-    .link-btn.twitter:hover { color: #1da1f2; background: rgba(29, 161, 242, 0.3); }
-    .link-btn.linkedin:hover { color: #0077b5; background: rgba(0, 119, 181, 0.3); }
-
-    /* Platforms Section */
-    .platforms-section {
-        padding: 3rem 2rem;
-        background: rgba(139, 92, 246, 0.03);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
+    .communities-grid,
     .platforms-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .platform-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .platform-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
-
-    .platform-card h3 {
-        font-size: 1.2rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .platform-card > p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .platform-tips {
-        text-align: left;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        padding: 1rem;
-    }
-
-    .platform-tips h4 {
-        font-size: 0.8rem;
-        color: #a78bfa;
-        margin-bottom: 0.5rem;
-    }
-
-    .platform-tips ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .platform-tips li {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        padding: 0.3rem 0;
-        padding-left: 1rem;
-        position: relative;
-    }
-
-    .platform-tips li::before {
-        content: '✓';
-        position: absolute;
-        left: 0;
-        color: #10b981;
-    }
-
-    /* Events Section */
-    .events-section {
-        padding: 3rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
+      grid-template-columns: 1fr;
     }
 
     .events-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-    }
-
-    .event-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .event-card:hover {
-        border-color: #a78bfa;
-        transform: translateY(-2px);
-    }
-
-    .event-date {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #a78bfa;
-        font-size: 0.85rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .event-card h4 {
-        color: #f8fafc;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .event-type {
-        display: inline-block;
-        background: rgba(6, 182, 212, 0.2);
-        color: #67e8f9;
-        padding: 0.2rem 0.5rem;
-        border-radius: 6px;
-        font-size: 0.75rem;
-    }
-
-    /* Tips Section */
-    .tips-section {
-        padding: 3rem 2rem;
-        background: rgba(6, 182, 212, 0.03);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .tips-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .tip-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.5rem;
-        text-align: center;
-    }
-
-    .tip-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.2));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 1rem;
-    }
-
-    .tip-icon i {
-        font-size: 1.25rem;
-        color: #a78bfa;
-    }
-
-    .tip-card h4 {
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .tip-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-
-    /* Mentorship Section */
-    .mentorship-section {
-        padding: 3rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .mentorship-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .mentorship-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        padding: 1.25rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .mentorship-card:hover {
-        border-color: #10b981;
-        transform: translateY(-2px);
-    }
-
-    .mentorship-card h4 {
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .mentorship-card p {
-        color: #94a3b8;
-        font-size: 0.9rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .visit-link {
-        color: #10b981;
-        font-size: 0.85rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-
-    /* Checklist Section */
-    .checklist-section {
-        padding: 3rem 2rem;
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
-    }
-
-    .checklist-container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-
-    .checklist-card {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 2rem;
-    }
-
-    .checklist-items {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .checklist-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        cursor: pointer;
-        padding: 0.75rem;
-        border-radius: 8px;
-        transition: background 0.2s ease;
-    }
-
-    .checklist-item:hover {
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .checklist-item input {
-        display: none;
-    }
-
-    .checkmark {
-        width: 24px;
-        height: 24px;
-        border: 2px solid #64748b;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        transition: all 0.2s ease;
-    }
-
-    .checkmark::after {
-        content: '✓';
-        color: white;
-        font-size: 0.8rem;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .checklist-item input:checked + .checkmark {
-        background: linear-gradient(135deg, #10b981, #06b6d4);
-        border-color: #10b981;
-    }
-
-    .checklist-item input:checked + .checkmark::after {
-        opacity: 1;
-    }
-
-    .checklist-item input:checked ~ .item-text {
-        color: #64748b;
-        text-decoration: line-through;
-    }
-
-    .item-text {
-        color: #f8fafc;
-        font-size: 0.95rem;
-    }
-
-    .progress-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .progress-bar {
-        flex: 1;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    .progress-fill {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #10b981, #06b6d4);
-        border-radius: 4px;
-        transition: width 0.3s ease;
-    }
-
-    .progress-text {
-        color: #94a3b8;
-        font-size: 0.85rem;
-        white-space: nowrap;
-    }
-
-    /* CTA Section */
-    .cta-section {
-        padding: 4rem 2rem;
-        text-align: center;
-    }
-
-    .cta-content h2 {
-        font-size: 1.75rem;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .cta-content p {
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
+      grid-template-columns: 1fr;
     }
 
     .cta-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .cta-btn.primary {
-        background: linear-gradient(135deg, #a78bfa, #06b6d4);
-        color: white;
-    }
-
-    .cta-btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-    }
-
-    .cta-btn.secondary {
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #f8fafc;
-    }
-
-    .cta-btn.secondary:hover {
-        background: rgba(255, 255, 255, 0.15);
-    }
-
-    /* Light Mode */
-    :global([data-theme="light"]) .community-hero {
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05));
-    }
-
-    :global([data-theme="light"]) .community-hero h1 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .hero-subtitle,
-    :global([data-theme="light"]) .community-description,
-    :global([data-theme="light"]) .platform-card > p,
-    :global([data-theme="light"]) .platform-tips li,
-    :global([data-theme="light"]) .tip-card p,
-    :global([data-theme="light"]) .mentorship-card p,
-    :global([data-theme="light"]) .cta-content p {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .section-header h2,
-    :global([data-theme="light"]) .community-card h3,
-    :global([data-theme="light"]) .platform-card h3,
-    :global([data-theme="light"]) .event-card h4,
-    :global([data-theme="light"]) .tip-card h4,
-    :global([data-theme="light"]) .mentorship-card h4,
-    :global([data-theme="light"]) .cta-content h2,
-    :global([data-theme="light"]) .item-text {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .community-card,
-    :global([data-theme="light"]) .platform-card,
-    :global([data-theme="light"]) .event-card,
-    :global([data-theme="light"]) .tip-card,
-    :global([data-theme="light"]) .mentorship-card,
-    :global([data-theme="light"]) .checklist-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.1);
-    }
-
-    :global([data-theme="light"]) .link-btn {
-        background: rgba(0, 0, 0, 0.05);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .cta-btn.secondary {
-        background: rgba(0, 0, 0, 0.05);
-        border-color: rgba(0, 0, 0, 0.1);
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .checklist-item input:checked ~ .item-text {
-        color: #94a3b8;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .community-hero h1 {
-            font-size: 1.75rem;
-        }
-
-        .hero-stats {
-            gap: 1.5rem;
-        }
-
-        .communities-grid,
-        .platforms-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .events-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tips-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .cta-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+  }
 </style>
 
 <script>
-    function initCommunityPage() {
-        const checkboxes = document.querySelectorAll('.checklist-item input');
-        const progressFill = document.getElementById('progress-fill');
-        const progressText = document.getElementById('progress-text');
+  function initCommunityPage() {
+    const checkboxes = document.querySelectorAll(".checklist-item input");
+    const progressFill = document.getElementById("progress-fill");
+    const progressText = document.getElementById("progress-text");
 
-        function updateProgress() {
-            const total = checkboxes.length;
-            const checked = document.querySelectorAll('.checklist-item input:checked').length;
-            const percentage = (checked / total) * 100;
+    function updateProgress() {
+      const total = checkboxes.length;
+      const checked = document.querySelectorAll(".checklist-item input:checked").length;
+      const percentage = (checked / total) * 100;
 
-            if (progressFill) {
-                progressFill.style.width = `${percentage}%`;
-            }
-            if (progressText) {
-                progressText.textContent = `${checked}/${total} completados`;
-            }
-        }
+      if (progressFill) {
+        progressFill.style.width = `${percentage}%`;
+      }
+      if (progressText) {
+        progressText.textContent = `${checked}/${total} completados`;
+      }
+    }
 
-        // Load saved state
-        checkboxes.forEach((cb, idx) => {
-            const saved = localStorage.getItem(`community-check-${idx}`);
-            if (saved === 'true') {
-                (cb as HTMLInputElement).checked = true;
-            }
+    // Load saved state
+    checkboxes.forEach((cb, idx) => {
+      const saved = localStorage.getItem(`community-check-${idx}`);
+      if (saved === "true") {
+        (cb as HTMLInputElement).checked = true;
+      }
 
-            cb.addEventListener('change', () => {
-                localStorage.setItem(`community-check-${idx}`, (cb as HTMLInputElement).checked.toString());
-                updateProgress();
-            });
-        });
-
-        // Initial progress update
+      cb.addEventListener("change", () => {
+        localStorage.setItem(`community-check-${idx}`, (cb as HTMLInputElement).checked.toString());
         updateProgress();
-    }
+      });
+    });
 
-    // Initialize on page load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCommunityPage);
-    } else {
-        initCommunityPage();
-    }
+    // Initial progress update
+    updateProgress();
+  }
 
-    // Re-initialize on View Transitions
-    document.addEventListener('astro:page-load', initCommunityPage);
+  // Initialize on page load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCommunityPage);
+  } else {
+    initCommunityPage();
+  }
+
+  // Re-initialize on View Transitions
+  document.addEventListener("astro:page-load", initCommunityPage);
 </script>

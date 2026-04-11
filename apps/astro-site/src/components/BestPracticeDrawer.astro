@@ -4,870 +4,902 @@
  * Panel lateral para mostrar información detallada de mejores prácticas empresariales
  * Similar a SubjectDrawer pero enfocado en contenido educativo de best practices
  */
-import { bestPractices, type BestPractice } from '../data/bestPractices';
+import { bestPractices, type BestPractice } from "../data/bestPractices";
 ---
 
 <!-- Overlay -->
 <div id="bp-drawer-overlay" class="bp-drawer-overlay"></div>
 
 <!-- Drawer Panel -->
-<aside id="bp-drawer" class="bp-drawer" aria-hidden="true" role="dialog" aria-labelledby="bp-drawer-title">
-    <!-- Header -->
-    <header class="bp-header">
-        <div class="bp-header-content">
-            <span class="bp-category-badge" id="bp-category">PROGRAMACION</span>
-            <span class="bp-acronimo" id="bp-acronimo">SOLID</span>
-        </div>
-        <button class="bp-close" aria-label="Cerrar panel" id="bp-close-btn">
-            <i class="fas fa-times"></i>
-        </button>
-    </header>
+<aside
+  id="bp-drawer"
+  class="bp-drawer"
+  aria-hidden="true"
+  role="dialog"
+  aria-labelledby="bp-drawer-title"
+>
+  <!-- Header -->
+  <header class="bp-header">
+    <div class="bp-header-content">
+      <span class="bp-category-badge" id="bp-category">PROGRAMACION</span>
+      <span class="bp-acronimo" id="bp-acronimo">SOLID</span>
+    </div>
+    <button class="bp-close" aria-label="Cerrar panel" id="bp-close-btn">
+      <i class="fas fa-times"></i>
+    </button>
+  </header>
 
-    <!-- Body -->
-    <div class="bp-body">
-        <!-- Title Section -->
-        <div class="bp-title-section">
-            <div class="bp-icon-container" id="bp-icon">
-                <i class="fas fa-cubes"></i>
-            </div>
-            <h2 class="bp-title" id="bp-drawer-title">Principios SOLID</h2>
-            <p class="bp-subtitle" id="bp-descripcion-corta">5 principios de diseño orientado a objetos</p>
-        </div>
-
-        <!-- Description -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-info-circle"></i> Descripción
-            </h3>
-            <p class="bp-content" id="bp-descripcion">
-                Descripción completa de la práctica...
-            </p>
-        </section>
-
-        <!-- Principios/Reglas -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-list-check"></i> Principios
-            </h3>
-            <div class="bp-principios" id="bp-principios">
-                <!-- Generados dinámicamente -->
-            </div>
-        </section>
-
-        <!-- Beneficios -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-check-circle"></i> Beneficios
-            </h3>
-            <ul class="bp-list benefits" id="bp-beneficios">
-                <li>Beneficio 1</li>
-            </ul>
-        </section>
-
-        <!-- Antipatrones -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-exclamation-triangle"></i> Evitar (Antipatrones)
-            </h3>
-            <ul class="bp-list antipatterns" id="bp-antipatrones">
-                <li>Antipatrón 1</li>
-            </ul>
-        </section>
-
-        <!-- Ejemplo de Código (si existe) -->
-        <section class="bp-section" id="bp-ejemplo-section" style="display: none;">
-            <h3 class="bp-section-title">
-                <i class="fas fa-code"></i> Ejemplo
-            </h3>
-            <div class="bp-code-container">
-                <div class="bp-code-header">
-                    <span class="bp-code-lang" id="bp-code-lang">python</span>
-                    <button class="bp-code-copy" id="bp-code-copy" title="Copiar código">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                </div>
-                <div class="bp-code-block" id="bp-ejemplo">
-                    <pre><code>// Código de ejemplo</code></pre>
-                </div>
-            </div>
-            <p class="bp-code-explanation" id="bp-code-explanation"></p>
-        </section>
-
-        <!-- Recursos -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-book-open"></i> Recursos para Aprender
-            </h3>
-            <div class="bp-recursos" id="bp-recursos">
-                <!-- Links a recursos -->
-            </div>
-        </section>
-
-        <!-- Prácticas Relacionadas -->
-        <section class="bp-section">
-            <h3 class="bp-section-title">
-                <i class="fas fa-link"></i> Prácticas Relacionadas
-            </h3>
-            <div class="bp-relacionadas" id="bp-relacionadas">
-                <!-- Tags clickeables -->
-            </div>
-        </section>
+  <!-- Body -->
+  <div class="bp-body">
+    <!-- Title Section -->
+    <div class="bp-title-section">
+      <div class="bp-icon-container" id="bp-icon">
+        <i class="fas fa-cubes"></i>
+      </div>
+      <h2 class="bp-title" id="bp-drawer-title">Principios SOLID</h2>
+      <p class="bp-subtitle" id="bp-descripcion-corta">
+        5 principios de diseño orientado a objetos
+      </p>
     </div>
 
-    <!-- Footer -->
-    <footer class="bp-footer">
-        <a class="bp-cta" href="#" id="bp-learn-more" target="_blank">
-            <i class="fas fa-external-link-alt"></i> Aprender más
-        </a>
-    </footer>
+    <!-- Description -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-info-circle"></i> Descripción
+      </h3>
+      <p class="bp-content" id="bp-descripcion">Descripción completa de la práctica...</p>
+    </section>
+
+    <!-- Principios/Reglas -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-list-check"></i> Principios
+      </h3>
+      <div class="bp-principios" id="bp-principios">
+        <!-- Generados dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-check-circle"></i> Beneficios
+      </h3>
+      <ul class="bp-list benefits" id="bp-beneficios">
+        <li>Beneficio 1</li>
+      </ul>
+    </section>
+
+    <!-- Antipatrones -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-exclamation-triangle"></i> Evitar (Antipatrones)
+      </h3>
+      <ul class="bp-list antipatterns" id="bp-antipatrones">
+        <li>Antipatrón 1</li>
+      </ul>
+    </section>
+
+    <!-- Ejemplo de Código (si existe) -->
+    <section class="bp-section" id="bp-ejemplo-section" style="display: none;">
+      <h3 class="bp-section-title">
+        <i class="fas fa-code"></i> Ejemplo
+      </h3>
+      <div class="bp-code-container">
+        <div class="bp-code-header">
+          <span class="bp-code-lang" id="bp-code-lang">python</span>
+          <button class="bp-code-copy" id="bp-code-copy" title="Copiar código">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <div class="bp-code-block" id="bp-ejemplo">
+          <pre><code>// Código de ejemplo</code></pre>
+        </div>
+      </div>
+      <p class="bp-code-explanation" id="bp-code-explanation"></p>
+    </section>
+
+    <!-- Recursos -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-book-open"></i> Recursos para Aprender
+      </h3>
+      <div class="bp-recursos" id="bp-recursos">
+        <!-- Links a recursos -->
+      </div>
+    </section>
+
+    <!-- Prácticas Relacionadas -->
+    <section class="bp-section">
+      <h3 class="bp-section-title">
+        <i class="fas fa-link"></i> Prácticas Relacionadas
+      </h3>
+      <div class="bp-relacionadas" id="bp-relacionadas">
+        <!-- Tags clickeables -->
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bp-footer">
+    <a class="bp-cta" href="#" id="bp-learn-more" target="_blank">
+      <i class="fas fa-external-link-alt"></i> Aprender más
+    </a>
+  </footer>
 </aside>
 
 <style>
-    /* =============================================
+  /* =============================================
        BEST PRACTICE DRAWER - Enterprise Grade Design
        ============================================= */
 
-    .bp-drawer-overlay {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(2px);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.2s ease, visibility 0.2s ease;
-    }
+  .bp-drawer-overlay {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease;
+  }
 
-    .bp-drawer-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
+  .bp-drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
 
-    .bp-drawer {
-        position: fixed;
-        top: 70px;
-        right: 0;
-        width: 460px;
-        max-width: 95vw;
-        height: calc(100vh - 70px);
-        background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
-        border-left: 1px solid rgba(6, 182, 212, 0.3);
-        z-index: 1000;
-        transform: translateX(100%);
-        visibility: hidden;
-        transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), visibility 0.25s ease;
-        display: flex;
-        flex-direction: column;
-        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.5);
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+  .bp-drawer {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 460px;
+    max-width: 95vw;
+    height: calc(100vh - 70px);
+    background: linear-gradient(180deg, #0a0f1a 0%, #0f172a 40%, #1e293b 100%);
+    border-left: 1px solid rgba(6, 182, 212, 0.3);
+    z-index: 1000;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0, 0, 1),
+      visibility 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.5);
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      sans-serif;
+  }
 
-    .bp-drawer.open {
-        transform: translateX(0);
-        visibility: visible;
-    }
+  .bp-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
 
-    /* Header */
-    .bp-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.65rem 1rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(139, 92, 246, 0.08));
-        border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-        flex-shrink: 0;
-    }
+  /* Header */
+  .bp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(139, 92, 246, 0.08));
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    flex-shrink: 0;
+  }
 
-    .bp-header-content {
-        display: flex;
-        align-items: center;
-        gap: 0.65rem;
-    }
+  .bp-header-content {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
 
-    .bp-category-badge {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-        padding: 0.25rem 0.65rem;
-        border-radius: 6px;
-        font-size: 0.62rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        border: 1px solid rgba(6, 182, 212, 0.15);
-    }
+  .bp-category-badge {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid rgba(6, 182, 212, 0.15);
+  }
 
-    .bp-acronimo {
-        color: #cbd5e1;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.78rem;
-        font-weight: 600;
-        padding: 0.2rem 0.45rem;
-        background: rgba(148, 163, 184, 0.1);
-        border-radius: 4px;
-    }
+  .bp-acronimo {
+    color: #cbd5e1;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.2rem 0.45rem;
+    background: rgba(148, 163, 184, 0.1);
+    border-radius: 4px;
+  }
 
-    .bp-close {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 1px solid rgba(239, 68, 68, 0.25);
-        background: rgba(239, 68, 68, 0.08);
-        color: #ef4444;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s ease;
-        font-size: 0.65rem;
-    }
+  .bp-close {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    background: rgba(239, 68, 68, 0.08);
+    color: #ef4444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 0.65rem;
+  }
 
-    .bp-close:hover {
-        background: rgba(239, 68, 68, 0.18);
-        transform: rotate(90deg);
-    }
+  .bp-close:hover {
+    background: rgba(239, 68, 68, 0.18);
+    transform: rotate(90deg);
+  }
 
-    /* Body */
-    .bp-body {
-        flex: 1;
-        overflow-y: auto;
-        padding: 1rem 1.1rem;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
-    }
+  /* Body */
+  .bp-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(6, 182, 212, 0.3) transparent;
+  }
 
-    .bp-body::-webkit-scrollbar {
-        width: 6px;
-    }
+  .bp-body::-webkit-scrollbar {
+    width: 6px;
+  }
 
-    .bp-body::-webkit-scrollbar-track {
-        background: transparent;
-    }
+  .bp-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-    .bp-body::-webkit-scrollbar-thumb {
-        background: rgba(6, 182, 212, 0.3);
-        border-radius: 3px;
-    }
+  .bp-body::-webkit-scrollbar-thumb {
+    background: rgba(6, 182, 212, 0.3);
+    border-radius: 3px;
+  }
 
-    /* Title Section */
-    .bp-title-section {
-        text-align: center;
-        margin-bottom: 1.25rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
+  /* Title Section */
+  .bp-title-section {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
 
-    .bp-icon-container {
-        width: 58px;
-        height: 58px;
-        margin: 0 auto 0.75rem;
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.15));
-        border-radius: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        color: #22d3ee;
-        border: 1px solid rgba(6, 182, 212, 0.15);
-    }
+  .bp-icon-container {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 0.75rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.15));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.15);
+  }
 
-    .bp-title {
-        font-family: 'Sora', 'Inter', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin: 0 0 0.35rem 0;
-        letter-spacing: -0.02em;
-    }
+  .bp-title {
+    font-family: "Sora", "Inter", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin: 0 0 0.35rem 0;
+    letter-spacing: -0.02em;
+  }
 
-    .bp-subtitle {
-        color: #94a3b8;
-        font-size: 0.82rem;
-        margin: 0;
-        line-height: 1.4;
-    }
+  .bp-subtitle {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    margin: 0;
+    line-height: 1.4;
+  }
 
-    /* ============================================
+  /* ============================================
        SECTIONS - Study-Focused Typography
        Enhanced hierarchy with clear visual "jumps"
        for better readability and information scanning
     ============================================ */
-    .bp-section {
-        margin-bottom: 1.15rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.06);
-        position: relative;
-    }
+  .bp-section {
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.06);
+    position: relative;
+  }
 
-    .bp-section:last-child {
-        margin-bottom: 0;
-        border-bottom: none;
-    }
+  .bp-section:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
 
-    /* Section titles with strong visual hierarchy */
-    .bp-section-title {
-        font-family: 'Sora', 'Space Grotesk', sans-serif;
-        font-size: 0.68rem;
-        font-weight: 800;
-        color: #94a3b8;
-        margin: 0 0 0.65rem 0;
-        padding: 0.35rem 0.55rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        background: linear-gradient(90deg, rgba(6, 182, 212, 0.08), transparent);
-        border-radius: 4px;
-        border-left: 3px solid rgba(6, 182, 212, 0.5);
-    }
+  /* Section titles with strong visual hierarchy */
+  .bp-section-title {
+    font-family: "Sora", "Space Grotesk", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #94a3b8;
+    margin: 0 0 0.65rem 0;
+    padding: 0.35rem 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.08), transparent);
+    border-radius: 4px;
+    border-left: 3px solid rgba(6, 182, 212, 0.5);
+  }
 
-    .bp-section-title i {
-        color: #22d3ee;
-        font-size: 0.62rem;
-        opacity: 0.9;
-    }
+  .bp-section-title i {
+    color: #22d3ee;
+    font-size: 0.62rem;
+    opacity: 0.9;
+  }
 
-    /* Main content typography - optimized for study reading */
-    .bp-content {
-        color: #e2e8f0;
-        font-size: 0.85rem;
-        line-height: 1.72;
-        margin: 0;
-        font-family: 'Inter', system-ui, sans-serif;
-        letter-spacing: -0.008em;
-        /* Improve text rendering for extended reading */
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-    }
+  /* Main content typography - optimized for study reading */
+  .bp-content {
+    color: #e2e8f0;
+    font-size: 0.85rem;
+    line-height: 1.72;
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.008em;
+    /* Improve text rendering for extended reading */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* First letter drop cap for description */
-    .bp-content::first-letter {
-        font-size: 1.4em;
-        font-weight: 700;
-        color: #22d3ee;
-        float: left;
-        line-height: 1;
-        margin-right: 0.12em;
-        margin-top: 0.08em;
-    }
+  /* First letter drop cap for description */
+  .bp-content::first-letter {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #22d3ee;
+    float: left;
+    line-height: 1;
+    margin-right: 0.12em;
+    margin-top: 0.08em;
+  }
 
-    /* Principios */
-    .bp-principios {
-        display: flex;
-        flex-direction: column;
-        gap: 0.55rem;
-    }
+  /* Principios */
+  .bp-principios {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
 
-    .bp-principio-card {
-        background: rgba(30, 41, 59, 0.35);
-        border-radius: 8px;
-        padding: 0.7rem 0.9rem;
-        border-left: 3px solid #06b6d4;
-        transition: all 0.2s ease;
-    }
+  .bp-principio-card {
+    background: rgba(30, 41, 59, 0.35);
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+    border-left: 3px solid #06b6d4;
+    transition: all 0.2s ease;
+  }
 
-    .bp-principio-card:hover {
-        background: rgba(6, 182, 212, 0.08);
-    }
+  .bp-principio-card:hover {
+    background: rgba(6, 182, 212, 0.08);
+  }
 
-    .bp-principio-header {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin-bottom: 0.3rem;
-    }
+  .bp-principio-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.3rem;
+  }
 
-    .bp-principio-letra {
-        width: 24px;
-        height: 24px;
-        background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: white;
-        flex-shrink: 0;
-    }
+  .bp-principio-letra {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
 
-    .bp-principio-nombre {
-        font-weight: 600;
-        color: #e2e8f0;
-        font-size: 0.82rem;
-    }
+  .bp-principio-nombre {
+    font-weight: 600;
+    color: #e2e8f0;
+    font-size: 0.82rem;
+  }
 
-    .bp-principio-desc {
-        color: #94a3b8;
-        font-size: 0.78rem;
-        margin: 0;
-        padding-left: 2.1rem;
-        line-height: 1.5;
-    }
+  .bp-principio-desc {
+    color: #94a3b8;
+    font-size: 0.78rem;
+    margin: 0;
+    padding-left: 2.1rem;
+    line-height: 1.5;
+  }
 
-    /* ============================================
+  /* ============================================
        LISTS - Study-Focused Typography
        Clear hierarchy and visual scanning
     ============================================ */
-    .bp-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.45rem;
-    }
+  .bp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 
-    .bp-list li {
-        position: relative;
-        padding: 0.35rem 0.5rem 0.35rem 1.65rem;
-        color: #e2e8f0;
-        font-size: 0.82rem;
-        line-height: 1.55;
-        font-family: 'Inter', system-ui, sans-serif;
-        letter-spacing: -0.008em;
-        background: rgba(30, 41, 59, 0.15);
-        border-radius: 6px;
-        transition: all 0.15s ease;
-    }
+  .bp-list li {
+    position: relative;
+    padding: 0.35rem 0.5rem 0.35rem 1.65rem;
+    color: #e2e8f0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.008em;
+    background: rgba(30, 41, 59, 0.15);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
 
-    .bp-list li:hover {
-        background: rgba(30, 41, 59, 0.28);
-        color: #f1f5f9;
-    }
+  .bp-list li:hover {
+    background: rgba(30, 41, 59, 0.28);
+    color: #f1f5f9;
+  }
 
-    .bp-list.benefits li::before {
-        content: '\f00c';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0.55rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #22c55e;
-        font-size: 0.6rem;
-    }
+  .bp-list.benefits li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #22c55e;
+    font-size: 0.6rem;
+  }
 
-    .bp-list.antipatterns li::before {
-        content: '\f071';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0.55rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #f59e0b;
-        font-size: 0.58rem;
-    }
+  .bp-list.antipatterns li::before {
+    content: "\f071";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #f59e0b;
+    font-size: 0.58rem;
+  }
 
-    /* Code Block */
-    .bp-code-container {
-        background: rgba(15, 23, 42, 0.7);
-        border-radius: 8px;
-        overflow: hidden;
-        border: 1px solid rgba(148, 163, 184, 0.1);
-    }
+  /* Code Block */
+  .bp-code-container {
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+  }
 
-    .bp-code-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.45rem 0.75rem;
-        background: rgba(30, 41, 59, 0.5);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
+  .bp-code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0.75rem;
+    background: rgba(30, 41, 59, 0.5);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
 
-    .bp-code-lang {
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.65rem;
-        color: #94a3b8;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
+  .bp-code-lang {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.65rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 
-    .bp-code-copy {
-        background: transparent;
-        border: none;
-        color: #64748b;
-        cursor: pointer;
-        padding: 0.25rem;
-        border-radius: 4px;
-        transition: all 0.2s ease;
-    }
+  .bp-code-copy {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
 
-    .bp-code-copy:hover {
-        color: #22d3ee;
-        background: rgba(6, 182, 212, 0.1);
-    }
+  .bp-code-copy:hover {
+    color: #22d3ee;
+    background: rgba(6, 182, 212, 0.1);
+  }
 
-    .bp-code-block {
-        padding: 0.75rem;
-        overflow-x: auto;
-    }
+  .bp-code-block {
+    padding: 0.75rem;
+    overflow-x: auto;
+  }
 
-    .bp-code-block pre {
-        margin: 0;
-        font-family: 'JetBrains Mono', 'Fira Code', monospace;
-        font-size: 0.72rem;
-        line-height: 1.55;
-        color: #e2e8f0;
-        white-space: pre-wrap;
-        word-break: break-word;
-    }
+  .bp-code-block pre {
+    margin: 0;
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    font-size: 0.72rem;
+    line-height: 1.55;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 
-    .bp-code-explanation {
-        margin: 0.55rem 0 0 0;
-        font-size: 0.75rem;
-        color: #94a3b8;
-        font-style: italic;
-        padding-left: 0.5rem;
-        border-left: 2px solid rgba(6, 182, 212, 0.3);
-    }
+  .bp-code-explanation {
+    margin: 0.55rem 0 0 0;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-style: italic;
+    padding-left: 0.5rem;
+    border-left: 2px solid rgba(6, 182, 212, 0.3);
+  }
 
-    /* Recursos */
-    .bp-recursos {
-        display: flex;
-        flex-direction: column;
-        gap: 0.45rem;
-    }
+  /* Recursos */
+  .bp-recursos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
 
-    .bp-recurso-link {
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        padding: 0.55rem 0.7rem;
-        background: rgba(30, 41, 59, 0.25);
-        border-radius: 6px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        border: 1px solid transparent;
-    }
+  .bp-recurso-link {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.7rem;
+    background: rgba(30, 41, 59, 0.25);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
 
-    .bp-recurso-link:hover {
-        background: rgba(6, 182, 212, 0.1);
-        border-color: rgba(6, 182, 212, 0.2);
-    }
+  .bp-recurso-link:hover {
+    background: rgba(6, 182, 212, 0.1);
+    border-color: rgba(6, 182, 212, 0.2);
+  }
 
-    .bp-recurso-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        flex-shrink: 0;
-    }
+  .bp-recurso-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
 
-    .bp-recurso-icon.doc { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-    .bp-recurso-icon.video { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-    .bp-recurso-icon.tutorial { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
-    .bp-recurso-icon.libro { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-    .bp-recurso-icon.articulo { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+  .bp-recurso-icon.doc {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+  }
+  .bp-recurso-icon.video {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+  }
+  .bp-recurso-icon.tutorial {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+  }
+  .bp-recurso-icon.libro {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+  }
+  .bp-recurso-icon.articulo {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+  }
 
-    .bp-recurso-info {
-        flex: 1;
-        min-width: 0;
-    }
+  .bp-recurso-info {
+    flex: 1;
+    min-width: 0;
+  }
 
-    .bp-recurso-nombre {
-        color: #e2e8f0;
-        font-size: 0.78rem;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+  .bp-recurso-nombre {
+    color: #e2e8f0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .bp-recurso-tipo {
-        color: #64748b;
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
+  .bp-recurso-tipo {
+    color: #64748b;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
 
-    .bp-recurso-link i.fa-external-link-alt {
-        color: #475569;
-        font-size: 0.6rem;
-        flex-shrink: 0;
-    }
+  .bp-recurso-link i.fa-external-link-alt {
+    color: #475569;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+  }
 
-    /* Relacionadas */
-    .bp-relacionadas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-    }
+  /* Relacionadas */
+  .bp-relacionadas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
 
-    .bp-relacionada-tag {
-        background: rgba(139, 92, 246, 0.1);
-        color: #a5b4fc;
-        padding: 0.35rem 0.65rem;
-        border-radius: 6px;
-        font-size: 0.72rem;
-        font-weight: 500;
-        cursor: pointer;
-        border: 1px solid rgba(139, 92, 246, 0.2);
-        transition: all 0.2s ease;
-    }
+  .bp-relacionada-tag {
+    background: rgba(139, 92, 246, 0.1);
+    color: #a5b4fc;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.2s ease;
+  }
 
-    .bp-relacionada-tag:hover {
-        background: rgba(139, 92, 246, 0.2);
-        border-color: rgba(139, 92, 246, 0.4);
-        transform: translateY(-1px);
-    }
+  .bp-relacionada-tag:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.4);
+    transform: translateY(-1px);
+  }
 
-    /* Footer */
-    .bp-footer {
-        padding: 0.75rem 1rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
-        flex-shrink: 0;
-        background: rgba(15, 23, 42, 0.3);
-    }
+  /* Footer */
+  .bp-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    flex-shrink: 0;
+    background: rgba(15, 23, 42, 0.3);
+  }
 
-    .bp-cta {
-        display: flex;
-        width: 100%;
-        padding: 0.7rem;
-        background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-        border: none;
-        border-radius: 8px;
-        color: white;
-        font-weight: 600;
-        font-size: 0.82rem;
-        cursor: pointer;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.2s ease;
-        text-decoration: none;
-    }
+  .bp-cta {
+    display: flex;
+    width: 100%;
+    padding: 0.7rem;
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
 
-    .bp-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
-    }
+  .bp-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+  }
 
-    /* =============================================
+  /* =============================================
        LIGHT MODE
        ============================================= */
-    :global([data-theme="light"]) .bp-drawer {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-        border-left-color: rgba(6, 182, 212, 0.3);
-        box-shadow: -12px 0 48px rgba(0, 0, 0, 0.1);
-    }
+  :global([data-theme="light"]) .bp-drawer {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-left-color: rgba(6, 182, 212, 0.3);
+    box-shadow: -12px 0 48px rgba(0, 0, 0, 0.1);
+  }
 
-    :global([data-theme="light"]) .bp-header {
-        background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
-    }
+  :global([data-theme="light"]) .bp-header {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(139, 92, 246, 0.05));
+  }
 
-    :global([data-theme="light"]) .bp-category-badge {
-        background: rgba(6, 182, 212, 0.1);
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .bp-category-badge {
+    background: rgba(6, 182, 212, 0.1);
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .bp-acronimo {
-        color: #334155;
-        background: rgba(148, 163, 184, 0.15);
-    }
+  :global([data-theme="light"]) .bp-acronimo {
+    color: #334155;
+    background: rgba(148, 163, 184, 0.15);
+  }
 
-    :global([data-theme="light"]) .bp-title {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .bp-title {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .bp-subtitle {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .bp-subtitle {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .bp-section {
-        border-bottom-color: rgba(148, 163, 184, 0.1);
-    }
+  :global([data-theme="light"]) .bp-section {
+    border-bottom-color: rgba(148, 163, 184, 0.1);
+  }
 
-    :global([data-theme="light"]) .bp-section-title {
-        color: #475569;
-        background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), transparent);
-        border-left-color: rgba(6, 182, 212, 0.4);
-    }
+  :global([data-theme="light"]) .bp-section-title {
+    color: #475569;
+    background: linear-gradient(90deg, rgba(6, 182, 212, 0.06), transparent);
+    border-left-color: rgba(6, 182, 212, 0.4);
+  }
 
-    :global([data-theme="light"]) .bp-section-title i {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .bp-section-title i {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .bp-content {
-        color: #334155;
-    }
+  :global([data-theme="light"]) .bp-content {
+    color: #334155;
+  }
 
-    :global([data-theme="light"]) .bp-content::first-letter {
-        color: #0891b2;
-    }
+  :global([data-theme="light"]) .bp-content::first-letter {
+    color: #0891b2;
+  }
 
-    :global([data-theme="light"]) .bp-list li {
-        color: #334155;
-        background: rgba(241, 245, 249, 0.6);
-    }
+  :global([data-theme="light"]) .bp-list li {
+    color: #334155;
+    background: rgba(241, 245, 249, 0.6);
+  }
 
-    :global([data-theme="light"]) .bp-list li:hover {
-        background: rgba(241, 245, 249, 0.9);
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .bp-list li:hover {
+    background: rgba(241, 245, 249, 0.9);
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .bp-list.benefits li::before {
-        color: #16a34a;
-    }
+  :global([data-theme="light"]) .bp-list.benefits li::before {
+    color: #16a34a;
+  }
 
-    :global([data-theme="light"]) .bp-list.antipatterns li::before {
-        color: #d97706;
-    }
+  :global([data-theme="light"]) .bp-list.antipatterns li::before {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .bp-principio-card {
-        background: rgba(248, 250, 252, 0.8);
-        border: 1px solid rgba(148, 163, 184, 0.15);
-    }
+  :global([data-theme="light"]) .bp-principio-card {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+  }
 
-    :global([data-theme="light"]) .bp-principio-card:hover {
-        background: rgba(6, 182, 212, 0.05);
-    }
+  :global([data-theme="light"]) .bp-principio-card:hover {
+    background: rgba(6, 182, 212, 0.05);
+  }
 
-    :global([data-theme="light"]) .bp-principio-nombre {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .bp-principio-nombre {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .bp-principio-desc {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .bp-principio-desc {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .bp-code-container {
-        background: #f1f5f9;
-        border-color: rgba(148, 163, 184, 0.2);
-    }
+  :global([data-theme="light"]) .bp-code-container {
+    background: #f1f5f9;
+    border-color: rgba(148, 163, 184, 0.2);
+  }
 
-    :global([data-theme="light"]) .bp-code-header {
-        background: rgba(226, 232, 240, 0.5);
-    }
+  :global([data-theme="light"]) .bp-code-header {
+    background: rgba(226, 232, 240, 0.5);
+  }
 
-    :global([data-theme="light"]) .bp-code-block pre {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .bp-code-block pre {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .bp-recurso-link {
-        background: rgba(248, 250, 252, 0.8);
-        border-color: rgba(148, 163, 184, 0.15);
-    }
+  :global([data-theme="light"]) .bp-recurso-link {
+    background: rgba(248, 250, 252, 0.8);
+    border-color: rgba(148, 163, 184, 0.15);
+  }
 
-    :global([data-theme="light"]) .bp-recurso-link:hover {
-        background: rgba(6, 182, 212, 0.05);
-    }
+  :global([data-theme="light"]) .bp-recurso-link:hover {
+    background: rgba(6, 182, 212, 0.05);
+  }
 
-    :global([data-theme="light"]) .bp-recurso-nombre {
-        color: #1e293b;
-    }
+  :global([data-theme="light"]) .bp-recurso-nombre {
+    color: #1e293b;
+  }
 
-    :global([data-theme="light"]) .bp-relacionada-tag {
-        background: rgba(139, 92, 246, 0.08);
-        color: #7c3aed;
-    }
+  :global([data-theme="light"]) .bp-relacionada-tag {
+    background: rgba(139, 92, 246, 0.08);
+    color: #7c3aed;
+  }
 
-    :global([data-theme="light"]) .bp-footer {
-        background: rgba(248, 250, 252, 0.5);
-    }
+  :global([data-theme="light"]) .bp-footer {
+    background: rgba(248, 250, 252, 0.5);
+  }
 
-    /* =============================================
+  /* =============================================
        RESPONSIVE
        ============================================= */
-    @media (max-width: 600px) {
-        .bp-drawer {
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .bp-body {
-            padding: 0.85rem;
-        }
-
-        .bp-principio-desc {
-            padding-left: 0;
-        }
+  @media (max-width: 600px) {
+    .bp-drawer {
+      width: 100%;
+      max-width: 100%;
     }
+
+    .bp-body {
+      padding: 0.85rem;
+    }
+
+    .bp-principio-desc {
+      padding-left: 0;
+    }
+  }
 </style>
 
 <script is:inline define:vars={{ bestPracticesData: bestPractices }}>
-(function() {
+  (function () {
     // Estado global
     window.bestPracticesData = bestPracticesData;
 
     // Abrir drawer de best practice
-    window.openBestPracticeDrawer = function(practiceId) {
-        const practice = window.bestPracticesData[practiceId];
-        if (!practice) {
-            console.warn('Best practice not found:', practiceId);
-            return;
-        }
+    window.openBestPracticeDrawer = function (practiceId) {
+      const practice = window.bestPracticesData[practiceId];
+      if (!practice) {
+        console.warn("Best practice not found:", practiceId);
+        return;
+      }
 
-        updateBPDrawerContent(practice);
+      updateBPDrawerContent(practice);
 
-        const drawer = document.getElementById('bp-drawer');
-        const overlay = document.getElementById('bp-drawer-overlay');
-        drawer?.classList.add('open');
-        drawer?.setAttribute('aria-hidden', 'false');
-        overlay?.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      const drawer = document.getElementById("bp-drawer");
+      const overlay = document.getElementById("bp-drawer-overlay");
+      drawer?.classList.add("open");
+      drawer?.setAttribute("aria-hidden", "false");
+      overlay?.classList.add("active");
+      document.body.style.overflow = "hidden";
     };
 
     // Cerrar drawer
-    window.closeBestPracticeDrawer = function() {
-        const drawer = document.getElementById('bp-drawer');
-        const overlay = document.getElementById('bp-drawer-overlay');
-        drawer?.classList.remove('open');
-        drawer?.setAttribute('aria-hidden', 'true');
-        overlay?.classList.remove('active');
-        document.body.style.overflow = '';
+    window.closeBestPracticeDrawer = function () {
+      const drawer = document.getElementById("bp-drawer");
+      const overlay = document.getElementById("bp-drawer-overlay");
+      drawer?.classList.remove("open");
+      drawer?.setAttribute("aria-hidden", "true");
+      overlay?.classList.remove("active");
+      document.body.style.overflow = "";
     };
 
     // Actualizar contenido
     function updateBPDrawerContent(bp) {
-        // Header
-        const categoryNames = {
-            programacion: 'PROGRAMACIÓN',
-            datos: 'DATOS',
-            devops: 'DEVOPS',
-            cloud: 'CLOUD',
-            arquitectura: 'ARQUITECTURA'
-        };
-        document.getElementById('bp-category').textContent = categoryNames[bp.categoria] || bp.categoria.toUpperCase();
-        document.getElementById('bp-acronimo').textContent = bp.acronimo || bp.nombreCorto;
+      // Header
+      const categoryNames = {
+        programacion: "PROGRAMACIÓN",
+        datos: "DATOS",
+        devops: "DEVOPS",
+        cloud: "CLOUD",
+        arquitectura: "ARQUITECTURA",
+      };
+      document.getElementById("bp-category").textContent =
+        categoryNames[bp.categoria] || bp.categoria.toUpperCase();
+      document.getElementById("bp-acronimo").textContent = bp.acronimo || bp.nombreCorto;
 
-        // Title section - Icon with color
-        const iconContainer = document.getElementById('bp-icon');
-        iconContainer.innerHTML = `<i class="${bp.icon}"></i>`;
+      // Title section - Icon with color
+      const iconContainer = document.getElementById("bp-icon");
+      iconContainer.innerHTML = `<i class="${bp.icon}"></i>`;
 
-        const colorMap = {
-            cyan: 'linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(6, 182, 212, 0.1))',
-            purple: 'linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(139, 92, 246, 0.1))',
-            green: 'linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(34, 197, 94, 0.1))',
-            amber: 'linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.1))',
-            rose: 'linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(244, 63, 94, 0.1))'
-        };
-        const iconColorMap = {
-            cyan: '#22d3ee',
-            purple: '#a78bfa',
-            green: '#4ade80',
-            amber: '#fbbf24',
-            rose: '#fb7185'
-        };
-        iconContainer.style.background = colorMap[bp.color] || colorMap.cyan;
-        iconContainer.querySelector('i').style.color = iconColorMap[bp.color] || iconColorMap.cyan;
+      const colorMap = {
+        cyan: "linear-gradient(135deg, rgba(6, 182, 212, 0.25), rgba(6, 182, 212, 0.1))",
+        purple: "linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(139, 92, 246, 0.1))",
+        green: "linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(34, 197, 94, 0.1))",
+        amber: "linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(245, 158, 11, 0.1))",
+        rose: "linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(244, 63, 94, 0.1))",
+      };
+      const iconColorMap = {
+        cyan: "#22d3ee",
+        purple: "#a78bfa",
+        green: "#4ade80",
+        amber: "#fbbf24",
+        rose: "#fb7185",
+      };
+      iconContainer.style.background = colorMap[bp.color] || colorMap.cyan;
+      iconContainer.querySelector("i").style.color = iconColorMap[bp.color] || iconColorMap.cyan;
 
-        document.getElementById('bp-drawer-title').textContent = bp.nombre;
-        document.getElementById('bp-descripcion-corta').textContent = bp.descripcionCorta;
+      document.getElementById("bp-drawer-title").textContent = bp.nombre;
+      document.getElementById("bp-descripcion-corta").textContent = bp.descripcionCorta;
 
-        // Description
-        document.getElementById('bp-descripcion').textContent = bp.descripcion;
+      // Description
+      document.getElementById("bp-descripcion").textContent = bp.descripcion;
 
-        // Principios
-        const principiosHtml = bp.principios.map(p => `
+      // Principios
+      const principiosHtml = bp.principios
+        .map(
+          (p) => `
             <div class="bp-principio-card">
                 <div class="bp-principio-header">
                     ${p.letra ? `<span class="bp-principio-letra">${p.letra}</span>` : '<span class="bp-principio-letra"><i class="fas fa-check" style="font-size:0.55rem"></i></span>'}
@@ -875,45 +907,57 @@ import { bestPractices, type BestPractice } from '../data/bestPractices';
                 </div>
                 <p class="bp-principio-desc">${p.descripcion}</p>
             </div>
-        `).join('');
-        document.getElementById('bp-principios').innerHTML = principiosHtml;
+        `,
+        )
+        .join("");
+      document.getElementById("bp-principios").innerHTML = principiosHtml;
 
-        // Beneficios
-        const beneficiosHtml = bp.beneficios.map(b => `<li>${b}</li>`).join('');
-        document.getElementById('bp-beneficios').innerHTML = beneficiosHtml;
+      // Beneficios
+      const beneficiosHtml = bp.beneficios.map((b) => `<li>${b}</li>`).join("");
+      document.getElementById("bp-beneficios").innerHTML = beneficiosHtml;
 
-        // Antipatrones
-        const antipatronesHtml = bp.antipatrones.map(a => `<li>${a}</li>`).join('');
-        document.getElementById('bp-antipatrones').innerHTML = antipatronesHtml;
+      // Antipatrones
+      const antipatronesHtml = bp.antipatrones.map((a) => `<li>${a}</li>`).join("");
+      document.getElementById("bp-antipatrones").innerHTML = antipatronesHtml;
 
-        // Ejemplo (si existe)
-        const ejemploSection = document.getElementById('bp-ejemplo-section');
-        if (bp.ejemplos && bp.ejemplos.length > 0) {
-            const ejemplo = bp.ejemplos[0];
-            document.getElementById('bp-code-lang').textContent = ejemplo.lenguaje;
-            document.getElementById('bp-ejemplo').innerHTML = `<pre><code>${escapeHtml(ejemplo.codigo)}</code></pre>`;
+      // Ejemplo (si existe)
+      const ejemploSection = document.getElementById("bp-ejemplo-section");
+      if (bp.ejemplos && bp.ejemplos.length > 0) {
+        const ejemplo = bp.ejemplos[0];
+        document.getElementById("bp-code-lang").textContent = ejemplo.lenguaje;
+        document.getElementById("bp-ejemplo").innerHTML =
+          `<pre><code>${escapeHtml(ejemplo.codigo)}</code></pre>`;
 
-            const explanation = document.getElementById('bp-code-explanation');
-            if (ejemplo.explicacion) {
-                explanation.textContent = ejemplo.explicacion;
-                explanation.style.display = 'block';
-            } else {
-                explanation.style.display = 'none';
-            }
-
-            ejemploSection.style.display = 'block';
+        const explanation = document.getElementById("bp-code-explanation");
+        if (ejemplo.explicacion) {
+          explanation.textContent = ejemplo.explicacion;
+          explanation.style.display = "block";
         } else {
-            ejemploSection.style.display = 'none';
+          explanation.style.display = "none";
         }
 
-        // Recursos
-        const recursosHtml = bp.recursos.length > 0 ? bp.recursos.map(r => {
-            const iconClass = r.tipo === 'Documentacion' ? 'fas fa-book' :
-                             r.tipo === 'Video' ? 'fas fa-play-circle' :
-                             r.tipo === 'Tutorial' ? 'fas fa-graduation-cap' :
-                             r.tipo === 'Libro' ? 'fas fa-book-open' : 'fas fa-link';
-            const typeClass = r.tipo.toLowerCase().replace('documentacion', 'doc');
-            return `
+        ejemploSection.style.display = "block";
+      } else {
+        ejemploSection.style.display = "none";
+      }
+
+      // Recursos
+      const recursosHtml =
+        bp.recursos.length > 0
+          ? bp.recursos
+              .map((r) => {
+                const iconClass =
+                  r.tipo === "Documentacion"
+                    ? "fas fa-book"
+                    : r.tipo === "Video"
+                      ? "fas fa-play-circle"
+                      : r.tipo === "Tutorial"
+                        ? "fas fa-graduation-cap"
+                        : r.tipo === "Libro"
+                          ? "fas fa-book-open"
+                          : "fas fa-link";
+                const typeClass = r.tipo.toLowerCase().replace("documentacion", "doc");
+                return `
                 <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="bp-recurso-link">
                     <div class="bp-recurso-icon ${typeClass}">
                         <i class="${iconClass}"></i>
@@ -925,81 +969,88 @@ import { bestPractices, type BestPractice } from '../data/bestPractices';
                     <i class="fas fa-external-link-alt"></i>
                 </a>
             `;
-        }).join('') : '<span style="color:#64748b;font-size:0.78rem;">Sin recursos adicionales</span>';
-        document.getElementById('bp-recursos').innerHTML = recursosHtml;
+              })
+              .join("")
+          : '<span style="color:#64748b;font-size:0.78rem;">Sin recursos adicionales</span>';
+      document.getElementById("bp-recursos").innerHTML = recursosHtml;
 
-        // Relacionadas
-        const relacionadasHtml = bp.relacionadas.length > 0 ? bp.relacionadas.map(id => {
-            const related = window.bestPracticesData[id];
-            if (!related) return '';
-            return `<button class="bp-relacionada-tag" onclick="openBestPracticeDrawer('${id}')">${related.nombreCorto}</button>`;
-        }).join('') : '<span style="color:#64748b;font-size:0.78rem;">-</span>';
-        document.getElementById('bp-relacionadas').innerHTML = relacionadasHtml;
+      // Relacionadas
+      const relacionadasHtml =
+        bp.relacionadas.length > 0
+          ? bp.relacionadas
+              .map((id) => {
+                const related = window.bestPracticesData[id];
+                if (!related) return "";
+                return `<button class="bp-relacionada-tag" onclick="openBestPracticeDrawer('${id}')">${related.nombreCorto}</button>`;
+              })
+              .join("")
+          : '<span style="color:#64748b;font-size:0.78rem;">-</span>';
+      document.getElementById("bp-relacionadas").innerHTML = relacionadasHtml;
 
-        // Footer CTA - link to first resource
-        const learnMoreBtn = document.getElementById('bp-learn-more');
-        if (bp.recursos && bp.recursos.length > 0) {
-            learnMoreBtn.href = bp.recursos[0].url;
-            learnMoreBtn.style.display = 'flex';
-        } else {
-            learnMoreBtn.style.display = 'none';
-        }
+      // Footer CTA - link to first resource
+      const learnMoreBtn = document.getElementById("bp-learn-more");
+      if (bp.recursos && bp.recursos.length > 0) {
+        learnMoreBtn.href = bp.recursos[0].url;
+        learnMoreBtn.style.display = "flex";
+      } else {
+        learnMoreBtn.style.display = "none";
+      }
     }
 
     function escapeHtml(str) {
-        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     // Initialize event listeners
     function initBPDrawerEvents() {
-        const closeBtn = document.getElementById('bp-close-btn');
-        const overlay = document.getElementById('bp-drawer-overlay');
-        const copyBtn = document.getElementById('bp-code-copy');
+      const closeBtn = document.getElementById("bp-close-btn");
+      const overlay = document.getElementById("bp-drawer-overlay");
+      const copyBtn = document.getElementById("bp-code-copy");
 
-        if (closeBtn && !closeBtn.hasAttribute('data-bp-listener')) {
-            closeBtn.setAttribute('data-bp-listener', 'true');
-            closeBtn.addEventListener('click', window.closeBestPracticeDrawer);
-        }
+      if (closeBtn && !closeBtn.hasAttribute("data-bp-listener")) {
+        closeBtn.setAttribute("data-bp-listener", "true");
+        closeBtn.addEventListener("click", window.closeBestPracticeDrawer);
+      }
 
-        if (overlay && !overlay.hasAttribute('data-bp-listener')) {
-            overlay.setAttribute('data-bp-listener', 'true');
-            overlay.addEventListener('click', window.closeBestPracticeDrawer);
-        }
+      if (overlay && !overlay.hasAttribute("data-bp-listener")) {
+        overlay.setAttribute("data-bp-listener", "true");
+        overlay.addEventListener("click", window.closeBestPracticeDrawer);
+      }
 
-        if (copyBtn && !copyBtn.hasAttribute('data-bp-listener')) {
-            copyBtn.setAttribute('data-bp-listener', 'true');
-            copyBtn.addEventListener('click', function() {
-                const code = document.querySelector('#bp-ejemplo pre code');
-                if (code) {
-                    navigator.clipboard.writeText(code.textContent).then(() => {
-                        this.innerHTML = '<i class="fas fa-check"></i>';
-                        setTimeout(() => {
-                            this.innerHTML = '<i class="fas fa-copy"></i>';
-                        }, 2000);
-                    });
-                }
+      if (copyBtn && !copyBtn.hasAttribute("data-bp-listener")) {
+        copyBtn.setAttribute("data-bp-listener", "true");
+        copyBtn.addEventListener("click", function () {
+          const code = document.querySelector("#bp-ejemplo pre code");
+          if (code) {
+            navigator.clipboard.writeText(code.textContent).then(() => {
+              this.innerHTML = '<i class="fas fa-check"></i>';
+              setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-copy"></i>';
+              }, 2000);
             });
-        }
-
-        // Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const drawer = document.getElementById('bp-drawer');
-                if (drawer && drawer.classList.contains('open')) {
-                    window.closeBestPracticeDrawer();
-                }
-            }
+          }
         });
+      }
+
+      // Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          const drawer = document.getElementById("bp-drawer");
+          if (drawer && drawer.classList.contains("open")) {
+            window.closeBestPracticeDrawer();
+          }
+        }
+      });
     }
 
     // Initialize on load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initBPDrawerEvents);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initBPDrawerEvents);
     } else {
-        initBPDrawerEvents();
+      initBPDrawerEvents();
     }
 
     // Re-initialize on Astro page transitions
-    document.addEventListener('astro:page-load', initBPDrawerEvents);
-})();
+    document.addEventListener("astro:page-load", initBPDrawerEvents);
+  })();
 </script>

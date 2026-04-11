@@ -1,363 +1,363 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import DataPipeline from '../components/DataPipeline.astro';
-import ArchitectureSection from '../components/ArchitectureSection.astro';
-import ScrumFramework from '../components/ScrumFramework.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import DataPipeline from "../components/DataPipeline.astro";
+import ArchitectureSection from "../components/ArchitectureSection.astro";
+import ScrumFramework from "../components/ScrumFramework.astro";
 ---
 
 <Layout title="Arquitectura & DevOps | DuocUC">
-    <Header />
+  <Header />
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Software Engineering Curriculum</span>
-            </div>
-            <h1>Arquitectura & <span class="gradient-accent">Ingeniería</span></h1>
-            <p>Progresión estructurada desde fundamentos hasta arquitecturas enterprise</p>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Software Engineering Curriculum</span>
+      </div>
+      <h1>Arquitectura & <span class="gradient-accent">Ingeniería</span></h1>
+      <p>Progresión estructurada desde fundamentos hasta arquitecturas enterprise</p>
 
-            <!-- Learning Path Navigation -->
-            <div class="learning-path">
-                <div class="path-level" data-level="1">
-                    <div class="level-badge beginner">Nivel 1</div>
-                    <span class="level-title">Fundamentos</span>
-                    <div class="level-topics">
-                        <a href="#pipeline-section" class="level-link">OOP</a>
-                        <a href="#pipeline-section" class="level-link">SOLID</a>
-                        <a href="#pipeline-section" class="level-link">Clean Code</a>
-                    </div>
-                </div>
-                <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
-                <div class="path-level" data-level="2">
-                    <div class="level-badge intermediate">Nivel 2</div>
-                    <span class="level-title">Diseño</span>
-                    <div class="level-topics">
-                        <a href="#pipeline-section" class="level-link">Patterns</a>
-                        <a href="#pipeline-section" class="level-link">Testing</a>
-                        <a href="#pipeline-section" class="level-link">DSA</a>
-                    </div>
-                </div>
-                <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
-                <div class="path-level" data-level="3">
-                    <div class="level-badge advanced">Nivel 3</div>
-                    <span class="level-title">Arquitectura</span>
-                    <div class="level-topics">
-                        <a href="#architecture-section" class="level-link">Microservices</a>
-                        <a href="#architecture-section" class="level-link">Clean Arch</a>
-                        <a href="#architecture-section" class="level-link">DDD</a>
-                    </div>
-                </div>
-                <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
-                <div class="path-level" data-level="4">
-                    <div class="level-badge expert">Nivel 4</div>
-                    <span class="level-title">Data & DevOps</span>
-                    <div class="level-topics">
-                        <a href="#pipeline-section" class="level-link">Pipelines</a>
-                        <a href="#pipeline-section" class="level-link">CI/CD</a>
-                        <a href="#scrum-section" class="level-link">Scrum</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Stats -->
-            <div class="curriculum-stats">
-                <div class="stat-item">
-                    <i class="fas fa-book-open"></i>
-                    <span class="stat-number">18+</span>
-                    <span class="stat-label">Conceptos</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-layer-group"></i>
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Niveles</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-certificate"></i>
-                    <span class="stat-number">Industry</span>
-                    <span class="stat-label">Basado en</span>
-                </div>
-            </div>
+      <!-- Learning Path Navigation -->
+      <div class="learning-path">
+        <div class="path-level" data-level="1">
+          <div class="level-badge beginner">Nivel 1</div>
+          <span class="level-title">Fundamentos</span>
+          <div class="level-topics">
+            <a href="#pipeline-section" class="level-link">OOP</a>
+            <a href="#pipeline-section" class="level-link">SOLID</a>
+            <a href="#pipeline-section" class="level-link">Clean Code</a>
+          </div>
         </div>
-    </section>
+        <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
+        <div class="path-level" data-level="2">
+          <div class="level-badge intermediate">Nivel 2</div>
+          <span class="level-title">Diseño</span>
+          <div class="level-topics">
+            <a href="#pipeline-section" class="level-link">Patterns</a>
+            <a href="#pipeline-section" class="level-link">Testing</a>
+            <a href="#pipeline-section" class="level-link">DSA</a>
+          </div>
+        </div>
+        <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
+        <div class="path-level" data-level="3">
+          <div class="level-badge advanced">Nivel 3</div>
+          <span class="level-title">Arquitectura</span>
+          <div class="level-topics">
+            <a href="#architecture-section" class="level-link">Microservices</a>
+            <a href="#architecture-section" class="level-link">Clean Arch</a>
+            <a href="#architecture-section" class="level-link">DDD</a>
+          </div>
+        </div>
+        <div class="path-connector"><i class="fas fa-chevron-right"></i></div>
+        <div class="path-level" data-level="4">
+          <div class="level-badge expert">Nivel 4</div>
+          <span class="level-title">Data & DevOps</span>
+          <div class="level-topics">
+            <a href="#pipeline-section" class="level-link">Pipelines</a>
+            <a href="#pipeline-section" class="level-link">CI/CD</a>
+            <a href="#scrum-section" class="level-link">Scrum</a>
+          </div>
+        </div>
+      </div>
 
-    <!-- Section Anchor for Pipeline -->
-    <div id="pipeline-section"></div>
+      <!-- Quick Stats -->
+      <div class="curriculum-stats">
+        <div class="stat-item">
+          <i class="fas fa-book-open"></i>
+          <span class="stat-number">18+</span>
+          <span class="stat-label">Conceptos</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-layer-group"></i>
+          <span class="stat-number">4</span>
+          <span class="stat-label">Niveles</span>
+        </div>
+        <div class="stat-item">
+          <i class="fas fa-certificate"></i>
+          <span class="stat-number">Industry</span>
+          <span class="stat-label">Basado en</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Data Pipeline -->
-    <DataPipeline />
+  <!-- Section Anchor for Pipeline -->
+  <div id="pipeline-section"></div>
 
-    <!-- Section Anchor for Architecture -->
-    <div id="architecture-section"></div>
+  <!-- Data Pipeline -->
+  <DataPipeline />
 
-    <!-- Architecture Patterns -->
-    <ArchitectureSection />
+  <!-- Section Anchor for Architecture -->
+  <div id="architecture-section"></div>
 
-    <!-- Section Anchor for Scrum -->
-    <div id="scrum-section"></div>
+  <!-- Architecture Patterns -->
+  <ArchitectureSection />
 
-    <!-- Scrum Framework -->
-    <ScrumFramework />
+  <!-- Section Anchor for Scrum -->
+  <div id="scrum-section"></div>
 
-    <Footer />
+  <!-- Scrum Framework -->
+  <ScrumFramework />
+
+  <Footer />
 </Layout>
 
 <style>
-    .page-hero {
-        padding: 8rem 2rem 4rem;
-        text-align: center;
-        background: linear-gradient(180deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
-    }
+  .page-hero {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.1) 0%, transparent 100%);
+  }
 
-    .hero-content {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(124, 58, 237, 0.1);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #a78bfa;
-        margin-bottom: 1.5rem;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #a78bfa;
+    margin-bottom: 1.5rem;
+  }
 
-    .page-hero h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .page-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .gradient-accent {
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .gradient-accent {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    .page-hero p {
-        font-size: 1.25rem;
-        color: #94a3b8;
-        margin-bottom: 2rem;
-    }
+  .page-hero p {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+  }
 
-    /* Learning Path Styles */
+  /* Learning Path Styles */
+  .learning-path {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .path-level {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    min-width: 160px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .path-level:hover {
+    border-color: rgba(124, 58, 237, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15);
+  }
+
+  .level-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-badge.beginner {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .level-badge.intermediate {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .level-badge.advanced {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .level-badge.expert {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
+
+  .level-title {
+    display: block;
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .level-topics {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .level-link {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: #a78bfa;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .level-link:hover {
+    background: rgba(124, 58, 237, 0.3);
+    color: #c4b5fd;
+  }
+
+  .path-connector {
+    color: #475569;
+    font-size: 0.8rem;
+  }
+
+  /* Curriculum Stats */
+  .curriculum-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .stat-item i {
+    font-size: 1.2rem;
+    color: #7c3aed;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
     .learning-path {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-bottom: 2.5rem;
-        flex-wrap: wrap;
+      gap: 0.75rem;
     }
 
     .path-level {
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(148, 163, 184, 0.2);
-        border-radius: 12px;
-        padding: 1rem 1.25rem;
-        min-width: 160px;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-
-    .path-level:hover {
-        border-color: rgba(124, 58, 237, 0.5);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15);
-    }
-
-    .level-badge {
-        display: inline-block;
-        padding: 0.2rem 0.6rem;
-        border-radius: 6px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 0.5rem;
-    }
-
-    .level-badge.beginner {
-        background: rgba(34, 197, 94, 0.2);
-        color: #22c55e;
-        border: 1px solid rgba(34, 197, 94, 0.3);
-    }
-
-    .level-badge.intermediate {
-        background: rgba(59, 130, 246, 0.2);
-        color: #3b82f6;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .level-badge.advanced {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .level-badge.expert {
-        background: rgba(239, 68, 68, 0.2);
-        color: #ef4444;
-        border: 1px solid rgba(239, 68, 68, 0.3);
-    }
-
-    .level-title {
-        display: block;
-        font-weight: 600;
-        color: #f8fafc;
-        font-size: 0.95rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .level-topics {
-        display: flex;
-        gap: 0.3rem;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .level-link {
-        display: inline-block;
-        padding: 0.2rem 0.5rem;
-        background: rgba(124, 58, 237, 0.1);
-        border-radius: 4px;
-        font-size: 0.7rem;
-        color: #a78bfa;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .level-link:hover {
-        background: rgba(124, 58, 237, 0.3);
-        color: #c4b5fd;
+      min-width: 140px;
+      padding: 0.75rem 1rem;
     }
 
     .path-connector {
-        color: #475569;
-        font-size: 0.8rem;
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-hero h1 {
+      font-size: 2rem;
     }
 
-    /* Curriculum Stats */
+    .learning-path {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .path-level {
+      width: 100%;
+      max-width: 280px;
+    }
+
     .curriculum-stats {
-        display: flex;
-        justify-content: center;
-        gap: 3rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(148, 163, 184, 0.1);
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
+  }
 
-    .stat-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.3rem;
-    }
+  /* Light mode */
+  :global([data-theme="light"]) .page-hero h1 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    .stat-item i {
-        font-size: 1.2rem;
-        color: #7c3aed;
-    }
+  :global([data-theme="light"]) .page-hero p {
+    color: #64748b;
+  }
 
-    .stat-number {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #00d4ff, #7c3aed);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  :global([data-theme="light"]) .path-level {
+    background: rgba(248, 250, 252, 0.9);
+    border-color: rgba(203, 213, 225, 0.5);
+  }
 
-    .stat-label {
-        font-size: 0.75rem;
-        color: #64748b;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+  :global([data-theme="light"]) .path-level:hover {
+    border-color: rgba(124, 58, 237, 0.4);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.1);
+  }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .learning-path {
-            gap: 0.75rem;
-        }
+  :global([data-theme="light"]) .level-title {
+    color: #1e293b;
+  }
 
-        .path-level {
-            min-width: 140px;
-            padding: 0.75rem 1rem;
-        }
+  :global([data-theme="light"]) .level-link {
+    color: #7c3aed;
+  }
 
-        .path-connector {
-            display: none;
-        }
-    }
+  :global([data-theme="light"]) .path-connector {
+    color: #94a3b8;
+  }
 
-    @media (max-width: 768px) {
-        .page-hero h1 {
-            font-size: 2rem;
-        }
-
-        .learning-path {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .path-level {
-            width: 100%;
-            max-width: 280px;
-        }
-
-        .curriculum-stats {
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-hero h1 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .page-hero p {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .path-level {
-        background: rgba(248, 250, 252, 0.9);
-        border-color: rgba(203, 213, 225, 0.5);
-    }
-
-    :global([data-theme="light"]) .path-level:hover {
-        border-color: rgba(124, 58, 237, 0.4);
-        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.1);
-    }
-
-    :global([data-theme="light"]) .level-title {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .level-link {
-        color: #7c3aed;
-    }
-
-    :global([data-theme="light"]) .path-connector {
-        color: #94a3b8;
-    }
-
-    :global([data-theme="light"]) .curriculum-stats {
-        border-top-color: rgba(203, 213, 225, 0.5);
-    }
+  :global([data-theme="light"]) .curriculum-stats {
+    border-top-color: rgba(203, 213, 225, 0.5);
+  }
 </style>

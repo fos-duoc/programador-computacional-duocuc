@@ -2,108 +2,108 @@
 /**
  * /recursos/gestion/ - Project Management Tools Page
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import AgileSprintGenerator from '../../../components/AgileSprintGenerator.astro';
-import TicketManager from '../../../components/TicketManager.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import AgileSprintGenerator from "../../../components/AgileSprintGenerator.astro";
+import TicketManager from "../../../components/TicketManager.astro";
 ---
 
 <ResourcesLayout title="Gestión de Proyectos | Recursos DuocUC" activeCategory="gestion">
-    <div class="gestion-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#agile-sprint" class="nav-chip teal">
-                <i class="fas fa-running"></i>
-                <span>Agile Sprints</span>
-            </a>
-            <a href="#ticket-manager" class="nav-chip teal">
-                <i class="fas fa-ticket-alt"></i>
-                <span>Ticket Manager</span>
-            </a>
-        </nav>
+  <div class="gestion-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#agile-sprint" class="nav-chip teal">
+        <i class="fas fa-running"></i>
+        <span>Agile Sprints</span>
+      </a>
+      <a href="#ticket-manager" class="nav-chip teal">
+        <i class="fas fa-ticket-alt"></i>
+        <span>Ticket Manager</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="agile-sprint">
-            <AgileSprintGenerator />
-        </section>
+    <!-- Components -->
+    <section id="agile-sprint">
+      <AgileSprintGenerator />
+    </section>
 
-        <section id="ticket-manager">
-            <TicketManager />
-        </section>
-    </div>
+    <section id="ticket-manager">
+      <TicketManager />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .gestion-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .gestion-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip.teal:hover {
+    background: rgba(20, 184, 166, 0.1);
+    border-color: rgba(20, 184, 166, 0.3);
+    color: #14b8a6;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip.teal:hover {
+    background: rgba(13, 148, 136, 0.1);
+    border-color: rgba(13, 148, 136, 0.3);
+    color: #0d9488;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
     }
-
-    .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .nav-chip.teal:hover {
-        background: rgba(20, 184, 166, 0.1);
-        border-color: rgba(20, 184, 166, 0.3);
-        color: #14b8a6;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip.teal:hover {
-        background: rgba(13, 148, 136, 0.1);
-        border-color: rgba(13, 148, 136, 0.3);
-        color: #0d9488;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-        }
-    }
+  }
 </style>

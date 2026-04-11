@@ -8,670 +8,737 @@
  * - Improves Core Web Vitals (LCP, INP)
  * - Implements microlearning structure
  */
-import ResourcesLayout from '../../layouts/ResourcesLayout.astro';
+import ResourcesLayout from "../../layouts/ResourcesLayout.astro";
 
 // Get base URL from Astro config
-const base = import.meta.env.BASE_URL || '';
+const base = import.meta.env.BASE_URL || "";
 
 const categories = [
-    {
-        id: 'generadores',
-        name: 'Generadores de Código',
-        icon: 'fas fa-code',
-        color: 'cyan',
-        href: `${base}/recursos/generadores/`,
-        description: 'Herramientas visuales para generar código Java, Python, SQL, diagramas ER y más.',
-        count: '6 herramientas',
-        tools: ['Java Class Generator', 'SQL Query Builder', 'ER Diagram', 'Python Generator', 'Dashboard Builder', 'Streamlit Apps'],
-        gradient: 'from-cyan-500 to-blue-500'
-    },
-    {
-        id: 'utilidades',
-        name: 'Utilidades',
-        icon: 'fas fa-tools',
-        color: 'amber',
-        href: `${base}/recursos/utilidades/`,
-        description: 'Herramientas de productividad: generador de contraseñas, quiz interactivo, Gantt y terminal.',
-        count: '4 herramientas',
-        tools: ['Password Generator', 'Quiz Generator', 'Gantt Chart', 'Terminal Demo'],
-        gradient: 'from-amber-500 to-orange-500'
-    },
-    {
-        id: 'gestion',
-        name: 'Gestión de Proyectos',
-        icon: 'fas fa-tasks',
-        color: 'teal',
-        href: `${base}/recursos/gestion/`,
-        description: 'Herramientas Agile: planificación de sprints y gestor de tickets estilo Jira.',
-        count: '2 herramientas',
-        tools: ['Agile Sprint Generator', 'Ticket Manager'],
-        gradient: 'from-teal-500 to-emerald-500'
-    },
-    {
-        id: 'aprendizaje',
-        name: 'Herramientas para Estudiantes',
-        icon: 'fas fa-book-open',
-        color: 'blue',
-        href: `${base}/recursos/aprendizaje/`,
-        description: 'Recursos educativos: herramientas AI, videos tutoriales, snippets de código y cursos.',
-        count: '5 secciones',
-        tools: ['AI Tools', 'Videos YouTube', 'Notion Workspace', 'Code Snippets', 'Cursos Online'],
-        gradient: 'from-blue-500 to-indigo-500'
-    },
-    {
-        id: 'carrera',
-        name: 'Certificaciones Recomendadas',
-        icon: 'fas fa-briefcase',
-        color: 'purple',
-        href: `${base}/recursos/carrera/`,
-        description: 'Desarrollo profesional: certificaciones técnicas, preguntas frecuentes y proyectos.',
-        count: '3 secciones',
-        tools: ['Certificaciones', 'FAQ', 'Proyectos Profesionales'],
-        gradient: 'from-purple-500 to-pink-500'
-    },
-    {
-        id: 'informacion',
-        name: 'Web Vitals Dashboard',
-        icon: 'fas fa-tachometer-alt',
-        color: 'green',
-        href: `${base}/recursos/informacion/`,
-        description: 'Monitoreo de la página web: métricas de rendimiento, sedes DuocUC e indicadores de progreso.',
-        count: '3 secciones',
-        tools: ['Web Vitals', 'Sedes DuocUC', 'Progress Indicators'],
-        gradient: 'from-green-500 to-emerald-500'
-    }
+  {
+    id: "generadores",
+    name: "Generadores de Código",
+    icon: "fas fa-code",
+    color: "cyan",
+    href: `${base}/recursos/generadores/`,
+    description: "Herramientas visuales para generar código Java, Python, SQL, diagramas ER y más.",
+    count: "6 herramientas",
+    tools: [
+      "Java Class Generator",
+      "SQL Query Builder",
+      "ER Diagram",
+      "Python Generator",
+      "Dashboard Builder",
+      "Streamlit Apps",
+    ],
+    gradient: "from-cyan-500 to-blue-500",
+  },
+  {
+    id: "utilidades",
+    name: "Utilidades",
+    icon: "fas fa-tools",
+    color: "amber",
+    href: `${base}/recursos/utilidades/`,
+    description:
+      "Herramientas de productividad: generador de contraseñas, quiz interactivo, Gantt y terminal.",
+    count: "4 herramientas",
+    tools: ["Password Generator", "Quiz Generator", "Gantt Chart", "Terminal Demo"],
+    gradient: "from-amber-500 to-orange-500",
+  },
+  {
+    id: "gestion",
+    name: "Gestión de Proyectos",
+    icon: "fas fa-tasks",
+    color: "teal",
+    href: `${base}/recursos/gestion/`,
+    description: "Herramientas Agile: planificación de sprints y gestor de tickets estilo Jira.",
+    count: "2 herramientas",
+    tools: ["Agile Sprint Generator", "Ticket Manager"],
+    gradient: "from-teal-500 to-emerald-500",
+  },
+  {
+    id: "aprendizaje",
+    name: "Herramientas para Estudiantes",
+    icon: "fas fa-book-open",
+    color: "blue",
+    href: `${base}/recursos/aprendizaje/`,
+    description:
+      "Recursos educativos: herramientas AI, videos tutoriales, snippets de código y cursos.",
+    count: "5 secciones",
+    tools: ["AI Tools", "Videos YouTube", "Notion Workspace", "Code Snippets", "Cursos Online"],
+    gradient: "from-blue-500 to-indigo-500",
+  },
+  {
+    id: "carrera",
+    name: "Certificaciones Recomendadas",
+    icon: "fas fa-briefcase",
+    color: "purple",
+    href: `${base}/recursos/carrera/`,
+    description:
+      "Desarrollo profesional: certificaciones técnicas, preguntas frecuentes y proyectos.",
+    count: "3 secciones",
+    tools: ["Certificaciones", "FAQ", "Proyectos Profesionales"],
+    gradient: "from-purple-500 to-pink-500",
+  },
+  {
+    id: "informacion",
+    name: "Web Vitals Dashboard",
+    icon: "fas fa-tachometer-alt",
+    color: "green",
+    href: `${base}/recursos/informacion/`,
+    description:
+      "Monitoreo de la página web: métricas de rendimiento, sedes DuocUC e indicadores de progreso.",
+    count: "3 secciones",
+    tools: ["Web Vitals", "Sedes DuocUC", "Progress Indicators"],
+    gradient: "from-green-500 to-emerald-500",
+  },
 ];
 
 // Stats
 const stats = {
-    tools: 12,
-    videos: 31,
-    certifications: 35,
-    quizQuestions: 225
+  tools: 12,
+  videos: 31,
+  certifications: 35,
+  quizQuestions: 225,
 };
 ---
 
 <ResourcesLayout title="Recursos de Aprendizaje | DuocUC" activeCategory="overview">
-    <!-- Hero Section -->
-    <section class="resources-hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-book-reader"></i>
-                <span>Centro de Recursos</span>
+  <!-- Hero Section -->
+  <section class="resources-hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-book-reader"></i>
+        <span>Centro de Recursos</span>
+      </div>
+      <h1>Recursos de <span class="gradient-text">Aprendizaje</span></h1>
+      <p>
+        Herramientas interactivas, videos educativos, certificaciones y más para potenciar tu
+        carrera
+      </p>
+
+      <!-- Stats Row -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">{stats.tools}</span>
+          <span class="stat-label">Herramientas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{stats.videos}</span>
+          <span class="stat-label">Videos</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{stats.certifications}+</span>
+          <span class="stat-label">Certificaciones</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{stats.quizQuestions}+</span>
+          <span class="stat-label">Quiz Questions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="categories-section">
+    <div class="categories-grid">
+      {
+        categories.map((cat) => (
+          <a href={cat.href} class={`category-card ${cat.color}`}>
+            <div class="card-header">
+              <div class={`card-icon ${cat.color}`}>
+                <i class={cat.icon} />
+              </div>
+              <span class="card-count">{cat.count}</span>
             </div>
-            <h1>Recursos de <span class="gradient-text">Aprendizaje</span></h1>
-            <p>Herramientas interactivas, videos educativos, certificaciones y más para potenciar tu carrera</p>
-
-            <!-- Stats Row -->
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">{stats.tools}</span>
-                    <span class="stat-label">Herramientas</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">{stats.videos}</span>
-                    <span class="stat-label">Videos</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">{stats.certifications}+</span>
-                    <span class="stat-label">Certificaciones</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">{stats.quizQuestions}+</span>
-                    <span class="stat-label">Quiz Questions</span>
-                </div>
+            <h3>{cat.name}</h3>
+            <p>{cat.description}</p>
+            <div class="card-tools">
+              {cat.tools.slice(0, 4).map((tool) => (
+                <span class="tool-tag">{tool}</span>
+              ))}
+              {cat.tools.length > 4 && <span class="tool-tag more">+{cat.tools.length - 4}</span>}
             </div>
-        </div>
-    </section>
+            <div class="card-action">
+              <span>Explorar</span>
+              <i class="fas fa-arrow-right" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 
-    <!-- Categories Grid -->
-    <section class="categories-section">
-        <div class="categories-grid">
-            {categories.map((cat) => (
-                <a href={cat.href} class={`category-card ${cat.color}`}>
-                    <div class="card-header">
-                        <div class={`card-icon ${cat.color}`}>
-                            <i class={cat.icon}></i>
-                        </div>
-                        <span class="card-count">{cat.count}</span>
-                    </div>
-                    <h3>{cat.name}</h3>
-                    <p>{cat.description}</p>
-                    <div class="card-tools">
-                        {cat.tools.slice(0, 4).map((tool) => (
-                            <span class="tool-tag">{tool}</span>
-                        ))}
-                        {cat.tools.length > 4 && (
-                            <span class="tool-tag more">+{cat.tools.length - 4}</span>
-                        )}
-                    </div>
-                    <div class="card-action">
-                        <span>Explorar</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
-            ))}
+  <!-- Quick Start Guide -->
+  <section class="quick-start">
+    <div class="quick-start-header">
+      <i class="fas fa-rocket"></i>
+      <h2>Inicio Rápido</h2>
+    </div>
+    <div class="quick-start-grid">
+      <a href={`${base}/recursos/generadores/`} class="quick-item">
+        <span class="quick-number">1</span>
+        <div class="quick-content">
+          <h4>Genera tu primera clase</h4>
+          <p>Usa el Java Class Generator para crear clases POO</p>
         </div>
-    </section>
-
-    <!-- Quick Start Guide -->
-    <section class="quick-start">
-        <div class="quick-start-header">
-            <i class="fas fa-rocket"></i>
-            <h2>Inicio Rápido</h2>
+      </a>
+      <a href={`${base}/recursos/utilidades/`} class="quick-item">
+        <span class="quick-number">2</span>
+        <div class="quick-content">
+          <h4>Pon a prueba tus conocimientos</h4>
+          <p>Responde quizzes de Java, SQL, Python y más</p>
         </div>
-        <div class="quick-start-grid">
-            <a href={`${base}/recursos/generadores/`} class="quick-item">
-                <span class="quick-number">1</span>
-                <div class="quick-content">
-                    <h4>Genera tu primera clase</h4>
-                    <p>Usa el Java Class Generator para crear clases POO</p>
-                </div>
-            </a>
-            <a href={`${base}/recursos/utilidades/`} class="quick-item">
-                <span class="quick-number">2</span>
-                <div class="quick-content">
-                    <h4>Pon a prueba tus conocimientos</h4>
-                    <p>Responde quizzes de Java, SQL, Python y más</p>
-                </div>
-            </a>
-            <a href={`${base}/recursos/aprendizaje/`} class="quick-item">
-                <span class="quick-number">3</span>
-                <div class="quick-content">
-                    <h4>Aprende con videos</h4>
-                    <p>Tutoriales de Data Engineering, React, CS Fundamentals</p>
-                </div>
-            </a>
-            <a href={`${base}/recursos/carrera/`} class="quick-item">
-                <span class="quick-number">4</span>
-                <div class="quick-content">
-                    <h4>Planifica certificaciones</h4>
-                    <p>35+ certificaciones AWS, Azure, Google, Oracle</p>
-                </div>
-            </a>
+      </a>
+      <a href={`${base}/recursos/aprendizaje/`} class="quick-item">
+        <span class="quick-number">3</span>
+        <div class="quick-content">
+          <h4>Aprende con videos</h4>
+          <p>Tutoriales de Data Engineering, React, CS Fundamentals</p>
         </div>
-    </section>
+      </a>
+      <a href={`${base}/recursos/carrera/`} class="quick-item">
+        <span class="quick-number">4</span>
+        <div class="quick-content">
+          <h4>Planifica certificaciones</h4>
+          <p>35+ certificaciones AWS, Azure, Google, Oracle</p>
+        </div>
+      </a>
+    </div>
+  </section>
 </ResourcesLayout>
 
 <style>
-    /* ============================================
+  /* ============================================
        HERO SECTION
        ============================================ */
-    .resources-hero {
-        text-align: center;
-        padding: 2rem 0 3rem;
-    }
+  .resources-hero {
+    text-align: center;
+    padding: 2rem 0 3rem;
+  }
 
-    .hero-content {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 
-    .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.6rem 1.5rem;
-        background: rgba(245, 158, 11, 0.08);
-        border: 1px solid rgba(245, 158, 11, 0.25);
-        border-radius: 30px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        color: #f59e0b;
-        margin-bottom: 1.75rem;
-        text-transform: uppercase;
-    }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.5rem;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #f59e0b;
+    margin-bottom: 1.75rem;
+    text-transform: uppercase;
+  }
 
-    .hero-badge i {
-        font-size: 1rem;
-        opacity: 0.9;
-    }
+  .hero-badge i {
+    font-size: 1rem;
+    opacity: 0.9;
+  }
 
-    .resources-hero h1 {
-        font-family: 'Sora', 'Inter', system-ui, sans-serif;
-        font-size: clamp(2rem, 4vw, 3.5rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-        color: var(--text-primary);
-        line-height: 1.1;
-        letter-spacing: -0.03em;
-    }
+  .resources-hero h1 {
+    font-family: "Sora", "Inter", system-ui, sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #f59e0b 0%, #00d4ff 50%, #7c3aed 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        background-size: 200% 200%;
-        animation: gradientShift 8s ease infinite;
-    }
+  .gradient-text {
+    background: linear-gradient(135deg, #f59e0b 0%, #00d4ff 50%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease infinite;
+  }
 
-    @keyframes gradientShift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+  @keyframes gradientShift {
+    0%,
+    100% {
+      background-position: 0% 50%;
     }
-
-    .resources-hero p {
-        font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-        font-size: 1.1rem;
-        font-weight: 400;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        line-height: 1.6;
+    50% {
+      background-position: 100% 50%;
     }
+  }
 
-    /* Hero Stats */
+  .resources-hero p {
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* Hero Stats */
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .stat-number {
+    font-family: "Sora", system-ui, sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc 30%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  }
+
+  /* ============================================
+       CATEGORIES GRID
+       ============================================ */
+  .categories-section {
+    padding: 2rem 0;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .category-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #7c3aed);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .category-card.cyan::before {
+    background: linear-gradient(90deg, #00d4ff, #0891b2);
+  }
+  .category-card.amber::before {
+    background: linear-gradient(90deg, #f59e0b, #d97706);
+  }
+  .category-card.teal::before {
+    background: linear-gradient(90deg, #14b8a6, #0d9488);
+  }
+  .category-card.blue::before {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+  }
+  .category-card.purple::before {
+    background: linear-gradient(90deg, #7c3aed, #6d28d9);
+  }
+  .category-card.green::before {
+    background: linear-gradient(90deg, #10b981, #059669);
+  }
+
+  .category-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .category-card:hover::before {
+    opacity: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.25rem;
+  }
+
+  .card-icon.cyan {
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+  }
+  .card-icon.amber {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+  }
+  .card-icon.teal {
+    background: rgba(20, 184, 166, 0.1);
+    color: #14b8a6;
+  }
+  .card-icon.blue {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+  }
+  .card-icon.purple {
+    background: rgba(124, 58, 237, 0.1);
+    color: #7c3aed;
+  }
+  .card-icon.green {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .card-count {
+    padding: 0.35rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .category-card h3 {
+    font-family: "Sora", system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .category-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+
+  .card-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tool-tag {
+    padding: 0.25rem 0.6rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .tool-tag.more {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+  }
+
+  .card-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #00d4ff;
+    margin-top: auto;
+  }
+
+  .card-action i {
+    transition: transform 0.2s ease;
+  }
+
+  .category-card:hover .card-action i {
+    transform: translateX(4px);
+  }
+
+  /* ============================================
+       QUICK START
+       ============================================ */
+  .quick-start {
+    padding: 2rem 0;
+    margin-top: 1rem;
+  }
+
+  .quick-start-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quick-start-header i {
+    font-size: 1.25rem;
+    color: #f59e0b;
+  }
+
+  .quick-start-header h2 {
+    font-family: "Sora", system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .quick-start-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .quick-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .quick-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  .quick-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 8px;
+    font-family: "Sora", system-ui, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #00d4ff;
+    flex-shrink: 0;
+  }
+
+  .quick-content h4 {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+  }
+
+  .quick-content p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* ============================================
+       LIGHT MODE
+       ============================================ */
+  :global([data-theme="light"]) .hero-badge {
+    background: rgba(217, 119, 6, 0.1);
+    border-color: rgba(217, 119, 6, 0.25);
+    color: #b45309;
+  }
+
+  :global([data-theme="light"]) .resources-hero h1 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .resources-hero p {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .hero-stats {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .stat-number {
+    background: linear-gradient(135deg, #0f172a 30%, #334155 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  :global([data-theme="light"]) .stat-label {
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .stat-divider {
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+  }
+
+  :global([data-theme="light"]) .category-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .category-card:hover {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  :global([data-theme="light"]) .category-card h3 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .category-card p {
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .card-count {
+    background: rgba(0, 0, 0, 0.04);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .card-icon.cyan {
+    background: rgba(8, 145, 178, 0.1);
+    color: #0891b2;
+  }
+  :global([data-theme="light"]) .card-icon.amber {
+    background: rgba(217, 119, 6, 0.1);
+    color: #d97706;
+  }
+  :global([data-theme="light"]) .card-icon.teal {
+    background: rgba(13, 148, 136, 0.1);
+    color: #0d9488;
+  }
+  :global([data-theme="light"]) .card-icon.blue {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+  }
+  :global([data-theme="light"]) .card-icon.purple {
+    background: rgba(124, 58, 237, 0.1);
+    color: #7c3aed;
+  }
+  :global([data-theme="light"]) .card-icon.green {
+    background: rgba(5, 150, 105, 0.1);
+    color: #059669;
+  }
+
+  :global([data-theme="light"]) .tool-tag {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #64748b;
+  }
+
+  :global([data-theme="light"]) .tool-tag.more {
+    background: rgba(8, 145, 178, 0.1);
+    border-color: rgba(8, 145, 178, 0.2);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .card-action {
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .quick-start-header i {
+    color: #d97706;
+  }
+
+  :global([data-theme="light"]) .quick-start-header h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .quick-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .quick-item:hover {
+    background: #ffffff;
+    border-color: rgba(8, 145, 178, 0.2);
+  }
+
+  :global([data-theme="light"]) .quick-number {
+    background: rgba(8, 145, 178, 0.1);
+    color: #0891b2;
+  }
+
+  :global([data-theme="light"]) .quick-content h4 {
+    color: #0f172a;
+  }
+
+  :global([data-theme="light"]) .quick-content p {
+    color: #64748b;
+  }
+
+  /* ============================================
+       RESPONSIVE
+       ============================================ */
+  @media (max-width: 768px) {
     .hero-stats {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        padding: 1.25rem 1.5rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        backdrop-filter: blur(8px);
-    }
-
-    .stat-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
+      gap: 1rem;
     }
 
     .stat-number {
-        font-family: 'Sora', system-ui, sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #f8fafc 30%, #94a3b8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1;
-    }
-
-    .stat-label {
-        font-family: 'Space Grotesk', system-ui, sans-serif;
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+      font-size: 1.5rem;
     }
 
     .stat-divider {
-        width: 1px;
-        height: 40px;
-        background: linear-gradient(180deg, transparent, rgba(255,255,255,0.15), transparent);
-    }
-
-    /* ============================================
-       CATEGORIES GRID
-       ============================================ */
-    .categories-section {
-        padding: 2rem 0;
+      display: none;
     }
 
     .categories-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
+      grid-template-columns: 1fr;
     }
-
-    .category-card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        padding: 1.5rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        text-decoration: none;
-        color: inherit;
-        transition: all 0.3s ease;
-        overflow: hidden;
-    }
-
-    .category-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #00d4ff, #7c3aed);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .category-card.cyan::before { background: linear-gradient(90deg, #00d4ff, #0891b2); }
-    .category-card.amber::before { background: linear-gradient(90deg, #f59e0b, #d97706); }
-    .category-card.teal::before { background: linear-gradient(90deg, #14b8a6, #0d9488); }
-    .category-card.blue::before { background: linear-gradient(90deg, #3b82f6, #2563eb); }
-    .category-card.purple::before { background: linear-gradient(90deg, #7c3aed, #6d28d9); }
-    .category-card.green::before { background: linear-gradient(90deg, #10b981, #059669); }
-
-    .category-card:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(255, 255, 255, 0.1);
-        transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-    }
-
-    .category-card:hover::before {
-        opacity: 1;
-    }
-
-    .card-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-
-    .card-icon {
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 12px;
-        font-size: 1.25rem;
-    }
-
-    .card-icon.cyan { background: rgba(0, 212, 255, 0.1); color: #00d4ff; }
-    .card-icon.amber { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-    .card-icon.teal { background: rgba(20, 184, 166, 0.1); color: #14b8a6; }
-    .card-icon.blue { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-    .card-icon.purple { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
-    .card-icon.green { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-
-    .card-count {
-        padding: 0.35rem 0.75rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        font-family: 'Space Grotesk', system-ui, sans-serif;
-        font-size: 0.7rem;
-        font-weight: 500;
-        color: var(--text-muted);
-    }
-
-    .category-card h3 {
-        font-family: 'Sora', system-ui, sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0 0 0.5rem;
-        letter-spacing: -0.01em;
-    }
-
-    .category-card p {
-        font-size: 0.875rem;
-        color: var(--text-secondary);
-        line-height: 1.5;
-        margin-bottom: 1rem;
-        flex: 1;
-    }
-
-    .card-tools {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .tool-tag {
-        padding: 0.25rem 0.6rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    .tool-tag.more {
-        background: rgba(0, 212, 255, 0.1);
-        border-color: rgba(0, 212, 255, 0.2);
-        color: #00d4ff;
-    }
-
-    .card-action {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        color: #00d4ff;
-        margin-top: auto;
-    }
-
-    .card-action i {
-        transition: transform 0.2s ease;
-    }
-
-    .category-card:hover .card-action i {
-        transform: translateX(4px);
-    }
-
-    /* ============================================
-       QUICK START
-       ============================================ */
-    .quick-start {
-        padding: 2rem 0;
-        margin-top: 1rem;
-    }
-
-    .quick-start-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .quick-start-header i {
-        font-size: 1.25rem;
-        color: #f59e0b;
-    }
-
-    .quick-start-header h2 {
-        font-family: 'Sora', system-ui, sans-serif;
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin: 0;
-    }
-
-    .quick-start-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1rem;
-    }
-
-    .quick-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1.25rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .quick-item:hover {
-        background: rgba(255, 255, 255, 0.04);
-        border-color: rgba(0, 212, 255, 0.2);
-    }
-
-    .quick-number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        background: rgba(0, 212, 255, 0.1);
-        border-radius: 8px;
-        font-family: 'Sora', system-ui, sans-serif;
-        font-size: 0.875rem;
-        font-weight: 700;
-        color: #00d4ff;
-        flex-shrink: 0;
-    }
-
-    .quick-content h4 {
-        font-family: 'Inter', system-ui, sans-serif;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin: 0 0 0.25rem;
-    }
-
-    .quick-content p {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        margin: 0;
-        line-height: 1.4;
-    }
-
-    /* ============================================
-       LIGHT MODE
-       ============================================ */
-    :global([data-theme="light"]) .hero-badge {
-        background: rgba(217, 119, 6, 0.1);
-        border-color: rgba(217, 119, 6, 0.25);
-        color: #b45309;
-    }
-
-    :global([data-theme="light"]) .resources-hero h1 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .resources-hero p {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .hero-stats {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .stat-number {
-        background: linear-gradient(135deg, #0f172a 30%, #334155 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .stat-label {
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .stat-divider {
-        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.1), transparent);
-    }
-
-    :global([data-theme="light"]) .category-card {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .category-card:hover {
-        background: #ffffff;
-        border-color: rgba(0, 0, 0, 0.08);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-
-    :global([data-theme="light"]) .category-card h3 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .category-card p {
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .card-count {
-        background: rgba(0, 0, 0, 0.04);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .card-icon.cyan { background: rgba(8, 145, 178, 0.1); color: #0891b2; }
-    :global([data-theme="light"]) .card-icon.amber { background: rgba(217, 119, 6, 0.1); color: #d97706; }
-    :global([data-theme="light"]) .card-icon.teal { background: rgba(13, 148, 136, 0.1); color: #0d9488; }
-    :global([data-theme="light"]) .card-icon.blue { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
-    :global([data-theme="light"]) .card-icon.purple { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
-    :global([data-theme="light"]) .card-icon.green { background: rgba(5, 150, 105, 0.1); color: #059669; }
-
-    :global([data-theme="light"]) .tool-tag {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #64748b;
-    }
-
-    :global([data-theme="light"]) .tool-tag.more {
-        background: rgba(8, 145, 178, 0.1);
-        border-color: rgba(8, 145, 178, 0.2);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .card-action {
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .quick-start-header i {
-        color: #d97706;
-    }
-
-    :global([data-theme="light"]) .quick-start-header h2 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .quick-item {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .quick-item:hover {
-        background: #ffffff;
-        border-color: rgba(8, 145, 178, 0.2);
-    }
-
-    :global([data-theme="light"]) .quick-number {
-        background: rgba(8, 145, 178, 0.1);
-        color: #0891b2;
-    }
-
-    :global([data-theme="light"]) .quick-content h4 {
-        color: #0f172a;
-    }
-
-    :global([data-theme="light"]) .quick-content p {
-        color: #64748b;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 768px) {
-        .hero-stats {
-            gap: 1rem;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-        }
-
-        .stat-divider {
-            display: none;
-        }
-
-        .categories-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+  }
 </style>

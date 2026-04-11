@@ -3,707 +3,736 @@
 // Categorías: Tutoriales, Playlist del curso, Tech Talks
 
 const videoCategories = [
-    {
-        title: "Fundamentos de Hardware",
-        icon: "fas fa-microchip",
-        color: "orange",
-        videos: [
-            {
-                id: "d86ws7mQYIg",
-                title: "How do SSDs Work?",
-                channel: "Branch Education",
-                duration: "14:43"
-            },
-            {
-                id: "7J7X7aZvMXQ",
-                title: "How does Computer Memory Work?",
-                channel: "Branch Education",
-                duration: "21:46"
-            },
-            {
-                id: "h9Z4oGN89MU",
-                title: "How do Graphics Cards Work?",
-                channel: "Branch Education",
-                duration: "25:29"
-            },
-            {
-                id: "C8YtdC8mxTU",
-                title: "How does Bluetooth Work?",
-                channel: "Branch Education",
-                duration: "15:43"
-            },
-            {
-                id: "_Pqfjer8-O4",
-                title: "How does a Smartphone Camera Work?",
-                channel: "Branch Education",
-                duration: "12:18"
-            },
-            {
-                id: "16zrEPOsIcI",
-                title: "How does a CPU Work?",
-                channel: "Branch Education",
-                duration: "19:34"
-            },
-            {
-                id: "wtdnatmVdIg",
-                title: "How do Touchscreens Work?",
-                channel: "Branch Education",
-                duration: "12:45"
-            }
-        ]
-    },
-    {
-        title: "Tutoriales de Programación",
-        icon: "fas fa-code",
-        color: "cyan",
-        videos: [
-            {
-                id: "pTB0EiLXUC8",
-                title: "Python Full Course for Beginners",
-                channel: "Programming with Mosh",
-                duration: "6:14:07"
-            },
-            {
-                id: "eIrMbAQSU34",
-                title: "Java Tutorial for Beginners",
-                channel: "Programming with Mosh",
-                duration: "2:30:48"
-            },
-            {
-                id: "HXV3zeQKqGY",
-                title: "SQL Tutorial - Full Database Course",
-                channel: "freeCodeCamp",
-                duration: "4:20:37"
-            },
-            {
-                id: "PkZNo7MFNFg",
-                title: "JavaScript Full Course",
-                channel: "freeCodeCamp",
-                duration: "3:26:42"
-            }
-        ]
-    },
-    {
-        title: "Arquitectura & DevOps",
-        icon: "fas fa-sitemap",
-        color: "purple",
-        videos: [
-            {
-                id: "lTAcCNbJ7KE",
-                title: "Docker Tutorial for Beginners",
-                channel: "TechWorld with Nana",
-                duration: "2:46:14"
-            },
-            {
-                id: "X48VuDVv0do",
-                title: "Kubernetes Tutorial for Beginners",
-                channel: "TechWorld with Nana",
-                duration: "3:36:52"
-            },
-            {
-                id: "7m_q1ldzw0U",
-                title: "AWS Tutorial For Beginners",
-                channel: "Simplilearn",
-                duration: "4:15:30"
-            },
-            {
-                id: "RGfFpQF0NpE",
-                title: "Microservices Architecture",
-                channel: "ByteByteGo",
-                duration: "12:35"
-            }
-        ]
-    },
-    {
-        title: "Data Engineering",
-        icon: "fas fa-database",
-        color: "green",
-        videos: [
-            {
-                id: "qWru-b6m3Sc",
-                title: "Data Engineering Full Course",
-                channel: "freeCodeCamp",
-                duration: "5:18:22"
-            },
-            {
-                id: "RrYQi-F1Wfs",
-                title: "Apache Spark Tutorial",
-                channel: "Simplilearn",
-                duration: "3:45:10"
-            },
-            {
-                id: "KerNf0NANMo",
-                title: "Apache Airflow Tutorial",
-                channel: "coder2j",
-                duration: "1:30:45"
-            },
-            {
-                id: "yZnBH3Ho-uc",
-                title: "Data Warehouse Concepts",
-                channel: "ByteByteGo",
-                duration: "15:42"
-            }
-        ]
-    },
-    {
-        title: "Desarrollo Web Frontend",
-        icon: "fas fa-laptop-code",
-        color: "pink",
-        videos: [
-            {
-                id: "SqcY0GlETPk",
-                title: "React Tutorial for Beginners",
-                channel: "Programming with Mosh",
-                duration: "1:20:47"
-            },
-            {
-                id: "gq4S-ovWVlM",
-                title: "HTML & CSS Full Course",
-                channel: "SuperSimpleDev",
-                duration: "6:31:33"
-            },
-            {
-                id: "lfmg-EJ8gm4",
-                title: "CSS in 100 Seconds",
-                channel: "Fireship",
-                duration: "2:22"
-            },
-            {
-                id: "Oe421EPjeBE",
-                title: "Node.js and Express.js Full Course",
-                channel: "freeCodeCamp",
-                duration: "8:16:47"
-            },
-            {
-                id: "1Rs2ND1ryYc",
-                title: "CSS Flexbox in 100 Seconds",
-                channel: "Fireship",
-                duration: "2:06"
-            },
-            {
-                id: "DHvZLI7Db8E",
-                title: "React 18 Full Course",
-                channel: "freeCodeCamp",
-                duration: "5:38:45"
-            }
-        ]
-    },
-    {
-        title: "Computer Science Fundamentals",
-        icon: "fas fa-graduation-cap",
-        color: "amber",
-        videos: [
-            {
-                id: "8hly31xKli0",
-                title: "Algorithms and Data Structures",
-                channel: "freeCodeCamp",
-                duration: "5:22:09"
-            },
-            {
-                id: "CBYHwZcbD-s",
-                title: "Big O Notation - Full Course",
-                channel: "freeCodeCamp",
-                duration: "1:56:20"
-            },
-            {
-                id: "kPRA0W1kECg",
-                title: "Git and GitHub Crash Course",
-                channel: "freeCodeCamp",
-                duration: "1:08:29"
-            },
-            {
-                id: "B4s9Xbvk0Yw",
-                title: "Introduction to Algorithms",
-                channel: "CS50",
-                duration: "1:51:38"
-            },
-            {
-                id: "RBSGKlAvoiM",
-                title: "Data Structures Easy to Advanced",
-                channel: "freeCodeCamp",
-                duration: "8:03:05"
-            },
-            {
-                id: "oBt53YbR9Kk",
-                title: "Dynamic Programming - Full Course",
-                channel: "freeCodeCamp",
-                duration: "5:01:39"
-            }
-        ]
-    }
+  {
+    title: "Fundamentos de Hardware",
+    icon: "fas fa-microchip",
+    color: "orange",
+    videos: [
+      {
+        id: "d86ws7mQYIg",
+        title: "How do SSDs Work?",
+        channel: "Branch Education",
+        duration: "14:43",
+      },
+      {
+        id: "7J7X7aZvMXQ",
+        title: "How does Computer Memory Work?",
+        channel: "Branch Education",
+        duration: "21:46",
+      },
+      {
+        id: "h9Z4oGN89MU",
+        title: "How do Graphics Cards Work?",
+        channel: "Branch Education",
+        duration: "25:29",
+      },
+      {
+        id: "C8YtdC8mxTU",
+        title: "How does Bluetooth Work?",
+        channel: "Branch Education",
+        duration: "15:43",
+      },
+      {
+        id: "_Pqfjer8-O4",
+        title: "How does a Smartphone Camera Work?",
+        channel: "Branch Education",
+        duration: "12:18",
+      },
+      {
+        id: "16zrEPOsIcI",
+        title: "How does a CPU Work?",
+        channel: "Branch Education",
+        duration: "19:34",
+      },
+      {
+        id: "wtdnatmVdIg",
+        title: "How do Touchscreens Work?",
+        channel: "Branch Education",
+        duration: "12:45",
+      },
+    ],
+  },
+  {
+    title: "Tutoriales de Programación",
+    icon: "fas fa-code",
+    color: "cyan",
+    videos: [
+      {
+        id: "pTB0EiLXUC8",
+        title: "Python Full Course for Beginners",
+        channel: "Programming with Mosh",
+        duration: "6:14:07",
+      },
+      {
+        id: "eIrMbAQSU34",
+        title: "Java Tutorial for Beginners",
+        channel: "Programming with Mosh",
+        duration: "2:30:48",
+      },
+      {
+        id: "HXV3zeQKqGY",
+        title: "SQL Tutorial - Full Database Course",
+        channel: "freeCodeCamp",
+        duration: "4:20:37",
+      },
+      {
+        id: "PkZNo7MFNFg",
+        title: "JavaScript Full Course",
+        channel: "freeCodeCamp",
+        duration: "3:26:42",
+      },
+    ],
+  },
+  {
+    title: "Arquitectura & DevOps",
+    icon: "fas fa-sitemap",
+    color: "purple",
+    videos: [
+      {
+        id: "lTAcCNbJ7KE",
+        title: "Docker Tutorial for Beginners",
+        channel: "TechWorld with Nana",
+        duration: "2:46:14",
+      },
+      {
+        id: "X48VuDVv0do",
+        title: "Kubernetes Tutorial for Beginners",
+        channel: "TechWorld with Nana",
+        duration: "3:36:52",
+      },
+      {
+        id: "7m_q1ldzw0U",
+        title: "AWS Tutorial For Beginners",
+        channel: "Simplilearn",
+        duration: "4:15:30",
+      },
+      {
+        id: "RGfFpQF0NpE",
+        title: "Microservices Architecture",
+        channel: "ByteByteGo",
+        duration: "12:35",
+      },
+    ],
+  },
+  {
+    title: "Data Engineering",
+    icon: "fas fa-database",
+    color: "green",
+    videos: [
+      {
+        id: "qWru-b6m3Sc",
+        title: "Data Engineering Full Course",
+        channel: "freeCodeCamp",
+        duration: "5:18:22",
+      },
+      {
+        id: "RrYQi-F1Wfs",
+        title: "Apache Spark Tutorial",
+        channel: "Simplilearn",
+        duration: "3:45:10",
+      },
+      {
+        id: "KerNf0NANMo",
+        title: "Apache Airflow Tutorial",
+        channel: "coder2j",
+        duration: "1:30:45",
+      },
+      {
+        id: "yZnBH3Ho-uc",
+        title: "Data Warehouse Concepts",
+        channel: "ByteByteGo",
+        duration: "15:42",
+      },
+    ],
+  },
+  {
+    title: "Desarrollo Web Frontend",
+    icon: "fas fa-laptop-code",
+    color: "pink",
+    videos: [
+      {
+        id: "SqcY0GlETPk",
+        title: "React Tutorial for Beginners",
+        channel: "Programming with Mosh",
+        duration: "1:20:47",
+      },
+      {
+        id: "gq4S-ovWVlM",
+        title: "HTML & CSS Full Course",
+        channel: "SuperSimpleDev",
+        duration: "6:31:33",
+      },
+      {
+        id: "lfmg-EJ8gm4",
+        title: "CSS in 100 Seconds",
+        channel: "Fireship",
+        duration: "2:22",
+      },
+      {
+        id: "Oe421EPjeBE",
+        title: "Node.js and Express.js Full Course",
+        channel: "freeCodeCamp",
+        duration: "8:16:47",
+      },
+      {
+        id: "1Rs2ND1ryYc",
+        title: "CSS Flexbox in 100 Seconds",
+        channel: "Fireship",
+        duration: "2:06",
+      },
+      {
+        id: "DHvZLI7Db8E",
+        title: "React 18 Full Course",
+        channel: "freeCodeCamp",
+        duration: "5:38:45",
+      },
+    ],
+  },
+  {
+    title: "Computer Science Fundamentals",
+    icon: "fas fa-graduation-cap",
+    color: "amber",
+    videos: [
+      {
+        id: "8hly31xKli0",
+        title: "Algorithms and Data Structures",
+        channel: "freeCodeCamp",
+        duration: "5:22:09",
+      },
+      {
+        id: "CBYHwZcbD-s",
+        title: "Big O Notation - Full Course",
+        channel: "freeCodeCamp",
+        duration: "1:56:20",
+      },
+      {
+        id: "kPRA0W1kECg",
+        title: "Git and GitHub Crash Course",
+        channel: "freeCodeCamp",
+        duration: "1:08:29",
+      },
+      {
+        id: "B4s9Xbvk0Yw",
+        title: "Introduction to Algorithms",
+        channel: "CS50",
+        duration: "1:51:38",
+      },
+      {
+        id: "RBSGKlAvoiM",
+        title: "Data Structures Easy to Advanced",
+        channel: "freeCodeCamp",
+        duration: "8:03:05",
+      },
+      {
+        id: "oBt53YbR9Kk",
+        title: "Dynamic Programming - Full Course",
+        channel: "freeCodeCamp",
+        duration: "5:01:39",
+      },
+    ],
+  },
 ];
 ---
 
 <section id="videos" class="youtube-section">
-    <div class="youtube-container">
-        <!-- Header -->
-        <div class="youtube-header" data-aos="fade-up">
-            <div class="youtube-header-icon">
-                <i class="fab fa-youtube"></i>
-            </div>
-            <h2>Videos Educativos</h2>
-            <p class="youtube-subtitle">Tutoriales, conferencias y cursos seleccionados para tu aprendizaje</p>
-        </div>
-
-        <!-- Video Categories -->
-        {videoCategories.map((category, catIndex) => (
-            <div class="video-category" data-aos="fade-up" data-aos-delay={catIndex * 100}>
-                <div class={`category-header ${category.color}`}>
-                    <i class={category.icon}></i>
-                    <h3>{category.title}</h3>
-                    <span class="video-count">{category.videos.length} videos</span>
-                </div>
-
-                <div class="videos-grid">
-                    {category.videos.map((video, vidIndex) => (
-                        <div class="video-card glass-card" data-aos="zoom-in" data-aos-delay={vidIndex * 50}>
-                            <div class="video-thumbnail" data-video-id={video.id}>
-                                <img
-                                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
-                                    alt={video.title}
-                                    loading="lazy"
-                                    onerror="this.onerror=null; this.src='https://img.youtube.com/vi/' + this.closest('.video-thumbnail').dataset.videoId + '/default.jpg';"
-                                />
-                                <div class="play-overlay">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                                <span class="video-duration">{video.duration}</span>
-                            </div>
-                            <div class="video-info">
-                                <h4>{video.title}</h4>
-                                <span class="video-channel">
-                                    <i class="fas fa-user-circle"></i>
-                                    {video.channel}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        ))}
-
-        <!-- Video Modal -->
-        <div id="video-modal" class="video-modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modal-close">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="video-wrapper">
-                    <iframe
-                        id="video-iframe"
-                        src=""
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
+  <div class="youtube-container">
+    <!-- Header -->
+    <div class="youtube-header" data-aos="fade-up">
+      <div class="youtube-header-icon">
+        <i class="fab fa-youtube"></i>
+      </div>
+      <h2>Videos Educativos</h2>
+      <p class="youtube-subtitle">
+        Tutoriales, conferencias y cursos seleccionados para tu aprendizaje
+      </p>
     </div>
+
+    <!-- Video Categories -->
+    {
+      videoCategories.map((category, catIndex) => (
+        <div class="video-category" data-aos="fade-up" data-aos-delay={catIndex * 100}>
+          <div class={`category-header ${category.color}`}>
+            <i class={category.icon} />
+            <h3>{category.title}</h3>
+            <span class="video-count">{category.videos.length} videos</span>
+          </div>
+
+          <div class="videos-grid">
+            {category.videos.map((video, vidIndex) => (
+              <div class="video-card glass-card" data-aos="zoom-in" data-aos-delay={vidIndex * 50}>
+                <div class="video-thumbnail" data-video-id={video.id}>
+                  <img
+                    src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    onerror="this.onerror=null; this.src='https://img.youtube.com/vi/' + this.closest('.video-thumbnail').dataset.videoId + '/default.jpg';"
+                  />
+                  <div class="play-overlay">
+                    <i class="fas fa-play" />
+                  </div>
+                  <span class="video-duration">{video.duration}</span>
+                </div>
+                <div class="video-info">
+                  <h4>{video.title}</h4>
+                  <span class="video-channel">
+                    <i class="fas fa-user-circle" />
+                    {video.channel}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+      <div class="modal-content">
+        <button class="modal-close" id="modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="video-wrapper">
+          <iframe
+            id="video-iframe"
+            src=""
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-    .youtube-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .youtube-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    /* Header */
-    .youtube-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  /* Header */
+  .youtube-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .youtube-header-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .youtube-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .youtube-header-icon i {
-        font-size: 2.5rem;
-        color: #ff0000;
-    }
+  .youtube-header-icon i {
+    font-size: 2.5rem;
+    color: #ff0000;
+  }
 
+  .youtube-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .youtube-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+  }
+
+  /* Category */
+  .video-category {
+    margin-bottom: 3rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .category-header i {
+    font-size: 1.5rem;
+  }
+
+  .category-header.cyan i {
+    color: #00d4ff;
+  }
+  .category-header.purple i {
+    color: #7c3aed;
+  }
+  .category-header.green i {
+    color: #10b981;
+  }
+  .category-header.orange i {
+    color: #f97316;
+  }
+  .category-header.pink i {
+    color: #ec4899;
+  }
+  .category-header.amber i {
+    color: #f59e0b;
+  }
+
+  .category-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f8fafc;
+    flex: 1;
+  }
+
+  .video-count {
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  /* Videos Grid */
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .video-card {
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+
+  .video-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(255, 0, 0, 0.3);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(255, 0, 0, 0.1);
+  }
+
+  .video-thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .video-card:hover .video-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-card:hover .play-overlay {
+    opacity: 1;
+  }
+
+  .play-overlay i {
+    font-size: 1.5rem;
+    color: #ff0000;
+    background: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-card:hover .play-overlay i {
+    transform: scale(1.15);
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.4);
+  }
+
+  .video-duration {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .video-info {
+    padding: 1rem;
+  }
+
+  .video-info h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #f8fafc;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .video-channel {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  /* Modal */
+  .video-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .video-modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .modal-close:hover {
+    color: #ff0000;
+  }
+
+  .video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .youtube-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.75rem;
     }
 
-    .youtube-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-    }
-
-    /* Category */
-    .video-category {
-        margin-bottom: 3rem;
+    .videos-grid {
+      grid-template-columns: 1fr;
     }
 
     .category-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
     }
+  }
 
-    .category-header i {
-        font-size: 1.5rem;
-    }
-
-    .category-header.cyan i { color: #00d4ff; }
-    .category-header.purple i { color: #7c3aed; }
-    .category-header.green i { color: #10b981; }
-    .category-header.orange i { color: #f97316; }
-    .category-header.pink i { color: #ec4899; }
-    .category-header.amber i { color: #f59e0b; }
-
-    .category-header h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #f8fafc;
-        flex: 1;
-    }
-
-    .video-count {
-        padding: 0.25rem 0.75rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        font-size: 0.75rem;
-        color: #94a3b8;
-    }
-
-    /* Videos Grid */
-    .videos-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.25rem;
-    }
-
-    .video-card {
-        border-radius: 14px;
-        overflow: hidden;
-        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-        border: 1px solid transparent;
-    }
-
-    .video-card:hover {
-        transform: translateY(-6px) scale(1.01);
-        border-color: rgba(255, 0, 0, 0.3);
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.4),
-            0 0 30px rgba(255, 0, 0, 0.1);
-    }
-
-    .video-thumbnail {
-        position: relative;
-        aspect-ratio: 16/9;
-        overflow: hidden;
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    }
-
-    .video-thumbnail img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    .video-card:hover .video-thumbnail img {
-        transform: scale(1.05);
-    }
-
-    .play-overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.4);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .video-card:hover .play-overlay {
-        opacity: 1;
-    }
-
-    .play-overlay i {
-        font-size: 1.5rem;
-        color: #ff0000;
-        background: white;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-left: 4px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .video-card:hover .play-overlay i {
-        transform: scale(1.15);
-        box-shadow: 0 8px 30px rgba(255, 0, 0, 0.4);
-    }
-
-    .video-duration {
-        position: absolute;
-        bottom: 8px;
-        right: 8px;
-        padding: 0.2rem 0.5rem;
-        background: rgba(0, 0, 0, 0.8);
-        border-radius: 4px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: white;
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .video-info {
-        padding: 1rem;
-    }
-
-    .video-info h4 {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #f8fafc;
-        line-height: 1.4;
-        margin-bottom: 0.5rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .video-channel {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.75rem;
-        color: #64748b;
-    }
-
-    /* Modal */
-    .video-modal {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.9);
-        z-index: 10000;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-    }
-
-    .video-modal.active {
-        display: flex;
-    }
-
-    .modal-content {
-        position: relative;
-        width: 100%;
-        max-width: 1000px;
-    }
-
-    .modal-close {
-        position: absolute;
-        top: -50px;
-        right: 0;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-    .modal-close:hover {
-        color: #ff0000;
-    }
-
-    .video-wrapper {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        border-radius: 12px;
-    }
-
-    .video-wrapper iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .youtube-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .videos-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .category-header {
-            flex-wrap: wrap;
-        }
-    }
-
-    /* ============================================
+  /* ============================================
        LIGHT MODE - Enterprise Grade Styles
        WCAG AA compliant contrast ratios
        ============================================ */
 
-    :global([data-theme="light"]) .youtube-section {
-        background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
-    }
+  :global([data-theme="light"]) .youtube-section {
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(241, 245, 249, 0.3) 100%);
+  }
 
-    /* Header Light Mode */
-    :global([data-theme="light"]) .youtube-header-icon {
-        background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.06));
-        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.08);
-    }
+  /* Header Light Mode */
+  :global([data-theme="light"]) .youtube-header-icon {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.06));
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.08);
+  }
 
-    :global([data-theme="light"]) .youtube-header h2 {
-        background: linear-gradient(135deg, #0f172a, #334155);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        letter-spacing: -0.02em;
-    }
+  :global([data-theme="light"]) .youtube-header h2 {
+    background: linear-gradient(135deg, #0f172a, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+  }
 
-    :global([data-theme="light"]) .youtube-subtitle {
-        color: #475569;
-    }
+  :global([data-theme="light"]) .youtube-subtitle {
+    color: #475569;
+  }
 
-    /* Category Header Light Mode */
-    :global([data-theme="light"]) .category-header {
-        border-bottom-color: rgba(0, 0, 0, 0.08);
-    }
+  /* Category Header Light Mode */
+  :global([data-theme="light"]) .category-header {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+  }
 
-    :global([data-theme="light"]) .category-header.cyan i { color: #0891b2; }
-    :global([data-theme="light"]) .category-header.purple i { color: #7c3aed; }
-    :global([data-theme="light"]) .category-header.green i { color: #059669; }
-    :global([data-theme="light"]) .category-header.orange i { color: #ea580c; }
-    :global([data-theme="light"]) .category-header.pink i { color: #db2777; }
-    :global([data-theme="light"]) .category-header.amber i { color: #d97706; }
+  :global([data-theme="light"]) .category-header.cyan i {
+    color: #0891b2;
+  }
+  :global([data-theme="light"]) .category-header.purple i {
+    color: #7c3aed;
+  }
+  :global([data-theme="light"]) .category-header.green i {
+    color: #059669;
+  }
+  :global([data-theme="light"]) .category-header.orange i {
+    color: #ea580c;
+  }
+  :global([data-theme="light"]) .category-header.pink i {
+    color: #db2777;
+  }
+  :global([data-theme="light"]) .category-header.amber i {
+    color: #d97706;
+  }
 
-    :global([data-theme="light"]) .category-header h3 {
-        color: #0f172a;
-        letter-spacing: -0.01em;
-    }
+  :global([data-theme="light"]) .category-header h3 {
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
 
-    :global([data-theme="light"]) .video-count {
-        background: rgba(0, 0, 0, 0.05);
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .video-count {
+    background: rgba(0, 0, 0, 0.05);
+    color: #64748b;
+  }
 
-    /* Video Cards Light Mode */
-    :global([data-theme="light"]) .video-card {
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
+  /* Video Cards Light Mode */
+  :global([data-theme="light"]) .video-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
 
-    :global([data-theme="light"]) .video-card:hover {
-        transform: translateY(-6px) scale(1.01);
-        border-color: rgba(220, 38, 38, 0.2);
-        box-shadow:
-            0 12px 24px rgba(0, 0, 0, 0.1),
-            0 0 20px rgba(220, 38, 38, 0.06);
-    }
+  :global([data-theme="light"]) .video-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: rgba(220, 38, 38, 0.2);
+    box-shadow:
+      0 12px 24px rgba(0, 0, 0, 0.1),
+      0 0 20px rgba(220, 38, 38, 0.06);
+  }
 
-    :global([data-theme="light"]) .video-thumbnail {
-        background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-    }
+  :global([data-theme="light"]) .video-thumbnail {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  }
 
-    :global([data-theme="light"]) .video-info {
-        background: rgba(255, 255, 255, 0.98);
-    }
+  :global([data-theme="light"]) .video-info {
+    background: rgba(255, 255, 255, 0.98);
+  }
 
-    :global([data-theme="light"]) .video-info h4 {
-        color: #0f172a;
-    }
+  :global([data-theme="light"]) .video-info h4 {
+    color: #0f172a;
+  }
 
-    :global([data-theme="light"]) .video-channel {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .video-channel {
+    color: #64748b;
+  }
 
-    :global([data-theme="light"]) .video-duration {
-        background: rgba(0, 0, 0, 0.85);
-        color: #ffffff;
-    }
+  :global([data-theme="light"]) .video-duration {
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+  }
 
-    /* Modal Light Mode */
-    :global([data-theme="light"]) .video-modal {
-        background: rgba(0, 0, 0, 0.85);
-    }
+  /* Modal Light Mode */
+  :global([data-theme="light"]) .video-modal {
+    background: rgba(0, 0, 0, 0.85);
+  }
 
-    :global([data-theme="light"]) .modal-close {
-        color: #f8fafc;
-    }
+  :global([data-theme="light"]) .modal-close {
+    color: #f8fafc;
+  }
 
-    :global([data-theme="light"]) .modal-close:hover {
-        color: #ef4444;
-    }
+  :global([data-theme="light"]) .modal-close:hover {
+    color: #ef4444;
+  }
 </style>
 
 <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('video-modal');
-        const iframe = document.getElementById('video-iframe');
-        const closeBtn = document.getElementById('modal-close');
-        const thumbnails = document.querySelectorAll('.video-thumbnail');
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("video-modal");
+    const iframe = document.getElementById("video-iframe");
+    const closeBtn = document.getElementById("modal-close");
+    const thumbnails = document.querySelectorAll(".video-thumbnail");
 
-        // Open modal
-        thumbnails.forEach(function(thumb) {
-            thumb.addEventListener('click', function() {
-                const videoId = this.dataset.videoId;
-                iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        // Close modal
-        function closeModal() {
-            modal.classList.remove('active');
-            iframe.src = '';
-            document.body.style.overflow = '';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
+    // Open modal
+    thumbnails.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        const videoId = this.dataset.videoId;
+        iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
     });
+
+    // Close modal
+    function closeModal() {
+      modal.classList.remove("active");
+      iframe.src = "";
+      document.body.style.overflow = "";
+    }
+
+    closeBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  });
 </script>

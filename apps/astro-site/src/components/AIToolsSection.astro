@@ -3,627 +3,657 @@
 // Basado en GitHub Education y mejores prácticas de la industria
 
 const aiTools = [
-    // 1. Notepad++
-    {
-        name: "Notepad++",
-        icon: "fas fa-file-code",
-        badge: "LIGERO",
-        badgeColor: "notepad",
-        description: "Editor de código ligero y potente para Windows. Ideal para edición rápida de archivos.",
-        features: ["Ultra ligero", "Syntax highlight", "Plugins", "Multi-documento"],
-        link: "https://notepad-plus-plus.org/",
-        linkText: "Descargar"
-    },
-    // 2. Flameshot
-    {
-        name: "Flameshot",
-        icon: "fas fa-camera",
-        badge: "SCREENSHOTS",
-        badgeColor: "flameshot",
-        description: "Herramienta de capturas de pantalla con anotaciones. Ideal para documentar código y bugs.",
-        features: ["Capturas editables", "Anotaciones", "Blur & flechas", "Multiplataforma"],
-        link: "https://flameshot.org/",
-        linkText: "Descargar"
-    },
-    // 3. PowerShell 7+
-    {
-        name: "PowerShell 7+",
-        icon: "fas fa-terminal",
-        badge: "TERMINAL",
-        badgeColor: "powershell",
-        description: "Shell moderno y multiplataforma de Microsoft. Automatiza tareas y scripts avanzados.",
-        features: ["Multiplataforma", "Scripts avanzados", "Azure integrado", "Cmdlets potentes"],
-        link: "https://learn.microsoft.com/en-us/powershell/",
-        linkText: "Instalar"
-    },
-    // 4. VS Code for the Web
-    {
-        name: "VS Code for the Web",
-        icon: "fas fa-globe",
-        badge: "NAVEGADOR",
-        badgeColor: "vscode",
-        description: "Visual Studio Code directamente en tu navegador. Sin instalación, desde cualquier lugar.",
-        features: ["Sin instalación", "GitHub integrado", "Extensiones", "Sincronización"],
-        link: "https://vscode.dev",
-        linkText: "Abrir Editor"
-    },
-    // 5. Google Colab
-    {
-        name: "Google Colab",
-        icon: "fas fa-flask",
-        badge: "NOTEBOOKS",
-        badgeColor: "colab",
-        description: "Jupyter Notebooks en la nube gratis. GPU incluida para Machine Learning y Data Science.",
-        features: ["GPU gratis", "Python & ML", "Colaboración", "Google Drive"],
-        link: "https://colab.research.google.com/",
-        linkText: "Abrir Colab"
-    },
-    // 6. AntiGravity AI
-    {
-        name: "AntiGravity AI",
-        icon: "fas fa-rocket",
-        badge: "PRODUCTIVIDAD",
-        badgeColor: "orange",
-        description: "Asistente IA para productividad y automatización de tareas. Potencia tu flujo de trabajo.",
-        features: ["Automatización", "Notas inteligentes", "Integración apps", "Flujos de trabajo"],
-        link: "https://www.antigravity.ai/",
-        linkText: "Explorar"
-    },
-    // 7. DeepL Translate
-    {
-        name: "DeepL Translate",
-        icon: "fas fa-language",
-        badge: "TRADUCCIÓN",
-        badgeColor: "blue",
-        description: "El mejor traductor con IA. Ideal para documentación técnica y papers académicos.",
-        features: ["Traducción precisa", "Contexto técnico", "Múltiples idiomas", "Docs & PDFs"],
-        link: "https://www.deepl.com/translator",
-        linkText: "Traducir Ahora"
-    },
-    // 8. DeepSeek
-    {
-        name: "DeepSeek",
-        icon: "fas fa-brain",
-        badge: "OPEN SOURCE",
-        badgeColor: "emerald",
-        description: "Modelo de IA chino de código abierto. Excelente para código y razonamiento matemático.",
-        features: ["Código avanzado", "Matemáticas", "Open Source", "API gratuita"],
-        link: "https://chat.deepseek.com/",
-        linkText: "Probar DeepSeek"
-    },
-    // 9. Claude
-    {
-        name: "Claude",
-        icon: "fas fa-robot",
-        badge: "AI ASSISTANT",
-        badgeColor: "purple",
-        description: "Asistente de IA de Anthropic para resolver dudas, explicar código y aprender conceptos.",
-        features: ["Explicación de código", "Debugging asistido", "Generación de tests", "Contexto largo"],
-        link: "https://claude.ai",
-        linkText: "Probar Claude"
-    },
-    // 10. Le Chat (Mistral AI)
-    {
-        name: "Le Chat (Mistral AI)",
-        icon: "fas fa-comments",
-        badge: "ECONÓMICO",
-        badgeColor: "cyan",
-        description: "Asistente IA francés, potente y accesible. Ideal para estudiantes con presupuesto limitado.",
-        features: ["Código & debugging", "Muy económico", "Multilingüe", "API asequible"],
-        link: "https://chat.mistral.ai/chat",
-        linkText: "Probar Le Chat"
-    },
-    // 11. GitHub Copilot Pro
-    {
-        name: "GitHub Copilot Pro",
-        icon: "fab fa-github",
-        badge: "GRATIS",
-        badgeColor: "success",
-        description: "Tu programador par con IA. Sugerencias de código en tiempo real directamente en tu editor.",
-        features: ["Autocompletado inteligente", "Contexto del proyecto", "Múltiples lenguajes"],
-        link: "https://github.com/features/copilot",
-        linkText: "Activar Copilot"
-    },
-    // 12. GitHub Student Pack
-    {
-        name: "GitHub Student Pack",
-        icon: "fas fa-graduation-cap",
-        badge: "100+ TOOLS",
-        badgeColor: "accent",
-        description: "Pack exclusivo con herramientas profesionales gratuitas para estudiantes verificados.",
-        features: ["JetBrains IDEs", "DigitalOcean $200", "Canva Pro", "Namecheap dominio"],
-        link: "https://education.github.com/pack",
-        linkText: "Obtener Pack"
-    }
+  // 1. Notepad++
+  {
+    name: "Notepad++",
+    icon: "fas fa-file-code",
+    badge: "LIGERO",
+    badgeColor: "notepad",
+    description:
+      "Editor de código ligero y potente para Windows. Ideal para edición rápida de archivos.",
+    features: ["Ultra ligero", "Syntax highlight", "Plugins", "Multi-documento"],
+    link: "https://notepad-plus-plus.org/",
+    linkText: "Descargar",
+  },
+  // 2. Flameshot
+  {
+    name: "Flameshot",
+    icon: "fas fa-camera",
+    badge: "SCREENSHOTS",
+    badgeColor: "flameshot",
+    description:
+      "Herramienta de capturas de pantalla con anotaciones. Ideal para documentar código y bugs.",
+    features: ["Capturas editables", "Anotaciones", "Blur & flechas", "Multiplataforma"],
+    link: "https://flameshot.org/",
+    linkText: "Descargar",
+  },
+  // 3. PowerShell 7+
+  {
+    name: "PowerShell 7+",
+    icon: "fas fa-terminal",
+    badge: "TERMINAL",
+    badgeColor: "powershell",
+    description:
+      "Shell moderno y multiplataforma de Microsoft. Automatiza tareas y scripts avanzados.",
+    features: ["Multiplataforma", "Scripts avanzados", "Azure integrado", "Cmdlets potentes"],
+    link: "https://learn.microsoft.com/en-us/powershell/",
+    linkText: "Instalar",
+  },
+  // 4. VS Code for the Web
+  {
+    name: "VS Code for the Web",
+    icon: "fas fa-globe",
+    badge: "NAVEGADOR",
+    badgeColor: "vscode",
+    description:
+      "Visual Studio Code directamente en tu navegador. Sin instalación, desde cualquier lugar.",
+    features: ["Sin instalación", "GitHub integrado", "Extensiones", "Sincronización"],
+    link: "https://vscode.dev",
+    linkText: "Abrir Editor",
+  },
+  // 5. Google Colab
+  {
+    name: "Google Colab",
+    icon: "fas fa-flask",
+    badge: "NOTEBOOKS",
+    badgeColor: "colab",
+    description:
+      "Jupyter Notebooks en la nube gratis. GPU incluida para Machine Learning y Data Science.",
+    features: ["GPU gratis", "Python & ML", "Colaboración", "Google Drive"],
+    link: "https://colab.research.google.com/",
+    linkText: "Abrir Colab",
+  },
+  // 6. AntiGravity AI
+  {
+    name: "AntiGravity AI",
+    icon: "fas fa-rocket",
+    badge: "PRODUCTIVIDAD",
+    badgeColor: "orange",
+    description:
+      "Asistente IA para productividad y automatización de tareas. Potencia tu flujo de trabajo.",
+    features: ["Automatización", "Notas inteligentes", "Integración apps", "Flujos de trabajo"],
+    link: "https://www.antigravity.ai/",
+    linkText: "Explorar",
+  },
+  // 7. DeepL Translate
+  {
+    name: "DeepL Translate",
+    icon: "fas fa-language",
+    badge: "TRADUCCIÓN",
+    badgeColor: "blue",
+    description: "El mejor traductor con IA. Ideal para documentación técnica y papers académicos.",
+    features: ["Traducción precisa", "Contexto técnico", "Múltiples idiomas", "Docs & PDFs"],
+    link: "https://www.deepl.com/translator",
+    linkText: "Traducir Ahora",
+  },
+  // 8. DeepSeek
+  {
+    name: "DeepSeek",
+    icon: "fas fa-brain",
+    badge: "OPEN SOURCE",
+    badgeColor: "emerald",
+    description:
+      "Modelo de IA chino de código abierto. Excelente para código y razonamiento matemático.",
+    features: ["Código avanzado", "Matemáticas", "Open Source", "API gratuita"],
+    link: "https://chat.deepseek.com/",
+    linkText: "Probar DeepSeek",
+  },
+  // 9. Claude
+  {
+    name: "Claude",
+    icon: "fas fa-robot",
+    badge: "AI ASSISTANT",
+    badgeColor: "purple",
+    description:
+      "Asistente de IA de Anthropic para resolver dudas, explicar código y aprender conceptos.",
+    features: [
+      "Explicación de código",
+      "Debugging asistido",
+      "Generación de tests",
+      "Contexto largo",
+    ],
+    link: "https://claude.ai",
+    linkText: "Probar Claude",
+  },
+  // 10. Le Chat (Mistral AI)
+  {
+    name: "Le Chat (Mistral AI)",
+    icon: "fas fa-comments",
+    badge: "ECONÓMICO",
+    badgeColor: "cyan",
+    description:
+      "Asistente IA francés, potente y accesible. Ideal para estudiantes con presupuesto limitado.",
+    features: ["Código & debugging", "Muy económico", "Multilingüe", "API asequible"],
+    link: "https://chat.mistral.ai/chat",
+    linkText: "Probar Le Chat",
+  },
+  // 11. GitHub Copilot Pro
+  {
+    name: "GitHub Copilot Pro",
+    icon: "fab fa-github",
+    badge: "GRATIS",
+    badgeColor: "success",
+    description:
+      "Tu programador par con IA. Sugerencias de código en tiempo real directamente en tu editor.",
+    features: ["Autocompletado inteligente", "Contexto del proyecto", "Múltiples lenguajes"],
+    link: "https://github.com/features/copilot",
+    linkText: "Activar Copilot",
+  },
+  // 12. GitHub Student Pack
+  {
+    name: "GitHub Student Pack",
+    icon: "fas fa-graduation-cap",
+    badge: "100+ TOOLS",
+    badgeColor: "accent",
+    description:
+      "Pack exclusivo con herramientas profesionales gratuitas para estudiantes verificados.",
+    features: ["JetBrains IDEs", "DigitalOcean $200", "Canva Pro", "Namecheap dominio"],
+    link: "https://education.github.com/pack",
+    linkText: "Obtener Pack",
+  },
 ];
 
 const bestPractices = [
-    { icon: "fas fa-check-circle", text: "Siempre revisa y entiende el código generado" },
-    { icon: "fas fa-brain", text: "Usa IA como complemento, no como reemplazo del aprendizaje" },
-    { icon: "fas fa-code-branch", text: "Valida sugerencias con tests unitarios" },
-    { icon: "fas fa-shield-alt", text: "No compartas código sensible o credenciales" }
+  { icon: "fas fa-check-circle", text: "Siempre revisa y entiende el código generado" },
+  { icon: "fas fa-brain", text: "Usa IA como complemento, no como reemplazo del aprendizaje" },
+  { icon: "fas fa-code-branch", text: "Valida sugerencias con tests unitarios" },
+  { icon: "fas fa-shield-alt", text: "No compartas código sensible o credenciales" },
 ];
 ---
 
 <section id="ai-tools" class="ai-tools-section">
-    <div class="section-container">
-        <!-- Header -->
-        <div class="ai-section-header" data-aos="fade-up">
-            <div class="ai-header-icon">
-                <i class="fas fa-magic"></i>
-            </div>
-            <h2>Herramientas AI para Estudiantes</h2>
-            <p class="ai-subtitle">Recursos gratuitos que potencian tu aprendizaje en 2025</p>
-            <div class="ai-badges-row">
-                <span class="ai-source-badge">
-                    <i class="fab fa-github"></i> GitHub Education
-                </span>
-                <span class="ai-source-badge">
-                    <i class="fas fa-bolt"></i> 100% Gratis para Estudiantes
-                </span>
-            </div>
-        </div>
-
-        <!-- Tools Grid -->
-        <div class="ai-tools-grid" data-aos="fade-up" data-aos-delay="100">
-            {aiTools.map((tool, index) => (
-                <div class="ai-tool-card glass-card" data-aos="zoom-in" data-aos-delay={150 + index * 50}>
-                    <div class="ai-tool-header">
-                        <div class="ai-tool-icon">
-                            <i class={tool.icon}></i>
-                        </div>
-                        <div class="ai-tool-title-group">
-                            <h3>{tool.name}</h3>
-                            <span class={`ai-tool-badge ${tool.badgeColor}`}>{tool.badge}</span>
-                        </div>
-                    </div>
-                    <p class="ai-tool-description">{tool.description}</p>
-                    <div class="ai-tool-features">
-                        {tool.features.map(feature => (
-                            <span class="ai-feature-chip">
-                                <i class="fas fa-check"></i> {feature}
-                            </span>
-                        ))}
-                    </div>
-                    <a href={tool.link} target="_blank" rel="noopener" class="ai-tool-cta">
-                        {tool.linkText} <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            ))}
-        </div>
-
-        <!-- Best Practices -->
-        <div class="ai-best-practices glass-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="ai-practices-header">
-                <i class="fas fa-lightbulb"></i>
-                <span>Mejores Prácticas con IA en Educación</span>
-            </div>
-            <div class="ai-practices-grid">
-                {bestPractices.map(practice => (
-                    <div class="ai-practice-item">
-                        <i class={practice.icon}></i>
-                        <span>{practice.text}</span>
-                    </div>
-                ))}
-            </div>
-        </div>
-
-        <!-- CTA Banner -->
-        <div class="ai-cta-banner glass-card" data-aos="fade-up" data-aos-delay="400">
-            <div class="ai-cta-content">
-                <div class="ai-cta-icon">
-                    <i class="fab fa-github"></i>
-                </div>
-                <div class="ai-cta-text">
-                    <h4>Activa tu cuenta de estudiante GitHub</h4>
-                    <p>Verifica tu correo institucional y accede a todos los beneficios</p>
-                </div>
-            </div>
-            <a href="https://education.github.com/discount_requests/application" target="_blank" rel="noopener" class="ai-cta-button">
-                <i class="fas fa-rocket"></i> Verificar Ahora
-            </a>
-        </div>
+  <div class="section-container">
+    <!-- Header -->
+    <div class="ai-section-header" data-aos="fade-up">
+      <div class="ai-header-icon">
+        <i class="fas fa-magic"></i>
+      </div>
+      <h2>Herramientas AI para Estudiantes</h2>
+      <p class="ai-subtitle">Recursos gratuitos que potencian tu aprendizaje en 2025</p>
+      <div class="ai-badges-row">
+        <span class="ai-source-badge">
+          <i class="fab fa-github"></i> GitHub Education
+        </span>
+        <span class="ai-source-badge">
+          <i class="fas fa-bolt"></i> 100% Gratis para Estudiantes
+        </span>
+      </div>
     </div>
+
+    <!-- Tools Grid -->
+    <div class="ai-tools-grid" data-aos="fade-up" data-aos-delay="100">
+      {
+        aiTools.map((tool, index) => (
+          <div class="ai-tool-card glass-card" data-aos="zoom-in" data-aos-delay={150 + index * 50}>
+            <div class="ai-tool-header">
+              <div class="ai-tool-icon">
+                <i class={tool.icon} />
+              </div>
+              <div class="ai-tool-title-group">
+                <h3>{tool.name}</h3>
+                <span class={`ai-tool-badge ${tool.badgeColor}`}>{tool.badge}</span>
+              </div>
+            </div>
+            <p class="ai-tool-description">{tool.description}</p>
+            <div class="ai-tool-features">
+              {tool.features.map((feature) => (
+                <span class="ai-feature-chip">
+                  <i class="fas fa-check" /> {feature}
+                </span>
+              ))}
+            </div>
+            <a href={tool.link} target="_blank" rel="noopener" class="ai-tool-cta">
+              {tool.linkText} <i class="fas fa-arrow-right" />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Best Practices -->
+    <div class="ai-best-practices glass-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="ai-practices-header">
+        <i class="fas fa-lightbulb"></i>
+        <span>Mejores Prácticas con IA en Educación</span>
+      </div>
+      <div class="ai-practices-grid">
+        {
+          bestPractices.map((practice) => (
+            <div class="ai-practice-item">
+              <i class={practice.icon} />
+              <span>{practice.text}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="ai-cta-banner glass-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="ai-cta-content">
+        <div class="ai-cta-icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <div class="ai-cta-text">
+          <h4>Activa tu cuenta de estudiante GitHub</h4>
+          <p>Verifica tu correo institucional y accede a todos los beneficios</p>
+        </div>
+      </div>
+      <a
+        href="https://education.github.com/discount_requests/application"
+        target="_blank"
+        rel="noopener"
+        class="ai-cta-button"
+      >
+        <i class="fas fa-rocket"></i> Verificar Ahora
+      </a>
+    </div>
+  </div>
 </section>
 
 <style>
-    .ai-tools-section {
-        padding: 4rem 2rem;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
+  .ai-tools-section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
 
-    .section-container {
-        width: 100%;
-    }
+  .section-container {
+    width: 100%;
+  }
 
-    /* Header */
-    .ai-section-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+  /* Header */
+  .ai-section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-    .ai-header-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: pulse-glow 2s ease-in-out infinite;
-    }
+  .ai-header-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(0, 212, 255, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
 
-    .ai-header-icon i {
-        font-size: 2.5rem;
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
+  .ai-header-icon i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-    @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
-        50% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.4); }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
     }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+    }
+  }
 
+  .ai-section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ai-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+  }
+
+  .ai-badges-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .ai-source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .ai-source-badge i {
+    color: #00d4ff;
+  }
+
+  /* Tools Grid */
+  .ai-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .ai-tool-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .ai-tool-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .ai-tool-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .ai-tool-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ai-tool-icon i {
+    font-size: 1.5rem;
+    color: #00d4ff;
+  }
+
+  .ai-tool-title-group {
+    flex: 1;
+  }
+
+  .ai-tool-title-group h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .ai-tool-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .ai-tool-badge.success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .ai-tool-badge.accent {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+
+  .ai-tool-badge.warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .ai-tool-badge.purple {
+    background: rgba(124, 58, 237, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+  }
+
+  .ai-tool-badge.cyan {
+    background: rgba(6, 182, 212, 0.2);
+    color: #22d3ee;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+  }
+
+  .ai-tool-badge.emerald {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .ai-tool-badge.blue {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .ai-tool-badge.orange {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fb923c;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+  }
+
+  .ai-tool-badge.vscode {
+    background: rgba(0, 122, 204, 0.2);
+    color: #4fc3f7;
+    border: 1px solid rgba(0, 122, 204, 0.3);
+  }
+
+  .ai-tool-badge.notion {
+    background: rgba(255, 255, 255, 0.15);
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .ai-tool-badge.notepad {
+    background: rgba(144, 238, 144, 0.2);
+    color: #90ee90;
+    border: 1px solid rgba(144, 238, 144, 0.3);
+  }
+
+  .ai-tool-badge.flameshot {
+    background: rgba(255, 87, 34, 0.2);
+    color: #ff7043;
+    border: 1px solid rgba(255, 87, 34, 0.3);
+  }
+
+  .ai-tool-badge.powershell {
+    background: rgba(1, 36, 86, 0.3);
+    color: #5391fe;
+    border: 1px solid rgba(83, 145, 254, 0.3);
+  }
+
+  .ai-tool-badge.colab {
+    background: rgba(249, 171, 0, 0.2);
+    color: #f9ab00;
+    border: 1px solid rgba(249, 171, 0, 0.3);
+  }
+
+  .ai-tool-description {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .ai-tool-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ai-feature-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  .ai-feature-chip i {
+    color: #10b981;
+    font-size: 0.65rem;
+  }
+
+  .ai-tool-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #7c3aed, #00d4ff);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .ai-tool-cta:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  }
+
+  /* Best Practices */
+  .ai-best-practices {
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+  }
+
+  .ai-practices-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: #f8fafc;
+  }
+
+  .ai-practices-header i {
+    color: #f59e0b;
+    font-size: 1.25rem;
+  }
+
+  .ai-practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .ai-practice-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .ai-practice-item i {
+    color: #10b981;
+  }
+
+  /* CTA Banner */
+  .ai-cta-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(0, 212, 255, 0.1));
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .ai-cta-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ai-cta-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-cta-icon i {
+    font-size: 1.5rem;
+    color: #f8fafc;
+  }
+
+  .ai-cta-text h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.25rem;
+  }
+
+  .ai-cta-text p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  .ai-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 10px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .ai-cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .ai-section-header h2 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.75rem;
     }
 
-    .ai-subtitle {
-        font-size: 1.1rem;
-        color: #94a3b8;
-        margin-bottom: 1.5rem;
-    }
-
-    .ai-badges-row {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .ai-source-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-
-    .ai-source-badge i {
-        color: #00d4ff;
-    }
-
-    /* Tools Grid */
     .ai-tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+      grid-template-columns: 1fr;
     }
 
-    .ai-tool-card {
-        padding: 1.5rem;
-        border-radius: 16px;
-        transition: all 0.3s ease;
-    }
-
-    .ai-tool-card:hover {
-        transform: translateY(-8px);
-    }
-
-    .ai-tool-header {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        margin-bottom: 1rem;
-    }
-
-    .ai-tool-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2));
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .ai-tool-icon i {
-        font-size: 1.5rem;
-        color: #00d4ff;
-    }
-
-    .ai-tool-title-group {
-        flex: 1;
-    }
-
-    .ai-tool-title-group h3 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .ai-tool-badge {
-        display: inline-block;
-        padding: 0.2rem 0.6rem;
-        border-radius: 12px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        text-transform: uppercase;
-    }
-
-    .ai-tool-badge.success {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-        border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .ai-tool-badge.accent {
-        background: rgba(0, 212, 255, 0.2);
-        color: #00d4ff;
-        border: 1px solid rgba(0, 212, 255, 0.3);
-    }
-
-    .ai-tool-badge.warning {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-        border: 1px solid rgba(245, 158, 11, 0.3);
-    }
-
-    .ai-tool-badge.purple {
-        background: rgba(124, 58, 237, 0.2);
-        color: #a78bfa;
-        border: 1px solid rgba(124, 58, 237, 0.3);
-    }
-
-    .ai-tool-badge.cyan {
-        background: rgba(6, 182, 212, 0.2);
-        color: #22d3ee;
-        border: 1px solid rgba(6, 182, 212, 0.3);
-    }
-
-    .ai-tool-badge.emerald {
-        background: rgba(16, 185, 129, 0.2);
-        color: #34d399;
-        border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .ai-tool-badge.blue {
-        background: rgba(59, 130, 246, 0.2);
-        color: #60a5fa;
-        border: 1px solid rgba(59, 130, 246, 0.3);
-    }
-
-    .ai-tool-badge.orange {
-        background: rgba(249, 115, 22, 0.2);
-        color: #fb923c;
-        border: 1px solid rgba(249, 115, 22, 0.3);
-    }
-
-    .ai-tool-badge.vscode {
-        background: rgba(0, 122, 204, 0.2);
-        color: #4fc3f7;
-        border: 1px solid rgba(0, 122, 204, 0.3);
-    }
-
-    .ai-tool-badge.notion {
-        background: rgba(255, 255, 255, 0.15);
-        color: #f8fafc;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .ai-tool-badge.notepad {
-        background: rgba(144, 238, 144, 0.2);
-        color: #90ee90;
-        border: 1px solid rgba(144, 238, 144, 0.3);
-    }
-
-    .ai-tool-badge.flameshot {
-        background: rgba(255, 87, 34, 0.2);
-        color: #ff7043;
-        border: 1px solid rgba(255, 87, 34, 0.3);
-    }
-
-    .ai-tool-badge.powershell {
-        background: rgba(1, 36, 86, 0.3);
-        color: #5391FE;
-        border: 1px solid rgba(83, 145, 254, 0.3);
-    }
-
-    .ai-tool-badge.colab {
-        background: rgba(249, 171, 0, 0.2);
-        color: #F9AB00;
-        border: 1px solid rgba(249, 171, 0, 0.3);
-    }
-
-    .ai-tool-description {
-        font-size: 0.9rem;
-        color: #94a3b8;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
-
-    .ai-tool-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .ai-feature-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        padding: 0.3rem 0.6rem;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 8px;
-        font-size: 0.75rem;
-        color: #64748b;
-    }
-
-    .ai-feature-chip i {
-        color: #10b981;
-        font-size: 0.65rem;
-    }
-
-    .ai-tool-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.2rem;
-        background: linear-gradient(135deg, #7c3aed, #00d4ff);
-        border-radius: 8px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .ai-tool-cta:hover {
-        transform: translateX(4px);
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-    }
-
-    /* Best Practices */
-    .ai-best-practices {
-        padding: 1.5rem;
-        border-radius: 16px;
-        margin-bottom: 2rem;
-    }
-
-    .ai-practices-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
-        color: #f8fafc;
-    }
-
-    .ai-practices-header i {
-        color: #f59e0b;
-        font-size: 1.25rem;
-    }
-
-    .ai-practices-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .ai-practice-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.75rem;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 10px;
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-
-    .ai-practice-item i {
-        color: #10b981;
-    }
-
-    /* CTA Banner */
     .ai-cta-banner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.5rem 2rem;
-        border-radius: 16px;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(0, 212, 255, 0.1));
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        flex-wrap: wrap;
-        gap: 1.5rem;
+      flex-direction: column;
+      text-align: center;
     }
 
     .ai-cta-content {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+      flex-direction: column;
     }
-
-    .ai-cta-icon {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .ai-cta-icon i {
-        font-size: 1.5rem;
-        color: #f8fafc;
-    }
-
-    .ai-cta-text h4 {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #f8fafc;
-        margin-bottom: 0.25rem;
-    }
-
-    .ai-cta-text p {
-        font-size: 0.85rem;
-        color: #94a3b8;
-    }
-
-    .ai-cta-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(135deg, #10b981, #059669);
-        border-radius: 10px;
-        font-weight: 700;
-        color: white;
-        text-decoration: none;
-        transition: all 0.3s ease;
-    }
-
-    .ai-cta-button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .ai-section-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .ai-tools-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .ai-cta-banner {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .ai-cta-content {
-            flex-direction: column;
-        }
-    }
+  }
 </style>

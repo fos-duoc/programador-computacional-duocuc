@@ -1,76 +1,80 @@
 ---
-import BimestreCard from './BimestreCard.astro';
-import { bimestresYear1, bimestresYear2 } from '../data/bimestres';
+import BimestreCard from "./BimestreCard.astro";
+import { bimestresYear1, bimestresYear2 } from "../data/bimestres";
 ---
 
 <section id="bimestres" class="bimestres">
-    <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">
-            <i class="fas fa-graduation-cap"></i>
-            Plan de Estudios
-        </h2>
-        <p class="section-subtitle">10 Bimestres de aprendizaje intensivo</p>
+  <div class="section-header" data-aos="fade-up">
+    <h2 class="section-title">
+      <i class="fas fa-graduation-cap"></i>
+      Plan de Estudios
+    </h2>
+    <p class="section-subtitle">10 Bimestres de aprendizaje intensivo</p>
+  </div>
+
+  <!-- Year 1 -->
+  <div class="year-container" data-aos="fade-up">
+    <div class="year-header">
+      <span class="year-badge year-1">Ano 1</span>
+      <span class="year-label">Fundamentos</span>
     </div>
 
-    <!-- Year 1 -->
-    <div class="year-container" data-aos="fade-up">
-        <div class="year-header">
-            <span class="year-badge year-1">Ano 1</span>
-            <span class="year-label">Fundamentos</span>
-        </div>
+    <div class="bimestres-grid">
+      {
+        bimestresYear1.map((bimestre, index) => (
+          <BimestreCard
+            number={bimestre.number}
+            title={bimestre.title}
+            subjects={bimestre.subjects}
+            techIcons={bimestre.techIcons}
+            delay={(index + 1) * 100}
+          />
+        ))
+      }
+    </div>
+  </div>
 
-        <div class="bimestres-grid">
-            {bimestresYear1.map((bimestre, index) => (
-                <BimestreCard
-                    number={bimestre.number}
-                    title={bimestre.title}
-                    subjects={bimestre.subjects}
-                    techIcons={bimestre.techIcons}
-                    delay={(index + 1) * 100}
-                />
-            ))}
-        </div>
+  <!-- Salida Intermedia -->
+  <div class="milestone" data-aos="zoom-in" data-aos-delay="100">
+    <div class="milestone-content">
+      <i class="fas fa-trophy"></i>
+      <div class="milestone-info">
+        <span class="milestone-label">Salida Intermedia - Bimestre 05</span>
+        <h3 class="milestone-title">Programador de Aplicaciones Computacionales</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Year 2 -->
+  <div class="year-container" data-aos="fade-up">
+    <div class="year-header">
+      <span class="year-badge year-2">Ano 2</span>
+      <span class="year-label">Especializacion</span>
     </div>
 
-    <!-- Salida Intermedia -->
-    <div class="milestone" data-aos="zoom-in" data-aos-delay="100">
-        <div class="milestone-content">
-            <i class="fas fa-trophy"></i>
-            <div class="milestone-info">
-                <span class="milestone-label">Salida Intermedia - Bimestre 05</span>
-                <h3 class="milestone-title">Programador de Aplicaciones Computacionales</h3>
-            </div>
-        </div>
+    <div class="bimestres-grid">
+      {
+        bimestresYear2.map((bimestre, index) => (
+          <BimestreCard
+            number={bimestre.number}
+            title={bimestre.title}
+            subjects={bimestre.subjects}
+            techIcons={bimestre.techIcons}
+            delay={(index + 1) * 100}
+          />
+        ))
+      }
     </div>
+  </div>
 
-    <!-- Year 2 -->
-    <div class="year-container" data-aos="fade-up">
-        <div class="year-header">
-            <span class="year-badge year-2">Ano 2</span>
-            <span class="year-label">Especializacion</span>
-        </div>
-
-        <div class="bimestres-grid">
-            {bimestresYear2.map((bimestre, index) => (
-                <BimestreCard
-                    number={bimestre.number}
-                    title={bimestre.title}
-                    subjects={bimestre.subjects}
-                    techIcons={bimestre.techIcons}
-                    delay={(index + 1) * 100}
-                />
-            ))}
-        </div>
+  <!-- Titulo Final -->
+  <div class="milestone final" data-aos="zoom-in" data-aos-delay="100">
+    <div class="milestone-content">
+      <i class="fas fa-graduation-cap"></i>
+      <div class="milestone-info">
+        <span class="milestone-label">Titulo Final - Bimestre 10</span>
+        <h3 class="milestone-title">Analista Programador Computacional</h3>
+      </div>
     </div>
-
-    <!-- Titulo Final -->
-    <div class="milestone final" data-aos="zoom-in" data-aos-delay="100">
-        <div class="milestone-content">
-            <i class="fas fa-graduation-cap"></i>
-            <div class="milestone-info">
-                <span class="milestone-label">Titulo Final - Bimestre 10</span>
-                <h3 class="milestone-title">Analista Programador Computacional</h3>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>

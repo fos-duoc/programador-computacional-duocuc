@@ -1,527 +1,826 @@
 ---
 // Main page - Analista Programador Computacional DuocUC
 // Landing page simplificada - contenido detallado en páginas dedicadas
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import PlanEstudiosHero from '../../components/PlanEstudiosHero.astro';
-import StatsSection from '../../components/StatsSection.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PlanEstudiosHero from "../../components/PlanEstudiosHero.astro";
+import StatsSection from "../../components/StatsSection.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Analista Programador Computacional | DuocUC">
-    <Header />
+  <Header />
 
-    <!-- Hero Section - Premium Data Engineering Theme -->
-    <section id="inicio" class="hero-premium">
-        <!-- Animated Data Pipeline Background -->
-        <div class="data-bg-canvas">
-            <!-- Flowing Data Streams -->
-            <div class="data-stream stream-1"></div>
-            <div class="data-stream stream-2"></div>
-            <div class="data-stream stream-3"></div>
+  <!-- Hero Section - Premium Data Engineering Theme -->
+  <section id="inicio" class="hero-premium">
+    <!-- Animated Data Pipeline Background -->
+    <div class="data-bg-canvas">
+      <!-- Flowing Data Streams -->
+      <div class="data-stream stream-1"></div>
+      <div class="data-stream stream-2"></div>
+      <div class="data-stream stream-3"></div>
 
-            <!-- Data Nodes -->
-            <div class="data-node node-1"><i class="fas fa-database"></i></div>
-            <div class="data-node node-2"><i class="fas fa-server"></i></div>
-            <div class="data-node node-3"><i class="fas fa-cloud"></i></div>
-            <div class="data-node node-4"><i class="fas fa-chart-line"></i></div>
-            <div class="data-node node-5"><i class="fas fa-code-branch"></i></div>
-            <div class="data-node node-6"><i class="fas fa-microchip"></i></div>
+      <!-- Data Nodes -->
+      <div class="data-node node-1"><i class="fas fa-database"></i></div>
+      <div class="data-node node-2"><i class="fas fa-server"></i></div>
+      <div class="data-node node-3"><i class="fas fa-cloud"></i></div>
+      <div class="data-node node-4"><i class="fas fa-chart-line"></i></div>
+      <div class="data-node node-5"><i class="fas fa-code-branch"></i></div>
+      <div class="data-node node-6"><i class="fas fa-microchip"></i></div>
 
-            <!-- Binary Rain -->
-            <div class="binary-column col-1">01001010</div>
-            <div class="binary-column col-2">11010100</div>
-            <div class="binary-column col-3">00101101</div>
-            <div class="binary-column col-4">10110010</div>
-            <div class="binary-column col-5">01101001</div>
+      <!-- Binary Rain -->
+      <div class="binary-column col-1">01001010</div>
+      <div class="binary-column col-2">11010100</div>
+      <div class="binary-column col-3">00101101</div>
+      <div class="binary-column col-4">10110010</div>
+      <div class="binary-column col-5">01101001</div>
 
-            <!-- Connection Lines -->
-            <svg class="connection-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <path class="connection-path path-1" d="M10,80 Q30,60 50,50 T90,20" />
-                <path class="connection-path path-2" d="M5,50 Q25,30 50,35 T95,60" />
-                <path class="connection-path path-3" d="M15,20 Q40,40 60,30 T85,70" />
-            </svg>
+      <!-- Connection Lines -->
+      <svg class="connection-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="connection-path path-1" d="M10,80 Q30,60 50,50 T90,20"></path>
+        <path class="connection-path path-2" d="M5,50 Q25,30 50,35 T95,60"></path>
+        <path class="connection-path path-3" d="M15,20 Q40,40 60,30 T85,70"></path>
+      </svg>
 
-            <!-- Floating Tech Orbs -->
-            <div class="tech-orb orb-1"><i class="devicon-python-plain"></i></div>
-            <div class="tech-orb orb-2"><i class="devicon-postgresql-plain"></i></div>
-            <div class="tech-orb orb-3"><i class="devicon-docker-plain"></i></div>
-            <div class="tech-orb orb-4"><i class="devicon-kubernetes-plain"></i></div>
-            <div class="tech-orb orb-5"><i class="devicon-apachekafka-original"></i></div>
-            <div class="tech-orb orb-6"><i class="fas fa-fire"></i></div>
+      <!-- Floating Tech Orbs -->
+      <div class="tech-orb orb-1"><i class="devicon-python-plain"></i></div>
+      <div class="tech-orb orb-2"><i class="devicon-postgresql-plain"></i></div>
+      <div class="tech-orb orb-3"><i class="devicon-docker-plain"></i></div>
+      <div class="tech-orb orb-4"><i class="devicon-kubernetes-plain"></i></div>
+      <div class="tech-orb orb-5"><i class="devicon-apachekafka-original"></i></div>
+      <div class="tech-orb orb-6"><i class="fas fa-fire"></i></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-premium-content">
+      <!-- Top Badges -->
+      <div class="hero-badges-row" data-aos="fade-down" data-aos-delay="100">
+        <span class="premium-badge primary">
+          <i class="fas fa-graduation-cap"></i>
+          DuocUC 2025
+        </span>
+        <span class="premium-badge accent">
+          <i class="fas fa-globe"></i>
+          100% Online
+        </span>
+        <span class="premium-badge success">
+          <i class="fas fa-check-circle"></i>
+          Acreditado
+        </span>
+      </div>
+
+      <!-- Main Title - Premium Typography -->
+      <div class="hero-title-block" data-aos="fade-up" data-aos-delay="200">
+        <h1 class="hero-title-premium">Analista Programador Computacional</h1>
+        <div class="hero-subtitle-row">
+          <span class="subtitle-divider"></span>
+          <span class="hero-subtitle-text">Escuela de Informática</span>
+          <span class="subtitle-divider"></span>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <p class="hero-description-premium" data-aos="fade-up" data-aos-delay="300">
+        Formación integral en <span class="highlight-text">desarrollo de software</span> con enfoque práctico.
+        Título técnico en <span class="highlight-text">20 meses</span> o continúa hasta <span
+          class="highlight-text">Ingeniero de Software</span
+        > en 34 meses.
+      </p>
+
+      <!-- Stats Row -->
+      <div class="hero-stats-premium" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat-premium">
+          <span class="stat-value">17</span>
+          <span class="stat-label">Bimestres</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-premium">
+          <span class="stat-value">40+</span>
+          <span class="stat-label">Asignaturas</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-premium">
+          <span class="stat-value">2</span>
+          <span class="stat-label">Carreras</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-premium">
+          <span class="stat-value">65+</span>
+          <span class="stat-label">Tecnologías</span>
+        </div>
+      </div>
+
+      <!-- Tech Stack Preview -->
+      <div class="hero-tech-preview" data-aos="fade-up" data-aos-delay="500">
+        <a
+          href="https://www.oracle.com/java/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="Java"
+          class="tech-preview-icon"><i class="devicon-java-plain colored"></i></a
+        >
+        <a
+          href="https://www.python.org/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="Python"
+          class="tech-preview-icon"><i class="devicon-python-plain colored"></i></a
+        >
+        <a
+          href="https://www.typescriptlang.org/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="TypeScript"
+          class="tech-preview-icon"><i class="devicon-typescript-plain colored"></i></a
+        >
+        <a
+          href="https://react.dev/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="React"
+          class="tech-preview-icon"><i class="devicon-react-original colored"></i></a
+        >
+        <a
+          href="https://spring.io/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="Spring"
+          class="tech-preview-icon"><i class="devicon-spring-original colored"></i></a
+        >
+        <a
+          href="https://www.docker.com/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="Docker"
+          class="tech-preview-icon"><i class="devicon-docker-plain colored"></i></a
+        >
+        <a
+          href="https://aws.amazon.com/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="AWS"
+          class="tech-preview-icon"
+          ><i class="devicon-amazonwebservices-plain-wordmark colored"></i></a
+        >
+        <a
+          href="https://www.postgresql.org/"
+          target="_blank"
+          rel="noopener"
+          data-tooltip="PostgreSQL"
+          class="tech-preview-icon"><i class="devicon-postgresql-plain colored"></i></a
+        >
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hero-cta-premium" data-aos="fade-up" data-aos-delay="600">
+        <a href="#bimestres" class="cta-btn-premium primary">
+          <i class="fas fa-rocket"></i>
+          <span>Plan de Estudios</span>
+        </a>
+        <a href={`${base}/stacks`} class="cta-btn-premium secondary">
+          <i class="fas fa-layer-group"></i>
+          <span>Stack Tecnológico</span>
+        </a>
+        <a href={`${base}/recursos`} class="cta-btn-premium accent">
+          <i class="fas fa-book-reader"></i>
+          <span>Recursos</span>
+        </a>
+        <a
+          href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC"
+          target="_blank"
+          class="cta-btn-premium github"
+        >
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="700">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Scroll para explorar</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan de Estudios - Visual Overview -->
+  <PlanEstudiosHero />
+
+  <!-- Tech Ecosystem - Hexagonal Grid Design -->
+  <section class="tech-ecosystem-section" data-aos="fade-up">
+    <div class="tech-ecosystem-container">
+      <!-- Header -->
+      <div class="ecosystem-header">
+        <span class="ecosystem-badge"><i class="fas fa-cubes"></i> Ecosistema Tecnológico</span>
+        <h2>Stack de <span class="gradient-text">Desarrollo Moderno</span></h2>
+        <p>65+ tecnologías organizadas por especialidad</p>
+      </div>
+
+      <!-- Hexagonal Grid Layout -->
+      <div class="hex-grid-container">
+        <!-- Top - IDEs & Editors -->
+        <div class="hex-cluster top-cluster">
+          <div class="cluster-label"><i class="fas fa-laptop-code"></i> IDEs</div>
+          <div class="hex-group">
+            <a
+              href="https://code.visualstudio.com/"
+              target="_blank"
+              class="hex-item vscode-ide"
+              data-premium-tooltip="VS Code|Editor de código más popular del mundo con extensiones|Extensions,Git,Terminal,IntelliSense|tool|fa-code|Microsoft (2015)"
+              ><i class="devicon-vscode-plain colored"></i><span>VS Code</span></a
+            >
+            <a
+              href="https://www.jetbrains.com/idea/"
+              target="_blank"
+              class="hex-item intellij"
+              data-premium-tooltip="IntelliJ IDEA|IDE profesional para Java, Kotlin y desarrollo enterprise|Refactoring,Debugging,Git|tool|fa-java|JetBrains (2001)"
+              ><i class="devicon-intellij-plain colored"></i><span>IntelliJ</span></a
+            >
+            <a
+              href="https://www.jetbrains.com/pycharm/"
+              target="_blank"
+              class="hex-item pycharm"
+              data-premium-tooltip="PyCharm|IDE especializado para Python con soporte científico|Python,Django,Data Science|tool|fa-python|JetBrains (2010)"
+              ><i class="devicon-pycharm-plain colored"></i><span>PyCharm</span></a
+            >
+            <a
+              href="https://visualstudio.microsoft.com/"
+              target="_blank"
+              class="hex-item vs"
+              data-premium-tooltip="Visual Studio|IDE completo de Microsoft para .NET y C++|.NET,C#,C++,Azure|tool|fa-microsoft|Microsoft (1997)"
+              ><i class="devicon-visualstudio-plain colored"></i><span>Visual Studio</span></a
+            >
+            <a
+              href="https://www.jetbrains.com/webstorm/"
+              target="_blank"
+              class="hex-item webstorm"
+              data-premium-tooltip="WebStorm|IDE profesional para JavaScript y TypeScript|React,Angular,Vue,Node.js|tool|fa-js|JetBrains (2010)"
+              ><i class="devicon-webstorm-plain colored"></i><span>WebStorm</span></a
+            >
+            <a
+              href="https://www.sublimetext.com/"
+              target="_blank"
+              class="hex-item sublime"
+              data-premium-tooltip="Sublime Text|Editor de texto rápido y ligero|Multi-cursor,Plugins,Speed|tool|fa-file-code|Sublime HQ (2008)"
+              ><img
+                src="https://cdn.simpleicons.org/sublimetext/FF9800"
+                alt="Sublime Text"
+                class="hex-icon-img"
+              /><span>Sublime</span></a
+            >
+          </div>
         </div>
 
-        <!-- Hero Content -->
-        <div class="hero-premium-content">
-            <!-- Top Badges -->
-            <div class="hero-badges-row" data-aos="fade-down" data-aos-delay="100">
-                <span class="premium-badge primary">
-                    <i class="fas fa-graduation-cap"></i>
-                    DuocUC 2025
-                </span>
-                <span class="premium-badge accent">
-                    <i class="fas fa-globe"></i>
-                    100% Online
-                </span>
-                <span class="premium-badge success">
-                    <i class="fas fa-check-circle"></i>
-                    Acreditado
-                </span>
-            </div>
-
-            <!-- Main Title - Premium Typography -->
-            <div class="hero-title-block" data-aos="fade-up" data-aos-delay="200">
-                <h1 class="hero-title-premium">
-                    Analista Programador Computacional
-                </h1>
-                <div class="hero-subtitle-row">
-                    <span class="subtitle-divider"></span>
-                    <span class="hero-subtitle-text">Escuela de Informática</span>
-                    <span class="subtitle-divider"></span>
-                </div>
-            </div>
-
-            <!-- Description -->
-            <p class="hero-description-premium" data-aos="fade-up" data-aos-delay="300">
-                Formación integral en <span class="highlight-text">desarrollo de software</span> con enfoque práctico.
-                Título técnico en <span class="highlight-text">20 meses</span> o continúa hasta <span class="highlight-text">Ingeniero de Software</span> en 34 meses.
-            </p>
-
-            <!-- Stats Row -->
-            <div class="hero-stats-premium" data-aos="fade-up" data-aos-delay="400">
-                <div class="stat-premium">
-                    <span class="stat-value">17</span>
-                    <span class="stat-label">Bimestres</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-premium">
-                    <span class="stat-value">40+</span>
-                    <span class="stat-label">Asignaturas</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-premium">
-                    <span class="stat-value">2</span>
-                    <span class="stat-label">Carreras</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-premium">
-                    <span class="stat-value">65+</span>
-                    <span class="stat-label">Tecnologías</span>
-                </div>
-            </div>
-
-            <!-- Tech Stack Preview -->
-            <div class="hero-tech-preview" data-aos="fade-up" data-aos-delay="500">
-                <a href="https://www.oracle.com/java/" target="_blank" rel="noopener" data-tooltip="Java" class="tech-preview-icon"><i class="devicon-java-plain colored"></i></a>
-                <a href="https://www.python.org/" target="_blank" rel="noopener" data-tooltip="Python" class="tech-preview-icon"><i class="devicon-python-plain colored"></i></a>
-                <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener" data-tooltip="TypeScript" class="tech-preview-icon"><i class="devicon-typescript-plain colored"></i></a>
-                <a href="https://react.dev/" target="_blank" rel="noopener" data-tooltip="React" class="tech-preview-icon"><i class="devicon-react-original colored"></i></a>
-                <a href="https://spring.io/" target="_blank" rel="noopener" data-tooltip="Spring" class="tech-preview-icon"><i class="devicon-spring-original colored"></i></a>
-                <a href="https://www.docker.com/" target="_blank" rel="noopener" data-tooltip="Docker" class="tech-preview-icon"><i class="devicon-docker-plain colored"></i></a>
-                <a href="https://aws.amazon.com/" target="_blank" rel="noopener" data-tooltip="AWS" class="tech-preview-icon"><i class="devicon-amazonwebservices-plain-wordmark colored"></i></a>
-                <a href="https://www.postgresql.org/" target="_blank" rel="noopener" data-tooltip="PostgreSQL" class="tech-preview-icon"><i class="devicon-postgresql-plain colored"></i></a>
-            </div>
-
-            <!-- CTA Buttons -->
-            <div class="hero-cta-premium" data-aos="fade-up" data-aos-delay="600">
-                <a href="#bimestres" class="cta-btn-premium primary">
-                    <i class="fas fa-rocket"></i>
-                    <span>Plan de Estudios</span>
-                </a>
-                <a href={`${base}/stacks`} class="cta-btn-premium secondary">
-                    <i class="fas fa-layer-group"></i>
-                    <span>Stack Tecnológico</span>
-                </a>
-                <a href={`${base}/recursos`} class="cta-btn-premium accent">
-                    <i class="fas fa-book-reader"></i>
-                    <span>Recursos</span>
-                </a>
-                <a href="https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC" target="_blank" class="cta-btn-premium github">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-            </div>
-
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="700">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-                <span>Scroll para explorar</span>
-            </div>
+        <!-- Center Hub - Core -->
+        <div class="hex-cluster center-cluster">
+          <div class="cluster-label"><i class="fas fa-code"></i> Lenguajes</div>
+          <div class="hex-group">
+            <a
+              href="https://www.python.org/"
+              target="_blank"
+              class="hex-item python"
+              data-premium-tooltip="Python|Lenguaje versátil para Data Science, AI, backend y automatización|ML/AI,Scripts,APIs|tool|fa-python|Guido van Rossum (1991)"
+              ><i class="devicon-python-plain colored"></i><span>Python</span></a
+            >
+            <a
+              href="https://www.oracle.com/java/"
+              target="_blank"
+              class="hex-item java"
+              data-premium-tooltip="Java|Lenguaje enterprise para aplicaciones robustas y escalables|Enterprise,Android,Spring|tool|fa-java|Sun Microsystems (1995)"
+              ><i class="devicon-java-plain colored"></i><span>Java</span></a
+            >
+            <a
+              href="https://www.typescriptlang.org/"
+              target="_blank"
+              class="hex-item typescript"
+              data-premium-tooltip="TypeScript|JavaScript con tipos estáticos para código más seguro|Tipos,IDE Support,Refactoring|tool|fa-code|Microsoft (2012)"
+              ><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></a
+            >
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+              target="_blank"
+              class="hex-item javascript"
+              data-premium-tooltip="JavaScript|Lenguaje de la web para frontend y backend con Node.js|Web,Node.js,Fullstack|tool|fa-js|Brendan Eich (1995)"
+              ><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></a
+            >
+            <a
+              href="https://go.dev/"
+              target="_blank"
+              class="hex-item go"
+              data-premium-tooltip="Go|Lenguaje de Google para sistemas de alto rendimiento|Concurrencia,Cloud,CLI|tool|fa-code|Google (2009)"
+              ><i class="devicon-go-original-wordmark colored"></i><span>Go</span></a
+            >
+            <a
+              href="https://docs.microsoft.com/en-us/dotnet/csharp/"
+              target="_blank"
+              class="hex-item csharp"
+              data-premium-tooltip="C#|Lenguaje moderno de Microsoft para .NET y Unity|.NET,Unity,Enterprise|tool|fa-microsoft|Microsoft (2000)"
+              ><i class="devicon-csharp-plain colored"></i><span>C#</span></a
+            >
+          </div>
         </div>
-    </section>
 
-    <!-- Plan de Estudios - Visual Overview -->
-    <PlanEstudiosHero />
-
-    <!-- Tech Ecosystem - Hexagonal Grid Design -->
-    <section class="tech-ecosystem-section" data-aos="fade-up">
-        <div class="tech-ecosystem-container">
-            <!-- Header -->
-            <div class="ecosystem-header">
-                <span class="ecosystem-badge"><i class="fas fa-cubes"></i> Ecosistema Tecnológico</span>
-                <h2>Stack de <span class="gradient-text">Desarrollo Moderno</span></h2>
-                <p>65+ tecnologías organizadas por especialidad</p>
-            </div>
-
-            <!-- Hexagonal Grid Layout -->
-            <div class="hex-grid-container">
-                <!-- Top - IDEs & Editors -->
-                <div class="hex-cluster top-cluster">
-                    <div class="cluster-label"><i class="fas fa-laptop-code"></i> IDEs</div>
-                    <div class="hex-group">
-                        <a href="https://code.visualstudio.com/" target="_blank" class="hex-item vscode-ide"
-                           data-premium-tooltip="VS Code|Editor de código más popular del mundo con extensiones|Extensions,Git,Terminal,IntelliSense|tool|fa-code|Microsoft (2015)"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></a>
-                        <a href="https://www.jetbrains.com/idea/" target="_blank" class="hex-item intellij"
-                           data-premium-tooltip="IntelliJ IDEA|IDE profesional para Java, Kotlin y desarrollo enterprise|Refactoring,Debugging,Git|tool|fa-java|JetBrains (2001)"><i class="devicon-intellij-plain colored"></i><span>IntelliJ</span></a>
-                        <a href="https://www.jetbrains.com/pycharm/" target="_blank" class="hex-item pycharm"
-                           data-premium-tooltip="PyCharm|IDE especializado para Python con soporte científico|Python,Django,Data Science|tool|fa-python|JetBrains (2010)"><i class="devicon-pycharm-plain colored"></i><span>PyCharm</span></a>
-                        <a href="https://visualstudio.microsoft.com/" target="_blank" class="hex-item vs"
-                           data-premium-tooltip="Visual Studio|IDE completo de Microsoft para .NET y C++|.NET,C#,C++,Azure|tool|fa-microsoft|Microsoft (1997)"><i class="devicon-visualstudio-plain colored"></i><span>Visual Studio</span></a>
-                        <a href="https://www.jetbrains.com/webstorm/" target="_blank" class="hex-item webstorm"
-                           data-premium-tooltip="WebStorm|IDE profesional para JavaScript y TypeScript|React,Angular,Vue,Node.js|tool|fa-js|JetBrains (2010)"><i class="devicon-webstorm-plain colored"></i><span>WebStorm</span></a>
-                        <a href="https://www.sublimetext.com/" target="_blank" class="hex-item sublime"
-                           data-premium-tooltip="Sublime Text|Editor de texto rápido y ligero|Multi-cursor,Plugins,Speed|tool|fa-file-code|Sublime HQ (2008)"><img src="https://cdn.simpleicons.org/sublimetext/FF9800" alt="Sublime Text" class="hex-icon-img" /><span>Sublime</span></a>
-                    </div>
-                </div>
-
-                <!-- Center Hub - Core -->
-                <div class="hex-cluster center-cluster">
-                    <div class="cluster-label"><i class="fas fa-code"></i> Lenguajes</div>
-                    <div class="hex-group">
-                        <a href="https://www.python.org/" target="_blank" class="hex-item python"
-                           data-premium-tooltip="Python|Lenguaje versátil para Data Science, AI, backend y automatización|ML/AI,Scripts,APIs|tool|fa-python|Guido van Rossum (1991)"><i class="devicon-python-plain colored"></i><span>Python</span></a>
-                        <a href="https://www.oracle.com/java/" target="_blank" class="hex-item java"
-                           data-premium-tooltip="Java|Lenguaje enterprise para aplicaciones robustas y escalables|Enterprise,Android,Spring|tool|fa-java|Sun Microsystems (1995)"><i class="devicon-java-plain colored"></i><span>Java</span></a>
-                        <a href="https://www.typescriptlang.org/" target="_blank" class="hex-item typescript"
-                           data-premium-tooltip="TypeScript|JavaScript con tipos estáticos para código más seguro|Tipos,IDE Support,Refactoring|tool|fa-code|Microsoft (2012)"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></a>
-                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="hex-item javascript"
-                           data-premium-tooltip="JavaScript|Lenguaje de la web para frontend y backend con Node.js|Web,Node.js,Fullstack|tool|fa-js|Brendan Eich (1995)"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></a>
-                        <a href="https://go.dev/" target="_blank" class="hex-item go"
-                           data-premium-tooltip="Go|Lenguaje de Google para sistemas de alto rendimiento|Concurrencia,Cloud,CLI|tool|fa-code|Google (2009)"><i class="devicon-go-original-wordmark colored"></i><span>Go</span></a>
-                        <a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank" class="hex-item csharp"
-                           data-premium-tooltip="C#|Lenguaje moderno de Microsoft para .NET y Unity|.NET,Unity,Enterprise|tool|fa-microsoft|Microsoft (2000)"><i class="devicon-csharp-plain colored"></i><span>C#</span></a>
-                    </div>
-                </div>
-
-                <!-- Top Left - Frontend -->
-                <div class="hex-cluster top-left-cluster">
-                    <div class="cluster-label"><i class="fas fa-palette"></i> Frontend</div>
-                    <div class="hex-group">
-                        <a href="https://react.dev/" target="_blank" class="hex-item react"
-                           data-premium-tooltip="React|Librería de Facebook para interfaces de usuario declarativas|Componentes,Hooks,Virtual DOM|tool|fa-react|Meta/Facebook (2013)"><i class="devicon-react-original colored"></i><span>React</span></a>
-                        <a href="https://vuejs.org/" target="_blank" class="hex-item vue"
-                           data-premium-tooltip="Vue.js|Framework progresivo para construir interfaces de usuario|Reactivo,SFC,Composition API|tool|fa-vuejs|Evan You (2014)"><i class="devicon-vuejs-plain colored"></i><span>Vue</span></a>
-                        <a href="https://angular.io/" target="_blank" class="hex-item angular"
-                           data-premium-tooltip="Angular|Framework completo de Google para apps enterprise|TypeScript,RxJS,DI|tool|fa-angular|Google (2016)"><i class="devicon-angularjs-plain colored"></i><span>Angular</span></a>
-                        <a href="https://nextjs.org/" target="_blank" class="hex-item nextjs"
-                           data-premium-tooltip="Next.js|Framework React para producción con SSR y SSG|SSR,SSG,App Router|tool|fa-react|Vercel (2016)"><i class="devicon-nextjs-plain"></i><span>Next.js</span></a>
-                        <a href="https://tailwindcss.com/" target="_blank" class="hex-item tailwind"
-                           data-premium-tooltip="Tailwind CSS|Framework CSS utility-first para diseño rápido|Utility,Responsive,Dark Mode|tool|fa-css3|Adam Wathan (2017)"><i class="devicon-tailwindcss-original colored"></i><span>Tailwind</span></a>
-                    </div>
-                </div>
-
-                <!-- Top Right - Backend -->
-                <div class="hex-cluster top-right-cluster">
-                    <div class="cluster-label"><i class="fas fa-server"></i> Backend</div>
-                    <div class="hex-group">
-                        <a href="https://spring.io/" target="_blank" class="hex-item spring"
-                           data-premium-tooltip="Spring Boot|Framework Java enterprise para microservicios|DI,Security,Data JPA|tool|fa-leaf|Pivotal/VMware (2002)"><i class="devicon-spring-original colored"></i><span>Spring</span></a>
-                        <a href="https://nodejs.org/" target="_blank" class="hex-item nodejs"
-                           data-premium-tooltip="Node.js|Runtime JavaScript para backend y herramientas CLI|Event Loop,npm,APIs|tool|fa-node-js|Ryan Dahl (2009)"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></a>
-                        <a href="https://fastapi.tiangolo.com/" target="_blank" class="hex-item fastapi"
-                           data-premium-tooltip="FastAPI|Framework Python moderno para APIs de alto rendimiento|Async,OpenAPI,Pydantic|tool|fa-bolt|Sebastián Ramírez (2018)"><i class="devicon-fastapi-plain colored"></i><span>FastAPI</span></a>
-                        <a href="https://www.djangoproject.com/" target="_blank" class="hex-item django"
-                           data-premium-tooltip="Django|Framework Python batteries-included para web|ORM,Admin,Auth|tool|fa-python|Django Software Foundation (2005)"><i class="devicon-django-plain"></i><span>Django</span></a>
-                        <a href="https://nestjs.com/" target="_blank" class="hex-item nestjs"
-                           data-premium-tooltip="NestJS|Framework Node.js inspirado en Angular para backend|TypeScript,Modules,GraphQL|tool|fa-node-js|Kamil Myśliwiec (2017)"><i class="devicon-nestjs-original colored"></i><span>NestJS</span></a>
-                    </div>
-                </div>
-
-                <!-- Left - Databases -->
-                <div class="hex-cluster left-cluster">
-                    <div class="cluster-label"><i class="fas fa-database"></i> Databases</div>
-                    <div class="hex-group">
-                        <a href="https://www.postgresql.org/" target="_blank" class="hex-item postgres"
-                           data-premium-tooltip="PostgreSQL|Base de datos relacional avanzada y extensible|ACID,JSON,Extensiones|tool|fa-database|PostgreSQL Global (1996)"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></a>
-                        <a href="https://www.mongodb.com/" target="_blank" class="hex-item mongodb"
-                           data-premium-tooltip="MongoDB|Base de datos NoSQL orientada a documentos JSON|Documentos,Escalable,Atlas|tool|fa-database|MongoDB Inc (2009)"><i class="devicon-mongodb-plain colored"></i><span>MongoDB</span></a>
-                        <a href="https://redis.io/" target="_blank" class="hex-item redis"
-                           data-premium-tooltip="Redis|Base de datos in-memory para cache y mensajería|Cache,Pub/Sub,Streams|tool|fa-database|Salvatore Sanfilippo (2009)"><i class="devicon-redis-plain colored"></i><span>Redis</span></a>
-                        <a href="https://www.mysql.com/" target="_blank" class="hex-item mysql"
-                           data-premium-tooltip="MySQL|Base de datos relacional más popular del mundo|LAMP,Replicación,InnoDB|tool|fa-database|Oracle (1995)"><i class="devicon-mysql-original colored"></i><span>MySQL</span></a>
-                        <a href="https://kafka.apache.org/" target="_blank" class="hex-item kafka"
-                           data-premium-tooltip="Apache Kafka|Plataforma de streaming distribuido|Eventos,Streaming,Pub/Sub|tool|fa-stream|LinkedIn/Apache (2011)"><i class="devicon-apachekafka-original"></i><span>Kafka</span></a>
-                    </div>
-                </div>
-
-                <!-- Right - Cloud -->
-                <div class="hex-cluster right-cluster">
-                    <div class="cluster-label"><i class="fas fa-cloud"></i> Cloud</div>
-                    <div class="hex-group">
-                        <a href="https://aws.amazon.com/" target="_blank" class="hex-item aws"
-                           data-premium-tooltip="AWS|Plataforma cloud líder con 200+ servicios|EC2,S3,Lambda,RDS|tool|fa-aws|Amazon (2006)"><i class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span></a>
-                        <a href="https://azure.microsoft.com/" target="_blank" class="hex-item azure"
-                           data-premium-tooltip="Azure|Cloud de Microsoft para enterprise e híbrido|VMs,AD,DevOps,AI|tool|fa-microsoft|Microsoft (2010)"><i class="devicon-azure-plain colored"></i><span>Azure</span></a>
-                        <a href="https://cloud.google.com/" target="_blank" class="hex-item gcp"
-                           data-premium-tooltip="Google Cloud|Plataforma cloud con BigQuery y AI/ML|BigQuery,GKE,Vertex AI|tool|fa-google|Google (2008)"><i class="devicon-googlecloud-plain colored"></i><span>GCP</span></a>
-                        <a href="https://vercel.com/" target="_blank" class="hex-item vercel"
-                           data-premium-tooltip="Vercel|Plataforma para deploy de aplicaciones frontend|Edge,Serverless,Next.js|tool|fa-cloud|Vercel (2015)"><i class="devicon-vercel-original"></i><span>Vercel</span></a>
-                    </div>
-                </div>
-
-                <!-- Bottom Left - DevOps -->
-                <div class="hex-cluster bottom-left-cluster">
-                    <div class="cluster-label"><i class="fas fa-infinity"></i> DevOps</div>
-                    <div class="hex-group">
-                        <a href="https://www.docker.com/" target="_blank" class="hex-item docker"
-                           data-premium-tooltip="Docker|Plataforma de contenedores para aplicaciones|Containers,Images,Compose|tool|fa-docker|Docker Inc (2013)"><i class="devicon-docker-plain colored"></i><span>Docker</span></a>
-                        <a href="https://kubernetes.io/" target="_blank" class="hex-item k8s"
-                           data-premium-tooltip="Kubernetes|Orquestador de contenedores para producción|Pods,Services,Helm|tool|fa-dharmachakra|Google/CNCF (2014)"><i class="devicon-kubernetes-plain colored"></i><span>K8s</span></a>
-                        <a href="https://www.terraform.io/" target="_blank" class="hex-item terraform"
-                           data-premium-tooltip="Terraform|Infrastructure as Code para multi-cloud|IaC,Modules,State|tool|fa-code|HashiCorp (2014)"><i class="devicon-terraform-plain colored"></i><span>Terraform</span></a>
-                        <a href="https://github.com/features/actions" target="_blank" class="hex-item actions"
-                           data-premium-tooltip="GitHub Actions|CI/CD integrado en GitHub|Workflows,Runners,Matrix|tool|fa-github|GitHub (2019)"><i class="devicon-githubactions-plain colored"></i><span>Actions</span></a>
-                        <a href="https://git-scm.com/" target="_blank" class="hex-item git"
-                           data-premium-tooltip="Git|Sistema de control de versiones distribuido|Branches,Merge,Rebase|tool|fa-git-alt|Linus Torvalds (2005)"><i class="devicon-git-plain colored"></i><span>Git</span></a>
-                    </div>
-                </div>
-
-                <!-- Bottom Right - Data Engineering -->
-                <div class="hex-cluster bottom-right-cluster">
-                    <div class="cluster-label"><i class="fas fa-chart-line"></i> Data</div>
-                    <div class="hex-group">
-                        <a href="https://spark.apache.org/" target="_blank" class="hex-item spark"
-                           data-premium-tooltip="Apache Spark|Motor de procesamiento de datos distribuido|ETL,ML,Streaming|tool|fa-bolt|Apache (2014)"><i class="devicon-apachespark-original colored"></i><span>Spark</span></a>
-                        <a href="https://airflow.apache.org/" target="_blank" class="hex-item airflow"
-                           data-premium-tooltip="Apache Airflow|Orquestador de workflows y pipelines de datos|DAGs,Scheduling,Monitoring|tool|fa-wind|Airbnb/Apache (2014)"><i class="devicon-apacheairflow-plain"></i><span>Airflow</span></a>
-                        <a href="https://www.snowflake.com/" target="_blank" class="hex-item snowflake"
-                           data-premium-tooltip="Snowflake|Cloud Data Warehouse serverless y escalable|SQL,Sharing,Time Travel|tool|fa-snowflake|Snowflake Inc (2012)"><img src="https://cdn.simpleicons.org/snowflake/29B5E8" alt="Snowflake" /><span>Snowflake</span></a>
-                        <a href="https://www.getdbt.com/" target="_blank" class="hex-item dbt"
-                           data-premium-tooltip="dbt|Herramienta de transformación de datos con SQL|ELT,Modeling,Testing|tool|fa-code|dbt Labs (2016)"><img src="https://www.svgrepo.com/show/330270/dbt.svg" alt="dbt" /><span>dbt</span></a>
-                        <a href="https://powerbi.microsoft.com/" target="_blank" class="hex-item powerbi"
-                           data-premium-tooltip="Power BI|Plataforma BI de Microsoft para visualizaciones|Dashboards,DAX,Reports|tool|fa-chart-bar|Microsoft (2011)"><img src="https://cdn.simpleicons.org/powerbi/F2C811" alt="Power BI" /><span>Power BI</span></a>
-                    </div>
-                </div>
-
-                <!-- Bottom - Tools & AI -->
-                <div class="hex-cluster bottom-cluster">
-                    <div class="cluster-label"><i class="fas fa-robot"></i> AI & Tools</div>
-                    <div class="hex-group">
-                        <a href="https://pytorch.org/" target="_blank" class="hex-item pytorch"
-                           data-premium-tooltip="PyTorch|Framework de deep learning flexible y dinámico|Tensors,Autograd,CUDA|tool|fa-brain|Meta AI (2016)"><i class="devicon-pytorch-original colored"></i><span>PyTorch</span></a>
-                        <a href="https://www.tensorflow.org/" target="_blank" class="hex-item tensorflow"
-                           data-premium-tooltip="TensorFlow|Framework de ML end-to-end de Google|Keras,TPU,TensorBoard|tool|fa-brain|Google Brain (2015)"><i class="devicon-tensorflow-original colored"></i><span>TensorFlow</span></a>
-                        <a href="https://jupyter.org/" target="_blank" class="hex-item jupyter"
-                           data-premium-tooltip="Jupyter|Notebooks interactivos para Data Science|Notebooks,Kernels,Lab|tool|fa-book|Project Jupyter (2014)"><i class="devicon-jupyter-plain colored"></i><span>Jupyter</span></a>
-                        <a href="https://code.visualstudio.com/" target="_blank" class="hex-item vscode"
-                           data-premium-tooltip="VS Code|Editor de código más popular del mundo|Extensions,Git,Terminal|tool|fa-code|Microsoft (2015)"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></a>
-                        <a href="https://www.postman.com/" target="_blank" class="hex-item postman"
-                           data-premium-tooltip="Postman|Plataforma para desarrollo y testing de APIs|REST,GraphQL,Automation|tool|fa-paper-plane|Postman Inc (2012)"><i class="devicon-postman-plain colored"></i><span>Postman</span></a>
-                    </div>
-                </div>
-
-                <!-- Connection Lines SVG -->
-                <svg class="hex-connections" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
-                    <defs>
-                        <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
-                            <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.5" />
-                            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.3" />
-                        </linearGradient>
-                    </defs>
-                    <!-- Connection paths between clusters -->
-                    <path class="connection-line" d="M400,300 L400,80" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L200,150" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L600,150" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L150,300" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L650,300" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L200,450" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L600,450" stroke="url(#lineGradient1)" />
-                    <path class="connection-line" d="M400,300 L400,520" stroke="url(#lineGradient1)" />
-                </svg>
-            </div>
-
-            <!-- Footer Stats -->
-            <div class="ecosystem-footer">
-                <div class="eco-stat"><span class="eco-stat-value">70+</span><span class="eco-stat-label">Tecnologías</span></div>
-                <div class="eco-stat"><span class="eco-stat-value">9</span><span class="eco-stat-label">Categorías</span></div>
-                <div class="eco-stat"><span class="eco-stat-value">100%</span><span class="eco-stat-label">Industria</span></div>
-            </div>
+        <!-- Top Left - Frontend -->
+        <div class="hex-cluster top-left-cluster">
+          <div class="cluster-label"><i class="fas fa-palette"></i> Frontend</div>
+          <div class="hex-group">
+            <a
+              href="https://react.dev/"
+              target="_blank"
+              class="hex-item react"
+              data-premium-tooltip="React|Librería de Facebook para interfaces de usuario declarativas|Componentes,Hooks,Virtual DOM|tool|fa-react|Meta/Facebook (2013)"
+              ><i class="devicon-react-original colored"></i><span>React</span></a
+            >
+            <a
+              href="https://vuejs.org/"
+              target="_blank"
+              class="hex-item vue"
+              data-premium-tooltip="Vue.js|Framework progresivo para construir interfaces de usuario|Reactivo,SFC,Composition API|tool|fa-vuejs|Evan You (2014)"
+              ><i class="devicon-vuejs-plain colored"></i><span>Vue</span></a
+            >
+            <a
+              href="https://angular.io/"
+              target="_blank"
+              class="hex-item angular"
+              data-premium-tooltip="Angular|Framework completo de Google para apps enterprise|TypeScript,RxJS,DI|tool|fa-angular|Google (2016)"
+              ><i class="devicon-angularjs-plain colored"></i><span>Angular</span></a
+            >
+            <a
+              href="https://nextjs.org/"
+              target="_blank"
+              class="hex-item nextjs"
+              data-premium-tooltip="Next.js|Framework React para producción con SSR y SSG|SSR,SSG,App Router|tool|fa-react|Vercel (2016)"
+              ><i class="devicon-nextjs-plain"></i><span>Next.js</span></a
+            >
+            <a
+              href="https://tailwindcss.com/"
+              target="_blank"
+              class="hex-item tailwind"
+              data-premium-tooltip="Tailwind CSS|Framework CSS utility-first para diseño rápido|Utility,Responsive,Dark Mode|tool|fa-css3|Adam Wathan (2017)"
+              ><i class="devicon-tailwindcss-original colored"></i><span>Tailwind</span></a
+            >
+          </div>
         </div>
-    </section>
 
-    <!-- Quick Navigation Cards -->
-    <section class="quick-nav-section">
-        <div class="quick-nav-container">
-            <h2 data-aos="fade-up">Explora más</h2>
-            <div class="quick-nav-grid" data-aos="fade-up" data-aos-delay="100">
-                <a href={`${base}/stacks`} class="quick-nav-card glass-card">
-                    <div class="nav-card-icon cyan">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3>Stack Tecnológico</h3>
-                    <p>65+ tecnologías y herramientas de la industria</p>
-                    <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href={`${base}/arquitecturas`} class="quick-nav-card glass-card">
-                    <div class="nav-card-icon purple">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <h3>Arquitectura & DevOps</h3>
-                    <p>Patrones, pipelines y metodologías ágiles</p>
-                    <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href={`${base}/recursos`} class="quick-nav-card glass-card">
-                    <div class="nav-card-icon orange">
-                        <i class="fas fa-book-reader"></i>
-                    </div>
-                    <h3>Recursos</h3>
-                    <p>Videos, herramientas AI, código y cursos</p>
-                    <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-                <a href={`${base}/proyectos`} class="quick-nav-card glass-card">
-                    <div class="nav-card-icon green">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Proyectos & Roadmap</h3>
-                    <p>Ruta de aprendizaje y proyectos para tu portafolio</p>
-                    <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
-                </a>
-            </div>
+        <!-- Top Right - Backend -->
+        <div class="hex-cluster top-right-cluster">
+          <div class="cluster-label"><i class="fas fa-server"></i> Backend</div>
+          <div class="hex-group">
+            <a
+              href="https://spring.io/"
+              target="_blank"
+              class="hex-item spring"
+              data-premium-tooltip="Spring Boot|Framework Java enterprise para microservicios|DI,Security,Data JPA|tool|fa-leaf|Pivotal/VMware (2002)"
+              ><i class="devicon-spring-original colored"></i><span>Spring</span></a
+            >
+            <a
+              href="https://nodejs.org/"
+              target="_blank"
+              class="hex-item nodejs"
+              data-premium-tooltip="Node.js|Runtime JavaScript para backend y herramientas CLI|Event Loop,npm,APIs|tool|fa-node-js|Ryan Dahl (2009)"
+              ><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></a
+            >
+            <a
+              href="https://fastapi.tiangolo.com/"
+              target="_blank"
+              class="hex-item fastapi"
+              data-premium-tooltip="FastAPI|Framework Python moderno para APIs de alto rendimiento|Async,OpenAPI,Pydantic|tool|fa-bolt|Sebastián Ramírez (2018)"
+              ><i class="devicon-fastapi-plain colored"></i><span>FastAPI</span></a
+            >
+            <a
+              href="https://www.djangoproject.com/"
+              target="_blank"
+              class="hex-item django"
+              data-premium-tooltip="Django|Framework Python batteries-included para web|ORM,Admin,Auth|tool|fa-python|Django Software Foundation (2005)"
+              ><i class="devicon-django-plain"></i><span>Django</span></a
+            >
+            <a
+              href="https://nestjs.com/"
+              target="_blank"
+              class="hex-item nestjs"
+              data-premium-tooltip="NestJS|Framework Node.js inspirado en Angular para backend|TypeScript,Modules,GraphQL|tool|fa-node-js|Kamil Myśliwiec (2017)"
+              ><i class="devicon-nestjs-original colored"></i><span>NestJS</span></a
+            >
+          </div>
         </div>
-    </section>
 
-    <!-- GitHub Stats -->
-    <StatsSection />
+        <!-- Left - Databases -->
+        <div class="hex-cluster left-cluster">
+          <div class="cluster-label"><i class="fas fa-database"></i> Databases</div>
+          <div class="hex-group">
+            <a
+              href="https://www.postgresql.org/"
+              target="_blank"
+              class="hex-item postgres"
+              data-premium-tooltip="PostgreSQL|Base de datos relacional avanzada y extensible|ACID,JSON,Extensiones|tool|fa-database|PostgreSQL Global (1996)"
+              ><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></a
+            >
+            <a
+              href="https://www.mongodb.com/"
+              target="_blank"
+              class="hex-item mongodb"
+              data-premium-tooltip="MongoDB|Base de datos NoSQL orientada a documentos JSON|Documentos,Escalable,Atlas|tool|fa-database|MongoDB Inc (2009)"
+              ><i class="devicon-mongodb-plain colored"></i><span>MongoDB</span></a
+            >
+            <a
+              href="https://redis.io/"
+              target="_blank"
+              class="hex-item redis"
+              data-premium-tooltip="Redis|Base de datos in-memory para cache y mensajería|Cache,Pub/Sub,Streams|tool|fa-database|Salvatore Sanfilippo (2009)"
+              ><i class="devicon-redis-plain colored"></i><span>Redis</span></a
+            >
+            <a
+              href="https://www.mysql.com/"
+              target="_blank"
+              class="hex-item mysql"
+              data-premium-tooltip="MySQL|Base de datos relacional más popular del mundo|LAMP,Replicación,InnoDB|tool|fa-database|Oracle (1995)"
+              ><i class="devicon-mysql-original colored"></i><span>MySQL</span></a
+            >
+            <a
+              href="https://kafka.apache.org/"
+              target="_blank"
+              class="hex-item kafka"
+              data-premium-tooltip="Apache Kafka|Plataforma de streaming distribuido|Eventos,Streaming,Pub/Sub|tool|fa-stream|LinkedIn/Apache (2011)"
+              ><i class="devicon-apachekafka-original"></i><span>Kafka</span></a
+            >
+          </div>
+        </div>
 
-    <Footer />
+        <!-- Right - Cloud -->
+        <div class="hex-cluster right-cluster">
+          <div class="cluster-label"><i class="fas fa-cloud"></i> Cloud</div>
+          <div class="hex-group">
+            <a
+              href="https://aws.amazon.com/"
+              target="_blank"
+              class="hex-item aws"
+              data-premium-tooltip="AWS|Plataforma cloud líder con 200+ servicios|EC2,S3,Lambda,RDS|tool|fa-aws|Amazon (2006)"
+              ><i class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span></a
+            >
+            <a
+              href="https://azure.microsoft.com/"
+              target="_blank"
+              class="hex-item azure"
+              data-premium-tooltip="Azure|Cloud de Microsoft para enterprise e híbrido|VMs,AD,DevOps,AI|tool|fa-microsoft|Microsoft (2010)"
+              ><i class="devicon-azure-plain colored"></i><span>Azure</span></a
+            >
+            <a
+              href="https://cloud.google.com/"
+              target="_blank"
+              class="hex-item gcp"
+              data-premium-tooltip="Google Cloud|Plataforma cloud con BigQuery y AI/ML|BigQuery,GKE,Vertex AI|tool|fa-google|Google (2008)"
+              ><i class="devicon-googlecloud-plain colored"></i><span>GCP</span></a
+            >
+            <a
+              href="https://vercel.com/"
+              target="_blank"
+              class="hex-item vercel"
+              data-premium-tooltip="Vercel|Plataforma para deploy de aplicaciones frontend|Edge,Serverless,Next.js|tool|fa-cloud|Vercel (2015)"
+              ><i class="devicon-vercel-original"></i><span>Vercel</span></a
+            >
+          </div>
+        </div>
+
+        <!-- Bottom Left - DevOps -->
+        <div class="hex-cluster bottom-left-cluster">
+          <div class="cluster-label"><i class="fas fa-infinity"></i> DevOps</div>
+          <div class="hex-group">
+            <a
+              href="https://www.docker.com/"
+              target="_blank"
+              class="hex-item docker"
+              data-premium-tooltip="Docker|Plataforma de contenedores para aplicaciones|Containers,Images,Compose|tool|fa-docker|Docker Inc (2013)"
+              ><i class="devicon-docker-plain colored"></i><span>Docker</span></a
+            >
+            <a
+              href="https://kubernetes.io/"
+              target="_blank"
+              class="hex-item k8s"
+              data-premium-tooltip="Kubernetes|Orquestador de contenedores para producción|Pods,Services,Helm|tool|fa-dharmachakra|Google/CNCF (2014)"
+              ><i class="devicon-kubernetes-plain colored"></i><span>K8s</span></a
+            >
+            <a
+              href="https://www.terraform.io/"
+              target="_blank"
+              class="hex-item terraform"
+              data-premium-tooltip="Terraform|Infrastructure as Code para multi-cloud|IaC,Modules,State|tool|fa-code|HashiCorp (2014)"
+              ><i class="devicon-terraform-plain colored"></i><span>Terraform</span></a
+            >
+            <a
+              href="https://github.com/features/actions"
+              target="_blank"
+              class="hex-item actions"
+              data-premium-tooltip="GitHub Actions|CI/CD integrado en GitHub|Workflows,Runners,Matrix|tool|fa-github|GitHub (2019)"
+              ><i class="devicon-githubactions-plain colored"></i><span>Actions</span></a
+            >
+            <a
+              href="https://git-scm.com/"
+              target="_blank"
+              class="hex-item git"
+              data-premium-tooltip="Git|Sistema de control de versiones distribuido|Branches,Merge,Rebase|tool|fa-git-alt|Linus Torvalds (2005)"
+              ><i class="devicon-git-plain colored"></i><span>Git</span></a
+            >
+          </div>
+        </div>
+
+        <!-- Bottom Right - Data Engineering -->
+        <div class="hex-cluster bottom-right-cluster">
+          <div class="cluster-label"><i class="fas fa-chart-line"></i> Data</div>
+          <div class="hex-group">
+            <a
+              href="https://spark.apache.org/"
+              target="_blank"
+              class="hex-item spark"
+              data-premium-tooltip="Apache Spark|Motor de procesamiento de datos distribuido|ETL,ML,Streaming|tool|fa-bolt|Apache (2014)"
+              ><i class="devicon-apachespark-original colored"></i><span>Spark</span></a
+            >
+            <a
+              href="https://airflow.apache.org/"
+              target="_blank"
+              class="hex-item airflow"
+              data-premium-tooltip="Apache Airflow|Orquestador de workflows y pipelines de datos|DAGs,Scheduling,Monitoring|tool|fa-wind|Airbnb/Apache (2014)"
+              ><i class="devicon-apacheairflow-plain"></i><span>Airflow</span></a
+            >
+            <a
+              href="https://www.snowflake.com/"
+              target="_blank"
+              class="hex-item snowflake"
+              data-premium-tooltip="Snowflake|Cloud Data Warehouse serverless y escalable|SQL,Sharing,Time Travel|tool|fa-snowflake|Snowflake Inc (2012)"
+              ><img src="https://cdn.simpleicons.org/snowflake/29B5E8" alt="Snowflake" /><span
+                >Snowflake</span
+              ></a
+            >
+            <a
+              href="https://www.getdbt.com/"
+              target="_blank"
+              class="hex-item dbt"
+              data-premium-tooltip="dbt|Herramienta de transformación de datos con SQL|ELT,Modeling,Testing|tool|fa-code|dbt Labs (2016)"
+              ><img src="https://www.svgrepo.com/show/330270/dbt.svg" alt="dbt" /><span>dbt</span
+              ></a
+            >
+            <a
+              href="https://powerbi.microsoft.com/"
+              target="_blank"
+              class="hex-item powerbi"
+              data-premium-tooltip="Power BI|Plataforma BI de Microsoft para visualizaciones|Dashboards,DAX,Reports|tool|fa-chart-bar|Microsoft (2011)"
+              ><img src="https://cdn.simpleicons.org/powerbi/F2C811" alt="Power BI" /><span
+                >Power BI</span
+              ></a
+            >
+          </div>
+        </div>
+
+        <!-- Bottom - Tools & AI -->
+        <div class="hex-cluster bottom-cluster">
+          <div class="cluster-label"><i class="fas fa-robot"></i> AI & Tools</div>
+          <div class="hex-group">
+            <a
+              href="https://pytorch.org/"
+              target="_blank"
+              class="hex-item pytorch"
+              data-premium-tooltip="PyTorch|Framework de deep learning flexible y dinámico|Tensors,Autograd,CUDA|tool|fa-brain|Meta AI (2016)"
+              ><i class="devicon-pytorch-original colored"></i><span>PyTorch</span></a
+            >
+            <a
+              href="https://www.tensorflow.org/"
+              target="_blank"
+              class="hex-item tensorflow"
+              data-premium-tooltip="TensorFlow|Framework de ML end-to-end de Google|Keras,TPU,TensorBoard|tool|fa-brain|Google Brain (2015)"
+              ><i class="devicon-tensorflow-original colored"></i><span>TensorFlow</span></a
+            >
+            <a
+              href="https://jupyter.org/"
+              target="_blank"
+              class="hex-item jupyter"
+              data-premium-tooltip="Jupyter|Notebooks interactivos para Data Science|Notebooks,Kernels,Lab|tool|fa-book|Project Jupyter (2014)"
+              ><i class="devicon-jupyter-plain colored"></i><span>Jupyter</span></a
+            >
+            <a
+              href="https://code.visualstudio.com/"
+              target="_blank"
+              class="hex-item vscode"
+              data-premium-tooltip="VS Code|Editor de código más popular del mundo|Extensions,Git,Terminal|tool|fa-code|Microsoft (2015)"
+              ><i class="devicon-vscode-plain colored"></i><span>VS Code</span></a
+            >
+            <a
+              href="https://www.postman.com/"
+              target="_blank"
+              class="hex-item postman"
+              data-premium-tooltip="Postman|Plataforma para desarrollo y testing de APIs|REST,GraphQL,Automation|tool|fa-paper-plane|Postman Inc (2012)"
+              ><i class="devicon-postman-plain colored"></i><span>Postman</span></a
+            >
+          </div>
+        </div>
+
+        <!-- Connection Lines SVG -->
+        <svg class="hex-connections" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="lineGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3"></stop>
+              <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.5"></stop>
+              <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.3"></stop>
+            </linearGradient>
+          </defs>
+          <!-- Connection paths between clusters -->
+          <path class="connection-line" d="M400,300 L400,80" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L200,150" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L600,150" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L150,300" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L650,300" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L200,450" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L600,450" stroke="url(#lineGradient1)"></path>
+          <path class="connection-line" d="M400,300 L400,520" stroke="url(#lineGradient1)"></path>
+        </svg>
+      </div>
+
+      <!-- Footer Stats -->
+      <div class="ecosystem-footer">
+        <div class="eco-stat">
+          <span class="eco-stat-value">70+</span><span class="eco-stat-label">Tecnologías</span>
+        </div>
+        <div class="eco-stat">
+          <span class="eco-stat-value">9</span><span class="eco-stat-label">Categorías</span>
+        </div>
+        <div class="eco-stat">
+          <span class="eco-stat-value">100%</span><span class="eco-stat-label">Industria</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Navigation Cards -->
+  <section class="quick-nav-section">
+    <div class="quick-nav-container">
+      <h2 data-aos="fade-up">Explora más</h2>
+      <div class="quick-nav-grid" data-aos="fade-up" data-aos-delay="100">
+        <a href={`${base}/stacks`} class="quick-nav-card glass-card">
+          <div class="nav-card-icon cyan">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h3>Stack Tecnológico</h3>
+          <p>65+ tecnologías y herramientas de la industria</p>
+          <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href={`${base}/arquitecturas`} class="quick-nav-card glass-card">
+          <div class="nav-card-icon purple">
+            <i class="fas fa-sitemap"></i>
+          </div>
+          <h3>Arquitectura & DevOps</h3>
+          <p>Patrones, pipelines y metodologías ágiles</p>
+          <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href={`${base}/recursos`} class="quick-nav-card glass-card">
+          <div class="nav-card-icon orange">
+            <i class="fas fa-book-reader"></i>
+          </div>
+          <h3>Recursos</h3>
+          <p>Videos, herramientas AI, código y cursos</p>
+          <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href={`${base}/proyectos`} class="quick-nav-card glass-card">
+          <div class="nav-card-icon green">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Proyectos & Roadmap</h3>
+          <p>Ruta de aprendizaje y proyectos para tu portafolio</p>
+          <span class="nav-card-arrow"><i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Stats -->
+  <StatsSection />
+
+  <Footer />
 </Layout>
 
 <style>
-    .quick-nav-section {
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
+  .quick-nav-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
+  .quick-nav-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #f8fafc, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .quick-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .quick-nav-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quick-nav-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .quick-nav-card:hover .nav-card-arrow {
+    transform: translateX(4px);
+  }
+
+  .nav-card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .nav-card-icon.cyan {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+  }
+
+  .nav-card-icon.purple {
+    background: rgba(124, 58, 237, 0.2);
+    color: #a78bfa;
+  }
+
+  .nav-card-icon.orange {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+  }
+
+  .nav-card-icon.green {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+  }
+
+  .quick-nav-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .quick-nav-card p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .nav-card-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    color: #64748b;
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
     .quick-nav-container h2 {
-        text-align: center;
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        background: linear-gradient(135deg, #f8fafc, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      font-size: 1.5rem;
     }
 
     .quick-nav-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.5rem;
+      grid-template-columns: 1fr;
     }
+  }
 
-    .quick-nav-card {
-        padding: 1.5rem;
-        border-radius: 16px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-    }
+  :global([data-theme="light"]) .quick-nav-container h2 {
+    background: linear-gradient(135deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    .quick-nav-card:hover {
-        transform: translateY(-4px);
-    }
+  :global([data-theme="light"]) .quick-nav-card h3 {
+    color: #1e293b;
+  }
 
-    .quick-nav-card:hover .nav-card-arrow {
-        transform: translateX(4px);
-    }
-
-    .nav-card-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-    }
-
-    .nav-card-icon.cyan {
-        background: rgba(0, 212, 255, 0.2);
-        color: #00d4ff;
-    }
-
-    .nav-card-icon.purple {
-        background: rgba(124, 58, 237, 0.2);
-        color: #a78bfa;
-    }
-
-    .nav-card-icon.orange {
-        background: rgba(245, 158, 11, 0.2);
-        color: #f59e0b;
-    }
-
-    .nav-card-icon.green {
-        background: rgba(16, 185, 129, 0.2);
-        color: #10b981;
-    }
-
-    .quick-nav-card h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #f8fafc;
-        margin-bottom: 0.5rem;
-    }
-
-    .quick-nav-card p {
-        font-size: 0.85rem;
-        color: #94a3b8;
-        line-height: 1.5;
-    }
-
-    .nav-card-arrow {
-        position: absolute;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        color: #64748b;
-        transition: transform 0.3s ease;
-    }
-
-    @media (max-width: 768px) {
-        .quick-nav-container h2 {
-            font-size: 1.5rem;
-        }
-
-        .quick-nav-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    :global([data-theme="light"]) .quick-nav-container h2 {
-        background: linear-gradient(135deg, #1e293b, #475569);
-        -webkit-background-clip: text;
-        background-clip: text;
-    }
-
-    :global([data-theme="light"]) .quick-nav-card h3 {
-        color: #1e293b;
-    }
-
-    :global([data-theme="light"]) .quick-nav-card p {
-        color: #64748b;
-    }
+  :global([data-theme="light"]) .quick-nav-card p {
+    color: #64748b;
+  }
 </style>
 
 <script>
-    // Console Easter Egg
-    console.log(`
+  // Console Easter Egg
+  console.log(
+    `
 %c╔══════════════════════════════════════════════════════════╗
 %c║  ANALISTA PROGRAMADOR COMPUTACIONAL                     ║
 %c║  DuocUC - Escuela de Informática                        ║
@@ -532,14 +831,14 @@ const base = import.meta.env.BASE_URL;
 %c║  ⚡ Powered by Astro                                    ║
 %c╚══════════════════════════════════════════════════════════╝
 `,
-        'color: #00d4ff; font-weight: bold;',
-        'color: #00d4ff;',
-        'color: #94a3b8;',
-        'color: #00d4ff;',
-        'color: #7c3aed;',
-        'color: #7c3aed;',
-        'color: #f472b6;',
-        'color: #10b981;',
-        'color: #00d4ff; font-weight: bold;'
-    );
+    "color: #00d4ff; font-weight: bold;",
+    "color: #00d4ff;",
+    "color: #94a3b8;",
+    "color: #00d4ff;",
+    "color: #7c3aed;",
+    "color: #7c3aed;",
+    "color: #f472b6;",
+    "color: #10b981;",
+    "color: #00d4ff; font-weight: bold;",
+  );
 </script>

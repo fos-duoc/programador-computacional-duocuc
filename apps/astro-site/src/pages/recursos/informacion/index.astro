@@ -2,117 +2,117 @@
 /**
  * /recursos/informacion/ - Information Page
  */
-import ResourcesLayout from '../../../layouts/ResourcesLayout.astro';
-import WebVitalsSection from '../../../components/WebVitalsSection.astro';
-import SedesMapSection from '../../../components/SedesMapSection.astro';
-import ProgressIndicators from '../../../components/ProgressIndicators.astro';
+import ResourcesLayout from "../../../layouts/ResourcesLayout.astro";
+import WebVitalsSection from "../../../components/WebVitalsSection.astro";
+import SedesMapSection from "../../../components/SedesMapSection.astro";
+import ProgressIndicators from "../../../components/ProgressIndicators.astro";
 ---
 
 <ResourcesLayout title="Información | Recursos DuocUC" activeCategory="informacion">
-    <div class="informacion-page">
-        <!-- Quick Nav -->
-        <nav class="page-nav" aria-label="Navegación de sección">
-            <a href="#web-vitals" class="nav-chip green">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Performance</span>
-            </a>
-            <a href="#sedes-duocuc" class="nav-chip green">
-                <i class="fas fa-map-marked-alt"></i>
-                <span>Sedes</span>
-            </a>
-            <a href="#progress-indicators" class="nav-chip green">
-                <i class="fas fa-chart-line"></i>
-                <span>Progress UI</span>
-            </a>
-        </nav>
+  <div class="informacion-page">
+    <!-- Quick Nav -->
+    <nav class="page-nav" aria-label="Navegación de sección">
+      <a href="#web-vitals" class="nav-chip green">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Performance</span>
+      </a>
+      <a href="#sedes-duocuc" class="nav-chip green">
+        <i class="fas fa-map-marked-alt"></i>
+        <span>Sedes</span>
+      </a>
+      <a href="#progress-indicators" class="nav-chip green">
+        <i class="fas fa-chart-line"></i>
+        <span>Progress UI</span>
+      </a>
+    </nav>
 
-        <!-- Components -->
-        <section id="web-vitals">
-            <WebVitalsSection />
-        </section>
+    <!-- Components -->
+    <section id="web-vitals">
+      <WebVitalsSection />
+    </section>
 
-        <section id="sedes-duocuc">
-            <SedesMapSection />
-        </section>
+    <section id="sedes-duocuc">
+      <SedesMapSection />
+    </section>
 
-        <section id="progress-indicators">
-            <ProgressIndicators />
-        </section>
-    </div>
+    <section id="progress-indicators">
+      <ProgressIndicators />
+    </section>
+  </div>
 </ResourcesLayout>
 
 <style>
-    .informacion-page {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-    }
+  .informacion-page {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
 
+  .page-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .nav-chip.green:hover {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #10b981;
+  }
+
+  .nav-chip i {
+    font-size: 1rem;
+  }
+
+  section {
+    scroll-margin-top: 160px;
+  }
+
+  /* Light mode */
+  :global([data-theme="light"]) .page-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global([data-theme="light"]) .nav-chip {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+    color: #475569;
+  }
+
+  :global([data-theme="light"]) .nav-chip.green:hover {
+    background: rgba(5, 150, 105, 0.1);
+    border-color: rgba(5, 150, 105, 0.3);
+    color: #059669;
+  }
+
+  @media (max-width: 768px) {
     .page-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding: 1rem;
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border-color);
-        border-radius: 12px;
-        position: sticky;
-        top: 80px;
-        z-index: 50;
-        backdrop-filter: blur(12px);
+      position: relative;
+      top: 0;
     }
-
-    .nav-chip {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-
-    .nav-chip.green:hover {
-        background: rgba(16, 185, 129, 0.1);
-        border-color: rgba(16, 185, 129, 0.3);
-        color: #10b981;
-    }
-
-    .nav-chip i {
-        font-size: 1rem;
-    }
-
-    section {
-        scroll-margin-top: 160px;
-    }
-
-    /* Light mode */
-    :global([data-theme="light"]) .page-nav {
-        background: rgba(255, 255, 255, 0.9);
-        border-color: rgba(0, 0, 0, 0.06);
-    }
-
-    :global([data-theme="light"]) .nav-chip {
-        background: rgba(0, 0, 0, 0.02);
-        border-color: rgba(0, 0, 0, 0.06);
-        color: #475569;
-    }
-
-    :global([data-theme="light"]) .nav-chip.green:hover {
-        background: rgba(5, 150, 105, 0.1);
-        border-color: rgba(5, 150, 105, 0.3);
-        color: #059669;
-    }
-
-    @media (max-width: 768px) {
-        .page-nav {
-            position: relative;
-            top: 0;
-        }
-    }
+  }
 </style>
