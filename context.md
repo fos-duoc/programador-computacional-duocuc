@@ -68,7 +68,7 @@ GitHub: https://github.com/fos-duoc/Analista-Programador-Computacional-DuocUC
 │   └── archive/             # docs históricos (CLAUDE_backup, PLAN-INTERACTIVE, etc.)
 ├── scripts/                 # helpers (update-context.sh, etc.)
 ├── pyproject.toml           # uv coursework
-├── CLAUDE.md                # instrucciones para agentes IA
+├── llm.md                   # instrucciones para agentes IA
 └── README.md
 ```
 

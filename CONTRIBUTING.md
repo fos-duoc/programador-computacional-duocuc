@@ -60,7 +60,7 @@ Detalles completos en [`docs/conventions.md`](docs/conventions.md).
 ├── sessions/          # Bitácora de sesiones de trabajo
 ├── scripts/           # Helpers (update-context.sh, install-hooks.sh)
 ├── context.md         # Snapshot vivo del proyecto
-├── CLAUDE.md          # Instrucciones para agentes IA
+├── llm.md             # Instrucciones para agentes IA
 └── pyproject.toml     # uv coursework
 ```
 
