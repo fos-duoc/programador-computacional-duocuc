@@ -1,0 +1,88 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Lunes 6 AM Chile (10:00 UTC) — coordinado con Dependabot
+    - cron: "0 10 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────
+  # gitleaks: scan de secretos en el historial y diff
+  # ─────────────────────────────────────────────────────────────────────────
+  gitleaks:
+    name: Secret scanning (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # npm audit: vulnerabilidades en deps de astro-site
+  # ─────────────────────────────────────────────────────────────────────────
+  npm-audit:
+    name: npm audit (astro-site)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/astro-site
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: apps/astro-site/package-lock.json
+
+      - name: Audit production dependencies
+        run: npm audit --audit-level=high --omit=dev
+        # Falla si hay HIGH o CRITICAL en deps de producción.
+
+      - name: Audit all dependencies (informativo)
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # pip-audit: vulnerabilidades en deps de Python (coursework)
+  # ─────────────────────────────────────────────────────────────────────────
+  pip-audit:
+    name: pip-audit (coursework)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Setup Python
+        run: uv python install
+
+      - name: Sync dependencies
+        run: uv sync --frozen
+
+      - name: Run pip-audit
+        run: uv run --with pip-audit pip-audit --strict
+        continue-on-error: true
+        # continue-on-error mientras estabilizamos. Quitar cuando esté limpio.

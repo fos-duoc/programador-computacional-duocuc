@@ -1,0 +1,100 @@
+# Dependabot configuration
+# Docs: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+
+updates:
+  # ─────────────────────────────────────────────────────────────────────────
+  # apps/astro-site (npm)
+  # ─────────────────────────────────────────────────────────────────────────
+  - package-ecosystem: "npm"
+    directory: "/apps/astro-site"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "astro-site"
+    groups:
+      astro-core:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+          - "astro-*"
+      eslint-prettier:
+        patterns:
+          - "eslint*"
+          - "@eslint/*"
+          - "typescript-eslint"
+          - "prettier*"
+      iconify:
+        patterns:
+          - "@iconify-json/*"
+    ignore:
+      # Astro 6 requiere Node ≥22.12 — bump manual cuando se actualice .nvmrc
+      - dependency-name: "astro"
+        update-types: ["version-update:semver-major"]
+      # TypeScript major bumps necesitan revisión de strict mode
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Python coursework (uv / pip)
+  # ─────────────────────────────────────────────────────────────────────────
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps-py)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "python"
+    groups:
+      data-stack:
+        patterns:
+          - "pandas"
+          - "numpy"
+          - "matplotlib"
+          - "seaborn"
+      jupyter:
+        patterns:
+          - "jupyter*"
+          - "ipython*"
+          - "ipykernel"
+          - "notebook"
+      dev-tools:
+        patterns:
+          - "ruff"
+          - "mypy"
+          - "pytest*"
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # GitHub Actions (CI / deploy / security workflows)
+  # ─────────────────────────────────────────────────────────────────────────
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "America/Santiago"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(actions)"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "github-actions"
