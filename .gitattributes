@@ -1,0 +1,47 @@
+# Normalización de line endings — todo a LF excepto donde el OS exige CRLF.
+* text=auto eol=lf
+
+# Scripts
+*.sh           text eol=lf
+*.bash         text eol=lf
+*.py           text eol=lf
+*.js           text eol=lf
+*.mjs          text eol=lf
+*.ts           text eol=lf
+*.astro        text eol=lf
+
+# Markdown / configs
+*.md           text eol=lf
+*.json         text eol=lf
+*.toml         text eol=lf
+*.yml          text eol=lf
+*.yaml         text eol=lf
+
+# Windows
+*.bat          text eol=crlf
+*.cmd          text eol=crlf
+*.ps1          text eol=crlf
+
+# Binarios — git no intenta normalizar
+*.png          binary
+*.jpg          binary
+*.jpeg         binary
+*.gif          binary
+*.webp         binary
+*.ico          binary
+*.pdf          binary
+*.zip          binary
+*.gz           binary
+*.tar          binary
+*.woff         binary
+*.woff2        binary
+*.ttf          binary
+*.eot          binary
+
+# Linguist hints (ayuda a GitHub a categorizar el repo)
+coursework/**       linguist-documentation
+resources/**        linguist-documentation
+docs/**             linguist-documentation
+docs/archive/**     linguist-generated
+apps/astro-site/dist/**           linguist-generated
+apps/astro-site/original_index_backup.html linguist-generated
