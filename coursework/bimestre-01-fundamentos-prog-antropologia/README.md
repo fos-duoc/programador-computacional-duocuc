@@ -6,6 +6,19 @@ status: pending
 asignaturas:
   - antropologia
   - fundamentos-programacion
+year: 1
+shortTitle: "Fundamentos"
+techIcons:
+  - python-plain
+  - oracle-original
+subjectsMeta:
+  - icon: python-plain
+    name: Fundamentos Prog.
+  - icon: oracle-original
+    name: Modelamiento BD
+  - icon: fas fa-book
+    iconType: fontawesome
+    name: Antropologia
 ---
 
 # Bimestre 01 - Fundamentos de Programación & Antropología

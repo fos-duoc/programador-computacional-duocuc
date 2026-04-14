@@ -7,6 +7,20 @@ asignaturas:
   - devops
   - ingenieria-requisitos
   - sql-programacion
+year: 2
+shortTitle: "SQL & Cloud Native"
+featured: true
+techIcons:
+  - oracle-original
+  - kubernetes-plain
+subjectsMeta:
+  - icon: oracle-original
+    name: SQL Programacion
+  - icon: kubernetes-plain
+    name: Cloud Native
+  - icon: fas fa-clipboard-list
+    iconType: fontawesome
+    name: Ing. Requisitos
 ---
 
 # Bimestre 05 - SQL/Programación BD, DevOps & Ing. de Requisitos

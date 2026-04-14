@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - desarrollo-fullstack-iii
   - devops-ingenieria
+year: 3
+shortTitle: "Fullstack III & DevOps"
+techIcons:
+  - typescript-plain
+  - docker-plain
+subjectsMeta:
+  - icon: typescript-plain
+    name: Desarrollo Fullstack III
+  - icon: docker-plain
+    name: DevOps
 ---
 
 # Bimestre 13 - Desarrollo Fullstack III & DevOps

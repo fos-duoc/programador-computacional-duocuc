@@ -14,12 +14,10 @@ import BestPracticeDrawer from "../../components/BestPracticeDrawer.astro";
 import TechDrawer from "../../components/TechDrawer.astro";
 import SubjectNavigationSidebar from "../../components/SubjectNavigationSidebar.astro";
 import MergedSidebarPanel from "../../components/MergedSidebarPanel.astro";
-import {
-  bimestresYear1,
-  bimestresYear2,
-  bimestresYear3,
-  bimestresYear4,
-} from "../../data/bimestres";
+import { getBimestresByYear } from "../../lib/bimestres-legacy";
+
+const { bimestresYear1, bimestresYear2, bimestresYear3, bimestresYear4 } =
+  await getBimestresByYear();
 import { nombreCortoToId, asignaturas } from "../../data/asignaturas";
 import { subjectToBestPractices, bestPractices } from "../../data/bestPractices";
 import { iconToTechId, technologies } from "../../data/technologies";

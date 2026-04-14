@@ -7,6 +7,16 @@ asignaturas:
   - arquitectura-software
   - backend-iii
   - frontend-i
+year: 2
+shortTitle: "Frontend & Arq."
+techIcons:
+  - angularjs-plain
+subjectsMeta:
+  - icon: angularjs-plain
+    name: Frontend I-II
+  - icon: fas fa-sitemap
+    iconType: fontawesome
+    name: Arquitectura Software
 ---
 
 # Bimestre 08 - Backend III, Frontend I & Arquitectura de Software

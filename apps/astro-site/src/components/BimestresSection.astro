@@ -1,6 +1,8 @@
 ---
 import BimestreCard from "./BimestreCard.astro";
-import { bimestresYear1, bimestresYear2 } from "../data/bimestres";
+import { getBimestresByYear } from "../lib/bimestres-legacy";
+
+const { bimestresYear1, bimestresYear2 } = await getBimestresByYear();
 ---
 
 <section id="bimestres" class="bimestres">
