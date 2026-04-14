@@ -1,0 +1,26 @@
+name: ai-mentions gatekeeper
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ai-mentions-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: scan repo para menciones de IA
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Ejecutar gatekeeper en todo el repo
+        run: ./scripts/check-no-ai-mentions.sh --all

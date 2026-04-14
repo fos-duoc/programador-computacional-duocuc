@@ -1,21 +1,29 @@
-# GitLab CI/CD para desplegar GitLab Pages
-# Mirror del sitio de GitHub Pages
+# GitLab CI/CD — mirror de GitHub Pages a GitLab Pages
+# Fuente de verdad: .github/workflows/deploy-pages.yml
 
-image: alpine:latest
+image: node:20-alpine
 
 pages:
   stage: deploy
+  cache:
+    key:
+      files:
+        - apps/astro-site/package-lock.json
+    paths:
+      - apps/astro-site/node_modules/
+  before_script:
+    - cd apps/astro-site
+    - npm ci
   script:
-    - echo "Deploying to GitLab Pages..."
+    - npm run build
+    - cd ../..
     - mkdir -p public
-    - cp -r docs/* public/
+    - cp -r apps/astro-site/dist/* public/
   artifacts:
     paths:
       - public
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    - if: $CI_COMMIT_BRANCH == "claude/organize-course-materials-eliPw"
 
-# Variables de configuración
 variables:
   GIT_DEPTH: 1
