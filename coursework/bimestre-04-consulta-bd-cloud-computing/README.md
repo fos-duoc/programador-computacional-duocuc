@@ -7,6 +7,16 @@ asignaturas:
   - computacion-nube
   - consultas-bd
   - etica
+year: 1
+shortTitle: "SQL & Security"
+techIcons:
+  - oracle-original
+subjectsMeta:
+  - icon: oracle-original
+    name: SQL Consultas
+  - icon: fas fa-shield-alt
+    iconType: fontawesome
+    name: Seguridad Informatica
 ---
 
 # Bimestre 04 - Consultas BD, Cloud Computing & Ética

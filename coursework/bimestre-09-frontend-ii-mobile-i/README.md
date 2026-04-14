@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - frontend-ii
   - mobile-i
+year: 2
+shortTitle: "Mobile & Frontend"
+techIcons:
+  - kotlin-plain
+  - angularjs-plain
+subjectsMeta:
+  - icon: kotlin-plain
+    name: Mobile I
+  - icon: angularjs-plain
+    name: Frontend III
 ---
 
 # Bimestre 09 - Frontend II & Mobile I

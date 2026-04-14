@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - cloud-native-i
   - desarrollo-app-moviles
+year: 3
+shortTitle: "Mobile & Cloud Native"
+techIcons:
+  - flutter-plain
+  - kubernetes-plain
+subjectsMeta:
+  - icon: flutter-plain
+    name: Desarrollo App Moviles
+  - icon: kubernetes-plain
+    name: Cloud Native I
 ---
 
 # Bimestre 14 - Desarrollo App Móviles & Cloud Native I

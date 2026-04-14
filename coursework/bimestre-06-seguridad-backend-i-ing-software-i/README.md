@@ -7,6 +7,16 @@ asignaturas:
   - backend-i
   - ingenieria-software-i
   - seguridad-informatica
+year: 2
+shortTitle: "Backend I"
+techIcons:
+  - spring-plain
+subjectsMeta:
+  - icon: spring-plain
+    name: Backend I
+  - icon: fas fa-project-diagram
+    iconType: fontawesome
+    name: Ing. Software I
 ---
 
 # Bimestre 06 - Seguridad Informática, Backend I & Ing. Software I

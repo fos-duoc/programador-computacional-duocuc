@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - cloud-computing
   - desarrollo-fullstack-ii
+year: 3
+shortTitle: "Fullstack II & Cloud"
+techIcons:
+  - nodejs-plain
+  - amazonwebservices-plain-wordmark
+subjectsMeta:
+  - icon: nodejs-plain
+    name: Desarrollo Fullstack II
+  - icon: amazonwebservices-plain-wordmark
+    name: Cloud Computing
 ---
 
 # Bimestre 12 - Desarrollo Fullstack II & Cloud Computing
