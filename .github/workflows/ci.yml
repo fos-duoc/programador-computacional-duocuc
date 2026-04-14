@@ -62,5 +62,3 @@ jobs:
 
       - name: Pytest
         run: uv run pytest --no-header
-        # No bloquear si aún no hay tests.
-        continue-on-error: true
