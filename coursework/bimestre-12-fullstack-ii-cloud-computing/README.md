@@ -1,3 +1,13 @@
+---
+bimestre: 12
+slug: bimestre-12-fullstack-ii-cloud-computing
+title: "Bimestre 12 - Desarrollo Fullstack II & Cloud Computing"
+status: pending
+asignaturas:
+  - cloud-computing
+  - desarrollo-fullstack-ii
+---
+
 # Bimestre 12 - Desarrollo Fullstack II & Cloud Computing
 
 ## Ingeniería en Desarrollo de Software - DuocUC
