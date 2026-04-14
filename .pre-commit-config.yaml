@@ -76,6 +76,37 @@ repos:
         exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
 
   # ─────────────────────────────────────────────────────────────────────────
+  # Shell: shellcheck sobre scripts/*.sh
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.10.0.1
+    hooks:
+      - id: shellcheck
+        files: ^scripts/.*\.sh$
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # GitHub Actions: actionlint sobre .github/workflows/*.yml
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.7
+    hooks:
+      - id: actionlint
+        files: ^\.github/workflows/.*\.ya?ml$
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # Links Markdown: verifica links relativos en .md
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: local
+    hooks:
+      - id: check-links-markdown
+        name: links relativos en Markdown
+        language: system
+        entry: ./scripts/check-links.sh
+        pass_filenames: false
+        files: \.md$
+        exclude: ^(apps/astro-site/(node_modules|dist|\.astro)/|coursework/.*/(archivos-curso|exp[123])/|docs/archive/)
+
+  # ─────────────────────────────────────────────────────────────────────────
   # Conventional Commits — enforcement de mensajes de commit
   # ─────────────────────────────────────────────────────────────────────────
   - repo: https://github.com/compilerla/conventional-pre-commit

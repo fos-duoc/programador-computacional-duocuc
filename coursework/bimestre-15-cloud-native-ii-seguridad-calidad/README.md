@@ -1,3 +1,13 @@
+---
+bimestre: 15
+slug: bimestre-15-cloud-native-ii-seguridad-calidad
+title: "Bimestre 15 - Cloud Native II & Seguridad y Calidad"
+status: pending
+asignaturas:
+  - cloud-native-ii
+  - seguridad-calidad
+---
+
 # Bimestre 15 - Cloud Native II & Seguridad y Calidad
 
 ## Ingeniería en Desarrollo de Software - DuocUC

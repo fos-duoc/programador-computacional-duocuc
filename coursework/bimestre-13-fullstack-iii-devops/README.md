@@ -1,3 +1,13 @@
+---
+bimestre: 13
+slug: bimestre-13-fullstack-iii-devops
+title: "Bimestre 13 - Desarrollo Fullstack III & DevOps"
+status: pending
+asignaturas:
+  - desarrollo-fullstack-iii
+  - devops-ingenieria
+---
+
 # Bimestre 13 - Desarrollo Fullstack III & DevOps
 
 ## Ingeniería en Desarrollo de Software - DuocUC

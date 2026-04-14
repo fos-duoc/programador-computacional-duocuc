@@ -1,3 +1,13 @@
+---
+bimestre: 11
+slug: bimestre-11-fullstack-i-bd-aplicada
+title: "Bimestre 11 - Desarrollo Fullstack I & Base de Datos Aplicada"
+status: pending
+asignaturas:
+  - bd-aplicada
+  - desarrollo-fullstack-i
+---
+
 # Bimestre 11 - Desarrollo Fullstack I & Base de Datos Aplicada
 
 ## Ingeniería en Desarrollo de Software - DuocUC
