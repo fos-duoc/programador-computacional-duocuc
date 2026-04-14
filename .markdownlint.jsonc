@@ -1,0 +1,53 @@
+// Config de markdownlint para este repo.
+// Rules: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+{
+  "default": true,
+
+  // Line length: deshabilitado — los READMEs de bimestres usan líneas largas
+  // por naturaleza (descripciones de asignaturas, links, frontmatter).
+  "MD013": false,
+
+  // Single H1: frontmatter YAML se cuenta como título por markdownlint-cli2
+  // en algunos modos, generando falsos positivos. Desactivado.
+  "MD025": false,
+
+  // Inline HTML: permitido. READMEs ricos (B01 fundamentos-programacion)
+  // usan <table>, <details>, <div align> para layout.
+  "MD033": false,
+
+  // Emphasis as heading: **Estado:**, **Competencias:** son idioma del proyecto.
+  "MD036": false,
+
+  // Fenced code language: algunos bloques son ASCII-art de estructuras
+  // (bimestre-XX-slug/...), no código. Hint útil pero no gate.
+  "MD040": false,
+
+  // Line breaks alrededor de headings / listas / fences: estilo variable.
+  // Puede reactivarse en un PR aparte con fixes automáticos.
+  "MD022": false,
+  "MD032": false,
+  "MD031": false,
+
+  // Table column style: las tablas en ARCHITECTURE.md son compactas a propósito.
+  "MD060": false,
+
+  // Heading increment: permite h1 -> h3 (saltar h2) en componentes con subnav.
+  "MD001": false,
+
+  // Alt text en imágenes: los badges (shields.io) y banners (capsule-render)
+  // del README son decorativos. Añadir alt="" a cada uno es ruido sin valor
+  // de accesibilidad real. Re-evaluar si algún día se agregan imágenes con
+  // contenido informativo.
+  "MD045": false,
+
+  // Link fragments: markdownlint no resuelve los slugs de GitHub con emoji
+  // (## 🛠️ Stack → #-stack vs #stack). GitHub renderiza bien; no bloquear.
+  "MD051": false,
+
+  // Hard tabs: permitidos dentro de code blocks (Makefiles los necesitan).
+  "MD010": { "code_blocks": false },
+
+  // First line h1: READMEs con hero decorativo abren con <div align="center">.
+  // GitHub renderiza el <h1> que viene luego sin problema.
+  "MD041": false
+}

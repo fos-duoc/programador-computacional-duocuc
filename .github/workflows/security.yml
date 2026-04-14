@@ -84,5 +84,3 @@ jobs:
 
       - name: Run pip-audit
         run: uv run --with pip-audit pip-audit --strict
-        continue-on-error: true
-        # continue-on-error mientras estabilizamos. Quitar cuando esté limpio.

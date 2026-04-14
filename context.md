@@ -14,7 +14,7 @@ Repositorio personal del programa **Analista Programador Computacional** (DuocUC
 3. **Recursos compartidos** (`resources/`) — mallas curriculares, plantillas, documentos institucionales.
 4. **Documentación viva** — `context.md` (este archivo) y `sessions/` viven en la raíz para acceso rápido. Convenciones, decisiones de arquitectura y archivo histórico viven en `docs/` (que ahora es 100% source-of-truth markdown). El sitio se publica vía GitHub Actions desde `apps/astro-site/dist/` (gitignored).
 
-GitHub: https://github.com/fos-duoc/programador-computacional-duocuc
+GitHub: <https://github.com/fos-duoc/programador-computacional-duocuc>
 
 ---
 
