@@ -76,6 +76,16 @@ repos:
         exclude: ^apps/astro-site/(node_modules|dist|\.astro|public)/
 
   # ─────────────────────────────────────────────────────────────────────────
+  # Markdown: markdownlint-cli2 con config .markdownlint.jsonc (permisivo)
+  # ─────────────────────────────────────────────────────────────────────────
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.14.0
+    hooks:
+      - id: markdownlint-cli2
+        files: \.md$
+        exclude: ^(apps/astro-site/(node_modules|dist|\.astro)/|coursework/.*/(archivos-curso|exp[123])/|docs/archive/|resources/)
+
+  # ─────────────────────────────────────────────────────────────────────────
   # Shell: shellcheck sobre scripts/*.sh
   # ─────────────────────────────────────────────────────────────────────────
   - repo: https://github.com/shellcheck-py/shellcheck-py
