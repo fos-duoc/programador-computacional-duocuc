@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - evaluacion-proyectos-sw
   - gestion-proyectos-sw
+year: 4
+shortTitle: "Gestion de Proyectos"
+techIcons:
+  - jira-plain
+subjectsMeta:
+  - icon: jira-plain
+    name: Evaluacion Proyectos SW
+  - icon: fas fa-tasks
+    iconType: fontawesome
+    name: Gestion Proyectos SW
 ---
 
 # Bimestre 16 - Evaluación y Gestión de Proyectos de Software

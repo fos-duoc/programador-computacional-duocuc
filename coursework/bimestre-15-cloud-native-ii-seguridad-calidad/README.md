@@ -6,6 +6,17 @@ status: pending
 asignaturas:
   - cloud-native-ii
   - seguridad-calidad
+year: 4
+shortTitle: "Cloud Native II & Seguridad"
+techIcons:
+  - amazonwebservices-plain-wordmark
+  - fas fa-shield-alt
+subjectsMeta:
+  - icon: amazonwebservices-plain-wordmark
+    name: Cloud Native II
+  - icon: fas fa-shield-alt
+    iconType: fontawesome
+    name: Seguridad y Calidad
 ---
 
 # Bimestre 15 - Cloud Native II & Seguridad y Calidad

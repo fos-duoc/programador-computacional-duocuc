@@ -6,6 +6,19 @@ status: pending
 asignaturas:
   - modelamiento-bases-datos
   - programacion-oo-ii
+year: 1
+shortTitle: "POO & DevOps"
+techIcons:
+  - java-plain
+  - docker-plain
+subjectsMeta:
+  - icon: java-plain
+    name: POO II
+  - icon: docker-plain
+    name: DevOps
+  - icon: fas fa-balance-scale
+    iconType: fontawesome
+    name: Etica
 ---
 
 # Bimestre 03 - POO II & Modelamiento de Bases de Datos

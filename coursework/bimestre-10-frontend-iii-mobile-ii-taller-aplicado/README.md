@@ -7,6 +7,16 @@ asignaturas:
   - frontend-iii
   - mobile-ii
   - taller-aplicado
+year: 2
+shortTitle: "Mobile II & Titulo"
+techIcons: []
+subjectsMeta:
+  - icon: fas fa-mobile-alt
+    iconType: fontawesome
+    name: Mobile II
+  - icon: fas fa-graduation-cap
+    iconType: fontawesome
+    name: Taller de Titulo
 ---
 
 # Bimestre 10 - Frontend III, Mobile II & Taller Aplicado

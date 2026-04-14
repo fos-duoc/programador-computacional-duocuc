@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - bd-aplicada
   - desarrollo-fullstack-i
+year: 3
+shortTitle: "Fullstack I & BD"
+techIcons:
+  - react-original
+  - postgresql-plain
+subjectsMeta:
+  - icon: react-original
+    name: Desarrollo Fullstack I
+  - icon: postgresql-plain
+    name: BD Aplicada
 ---
 
 # Bimestre 11 - Desarrollo Fullstack I & Base de Datos Aplicada

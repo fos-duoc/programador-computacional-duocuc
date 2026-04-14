@@ -9,13 +9,10 @@ import {
   nombreCortoToId,
   type Asignatura,
 } from "../data/asignaturas";
-import {
-  bimestresYear1,
-  bimestresYear2,
-  bimestresYear3,
-  bimestresYear4,
-  type Bimestre,
-} from "../data/bimestres";
+import { getBimestresByYear } from "../lib/bimestres-legacy";
+
+const { bimestresYear1, bimestresYear2, bimestresYear3, bimestresYear4 } =
+  await getBimestresByYear();
 
 // Combinar todos los bimestres
 const allBimestres = [...bimestresYear1, ...bimestresYear2, ...bimestresYear3, ...bimestresYear4];

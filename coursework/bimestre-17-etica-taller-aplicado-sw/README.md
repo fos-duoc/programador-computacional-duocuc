@@ -6,6 +6,16 @@ status: pending
 asignaturas:
   - etica-profesional
   - taller-aplicado-sw
+year: 4
+shortTitle: "Etica & Titulo Ing."
+techIcons: []
+subjectsMeta:
+  - icon: fas fa-balance-scale
+    iconType: fontawesome
+    name: Etica Profesional
+  - icon: fas fa-graduation-cap
+    iconType: fontawesome
+    name: Taller Aplicado SW
 ---
 
 # Bimestre 17 - Ética Profesional & Taller Aplicado de Software

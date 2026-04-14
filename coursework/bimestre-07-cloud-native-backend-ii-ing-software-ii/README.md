@@ -7,6 +7,16 @@ asignaturas:
   - backend-ii
   - cloud-native
   - ingenieria-software-ii
+year: 2
+shortTitle: "Backend II-III"
+techIcons:
+  - spring-plain
+subjectsMeta:
+  - icon: spring-plain
+    name: Backend II-III
+  - icon: fas fa-project-diagram
+    iconType: fontawesome
+    name: Ing. Software II
 ---
 
 # Bimestre 07 - Backend II, Cloud Native & Ing. Software II

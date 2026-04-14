@@ -6,6 +6,19 @@ status: pending
 asignaturas:
   - habilidades-comunicacion
   - programacion-oo-i
+year: 1
+shortTitle: "POO & Cloud"
+techIcons:
+  - java-plain
+  - amazonwebservices-plain-wordmark
+subjectsMeta:
+  - icon: java-plain
+    name: POO I
+  - icon: amazonwebservices-plain-wordmark
+    name: Computacion Nube
+  - icon: fas fa-comments
+    iconType: fontawesome
+    name: Comunicacion
 ---
 
 # Bimestre 02 - POO I & Habilidades de Comunicación
