@@ -1,3 +1,13 @@
+---
+bimestre: 17
+slug: bimestre-17-etica-taller-aplicado-sw
+title: "Bimestre 17 - Ética Profesional & Taller Aplicado de Software"
+status: pending
+asignaturas:
+  - etica-profesional
+  - taller-aplicado-sw
+---
+
 # Bimestre 17 - Ética Profesional & Taller Aplicado de Software
 
 ## Ingeniería en Desarrollo de Software - DuocUC

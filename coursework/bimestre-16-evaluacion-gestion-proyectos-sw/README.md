@@ -1,3 +1,13 @@
+---
+bimestre: 16
+slug: bimestre-16-evaluacion-gestion-proyectos-sw
+title: "Bimestre 16 - Evaluación y Gestión de Proyectos de Software"
+status: pending
+asignaturas:
+  - evaluacion-proyectos-sw
+  - gestion-proyectos-sw
+---
+
 # Bimestre 16 - Evaluación y Gestión de Proyectos de Software
 
 ## Ingeniería en Desarrollo de Software - DuocUC

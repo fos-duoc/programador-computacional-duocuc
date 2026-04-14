@@ -1,3 +1,13 @@
+---
+bimestre: 14
+slug: bimestre-14-app-moviles-cloud-native-i
+title: "Bimestre 14 - Desarrollo App Móviles & Cloud Native I"
+status: pending
+asignaturas:
+  - cloud-native-i
+  - desarrollo-app-moviles
+---
+
 # Bimestre 14 - Desarrollo App Móviles & Cloud Native I
 
 ## Ingeniería en Desarrollo de Software - DuocUC

@@ -23,7 +23,7 @@
 <td align="center">Lógica de programación<br>y pensamiento algorítmico</td>
 <td align="center">8 semanas<br>3 experiencias</td>
 <td align="center">Ninguno<br>(primer curso)</td>
-<td align="center"><a href="../../Bimestre%2002/Programacion-OO-I/">POO I →</a></td>
+<td align="center"><a href="../../bimestre-02-poo-i-comunicacion/programacion-oo-i/">POO I →</a></td>
 </tr>
 </table>
 
@@ -854,7 +854,7 @@ def eliminar_producto():
 
 ---
 
-[Antropología](../Antropologia/) · [Modelamiento BD](../Modelamiento-BD/)
+[Antropología](../antropologia/)
 
 </td>
 <td align="center" width="33%">
@@ -863,7 +863,7 @@ def eliminar_producto():
 
 ---
 
-[POO I →](../../Bimestre%2002/Programacion-OO-I/)
+[POO I →](../../bimestre-02-poo-i-comunicacion/programacion-oo-i/)
 
 </td>
 </tr>
