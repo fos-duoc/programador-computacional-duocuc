@@ -30,4 +30,19 @@ const bimestres = defineCollection({
   }),
 });
 
-export const collections = { bimestres };
+const tools = defineCollection({
+  loader: glob({ pattern: "*.md", base: "./src/content/tools" }),
+  schema: z.object({
+    name: z.string(),
+    category: z.enum(["generadores", "gestion", "utilidades", "ai"]),
+    url: z.string(),
+    icon: z.string(),
+    iconType: z.enum(["devicon", "fontawesome"]).default("fontawesome"),
+    bimestres: z.array(z.number().int().min(1).max(17)).default([]),
+    asignaturas: z.array(z.string()).default([]),
+    descripcion: z.string(),
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = { bimestres, tools };
