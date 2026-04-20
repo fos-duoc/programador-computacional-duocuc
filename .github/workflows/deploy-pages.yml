@@ -46,7 +46,7 @@ jobs:
         working-directory: apps/astro-site
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: apps/astro-site/dist
 
